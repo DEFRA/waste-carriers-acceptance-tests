@@ -1,18 +1,19 @@
 class ContactDetailsPage < SitePrism::Page
 
-  # Who should we contact about this application?
-  element(:contact_name, "#contactName")
-  element(:agent_or_consultant, "#isContactAnAgent")
-  element(:contact_tel_number, "#contactTelephone")
-  element(:contact_email, "#contactEmail")
+  # Contact details
+  element(:first_name, "#registration_firstName")
+  element(:last_name, "#registration_lastName")
+  element(:phone_number, "#registration_phoneNumber")
+  element(:email, "#registration_contactEmail")
 
   element(:submit_button, "input[type='Submit']")
 
   def submit(args = {})
-    contact_name.set(args[:contact_name]) if args.key?(:contact_name)
+    first_name.set(args[:first_name]) if args.key?(:first_name)
+    last_name.set(args[:last_name]) if args.key?(:last_name)
+    phone_number.set(args[:phone_number]) if args.key?(:phone_number)
+    email.set(args[:email]) if args.key?(:email)
 
-    contact_tel_number.set(args[:contact_tel_number]) if args.key?(:contact_tel_number)
-    contact_email.set(args[:contact_email]) if args.key?(:contact_email)
     submit_button.click
   end
 
