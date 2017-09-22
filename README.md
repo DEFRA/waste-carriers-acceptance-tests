@@ -41,8 +41,8 @@ Into that file you'll need to add as a minimum this
 ```yaml
 custom:
   accounts:
-    PermitingSupportAdvisor:
-      username: psa@example.com
+    Admin:
+      username: admin@example.com
       password: please123
     account2:
       username: account2@example.com
@@ -51,10 +51,7 @@ custom:
     front_office: "https://example.com"
     back_office: "https://example.com"
 
-# You'll want to add an entry that overrides the user agent if you are running
-# a Mac or a Linux machine. This is because Dynamics is only supported
-# by specific browser and OS combinations. We have found if we don't set this
-# Dynamics defaults to its mobile view which then breaks the tests.
+# Changes user agent
 user_agent: "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)"
 
 # Capybara will attempt to find an element for a period of time, rather than
