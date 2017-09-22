@@ -1,12 +1,12 @@
-# Waste permits acceptance tests
+# Waste carriers acceptance tests
 
-[![Build Status](https://travis-ci.org/DEFRA/waste-permits-acceptance-tests.svg?branch=master)](https://travis-ci.org/DEFRA/waste-permits-acceptance-tests)
-[![security](https://hakiri.io/github/DEFRA/waste-permits-acceptance-tests/master.svg)](https://hakiri.io/github/DEFRA/waste-permits-acceptance-tests/master)
-[![Dependency Status](https://dependencyci.com/github/DEFRA/waste-permits-acceptance-tests/badge)](https://dependencyci.com/github/DEFRA/waste-permits-acceptance-tests)
+[![Build Status](https://travis-ci.org/DEFRA/waste-carriers-acceptance-tests.svg?branch=master)](https://travis-ci.org/DEFRA/waste-carriers-acceptance-tests)
+[![security](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master.svg)](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master)
+[![Dependency Status](https://dependencyci.com/github/DEFRA/waste-carriers-acceptance-tests/badge)](https://dependencyci.com/github/DEFRA/waste-carriers-acceptance-tests)
 
-If your business produces waste or emissions that pollute you may require an environmental permit.
+If your business carries waste then it could require a waste carriers licence
 
-This project contains the acceptance tests for the Waste permits digital service. It is built around [Quke](https://github.com/DEFRA/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
+This project contains the acceptance tests for the Waste carriers digital service. It is built around [Quke](https://github.com/DEFRA/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
 
 ## Pre-requisites
 
@@ -19,7 +19,7 @@ The rest of the pre-requisites are the same as those for [Quke](https://github.c
 First clone the repository and then drop into your new local repo
 
 ```bash
-git clone https://github.com/DEFRA/waste-permits-acceptance-tests.git && cd waste-permits-acceptance-tests
+git clone https://github.com/DEFRA/waste-carriers-acceptance-tests.git && cd waste-carriers-acceptance-tests
 ```
 
 Next download and install the dependencies

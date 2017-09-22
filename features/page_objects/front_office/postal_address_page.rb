@@ -1,4 +1,4 @@
-class ContactDetailsPage < SitePrism::Page
+class PostalAddressPage < SitePrism::Page
 
   # Who should we write to?
   element(:first_name, "#address_firstName")
@@ -14,6 +14,9 @@ class ContactDetailsPage < SitePrism::Page
 
   element(:submit_button, "input[type='Submit']")
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def submit(args = {})
     first_name.set(args[:first_name]) if args.key?(:first_name)
     last_name.set(args[:last_name]) if args.key?(:last_name)
@@ -28,5 +31,7 @@ class ContactDetailsPage < SitePrism::Page
 
     submit_button.click
   end
-
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 end
