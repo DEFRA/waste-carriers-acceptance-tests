@@ -1,9 +1,9 @@
 class BusinessTypePage < SitePrism::Page
 
   # What type of business or organisation are you?
-  element(:org_types, "input[name='registration[businessType]']", visible: false)
+  elements(:org_types, "input[name='registration[businessType]']", visible: false)
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "input[type='Submit']", visible: false)
 
   def submit(args = {})
     if args.key?(:org_type)

@@ -23,6 +23,10 @@ class FrontOfficeApp
     @last_page = OnlyDealWithQuestion.new
   end
 
+  def construction_waste_question_page
+    @last_page = ConstructionWasteQuestionPage.new
+  end
+
   def business_details_page
     @last_page = BusinessDetailsPage.new
   end

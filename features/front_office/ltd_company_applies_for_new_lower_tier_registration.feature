@@ -7,6 +7,6 @@ Feature: Limited company applies for new lower tier registration
 
   Scenario: Limited company successfully registers for a lower tier waste carriers licence
    Given I start a new registration
-   	When I answer questions that indicate I'm a lower tier waste carrier
+   	When I complete my registration of my limited company as a lower tier waste carrier
    	Then I will be registered as lower tier waste carrier
      
