@@ -56,9 +56,8 @@ user_agent: "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)"
 
 # Capybara will attempt to find an element for a period of time, rather than
 # immediately failing because the element cannot be found. This defaults to 2
-# seconds. However the Dynamics pages can often take longer than this to load
-# so its recommended to set this value to ensure tests don't fail because of it
-max_wait_time: 10
+# seconds. 
+max_wait_time: 2
 ```
 
 If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**. You can however override this and over values using the standard [Quke configuration options](https://github.com/DEFRA/quke#configuration).
