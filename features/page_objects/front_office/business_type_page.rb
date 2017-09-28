@@ -1,6 +1,7 @@
-class SiteOperatorDetailsPage < SitePrism::Page
+class BusinessTypePage < SitePrism::Page
 
-  elements(:org_types, "input[name='operatorType']", visible: false)
+  # What type of business or organisation are you?
+  element(:org_types, "input[name='registration[businessType]']", visible: false)
 
   element(:submit_button, "input[type='Submit']")
 

@@ -1,12 +1,12 @@
-# Waste permits acceptance tests
+# Waste carriers acceptance tests
 
-[![Build Status](https://travis-ci.org/DEFRA/waste-permits-acceptance-tests.svg?branch=master)](https://travis-ci.org/DEFRA/waste-permits-acceptance-tests)
-[![security](https://hakiri.io/github/DEFRA/waste-permits-acceptance-tests/master.svg)](https://hakiri.io/github/DEFRA/waste-permits-acceptance-tests/master)
-[![Dependency Status](https://dependencyci.com/github/DEFRA/waste-permits-acceptance-tests/badge)](https://dependencyci.com/github/DEFRA/waste-permits-acceptance-tests)
+[![Build Status](https://travis-ci.org/DEFRA/waste-carriers-acceptance-tests.svg?branch=master)](https://travis-ci.org/DEFRA/waste-carriers-acceptance-tests)
+[![security](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master.svg)](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master)
+[![Dependency Status](https://dependencyci.com/github/DEFRA/waste-carriers-acceptance-tests/badge)](https://dependencyci.com/github/DEFRA/waste-carriers-acceptance-tests)
 
-If your business produces waste or emissions that pollute you may require an environmental permit.
+If your business carries waste then it could require a waste carriers licence
 
-This project contains the acceptance tests for the Waste permits digital service. It is built around [Quke](https://github.com/DEFRA/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
+This project contains the acceptance tests for the Waste carriers digital service. It is built around [Quke](https://github.com/DEFRA/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
 
 ## Pre-requisites
 
@@ -19,7 +19,7 @@ The rest of the pre-requisites are the same as those for [Quke](https://github.c
 First clone the repository and then drop into your new local repo
 
 ```bash
-git clone https://github.com/DEFRA/waste-permits-acceptance-tests.git && cd waste-permits-acceptance-tests
+git clone https://github.com/DEFRA/waste-carriers-acceptance-tests.git && cd waste-carriers-acceptance-tests
 ```
 
 Next download and install the dependencies
@@ -41,8 +41,8 @@ Into that file you'll need to add as a minimum this
 ```yaml
 custom:
   accounts:
-    PermitingSupportAdvisor:
-      username: psa@example.com
+    Admin:
+      username: admin@example.com
       password: please123
     account2:
       username: account2@example.com
@@ -51,17 +51,13 @@ custom:
     front_office: "https://example.com"
     back_office: "https://example.com"
 
-# You'll want to add an entry that overrides the user agent if you are running
-# a Mac or a Linux machine. This is because Dynamics is only supported
-# by specific browser and OS combinations. We have found if we don't set this
-# Dynamics defaults to its mobile view which then breaks the tests.
+# Changes user agent
 user_agent: "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)"
 
 # Capybara will attempt to find an element for a period of time, rather than
 # immediately failing because the element cannot be found. This defaults to 2
-# seconds. However the Dynamics pages can often take longer than this to load
-# so its recommended to set this value to ensure tests don't fail because of it
-max_wait_time: 10
+# seconds. 
+max_wait_time: 2
 ```
 
 If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**. You can however override this and over values using the standard [Quke configuration options](https://github.com/DEFRA/quke#configuration).
