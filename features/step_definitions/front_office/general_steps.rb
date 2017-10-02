@@ -5,7 +5,7 @@ Given(/^I start a new registration$/) do
 end
 
 Given(/^I complete my registration of my limited company as a lower tier waste carrier$/) do
-  
+
   @app.business_type_page.submit(org_type: "limitedCompany")
   @app.other_businesses_question_page.submit(choice: :no)
   @app.construction_waste_question_page.submit(choice: :no)
