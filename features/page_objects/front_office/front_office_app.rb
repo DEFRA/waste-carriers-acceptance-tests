@@ -39,5 +39,17 @@ class FrontOfficeApp
     @last_page = PostalAddressPage.new
   end
 
+  def declaration_page
+    @last_page = DeclarationPage.new
+  end
+
+  def sign_up_page
+    @last_page = SignupPage.new
+  end
+
+  def confirm_account_page
+    @last_page = ConfirmAccountPage.new
+  end
+
 end
 # rubocop:enable Metrics/ClassLength
