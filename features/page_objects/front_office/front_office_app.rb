@@ -51,6 +51,10 @@ class FrontOfficeApp
     @last_page = ConfirmAccountPage.new
   end
 
+  def registration_type_page
+    @last_page = RegistrationTypePage.new
+  end
+
   def generate_email
     "tim.stone.ea" + "+" + rand(10_000).to_s + "@gmail.com"
   end
