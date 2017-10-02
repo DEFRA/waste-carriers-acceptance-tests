@@ -5,7 +5,7 @@ Given(/^I start a new registration$/) do
 end
 
 Given(/^I complete my registration of my limited company as a lower tier waste carrier$/) do
-  @email = "tim.stone.ea" + "+" + rand(10_000).to_s + "@gmail.com"
+  
   @app.business_type_page.submit(org_type: "limitedCompany")
   @app.other_businesses_question_page.submit(choice: :no)
   @app.construction_waste_question_page.submit(choice: :no)
@@ -14,6 +14,7 @@ Given(/^I complete my registration of my limited company as a lower tier waste c
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
+  @email = @app.generate_email
   @app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
@@ -22,6 +23,7 @@ Given(/^I complete my registration of my limited company as a lower tier waste c
   )
   @app.postal_address_page.submit
   @app.declaration_page.submit
+
   @app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
