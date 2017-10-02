@@ -6,7 +6,7 @@ class BusinessDetailsPage < SitePrism::Page
   element(:find_address, "#find_address")
   element(:results_dropdown, "select#registration_selectedAddress")
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "input[value='Continue']")
 
   def submit(args = {})
     company_name.set(args[:company_name]) if args.key?(:company_name)

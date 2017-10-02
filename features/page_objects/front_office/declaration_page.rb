@@ -1,4 +1,4 @@
-class DeclarationsPage < SitePrism::Page
+class DeclarationPage < SitePrism::Page
 
   # Check your details before registering
   element(:declaration, "#registration_declaration")
@@ -6,6 +6,7 @@ class DeclarationsPage < SitePrism::Page
   element(:submit_button, "input[type='Submit']")
 
   def submit(_args = {})
+    declaration.click
     submit_button.click
   end
 

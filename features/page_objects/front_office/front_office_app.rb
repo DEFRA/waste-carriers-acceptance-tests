@@ -23,6 +23,10 @@ class FrontOfficeApp
     @last_page = OnlyDealWithQuestion.new
   end
 
+  def construction_waste_question_page
+    @last_page = ConstructionWasteQuestionPage.new
+  end
+
   def business_details_page
     @last_page = BusinessDetailsPage.new
   end
@@ -35,5 +39,20 @@ class FrontOfficeApp
     @last_page = PostalAddressPage.new
   end
 
+  def declaration_page
+    @last_page = DeclarationPage.new
+  end
+
+  def sign_up_page
+    @last_page = SignupPage.new
+  end
+
+  def confirm_account_page
+    @last_page = ConfirmAccountPage.new
+  end
+
+  def generate_email
+    "tim.stone.ea" + "+" + rand(10_000).to_s + "@gmail.com"
+  end
 end
 # rubocop:enable Metrics/ClassLength
