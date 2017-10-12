@@ -51,6 +51,34 @@ class FrontOfficeApp
     @last_page = ConfirmAccountPage.new
   end
 
+  def registration_type_page
+    @last_page = RegistrationTypePage.new
+  end
+
+  def key_people_page
+    @last_page = KeyPeoplePage.new
+  end
+
+  def relevant_convictions_page
+    @last_page = RelevantConvictionsPage.new
+  end
+
+  def order_page
+    @last_page = OrderPage.new
+  end
+
+  def worldpay_card_choice_page
+    @last_page = WorldpayCardChoicePage.new
+  end
+
+  def worldpay_card_details_page
+    @last_page = WorldpayCardDetailsPage.new
+  end
+
+  def registration_confirmed_page
+    @last_page = RegistrationConfirmedPage.new
+  end
+
   def generate_email
     "tim.stone.ea" + "+" + rand(10_000).to_s + "@gmail.com"
   end
