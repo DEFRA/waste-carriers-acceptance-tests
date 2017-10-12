@@ -3,5 +3,3 @@ Given(/^I start a new registration$/) do
   @app.start_page.load
   @app.start_page.submit
 end
-
-
