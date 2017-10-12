@@ -47,11 +47,6 @@ When(/^I complete my registration of my limited company as a upper tier waste ca
     security_code: "555",
     cardholder_name: "3d.authorised",
     expiry_month: "12",
-    expiry_year: "2019"
+    expiry_year: @year
   )
-end
-
-Then(/^I will be registered as an upper tier waste carrier$/) do
-  expect(@app.registration_confirmed_page.registration_number).to have_text("CBDU")
-  expect(@app.registration_confirmed_page).to have_text @email
 end
