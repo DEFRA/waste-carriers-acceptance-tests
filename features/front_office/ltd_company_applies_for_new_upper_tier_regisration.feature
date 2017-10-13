@@ -1,6 +1,6 @@
-@frontoffice @wip
+@frontoffice
 Feature: Limited company applies for new upper tier registration
-  As a carrier of domestic waste
+  As a carrier of commercial waste
   I want to register my company with the Environment Agency
   So I am compliant with the law
    

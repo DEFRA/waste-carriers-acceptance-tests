@@ -2,10 +2,10 @@ class LoginPage < SitePrism::Page
 
   set_url(Quke::Quke.config.custom["urls"]["back_office"])
 
-  element(:email, "#cred_userid_inputtext")
-  element(:password, "#cred_password_inputtext")
+  element(:email, "#agency_user_email")
+  element(:password, "#agency_user_password")
 
-  element(:submit_button, "#cred_sign_in_button")
+  element(:submit_button, "#sign_in")
 
   def submit(args = {})
     email.set(args[:email]) if args.key?(:email)

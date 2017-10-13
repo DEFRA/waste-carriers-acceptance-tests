@@ -1,0 +1,19 @@
+class OnlyDealWithQuestionPage < SitePrism::Page
+
+  # Do you only deal with the following waste?
+  element(:yes_only, "#registration_onlyAMF_yes", visible: false)
+  element(:not_only, "#registration_onlyAMF_no", visible: false)
+
+  element(:submit_button, "input[type='Submit']")
+
+  def submit(args = {})
+    case args[:choice]
+    when :no
+      not_only.select_option
+    when :yes
+      yes_only.select_option
+    end
+    submit_button.click
+  end
+
+end
