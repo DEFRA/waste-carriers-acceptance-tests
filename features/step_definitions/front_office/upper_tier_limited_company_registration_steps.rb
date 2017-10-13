@@ -49,4 +49,5 @@ When(/^I complete my registration of my limited company as a upper tier waste ca
     expiry_month: "12",
     expiry_year: @year
   )
+  @app.worldpay_card_details_page.submit_button.click
 end

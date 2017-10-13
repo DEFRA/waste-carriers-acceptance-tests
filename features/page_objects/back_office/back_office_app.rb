@@ -71,8 +71,8 @@ class BackOfficeApp
     @last_page = WorldpayCardChoicePage.new
   end
 
-  def worldpay_moto_card_details_page
-    @last_page = WorldpayMotoCardDetailsPage.new
+  def worldpay_card_details_page
+    @last_page = WorldpayCardDetailsPage.new
   end
 
   def registration_confirmed_page
