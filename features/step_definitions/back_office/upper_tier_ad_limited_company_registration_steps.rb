@@ -35,7 +35,7 @@ When(/^I have my limited company as a upper tier waste carrier registration comp
 
   @year = time.year + 1
 
-  @app.worldpay_moto_card_details_page.submit(
+  @app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
     cardholder_name: "3d.authorised",
