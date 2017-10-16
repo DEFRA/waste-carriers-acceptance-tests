@@ -5,7 +5,7 @@ When(/^I have my limited company as a upper tier waste carrier registration comp
   @app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @app.business_details_page.submit(
     companies_house_number: "00233462",
-    company_name: "AD LT Company limited",
+    company_name: "AD UT Company limited",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
