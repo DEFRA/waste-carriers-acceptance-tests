@@ -1,29 +1,36 @@
-When(/^I have my limited company as a upper tier waste carrier registration completed for me$/) do
-  @app.business_type_page.submit(org_type: "limitedCompany")
-  @app.other_businesses_question_page.submit(choice: :no)
+When(/^I complete my registration of my sole trader business as a upper tier waste carrier$/) do
+  @app.business_type_page.submit(org_type: "soleTrader")
+  @app.other_businesses_question_page.submit(choice: :yes)
+  @app.service_provided_question_page.submit(choice: :not_main_service)
   @app.construction_waste_question_page.submit(choice: :yes)
-  @app.registration_type_page.submit(choice: :carrier_broker_dealer)
+  @app.registration_type_page.submit(choice: :broker_dealer)
   @app.business_details_page.submit(
-    companies_house_number: "00233462",
-    company_name: "AD UT Company limited",
+    company_name: "UT Sole Trader",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
+  @email = @app.generate_email
   @app.contact_details_page.submit(
     first_name: "Bob",
-    last_name: "Carolgees",
-    phone_number: "012345678"
+    last_name: "Debuilder",
+    phone_number: "012345678",
+    email: @email
   )
   @app.postal_address_page.submit
-  @app.key_people_page.submit_directors(
-    first_name: "Ray",
-    last_name: "Davies",
-    dob_day: "01",
-    dob_month: "5",
-    dob_year: "1985"
+  @app.key_people_page.submit(
+    first_name: "Terry",
+    last_name: "Griffith",
+    dob_day: "02",
+    dob_month: "6",
+    dob_year: "1955"
   )
   @app.relevant_convictions_page.submit(choice: :no)
   @app.declaration_page.submit
+  @app.sign_up_page.submit(
+    registration_password: "Secret123",
+    confirm_password: "Secret123",
+    confirm_email: @email
+  )
   @app.order_page.submit(
     copy_card_number: "1",
     choice: :card_payment
@@ -42,4 +49,5 @@ When(/^I have my limited company as a upper tier waste carrier registration comp
     expiry_month: "12",
     expiry_year: @year
   )
+  @app.worldpay_card_details_page.submit_button.click
 end

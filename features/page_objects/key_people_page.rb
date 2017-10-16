@@ -13,7 +13,7 @@ class KeyPeoplePage < SitePrism::Page
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/CyclomaticComplexity
   # rubocop:disable Metrics/PerceivedComplexity
-  def submit(args = {})
+  def submit_directors(args = {})
     first_name.set(args[:first_name]) if args.key?(:first_name)
     last_name.set(args[:last_name]) if args.key?(:last_name)
     dob_day.set(args[:dob_day]) if args.key?(:dob_day)
@@ -22,6 +22,16 @@ class KeyPeoplePage < SitePrism::Page
 
     add_key_person.click
 
+    first_name.set(args[:first_name]) if args.key?(:first_name)
+    last_name.set(args[:last_name]) if args.key?(:last_name)
+    dob_day.set(args[:dob_day]) if args.key?(:dob_day)
+    dob_month.set(args[:dob_month]) if args.key?(:dob_month)
+    dob_year.set(args[:dob_year]) if args.key?(:dob_year)
+
+    submit_button.click
+  end
+
+  def submit(args = {})
     first_name.set(args[:first_name]) if args.key?(:first_name)
     last_name.set(args[:last_name]) if args.key?(:last_name)
     dob_day.set(args[:dob_day]) if args.key?(:dob_day)

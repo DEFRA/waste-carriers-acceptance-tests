@@ -17,7 +17,7 @@ When(/^I complete my registration of my limited company as a upper tier waste ca
     email: @email
   )
   @app.postal_address_page.submit
-  @app.key_people_page.submit(
+  @app.key_people_page.submit_directors(
     first_name: "Ray",
     last_name: "Davies",
     dob_day: "01",
