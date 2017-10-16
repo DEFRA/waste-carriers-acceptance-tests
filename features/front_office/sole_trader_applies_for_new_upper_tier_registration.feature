@@ -1,4 +1,4 @@
-@frontoffice @wip
+@frontoffice
 Feature: Sole trader applies for new upper tier registration
   As a carrier of commercial waste
   I want to register my company with the Environment Agency
