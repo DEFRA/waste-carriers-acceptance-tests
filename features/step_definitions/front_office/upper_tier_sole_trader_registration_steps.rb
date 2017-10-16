@@ -19,7 +19,7 @@ When(/^I complete my registration of my sole trader business as a upper tier was
   @app.postal_address_page.submit
   @app.key_people_page.submit(
     first_name: "Terry",
-    last_name: "Griffith",
+    last_name: "Griffiths",
     dob_day: "02",
     dob_month: "6",
     dob_year: "1955"
