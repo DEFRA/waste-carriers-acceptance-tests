@@ -21,3 +21,13 @@ Then(/^I will have a upper tier registration$/) do
   @uppertier_ad_ltd_registration_number = @app.finish_assisted_page.registration_number.text
   @uppertier_ad_ltd_access_code = @app.finish_assisted_page.access_code.text
 end
+
+Then(/^I will have a lower tier registration$/) do
+  expect(@app.finish_assisted_page.registration_number).to have_text("CBDL")
+  expect(@app.finish_assisted_page).to have_access_code
+  expect(@app.finish_assisted_page).to have_view_certificate
+
+  # Stores registration number and access code for later use
+  @lowertier_ad_ltd_registration_number = @app.finish_assisted_page.registration_number.text
+  @lowertier_ad_ltd_access_code = @app.finish_assisted_page.access_code.text
+end
