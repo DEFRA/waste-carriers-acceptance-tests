@@ -17,13 +17,12 @@ When(/^I complete my registration of my limited company as a upper tier waste ca
     email: @email
   )
   @app.postal_address_page.submit
-  @app.key_people_page.submit_directors(
-    first_name: "Ray",
-    last_name: "Davies",
-    dob_day: "01",
-    dob_month: "5",
-    dob_year: "1985"
-  )
+
+  people = @app.key_people_page.key_people
+  @app.key_people_page.add_director(person: people[0])
+  @app.key_people_page.add_director(person: people[1])
+  @app.key_people_page.submit_director(person: people[2])
+
   @app.relevant_convictions_page.submit(choice: :no)
   @app.declaration_page.submit
   @app.sign_up_page.submit(
