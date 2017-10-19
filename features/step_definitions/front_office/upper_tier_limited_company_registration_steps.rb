@@ -20,9 +20,9 @@ When(/^I complete my registration of my limited company as a upper tier waste ca
 
   people = @app.key_people_page.key_people
 
-  @app.key_people_page.add_director(person: people[0])
-  @app.key_people_page.add_director(person: people[1])
-  @app.key_people_page.submit_director(person: people[2])
+  @app.key_people_page.add_key_person(person: people[0])
+  @app.key_people_page.add_key_person(person: people[1])
+  @app.key_people_page.submit_key_person(person: people[2])
 
   @app.relevant_convictions_page.submit(choice: :no)
   @app.declaration_page.submit
