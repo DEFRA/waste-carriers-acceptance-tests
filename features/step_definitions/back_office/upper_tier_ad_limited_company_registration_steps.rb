@@ -15,13 +15,13 @@ When(/^I have my limited company as a upper tier waste carrier registration comp
     phone_number: "012345678"
   )
   @app.postal_address_page.submit
-  @app.key_people_page.submit_directors(
-    first_name: "Ray",
-    last_name: "Davies",
-    dob_day: "01",
-    dob_month: "5",
-    dob_year: "1985"
-  )
+
+  people = @app.key_people_page.key_people
+
+  @app.key_people_page.add_key_person(person: people[0])
+  @app.key_people_page.add_key_person(person: people[1])
+  @app.key_people_page.submit_key_person(person: people[2])
+
   @app.relevant_convictions_page.submit(choice: :no)
   @app.declaration_page.submit
   @app.order_page.submit(

@@ -17,13 +17,10 @@ When(/^I complete my registration of my sole trader business as a upper tier was
     email: @email
   )
   @app.postal_address_page.submit
-  @app.key_people_page.submit(
-    first_name: "Terry",
-    last_name: "Griffiths",
-    dob_day: "02",
-    dob_month: "6",
-    dob_year: "1955"
-  )
+
+  people = @app.key_people_page.key_people
+  @app.key_people_page.submit_key_person(person: people[0])
+
   @app.relevant_convictions_page.submit(choice: :no)
   @app.declaration_page.submit
   @app.sign_up_page.submit(
