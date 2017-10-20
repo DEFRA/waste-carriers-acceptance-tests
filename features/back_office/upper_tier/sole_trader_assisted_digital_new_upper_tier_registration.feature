@@ -11,6 +11,6 @@ Feature: Assisted digital registration of an upper tier sole trader
    Given I request assistance with a new registration
    	When I have my sole trader upper tier waste carrier application completed for me
      And I pay for my appliction over the phone by maestro ordering 2 copy cards
-   	Then I will have a upper tier registration
+   	Then I will have an upper tier registration
    	
      

@@ -12,7 +12,7 @@ Given(/^I request assistance with a new registration$/) do
   @app.start_page.submit
 end
 
-Then(/^I will have a upper tier registration$/) do
+Then(/^I will have an upper tier registration$/) do
   expect(@app.finish_assisted_page.registration_number).to have_text("CBDU")
   expect(@app.finish_assisted_page).to have_access_code
   expect(@app.finish_assisted_page).to have_view_certificate
