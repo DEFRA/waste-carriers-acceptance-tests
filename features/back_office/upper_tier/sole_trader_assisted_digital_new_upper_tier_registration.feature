@@ -7,9 +7,10 @@ Feature: Assisted digital registration of an upper tier sole trader
    Background:
    Given an Environment Agency user has signed in
 
-  Scenario: NCCC successfully registers a sole trader for a upper tier waste carriers licence
+  Scenario: NCCC successfully registers a sole trader for a upper tier waste carriers licence paying by credit card
    Given I request assistance with a new registration
-   	When I have my sole trader upper tier waste carrier registration completed for me
+   	When I have my sole trader upper tier waste carrier application completed for me
+     And I pay for my appliction over the phone by maestro ordering 2 copy cards
    	Then I will have a upper tier registration
    	
      

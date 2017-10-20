@@ -1,11 +1,11 @@
-When(/^I have my limited company as a upper tier waste carrier application completed for me$/) do
-  @app.business_type_page.submit(org_type: "limitedCompany")
-  @app.other_businesses_question_page.submit(choice: :no)
-  @app.construction_waste_question_page.submit(choice: :yes)
-  @app.registration_type_page.submit(choice: :carrier_broker_dealer)
+When(/^I have my partnership upper tier waste carrier application completed for me$/) do
+  @app.business_type_page.submit(org_type: "partnership")
+  @app.other_businesses_question_page.submit(choice: :yes)
+  @app.service_provided_question_page.submit(choice: :main_service)
+  @app.only_deal_with_question_page.submit(choice: :not_farm_waste)
+  @app.registration_type_page.submit(choice: :broker_dealer)
   @app.business_details_page.submit(
-    companies_house_number: "00233462",
-    company_name: "AD UT Company limited",
+    company_name: "UT Partnership",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )

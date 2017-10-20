@@ -22,6 +22,27 @@ Then(/^I will have a upper tier registration$/) do
   @uppertier_ad_ltd_access_code = @app.finish_assisted_page.access_code.text
 end
 
+When(/^I pay for my appliction over the phone by maestro ordering (\d+) copy cards$/) do |copy_card_number|
+  @app.order_page.submit(
+    copy_card_number: copy_card_number,
+    choice: :card_payment
+  )
+  @app.worldpay_card_choice_page.maestro.click
+
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
+
+  @app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year
+  )
+end
+
 Then(/^I will have a lower tier registration$/) do
   expect(@app.finish_assisted_page.registration_number).to have_text("CBDL")
   expect(@app.finish_assisted_page).to have_access_code

@@ -1,4 +1,4 @@
-When(/^I have my sole trader upper tier waste carrier registration completed for me$/) do
+When(/^I have my sole trader upper tier waste carrier application completed for me$/) do
   @app.business_type_page.submit(org_type: "soleTrader")
   @app.other_businesses_question_page.submit(choice: :yes)
   @app.service_provided_question_page.submit(choice: :not_main_service)
@@ -21,23 +21,4 @@ When(/^I have my sole trader upper tier waste carrier registration completed for
 
   @app.relevant_convictions_page.submit(choice: :no)
   @app.declaration_page.submit
-
-  @app.order_page.submit(
-    copy_card_number: "3",
-    choice: :card_payment
-  )
-  @app.worldpay_card_choice_page.visa.click
-
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @app.worldpay_card_details_page.submit(
-    card_number: "4917610000000000",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
 end
