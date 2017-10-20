@@ -1,4 +1,5 @@
 @frontoffice @lower_tier
+
 Feature: Sole trader applies for new lower tier registration
   As a carrier of domestic waste
   I want to register my company with the Environment Agency
