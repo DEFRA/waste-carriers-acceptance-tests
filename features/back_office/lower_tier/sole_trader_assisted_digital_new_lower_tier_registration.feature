@@ -1,4 +1,4 @@
-@backoffice
+@backoffice @lower_tier @ad
 Feature: Assisted digital registration of a lower tier sole trader
   As a carrier of domestic waste
   I want assistance with my waste carrier registration from the Environment Agency
