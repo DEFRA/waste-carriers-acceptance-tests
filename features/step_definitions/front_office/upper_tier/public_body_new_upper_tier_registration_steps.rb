@@ -1,5 +1,5 @@
 When(/^I complete my application of my public body as an upper tier waste carrier$/) do
-   @app.business_type_page.submit(org_type: "publicBody")
+  @app.business_type_page.submit(org_type: "publicBody")
   @app.other_businesses_question_page.submit(choice: :yes)
   @app.service_provided_question_page.submit(choice: :not_main_service)
   @app.construction_waste_question_page.submit(choice: :yes)

@@ -1,16 +1,17 @@
-Given(/^I complete my registration of my limited company as a lower tier waste carrier$/) do
-  @app.business_type_page.submit(org_type: "limitedCompany")
-  @app.other_businesses_question_page.submit(choice: :no)
+When(/^I complete my registration of my partnership as a lower tier waste carrier$/) do
+  @app.business_type_page.submit(org_type: "partnership")
+  @app.other_businesses_question_page.submit(choice: :yes)
+  @app.service_provided_question_page.submit(choice: :not_main_service)
   @app.construction_waste_question_page.submit(choice: :no)
   @app.business_details_page.submit(
-    company_name: "LT Company limited",
+    company_name: "LT partnership",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email = @app.generate_email
   @app.contact_details_page.submit(
-    first_name: "Bob",
-    last_name: "Carolgees",
+    first_name: "Terry",
+    last_name: "Griffiths",
     phone_number: "012345678",
     email: @email
   )

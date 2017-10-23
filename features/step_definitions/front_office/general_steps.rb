@@ -27,6 +27,10 @@ When(/^I pay for my appliction by maestro ordering (\d+) copy (?:card|cards)$/) 
   @app.worldpay_card_details_page.submit_button.click
 end
 
+Then(/^I will be asked to confirm my email address$/) do
+  expect(@app.confirm_account_page.has_content?("Confirm your email address")).to be(true)
+end
+
 Then(/^I will be registered as an upper tier waste carrier$/) do
   expect(@app.registration_confirmed_page.registration_number).to have_text("CBDU")
   expect(@app.registration_confirmed_page).to have_text @email
