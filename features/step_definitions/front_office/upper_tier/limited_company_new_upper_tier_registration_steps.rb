@@ -1,4 +1,4 @@
-When(/^I complete my application of my limited company as a upper tier waste carrier$/) do
+When(/^I complete my application of my limited company as an upper tier waste carrier$/) do
   @app.business_type_page.submit(org_type: "limitedCompany")
   @app.other_businesses_question_page.submit(choice: :no)
   @app.construction_waste_question_page.submit(choice: :yes)

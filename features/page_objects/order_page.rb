@@ -5,7 +5,7 @@ class OrderPage < SitePrism::Page
   element(:card_payment, "#registration_payment_type_world_pay")
   element(:bank_transfer_payment, "#registration_payment_type_bank_transfer")
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "#proceed_to_payment")
 
   def submit(args = {})
     copy_cards.set(args[:copy_card_number]) if args.key?(:copy_card_number)
