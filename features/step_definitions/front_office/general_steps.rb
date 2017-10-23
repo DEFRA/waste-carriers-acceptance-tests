@@ -37,3 +37,11 @@ Then(/^I will be registered as an upper tier waste carrier$/) do
   # Stores registration number for later use
   @uppertier_registration_number = @app.registration_confirmed_page.registration_number.text
 end
+
+When(/^select that I don't know what business type to enter$/) do
+  @app.business_type_page.submit(org_type: "other")
+end
+
+Then(/^I will be informed to contact the Environment Agency$/) do
+  expect(@app.no_registration_page).to have_text "Contact the Environment Agency"
+end
