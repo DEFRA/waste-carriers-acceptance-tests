@@ -5,7 +5,7 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @app.only_deal_with_question_page.submit(choice: :not_farm_waste)
   @app.registration_type_page.submit(choice: :broker_dealer)
   @app.business_details_page.submit(
-    company_name: "UT Partnership",
+    company_name: "AD UT Partnership",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )

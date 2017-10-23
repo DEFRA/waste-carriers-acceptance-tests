@@ -1,9 +1,9 @@
-Given(/^I complete my registration of my limited company as a lower tier waste carrier$/) do
-  @app.business_type_page.submit(org_type: "limitedCompany")
+When(/^I complete my registration of my public body as a lower tier waste carrier$/) do
+  @app.business_type_page.submit(org_type: "publicBody")
   @app.other_businesses_question_page.submit(choice: :no)
   @app.construction_waste_question_page.submit(choice: :no)
   @app.business_details_page.submit(
-    company_name: "LT Company limited",
+    company_name: "LT public body",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )

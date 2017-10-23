@@ -1,11 +1,11 @@
-When(/^I complete my application of my sole trader business as a upper tier waste carrier$/) do
-  @app.business_type_page.submit(org_type: "soleTrader")
+When(/^I complete my application of my public body as an upper tier waste carrier$/) do
+  @app.business_type_page.submit(org_type: "publicBody")
   @app.other_businesses_question_page.submit(choice: :yes)
   @app.service_provided_question_page.submit(choice: :not_main_service)
   @app.construction_waste_question_page.submit(choice: :yes)
-  @app.registration_type_page.submit(choice: :carrier_dealer)
+  @app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @app.business_details_page.submit(
-    company_name: "UT Sole Trader",
+    company_name: "UT Public Body",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )

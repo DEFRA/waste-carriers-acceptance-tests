@@ -1,28 +1,23 @@
-When(/^I complete my application of my sole trader business as a upper tier waste carrier$/) do
-  @app.business_type_page.submit(org_type: "soleTrader")
+When(/^I complete my registration of my partnership as a lower tier waste carrier$/) do
+  @app.business_type_page.submit(org_type: "partnership")
   @app.other_businesses_question_page.submit(choice: :yes)
   @app.service_provided_question_page.submit(choice: :not_main_service)
-  @app.construction_waste_question_page.submit(choice: :yes)
-  @app.registration_type_page.submit(choice: :carrier_dealer)
+  @app.construction_waste_question_page.submit(choice: :no)
   @app.business_details_page.submit(
-    company_name: "UT Sole Trader",
+    company_name: "LT partnership",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email = @app.generate_email
   @app.contact_details_page.submit(
-    first_name: "Bob",
-    last_name: "Debuilder",
+    first_name: "Terry",
+    last_name: "Griffiths",
     phone_number: "012345678",
     email: @email
   )
   @app.postal_address_page.submit
-
-  people = @app.key_people_page.key_people
-  @app.key_people_page.submit_key_person(person: people[0])
-
-  @app.relevant_convictions_page.submit(choice: :no)
   @app.declaration_page.submit
+
   @app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
