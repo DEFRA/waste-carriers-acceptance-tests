@@ -22,7 +22,7 @@ Then(/^I will have an upper tier registration$/) do
   @uppertier_ad_ltd_access_code = @app.finish_assisted_page.access_code.text
 end
 
-When(/^I pay for my appliction over the phone by maestro ordering (\d+) copy cards$/) do |copy_card_number|
+When(/^I pay for my appliction over the phone by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
   @app.order_page.submit(
     copy_card_number: copy_card_number,
     choice: :card_payment
