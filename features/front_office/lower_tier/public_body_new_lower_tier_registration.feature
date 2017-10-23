@@ -1,4 +1,4 @@
-@frontoffice @lower_tier @wip
+@frontoffice @lower_tier
 
 Feature: Public body applies for new lower tier registration
   As a carrier of domestic waste
