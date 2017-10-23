@@ -12,7 +12,7 @@ Feature: Public body applies for new upper tier registration
 
    	When I pay for my appliction by maestro ordering 1 copy card
    	Then I will be registered as an upper tier waste carrier
-@wip
+
    Scenario: Public body successfully applies for an upper tier wasete carriers licence choosing to pay by bank transfer
     When I choose to pay for my application by bank transfer ordering 7 copy cards
     Then I will be informed my registration is pending payment 

@@ -52,3 +52,12 @@ Then(/^I will have a lower tier registration$/) do
   @lowertier_ad_ltd_registration_number = @app.finish_assisted_page.registration_number.text
   @lowertier_ad_ltd_access_code = @app.finish_assisted_page.access_code.text
 end
+
+Then(/^I will be informed by the person taking the call that registration is pending payment$/) do
+  expect(@app.finish_assisted_page).to have_text("Registration pending")
+  expect(@app.finish_assisted_page.registration_number).to have_text("CBDU")
+  expect(@app.finish_assisted_page).to have_access_code
+
+  @uppertier_ad_ltd_registration_number = @app.finish_assisted_page.registration_number.text
+  @uppertier_ad_ltd_access_code = @app.finish_assisted_page.access_code.text
+end
