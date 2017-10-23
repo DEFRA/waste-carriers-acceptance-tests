@@ -5,7 +5,6 @@ Given(/^I start a new registration$/) do
 end
 
 When(/^I pay for my appliction by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
-  puts copy_card_number
   @app.order_page.submit(
     copy_card_number: copy_card_number,
     choice: :card_payment
@@ -44,4 +43,19 @@ end
 
 Then(/^I will be informed to contact the Environment Agency$/) do
   expect(@app.no_registration_page).to have_text "Contact the Environment Agency"
+end
+
+When(/^I choose to pay for my application by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
+  @app.order_page.submit(
+    copy_card_number: copy_card_number,
+    choice: :bank_transfer_payment
+  )
+  @app.offline_payment_page.submit
+end
+
+Then(/^I will be informed my registration is pending payment$/) do
+  expect(@app.registration_confirmed_page).to have_text "Application received"
+  expect(@app.registration_confirmed_page).to have_text @email
+  # Stores registration number for later use
+  @uppertier_registration_number = @app.registration_confirmed_page.registration_number.text
 end

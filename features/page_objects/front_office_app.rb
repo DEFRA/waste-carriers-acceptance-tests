@@ -79,6 +79,10 @@ class FrontOfficeApp
     @last_page = WorldpayCardDetailsPage.new
   end
 
+  def offline_payment_page
+    @last_page = OfflinePaymentPage.new
+  end
+
   def registration_confirmed_page
     @last_page = RegistrationConfirmedPage.new
   end

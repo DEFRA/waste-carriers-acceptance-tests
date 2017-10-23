@@ -1,4 +1,4 @@
-@frontoffice @wip
+@frontoffice
 Feature: Waste carrier uncertain of business type
   As a carrier of commercial waste
   I want to know which category of business type I should register as
