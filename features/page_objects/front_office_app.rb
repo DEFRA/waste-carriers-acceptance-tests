@@ -92,7 +92,7 @@ class FrontOfficeApp
   end
 
   def generate_email
-    "tim.stone.ea" + "+" + rand(10_000).to_s + "@gmail.com"
+    "tim.stone.ea" + "+" + rand(10_0000000).to_s + "@gmail.com"
   end
 end
 # rubocop:enable Metrics/ClassLength
