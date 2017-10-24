@@ -6,12 +6,17 @@ Feature: Assisted digital registration of an upper tier Limited company
    
    Background:
    Given an Environment Agency user has signed in
+     And I request assistance with a new registration
+    When I have my limited company as a upper tier waste carrier application completed for me
 
   Scenario: NCCC successfully registers a limited company for a upper tier waste carriers licence paying by credit card
-   Given I request assistance with a new registration
-   	When I have my limited company as a upper tier waste carrier application completed for me
-     And I pay for my appliction over the phone by maestro ordering 2 copy cards
+
+    When I pay for my appliction over the phone by maestro ordering 2 copy cards
    	Then I will have an upper tier registration
+
+  Scenario: NCCC successfully registers a limited company for a upper tier waste carriers licence choosing to pay by bank transfer
+    When I choose to pay for my application by bank transfer ordering 4 copy cards
+    Then I will be informed by the person taking the call that registration is pending payment   
 
    	
      

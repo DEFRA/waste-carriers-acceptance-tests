@@ -79,6 +79,10 @@ class FrontOfficeApp
     @last_page = WorldpayCardDetailsPage.new
   end
 
+  def offline_payment_page
+    @last_page = OfflinePaymentPage.new
+  end
+
   def registration_confirmed_page
     @last_page = RegistrationConfirmedPage.new
   end
@@ -88,7 +92,7 @@ class FrontOfficeApp
   end
 
   def generate_email
-    "tim.stone.ea" + "+" + rand(10_000).to_s + "@gmail.com"
+    "tim.stone.ea" + "+" + rand(100_000_000).to_s + "@gmail.com"
   end
 end
 # rubocop:enable Metrics/ClassLength

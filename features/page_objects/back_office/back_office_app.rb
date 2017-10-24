@@ -71,6 +71,10 @@ class BackOfficeApp
     @last_page = OrderPage.new
   end
 
+  def offline_payment_page
+    @last_page = OfflinePaymentPage.new
+  end
+
   def worldpay_card_choice_page
     @last_page = WorldpayCardChoicePage.new
   end
