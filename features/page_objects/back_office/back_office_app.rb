@@ -103,5 +103,9 @@ class BackOfficeApp
     @last_page = NewReversalPage.new
   end
 
+  def payments_page
+    @last_page = PaymentsPage.new
+  end
+
 end
 # rubocop:enable Metrics/ClassLength

@@ -52,7 +52,6 @@ Given(/^I have an application paid by credit card$/) do
 end
 
 When(/^I refund the application payment$/) do
-  puts @refund_registration
   @app.registrations_page.search(search_input: @refund_registration)
   @app.registrations_page.first_search_result_payment_status.click
   @payment_amount = @app.payment_status_page.payment_history_amount.text
