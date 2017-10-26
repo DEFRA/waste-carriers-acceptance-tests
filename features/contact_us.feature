@@ -7,6 +7,6 @@ Feature: Waste carrier uncertain of business type
 
   Scenario: Waste carrier doesn't know what business type to register is
    Given I start a new registration
-   	When select that I don't know what business type to enter
+   	When I select that I don't know what business type to enter
    	Then I will be informed to contact the Environment Agency
 
