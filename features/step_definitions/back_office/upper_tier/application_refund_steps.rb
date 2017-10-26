@@ -52,17 +52,26 @@ Given(/^I have an application paid by credit card$/) do
 end
 
 When(/^I refund the application payment$/) do
+  puts @refund_registration
   @app.registrations_page.search(search_input: @refund_registration)
   @app.registrations_page.first_search_result_payment_status.click
   @payment_amount = @app.payment_status_page.payment_history_amount.text
   expect(@app.payment_reversals_page).to have_text(@refund_registration)
   @app.payment_status_page.reversals.click
   @app.payment_reversals_page.select_payment.click
-  @app.new_reversal_page.submit(payment_comment: "Refund for @refund_registration")
+  @app.new_reversal_page.submit(payment_comment: "Refund for " + @refund_registration)
 end
 
 Then(/^the application payment will be refunded$/) do
   expect(@app.payment_status_page).to have_text("Reversal sucessfully entered")
+
+end
+
+Then(/^the refund will be shown in the payment history$/) do
+  expect(@app.payment_status_page).to have_text("Refund for " + @refund_registration)
+end
+
+Then(/^the outstanding balance will be the amount previously paid$/) do
   expect(@app.payment_status_page.payment_status.text).to eq("Awaiting payment")
   expect(@app.payment_status_page.balance_due.text).to eq(@payment_amount)
 end

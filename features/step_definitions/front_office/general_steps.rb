@@ -37,7 +37,7 @@ Then(/^I will be registered as an upper tier waste carrier$/) do
   @uppertier_registration_number = @app.registration_confirmed_page.registration_number.text
 end
 
-When(/^select that I don't know what business type to enter$/) do
+When(/^I select that I don't know what business type to enter$/) do
   @app.business_type_page.submit(org_type: "other")
 end
 

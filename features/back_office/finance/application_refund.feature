@@ -1,4 +1,4 @@
-@backoffice @finance @wip
+@backoffice @finance
 Feature: Refund of application by finance administrator
 As a finance administrator 
 I want to be be able to refund payments made in error
@@ -13,3 +13,5 @@ Scenario: Refund of application charge from credit card payment
 
  When I refund the application payment
  Then the application payment will be refunded
+ And the refund will be shown in the payment history
+ And the outstanding balance will be the amount previously paid
