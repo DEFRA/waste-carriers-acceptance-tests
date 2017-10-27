@@ -12,7 +12,9 @@ class PaymentsPage < SitePrism::Page
   element(:payment_comment, "#payment_comment")
 
   element(:enter_payment, "#enter_payment_btn")
-
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def submit(args = {})
     amount_due.set(args[:amount_due]) if args.key?(:amount_due)
     payment_amount.set(args[:payment_amount]) if args.key?(:payment_amount)
@@ -25,5 +27,7 @@ class PaymentsPage < SitePrism::Page
 
     enter_payment.click
   end
-
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 end
