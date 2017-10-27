@@ -1,6 +1,8 @@
 class PaymentStatusPage < SitePrism::Page
 
   # Payment status
+  element(:back_link, "a[href='/registrations?locale=en']")
+
   element(:enter_payment, "#enterPayment")
   element(:write_off_large, "#writeOffLarge")
   element(:reversals, "#reversals")

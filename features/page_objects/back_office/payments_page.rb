@@ -13,9 +13,7 @@ class PaymentsPage < SitePrism::Page
 
   element(:enter_payment, "#enter_payment_btn")
 
-  
-
-    def submit(args = {})
+  def submit(args = {})
     amount_due.set(args[:amount_due]) if args.key?(:amount_due)
     payment_amount.set(args[:payment_amount]) if args.key?(:payment_amount)
     payment_day.set(args[:payment_day]) if args.key?(:payment_day)
@@ -27,6 +25,5 @@ class PaymentsPage < SitePrism::Page
 
     enter_payment.click
   end
-
 
 end

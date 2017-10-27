@@ -31,7 +31,7 @@ Given(/^I have an application that is pending payment$/) do
     confirm_password: "Secret123",
     confirm_email: @email
   )
-    @app.order_page.submit(
+  @app.order_page.submit(
     copy_card_number: "2",
     choice: :bank_transfer_payment
   )
@@ -42,24 +42,25 @@ end
 
 When(/^I enter a payment for the full amount owed$/) do
   @app.registrations_page.search(search_input: @uppertier_registration_number)
-  @app.registrations_page.first_search_result_payment_status.click
+  @app.registrations_page.first_search_result_payment_status_action.click
   @app.payment_status_page.enter_payment.click
-  # Finds the amount needed to be paid and strips off the £ sign
+  # Finds the amount needed to be paid and strips off the pound sign
   @amount_due = @app.payments_page.amount_due.text[1..-1]
-  puts @amount_due
-
   @app.payments_page.submit(
-  	payment_amount: @amount_due,
-  	payment_day: "1",
-  	payment_month: "1",
-  	payment_year: "2017",
-  	payment_ref: "Test",
-  	payment_type: "CASH",
-  	payment_comment: "manual payment"
-  	)
-
+    payment_amount: @amount_due,
+    payment_day: "1",
+    payment_month: "1",
+    payment_year: "2017",
+    payment_ref: "Test",
+    payment_type: "Cash",
+    payment_comment: "manual payment"
+  )
+  expect(@app.payment_status_page.payment_status.text).to eq("Paid in full")
+  expect(@app.payment_status_page.balance_due.text).to eq("0.00")
+  @app.payment_status_page.back_link.click
 end
 
 Then(/^the registration will be marked as complete$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  expect(@app.registrations_page.first_search_result_reg_status.text).to eq("Registered")
 end

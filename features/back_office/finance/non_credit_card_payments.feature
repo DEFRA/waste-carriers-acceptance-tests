@@ -1,4 +1,4 @@
-@backoffice @finance @wip
+@backoffice @finance
 Feature: Recording of a non credit card registration by Environment Agency user
 As an Environment Agency User
 I want to be be able to enter non credit card payments 
@@ -10,5 +10,5 @@ Scenario: Application pending payment has full payment recorded as received
    And I am signed in as an Environment Agency user with refunds
   When I enter a payment for the full amount owed
   Then the registration will be marked as complete
-  
+
  
