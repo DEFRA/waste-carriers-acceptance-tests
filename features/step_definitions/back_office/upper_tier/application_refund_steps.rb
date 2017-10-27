@@ -52,9 +52,8 @@ Given(/^I have an application paid by credit card$/) do
 end
 
 When(/^I refund the application payment$/) do
-  puts @refund_registration
   @app.registrations_page.search(search_input: @refund_registration)
-  @app.registrations_page.first_search_result_payment_status.click
+  @app.registrations_page.first_search_result_payment_status_action.click
   @payment_amount = @app.payment_status_page.payment_history_amount.text
   expect(@app.payment_reversals_page).to have_text(@refund_registration)
   @app.payment_status_page.reversals.click

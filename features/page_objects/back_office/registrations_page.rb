@@ -4,7 +4,8 @@ class RegistrationsPage < SitePrism::Page
   element(:new_registration, "#new_registration")
   element(:search_input, "#q")
   element(:reg_search, "#reg-search")
-  element(:first_search_result_payment_status, "#paymentStatus1")
+  element(:first_search_result_payment_status_action, "#paymentStatus1")
+  element(:first_search_result_reg_status, :xpath, ".//*[@id='searchResult1']/div[2]/div/ul/li[2]/p")
 
   element(:sign_out, "#signout_button")
 
