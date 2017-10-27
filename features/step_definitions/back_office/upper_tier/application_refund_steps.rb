@@ -72,5 +72,5 @@ end
 
 Then(/^the outstanding balance will be the amount previously paid$/) do
   expect(@app.payment_status_page.payment_status.text).to eq("Awaiting payment")
-  expect(@app.payment_status_page.balance_due.text).to eq(@payment_amount)
+  expect(@app.payment_status_page.balance.text).to eq(@payment_amount)
 end
