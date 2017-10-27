@@ -8,7 +8,19 @@ Scenario: Application pending payment has full payment recorded as received
 
  Given I have an application that is pending payment
    And I am signed in as an Environment Agency user with refunds
-  When I enter a payment for the full amount owed
+  When I enter a cash payment for the full amount owed
   Then the registration will be marked as complete
 
- 
+ Scenario: Application pending payment has overpaying recorded
+  Given I have an application that is pending payment
+    And I am signed in as an Environment Agency user with refunds
+   When I enter a cheque payment overpaying for the amount owed
+   Then the registration will be marked as complete
+    And the payment status will be marked as overpaid
+
+ Scenario: Application pending payment has underpayment recorded
+  Given I have an application that is pending payment
+    And I am signed in as an Environment Agency user with refunds
+   When I enter a postal order payment underpaying for the amount owed
+   Then the registration will be marked as awaiting payment
+    And the payment status will be marked as underpaid  
