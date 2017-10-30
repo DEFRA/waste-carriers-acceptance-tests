@@ -61,6 +61,14 @@ When(/^I refund the application payment$/) do
   @app.new_reversal_page.submit(payment_comment: "Refund for " + @refund_registration)
 end
 
+When(/^select the application to refund$/) do
+  @app.registrations_page.search(search_input: @refund_registration)
+  @app.registrations_page.first_search_result_payment_status_action.click
+  @payment_amount = @app.payment_status_page.payment_history_amount.text
+  expect(@app.payment_reversals_page).to have_text(@refund_registration)
+  @app.payment_status_page.reversals.click
+end
+
 Then(/^the application payment will be refunded$/) do
   expect(@app.payment_status_page).to have_text("Reversal sucessfully entered")
 
@@ -73,4 +81,8 @@ end
 Then(/^the outstanding balance will be the amount previously paid$/) do
   expect(@app.payment_status_page.payment_status.text).to eq("Awaiting payment")
   expect(@app.payment_status_page.balance.text).to eq(@payment_amount)
+end
+
+Then(/^the refund option will not be available$/) do
+  expect(@app.payment_reversals_page.select_payment.text).to eq("n/a")
 end
