@@ -98,6 +98,24 @@ When(/^I enter a postal order payment underpaying for the amount owed$/) do
   @app.payment_status_page.back_link.click
 end
 
+When(/^I enter a bank transfer payment for the full amount owed$/) do
+  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  @app.registrations_page.first_search_result_payment_status_action.click
+  @app.payment_status_page.enter_payment.click
+  # Finds the amount needed to be paid and strips off the pound sign
+  @amount_due = @app.payments_page.amount_due.text[1..-1]
+  @app.payments_page.submit(
+    payment_amount: @amount_due,
+    payment_day: "1",
+    payment_month: "1",
+    payment_year: "2017",
+    payment_ref: "Test",
+    payment_type: "Bank transfer payment",
+    payment_comment: "exact bank transfer payment"
+  )
+  @app.payment_status_page.back_link.click
+end
+
 Then(/^the registration will be marked as awaiting payment$/) do
   @app.registrations_page.search(search_input: @uppertier_registration_number)
   expect(@app.registrations_page.first_search_result_reg_status.text).to eq("Awaiting payment")
