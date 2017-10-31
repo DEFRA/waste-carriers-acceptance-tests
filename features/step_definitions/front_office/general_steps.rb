@@ -70,8 +70,17 @@ end
 When(/^I confirm my email address$/) do
   @app.mailinator_page.load
   @app.mailinator_page.submit(inbox: @email)
-  @app.mailinator_page.find(:xpath,"//*[normalize-space()='#{'Confirm your email address'}']").click
-  @app.mailinator_email_details_page do |frame|
+  @app.mailinator_inbox_page.confirmation_email.click
+
+  @app.mailinator_inbox_page.email_details do |frame|
     frame.confirm_email.click
   end
+
+end
+
+Then(/^I will have received a registration complete confirmation email$/) do
+  @app.mailinator_page.load
+  @app.mailinator_page.submit(inbox: @email)
+  expect(@app.mailinator_inbox_page).to have_registration_complete_email
+
 end

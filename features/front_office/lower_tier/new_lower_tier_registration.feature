@@ -33,6 +33,7 @@ Feature: New lower tier registrations
    Given I have completed my application of my limited company as a lower tier waste carrier
     When I confirm my email address
    	Then I will be registered as a lower tier waste carrier
+     And I will have received a registration complete confirmation email 
 
  Scenario: Lower tier limited company applies for a lower tier waste carriers licence
    Given I start a new registration
