@@ -133,7 +133,6 @@ Then(/^the payment status will be marked as underpaid$/) do
   @app.registrations_page.first_search_result_payment_status_action.click
   expect(@app.payment_status_page.payment_status.text).to eq("Awaiting payment")
   expect(@app.payment_status_page.balance.text).to eq("1.00")
-  sleep(30)
 end
 
 Then(/^the registration will be marked as complete$/) do
