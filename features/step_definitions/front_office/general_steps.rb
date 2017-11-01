@@ -75,7 +75,6 @@ When(/^I confirm my email address$/) do
   @app.mailinator_inbox_page.email_details do |frame|
     frame.confirm_email.click
   end
-
 end
 
 Then(/^I will have received a registration complete confirmation email$/) do

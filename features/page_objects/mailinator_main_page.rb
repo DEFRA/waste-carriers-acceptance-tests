@@ -11,6 +11,4 @@ class MailinatorPage < SitePrism::Page
     search.click
   end
 
-
-
 end
