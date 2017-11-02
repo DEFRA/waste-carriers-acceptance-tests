@@ -91,8 +91,21 @@ class FrontOfficeApp
     @last_page = NoRegistrationPage.new
   end
 
-  def generate_email
-    "tim.stone.ea" + "+" + rand(100_000_000).to_s + "@gmail.com"
+  def mailinator_page
+    @last_page = MailinatorPage.new
   end
+
+  def mailinator_inbox_page
+    @last_page = MailinatorInboxPage.new
+  end
+
+  def mailinator_email_details_page
+    @last_page = MailinatorEmailDetailsPage.new
+  end
+
+  def generate_email
+    @email = "wastecarrier" + rand(100_000_000).to_s + "@mailinator.com"
+  end
+
 end
 # rubocop:enable Metrics/ClassLength

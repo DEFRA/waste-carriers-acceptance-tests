@@ -34,7 +34,16 @@ Then(/^I will be registered as an upper tier waste carrier$/) do
   expect(@app.registration_confirmed_page.registration_number).to have_text("CBDU")
   expect(@app.registration_confirmed_page).to have_text @email
   # Stores registration number for later use
-  @uppertier_registration_number = @app.registration_confirmed_page.registration_number.text
+  @registration_number = @app.registration_confirmed_page.registration_number.text
+end
+
+Then(/^I will be registered as a lower tier waste carrier$/) do
+  within_window @new_window do
+    expect(@app.registration_confirmed_page.registration_number).to have_text("CBDL")
+    expect(@app.registration_confirmed_page).to have_text @email
+    # Stores registration number for later use
+    @registration_number = @app.registration_confirmed_page.registration_number.text
+  end
 end
 
 When(/^I select that I don't know what business type to enter$/) do
@@ -57,5 +66,25 @@ Then(/^I will be informed my registration is pending payment$/) do
   expect(@app.registration_confirmed_page).to have_text "Application received"
   expect(@app.registration_confirmed_page).to have_text @email
   # Stores registration number for later use
-  @uppertier_registration_number = @app.registration_confirmed_page.registration_number.text
+  @registration_number = @app.registration_confirmed_page.registration_number.text
+end
+
+When(/^I confirm my email address$/) do
+  @app.mailinator_page.load
+  @app.mailinator_page.submit(inbox: @email)
+  @app.mailinator_inbox_page.confirmation_email.click
+  @app.mailinator_inbox_page.email_details do |frame|
+    @new_window = window_opened_by { frame.confirm_email.click }
+  end
+end
+
+Then(/^I will have received a registration complete confirmation email$/) do
+  @app.mailinator_page.load
+  @app.mailinator_page.submit(inbox: @email)
+  @app.mailinator_inbox_page.registration_complete_email.click
+  # rubocop:disable Lint/UnusedBlockArgument
+  @app.mailinator_inbox_page.email_details do |frame|
+    expect(@app.registration_confirmed_page).to have_text @registration_number
+  end
+  # rubocop:enable Lint/UnusedBlockArgument
 end
