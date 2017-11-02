@@ -168,5 +168,4 @@ Given(/^I complete my application of my limited company as a lower tier waste ca
     confirm_password: "Secret123",
     confirm_email: @email
   )
-  puts @email
 end

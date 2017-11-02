@@ -37,11 +37,11 @@ Given(/^I have an application that is pending payment$/) do
   )
   @app.offline_payment_page.submit
   # Stores registration number for later use
-  @uppertier_registration_number = @app.registration_confirmed_page.registration_number.text
+  @registration_number = @app.registration_confirmed_page.registration_number.text
 end
 
 When(/^I enter a cash payment for the full amount owed$/) do
-  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  @app.registrations_page.search(search_input: @registration_number)
   @app.registrations_page.first_search_result_payment_status_action.click
   @app.payment_status_page.enter_payment.click
   # Finds the amount needed to be paid and strips off the pound sign
@@ -61,7 +61,7 @@ When(/^I enter a cash payment for the full amount owed$/) do
 end
 
 When(/^I enter a cheque payment overpaying for the amount owed$/) do
-  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  @app.registrations_page.search(search_input: @registration_number)
   @app.registrations_page.first_search_result_payment_status_action.click
   @app.payment_status_page.enter_payment.click
   # Finds the amount needed to be paid and strips off the pound sign
@@ -80,7 +80,7 @@ When(/^I enter a cheque payment overpaying for the amount owed$/) do
 end
 
 When(/^I enter a postal order payment underpaying for the amount owed$/) do
-  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  @app.registrations_page.search(search_input: @registration_number)
   @app.registrations_page.first_search_result_payment_status_action.click
   @app.payment_status_page.enter_payment.click
   # Finds the amount needed to be paid and strips off the pound sign
@@ -99,7 +99,7 @@ When(/^I enter a postal order payment underpaying for the amount owed$/) do
 end
 
 When(/^I enter a bank transfer payment for the full amount owed$/) do
-  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  @app.registrations_page.search(search_input: @registration_number)
   @app.registrations_page.first_search_result_payment_status_action.click
   @app.payment_status_page.enter_payment.click
   # Finds the amount needed to be paid and strips off the pound sign
@@ -117,25 +117,25 @@ When(/^I enter a bank transfer payment for the full amount owed$/) do
 end
 
 Then(/^the registration will be marked as awaiting payment$/) do
-  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  @app.registrations_page.search(search_input: @registration_number)
   expect(@app.registrations_page.first_search_result_reg_status.text).to eq("Awaiting payment")
 end
 
 Then(/^the payment status will be marked as overpaid$/) do
-  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  @app.registrations_page.search(search_input: @registration_number)
   @app.registrations_page.first_search_result_payment_status_action.click
   expect(@app.payment_status_page.payment_status.text).to eq("Overpaid by")
   expect(@app.payment_status_page.balance.text).to eq("1.00")
 end
 
 Then(/^the payment status will be marked as underpaid$/) do
-  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  @app.registrations_page.search(search_input: @registration_number)
   @app.registrations_page.first_search_result_payment_status_action.click
   expect(@app.payment_status_page.payment_status.text).to eq("Awaiting payment")
   expect(@app.payment_status_page.balance.text).to eq("1.00")
 end
 
 Then(/^the registration will be marked as complete$/) do
-  @app.registrations_page.search(search_input: @uppertier_registration_number)
+  @app.registrations_page.search(search_input: @registration_number)
   expect(@app.registrations_page.first_search_result_reg_status.text).to eq("Registered")
 end
