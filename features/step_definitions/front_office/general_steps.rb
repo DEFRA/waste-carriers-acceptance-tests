@@ -38,10 +38,12 @@ Then(/^I will be registered as an upper tier waste carrier$/) do
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
-  expect(@app.registration_confirmed_page.registration_number).to have_text("CBDL")
-  expect(@app.registration_confirmed_page).to have_text @email
-  # Stores registration number for later use
-  @lowertier_registration_number = @app.registration_confirmed_page.registration_number.text
+  within_window @new_window do
+    expect(@app.registration_confirmed_page.registration_number).to have_text("CBDL")
+    expect(@app.registration_confirmed_page).to have_text @email
+    # Stores registration number for later use
+    @lowertier_registration_number = @app.registration_confirmed_page.registration_number.text
+  end
 end
 
 When(/^I select that I don't know what business type to enter$/) do
@@ -71,9 +73,8 @@ When(/^I confirm my email address$/) do
   @app.mailinator_page.load
   @app.mailinator_page.submit(inbox: @email)
   @app.mailinator_inbox_page.confirmation_email.click
-
   @app.mailinator_inbox_page.email_details do |frame|
-    frame.confirm_email.click
+    @new_window = window_opened_by { frame.confirm_email.click }
   end
 end
 
