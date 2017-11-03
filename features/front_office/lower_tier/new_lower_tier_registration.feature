@@ -8,7 +8,7 @@ Feature: New lower tier registrations
    Given I complete my application of my charity as a lower tier waste carrier
     When I confirm my email address
     Then I will be registered as a lower tier waste carrier
-     And I will have received a registration complete confirmation email 
+     And a registration confirmation email is received 
 
  Scenario: Sole trader successfully registers for a lower tier waste carriers licence
    Given I complete my application of a sole trader business as a lower tier waste carrier
@@ -18,6 +18,7 @@ Feature: New lower tier registrations
  Scenario: Public body successfully registers for a lower tier waste carriers licence
    Given I complete my application of my public body as a lower tier waste carrier
     When I confirm my email address
+    Then I will be registered as a lower tier waste carrier
 
  Scenario: Partnership successfully registers for a lower tier waste carriers licence
    Given I complete my application of my partnership as a lower tier waste carrier
