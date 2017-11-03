@@ -39,28 +39,34 @@ touch .config.yml
 Into that file you'll need to add as a minimum this
 
 ```yaml
-custom:
-  accounts:
-    Admin:
-      username: admin@example.com
-      password: please123
-    account2:
-      username: account2@example.com
-      password: please123
-  urls:
-    front_office: "https://example.com"
-    back_office: "https://example.com"
-
-# Changes user agent
-user_agent: "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)"
-
 # Capybara will attempt to find an element for a period of time, rather than
 # immediately failing because the element cannot be found. This defaults to 2
-# seconds. 
-max_wait_time: 2
+# seconds but with the need to confirm emails via mailinator, we have found we
+# need to increase this time to at least 5 seconds 
+max_wait_time: 5
+
+custom:
+  accounts:
+    agency_user:
+      username: agency_user@example.gov.uk
+      password: Password1234
+    finance_admin:
+      username: finance_admin@example.gov.uk
+      password: Password1234
+    finance_basic:
+      username: finance_basic@example.gov.uk
+      password: Password1234
+    agency_user_with_payment_refund:
+      username: agency_user_with_payment_refund@example.gov.uk
+      password: Password1234
+  urls:
+    front_office: "http://domainundertest.gov.uk/registrations/start"
+    back_office: "http://domainundertest.gov.uk/agency_users/sign_in"
+    back_office_admin: "http://domainundertest.gov.uk/admins/sign_in"
+    mail_checker: "https://www.mailinator.com"
 ```
 
-If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**. You can however override this and over values using the standard [Quke configuration options](https://github.com/DEFRA/quke#configuration).
+If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**. You can however override this and other values using the standard [Quke configuration options](https://github.com/DEFRA/quke#configuration).
 
 ## Execution
 
