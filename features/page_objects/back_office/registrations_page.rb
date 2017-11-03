@@ -9,6 +9,14 @@ class RegistrationsPage < SitePrism::Page
 
   element(:sign_out, "#signout_button")
 
+  sections :search_results, ".agency-edit" do
+    element(:view_certificate, "a[href*='view']")
+    element(:edit_registration, "a[href*='edit_process']")
+    element(:change_account_email, "a[href*='edit_account_email']")
+    element(:de_register, "a[href*='confirm_delete']")
+    element(:revoke, "a[href*='revoke']")
+  end
+
   def search(args = {})
     search_input.set(args[:search_input]) if args.key?(:search_input)
     reg_search.click

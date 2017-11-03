@@ -7,6 +7,15 @@ Given(/^an Environment Agency user has signed in$/) do
   )
 end
 
+Given(/^an agency user has signed in$/) do
+  @app = BackOfficeApp.new
+  @app.login_page.load
+  @app.login_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+  )
+end
+
 Given(/^I am signed in as a finance admin$/) do
   @app = BackOfficeApp.new
   @app.login_page.load

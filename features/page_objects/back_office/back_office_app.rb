@@ -107,6 +107,10 @@ class BackOfficeApp
     @last_page = PaymentsPage.new
   end
 
+  def edit_account_email_page
+    @last_page = EditAccountEmailPage.new
+  end
+
   def mailinator_page
     @last_page = MailinatorPage.new
   end

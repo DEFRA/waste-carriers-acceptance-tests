@@ -5,4 +5,10 @@ class FinishAssistedPage < SitePrism::Page
   element(:access_code, "#accessCode")
   element(:view_certificate, "#view_certificate")
 
+  element(:submit_button, "#finished_btn")
+
+  def submit(_args = {})
+    submit_button.click
+  end
+
 end
