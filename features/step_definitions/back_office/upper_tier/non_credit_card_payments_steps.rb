@@ -19,6 +19,7 @@ Given(/^I have an application that is pending payment$/) do
     phone_number: "012345678",
     email: @email
   )
+  puts @email
   @app.postal_address_page.submit
 
   people = @app.key_people_page.key_people
@@ -38,6 +39,7 @@ Given(/^I have an application that is pending payment$/) do
   @app.offline_payment_page.submit
   # Stores registration number for later use
   @registration_number = @app.registration_confirmed_page.registration_number.text
+
 end
 
 When(/^I enter a cash payment for the full amount owed$/) do
@@ -138,4 +140,5 @@ end
 Then(/^the registration will be marked as complete$/) do
   @app.registrations_page.search(search_input: @registration_number)
   expect(@app.registrations_page.first_search_result_reg_status.text).to eq("Registered")
+
 end

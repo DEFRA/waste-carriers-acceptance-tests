@@ -77,14 +77,23 @@ When(/^I confirm my email address$/) do
     @new_window = window_opened_by { frame.confirm_email.click }
   end
 end
-
-Then(/^I will have received a registration complete confirmation email$/) do
+# rubocop:disable Lint/UnusedBlockArgument
+Then(/^a registration confirmation email is received$/) do
+  # resets session cookies to fix back office authentication issue
+  Capybara.reset_session!
   @app.mailinator_page.load
   @app.mailinator_page.submit(inbox: @email)
   @app.mailinator_inbox_page.registration_complete_email.click
-  # rubocop:disable Lint/UnusedBlockArgument
   @app.mailinator_inbox_page.email_details do |frame|
     expect(@app.registration_confirmed_page).to have_text @registration_number
   end
-  # rubocop:enable Lint/UnusedBlockArgument
+
 end
+
+Then(/^I will receive an application pending payment email$/) do
+  @app.mailinator_page.load
+  @app.mailinator_page.submit(inbox: @email)
+  expect(@app.mailinator_inbox_page).to have_registration_pending_payment_email
+end
+
+# rubocop:enable Lint/UnusedBlockArgument
