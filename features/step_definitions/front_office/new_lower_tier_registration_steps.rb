@@ -141,7 +141,7 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
   )
 end
 
-Given(/^I complete my application of my limited company as a lower tier waste carrier$/) do
+Given(/^I complete my application of my limited company "([^"]*)" as a lower tier waste carrier$/) do |company_name|
   @app = FrontOfficeApp.new
   @app.start_page.load
   @app.start_page.submit
@@ -149,10 +149,11 @@ Given(/^I complete my application of my limited company as a lower tier waste ca
   @app.other_businesses_question_page.submit(choice: :no)
   @app.construction_waste_question_page.submit(choice: :no)
   @app.business_details_page.submit(
-    company_name: "LT Company limited",
+    company_name: company_name,
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
+  @company_name = company_name
   @email = @app.generate_email
   @app.contact_details_page.submit(
     first_name: "Bob",

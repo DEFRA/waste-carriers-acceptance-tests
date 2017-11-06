@@ -31,8 +31,13 @@ Feature: New lower tier registrations
     Then I will be registered as a lower tier waste carrier
  
  Scenario: Limited company successfully registers for a lower tier waste carriers licence
-   Given I complete my application of my limited company as a lower tier waste carrier
+   Given I complete my application of my limited company "LT Company limited" as a lower tier waste carrier
     When I confirm my email address
    	Then I will be registered as a lower tier waste carrier
+
+ Scenario: Lower tier does not confirm their email address
+  Given I complete my application of my limited company "Unconfirmed company ltd" as a lower tier waste carrier
+    But I do not confirm my email address
+   Then my registration status will be pending
 
      

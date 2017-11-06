@@ -53,7 +53,7 @@ end
 
 When(/^I refund the application payment$/) do
   @app.registrations_page.search(search_input: @refund_registration)
-  @app.registrations_page.first_search_result_payment_status_action.click
+  @app.registrations_page.search_results[0].payment_status.click
   @payment_amount = @app.payment_status_page.payment_history_amount.text
   expect(@app.payment_reversals_page).to have_text(@refund_registration)
   @app.payment_status_page.reversals.click
@@ -63,7 +63,7 @@ end
 
 When(/^select the application to refund$/) do
   @app.registrations_page.search(search_input: @refund_registration)
-  @app.registrations_page.first_search_result_payment_status_action.click
+  @app.registrations_page.search_results[0].payment_status.click
   @payment_amount = @app.payment_status_page.payment_history_amount.text
   expect(@app.payment_reversals_page).to have_text(@refund_registration)
   @app.payment_status_page.reversals.click
