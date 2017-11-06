@@ -44,7 +44,7 @@ end
 
 When(/^I enter a cash payment for the full amount owed$/) do
   @app.registrations_page.search(search_input: @registration_number)
-  @app.registrations_page.first_search_result_payment_status_action.click
+  @app.registrations_page.search_results[0].payment_status.click
   @app.payment_status_page.enter_payment.click
   # Finds the amount needed to be paid and strips off the pound sign
   @amount_due = @app.payments_page.amount_due.text[1..-1]
@@ -64,7 +64,7 @@ end
 
 When(/^I enter a cheque payment overpaying for the amount owed$/) do
   @app.registrations_page.search(search_input: @registration_number)
-  @app.registrations_page.first_search_result_payment_status_action.click
+  @app.registrations_page.search_results[0].payment_status.click
   @app.payment_status_page.enter_payment.click
   # Finds the amount needed to be paid and strips off the pound sign
   @amount_due = @app.payments_page.amount_due.text[1..-1]
@@ -83,7 +83,7 @@ end
 
 When(/^I enter a postal order payment underpaying for the amount owed$/) do
   @app.registrations_page.search(search_input: @registration_number)
-  @app.registrations_page.first_search_result_payment_status_action.click
+  @app.registrations_page.search_results[0].payment_status.click
   @app.payment_status_page.enter_payment.click
   # Finds the amount needed to be paid and strips off the pound sign
   @amount_due = @app.payments_page.amount_due.text[1..-1]
@@ -102,7 +102,7 @@ end
 
 When(/^I enter a bank transfer payment for the full amount owed$/) do
   @app.registrations_page.search(search_input: @registration_number)
-  @app.registrations_page.first_search_result_payment_status_action.click
+  @app.registrations_page.search_results[0].payment_status.click
   @app.payment_status_page.enter_payment.click
   # Finds the amount needed to be paid and strips off the pound sign
   @amount_due = @app.payments_page.amount_due.text[1..-1]
@@ -120,25 +120,25 @@ end
 
 Then(/^the registration will be marked as awaiting payment$/) do
   @app.registrations_page.search(search_input: @registration_number)
-  expect(@app.registrations_page.first_search_result_reg_status.text).to eq("Awaiting payment")
+  expect(@app.registrations_page.search_results[0].status.text).to eq("Awaiting payment")
 end
 
 Then(/^the payment status will be marked as overpaid$/) do
   @app.registrations_page.search(search_input: @registration_number)
-  @app.registrations_page.first_search_result_payment_status_action.click
+  @app.registrations_page.search_results[0].payment_status.click
   expect(@app.payment_status_page.payment_status.text).to eq("Overpaid by")
   expect(@app.payment_status_page.balance.text).to eq("1.00")
 end
 
 Then(/^the payment status will be marked as underpaid$/) do
   @app.registrations_page.search(search_input: @registration_number)
-  @app.registrations_page.first_search_result_payment_status_action.click
+  @app.registrations_page.search_results[0].payment_status.click
   expect(@app.payment_status_page.payment_status.text).to eq("Awaiting payment")
   expect(@app.payment_status_page.balance.text).to eq("1.00")
 end
 
 Then(/^the registration will be marked as complete$/) do
   @app.registrations_page.search(search_input: @registration_number)
-  expect(@app.registrations_page.first_search_result_reg_status.text).to eq("Registered")
+  expect(@app.registrations_page.search_results[0].status.text).to eq("Registered")
 
 end
