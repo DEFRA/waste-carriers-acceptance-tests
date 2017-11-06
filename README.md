@@ -123,6 +123,7 @@ To have consistency across the project the following tags are defined and should
 |@backoffice|Any feature or scenario expected to be run against the back office Dynamics application|
 |@happypath|A scenario which details a complete registration with no errors|
 |@functional|Any feature or scenario which is testing just a specific function of the service e.g. validation errors|
+|@broken|A scenario which is known to be broken due to the service not meeting expected behaviour|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
 
 It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
