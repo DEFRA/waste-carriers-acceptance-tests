@@ -54,8 +54,8 @@ Then(/^I will have an upper tier registration$/) do
   expect(@app.finish_assisted_page).to have_view_certificate
 
   # Stores registration number and access code for later use
-  @uppertier_ad_ltd_registration_number = @app.finish_assisted_page.registration_number.text
-  @uppertier_ad_ltd_access_code = @app.finish_assisted_page.access_code.text
+  @registration_number = @app.finish_assisted_page.registration_number.text
+  @access_code = @app.finish_assisted_page.access_code.text
 end
 
 When(/^I pay for my appliction over the phone by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
@@ -85,8 +85,8 @@ Then(/^I will have a lower tier registration$/) do
   expect(@app.finish_assisted_page).to have_view_certificate
 
   # Stores registration number and access code for later use
-  @lowertier_ad_ltd_registration_number = @app.finish_assisted_page.registration_number.text
-  @lowertier_ad_ltd_access_code = @app.finish_assisted_page.access_code.text
+  @registration_number = @app.finish_assisted_page.registration_number.text
+  @access_code = @app.finish_assisted_page.access_code.text
 end
 
 Then(/^I will be informed by the person taking the call that registration is pending payment$/) do
@@ -94,6 +94,6 @@ Then(/^I will be informed by the person taking the call that registration is pen
   expect(@app.finish_assisted_page.registration_number).to have_text("CBDU")
   expect(@app.finish_assisted_page).to have_access_code
 
-  @uppertier_ad_ltd_registration_number = @app.finish_assisted_page.registration_number.text
-  @uppertier_ad_ltd_access_code = @app.finish_assisted_page.access_code.text
+  @registration_number = @app.finish_assisted_page.registration_number.text
+  @access_code = @app.finish_assisted_page.access_code.text
 end

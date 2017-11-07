@@ -19,7 +19,6 @@ Given(/^I have an application that is pending payment$/) do
     phone_number: "012345678",
     email: @email
   )
-  puts @email
   @app.postal_address_page.submit
 
   people = @app.key_people_page.key_people
