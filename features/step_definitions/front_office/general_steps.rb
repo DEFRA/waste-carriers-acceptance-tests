@@ -102,13 +102,26 @@ Given(/^I do not confirm my email address$/) do
   # Nothing to do to replicate step
 end
 
-Then(/^my registration status will be pending$/) do
+Then(/^my registration status for "([^"]*)" will be "([^"]*)"$/) do |search_item, status|
   @back_app = BackOfficeApp.new
   @back_app.login_page.load
   @back_app.login_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
   )
-  @back_app.registrations_page.search(search_input: @company_name)
-  expect(@back_app.registrations_page.search_results[0].status.text).to eq("Pending")
+  @back_app.registrations_page.search(search_input: search_item)
+  expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
+end
+
+Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
+  # resets session cookies to fix back office authentication issue
+  Capybara.reset_session!
+  @back_app = BackOfficeApp.new
+  @back_app.login_page.load
+  @back_app.login_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+  )
+  @back_app.registrations_page.search(search_input: @registration_number)
+  expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
