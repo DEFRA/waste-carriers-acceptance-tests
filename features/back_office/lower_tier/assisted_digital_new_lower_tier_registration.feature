@@ -6,7 +6,7 @@ Feature: Assisted digital lower tier registrations
    
    Background:
    Given an Environment Agency user has signed in
-@wip
+
  Scenario: NCCC successfully registers a charity with a lower tier waste carriers licence
    Given I request assistance with a new registration
    	When I have my registration of my charity as a lower tier waste carrier completed for me

@@ -105,7 +105,7 @@ Given(/^the user has 2 registrations$/) do
   @front_app.postal_address_page.submit
   @front_app.declaration_page.submit
 
-  @front_app.sign_in_page.submit(
+  @front_app.waste_carrier_sign_in_page.submit(
     password: "Secret123"
   )
 
@@ -114,8 +114,8 @@ end
 
 When(/^I change the account email$/) do
   @back_app = BackOfficeApp.new
-  @back_app.login_page.load
-  @back_app.login_page.submit(
+  @back_app.agency_sign_in_page.load
+  @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
   )
@@ -130,8 +130,8 @@ end
 When(/^I change the account email for both$/) do
   Capybara.reset_sessions!
   @back_app = BackOfficeApp.new
-  @back_app.login_page.load
-  @back_app.login_page.submit(
+  @back_app.agency_sign_in_page.load
+  @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
   )

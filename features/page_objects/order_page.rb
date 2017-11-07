@@ -4,6 +4,7 @@ class OrderPage < SitePrism::Page
   element(:copy_cards, "#registration_copy_cards")
   element(:card_payment, "#registration_payment_type_world_pay")
   element(:bank_transfer_payment, "#registration_payment_type_bank_transfer")
+  element(:total_charge, "#registration_total_fee")
 
   element(:submit_button, "#proceed_to_payment")
 

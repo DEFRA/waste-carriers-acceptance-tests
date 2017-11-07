@@ -1,6 +1,6 @@
-class LoginPage < SitePrism::Page
+class AdminSignInPage < SitePrism::Page
 
-  set_url(Quke::Quke.config.custom["urls"]["back_office"])
+  set_url(Quke::Quke.config.custom["urls"]["back_office_admin"])
 
   element(:email, "#agency_user_email")
   element(:password, "#agency_user_password")
