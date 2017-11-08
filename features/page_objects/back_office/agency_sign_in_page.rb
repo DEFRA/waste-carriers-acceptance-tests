@@ -1,4 +1,4 @@
-class LoginPage < SitePrism::Page
+class AgencySignInPage < SitePrism::Page
 
   set_url(Quke::Quke.config.custom["urls"]["back_office"])
 

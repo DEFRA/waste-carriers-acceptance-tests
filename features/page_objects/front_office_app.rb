@@ -11,6 +11,10 @@ class FrontOfficeApp
     @last_page = StartPage.new
   end
 
+  def waste_carrier_sign_in_page
+    @last_page = WasteCarrierSignInPage.new
+  end
+
   def business_type_page
     @last_page = BusinessTypePage.new
   end
@@ -51,7 +55,7 @@ class FrontOfficeApp
     @last_page = SignupPage.new
   end
 
-  def sign_in_page
+  def agency_users_sign_in_page
     @last_page = SignInPage.new
   end
 
@@ -105,6 +109,10 @@ class FrontOfficeApp
 
   def mailinator_email_details_page
     @last_page = MailinatorEmailDetailsPage.new
+  end
+
+  def waste_carrier_registrations_page
+    @last_page = WasteCarrierRegistrationsPage.new
   end
 
   def generate_email

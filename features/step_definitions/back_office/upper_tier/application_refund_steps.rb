@@ -47,7 +47,7 @@ Given(/^I have an application paid by credit card$/) do
     expiry_year: @year
   )
   @refund_registration = @app.finish_assisted_page.registration_number.text
-  @app.login_page.load
+  @app.agency_sign_in_page.load
   @app.registrations_page.sign_out.click
 end
 

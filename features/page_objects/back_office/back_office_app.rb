@@ -7,8 +7,12 @@ class BackOfficeApp
 
   # BACK OFFICE SPECIFIC PAGES
   # /
-  def login_page
-    @last_page = LoginPage.new
+  def agency_sign_in_page
+    @last_page = AgencySignInPage.new
+  end
+
+  def admin_sign_in_page
+    @last_page = AdminSignInPage.new
   end
 
   def registrations_page

@@ -1,7 +1,7 @@
 Given(/^an Environment Agency user has signed in$/) do
   @app = BackOfficeApp.new
-  @app.login_page.load
-  @app.login_page.submit(
+  @app.agency_sign_in_page.load
+  @app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
   )
@@ -9,8 +9,8 @@ end
 
 Given(/^an agency user has signed in$/) do
   @app = BackOfficeApp.new
-  @app.login_page.load
-  @app.login_page.submit(
+  @app.agency_sign_in_page.load
+  @app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
   )
@@ -18,8 +18,8 @@ end
 
 Given(/^I am signed in as a finance admin$/) do
   @app = BackOfficeApp.new
-  @app.login_page.load
-  @app.login_page.submit(
+  @app.agency_sign_in_page.load
+  @app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["finance_admin"]["username"],
     password: Quke::Quke.config.custom["accounts"]["finance_admin"]["password"]
   )
@@ -27,8 +27,8 @@ end
 
 Given(/^I am signed in as a finance user$/) do
   @app = BackOfficeApp.new
-  @app.login_page.load
-  @app.login_page.submit(
+  @app.agency_sign_in_page.load
+  @app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["finance_basic"]["username"],
     password: Quke::Quke.config.custom["accounts"]["finance_basic"]["password"]
   )
@@ -36,8 +36,8 @@ end
 
 Given(/^I am signed in as an Environment Agency user with refunds$/) do
   @app = BackOfficeApp.new
-  @app.login_page.load
-  @app.login_page.submit(
+  @app.agency_sign_in_page.load
+  @app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
     password: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["password"]
   )
