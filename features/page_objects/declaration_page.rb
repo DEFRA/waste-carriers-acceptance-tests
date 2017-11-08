@@ -3,6 +3,7 @@ class DeclarationPage < SitePrism::Page
   # Check your details before registering
 
   element(:edit_registration_type, "#changeRegistrationType")
+  element(:edit_key_people, "#edit_key_person")
 
   element(:declaration, "#registration_declaration")
 
