@@ -7,11 +7,9 @@ When(/^I change my registration type to "([^"]*)"$/) do |registration_type|
   end
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
-  	email: @email,
-  	password: "Secret123"
-  	)
-  puts @email
-  puts @registration_number
+    email: @email,
+    password: "Secret123"
+  )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.declaration_page.edit_registration_type.click
   @front_app.registration_type_page.submit(choice: registration_type.to_sym)
@@ -19,5 +17,6 @@ When(/^I change my registration type to "([^"]*)"$/) do |registration_type|
 end
 
 Then(/^I will be charged "([^"]*)" for the change$/) do |charge|
-  expect(@front_app.order_page.total_charge.text).to eq(charge)
+  @actual_charge = "£" + @front_app.order_page.charge.value
+  expect(@actual_charge).to eq(charge)
 end
