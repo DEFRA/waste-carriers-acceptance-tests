@@ -197,5 +197,56 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
     expiry_year: @year
   )
   @registration_number = @back_app.finish_assisted_page.registration_number.text
+end
+
+Given(/^a conviction is declared when registering their partnership for an upper tier waste carrier$/) do
+  @back_app.registrations_page.new_registration.click
+  @back_app.start_page.submit
+  @back_app.business_type_page.submit(org_type: "partnership")
+  @back_app.other_businesses_question_page.submit(choice: :yes)
+  @back_app.service_provided_question_page.submit(choice: :main_service)
+  @back_app.only_deal_with_question_page.submit(choice: :not_farm_waste)
+  @back_app.registration_type_page.submit(choice: :broker_dealer)
+  @back_app.business_details_page.submit(
+    company_name: "AD UT Partnership",
+    postcode: "BS1 5AH",
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  )
+  @back_app.contact_details_page.submit(
+    first_name: "Bob",
+    last_name: "Carolgees",
+    phone_number: "012345678"
+  )
+  @back_app.postal_address_page.submit
+
+  people = @back_app.key_people_page.key_people
+
+  @back_app.key_people_page.add_key_person(person: people[0])
+  @back_app.key_people_page.add_key_person(person: people[1])
+  @back_app.key_people_page.submit_key_person(person: people[2])
+
+  @back_app.relevant_convictions_page.submit(choice: :yes)
+  people = @back_app.relevant_people_page.relevant_people
+  @back_app.relevant_people_page.submit_relevant_person(person: people[0])
+  @back_app.declaration_page.submit
+  @back_app.order_page.submit(
+    copy_card_number: 2,
+    choice: :maestro
+  )
+  @back_app.worldpay_card_choice_page.maestro.click
+
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
+
+  @back_app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year
+  )
+  @registration_number = @back_app.finish_assisted_page.registration_number.text
   puts @registration_number
 end

@@ -138,5 +138,10 @@ class BackOfficeApp
   def registration_search_results_page
     @last_page = RegistrationSearchResultsPage.new
   end
+
+  def relevant_people_page
+    @last_page = RelevantPeoplePage.new
+  end
+
 end
 # rubocop:enable Metrics/ClassLength

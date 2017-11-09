@@ -13,7 +13,6 @@ When(/^the key person has the conviction check approved by an agency user$/) do
   @back_app.registrations_page.search(search_input: @registration_number)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq("Conviction Check")
   @back_app.registrations_page.search_results[0].approve.click
-  expect(@back_app.approve_page.conviction_match_info.text).to have_text("Yes (key people)")
   @back_app.approve_page.submit(approval_reason: "Key person check pass")
 end
 
@@ -53,8 +52,7 @@ Then(/^the registration status is set to "([^"]*)"$/) do |status|
 
   @back_app.registration_export_page.submit(
     report_from_date: @today,
-    report_to_date: @today,
-    convictions_match: true
+    report_to_date: @today
   )
 
   result = @back_app.registration_search_results_page.registration(@registration_number)
