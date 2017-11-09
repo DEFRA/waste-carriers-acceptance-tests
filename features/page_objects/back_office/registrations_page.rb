@@ -2,6 +2,7 @@ class RegistrationsPage < SitePrism::Page
 
   # Registration search
   element(:new_registration, "#new_registration")
+  element(:registration_export, "a[href*='reports/registrations']")
   element(:search_input, "#q")
   element(:reg_search, "#reg-search")
 
@@ -20,6 +21,8 @@ class RegistrationsPage < SitePrism::Page
     element(:change_account_email, "a[href*='edit_account_email']")
     element(:de_register, "a[href*='confirm_delete']")
     element(:revoke, "a[href*='revoke']")
+    element(:approve, "a[href*='approve']")
+    element(:refuse, "a[href*='refuse']")
     element(:payment_status, "a[href*='paymentstatus']")
   end
 

@@ -15,7 +15,7 @@ Feature: Assisted digital registration of an upper tier partnership
      And the registration status will be "Registered"
 
   Scenario: NCCC successfully registers a partnership for a upper tier waste carriers licence choosing to pay by bank transfer
-    When I choose to pay for my application by bank transfer ordering 1 copy card
+    When I ask to pay for my application by bank transfer ordering 1 copy card
     Then I will be informed by the person taking the call that registration is pending payment   
    	 And the registration status will be "Awaiting payment"
      

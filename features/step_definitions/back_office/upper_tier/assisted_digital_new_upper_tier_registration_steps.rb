@@ -1,104 +1,154 @@
 When(/^I have my sole trader upper tier waste carrier application completed for me$/) do
-  @app.business_type_page.submit(org_type: "soleTrader")
-  @app.other_businesses_question_page.submit(choice: :yes)
-  @app.service_provided_question_page.submit(choice: :not_main_service)
-  @app.construction_waste_question_page.submit(choice: :yes)
-  @app.registration_type_page.submit(choice: :carrier_broker_dealer)
-  @app.business_details_page.submit(
+  @back_app.business_type_page.submit(org_type: "soleTrader")
+  @back_app.other_businesses_question_page.submit(choice: :yes)
+  @back_app.service_provided_question_page.submit(choice: :not_main_service)
+  @back_app.construction_waste_question_page.submit(choice: :yes)
+  @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
+  @back_app.business_details_page.submit(
     company_name: "AD UT Sole Trader",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @app.contact_details_page.submit(
+  @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
     phone_number: "012345678"
   )
-  @app.postal_address_page.submit
+  @back_app.postal_address_page.submit
 
-  people = @app.key_people_page.key_people
-  @app.key_people_page.submit_key_person(person: people[0])
+  people = @back_app.key_people_page.key_people
+  @back_app.key_people_page.submit_key_person(person: people[0])
 
-  @app.relevant_convictions_page.submit(choice: :no)
-  @app.declaration_page.submit
+  @back_app.relevant_convictions_page.submit(choice: :no)
+  @back_app.declaration_page.submit
 end
 
 When(/^I have my limited company as a upper tier waste carrier application completed for me$/) do
-  @app.business_type_page.submit(org_type: "limitedCompany")
-  @app.other_businesses_question_page.submit(choice: :no)
-  @app.construction_waste_question_page.submit(choice: :yes)
-  @app.registration_type_page.submit(choice: :carrier_broker_dealer)
-  @app.business_details_page.submit(
+  @back_app.business_type_page.submit(org_type: "limitedCompany")
+  @back_app.other_businesses_question_page.submit(choice: :no)
+  @back_app.construction_waste_question_page.submit(choice: :yes)
+  @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
+  @back_app.business_details_page.submit(
     companies_house_number: "00233462",
     company_name: "AD UT Company limited",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @app.contact_details_page.submit(
+  @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678"
   )
-  @app.postal_address_page.submit
+  @back_app.postal_address_page.submit
 
-  people = @app.key_people_page.key_people
+  people = @back_app.key_people_page.key_people
 
-  @app.key_people_page.add_key_person(person: people[0])
-  @app.key_people_page.add_key_person(person: people[1])
-  @app.key_people_page.submit_key_person(person: people[2])
+  @back_app.key_people_page.add_key_person(person: people[0])
+  @back_app.key_people_page.add_key_person(person: people[1])
+  @back_app.key_people_page.submit_key_person(person: people[2])
 
-  @app.relevant_convictions_page.submit(choice: :no)
-  @app.declaration_page.submit
+  @back_app.relevant_convictions_page.submit(choice: :no)
+  @back_app.declaration_page.submit
 end
 
 When(/^I have my partnership upper tier waste carrier application completed for me$/) do
-  @app.business_type_page.submit(org_type: "partnership")
-  @app.other_businesses_question_page.submit(choice: :yes)
-  @app.service_provided_question_page.submit(choice: :main_service)
-  @app.only_deal_with_question_page.submit(choice: :not_farm_waste)
-  @app.registration_type_page.submit(choice: :broker_dealer)
-  @app.business_details_page.submit(
+  @back_app.business_type_page.submit(org_type: "partnership")
+  @back_app.other_businesses_question_page.submit(choice: :yes)
+  @back_app.service_provided_question_page.submit(choice: :main_service)
+  @back_app.only_deal_with_question_page.submit(choice: :not_farm_waste)
+  @back_app.registration_type_page.submit(choice: :broker_dealer)
+  @back_app.business_details_page.submit(
     company_name: "AD UT Partnership",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @app.contact_details_page.submit(
+  @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678"
   )
-  @app.postal_address_page.submit
+  @back_app.postal_address_page.submit
 
-  people = @app.key_people_page.key_people
+  people = @back_app.key_people_page.key_people
 
-  @app.key_people_page.add_key_person(person: people[0])
-  @app.key_people_page.add_key_person(person: people[1])
-  @app.key_people_page.submit_key_person(person: people[2])
+  @back_app.key_people_page.add_key_person(person: people[0])
+  @back_app.key_people_page.add_key_person(person: people[1])
+  @back_app.key_people_page.submit_key_person(person: people[2])
 
-  @app.relevant_convictions_page.submit(choice: :no)
-  @app.declaration_page.submit
+  @back_app.relevant_convictions_page.submit(choice: :no)
+  @back_app.declaration_page.submit
 end
 
 When(/^I have my public body upper tier waste carrier application completed for me$/) do
-  @app.business_type_page.submit(org_type: "publicBody")
-  @app.other_businesses_question_page.submit(choice: :no)
-  @app.construction_waste_question_page.submit(choice: :yes)
-  @app.registration_type_page.submit(choice: :broker_dealer)
-  @app.business_details_page.submit(
+  @back_app.business_type_page.submit(org_type: "publicBody")
+  @back_app.other_businesses_question_page.submit(choice: :no)
+  @back_app.construction_waste_question_page.submit(choice: :yes)
+  @back_app.registration_type_page.submit(choice: :broker_dealer)
+  @back_app.business_details_page.submit(
     company_name: "AD UT Public Body",
     postcode: "BS1 5AH",
     result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @app.contact_details_page.submit(
+  @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
     phone_number: "012345678"
   )
-  @app.postal_address_page.submit
+  @back_app.postal_address_page.submit
 
-  people = @app.key_people_page.key_people
-  @app.key_people_page.submit_key_person(person: people[0])
+  people = @back_app.key_people_page.key_people
+  @back_app.key_people_page.submit_key_person(person: people[0])
 
-  @app.relevant_convictions_page.submit(choice: :no)
-  @app.declaration_page.submit
+  @back_app.relevant_convictions_page.submit(choice: :no)
+  @back_app.declaration_page.submit
+end
+
+Given(/^a limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |ch_no|
+  @back_app.registrations_page.new_registration.click
+  @back_app.start_page.submit
+  @back_app.business_type_page.submit(org_type: "limitedCompany")
+  @back_app.other_businesses_question_page.submit(choice: :no)
+  @back_app.construction_waste_question_page.submit(choice: :yes)
+  @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
+  @back_app.business_details_page.submit(
+    companies_house_number: ch_no,
+    company_name: "AD UT Company convictions check ltd",
+    postcode: "BS1 5AH",
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  )
+  @back_app.contact_details_page.submit(
+    first_name: "Bob",
+    last_name: "Carolgees",
+    phone_number: "012345678"
+  )
+  @back_app.postal_address_page.submit
+
+  people = @back_app.key_people_page.key_people
+
+  @back_app.key_people_page.add_key_person(person: people[0])
+  @back_app.key_people_page.add_key_person(person: people[1])
+  @back_app.key_people_page.submit_key_person(person: people[2])
+
+  @back_app.relevant_convictions_page.submit(choice: :no)
+  @back_app.declaration_page.submit
+  @back_app.order_page.submit(
+    copy_card_number: 2,
+    choice: :maestro
+  )
+  @back_app.worldpay_card_choice_page.maestro.click
+
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
+
+  @back_app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year
+  )
+  @registration_number = @back_app.finish_assisted_page.registration_number.text
+  puts @registration_number
 end
