@@ -34,6 +34,11 @@ Given(/^I am signed in as a finance user$/) do
   )
 end
 
+Given(/^the registration details are found in the backoffice$/) do
+  step "an Environment Agency user has signed in"
+  @back_app.registrations_page.search(search_input: @registration_number)
+end
+
 When(/^I ask to pay for my application by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
   @back_app.order_page.submit(
     copy_card_number: copy_card_number,
@@ -104,4 +109,28 @@ Then(/^I will be informed by the person taking the call that registration is pen
 
   @registration_number = @back_app.finish_assisted_page.registration_number.text
   @access_code = @back_app.finish_assisted_page.access_code.text
+end
+
+Then(/^the registration status is set to "([^"]*)"$/) do |status|
+  # finds today's date and saves them for use in export from and to date
+  time = Time.new
+
+  @year = time.year
+  @month = time.strftime("%m")
+  @day = time.strftime("%d")
+
+  @today = @day.to_s + "-" + @month.to_s + "-" + @year.to_s
+
+  @back_app.registrations_page.registration_export.click
+
+  @back_app.registration_export_page.submit(
+    report_from_date: @today,
+    report_to_date: @today
+  )
+
+  result = @back_app.registration_search_results_page.registration(@registration_number)
+
+  expect(result.status.text).to eq(status)
+  @back_app.registration_search_results_page.back_link.click
+  @back_app.registration_export_page.back_link.click
 end

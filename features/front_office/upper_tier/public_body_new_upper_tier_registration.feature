@@ -1,7 +1,7 @@
 @frontoffice @upper_tier
 Feature: Public body applies for new upper tier registration
   As a carrier of commercial waste
-  I want to register my company with the Environment Agency
+  I want to register my public body with the Environment Agency
   So I am compliant with the law
   
   Background:
