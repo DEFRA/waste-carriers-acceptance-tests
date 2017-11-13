@@ -119,6 +119,10 @@ class FrontOfficeApp
     @last_page = RelevantPeoplePage.new
   end
 
+  def existing_registration_page
+    @last_page = ExistingRegistrationPage.new
+  end
+
   def generate_email
     @email = "wastecarrier" + rand(100_000_000).to_s + "@mailinator.com"
   end

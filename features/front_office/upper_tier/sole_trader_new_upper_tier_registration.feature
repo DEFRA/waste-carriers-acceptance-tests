@@ -1,7 +1,7 @@
 @frontoffice @upper_tier
 Feature: Sole trader applies for new upper tier registration
   As a carrier of commercial waste
-  I want to register my company with the Environment Agency
+  I want to register my sole trader business with the Environment Agency
   So I am compliant with the law
    
   Background:

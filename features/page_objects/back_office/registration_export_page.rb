@@ -2,6 +2,8 @@ class RegistrationExportPage < SitePrism::Page
 
   # Waste carrier registrations search
 
+  element(:back_link, :xpath, "//a[contains(.,'Back')]")
+
   element(:report_from_date, "#report_from")
   element(:report_to_date, "#report_to")
 

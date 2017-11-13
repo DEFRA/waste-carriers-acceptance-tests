@@ -222,7 +222,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
   @back_app.postal_address_page.submit
 
   people = @back_app.key_people_page.dodgy_people
-  @back_app.key_people_page.submit_key_person(person: people[1])
+  @back_app.key_people_page.submit_key_person(person: people[2])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
   @back_app.declaration_page.submit

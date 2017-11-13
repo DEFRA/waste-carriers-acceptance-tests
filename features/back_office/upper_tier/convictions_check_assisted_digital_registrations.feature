@@ -13,7 +13,6 @@ Feature: Conviction checks during upper tier waste carrier registrations
   	 Then the registration has a "Registered" status
   	  And the registration status is set to "ACTIVE"
 
-
   Scenario: Sole trader with a relevant an undeclared relevant conviction is marked for a conviction check during an upper tier registration taken by NCCC
     Given a key person with a conviction registers as a sole trader upper tier waste carrier
      When the key person has the conviction check approved by an agency user

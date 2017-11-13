@@ -1,10 +1,10 @@
 class RegistrationSearchResultsPage < SitePrism::Page
 
-  #
-
   element(:export_all, "#export_btn")
 
   element(:submit_button, "#approveButton")
+
+  element(:back_link, :xpath, "//a[contains(.,'Back')]")
 
   sections :registrations, "table tbody tr" do
     element :registration_number, "td:nth-child(1)"
