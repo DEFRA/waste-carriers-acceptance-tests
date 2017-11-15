@@ -111,7 +111,7 @@ Then(/^I will be informed by the person taking the call that registration is pen
   @access_code = @back_app.finish_assisted_page.access_code.text
 end
 
-Then(/^the registration status is set to "([^"]*)"$/) do |status|
+Then(/^the registration status in the registration export is set to "([^"]*)"$/) do |status|
   # finds today's date and saves them for use in export from and to date
   time = Time.new
 
@@ -133,4 +133,17 @@ Then(/^the registration status is set to "([^"]*)"$/) do |status|
   expect(result.status.text).to eq(status)
   @back_app.registration_search_results_page.back_link.click
   @back_app.registration_export_page.back_link.click
+end
+
+When(/^the registration is revoked$/) do
+  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search_results[0].revoke.click
+  @back_app.revoke_page.submit(revoked_reason: "Did a bad thing")
+end
+
+When(/^the registration is deregistered$/) do
+  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search_results[0].de_register.click
+  sleep(10)
+  @back_app.confirm_delete_page.submit
 end

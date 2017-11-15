@@ -11,22 +11,22 @@ Feature: Conviction checks during upper tier waste carrier registrations
   	Given a limited company with companies house number "1649776" registers as an upper tier waste carrier
   	 When the limited company registration has the conviction check approved by an agency user
   	 Then the registration has a "Registered" status
-  	  And the registration status is set to "ACTIVE"
+  	  And the registration status in the registration export is set to "ACTIVE"
 
   Scenario: Sole trader with a relevant an undeclared relevant conviction is marked for a conviction check during an upper tier registration taken by NCCC
     Given a key person with a conviction registers as a sole trader upper tier waste carrier
      When the key person has the conviction check approved by an agency user
      Then the registration has a "Registered" status
-      And the registration status is set to "ACTIVE"
+      And the registration status in the registration export is set to "ACTIVE"
 
   Scenario: A partnership with a relevant declared conviction is marked for a conviction check during an upper tier registration taken by NCCC
     Given a conviction is declared when registering their partnership for an upper tier waste carrier
      When the key person has the conviction check approved by an agency user
      Then the registration has a "Registered" status
-      And the registration status is set to "ACTIVE"
+      And the registration status in the registration export is set to "ACTIVE"
 
   Scenario: Limited company with an undeclared relevant conviction is marked for a conviction check during an upper tier registration taken by NCCC due to a match on its company name
     Given a limited company "Test Waste Services Ltd." registers as an upper tier waste carrier
      When the limited company registration has the conviction check approved by an agency user
      Then the registration has a "Registered" status
-      And the registration status is set to "ACTIVE"
+      And the registration status in the registration export is set to "ACTIVE"

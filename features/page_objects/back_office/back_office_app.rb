@@ -143,5 +143,13 @@ class BackOfficeApp
     @last_page = RelevantPeoplePage.new
   end
 
+  def revoke_page
+    @last_page = RevokePage.new
+  end
+
+  def confirm_delete_page
+    @last_page = ConfirmDeletePage.new
+  end
+
 end
 # rubocop:enable Metrics/ClassLength
