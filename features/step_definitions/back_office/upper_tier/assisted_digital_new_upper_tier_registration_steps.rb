@@ -199,6 +199,7 @@ Given(/^a limited company "([^"]*)" registers as an upper tier waste carrier$/) 
     expiry_year: @year
   )
   @registration_number = @back_app.finish_assisted_page.registration_number.text
+  @back_app.agency_sign_in_page.load
 end
 
 Given(/a key person with a conviction registers as a sole trader upper tier waste carrier$/) do
