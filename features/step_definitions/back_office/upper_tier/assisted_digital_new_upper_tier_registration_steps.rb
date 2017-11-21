@@ -102,8 +102,8 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.relevant_convictions_page.submit(choice: :no)
   @back_app.declaration_page.submit
 end
-
-Given(/^a limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |ch_no|
+# rubocop:disable Metrics/LineLength
+Given(/^a limited company with companies house number "([^"]*)" is registered as an upper tier waste carrier$/) do |ch_no|
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
   @back_app.business_type_page.submit(org_type: "limitedCompany")
@@ -151,6 +151,7 @@ Given(/^a limited company with companies house number "([^"]*)" registers as an 
   )
   @registration_number = @back_app.finish_assisted_page.registration_number.text
 end
+# rubocop:enable Metrics/LineLength
 
 Given(/^a limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
   @back_app.registrations_page.new_registration.click

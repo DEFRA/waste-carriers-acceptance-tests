@@ -49,11 +49,6 @@ Then(/^I will not be charged for my change$/) do
   expect(@front_app.waste_carrier_registrations_page.current_url).to include "/registrations"
 end
 
-Then(/^I will be charged "([^"]*)" for the change$/) do |charge|
-  @actual_charge = "£" + @front_app.order_page.charge.value
-  expect(@actual_charge).to eq(charge)
-end
-
 When(/^I change my organisation type to a limited company$/) do
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
@@ -73,4 +68,79 @@ When(/^I change my organisation type to a limited company$/) do
   @front_app.key_people_page.submit
   @front_app.relevant_convictions_page.submit(choice: :no)
   @front_app.declaration_page.submit
+end
+
+When(/^its companies house number changes to "([^"]*)"$/) do |ch_no|
+  @front_app.mailinator_page.load
+  @front_app.mailinator_page.submit(inbox: @email)
+  @front_app.mailinator_inbox_page.confirmation_email.click
+  @front_app.mailinator_inbox_page.email_details do |frame|
+    @new_window = window_opened_by { frame.confirm_email.click }
+  end
+  @front_app.waste_carrier_sign_in_page.load
+  @front_app.waste_carrier_sign_in_page.submit(
+    email: @email,
+    password: "Secret123"
+  )
+  @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
+  @front_app.declaration_page.edit_smart_answers.click
+  @front_app.business_type_page.submit
+  @front_app.other_businesses_question_page.submit
+  @front_app.construction_waste_question_page.submit
+  @front_app.registration_type_page.submit
+  @front_app.business_details_page.submit(companies_house_number: ch_no)
+  @front_app.contact_details_page.submit
+  @front_app.postal_address_page.submit
+  @front_app.key_people_page.submit
+  @front_app.relevant_convictions_page.submit(choice: :no)
+  @front_app.declaration_page.submit
+end
+
+Then(/^(?:I|it) will be charged "([^"]*)" for the change$/) do |charge|
+  @actual_charge = "£" + @front_app.order_page.charge.value
+  expect(@actual_charge).to eq(charge)
+end
+
+Then(/^the charge "([^"]*)" has been paid$/) do |charge|
+  @actual_charge = "£" + @front_app.order_page.charge.value
+  expect(@actual_charge).to eq(charge)
+
+  @front_app.order_page.submit(
+    copy_card_number: "1",
+    choice: :card_payment
+  )
+  @front_app.worldpay_card_choice_page.maestro.click
+
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
+
+  @front_app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year
+  )
+  @front_app.worldpay_card_details_page.submit_button.click
+  @new_registration_number = @front_app.registration_confirmed_page.registration_number.text
+end
+
+Then(/^its previous registration will be "([^"]*)"$/) do |status|
+  Capybara.reset_session!
+  @back_app = BackOfficeApp.new
+  @back_app.agency_sign_in_page.load
+  @back_app.agency_sign_in_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+  )
+  @back_app.registrations_page.search(search_input: @registration_number)
+  expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
+end
+
+Then(/^a new registration will be "([^"]*)"$/) do |status|
+  @back_app.agency_sign_in_page.load
+  @back_app.registrations_page.search(search_input: @new_registration_number)
+  expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
