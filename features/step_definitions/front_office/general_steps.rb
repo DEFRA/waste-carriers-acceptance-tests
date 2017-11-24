@@ -126,3 +126,11 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
   @back_app.registrations_page.search(search_input: @registration_number)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
+
+When(/^I have signed into my account$/) do
+  @front_app.waste_carrier_sign_in_page.load
+  @front_app.waste_carrier_sign_in_page.submit(
+    email: @email,
+    password: "Secret123"
+  )
+end

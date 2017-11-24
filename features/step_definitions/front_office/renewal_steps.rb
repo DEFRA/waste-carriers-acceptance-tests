@@ -5,6 +5,16 @@ Given(/^I renew my registration using my previous registration number "([^"]*)"$
   @front_app.existing_registration_page.submit(reg_no: reg)
 end
 
+Given(/^I choose to renew my registration using my previous registration number$/) do
+  puts @email
+  puts @registration_number
+  Capybara.reset_session!
+  @front_app = FrontOfficeApp.new
+  @front_app.start_page.load
+  @front_app.start_page.submit(renewal: true)
+  @front_app.existing_registration_page.submit(reg_no: @registration_number)
+end
+
 When(/^I complete the public body registration renewal$/) do
   @front_app.business_type_page.submit
   @front_app.other_businesses_question_page.submit(choice: :no)
@@ -69,4 +79,9 @@ Then(/^the expiry date should be three years from the expiry date$/) do
   @new_expiry_date = registration_expiry_date.next_year(3).strftime("%d/%m/%Y")
   @back_app.registrations_page.search(search_input: @registration_number)
   expect(@back_app.registrations_page.search_results[0].expiry_date.text).to eq(@new_expiry_date)
+end
+
+Then(/^I will be shown the renewal introduction page$/) do
+  expect(@front_app.renewal_introduction_page).to have_text(@registration_number)
+  expect(@front_app.renewal_introduction_page.current_url).to include "/renewal"
 end

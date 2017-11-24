@@ -123,6 +123,10 @@ class FrontOfficeApp
     @last_page = ExistingRegistrationPage.new
   end
 
+  def renewal_introduction_page
+    @last_page = RenewalIntroductionPage.new
+  end
+
   def generate_email
     @email = "wastecarrier" + rand(100_000_000).to_s + "@mailinator.com"
   end
