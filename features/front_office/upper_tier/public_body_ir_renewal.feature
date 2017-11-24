@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal
+@frontoffice @upper_tier @ir_renewal
 Feature: Public body applies for new upper tier registration
   As a carrier of commercial waste
   I want to renew my public body with the Environment Agency
