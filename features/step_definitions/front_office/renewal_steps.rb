@@ -6,8 +6,6 @@ Given(/^I renew my registration using my previous registration number "([^"]*)"$
 end
 
 Given(/^I choose to renew my registration using my previous registration number$/) do
-  puts @email
-  puts @registration_number
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
@@ -84,4 +82,8 @@ end
 Then(/^I will be shown the renewal introduction page$/) do
   expect(@front_app.renewal_introduction_page).to have_text(@registration_number)
   expect(@front_app.renewal_introduction_page.current_url).to include "/renewal"
+end
+
+When(/^I choose to renew my registration from my registrations list$/) do
+  @front_app.waste_carrier_registrations_page.user_registrations[0].renew_registration.click
 end
