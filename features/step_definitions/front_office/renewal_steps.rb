@@ -79,11 +79,27 @@ Then(/^the expiry date should be three years from the expiry date$/) do
   expect(@back_app.registrations_page.search_results[0].expiry_date.text).to eq(@new_expiry_date)
 end
 
-Then(/^I will be shown the renewal introduction page$/) do
+Then(/^I will be shown the renewal information page$/) do
   expect(@front_app.renewal_introduction_page).to have_text(@registration_number)
   expect(@front_app.renewal_introduction_page.current_url).to include "/renewal"
 end
 
 When(/^I choose to renew my registration from my registrations list$/) do
   @front_app.waste_carrier_registrations_page.user_registrations[0].renew_registration.click
+end
+
+Given(/^I choose to renew my registration$/) do
+  Capybara.reset_session!
+  @front_app = FrontOfficeApp.new
+  @front_app.start_page.load
+  @front_app.start_page.submit(renewal: true)
+  @front_app.existing_registration_page.submit(reg_no: @registration_number)
+end
+
+When(/^I enter my lower tier registration number "([^"]*)"$/) do |reg_no|
+  @front_app.existing_registration_page.submit(reg_no: reg_no)
+end
+
+Then(/^I'm told "([^"]*)"$/) do |error_message|
+  expect(@front_app.existing_registration_page.error_message.text).to eq(error_message)
 end
