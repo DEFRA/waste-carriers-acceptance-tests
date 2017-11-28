@@ -8,8 +8,8 @@ Given(/^the user has one registration$/) do
 
   @front_app.business_details_page.submit(
     company_name: Faker::Company.name,
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
 
   @email = @front_app.generate_email
@@ -54,8 +54,8 @@ Given(/^the user has 2 registrations$/) do
 
   @front_app.business_details_page.submit(
     company_name: Faker::Company.name,
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
 
   @front_app.contact_details_page.submit(
@@ -91,8 +91,8 @@ Given(/^the user has 2 registrations$/) do
 
   @front_app.business_details_page.submit(
     company_name: Faker::Company.name,
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
 
   @front_app.contact_details_page.submit(

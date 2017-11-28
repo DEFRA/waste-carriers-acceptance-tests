@@ -6,8 +6,8 @@ When(/^I complete my application of my limited company as an upper tier waste ca
   @front_app.business_details_page.submit(
     companies_house_number: "00233462",
     company_name: "UT Company limited",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -44,8 +44,8 @@ Given(/^I have registered my limited company as an upper tier "([^"]*)"$/) do |r
   @front_app.business_details_page.submit(
     companies_house_number: "00233462",
     company_name: "UT Company limited",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -94,7 +94,7 @@ Given(/^I have registered my limited company as an upper tier "([^"]*)"$/) do |r
   @registration_number = @front_app.registration_confirmed_page.registration_number.text
 end
 
-Given(/^a limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |ch_no|
+Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |ch_no|
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
@@ -105,8 +105,8 @@ Given(/^a limited company with companies house number "([^"]*)" registers as an 
   @front_app.business_details_page.submit(
     companies_house_number: ch_no,
     company_name: "UT Company limited",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(

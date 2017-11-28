@@ -5,7 +5,7 @@ Given(/^I renew my registration using my previous registration number "([^"]*)"$
   @front_app.existing_registration_page.submit(reg_no: reg)
 end
 
-Given(/^I choose to renew my registration using my previous registration number$/) do
+Given(/^(?:I|they) (?:choose|chooses) to renew (?:my|their) registration using (?:my|the) previous registration number$/) do
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
@@ -19,8 +19,8 @@ When(/^I complete the public body registration renewal$/) do
   @front_app.construction_waste_question_page.submit(choice: :yes)
   @front_app.registration_type_page.submit
   @front_app.business_details_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -100,6 +100,12 @@ When(/^I enter my lower tier registration number "([^"]*)"$/) do |reg_no|
   @front_app.existing_registration_page.submit(reg_no: reg_no)
 end
 
-Then(/^I'm told "([^"]*)"$/) do |error_message|
+Then(/^I'm informed "([^"]*)"$/) do |error_message|
   expect(@front_app.existing_registration_page.error_message.text).to eq(error_message)
+end
+
+When(/^the organisation type is changed to sole trader$/) do
+  @front_app.start_page.load
+  @front_app.start_page.submit(renewal: true)
+  @front_app.existing_registration_page.submit(reg_no: @registration_number)
 end
