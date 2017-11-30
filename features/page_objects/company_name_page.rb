@@ -1,6 +1,6 @@
 class CompanyNamePage < SitePrism::Page
 
-  # What's the name of the company?
+  # whats the name of the company?
   element(:company_name, "#registration_companyName")
 
   element(:submit_button, "input[value='Continue']")

@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal @wip
+@frontoffice @upper_tier @renewal
 Feature: Limited company renews for new upper tier registration
   As a carrier of commercial waste
   I want to renew my waste carrier licence
@@ -12,6 +12,6 @@ Scenario: Limited company successfully renews registration
      When I choose to renew my registration from my registrations list
       And I complete my limited company registration without changing any information
      Then I will have renewed my registration
-      And a registration confirmation email is received
+      And a renewal confirmation email is received
 
 

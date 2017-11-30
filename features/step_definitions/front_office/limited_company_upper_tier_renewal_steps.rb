@@ -9,7 +9,7 @@ When(/^I complete my limited company registration without changing any informati
   @front_app.company_name_page.submit
   @front_app.post_code_page.submit(postcode: "S60 1BY")
   @front_app.business_address_page.submit(
-  	result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   people = @front_app.key_people_page.key_people
 

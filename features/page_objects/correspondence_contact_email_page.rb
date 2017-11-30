@@ -1,6 +1,6 @@
 class CorrespondenceContactEmailPage < SitePrism::Page
 
-  # What’s the email address of the person we should contact?
+  # whats the email address of the person we should contact?
   element(:contact_email, "#correspondence_contact_email[email_address]")
   element(:confirm_email, "#correspondence_contact_email_email_address_confirmation")
 

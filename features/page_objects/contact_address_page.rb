@@ -1,6 +1,6 @@
 class ContactAddressPage < SitePrism::Page
 
-  # What's the address of the person we should contact?
+  # whats the address of the person we should contact?
   element(:house_number, "#address_houseNumber")
   element(:address_line_one, "#address_addressLine1")
   element(:address_line_two, "#address_addressLine2")

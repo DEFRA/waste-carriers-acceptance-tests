@@ -124,7 +124,7 @@ Then(/^a renewal confirmation email is received$/) do
   @front_app.mailinator_page.load
   @front_app.mailinator_page.submit(inbox: @email)
   @front_app.mailinator_inbox_page.renewal_complete_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
+  @front_app.mailinator_inbox_page.email_details do |_frame|
     expect(@front_app.registration_confirmed_page).to have_text @registration_number
   end
 

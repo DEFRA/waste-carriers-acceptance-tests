@@ -1,6 +1,6 @@
 class BusinessAddressPage < SitePrism::Page
 
-  # What's the address?
+  # whats the address?
 
   element(:find_address, "#find_address")
   element(:results_dropdown, "select#registration_selectedAddress")
