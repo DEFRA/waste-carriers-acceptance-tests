@@ -143,5 +143,6 @@ end
 
 When(/^the registration is deregistered$/) do
   @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search_results[0].de_register.click
   @back_app.confirm_delete_page.submit
 end

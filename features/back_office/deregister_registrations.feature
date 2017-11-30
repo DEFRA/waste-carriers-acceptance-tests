@@ -1,7 +1,7 @@
-@backoffice
+@backoffice @wip
 Feature: Deregister registered waste carriers
 As an agency user
-I need to be able to deregisger a registered waste carrier
+I need to be able to deregister a registered waste carrier
 So that they no long have a valid waste carrier licence
 
 Background: 

@@ -93,8 +93,8 @@ Given(/^I have registered my limited company as an upper tier "([^"]*)"$/) do |r
   # Stores registration number for later use
   @registration_number = @front_app.registration_confirmed_page.registration_number.text
 end
-
-Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |ch_no|
+# rubocop:disable Metrics/LineLength
+Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |no|
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
@@ -103,7 +103,7 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   @front_app.construction_waste_question_page.submit(choice: :yes)
   @front_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @front_app.business_details_page.submit(
-    companies_house_number: ch_no,
+    companies_house_number: no,
     company_name: "UT Company limited",
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
@@ -154,3 +154,4 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   # Stores registration number for later use
   @registration_number = @front_app.registration_confirmed_page.registration_number.text
 end
+# rubocop:enable Metrics/LineLength

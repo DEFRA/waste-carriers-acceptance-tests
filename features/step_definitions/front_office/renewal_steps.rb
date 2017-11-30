@@ -5,7 +5,7 @@ Given(/^I renew my registration using my previous registration number "([^"]*)"$
   @front_app.existing_registration_page.submit(reg_no: reg)
 end
 
-Given(/^(?:I|they) (?:choose|chooses) to renew (?:my|their) registration using (?:my|the) previous registration number$/) do
+Given(/^I choose to renew my registration using my previous registration number$/) do
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
@@ -80,8 +80,8 @@ Then(/^the expiry date should be three years from the expiry date$/) do
 end
 
 Then(/^I will be shown the renewal information page$/) do
-  expect(@front_app.renewal_introduction_page).to have_text(@registration_number)
-  expect(@front_app.renewal_introduction_page.current_url).to include "/renewal"
+  expect(@front_app.renewal_start_page).to have_text(@registration_number)
+  expect(@front_app.renewal_start_page.current_url).to include "/renewal"
 end
 
 When(/^I choose to renew my registration from my registrations list$/) do
@@ -105,7 +105,10 @@ Then(/^I'm informed "([^"]*)"$/) do |error_message|
 end
 
 When(/^the organisation type is changed to sole trader$/) do
-  @front_app.start_page.load
-  @front_app.start_page.submit(renewal: true)
-  @front_app.existing_registration_page.submit(reg_no: @registration_number)
+  @front_app.renewal_start_page.submit
+  @front_app.business_type_page.submit(org_type: "soleTrader")
+end
+
+Then(/^I'm informed I'll need to apply for a new registration$/) do
+  expect(@app.type_change_page).to have_text("You cannot renew")
 end

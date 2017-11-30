@@ -18,7 +18,7 @@ end
 
 Then(/^the registration has a "([^"]*)" status$/) do |status|
   @back_app.registrations_page.search(search_input: @registration_number)
-
+  sleep(1)
   refresh_cnt = 0
   loop do
     # puts "The reg status is #{@back_app.registrations_page.search_results[0].status.text}"

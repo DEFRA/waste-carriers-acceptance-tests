@@ -123,8 +123,12 @@ class FrontOfficeApp
     @last_page = ExistingRegistrationPage.new
   end
 
-  def renewal_introduction_page
-    @last_page = RenewalIntroductionPage.new
+  def renewal_start_page
+    @last_page = RenewalStartPage.new
+  end
+
+  def type_change_page
+    @last_page = TypeChangePage.new
   end
 
   def generate_email
