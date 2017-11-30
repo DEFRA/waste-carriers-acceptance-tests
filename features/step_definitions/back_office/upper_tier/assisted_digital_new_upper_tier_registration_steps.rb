@@ -6,8 +6,8 @@ When(/^I have my sole trader upper tier waste carrier application completed for 
   @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD UT Sole Trader",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -31,8 +31,8 @@ When(/^I have my limited company as a upper tier waste carrier application compl
   @back_app.business_details_page.submit(
     companies_house_number: "00233462",
     company_name: "AD UT Company limited",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -59,8 +59,8 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD UT Partnership",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -86,8 +86,8 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD UT Public Body",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -113,8 +113,8 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
   @back_app.business_details_page.submit(
     companies_house_number: ch_no,
     company_name: "AD UT Company convictions check ltd",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -153,7 +153,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
 end
 # rubocop:enable Metrics/LineLength
 
-Given(/^a limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
+Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
   @back_app.business_type_page.submit(org_type: "limitedCompany")
@@ -163,8 +163,8 @@ Given(/^a limited company "([^"]*)" registers as an upper tier waste carrier$/) 
   @back_app.business_details_page.submit(
     companies_house_number: "00233462",
     company_name: co_name,
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -213,8 +213,8 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
   @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD UT Sole Trader",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -259,8 +259,8 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD UT Partnership",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",

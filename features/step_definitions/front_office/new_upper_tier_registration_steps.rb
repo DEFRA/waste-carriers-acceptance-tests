@@ -6,8 +6,8 @@ When(/^I complete my aplication of my partnership as a upper tier waste carrier$
   @front_app.registration_type_page.submit(choice: :broker_dealer)
   @front_app.business_details_page.submit(
     company_name: "UT Partnership",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -41,8 +41,8 @@ When(/^I complete my application of my public body as an upper tier waste carrie
   @front_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @front_app.business_details_page.submit(
     company_name: "UT Public Body",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -73,8 +73,8 @@ When(/^I complete my application of my sole trader business as a upper tier wast
   @front_app.registration_type_page.submit(choice: :carrier_dealer)
   @front_app.business_details_page.submit(
     company_name: "UT Sole Trader",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -108,8 +108,8 @@ Given(/^I have registered my partnership as an upper tier waste carrier$/) do
   @front_app.registration_type_page.submit(choice: :broker_dealer)
   @front_app.business_details_page.submit(
     company_name: "UT Partnership",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -173,8 +173,8 @@ Given(/^I have registered my sole trading company as an uppper tier waste carrie
   @front_app.registration_type_page.submit(choice: :carrier_dealer)
   @front_app.business_details_page.submit(
     company_name: "UT Sole Trader",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(

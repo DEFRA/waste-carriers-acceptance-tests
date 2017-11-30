@@ -6,8 +6,8 @@ When(/^I complete my application of my limited company as an upper tier waste ca
   @front_app.business_details_page.submit(
     companies_house_number: "00233462",
     company_name: "UT Company limited",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -44,8 +44,8 @@ Given(/^I have registered my limited company as an upper tier "([^"]*)"$/) do |r
   @front_app.business_details_page.submit(
     companies_house_number: "00233462",
     company_name: "UT Company limited",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -93,8 +93,8 @@ Given(/^I have registered my limited company as an upper tier "([^"]*)"$/) do |r
   # Stores registration number for later use
   @registration_number = @front_app.registration_confirmed_page.registration_number.text
 end
-
-Given(/^a limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |ch_no|
+# rubocop:disable Metrics/LineLength
+Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |no|
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
@@ -103,10 +103,10 @@ Given(/^a limited company with companies house number "([^"]*)" registers as an 
   @front_app.construction_waste_question_page.submit(choice: :yes)
   @front_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @front_app.business_details_page.submit(
-    companies_house_number: ch_no,
+    companies_house_number: no,
     company_name: "UT Company limited",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -154,3 +154,4 @@ Given(/^a limited company with companies house number "([^"]*)" registers as an 
   # Stores registration number for later use
   @registration_number = @front_app.registration_confirmed_page.registration_number.text
 end
+# rubocop:enable Metrics/LineLength

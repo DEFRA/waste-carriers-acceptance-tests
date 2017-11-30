@@ -19,8 +19,8 @@ When(/^I complete the public body registration renewal$/) do
   @front_app.construction_waste_question_page.submit(choice: :yes)
   @front_app.registration_type_page.submit
   @front_app.business_details_page.submit(
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -79,11 +79,36 @@ Then(/^the expiry date should be three years from the expiry date$/) do
   expect(@back_app.registrations_page.search_results[0].expiry_date.text).to eq(@new_expiry_date)
 end
 
-Then(/^I will be shown the renewal introduction page$/) do
-  expect(@front_app.renewal_introduction_page).to have_text(@registration_number)
-  expect(@front_app.renewal_introduction_page.current_url).to include "/renewal"
+Then(/^I will be shown the renewal information page$/) do
+  expect(@front_app.renewal_start_page).to have_text(@registration_number)
+  expect(@front_app.renewal_start_page.current_url).to include "/renewal"
 end
 
 When(/^I choose to renew my registration from my registrations list$/) do
   @front_app.waste_carrier_registrations_page.user_registrations[0].renew_registration.click
+end
+
+Given(/^I choose to renew my registration$/) do
+  Capybara.reset_session!
+  @front_app = FrontOfficeApp.new
+  @front_app.start_page.load
+  @front_app.start_page.submit(renewal: true)
+  @front_app.existing_registration_page.submit(reg_no: @registration_number)
+end
+
+When(/^I enter my lower tier registration number "([^"]*)"$/) do |reg_no|
+  @front_app.existing_registration_page.submit(reg_no: reg_no)
+end
+
+Then(/^I'm informed "([^"]*)"$/) do |error_message|
+  expect(@front_app.existing_registration_page.error_message.text).to eq(error_message)
+end
+
+When(/^the organisation type is changed to sole trader$/) do
+  @front_app.renewal_start_page.submit
+  @front_app.business_type_page.submit(org_type: "soleTrader")
+end
+
+Then(/^I'm informed I'll need to apply for a new registration$/) do
+  expect(@app.type_change_page).to have_text("You cannot renew")
 end

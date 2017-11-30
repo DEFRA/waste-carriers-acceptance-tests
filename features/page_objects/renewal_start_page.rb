@@ -1,4 +1,4 @@
-class RenewalIntroductionPage < SitePrism::Page
+class RenewalStartPage < SitePrism::Page
 
   # You are about to renew
 

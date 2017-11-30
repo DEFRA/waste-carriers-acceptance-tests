@@ -5,8 +5,8 @@ When(/^I complete my application of my charity as a lower tier waste carrier$/) 
   @front_app.business_type_page.submit(org_type: "charity")
   @front_app.business_details_page.submit(
     company_name: "LT charity",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -32,8 +32,8 @@ When(/^I complete my application of my local authority as a lower tier waste car
   @front_app.business_type_page.submit(org_type: "authority")
   @front_app.business_details_page.submit(
     company_name: "LT local athority",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -62,8 +62,8 @@ When(/^I complete my application of my partnership as a lower tier waste carrier
   @front_app.construction_waste_question_page.submit(choice: :no)
   @front_app.business_details_page.submit(
     company_name: "LT partnership",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -91,8 +91,8 @@ When(/^I complete my application of my public body as a lower tier waste carrier
   @front_app.construction_waste_question_page.submit(choice: :no)
   @front_app.business_details_page.submit(
     company_name: "LT public body",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -121,8 +121,8 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
   @front_app.construction_waste_question_page.submit(choice: :no)
   @front_app.business_details_page.submit(
     company_name: "LT Sole Trader",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @front_app.generate_email
   @front_app.contact_details_page.submit(
@@ -150,8 +150,8 @@ Given(/^I complete my application of my limited company "([^"]*)" as a lower tie
   @front_app.construction_waste_question_page.submit(choice: :no)
   @front_app.business_details_page.submit(
     company_name: company_name,
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @company_name = company_name
   @email = @front_app.generate_email

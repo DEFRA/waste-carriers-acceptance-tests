@@ -9,8 +9,8 @@ Given(/^I have an application that is pending payment$/) do
   @back_app.registration_type_page.submit(choice: :carrier_dealer)
   @back_app.business_details_page.submit(
     company_name: "Offline payment",
-    postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    postcode: "S60 1BY",
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @email = @back_app.generate_email
   @back_app.contact_details_page.submit(
