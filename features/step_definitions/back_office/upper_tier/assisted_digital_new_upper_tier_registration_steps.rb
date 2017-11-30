@@ -116,6 +116,8 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
+  # Stores companies house number for later
+  @companies_house_number = ch_no
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
