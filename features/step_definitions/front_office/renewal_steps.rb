@@ -129,3 +129,8 @@ Then(/^a renewal confirmation email is received$/) do
   end
 
 end
+
+Then(/^I will be informed my renewal is received$/) do
+  expect(@front_app.renewal_received_page).to have_text("Renewal received")
+  expect(@front_app.renewal_received_page).to have_text(@registration_number)
+end

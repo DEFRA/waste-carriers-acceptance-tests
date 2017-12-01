@@ -120,6 +120,10 @@ class FrontOfficeApp
     @last_page = RegistrationConfirmedPage.new
   end
 
+  def renewal_received_page
+    @last_page = RenewalReceivedPage.new
+  end
+
   def no_registration_page
     @last_page = NoRegistrationPage.new
   end
