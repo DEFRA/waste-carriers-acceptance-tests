@@ -110,5 +110,22 @@ When(/^the organisation type is changed to sole trader$/) do
 end
 
 Then(/^I'm informed I'll need to apply for a new registration$/) do
-  expect(@app.type_change_page).to have_text("You cannot renew")
+  expect(@front_app.type_change_page).to have_text("You cannot renew")
+end
+
+Then(/^I will have renewed my registration$/) do
+  expect(@front_app.registration_confirmed_page).to have_text("Renewal complete")
+end
+
+Then(/^a renewal confirmation email is received$/) do
+  # resets session cookies to fix back office authentication issue
+  Capybara.reset_session!
+  @front_app = FrontOfficeApp.new
+  @front_app.mailinator_page.load
+  @front_app.mailinator_page.submit(inbox: @email)
+  @front_app.mailinator_inbox_page.renewal_complete_email.click
+  @front_app.mailinator_inbox_page.email_details do |_frame|
+    expect(@front_app.registration_confirmed_page).to have_text @registration_number
+  end
+
 end

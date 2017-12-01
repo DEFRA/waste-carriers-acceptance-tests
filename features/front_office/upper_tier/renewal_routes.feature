@@ -20,13 +20,3 @@ Feature: Registered waste carrier chooses to renew their registration from start
     Given I choose to renew my registration
      When I enter my lower tier registration number "CBDL1"
      Then I'm informed "lower tier registrations do not expire and therefore don't require renewal"
-
-  Scenario: On renewal a limited company changes its orgnaisation type to a sole trader
-    Given my limited company with companies house number "00445790" registers as an upper tier waste carrier
-      And I confirm my email address
-      And I choose to renew my registration using my previous registration number
-      And I have signed into my account
-     When I choose to renew my registration from my registrations list
-      And the organisation type is changed to sole trader
-     Then I'm informed I'll need to apply for a new registration
-

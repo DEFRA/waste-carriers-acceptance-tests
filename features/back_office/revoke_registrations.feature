@@ -1,4 +1,4 @@
-@backoffice @www
+@backoffice
 Feature: Revoke registered waste carriers
 As an agency user
 I need to be able to revoke a registered waste carrier

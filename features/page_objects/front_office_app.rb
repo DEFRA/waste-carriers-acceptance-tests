@@ -1,6 +1,7 @@
 # Represents all pages in the front office. Was created to avoid needing to
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
+# rubocop:disable Metrics/ClassLength
 class FrontOfficeApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
@@ -39,12 +40,36 @@ class FrontOfficeApp
     @last_page = BusinessDetailsPage.new
   end
 
+  def check_details_page
+    @last_page = CheckDetailsPage.new
+  end
+
+  def company_name_page
+    @last_page = CompanyNamePage.new
+  end
+
   def contact_details_page
     @last_page = ContactDetailsPage.new
   end
 
+  def contact_address_page
+    @last_page = ContactAddresPage.new
+  end
+
+  def correspondence_contact_name_page
+    @last_page = CorrespondenceContactNamePage.new
+  end
+
+  def correspondence_contact_telephone_page
+    @last_page = CorrespondenceContactTelephonePage.new
+  end
+
   def postal_address_page
     @last_page = PostalAddressPage.new
+  end
+
+  def post_code_page
+    @last_page = PostCodePage.new
   end
 
   def declaration_page
@@ -129,6 +154,14 @@ class FrontOfficeApp
 
   def type_change_page
     @last_page = TypeChangePage.new
+  end
+
+  def renewal_information_page
+    @last_page = RenewalInformationPage.new
+  end
+
+  def limited_company_number_page
+    @last_page = LimitedCompanyNumberPage.new
   end
 
   def generate_email
