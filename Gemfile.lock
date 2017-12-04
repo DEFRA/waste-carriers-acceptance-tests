@@ -57,7 +57,7 @@ GEM
       websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     public_suffix (3.0.1)
-    quke (0.3.2)
+    quke (0.4.0)
       capybara (~> 2.9)
       chromedriver-helper (~> 1.0)
       cucumber (~> 2.4)
@@ -108,6 +108,7 @@ DEPENDENCIES
   quke
   rake
   rubocop
+
 
 BUNDLED WITH
    1.15.1
