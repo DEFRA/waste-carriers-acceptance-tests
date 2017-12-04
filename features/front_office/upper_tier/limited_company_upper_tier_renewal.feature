@@ -15,8 +15,8 @@ Scenario: Limited company successfully renews registration paying by credit card
      When I complete my limited company registration without changing any information paying by credit card
      Then I will have renewed my registration
       And a renewal confirmation email is received
-@wip
-  Scenario: Limited company successfully renews registration paying by credit card
+
+  Scenario: Limited company successfully renews registration paying by bank transfer
      When I complete my limited company registration without changing any information paying by bank transfer
      Then I will be informed my renewal is received
   
