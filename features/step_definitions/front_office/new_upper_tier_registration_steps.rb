@@ -162,7 +162,7 @@ Given(/^I have registered my partnership as an upper tier waste carrier$/) do
   end
 end
 
-Given(/^I have registered my sole trading company as an uppper tier waste carrier$/) do
+Given(/^I have registered my sole trading business as an upper tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
