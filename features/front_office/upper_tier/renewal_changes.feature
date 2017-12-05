@@ -12,13 +12,23 @@ Feature: Registered waste carrier chooses to renew their registration from start
      When I choose to renew my registration from my registrations list
       And the organisation type is changed to sole trader
      Then I'm informed I'll need to apply for a new registration
-@wip
+
     Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change
     Given I have registered my partnership as an upper tier waste carrier
       And I confirm my email address
       And I choose to renew my registration using my previous registration number
       And I have signed into my account
-    When I choose to renew my registration from my registrations list
-     And I change my registration type to "carrier_broker_dealer" and complete my renewal
-    Then I'll be shown the "£105.00" renewal charge plus the "£40.00" charge for change
+     When I choose to renew my registration from my registrations list
+      And I change my registration type to "carrier_broker_dealer" and complete my renewal
+     Then I'll be shown the "£105.00" renewal charge plus the "£40.00" charge for change
+
+    Scenario: On renewal a sole trader answers questions that direct to lower tier
+    Given I have registered my sole trading business as an upper tier waste carrier
+      And I confirm my email address
+      And I choose to renew my registration using my previous registration number
+      And I have signed into my account
+     When I choose to renew my registration from my registrations list
+      And I answer questions indicating I should be a lower tier waste carrier
+     Then I will be informed I should not renew my upper tier waste carrier registration
+
 

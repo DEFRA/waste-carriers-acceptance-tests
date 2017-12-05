@@ -5,7 +5,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
   So I continue to be compliant with the law
 
   Scenario: Sole trader renews upper tier registration from start page
-  	Given I have registered my sole trading company as an uppper tier waste carrier
+  	Given I have registered my sole trading business as an upper tier waste carrier
   	 When I choose to renew my registration using my previous registration number
   	  And I have signed into my account
   	 Then I will be shown the renewal information page

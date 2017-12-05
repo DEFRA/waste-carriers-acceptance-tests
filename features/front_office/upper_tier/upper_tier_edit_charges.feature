@@ -22,7 +22,7 @@ Feature: Upper tier registration edit charges
    Then I will not be charged for my change
 
   Scenario: Sole trader changes organsisation type incurring new registraiton charge
-   Given I have registered my sole trading company as an uppper tier waste carrier
+   Given I have registered my sole trading business as an upper tier waste carrier
     When I change my organisation type to a limited company
      And the charge "£154.00" has been paid
     Then its previous registration will be "De-Registered"

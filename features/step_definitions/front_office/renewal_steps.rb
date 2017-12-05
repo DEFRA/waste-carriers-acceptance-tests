@@ -166,3 +166,16 @@ Then(/^I'll be shown the "([^"]*)" renewal charge plus the "([^"]*)" charge for 
   @renewal_charge = "£" + @front_app.order_page.edit_charge.value
   expect(@actual_charge).to eq(change)
 end
+
+When(/^I answer questions indicating I should be a lower tier waste carrier$/) do
+  @front_app.renewal_start_page.submit
+  @front_app.business_type_page.submit
+  @front_app.other_businesses_question_page.submit(choice: :yes)
+  @front_app.service_provided_question_page.submit(choice: :not_main_service)
+  @front_app.construction_waste_question_page.submit(choice: :no)
+  @front_app.registration_type_page.submit
+end
+
+Then(/^I will be informed I should not renew my upper tier waste carrier registration$/) do
+  expect(@front_app.renewal_received_page).to have_text("You should not renew")
+end
