@@ -12,7 +12,7 @@ Background:
      When I choose to renew my registration from my registrations list  
   
 Scenario: Limited company successfully renews registration paying by credit card
-     When I complete my limited company registration without changing any information paying by credit card
+     When I complete my limited company renewal without changing any information paying by credit card
      Then I will have renewed my registration
       And a renewal confirmation email is received
 

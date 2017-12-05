@@ -4,7 +4,7 @@ Given(/^I start a new registration$/) do
   @front_app.start_page.submit
 end
 
-When(/^I pay for my appliction by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
+When(/^I pay for my application by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
   @front_app.order_page.submit(
     copy_card_number: copy_card_number,
     choice: :card_payment

@@ -23,6 +23,7 @@ class RegistrationsPage < SitePrism::Page
     element(:revoke, "a[href*='revoke']")
     element(:approve, "a[href*='approve']")
     element(:refuse, "a[href*='refuse']")
+    element(:renew, "a[href*='renew']")
     element(:payment_status, "a[href*='paymentstatus']")
   end
 

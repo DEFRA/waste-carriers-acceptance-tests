@@ -9,7 +9,7 @@ Feature: Limited company applies for new upper tier registration
    When I complete my application of my limited company as an upper tier waste carrier
 
   Scenario: Limited company successfully registers for an upper tier waste carriers licence paying by credit card
-   When I pay for my appliction by maestro ordering 5 copy cards
+   When I pay for my application by maestro ordering 5 copy cards
    Then I will be registered as an upper tier waste carrier
     And the registration status will be "Registered"
  
