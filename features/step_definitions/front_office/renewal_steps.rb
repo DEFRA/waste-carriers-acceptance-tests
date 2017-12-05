@@ -134,3 +134,35 @@ Then(/^I will be informed my renewal is received$/) do
   expect(@front_app.renewal_received_page).to have_text("Renewal received")
   expect(@front_app.renewal_received_page).to have_text(@registration_number)
 end
+
+When(/^I change my registration type to "([^"]*)" and complete my renewal$/) do |registration_type|
+  @front_app.renewal_start_page.submit
+  @front_app.business_type_page.submit
+  @front_app.other_businesses_question_page.submit(choice: :yes)
+  @front_app.service_provided_question_page.submit(choice: :main_service)
+  @front_app.only_deal_with_question_page.submit(choice: :not_farm_waste)
+  @front_app.registration_type_page.submit(choice: registration_type.to_sym)
+  @front_app.renewal_information_page.submit
+  @front_app.company_name_page.submit
+  @front_app.post_code_page.submit(postcode: "S60 1BY")
+  @front_app.business_address_page.submit(
+    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+  )
+  @front_app.contact_details_page.submit
+  @front_app.postal_address_page.submit
+
+  people = @front_app.key_people_page.key_people
+  @front_app.key_people_page.add_key_person(person: people[0])
+  @front_app.key_people_page.add_key_person(person: people[1])
+  @front_app.key_people_page.submit_key_person(person: people[2])
+
+  @front_app.relevant_convictions_page.submit(choice: :no)
+  @front_app.declaration_page.submit
+end
+
+Then(/^I'll be shown the "([^"]*)" renewal charge plus the "([^"]*)" charge for change$/) do |renewal, change|
+  @actual_charge = "£" + @front_app.order_page.charge.value
+  expect(@actual_charge).to eq(renewal)
+  @renewal_charge = "£" + @front_app.order_page.edit_charge.value
+  expect(@actual_charge).to eq(change)
+end
