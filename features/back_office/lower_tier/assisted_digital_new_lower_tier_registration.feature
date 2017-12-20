@@ -13,7 +13,6 @@ Feature: Assisted digital lower tier registrations
    	Then I will have a lower tier registration
      And the registration status will be "Registered"
 
-
  Scenario: NCCC successfully registers a local authority with a lower tier waste carriers licence
    Given I request assistance with a new registration
     When I have my registration of my local authority as a lower tier waste carrier completed for me

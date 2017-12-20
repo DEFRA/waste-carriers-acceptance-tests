@@ -137,7 +137,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
     copy_card_number: 2,
     choice: :maestro
   )
-  @back_app.worldpay_card_choice_page.maestro.click
+  BackOfficeApp.click(@back_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -187,7 +187,7 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
     copy_card_number: 2,
     choice: :maestro
   )
-  @back_app.worldpay_card_choice_page.maestro.click
+  BackOfficeApp.click(@back_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -234,7 +234,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
     copy_card_number: 2,
     choice: :maestro
   )
-  @back_app.worldpay_card_choice_page.maestro.click
+  BackOfficeApp.click(@back_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -285,7 +285,7 @@ Given(/^a conviction is declared when registering their partnership for an upper
     copy_card_number: 2,
     choice: :maestro
   )
-  @back_app.worldpay_card_choice_page.maestro.click
+  BackOfficeApp.click(@back_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new

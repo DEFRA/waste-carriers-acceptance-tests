@@ -67,7 +67,7 @@ When(/^I pay for my application over the phone by maestro ordering (\d+) copy (?
     copy_card_number: copy_card_number,
     choice: :card_payment
   )
-  @back_app.worldpay_card_choice_page.maestro.click
+  BackOfficeApp.click(@back_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new

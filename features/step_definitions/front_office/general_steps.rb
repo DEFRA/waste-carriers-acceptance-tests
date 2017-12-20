@@ -124,6 +124,22 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
     password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
   )
   @back_app.registrations_page.search(search_input: @registration_number)
+  puts @back_app.registrations_page.search_results[0].status.text
+  # Sometimes actual status isn't show as elastic search hasn't been updated
+  # This loop checks for the status to be what is expected five times before failing
+  loop do
+    if @back_app.registrations_page.search_results[0].status.text == status
+      puts "I found the status"
+      refresh_cnt = 5
+    else
+      sleep(1)
+      # reloads the page if service layer hasn't updated elastic search in time
+      puts "Status not found, gonna try refreshing"
+      page.evaluate_script("window.location.reload()")
+      refresh_cnt += 1
+    end
+    break unless refresh_cnt < 5
+  end
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
 

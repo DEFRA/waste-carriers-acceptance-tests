@@ -9,9 +9,9 @@ class OnlyDealWithQuestionPage < SitePrism::Page
   def submit(args = {})
     case args[:choice]
     when :not_farm_waste
-      not_only.select_option
+      not_only.click
     when :farm_waste
-      yes_only.select_option
+      yes_only.click
     end
     submit_button.click
   end

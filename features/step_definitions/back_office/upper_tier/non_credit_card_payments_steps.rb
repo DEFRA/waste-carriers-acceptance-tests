@@ -1,5 +1,5 @@
 Given(/^I have an application that is pending payment$/) do
-  @back_app = FrontOfficeApp.new
+  @back_app = BackOfficeApp.new
   @back_app.start_page.load
   @back_app.start_page.submit
   @back_app.business_type_page.submit(org_type: "soleTrader")
