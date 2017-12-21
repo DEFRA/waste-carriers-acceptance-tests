@@ -159,13 +159,5 @@ class BackOfficeApp
     @email = "wastecarrier" + rand(100_000_000).to_s + "@mailinator.com"
   end
 
-  def self.click(node)
-    if Capybara.current_driver == :phantomjs
-      node.trigger("click")
-    else
-      node.click
-    end
-  end
-
 end
 # rubocop:enable Metrics/ClassLength

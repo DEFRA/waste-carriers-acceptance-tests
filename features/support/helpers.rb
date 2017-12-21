@@ -9,3 +9,11 @@ def scroll_to(element)
        }();
      SCRIPT
 end
+
+def click(node)
+  if Capybara.current_driver == :phantomjs
+    node.trigger("click")
+  else
+    node.click
+  end
+end

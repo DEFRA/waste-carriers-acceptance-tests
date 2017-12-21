@@ -137,7 +137,7 @@ Given(/^I have registered my partnership as an upper tier waste carrier$/) do
     copy_card_number: "2",
     choice: :card_payment
   )
-  FrontOfficeApp.click(@front_app.worldpay_card_choice_page.maestro)
+  click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -199,7 +199,7 @@ Given(/^I have registered my sole trading business as an upper tier waste carrie
     copy_card_number: "2",
     choice: :card_payment
   )
-  FrontOfficeApp.click(@front_app.worldpay_card_choice_page.maestro)
+  click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new

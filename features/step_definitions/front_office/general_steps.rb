@@ -9,8 +9,7 @@ When(/^I pay for my application by maestro ordering (\d+) copy (?:card|cards)$/)
     copy_card_number: copy_card_number,
     choice: :card_payment
   )
-  FrontOfficeApp.click(@front_app.worldpay_card_choice_page.maestro)
-
+  click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -125,22 +124,8 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
     password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
   )
   @back_app.registrations_page.search(search_input: @registration_number)
-  # Sometimes actual status isn't show as elastic search hasn't been updated
-  # This loop checks for the status to be what is expected five times before failing
-  refresh_cnt = 0
-  loop do
-    if @back_app.registrations_page.search_results[0].status.text == status
-      # puts "I found the status"
-      refresh_cnt = 5
-    else
-      sleep(1)
-      # reloads the page if service layer hasn't updated elastic search in time
-      # puts "Status not found, gonna try refreshing"
-      page.evaluate_script("window.location.reload()")
-      refresh_cnt += 1
-    end
-    break unless refresh_cnt < 5
-  end
+  @back_app.registrations_page.wait_for_status(status)
+
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
 

@@ -18,22 +18,6 @@ end
 
 Then(/^the registration has a "([^"]*)" status$/) do |status|
   @back_app.registrations_page.search(search_input: @registration_number)
-  refresh_cnt = 0
-  loop do
-    # puts "The reg status is #{@back_app.registrations_page.search_results[0].status.text}"
-    if @back_app.registrations_page.search_results[0].status.text == status
-      # puts "I found the status"
-      refresh_cnt = 20
-    else
-      sleep(1)
-      # reloads the page if service layer hasn't updated elastic search in time
-      # puts "Status not found, gonna try refreshing"
-      page.evaluate_script("window.location.reload()")
-      refresh_cnt += 1
-    end
-    break unless refresh_cnt < 20
-  end
-
+  @back_app.registrations_page.wait_for_status(status)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
-
 end

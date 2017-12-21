@@ -32,7 +32,7 @@ Given(/^I have an application paid by credit card$/) do
     copy_card_number: "1",
     choice: :maestro
   )
-  BackOfficeApp.click(@back_app.worldpay_card_choice_page.maestro)
+  click(@back_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new

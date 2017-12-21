@@ -168,14 +168,6 @@ class FrontOfficeApp
     @last_page = LimitedCompanyNumberPage.new
   end
 
-  def self.click(node)
-    if Capybara.current_driver == :phantomjs
-      node.trigger("click")
-    else
-      node.click
-    end
-  end
-
   def generate_email
     @email = "wastecarrier" + rand(100_000_000).to_s + "@mailinator.com"
   end
