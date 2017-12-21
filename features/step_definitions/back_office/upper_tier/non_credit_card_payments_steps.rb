@@ -1,5 +1,5 @@
 Given(/^I have an application that is pending payment$/) do
-  @back_app = FrontOfficeApp.new
+  @back_app = BackOfficeApp.new
   @back_app.start_page.load
   @back_app.start_page.submit
   @back_app.business_type_page.submit(org_type: "soleTrader")
@@ -117,11 +117,6 @@ When(/^I enter a bank transfer payment for the full amount owed$/) do
   @back_app.payment_status_page.back_link.click
 end
 
-Then(/^the registration will be marked as awaiting payment$/) do
-  @back_app.registrations_page.search(search_input: @registration_number)
-  expect(@back_app.registrations_page.search_results[0].status.text).to eq("Awaiting payment")
-end
-
 Then(/^the payment status will be marked as overpaid$/) do
   @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.search_results[0].payment_status.click
@@ -136,8 +131,8 @@ Then(/^the payment status will be marked as underpaid$/) do
   expect(@back_app.payment_status_page.balance.text).to eq("1.00")
 end
 
-Then(/^the registration will be marked as complete$/) do
+Then(/^the registration will be marked as "([^"]*)"$/) do |status|
   @back_app.registrations_page.search(search_input: @registration_number)
-  expect(@back_app.registrations_page.search_results[0].status.text).to eq("Registered")
+  expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 
 end

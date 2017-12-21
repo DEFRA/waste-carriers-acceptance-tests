@@ -10,11 +10,11 @@ class RegistrationTypePage < SitePrism::Page
   def submit(args = {})
     case args[:choice]
     when :carrier_dealer
-      carrier_dealer.select_option
+      carrier_dealer.click
     when :broker_dealer
-      broker_dealer.select_option
+      broker_dealer.click
     when :carrier_broker_dealer
-      carrier_broker_dealer.select_option
+      carrier_broker_dealer.click
     end
     submit_button.click
   end

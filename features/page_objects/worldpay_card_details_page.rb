@@ -35,8 +35,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
 
     expiry_month.select(args[:expiry_month]) if args.key?(:expiry_month)
     expiry_year.select(args[:expiry_year]) if args.key?(:expiry_year)
-
-    pay.click
+    click(pay)
   end
 
 end

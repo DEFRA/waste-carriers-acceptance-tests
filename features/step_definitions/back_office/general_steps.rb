@@ -7,12 +7,12 @@ Given(/^an Environment Agency user has signed in$/) do
   )
 end
 
-Given(/^an agency user has signed in$/) do
+Given(/^I am signed in as an Environment Agency user with refunds$/) do
   @back_app = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+    email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
+    password: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["password"]
   )
 end
 
@@ -47,15 +47,6 @@ When(/^I ask to pay for my application by bank transfer ordering (\d+) copy (?:c
   @back_app.offline_payment_page.submit
 end
 
-Given(/^I am signed in as an Environment Agency user with refunds$/) do
-  @back_app = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["password"]
-  )
-end
-
 Given(/^I request assistance with a new registration$/) do
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
@@ -71,12 +62,12 @@ Then(/^I will have an upper tier registration$/) do
   @access_code = @back_app.finish_assisted_page.access_code.text
 end
 
-When(/^I pay for my appliction over the phone by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
+When(/^I pay for my application over the phone by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
   @back_app.order_page.submit(
     copy_card_number: copy_card_number,
     choice: :card_payment
   )
-  @back_app.worldpay_card_choice_page.maestro.click
+  click(@back_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -137,6 +128,7 @@ end
 
 When(/^the registration is revoked$/) do
   @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.wait_for_status("Registered")
   @back_app.registrations_page.search_results[0].revoke.click
   @back_app.revoke_page.submit(revoked_reason: "Did a bad thing")
 end

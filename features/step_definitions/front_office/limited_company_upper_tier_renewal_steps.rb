@@ -1,4 +1,4 @@
-When(/^I complete my limited company registration without changing any information paying by credit card$/) do
+When(/^I complete my limited company renewal without changing any information paying by credit card$/) do
   @front_app.renewal_start_page.submit
   @front_app.business_type_page.submit
   @front_app.other_businesses_question_page.submit(choice: :no)
@@ -26,7 +26,7 @@ When(/^I complete my limited company registration without changing any informati
     copy_card_number: "1",
     choice: :card_payment
   )
-  @front_app.worldpay_card_choice_page.maestro.click
+  click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new

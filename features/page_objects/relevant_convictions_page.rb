@@ -10,9 +10,9 @@ class RelevantConvictionsPage < SitePrism::Page
   def submit(args = {})
     case args[:choice]
     when :no
-      no.select_option
+      no.click
     when :yes
-      yes.select_option
+      yes.click
     end
     submit_button.click
   end

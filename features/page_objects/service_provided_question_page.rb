@@ -9,9 +9,9 @@ class ServiceProvidedQuestionPage < SitePrism::Page
   def submit(args = {})
     case args[:choice]
     when :not_main_service
-      not_main_service.select_option
+      not_main_service.click
     when :main_service
-      yes_main_service.select_option
+      yes_main_service.click
     end
     submit_button.click
   end

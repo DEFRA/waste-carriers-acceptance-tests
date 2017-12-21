@@ -25,4 +25,4 @@ before_script:
   # TODO: Re-enable this check. Currently we have a number of scenarios with the
   # the @wip tag. We captured these initial scenarios here, but as yet have not
   # had a chance to implement. Once we have then this needs to be uncommented.
-  # - grep -r --include="*.feature" "@wip\|@focus" features/; test $? -eq 1
+  - grep -r --include="*.feature" "@wip\|@focus" features/; test $? -eq 1
