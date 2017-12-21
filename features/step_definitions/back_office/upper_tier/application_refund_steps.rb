@@ -61,7 +61,7 @@ When(/^I refund the application payment$/) do
   @back_app.new_reversal_page.submit(payment_comment: "Refund for " + @refund_registration)
 end
 
-When(/^select the application to refund$/) do
+When(/^I select the application to refund$/) do
   @back_app.registrations_page.search(search_input: @refund_registration)
   @back_app.registrations_page.search_results[0].payment_status.click
   @payment_amount = @back_app.payment_status_page.payment_history_amount.text

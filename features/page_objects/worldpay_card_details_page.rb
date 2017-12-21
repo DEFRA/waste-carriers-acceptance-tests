@@ -29,13 +29,13 @@ class WorldpayCardDetailsPage < SitePrism::Page
   @failed = "444"
 
   def submit(args = {})
+
     card_number.set(args[:card_number]) if args.key?(:card_number)
     security_code.set(args[:security_code]) if args.key?(:security_code)
     cardholder_name.set(args[:cardholder_name]) if args.key?(:cardholder_name)
 
     expiry_month.select(args[:expiry_month]) if args.key?(:expiry_month)
     expiry_year.select(args[:expiry_year]) if args.key?(:expiry_year)
-
     BackOfficeApp.click(pay)
   end
 

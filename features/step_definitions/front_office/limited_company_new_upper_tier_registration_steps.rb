@@ -73,7 +73,7 @@ Given(/^I have registered my limited company as an upper tier "([^"]*)"$/) do |r
     copy_card_number: "2",
     choice: :card_payment
   )
-  @front_app.worldpay_card_choice_page.maestro.click
+  FrontOfficeApp.click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -134,7 +134,7 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
     copy_card_number: "2",
     choice: :card_payment
   )
-  @front_app.worldpay_card_choice_page.maestro.click
+  FrontOfficeApp.click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new

@@ -45,7 +45,7 @@ When(/^I complete the public body registration renewal$/) do
     copy_card_number: "2",
     choice: :card_payment
   )
-  @front_app.worldpay_card_choice_page.maestro.click
+  FrontOfficeApp.click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new

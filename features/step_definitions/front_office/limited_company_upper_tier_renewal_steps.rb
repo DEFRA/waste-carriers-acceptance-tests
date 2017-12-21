@@ -26,7 +26,7 @@ When(/^I complete my limited company renewal without changing any information pa
     copy_card_number: "1",
     choice: :card_payment
   )
-  @front_app.worldpay_card_choice_page.maestro.click
+  FrontOfficeApp.click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new

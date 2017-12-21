@@ -16,5 +16,5 @@ Given I have an application paid by credit card
  
  Scenario: Refund of application charge from credit card not possible by basic finance user
   Given I am signed in as a finance user
-   When select the application to refund
+   When I select the application to refund
    Then the refund option will not be available
