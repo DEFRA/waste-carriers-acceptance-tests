@@ -109,7 +109,7 @@ Then(/^the charge "([^"]*)" has been paid$/) do |charge|
     copy_card_number: "1",
     choice: :card_payment
   )
-  @front_app.worldpay_card_choice_page.maestro.click
+  click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new

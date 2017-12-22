@@ -14,9 +14,7 @@ class RegistrationSearchResultsPage < SitePrism::Page
 
   def registration(registration_number)
     registrations.each do |registration|
-      if registration.registration_number.text == registration_number
-        return registration
-      end
+      return registration if registration.registration_number.text == registration_number
     end
     nil
   end

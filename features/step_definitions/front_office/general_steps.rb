@@ -9,7 +9,7 @@ When(/^I pay for my application by maestro ordering (\d+) copy (?:card|cards)$/)
     copy_card_number: copy_card_number,
     choice: :card_payment
   )
-  @front_app.worldpay_card_choice_page.maestro.click
+  click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -124,6 +124,8 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
     password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
   )
   @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.wait_for_status(status)
+
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
 

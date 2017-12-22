@@ -67,7 +67,7 @@ When(/^I pay for my application over the phone by maestro ordering (\d+) copy (?
     copy_card_number: copy_card_number,
     choice: :card_payment
   )
-  @back_app.worldpay_card_choice_page.maestro.click
+  click(@back_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -128,6 +128,7 @@ end
 
 When(/^the registration is revoked$/) do
   @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.wait_for_status("Registered")
   @back_app.registrations_page.search_results[0].revoke.click
   @back_app.revoke_page.submit(revoked_reason: "Did a bad thing")
 end

@@ -9,9 +9,9 @@ class ConstructionWasteQuestionPage < SitePrism::Page
   def submit(args = {})
     case args[:choice]
     when :no
-      no_construction_waste.select_option
+      no_construction_waste.click
     when :yes
-      yes_construction_waste.select_option
+      yes_construction_waste.click
     end
     submit_button.click
   end

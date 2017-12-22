@@ -12,7 +12,8 @@ Feature: Limited company applies for new upper tier registration
    When I pay for my application by maestro ordering 5 copy cards
    Then I will be registered as an upper tier waste carrier
     And the registration status will be "Registered"
- 
+    
+ @email
   Scenario: Limited company successfully applies for an upper tier wasete carriers licence choosing to pay by bank transfer
    When I choose to pay for my application by bank transfer ordering 2 copy cards
    Then I will be informed my registration is pending payment

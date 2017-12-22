@@ -151,5 +151,13 @@ class BackOfficeApp
     @last_page = ConfirmDeletePage.new
   end
 
+  def sign_up_page
+    @last_page = SignupPage.new
+  end
+
+  def generate_email
+    @email = "wastecarrier" + rand(100_000_000).to_s + "@mailinator.com"
+  end
+
 end
 # rubocop:enable Metrics/ClassLength
