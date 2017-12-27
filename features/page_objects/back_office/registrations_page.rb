@@ -25,6 +25,7 @@ class RegistrationsPage < SitePrism::Page
     element(:refuse, :xpath, "//a[contains(.,'Refuse')]")
     element(:renew, :xpath, "//a[contains(.,'Renew')]")
     element(:payment_status, :xpath, "//a[contains(@id,'paymentStatus')]")
+
   end
 
   def search(args = {})
