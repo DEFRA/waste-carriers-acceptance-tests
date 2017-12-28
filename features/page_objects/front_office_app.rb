@@ -168,6 +168,10 @@ class FrontOfficeApp
     @last_page = LimitedCompanyNumberPage.new
   end
 
+  def waste_carriers_renewals_page
+    @last_page = WasteCarrierRenewalsPage.new
+  end
+
   def generate_email
     @email = "wastecarrier" + rand(100_000_000).to_s + "@mailinator.com"
   end

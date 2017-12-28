@@ -179,3 +179,20 @@ end
 Then(/^I will be informed I should not renew my upper tier waste carrier registration$/) do
   expect(@front_app.renewal_received_page).to have_text("You should not renew")
 end
+
+Given(/^I have signed in to renew my registration$/) do
+  @front_app = FrontOfficeApp.new
+  @front_app.start_page.load
+  @front_app.waste_carrier_sign_in_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
+    password: Quke::Quke.config.custom["accounts"]["waste_carrier"]["password"]
+  )
+end
+
+Given(/^I have a registration ready for renewal$/) do
+  expect(@front_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.text).to eq("ACTIVE")
+end
+
+When(/^I complete my limited company renewal steps$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
