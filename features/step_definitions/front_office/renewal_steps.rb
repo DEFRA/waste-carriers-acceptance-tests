@@ -194,5 +194,5 @@ Given(/^I have a registration ready for renewal$/) do
 end
 
 When(/^I complete my limited company renewal steps$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  @front_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.click
 end
