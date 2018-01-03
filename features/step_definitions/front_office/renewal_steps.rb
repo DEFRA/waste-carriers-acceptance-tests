@@ -189,10 +189,13 @@ Given(/^I have signed in to renew my registration$/) do
   )
 end
 
-Given(/^I have a registration ready for renewal$/) do
-  expect(@front_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.text).to eq("ACTIVE")
+Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
+  @front_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.click
 end
 
 When(/^I complete my limited company renewal steps$/) do
-  @front_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.click
+  @front_app.renewal_start_page.submit
+  @front_app.business_type_page.submit_button.click
+  @front_app.other_businesses_question_page.submit_button.click
+  @front_app.registration_type_page.submit_button.click
 end
