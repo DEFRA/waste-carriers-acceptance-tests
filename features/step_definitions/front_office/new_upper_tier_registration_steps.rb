@@ -153,7 +153,7 @@ Given(/^I have registered my partnership as an upper tier waste carrier$/) do
   )
   @front_app.worldpay_card_details_page.submit_button.click
   # Stores registration number for later use
-  @registration_number = @front_app.registration_confirmed_page.registration_number.text
+  @registration_number = @front_app.confirmation_page.registration_number.text
   @front_app.mailinator_page.load
   @front_app.mailinator_page.submit(inbox: @email)
   @front_app.mailinator_inbox_page.confirmation_email.click
@@ -215,7 +215,7 @@ Given(/^I have registered my sole trading business as an upper tier waste carrie
   )
   @front_app.worldpay_card_details_page.submit_button.click
   # Stores registration number for later use
-  @registration_number = @front_app.registration_confirmed_page.registration_number.text
+  @registration_number = @front_app.confirmation_page.registration_number.text
   @front_app.mailinator_page.load
   @front_app.mailinator_page.submit(inbox: @email)
   @front_app.mailinator_inbox_page.confirmation_email.click

@@ -88,10 +88,10 @@ Given(/^I have registered my limited company as an upper tier "([^"]*)"$/) do |r
     expiry_year: @year
   )
   @front_app.worldpay_card_details_page.submit_button.click
-  expect(@front_app.registration_confirmed_page.registration_number).to have_text("CBDU")
-  expect(@front_app.registration_confirmed_page).to have_text @email
+  expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
+  expect(@front_app.confirmation_page).to have_text @email
   # Stores registration number for later use
-  @registration_number = @front_app.registration_confirmed_page.registration_number.text
+  @registration_number = @front_app.confirmation_page.registration_number.text
 end
 # rubocop:disable Metrics/LineLength
 Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |no|
@@ -149,9 +149,9 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
     expiry_year: @year
   )
   @front_app.worldpay_card_details_page.submit_button.click
-  expect(@front_app.registration_confirmed_page.registration_number).to have_text("CBDU")
-  expect(@front_app.registration_confirmed_page).to have_text @email
+  expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
+  expect(@front_app.confirmation_page).to have_text @email
   # Stores registration number for later use
-  @registration_number = @front_app.registration_confirmed_page.registration_number.text
+  @registration_number = @front_app.confirmation_page.registration_number.text
 end
 # rubocop:enable Metrics/LineLength

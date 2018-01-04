@@ -12,7 +12,7 @@ class KeyPeoplePage < SitePrism::Page
 
   elements :remove_person, "a[href*='delete']"
 
-  element(:submit_button, "#continue")
+  element(:submit_button, "input[type='submit']")
 
   def add_key_person(args = {})
     person = args[:person]

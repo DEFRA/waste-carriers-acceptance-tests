@@ -17,6 +17,13 @@ When(/^the key person has the conviction check approved by an agency user$/) do
 end
 
 Then(/^the registration has a "([^"]*)" status$/) do |status|
+  Capybara.reset_session!
+  @back_app = BackOfficeApp.new
+  @back_app.agency_sign_in_page.load
+  @back_app.agency_sign_in_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+  )
   @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.wait_for_status(status)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)

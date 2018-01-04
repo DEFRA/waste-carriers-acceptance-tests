@@ -1,4 +1,4 @@
-class RegistrationConfirmedPage < SitePrism::Page
+class ConfirmationPage < SitePrism::Page
 
   # Registration complete
   element(:registration_number, "#registrationNumber")

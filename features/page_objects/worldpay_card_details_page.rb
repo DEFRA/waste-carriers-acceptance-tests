@@ -10,6 +10,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
   element(:pay, "#op-PMMakePayment")
 
   # Used for test simulation
+  element(:submit_button_renew, "input[type='submit']")
   element(:submit_button, "input[value='Submit']")
 
   # Test credit card details

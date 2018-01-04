@@ -124,7 +124,7 @@ Then(/^the charge "([^"]*)" has been paid$/) do |charge|
     expiry_year: @year
   )
   @front_app.worldpay_card_details_page.submit_button.click
-  @new_registration_number = @front_app.registration_confirmed_page.registration_number.text
+  @new_registration_number = @front_app.confirmation_page.registration_number.text
 end
 
 Then(/^its previous registration will be "([^"]*)"$/) do |status|

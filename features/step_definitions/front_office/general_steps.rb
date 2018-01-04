@@ -31,18 +31,18 @@ Then(/^I will be asked to confirm my email address$/) do
 end
 
 Then(/^I will be registered as an upper tier waste carrier$/) do
-  expect(@front_app.registration_confirmed_page.registration_number).to have_text("CBDU")
-  expect(@front_app.registration_confirmed_page).to have_text @email
+  expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
+  expect(@front_app.confirmation_page).to have_text @email
   # Stores registration number for later use
-  @registration_number = @front_app.registration_confirmed_page.registration_number.text
+  @registration_number = @front_app.confirmation_page.registration_number.text
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
   within_window @new_window do
-    expect(@front_app.registration_confirmed_page.registration_number).to have_text("CBDL")
-    expect(@front_app.registration_confirmed_page).to have_text @email
+    expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
+    expect(@front_app.confirmation_page).to have_text @email
     # Stores registration number for later use
-    @registration_number = @front_app.registration_confirmed_page.registration_number.text
+    @registration_number = @front_app.confirmation_page.registration_number.text
   end
 end
 
@@ -63,10 +63,10 @@ When(/^I choose to pay for my application by bank transfer ordering (\d+) copy (
 end
 
 Then(/^I will be informed my registration is pending payment$/) do
-  expect(@front_app.registration_confirmed_page).to have_text "Application received"
-  expect(@front_app.registration_confirmed_page).to have_text @email
+  expect(@front_app.confirmation_page).to have_text "Application received"
+  expect(@front_app.confirmation_page).to have_text @email
   # Stores registration number for later use
-  @registration_number = @front_app.registration_confirmed_page.registration_number.text
+  @registration_number = @front_app.confirmation_page.registration_number.text
 end
 
 When(/^I confirm my email address$/) do
@@ -86,7 +86,7 @@ Then(/^a registration confirmation email is received$/) do
   @front_app.mailinator_page.submit(inbox: @email)
   @front_app.mailinator_inbox_page.registration_complete_email.click
   @front_app.mailinator_inbox_page.email_details do |frame|
-    expect(@front_app.registration_confirmed_page).to have_text @registration_number
+    expect(@front_app.confirmation_page).to have_text @registration_number
   end
 
 end
