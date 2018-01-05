@@ -87,8 +87,8 @@ class BackOfficeApp
     @last_page = WorldpayCardDetailsPage.new
   end
 
-  def registration_confirmed_page
-    @last_page = RegistrationConfirmedPage.new
+  def confirmation_page
+    @last_page = ConfirmationPage.new
   end
 
   def finish_assisted_page

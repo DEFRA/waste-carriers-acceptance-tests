@@ -110,6 +110,5 @@ DEPENDENCIES
   rake
   rubocop
 
-
 BUNDLED WITH
-   1.15.1
+   1.16.1

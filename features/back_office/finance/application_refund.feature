@@ -6,7 +6,7 @@ So that the customer can be refunded their application charge
 
 Background:
 Given I have an application paid by credit card
-  
+
  Scenario: Refund of application charge from credit card payment
  Given I am signed in as a finance admin
  When I refund the application payment

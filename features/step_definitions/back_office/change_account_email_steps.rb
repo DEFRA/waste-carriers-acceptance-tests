@@ -37,7 +37,7 @@ Given(/^the user has one registration$/) do
   end
 
   within_window @new_window do
-    @registration = @front_app.registration_confirmed_page.registration_number.text
+    @registration = @front_app.confirmation_page.registration_number.text
   end
 end
 
@@ -82,7 +82,7 @@ Given(/^the user has 2 registrations$/) do
   end
 
   within_window @new_window do
-    @registrations << @front_app.registration_confirmed_page.registration_number.text
+    @registrations << @front_app.confirmation_page.registration_number.text
   end
 
   @front_app.start_page.load
@@ -109,7 +109,7 @@ Given(/^the user has 2 registrations$/) do
     password: "Secret123"
   )
 
-  @registrations << @front_app.registration_confirmed_page.registration_number.text
+  @registrations << @front_app.confirmation_page.registration_number.text
 end
 
 When(/^I change the account email$/) do

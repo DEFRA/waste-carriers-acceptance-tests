@@ -37,7 +37,7 @@ Given(/^I have an application that is pending payment$/) do
   )
   @back_app.offline_payment_page.submit
   # Stores registration number for later use
-  @registration_number = @back_app.registration_confirmed_page.registration_number.text
+  @registration_number = @back_app.confirmation_page.registration_number.text
 
 end
 

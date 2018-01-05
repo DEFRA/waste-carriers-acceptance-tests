@@ -61,7 +61,7 @@ When(/^I complete the public body registration renewal$/) do
   )
   @front_app.worldpay_card_details_page.submit_button.click
   # Stores registration number for later use
-  @registration_number = @front_app.registration_confirmed_page.registration_number.text
+  @registration_number = @front_app.confirmation_page.registration_number.text
   @front_app.mailinator_page.load
   @front_app.mailinator_page.submit(inbox: @email)
   @front_app.mailinator_inbox_page.confirmation_email.click
@@ -114,7 +114,7 @@ Then(/^I'm informed I'll need to apply for a new registration$/) do
 end
 
 Then(/^I will have renewed my registration$/) do
-  expect(@front_app.registration_confirmed_page).to have_text("Renewal complete")
+  expect(@front_app.confirmation_page).to have_text("Renewal complete")
 end
 
 Then(/^a renewal confirmation email is received$/) do
@@ -125,7 +125,7 @@ Then(/^a renewal confirmation email is received$/) do
   @front_app.mailinator_page.submit(inbox: @email)
   @front_app.mailinator_inbox_page.renewal_complete_email.click
   @front_app.mailinator_inbox_page.email_details do |_frame|
-    expect(@front_app.registration_confirmed_page).to have_text @registration_number
+    expect(@front_app.confirmation_page).to have_text @registration_number
   end
 
 end
@@ -178,4 +178,44 @@ end
 
 Then(/^I will be informed I should not renew my upper tier waste carrier registration$/) do
   expect(@front_app.renewal_received_page).to have_text("You should not renew")
+end
+
+Given(/^I have signed in to renew my registration$/) do
+  @front_app = FrontOfficeApp.new
+  @front_app.waste_carriers_renewals_sign_in_page.load
+  @front_app.waste_carrier_sign_in_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
+    password: Quke::Quke.config.custom["accounts"]["waste_carrier"]["password"]
+  )
+end
+
+Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |_number|
+  @front_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.click
+end
+
+When(/^I complete my limited company renewal steps$/) do
+  @front_app.renewal_start_page.submit
+  @front_app.business_type_page.submit
+  @front_app.other_businesses_question_page.submit
+  @front_app.registration_type_page.submit
+  @front_app.renewal_information_page.submit
+  @front_app.limited_company_number_page.submit
+  @front_app.company_name_page.submit_button.click
+  @front_app.post_code_page.submit_button.click
+  @front_app.business_address_page.submit_button.click
+  @front_app.key_people_page.new_submit_button.click
+  @front_app.relevant_convictions_page.submit
+  @front_app.relevant_people_page.new_submit_button.click
+  @front_app.contact_name_page.submit
+  @front_app.contact_telephone_number_page.submit
+  @front_app.contact_email_page.submit
+  @front_app.contact_address_page.submit
+  @front_app.check_details_page.submit_button.click
+  @front_app.declaration_page.submit_button.click
+  @front_app.order_page.submit_button_renew.click
+  @front_app.worldpay_card_details_page.submit_button_renew.click
+end
+
+Then(/^I will be notified that my registration has been renewed$/) do
+  expect(@front_app.confirmation_page).to have_text("Renewal complete")
 end

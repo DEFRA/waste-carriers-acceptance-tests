@@ -4,7 +4,7 @@ class PostCodePage < SitePrism::Page
 
   element(:post_code, "#address_postcode")
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     post_code.set(args[:post_code]) if args.key?(:post_code)

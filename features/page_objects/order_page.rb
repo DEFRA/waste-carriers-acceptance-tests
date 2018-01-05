@@ -7,6 +7,7 @@ class OrderPage < SitePrism::Page
   element(:edit_charge, "#edit_charge")
   element(:charge, "#registration_registration_fee")
 
+  element(:submit_button_renew, "input[type='submit']")
   element(:submit_button, "#proceed_to_payment")
 
   def submit(args = {})

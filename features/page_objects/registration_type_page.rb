@@ -5,7 +5,7 @@ class RegistrationTypePage < SitePrism::Page
   element(:broker_dealer, "input[value='broker_dealer']", visible: false)
   element(:carrier_broker_dealer, "input[value='carrier_broker_dealer']", visible: false)
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     case args[:choice]
