@@ -8,7 +8,7 @@ class FrontOfficeApp
 
   # FRONT OFFICE SPECIFIC PAGES
   # /
-  
+
   def agency_users_sign_in_page
     @last_page = SignInPage.new
   end

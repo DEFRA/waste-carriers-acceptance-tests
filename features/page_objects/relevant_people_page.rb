@@ -15,7 +15,8 @@ class RelevantPeoplePage < SitePrism::Page
 
   elements :remove_person, "a[href*='delete']"
 
-  element(:submit_button, "input[type='submit']")
+  element(:new_submit_button, "input[type='submit']")
+  element(:submit_button, "#continue")
 
   def add_relevant_person(args = {})
     person = args[:person]

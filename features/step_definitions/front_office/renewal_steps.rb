@@ -189,23 +189,23 @@ Given(/^I have signed in to renew my registration$/) do
   )
 end
 
-Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
+Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |_number|
   @front_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.click
 end
 
 When(/^I complete my limited company renewal steps$/) do
   @front_app.renewal_start_page.submit
-  @front_app.business_type_page.submit_button.click
-  @front_app.other_businesses_question_page.submit_button.click
-  @front_app.registration_type_page.submit_button.click
-  @front_app.renewal_information_page.submit_button
+  @front_app.business_type_page.submit
+  @front_app.other_businesses_question_page.submit
+  @front_app.registration_type_page.submit
+  @front_app.renewal_information_page.submit
   @front_app.limited_company_number_page.submit
-  @front_app.company_name_page.submit
-  @front_app.post_code_page.submit
+  @front_app.company_name_page.submit_button.click
+  @front_app.post_code_page.submit_button.click
   @front_app.business_address_page.submit_button.click
-  @front_app.key_people_page.submit
+  @front_app.key_people_page.new_submit_button.click
   @front_app.relevant_convictions_page.submit
-  @front_app.relevant_people_page.submit
+  @front_app.relevant_people_page.new_submit_button.click
   @front_app.contact_name_page.submit
   @front_app.contact_telephone_number_page.submit
   @front_app.contact_email_page.submit

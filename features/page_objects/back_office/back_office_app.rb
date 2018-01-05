@@ -88,7 +88,7 @@ class BackOfficeApp
   end
 
   def confirmation_page
-    @last_page = RegistrationConfirmedPage.new
+    @last_page = ConfirmationPage.new
   end
 
   def finish_assisted_page

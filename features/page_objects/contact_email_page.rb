@@ -1,6 +1,5 @@
 class ContactEmailPage < SitePrism::Page
 
-  
   element(:email, "#registration_contactEmail")
   element(:submit_button, "input[type='Submit']")
 
