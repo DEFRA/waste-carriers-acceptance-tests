@@ -114,13 +114,12 @@ Given(/^I have signed in to renew my registration$/) do
   @renewals_app.waste_carriers_renewals_sign_in_page.load
   @renewals_app.waste_carriers_renewals_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["waste_carrier"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
 end
 
 Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
   @renewals_app.waste_carriers_renewals_page.registration(number).renew_registration.click
-  # @renewals_app.waste_carriers_renewals_page.registrations[0].renew_registration.click
 end
 
 When(/^I complete my limited company renewal steps$/) do

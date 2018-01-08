@@ -3,7 +3,7 @@ Given(/^an Environment Agency user has signed in$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
 end
 
@@ -12,7 +12,7 @@ Given(/^I am signed in as an Environment Agency user with refunds$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
 end
 
@@ -21,7 +21,7 @@ Given(/^I am signed in as a finance admin$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["finance_admin"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["finance_admin"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
 end
 
@@ -30,7 +30,7 @@ Given(/^I am signed in as a finance user$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["finance_basic"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["finance_basic"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
 end
 
