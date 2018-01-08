@@ -1,74 +1,3 @@
-Given(/^I renew my registration using my previous registration number "([^"]*)"$/) do |reg|
-  @front_app = FrontOfficeApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit(renewal: true)
-  @front_app.existing_registration_page.submit(reg_no: reg)
-end
-
-Given(/^I choose to renew my registration using my previous registration number$/) do
-  Capybara.reset_session!
-  @front_app = FrontOfficeApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit(renewal: true)
-  @front_app.existing_registration_page.submit(reg_no: @registration_number)
-end
-
-When(/^I complete the public body registration renewal$/) do
-  @front_app.business_type_page.submit
-  @front_app.other_businesses_question_page.submit(choice: :no)
-  @front_app.construction_waste_question_page.submit(choice: :yes)
-  @front_app.registration_type_page.submit
-  @front_app.business_details_page.submit(
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
-  )
-  @email = @front_app.generate_email
-  @front_app.contact_details_page.submit(
-    first_name: "Bob",
-    last_name: "Carolgees",
-    phone_number: "012345678",
-    email: @email
-  )
-  @front_app.postal_address_page.submit
-
-  people = @front_app.key_people_page.key_people
-
-  @front_app.key_people_page.submit_key_person(person: people[0])
-  @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
-  @front_app.sign_up_page.submit(
-    registration_password: "Secret123",
-    confirm_password: "Secret123",
-    confirm_email: @email
-  )
-  @front_app.order_page.submit(
-    copy_card_number: "2",
-    choice: :card_payment
-  )
-  click(@front_app.worldpay_card_choice_page.maestro)
-
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @front_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @front_app.worldpay_card_details_page.submit_button.click
-  # Stores registration number for later use
-  @registration_number = @front_app.confirmation_page.registration_number.text
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.confirmation_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    @new_window = window_opened_by { frame.confirm_email.click }
-  end
-end
 
 Then(/^the expiry date should be three years from the expiry date$/) do
   # Adds three years to expiry date and then checks expiry date reported in registration details
@@ -181,41 +110,50 @@ Then(/^I will be informed I should not renew my upper tier waste carrier registr
 end
 
 Given(/^I have signed in to renew my registration$/) do
-  @front_app = FrontOfficeApp.new
-  @front_app.waste_carriers_renewals_sign_in_page.load
-  @front_app.waste_carrier_sign_in_page.submit(
+  @renewals_app = RenewalsApp.new
+  @renewals_app.waste_carriers_renewals_sign_in_page.load
+  @renewals_app.waste_carriers_renewals_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: Quke::Quke.config.custom["accounts"]["waste_carrier"]["password"]
   )
 end
 
 Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |_number|
-  @front_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.click
+  @renewals_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.click
 end
 
 When(/^I complete my limited company renewal steps$/) do
-  @front_app.renewal_start_page.submit
-  @front_app.business_type_page.submit
-  @front_app.other_businesses_question_page.submit
-  @front_app.registration_type_page.submit
-  @front_app.renewal_information_page.submit
-  @front_app.limited_company_number_page.submit
-  @front_app.company_name_page.submit_button.click
-  @front_app.post_code_page.submit_button.click
-  @front_app.business_address_page.submit_button.click
-  @front_app.key_people_page.new_submit_button.click
-  @front_app.relevant_convictions_page.submit
-  @front_app.relevant_people_page.new_submit_button.click
-  @front_app.contact_name_page.submit
-  @front_app.contact_telephone_number_page.submit
-  @front_app.contact_email_page.submit
-  @front_app.contact_address_page.submit
-  @front_app.check_details_page.submit_button.click
-  @front_app.declaration_page.submit_button.click
-  @front_app.order_page.submit_button_renew.click
-  @front_app.worldpay_card_details_page.submit_button_renew.click
+  @renewals_app.renewal_start_page.submit
+  @renewals_app.business_type_page.submit
+  @renewals_app.other_businesses_question_page.submit
+  @renewals_app.registration_type_page.submit
+  @renewals_app.renewal_information_page.submit
+  @renewals_app.limited_company_number_page.submit
+  @renewals_app.company_name_page.submit
+  @renewals_app.post_code_page.submit
+  @renewals_app.business_address_page.submit
+  @renewals_app.key_people_page.submit
+  @renewals_app.relevant_convictions_page.submit
+  @renewals_app.relevant_people_page.submit
+  @renewals_app.contact_name_page.submit
+  @renewals_app.contact_telephone_number_page.submit
+  @renewals_app.contact_email_page.submit
+  @renewals_app.contact_address_page.submit
+  @renewals_app.check_details_page.submit
+  @renewals_app.declaration_page.submit
+  @renewals_app.order_page.submit
+  @renewals_app.worldpay_card_details_page.submit
 end
 
 Then(/^I will be notified that my registration has been renewed$/) do
-  expect(@front_app.confirmation_page).to have_text("Renewal complete")
+  expect(@renewals_app.renewal_complete_page).to have_text("Renewal complete")
+end
+
+Given(/^I change the business type to "([^"]*)"$/) do |org_type|
+  @renewals_app.renewal_start_page.submit
+  @renewals_app.business_type_page.submit(new_org_type: org_type)
+end
+
+Then(/^I will be notified that I'm unable to continue my renewal$/) do
+  expect(@renewals_app.cannot_renewal_type_change_page).to have_text("You cannot renew")
 end
