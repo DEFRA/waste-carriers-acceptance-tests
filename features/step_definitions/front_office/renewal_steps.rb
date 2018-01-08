@@ -158,3 +158,7 @@ end
 Then(/^I will be notified that I'm unable to continue my renewal$/) do
   expect(@renewals_app.cannot_renewal_type_change_page).to have_text("You cannot renew")
 end
+
+Then(/^I will be able to continue my renewal$/) do
+  expect(@renewals_app.other_businesses_question_page.current_url).to include "/smart-answers"
+end
