@@ -14,7 +14,6 @@ class KeyPeoplePage < SitePrism::Page
 
   element(:submit_button, "input[type='submit']")
 
-
   def add_key_person(args = {})
     person = args[:person]
 
