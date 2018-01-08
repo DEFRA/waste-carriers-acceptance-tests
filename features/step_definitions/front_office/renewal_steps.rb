@@ -118,8 +118,9 @@ Given(/^I have signed in to renew my registration$/) do
   )
 end
 
-Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |_number|
-  @renewals_app.waste_carriers_renewals_page.user_registrations[0].renew_registration.click
+Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
+  @renewals_app.waste_carriers_renewals_page.registration(number).renew_registration.click
+  # @renewals_app.waste_carriers_renewals_page.registrations[0].renew_registration.click
 end
 
 When(/^I complete my limited company renewal steps$/) do

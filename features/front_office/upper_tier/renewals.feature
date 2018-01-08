@@ -13,7 +13,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
 
   Scenario: Limited company changes business type and informed to create new registration
   	  Given I have signed in to renew my registration
-  	  And I have chosen registration "CBDU1" ready for renewal
+  	  And I have chosen registration "CBDU2" ready for renewal
   	  But I change the business type to "localAuthority"
   	  Then I will be notified that I'm unable to continue my renewal
   	 
