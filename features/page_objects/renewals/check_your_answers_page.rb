@@ -1,4 +1,4 @@
-class CheckDetailsPage < SitePrism::Page
+class CheckYourAnswersPage < SitePrism::Page
 
   # Check your details before registering
   element(:edit_smart_answers, "#changeSmartAnswers")

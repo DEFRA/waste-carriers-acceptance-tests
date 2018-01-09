@@ -20,8 +20,8 @@ class RenewalsApp
     @last_page = CannotRenewTypeChangePage.new
   end
 
-  def check_details_page
-    @last_page = CheckDetailsPage.new
+  def check_your_answers_page
+    @last_page = CheckYourAnswersPage.new
   end
 
   def correspondence_contact_name_page
@@ -64,12 +64,12 @@ class RenewalsApp
     @last_page = LimitedCompanyNumberPage.new
   end
 
-  def order_page
-    @last_page = OrderPage.new
-  end
-
   def other_businesses_question_page
     @last_page = OtherBusinessesQuestionPage.new
+  end
+
+  def payment_summary_page
+    @last_page = PaymentSummaryPage.new
   end
 
   def post_code_page

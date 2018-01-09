@@ -139,9 +139,9 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_address_page.submit
-  @renewals_app.check_details_page.submit
+  @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
-  @renewals_app.order_page.submit
+  @renewals_app.payment_summary_page.submit
   @renewals_app.worldpay_card_details_page.submit
 end
 
@@ -160,4 +160,26 @@ end
 
 Then(/^I will be able to continue my renewal$/) do
   expect(@renewals_app.other_businesses_question_page.current_url).to include "/smart-answers"
+end
+
+When(/^I complete my sole trader renewal steps$/) do
+  @renewals_app.renewal_start_page.submit
+  @renewals_app.business_type_page.submit
+  @renewals_app.other_businesses_question_page.submit
+  @renewals_app.registration_type_page.submit
+  @renewals_app.renewal_information_page.submit
+  @renewals_app.company_name_page.submit
+  @renewals_app.post_code_page.submit
+  @renewals_app.business_address_page.submit
+  @renewals_app.key_people_page.submit
+  @renewals_app.relevant_convictions_page.submit
+  @renewals_app.relevant_people_page.submit
+  @renewals_app.contact_name_page.submit
+  @renewals_app.contact_telephone_number_page.submit
+  @renewals_app.contact_email_page.submit
+  @renewals_app.contact_address_page.submit
+  @renewals_app.check_your_answers_page.submit
+  @renewals_app.declaration_page.submit
+  @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.submit
 end
