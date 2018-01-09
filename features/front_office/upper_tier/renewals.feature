@@ -33,3 +33,9 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       And I have chosen registration "CBDU7" ready for renewal
      When I complete my local authority renewal steps
      Then I will be notified that my registration has been renewed
+
+  Scenario: Limited liability partnership renews upper tier registration from renewals page
+    Given I have signed in to renew my registration
+      And I have chosen registration "CBDU8" ready for renewal
+     When I complete my limited liability partnership renewal steps
+     Then I will be notified that my registration has been renewed  

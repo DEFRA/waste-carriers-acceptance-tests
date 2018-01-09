@@ -60,8 +60,8 @@ class RenewalsApp
     @last_page = KeyPeoplePage.new
   end
 
-  def limited_company_number_page
-    @last_page = LimitedCompanyNumberPage.new
+  def registration_number_page
+    @last_page = RegistrationNumberPage.new
   end
 
   def other_businesses_question_page
