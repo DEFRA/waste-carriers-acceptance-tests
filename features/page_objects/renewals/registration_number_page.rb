@@ -1,4 +1,4 @@
-class LimitedCompanyNumberPage < SitePrism::Page
+class RegistrationNumberPage < SitePrism::Page
 
   # Business details
   element(:companies_house_number, "#registration_company_no")
