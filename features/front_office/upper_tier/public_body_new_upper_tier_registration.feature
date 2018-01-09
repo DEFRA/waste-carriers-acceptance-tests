@@ -13,7 +13,7 @@ Feature: Public body applies for new upper tier registration
    	Then I will be registered as an upper tier waste carrier
     And the registration status will be "Registered"
 
-   Scenario: Public body successfully applies for an upper tier wasete carriers licence choosing to pay by bank transfer
+   Scenario: Public body successfully applies for an upper tier waste carriers licence choosing to pay by bank transfer
     When I choose to pay for my application by bank transfer ordering 7 copy cards
     Then I will be informed my registration is pending payment 
      And my registration status will be "Awaiting payment"
