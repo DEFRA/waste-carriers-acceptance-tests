@@ -19,6 +19,11 @@ task :run do
   sh %( bundle exec quke )
 end
 
+desc "Run all work in progress scenarios"
+task :wip do
+  sh %( QUKE_CONFIG=.config_galaxyS8.yml bundle exec quke --tags @wip)
+end
+
 desc "Runs the tests used by continuous integration to check the project"
 task :ci do
   Rake::Task["rubocop"].invoke

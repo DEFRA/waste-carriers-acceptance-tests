@@ -9,7 +9,7 @@ class WasteCarrierRenewalsSignInPage < SitePrism::Page
   element(:email_address, "input[id='user_email']")
   element(:password, "input[id='user_password']")
 
-  element(:submit_button, "input[type=submit")
+  element(:submit_button, "input[type=submit]")
 
   def submit(args = {})
     email_address.set(args[:email]) if args.key?(:email)

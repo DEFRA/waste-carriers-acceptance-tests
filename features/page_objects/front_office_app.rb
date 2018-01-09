@@ -33,14 +33,6 @@ class FrontOfficeApp
     @last_page = ContactNamePage.new
   end
 
-  def contact_telephone_number_page
-    @last_page = ContactTelephoneNumberPage.new
-  end
-
-  def contact_email_page
-    @last_page = ContactEmailPage.new
-  end
-
   def check_details_page
     @last_page = CheckDetailsPage.new
   end
@@ -51,14 +43,6 @@ class FrontOfficeApp
 
   def contact_details_page
     @last_page = ContactDetailsPage.new
-  end
-
-  def correspondence_contact_name_page
-    @last_page = CorrespondenceContactNamePage.new
-  end
-
-  def correspondence_contact_telephone_page
-    @last_page = CorrespondenceContactTelephonePage.new
   end
 
   def confirmation_page
@@ -73,20 +57,12 @@ class FrontOfficeApp
     @last_page = ConfirmAccountPage.new
   end
 
-  def declaration_page
-    @last_page = DeclarationPage.new
-  end
-
   def existing_registration_page
     @last_page = ExistingRegistrationPage.new
   end
 
   def key_people_page
     @last_page = KeyPeoplePage.new
-  end
-
-  def limited_company_number_page
-    @last_page = LimitedCompanyNumberPage.new
   end
 
   def mailinator_page
@@ -141,18 +117,6 @@ class FrontOfficeApp
     @last_page = RelevantPeoplePage.new
   end
 
-  def renewal_start_page
-    @last_page = RenewalStartPage.new
-  end
-
-  def renewal_received_page
-    @last_page = RenewalReceivedPage.new
-  end
-
-  def renewal_information_page
-    @last_page = RenewalInformationPage.new
-  end
-
   def start_page
     @last_page = StartPage.new
   end
@@ -167,14 +131,6 @@ class FrontOfficeApp
 
   def type_change_page
     @last_page = TypeChangePage.new
-  end
-
-  def waste_carriers_renewals_page
-    @last_page = WasteCarrierRenewalsPage.new
-  end
-
-  def waste_carriers_renewals_sign_in_page
-    @last_page = WasteCarrierRenewalsSignInPage.new
   end
 
   def waste_carrier_sign_in_page
