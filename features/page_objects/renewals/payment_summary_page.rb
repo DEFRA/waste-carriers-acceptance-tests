@@ -1,4 +1,4 @@
-class OrderPage < SitePrism::Page
+class PaymentSummaryPage < SitePrism::Page
 
   # Payment summary
   element(:copy_cards, "#registration_copy_cards")
