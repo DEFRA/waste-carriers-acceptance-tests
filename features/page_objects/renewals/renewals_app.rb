@@ -16,6 +16,10 @@ class RenewalsApp
     @last_page = BusinessTypePage.new
   end
 
+  def cannot_renew_lower_tier_page
+    @last_page = CannotRenewLowerTierPage.new
+  end
+
   def cannot_renewal_type_change_page
     @last_page = CannotRenewTypeChangePage.new
   end
