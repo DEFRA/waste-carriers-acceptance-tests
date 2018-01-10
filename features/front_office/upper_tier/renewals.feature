@@ -45,3 +45,9 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       And I have chosen registration "CBDU9" ready for renewal
      When I confirm my business type
      Then I will be notified "You should not renew"
+
+  Scenario: Partnership renews upper tier registration from renewals page
+    Given I have signed in to renew my registration
+      And I have chosen registration "CBDU10" ready for renewal
+     When I complete my partnership renewal steps
+     Then I will be notified that my registration has been renewed
