@@ -51,3 +51,9 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       And I have chosen registration "CBDU10" ready for renewal
      When I complete my partnership renewal steps
      Then I will be notified that my registration has been renewed
+
+  Scenario: Overseas company renews upper tier registration from renewals page
+    Given I have signed in to renew my registration
+      And I have chosen registration "CBDU11" ready for renewal
+     When I complete my overseas company renewal steps
+     Then I will be notified that my registration has been renewed
