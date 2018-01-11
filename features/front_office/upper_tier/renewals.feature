@@ -57,3 +57,15 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       And I have chosen registration "CBDU11" ready for renewal
      When I complete my overseas company renewal steps
      Then I will be notified that my registration has been renewed
+
+  Scenario: Overseas company renews upper tier registration from renewals page
+    Given I have signed in to renew my registration
+      And I have chosen registration "CBDU11" ready for renewal
+     When I complete my overseas company renewal steps
+     Then I will be notified that my registration has been renewed
+
+    Scenario: Registration can not be renewed over one month before its expiry date
+      Given I have an upper tier waste carrier licence
+       When I renew my registration using my previous registration number "CBDU12"
+        But the renewal date is over one month before it is due to expire
+       Then I will be notified "You can not renew this registration yet"
