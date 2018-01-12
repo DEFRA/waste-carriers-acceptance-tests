@@ -20,7 +20,7 @@ class RenewalsApp
     @last_page = CannotRenewLowerTierPage.new
   end
 
-  def cannot_renewal_type_change_page
+  def cannot_renew_type_change_page
     @last_page = CannotRenewTypeChangePage.new
   end
 
@@ -58,6 +58,10 @@ class RenewalsApp
 
   def declaration_page
     @last_page = DeclarationPage.new
+  end
+
+  def existing_registration_page
+    @last_page = ExistingRegistrationPage.new
   end
 
   def key_people_page
@@ -106,6 +110,10 @@ class RenewalsApp
 
   def renewal_complete_page
     @last_page = RenewalCompletePage.new
+  end
+
+  def start_page
+    @last_page = StartPage.new
   end
 
   def waste_carriers_renewals_page
