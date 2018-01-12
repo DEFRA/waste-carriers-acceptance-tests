@@ -276,3 +276,11 @@ end
 Then(/^I will be notified "([^"]*)"$/) do |message|
   expect(@renewals_app.cannot_renew_lower_tier_page).to have_text(message)
 end
+
+Given(/^I have an upper tier waste carrier licence$/) do
+  # No code to write here, step added so the test reads better
+end
+
+When(/^the renewal date is over one month before it is due to expire$/) do
+  # No code to write here, step added so the test reads better
+end
