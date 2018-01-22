@@ -36,6 +36,10 @@ class RenewalsApp
     @last_page = CorrespondenceContactTelephonePage.new
   end
 
+  def construction_waste_question_page
+    @last_page = ConstructionWasteQuestionPage.new
+  end 
+
   def contact_telephone_number_page
     @last_page = ContactTelephoneNumberPage.new
   end
@@ -112,6 +116,10 @@ class RenewalsApp
     @last_page = RenewalCompletePage.new
   end
 
+  def service_provided_page
+    @last_page = ServiceProvidedPage.new
+  end
+
   def start_page
     @last_page = StartPage.new
   end
@@ -122,6 +130,10 @@ class RenewalsApp
 
   def waste_carriers_renewals_sign_in_page
     @last_page = WasteCarrierRenewalsSignInPage.new
+  end
+
+  def waste_types_page
+    @last_page = WasteTypesPage.new
   end
 
   def worldpay_card_choice_page
