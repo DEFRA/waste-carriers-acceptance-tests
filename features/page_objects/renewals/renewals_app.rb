@@ -1,6 +1,7 @@
 # Represents all pages in the front office. Was created to avoid needing to
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
+# rubocop:disable Metrics/ClassLength
 class RenewalsApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
@@ -38,7 +39,7 @@ class RenewalsApp
 
   def construction_waste_question_page
     @last_page = ConstructionWasteQuestionPage.new
-  end 
+  end
 
   def contact_telephone_number_page
     @last_page = ContactTelephoneNumberPage.new
