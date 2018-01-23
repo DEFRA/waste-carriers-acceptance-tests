@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal @email
+@frontoffice @upper_tier @renewal @wip
 Feature: Registered waste carrier chooses to renew their registration from start page
   As a carrier of commercial waste
   I want to change my registration details when I renew my waste carriers licence with the Environment Agency
@@ -7,8 +7,8 @@ Feature: Registered waste carrier chooses to renew their registration from start
     Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU4" ready for renewal
-     When I change my registration type to "carrier_broker_dealer" and complete my renewal
-     Then I'll be shown the "£105.00" renewal charge plus the "£40.00" charge for change
+     When I change my carrier broker dealer type to "carrier_broker_dealer"
+     Then I will be notified "Because your carrier type has changed, there will also be a £40 charge"
 
     Scenario: On renewal a sole trader answers questions that direct to lower tier
     Given I have signed in to renew my registration
