@@ -1,7 +1,7 @@
 @frontoffice @upper_tier @renewal @email
 Feature: Registered waste carrier chooses to renew their registration from start page
   As a carrier of commercial waste
-  I want to change my registration details when Irenew my waste carriers licence with the Environment Agency
+  I want to change my registration details when I renew my waste carriers licence with the Environment Agency
   So my details are up to date and I continue to be compliant with the law
 
     Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change
