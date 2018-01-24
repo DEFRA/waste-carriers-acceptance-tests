@@ -51,16 +51,12 @@ custom:
   accounts:
     agency_user:
       username: agency_user@example.gov.uk
-      password: Password1234
     finance_admin:
       username: finance_admin@example.gov.uk
-      password: Password1234
     finance_basic:
       username: finance_basic@example.gov.uk
-      password: Password1234
     agency_user_with_payment_refund:
       username: agency_user_with_payment_refund@example.gov.uk
-      password: Password1234
   urls:
     front_office: "http://domainundertest.gov.uk/registrations/start"
     front_office_sign_in: "http://domainundertest.gov.uk/users/sign_in?locale=en"
@@ -70,6 +66,12 @@ custom:
 ```
 
 If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**. You can however override this and other values using the standard [Quke configuration options](https://github.com/DEFRA/quke#configuration).
+
+### WASTECARRIERSPASSWORD
+
+You will also need to set the environment variable `WASTECARRIERSPASSWORD` before running any tests. Its best practise not to include credentials within source code, so we have not included them in the `.config.yml` files attached to this project. However a number of the scenarios depend on being logged in, and therefore need to be able to access the password. Setting this environment variable is how they access it.
+
+Add it to your `~/.bash_profile` (open the file and add the line `export WASTECARRIERSPASSWORD="mySuperStr0ngPassword"`). You'll only have to do this once and then it'll be available always.
 
 ### VAGRANT_KEY_LOCATION
 
