@@ -14,6 +14,8 @@ This project is setup to run against version 2.2.3 of Ruby.
 
 The rest of the pre-requisites are the same as those for [Quke](https://github.com/DEFRA/quke#pre-requisites).
 
+Also some of the [rake](https://github.com/ruby/rake) tasks (to see the available list call `bundle exec rake -T`) and `config.yml` files assume you have the Waste Carriers [Vagrant](https://www.vagrantup.com/) environment running locally. Contact [Alan Cruikshanks](https://github.com/Cruikshanks) or [Tim Stone](https://github.com/timstone) for details if unsure.
+
 ## Installation
 
 First clone the repository and then drop into your new local repo
@@ -42,23 +44,19 @@ Into that file you'll need to add as a minimum this
 # Capybara will attempt to find an element for a period of time, rather than
 # immediately failing because the element cannot be found. This defaults to 2
 # seconds but with the need to confirm emails via mailinator, we have found we
-# need to increase this time to at least 5 seconds 
+# need to increase this time to at least 5 seconds
 max_wait_time: 5
 
 custom:
   accounts:
     agency_user:
       username: agency_user@example.gov.uk
-      password: Password1234
     finance_admin:
       username: finance_admin@example.gov.uk
-      password: Password1234
     finance_basic:
       username: finance_basic@example.gov.uk
-      password: Password1234
     agency_user_with_payment_refund:
       username: agency_user_with_payment_refund@example.gov.uk
-      password: Password1234
   urls:
     front_office: "http://domainundertest.gov.uk/registrations/start"
     front_office_sign_in: "http://domainundertest.gov.uk/users/sign_in?locale=en"
@@ -68,6 +66,25 @@ custom:
 ```
 
 If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**. You can however override this and other values using the standard [Quke configuration options](https://github.com/DEFRA/quke#configuration).
+
+### WASTECARRIERSPASSWORD
+
+You will also need to set the environment variable `WASTECARRIERSPASSWORD` before running any tests. Its best practise not to include credentials within source code, so we have not included them in the `.config.yml` files attached to this project. However a number of the scenarios depend on being logged in, and therefore need to be able to access the password. Setting this environment variable is how they access it.
+
+Add it to your `~/.bash_profile` (open the file and add the line `export WASTECARRIERSPASSWORD="mySuperStr0ngPassword"`). You'll only have to do this once and then it'll be available always.
+
+### VAGRANT_KEY_LOCATION
+
+You will also need to set the environment variable `VAGRANT_KEY_LOCATION` to the path to your Vagrant environment private key location. This links to the rake task `reset` which a number of other rake tasks depend on.
+
+Go to the root of the Waste Carriers vagrant project and then run the following
+
+```bash
+cd .vagrant/machines/development/virtualbox/
+pwd
+```
+
+The final command should output a value like `/Users/myusername/wcr-vagrant/.vagrant/machines/development/virtualbox`. Add it to your `~/.bash_profile` (open the file and add the line `export VAGRANT_KEY_LOCATION="/Users/myusername/wcr-vagrant/.vagrant/machines/development/virtualbox"`). You'll only have to do this once and then it'll be available always.
 
 ## Execution
 
