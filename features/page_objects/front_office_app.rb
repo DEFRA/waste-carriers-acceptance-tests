@@ -57,6 +57,10 @@ class FrontOfficeApp
     @last_page = ConfirmAccountPage.new
   end
 
+  def declaration_page
+    @last_page = DeclarationPage.new
+  end
+
   def existing_registration_page
     @last_page = ExistingRegistrationPage.new
   end

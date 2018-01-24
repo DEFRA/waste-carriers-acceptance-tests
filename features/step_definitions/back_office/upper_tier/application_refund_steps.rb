@@ -27,7 +27,7 @@ Given(/^I have an application paid by credit card$/) do
   @back_app.key_people_page.submit_key_person(person: people[2])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: "1",
     choice: :maestro

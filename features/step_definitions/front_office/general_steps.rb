@@ -108,7 +108,7 @@ Then(/^my registration status for "([^"]*)" will be "([^"]*)"$/) do |search_item
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
   @back_app.registrations_page.search(search_input: search_item)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
@@ -121,7 +121,7 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
   @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.wait_for_status(status)

@@ -25,7 +25,7 @@ Given(/^I have an application that is pending payment$/) do
   @back_app.key_people_page.submit_key_person(person: people[0])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
   @back_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",

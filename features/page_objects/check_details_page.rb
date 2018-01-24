@@ -4,6 +4,7 @@ class CheckDetailsPage < SitePrism::Page
   element(:edit_smart_answers, "#changeSmartAnswers")
   element(:edit_registration_type, "#changeRegistrationType")
   element(:edit_key_people, "#edit_key_person")
+  element(:declaration, "#registration_declaration")
 
   element(:submit_button, "input[type='Submit']")
 

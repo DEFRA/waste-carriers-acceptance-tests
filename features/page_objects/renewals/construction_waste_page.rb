@@ -1,4 +1,4 @@
-class ConstructionWasteQuestionPage < SitePrism::Page
+class ConstructionWastePage < SitePrism::Page
 
   # Do you ever deal with waste from other businesses or households?
   element(:yes_construction_waste, "#construction_demolition_form_construction_waste_true", visible: false)

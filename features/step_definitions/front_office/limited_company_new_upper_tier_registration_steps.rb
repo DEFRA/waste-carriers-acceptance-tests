@@ -25,7 +25,7 @@ When(/^I complete my application of my limited company as an upper tier waste ca
   @front_app.key_people_page.submit_key_person(person: people[2])
 
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
@@ -63,7 +63,7 @@ Given(/^I have registered my limited company as an upper tier "([^"]*)"$/) do |r
   @front_app.key_people_page.submit_key_person(person: people[2])
 
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
@@ -124,7 +124,7 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   @front_app.key_people_page.submit_key_person(person: people[2])
 
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
