@@ -10,8 +10,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
   element(:pay, "#op-PMMakePayment")
 
   # Used for test simulation
-  element(:submit_button_renew, "input[type='submit']")
-  element(:submit_button, "input[value='Submit']")
+  element(:submit_button, "input[type='submit']")
 
   # Test credit card details
 
@@ -29,10 +28,13 @@ class WorldpayCardDetailsPage < SitePrism::Page
   @approved = "555"
   @failed = "444"
 
-  element(:submit_button, "input[type='submit']")
-
-  def submit(_args = {})
-    submit_button.click
+  def submit(args = {})
+    card_number.set(args[:card_number]) if args.key?(:card_number)
+    security_code.set(args[:security_code]) if args.key?(:security_code)
+    cardholder_name.set(args[:cardholder_name]) if args.key?(:cardholder_name)
+    expiry_month.select(args[:expiry_month]) if args.key?(:expiry_month)
+    expiry_year.select(args[:expiry_year]) if args.key?(:expiry_year)
+    click(pay)
   end
 
 end

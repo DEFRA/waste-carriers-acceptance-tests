@@ -1,6 +1,6 @@
 require "faker"
 
-class RelevantPeoplePage < SitePrism::Page
+class RenewRelevantPeoplePage < SitePrism::Page
 
   # Details of the person with a conviction
 

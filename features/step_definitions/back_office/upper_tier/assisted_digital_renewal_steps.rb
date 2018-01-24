@@ -3,7 +3,7 @@ Given(/^I have my public body upper tier registration completed for me$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
@@ -27,7 +27,7 @@ Given(/^I have my public body upper tier registration completed for me$/) do
   @back_app.key_people_page.submit_key_person(person: people[0])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: "2",
     choice: :card_payment
@@ -72,7 +72,7 @@ When(/^I have my public body upper tier renewal completed for me$/) do
   @back_app.correspondence_contact_telephone_page.submit
   @back_app.correspondence_contact_email_page.submit
   @back_app.contact_address_page.submit
-  @back_app.declaration_page.submit_button.click
+  @back_app.check_details_page.submit_button.click
 end
 
 Then(/^my registration will have been renewed$/) do

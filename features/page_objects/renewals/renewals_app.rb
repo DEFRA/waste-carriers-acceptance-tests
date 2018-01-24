@@ -37,8 +37,8 @@ class RenewalsApp
     @last_page = CorrespondenceContactTelephonePage.new
   end
 
-  def construction_waste_question_page
-    @last_page = ConstructionWasteQuestionPage.new
+  def construction_waste_page
+    @last_page = ConstructionWastePage.new
   end
 
   def contact_telephone_number_page
@@ -69,16 +69,16 @@ class RenewalsApp
     @last_page = ExistingRegistrationPage.new
   end
 
-  def key_people_page
-    @last_page = KeyPeoplePage.new
+  def renew_key_people_page
+    @last_page = RenewKeyPeoplePage.new
   end
 
   def registration_number_page
     @last_page = RegistrationNumberPage.new
   end
 
-  def other_businesses_question_page
-    @last_page = OtherBusinessesQuestionPage.new
+  def other_businesses_page
+    @last_page = OtherBusinessesPage.new
   end
 
   def payment_summary_page
@@ -97,7 +97,7 @@ class RenewalsApp
     @last_page = RelevantConvictionsPage.new
   end
 
-  def relevant_people_page
+  def renew_relevant_people_page
     @last_page = RelevantPeoplePage.new
   end
 

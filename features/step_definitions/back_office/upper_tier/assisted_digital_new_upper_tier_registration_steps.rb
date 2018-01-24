@@ -20,7 +20,7 @@ When(/^I have my sole trader upper tier waste carrier application completed for 
   @back_app.key_people_page.submit_key_person(person: people[0])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end
 
 When(/^I have my limited company as a upper tier waste carrier application completed for me$/) do
@@ -48,7 +48,7 @@ When(/^I have my limited company as a upper tier waste carrier application compl
   @back_app.key_people_page.submit_key_person(person: people[2])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end
 
 When(/^I have my partnership upper tier waste carrier application completed for me$/) do
@@ -76,7 +76,7 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @back_app.key_people_page.submit_key_person(person: people[2])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end
 
 When(/^I have my public body upper tier waste carrier application completed for me$/) do
@@ -100,7 +100,7 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.key_people_page.submit_key_person(person: people[0])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end
 # rubocop:disable Metrics/LineLength
 Given(/^a limited company with companies house number "([^"]*)" is registered as an upper tier waste carrier$/) do |ch_no|
@@ -132,7 +132,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
   @back_app.key_people_page.submit_key_person(person: people[2])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: 2,
     choice: :maestro
@@ -182,7 +182,7 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
   @back_app.key_people_page.submit_key_person(person: people[2])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: 2,
     choice: :maestro
@@ -229,7 +229,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
   @back_app.key_people_page.submit_key_person(person: people[2])
 
   @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: 2,
     choice: :maestro
@@ -280,7 +280,7 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.relevant_convictions_page.submit(choice: :yes)
   people = @back_app.relevant_people_page.relevant_people
   @back_app.relevant_people_page.submit_relevant_person(person: people[0])
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: 2,
     choice: :maestro

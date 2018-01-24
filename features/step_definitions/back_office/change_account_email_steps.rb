@@ -21,8 +21,8 @@ Given(/^the user has one registration$/) do
   )
 
   @front_app.postal_address_page.submit
-  @front_app.declaration_page.submit
 
+  @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
@@ -66,7 +66,7 @@ Given(/^the user has 2 registrations$/) do
   )
 
   @front_app.postal_address_page.submit
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
@@ -103,7 +103,7 @@ Given(/^the user has 2 registrations$/) do
   )
 
   @front_app.postal_address_page.submit
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 
   @front_app.waste_carrier_sign_in_page.submit(
     password: "Secret123"
@@ -117,7 +117,7 @@ When(/^I change the account email$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
 
   @back_app.registrations_page.search(search_input: @registration)
@@ -133,7 +133,7 @@ When(/^I change the account email for both$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
 
   @registrations.each do |reg_no|

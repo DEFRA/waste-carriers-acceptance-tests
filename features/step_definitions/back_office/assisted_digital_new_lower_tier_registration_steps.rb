@@ -11,7 +11,7 @@ When(/^I have my registration of my charity as a lower tier waste carrier comple
     phone_number: "012345678"
   )
   @back_app.postal_address_page.submit
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end
 
 When(/^I have my registration of my local authority as a lower tier waste carrier completed for me$/) do
@@ -27,7 +27,7 @@ When(/^I have my registration of my local authority as a lower tier waste carrie
     phone_number: "012345678"
   )
   @back_app.postal_address_page.submit
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end
 
 Given(/^I have my registration of my limited company as a lower tier waste carrier completed for me$/) do
@@ -46,7 +46,7 @@ Given(/^I have my registration of my limited company as a lower tier waste carri
     phone_number: "012345678"
   )
   @back_app.postal_address_page.submit
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end
 
 When(/^I have my registration of my partnership as a lower tier waste carrier completed for me$/) do
@@ -65,7 +65,7 @@ When(/^I have my registration of my partnership as a lower tier waste carrier co
     phone_number: "012345678"
   )
   @back_app.postal_address_page.submit
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end
 
 When(/^I have my registration of my public body as a lower tier waste carrier completed for me$/) do
@@ -84,7 +84,7 @@ When(/^I have my registration of my public body as a lower tier waste carrier co
     phone_number: "012345678"
   )
   @back_app.postal_address_page.submit
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end
 
 When(/^I have my sole trader business lower tier waste carrier registration completed for me$/) do
@@ -103,5 +103,5 @@ When(/^I have my sole trader business lower tier waste carrier registration comp
     phone_number: "012345678"
   )
   @back_app.postal_address_page.submit
-  @back_app.declaration_page.submit
+  @back_app.check_details_page.submit
 end

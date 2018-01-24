@@ -1,4 +1,4 @@
-class OtherBusinessesQuestionPage < SitePrism::Page
+class OtherBusinessesPage < SitePrism::Page
 
   # Do you ever deal with waste from other businesses or households?
   element(:yes_other_businesses, "#other_businesses_form_other_businesses_true", visible: false)

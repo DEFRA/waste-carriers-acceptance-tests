@@ -21,7 +21,7 @@ When(/^I complete my limited company renewal without changing any information pa
   @front_app.correspondence_contact_telephone_page.submit
   @front_app.correspondence_contact_email_page.submit
   @front_app.contact_address_page.submit
-  @front_app.declaration_page.submit_button.click
+  @front_app.check_details_page.submit_button.click
   @front_app.order_page.submit(
     copy_card_number: "1",
     choice: :card_payment
@@ -66,7 +66,7 @@ When(/^I complete my limited company registration without changing any informati
   @front_app.correspondence_contact_telephone_page.submit
   @front_app.correspondence_contact_email_page.submit
   @front_app.contact_address_page.submit
-  @front_app.declaration_page.submit_button.click
+  @front_app.check_details_page.submit_button.click
   @front_app.order_page.submit(
     copy_card_number: "1",
     choice: :bank_transfer

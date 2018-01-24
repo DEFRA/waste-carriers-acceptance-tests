@@ -11,9 +11,9 @@ When(/^I change my registration type to "([^"]*)"$/) do |registration_type|
     password: "Secret123"
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
-  @front_app.declaration_page.edit_registration_type.click
+  @front_app.check_details_page.edit_registration_type.click
   @front_app.registration_type_page.submit(choice: registration_type.to_sym)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 end
 
 When(/^I add another partner to my registration$/) do
@@ -23,11 +23,11 @@ When(/^I add another partner to my registration$/) do
     password: "Secret123"
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
-  @front_app.declaration_page.edit_key_people.click
+  @front_app.check_details_page.edit_key_people.click
   people = @front_app.key_people_page.key_people
   @front_app.key_people_page.submit_key_person(person: people[0])
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 end
 
 When(/^I remove a partner from my registration$/) do
@@ -37,12 +37,12 @@ When(/^I remove a partner from my registration$/) do
     password: "Secret123"
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
-  @front_app.declaration_page.edit_key_people.click
+  @front_app.check_details_page.edit_key_people.click
 
   @front_app.key_people_page.remove_person[0].click
   @front_app.key_people_page.submit_button.click
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 end
 
 Then(/^I will not be charged for my change$/) do
@@ -56,7 +56,7 @@ When(/^I change my organisation type to a limited company$/) do
     password: "Secret123"
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
-  @front_app.declaration_page.edit_smart_answers.click
+  @front_app.check_details_page.edit_smart_answers.click
   @front_app.business_type_page.submit(org_type: "limitedCompany")
   @front_app.other_businesses_question_page.submit(choice: :yes)
   @front_app.service_provided_question_page.submit(choice: :not_main_service)
@@ -67,7 +67,7 @@ When(/^I change my organisation type to a limited company$/) do
   @front_app.postal_address_page.submit
   @front_app.key_people_page.submit
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 end
 
 When(/^its companies house number changes to "([^"]*)"$/) do |ch_no|
@@ -83,7 +83,7 @@ When(/^its companies house number changes to "([^"]*)"$/) do |ch_no|
     password: "Secret123"
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
-  @front_app.declaration_page.edit_smart_answers.click
+  @front_app.check_details_page.edit_smart_answers.click
   @front_app.business_type_page.submit
   @front_app.other_businesses_question_page.submit
   @front_app.construction_waste_question_page.submit
@@ -93,7 +93,7 @@ When(/^its companies house number changes to "([^"]*)"$/) do |ch_no|
   @front_app.postal_address_page.submit
   @front_app.key_people_page.submit
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 end
 
 Then(/^(?:I|it) will be charged "([^"]*)" for the change$/) do |charge|
@@ -133,7 +133,7 @@ Then(/^its previous registration will be "([^"]*)"$/) do |status|
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: Quke::Quke.config.custom["accounts"]["agency_user"]["password"]
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
   @back_app.registrations_page.search(search_input: @registration_number)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)

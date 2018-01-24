@@ -1,6 +1,6 @@
 require "faker"
 
-class KeyPeoplePage < SitePrism::Page
+class RenewKeyPeoplePage < SitePrism::Page
 
   element(:first_name, "#key_person_first_name")
   element(:last_name, "#key_person_last_name")

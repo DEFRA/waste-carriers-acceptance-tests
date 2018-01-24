@@ -16,7 +16,7 @@ When(/^I complete my application of my charity as a lower tier waste carrier$/) 
     email: @email
   )
   @front_app.postal_address_page.submit
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
@@ -43,7 +43,7 @@ When(/^I complete my application of my local authority as a lower tier waste car
     email: @email
   )
   @front_app.postal_address_page.submit
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
@@ -73,7 +73,7 @@ When(/^I complete my application of my partnership as a lower tier waste carrier
     email: @email
   )
   @front_app.postal_address_page.submit
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
@@ -102,7 +102,7 @@ When(/^I complete my application of my public body as a lower tier waste carrier
     email: @email
   )
   @front_app.postal_address_page.submit
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
@@ -132,7 +132,7 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
     email: @email
   )
   @front_app.postal_address_page.submit
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
@@ -162,7 +162,7 @@ Given(/^I complete my application of my limited company "([^"]*)" as a lower tie
     email: @email
   )
   @front_app.postal_address_page.submit
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",

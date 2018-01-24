@@ -11,108 +11,52 @@ class BackOfficeApp
     @last_page = AgencySignInPage.new
   end
 
+  def approve_page
+    @last_page = ApprovePage.new
+  end
+
   def admin_sign_in_page
     @last_page = AdminSignInPage.new
-  end
-
-  def registrations_page
-    @last_page = RegistrationsPage.new
-  end
-
-  def start_page
-    @last_page = StartPage.new
-  end
-
-  def business_type_page
-    @last_page = BusinessTypePage.new
-  end
-
-  def other_businesses_question_page
-    @last_page = OtherBusinessesQuestionPage.new
-  end
-
-  def only_deal_with_question_page
-    @last_page = OnlyDealWithQuestionPage.new
-  end
-
-  def construction_waste_question_page
-    @last_page = ConstructionWasteQuestionPage.new
-  end
-
-  def service_provided_question_page
-    @last_page = ServiceProvidedQuestionPage.new
-  end
-
-  def registration_type_page
-    @last_page = RegistrationTypePage.new
   end
 
   def business_details_page
     @last_page = BusinessDetailsPage.new
   end
 
-  def contact_details_page
-    @last_page = ContactDetailsPage.new
+  def business_type_page
+    @last_page = BusinessTypePage.new
   end
 
-  def postal_address_page
-    @last_page = PostalAddressPage.new
-  end
-
-  def declaration_page
-    @last_page = DeclarationPage.new
-  end
-
-  def key_people_page
-    @last_page = KeyPeoplePage.new
-  end
-
-  def relevant_convictions_page
-    @last_page = RelevantConvictionsPage.new
-  end
-
-  def order_page
-    @last_page = OrderPage.new
-  end
-
-  def offline_payment_page
-    @last_page = OfflinePaymentPage.new
-  end
-
-  def worldpay_card_choice_page
-    @last_page = WorldpayCardChoicePage.new
-  end
-
-  def worldpay_card_details_page
-    @last_page = WorldpayCardDetailsPage.new
+  def check_details_page
+    @last_page = CheckDetailsPage.new
   end
 
   def confirmation_page
     @last_page = ConfirmationPage.new
   end
 
-  def finish_assisted_page
-    @last_page = FinishAssistedPage.new
+  def confirm_delete_page
+    @last_page = ConfirmDeletePage.new
   end
 
-  def payment_status_page
-    @last_page = PaymentStatusPage.new
+  def contact_details_page
+    @last_page = ContactDetailsPage.new
   end
 
-  def payment_reversals_page
-    @last_page = PaymentReversalsPage.new
-  end
-
-  def new_reversal_page
-    @last_page = NewReversalPage.new
-  end
-
-  def payments_page
-    @last_page = PaymentsPage.new
+  def construction_waste_question_page
+    @last_page = ConstructionWasteQuestionPage.new
   end
 
   def edit_account_email_page
     @last_page = EditAccountEmailPage.new
+  end
+
+  def finish_assisted_page
+    @last_page = FinishAssistedPage.new
+  end
+
+  def key_people_page
+    @last_page = KeyPeoplePage.new
   end
 
   def mailinator_page
@@ -127,8 +71,40 @@ class BackOfficeApp
     @last_page = MailinatorEmailDetailsPage.new
   end
 
-  def approve_page
-    @last_page = ApprovePage.new
+  def new_reversal_page
+    @last_page = NewReversalPage.new
+  end
+
+  def offline_payment_page
+    @last_page = OfflinePaymentPage.new
+  end
+
+  def other_businesses_question_page
+    @last_page = OtherBusinessesQuestionPage.new
+  end
+
+  def only_deal_with_question_page
+    @last_page = OnlyDealWithQuestionPage.new
+  end
+
+  def order_page
+    @last_page = OrderPage.new
+  end
+
+  def payment_status_page
+    @last_page = PaymentStatusPage.new
+  end
+
+  def payment_reversals_page
+    @last_page = PaymentReversalsPage.new
+  end
+
+  def payments_page
+    @last_page = PaymentsPage.new
+  end
+
+  def postal_address_page
+    @last_page = PostalAddressPage.new
   end
 
   def registration_export_page
@@ -143,16 +119,40 @@ class BackOfficeApp
     @last_page = RelevantPeoplePage.new
   end
 
+  def relevant_convictions_page
+    @last_page = RelevantConvictionsPage.new
+  end
+
+  def registrations_page
+    @last_page = RegistrationsPage.new
+  end
+
+  def registration_type_page
+    @last_page = RegistrationTypePage.new
+  end
+
   def revoke_page
     @last_page = RevokePage.new
   end
 
-  def confirm_delete_page
-    @last_page = ConfirmDeletePage.new
+  def start_page
+    @last_page = StartPage.new
+  end
+
+  def service_provided_question_page
+    @last_page = ServiceProvidedQuestionPage.new
   end
 
   def sign_up_page
     @last_page = SignupPage.new
+  end
+
+  def worldpay_card_choice_page
+    @last_page = WorldpayCardChoicePage.new
+  end
+
+  def worldpay_card_details_page
+    @last_page = WorldpayCardDetailsPage.new
   end
 
   def generate_email

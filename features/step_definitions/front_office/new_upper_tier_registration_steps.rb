@@ -25,7 +25,7 @@ When(/^I complete my aplication of my partnership as a upper tier waste carrier$
   @front_app.key_people_page.submit_key_person(person: people[2])
 
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
@@ -57,7 +57,7 @@ When(/^I complete my application of my public body as an upper tier waste carrie
   @front_app.key_people_page.submit_key_person(person: people[0])
 
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
@@ -89,7 +89,7 @@ When(/^I complete my application of my sole trader business as a upper tier wast
   @front_app.key_people_page.submit_key_person(person: people[0])
 
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
@@ -127,7 +127,7 @@ Given(/^I have registered my partnership as an upper tier waste carrier$/) do
   @front_app.key_people_page.submit_key_person(person: people[2])
 
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
@@ -189,7 +189,7 @@ Given(/^I have registered my sole trading business as an upper tier waste carrie
   @front_app.key_people_page.submit_key_person(person: people[0])
 
   @front_app.relevant_convictions_page.submit(choice: :no)
-  @front_app.declaration_page.submit
+  @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",

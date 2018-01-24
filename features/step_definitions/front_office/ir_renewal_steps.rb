@@ -15,8 +15,8 @@ end
 
 When(/^I complete the public body registration renewal$/) do
   @renewals_app.business_type_page.submit
-  @renewals_app.other_businesses_question_page.submit(choice: :no)
-  @renewals_app.construction_waste_question_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(choice: :no)
+  @renewals_app.construction_waste_page.submit(choice: :yes)
   @renewals_app.registration_type_page.submit
   @renewals_app.business_details_page.submit(
     postcode: "S60 1BY",
@@ -31,9 +31,9 @@ When(/^I complete the public body registration renewal$/) do
   )
   @renewals_app.postal_address_page.submit
 
-  people = @renewals_app.key_people_page.key_people
+  people = @renewals_app.renew_key_people_page.key_people
 
-  @renewals_app.key_people_page.submit_key_person(person: people[0])
+  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
   @renewals_app.relevant_convictions_page.submit(choice: :no)
   @renewals_app.declaration_page.submit
   @renewals_app.sign_up_page.submit(
@@ -52,14 +52,14 @@ When(/^I complete the public body registration renewal$/) do
 
   @year = time.year + 1
 
-  @renewals_app.worldpay_card_details_page.submit(
+  @renewals_app.worldpay_card_details_page.submit_button.click(
     card_number: "6759649826438453",
     security_code: "555",
     cardholder_name: "3d.authorised",
     expiry_month: "12",
     expiry_year: @year
   )
-  @renewals_app.worldpay_card_details_page.submit_button.click
+  @renewals_app.worldpay_card_details_page.submit_button.click_button.click
   # Stores registration number for later use
   @registration_number = @renewals_app.confirmation_page.registration_number.text
   @renewals_app.mailinator_page.load
