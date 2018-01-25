@@ -19,9 +19,9 @@ task :run do
   sh %( bundle exec quke )
 end
 
-desc "Run all work in progress scenarios"
-task :wip do
-  sh %( QUKE_CONFIG=.config_galaxyS8.yml bundle exec quke --tags @wip)
+desc "Run browser test"
+task browserstack: [:reset] do
+  sh %( QUKE_CONFIG=.config_iPhone_X.yml bundle exec quke --tags @wip)
 end
 
 desc "Run any WIP after resetting the database"

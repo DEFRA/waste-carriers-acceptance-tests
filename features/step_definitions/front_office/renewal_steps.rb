@@ -111,7 +111,7 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.business_address_page.submit
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
-  @renewals_app.relevant_people_page.submit
+  @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -148,7 +148,7 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.business_address_page.submit
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
-  @renewals_app.relevant_people_page.submit
+  @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -172,7 +172,7 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.business_address_page.submit
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
-  @renewals_app.relevant_people_page.submit
+  @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -197,7 +197,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.business_address_page.submit
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
-  @renewals_app.relevant_people_page.submit
+  @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -221,7 +221,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.business_address_page.submit
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
-  @renewals_app.relevant_people_page.submit
+  @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -243,7 +243,7 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.business_address_page.submit
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
-  @renewals_app.relevant_people_page.submit
+  @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
