@@ -98,7 +98,7 @@ class RenewalsApp
   end
 
   def renew_relevant_people_page
-    @last_page = RelevantPeoplePage.new
+    @last_page = RenewRelevantPeoplePage.new
   end
 
   def renewal_information_page

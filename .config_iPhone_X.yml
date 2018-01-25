@@ -29,7 +29,7 @@ stop_on_error: 1
 # immediately failing because the element cannot be found. This defaults to 2
 # seconds. However if the site you are working with is slow or features
 # elements that take some time to load you can increase this default.
-max_wait_time: 20
+max_wait_time: 5
 
 # Tell the driver Quke is using to send a different user-agent value to the site
 # under test. Useful if you want the underlying driver to spoof what kind of
@@ -167,7 +167,7 @@ browserstack:
     # logs. General use case is to prevent passwords being exposed, but beware
     # that all input will be masked in the logs if set.
     browserstack.maskSendKeys: true
-
+    javascriptEnabled: true
     # https://www.browserstack.com/automate/capabilities
     device: 'iPhone X'
     realMobile: 'true'
