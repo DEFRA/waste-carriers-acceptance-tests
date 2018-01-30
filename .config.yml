@@ -13,7 +13,7 @@
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
-driver: chrome
+driver: firefox
 
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
@@ -29,7 +29,7 @@ stop_on_error: 1
 # immediately failing because the element cannot be found. This defaults to 2
 # seconds. However if the site you are working with is slow or features
 # elements that take some time to load you can increase this default.
-max_wait_time: 10
+max_wait_time: 5
 
 # Tell the driver Quke is using to send a different user-agent value to the site
 # under test. Useful if you want the underlying driver to spoof what kind of
@@ -77,8 +77,8 @@ custom:
     front_office: "http://localhost:3000/registrations/start"
     front_office_sign_in: "http:/localhost:3000/users/sign_in"
     front_office_sign_out: "http:/localhost:3000/users/sign_out"
-    front_office_renewals: "http:/localhost:3001"
-    front_office_renewals_sign_in: "http://localhost:3001/users/sign_in"
+    front_office_renewals: "http:/localhost:3002"
+    front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"
     back_office_admin: "http:/localhost:3000/admins/sign_in"
     # Sandbox
@@ -86,8 +86,8 @@ custom:
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
     # back_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
     # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
-    # front_office_renewals: "http:/localhost:3001"
-    # front_office_renewals_sign_in: "http://localhost:3001/users/sign_in"
+    # front_office_renewals: "http:/localhost:3002"
+    # front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     mail_checker: "https://www.mailinator.com"
 
 # If you are running Quke behind a proxy you can configure the proxy details

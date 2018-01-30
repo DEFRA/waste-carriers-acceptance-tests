@@ -9,7 +9,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
       And I have chosen registration "CBDU2" ready for renewal
       But I change the business type to "localAuthority"
       Then I will be notified "You cannot renew"
-
+@wip
    Scenario: Sole trader changes business type to based overseas
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU3" ready for renewal
