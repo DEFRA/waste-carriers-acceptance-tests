@@ -12,14 +12,4 @@ class WasteCarrierRenewalsPage < SitePrism::Page
     nil
   end
 
-  def registration_test(registration_number)
-    registrations.each do |registration|
-      if registration.registration_number.text == registration_number
-        within(registration.registration_number) do
-          first('a').click
-        end
-      end
-    end
-  end
-
 end

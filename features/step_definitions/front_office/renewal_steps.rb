@@ -81,10 +81,6 @@ When(/^I answer questions indicating I should be a lower tier waste carrier$/) d
   @renewals_app.construction_waste_page.submit(choice: :no)
 end
 
-Then(/^I will be informed I should not renew my upper tier waste carrier registration$/) do
-  expect(@renewals_app.renewal_received_page).to have_text("You should not renew")
-end
-
 Given(/^I have signed in to renew my registration$/) do
   @renewals_app = RenewalsApp.new
   @renewals_app.waste_carriers_renewals_sign_in_page.load
@@ -92,11 +88,11 @@ Given(/^I have signed in to renew my registration$/) do
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WASTECARRIERSPASSWORD"]
   )
+  expect(@renewals_app.waste_carriers_renewals_page.text).to have_text "Listing Registrations"
 end
 
 Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
-   @renewals_app.waste_carriers_renewals_page.registration_test(number)
-  # puts @renewals_app.waste_carriers_renewals_page.registration(number).registration_number.text
+  visit("/renew/#{number}")
 end
 
 When(/^I complete my limited company renewal steps$/) do
@@ -129,11 +125,13 @@ end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
   @renewals_app.renewal_start_page.submit
+  @renewals_app.business_type_page.wait_for_new_org_types
   @renewals_app.business_type_page.submit(new_org_type: org_type)
 end
 
 Then(/^I will be able to continue my renewal$/) do
   expect(@renewals_app.other_businesses_page.current_url).to include "/other-businesses"
+  visit("/users/sign_out")
 end
 
 When(/^I complete my sole trader renewal steps$/) do
@@ -262,6 +260,7 @@ end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
   expect(@renewals_app.cannot_renew_lower_tier_page).to have_text(message)
+  visit("/users/sign_out")
 end
 
 Given(/^I have an upper tier waste carrier licence$/) do
@@ -274,4 +273,15 @@ end
 
 When(/^the renewal date is today$/) do
   # No code to write here, step added so the test reads better
+end
+
+Given(/^I change my companies house number to "([^"]*)"$/) do |number|
+  @renewals_app.renewal_start_page.submit
+  @renewals_app.business_type_page.submit
+  @renewals_app.other_businesses_page.submit(choice: :yes)
+  @renewals_app.service_provided_page.submit(choice: :not_main_service)
+  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.registration_type_page.submit
+  @renewals_app.renewal_information_page.submit
+  @renewals_app.registration_number_page.submit(companies_house_number: number)
 end

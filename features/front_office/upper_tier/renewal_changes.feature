@@ -9,7 +9,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
       And I have chosen registration "CBDU2" ready for renewal
       But I change the business type to "localAuthority"
       Then I will be notified "You cannot renew"
-@wip
+
    Scenario: Sole trader changes business type to based overseas
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU3" ready for renewal
@@ -26,7 +26,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU5" ready for renewal
      When I answer questions indicating I should be a lower tier waste carrier
-     Then I will be informed I should not renew my upper tier waste carrier registration
+     Then I will be notified "You should not renew"
 
   Scenario: Partnership changes business type to Limited Liability Partnership
     Given I have signed in to renew my registration
@@ -39,6 +39,14 @@ Feature: Registered waste carrier chooses to renew their registration from start
       And I have chosen registration "CBDU15" ready for renewal
       But I change the business type to "limitedLiabilityPartnership"
      Then I will be able to continue my renewal
+
+  Scenario: Limited company changes companies house number and is informed to create a new registration
+    Given I have signed in to renew my registration
+      And I have chosen registration "CBDU16" ready for renewal
+      But I change my companies house number to "10926928"
+     Then I will be notified "You cannot renew"
+
+
 
 
 
