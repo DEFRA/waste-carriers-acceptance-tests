@@ -9,8 +9,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-# Using private IP address as currently issue with Safari iOS 10 and 11 
-app_host: 'http://192.168.1.5:3002'
+app_host: 'http://localhost:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -30,7 +29,7 @@ stop_on_error: 1
 # immediately failing because the element cannot be found. This defaults to 2
 # seconds. However if the site you are working with is slow or features
 # elements that take some time to load you can increase this default.
-max_wait_time: 5
+max_wait_time: 2
 
 # Tell the driver Quke is using to send a different user-agent value to the site
 # under test. Useful if you want the underlying driver to spoof what kind of
@@ -75,19 +74,19 @@ custom:
       username: user@waste-exemplar.gov.uk
   urls:
     # Local
-    front_office: "http://192.168.1.5:3000/registrations/start"
-    front_office_sign_in: "http:/192.168.1.5:3000/users/sign_in"
-    front_office_renewals: "http:/192.168.1.5:3002"
-    front_office_renewals_sign_in: "http://192.168.1.5:3002/users/sign_in"
-    back_office: "http:/192.168.1.5:3000/agency_users/sign_in"
-    back_office_admin: "http:/192.168.1.5:3000/admins/sign_in"
+    front_office: "http://localhost:3000/registrations/start"
+    front_office_sign_in: "http:/localhost:3000/users/sign_in"
+    front_office_renewals: "http:/localhost:3002"
+    front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
+    back_office: "http:/localhost:3000/agency_users/sign_in"
+    back_office_admin: "http:/localhost:3000/admins/sign_in"
     # Sandbox
     # front_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/registrations/start"
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
     # back_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
     # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
-    # front_office_renewals: "http:/192.168.1.5:3002"
-    # front_office_renewals_sign_in: "http://192.168.1.5:3002/users/sign_in"
+    # front_office_renewals: "http:/localhost:3002"
+    # front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     mail_checker: "https://www.mailinator.com"
 
 # If you are running Quke behind a proxy you can configure the proxy details
@@ -144,7 +143,7 @@ browserstack:
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
-    name: 'iPhone X'
+    name: 'IE 8 Windows 7'
 
     # To avoid invalid certificate errors while testing set acceptSslCerts to
     # true. This is not listed on the general capabilities page but is here
@@ -156,7 +155,7 @@ browserstack:
     # Required if you want to enable video recording during your test.
     # Browserstack default is true
     browserstack.video: true
-    # Required if you need to test a locally hosted (e.g. http://192.168.1.5:300)
+    # Required if you need to test a locally hosted (e.g. http://localhost:300)
     # or private internal web site. Browserstack has a feature called local
     # testing that Quke also supports, but to use
     # - Browserstack must be your selected driver
@@ -168,8 +167,11 @@ browserstack:
     # logs. General use case is to prevent passwords being exposed, but beware
     # that all input will be masked in the logs if set.
     browserstack.maskSendKeys: true
-    javascriptEnabled: true
+
     # https://www.browserstack.com/automate/capabilities
-    device: 'iPhone X'
-    realMobile: 'true'
-    os_version: '11.0'
+    browser: IE
+    os: 'Windows'
+    # device: 'iPhone X'
+    # realMobile: 'true'
+    browser_version: '8.0'
+    os_version: '7'

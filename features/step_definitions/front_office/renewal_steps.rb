@@ -130,6 +130,7 @@ Given(/^I change the business type to "([^"]*)"$/) do |org_type|
 end
 
 Then(/^I will be able to continue my renewal$/) do
+  @renewals_app.other_businesses_page.wait_for_yes_other_businesses
   expect(@renewals_app.other_businesses_page.current_url).to include "/other-businesses"
   visit("/users/sign_out")
 end
