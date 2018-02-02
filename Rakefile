@@ -21,7 +21,8 @@ end
 
 desc "Run browser test"
 task browserstack: [:reset] do
-  sh %( QUKE_CONFIG=.config_iPhone_X.yml bundle exec quke --tags @wip)
+  # sh %( QUKE_CONFIG=.config_iPhone_X.yml bundle exec quke --tags @wip)
+  sh %( QUKE_CONFIG=.config_iPhone6s.yml bundle exec quke --tags @wip)
 end
 
 desc "Run any WIP after resetting the database"

@@ -29,7 +29,7 @@ stop_on_error: 1
 # immediately failing because the element cannot be found. This defaults to 2
 # seconds. However if the site you are working with is slow or features
 # elements that take some time to load you can increase this default.
-max_wait_time: 2
+max_wait_time: 5
 
 # Tell the driver Quke is using to send a different user-agent value to the site
 # under test. Useful if you want the underlying driver to spoof what kind of
@@ -143,7 +143,7 @@ browserstack:
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
-    name: 'Chrome 63 Windows7'
+    name: 'iPhone 6s'
 
     # To avoid invalid certificate errors while testing set acceptSslCerts to
     # true. This is not listed on the general capabilities page but is here
@@ -167,11 +167,8 @@ browserstack:
     # logs. General use case is to prevent passwords being exposed, but beware
     # that all input will be masked in the logs if set.
     browserstack.maskSendKeys: true
-
+    javascriptEnabled: true
     # https://www.browserstack.com/automate/capabilities
-    browser: Chrome
-    os: 'Windows'
-    # device: 'iPhone X'
-    # realMobile: 'true'
-    browser_version: '63.0'
-    os_version: '7'
+    device: 'iPhone 6S'
+    realMobile: 'true'
+    os_version: '9.1'
