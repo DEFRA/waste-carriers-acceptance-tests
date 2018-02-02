@@ -9,7 +9,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-# Using private IP address as currently issue with Safari iOS 10 and 11 
+# Using private IP address as currently an issue with Safari on iOS 10 and 11 
 app_host: 'http://192.168.1.5:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome

@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal @wip
+@frontoffice @upper_tier @renewal 
 Feature: Registered waste carrier chooses to renew their registration from start page
   As a carrier of commercial waste
   I want to change my registration details when I renew my waste carriers licence with the Environment Agency

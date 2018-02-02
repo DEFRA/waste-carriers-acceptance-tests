@@ -41,7 +41,7 @@ class RegistrationsPage < SitePrism::Page
       else
         # reloads the page if service layer hasn't updated elastic search in time
         page.evaluate_script("window.location.reload()")
-        sleep(1)
+
         refresh_cnt += 1
       end
       break unless refresh_cnt < 20

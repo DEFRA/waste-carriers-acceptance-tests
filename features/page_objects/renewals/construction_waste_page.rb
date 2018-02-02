@@ -13,6 +13,7 @@ class ConstructionWastePage < SitePrism::Page
     when :yes
       yes_construction_waste.click
     end
+
     submit_button.click
   end
 

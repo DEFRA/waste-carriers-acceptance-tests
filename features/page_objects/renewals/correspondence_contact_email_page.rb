@@ -8,6 +8,7 @@ class CorrespondenceContactEmailPage < SitePrism::Page
 
   def submit(args = {})
     contact_email.set(args[:contact_email]) if args.key?(:contact_email)
+
     confirm_email.set(args[:confirm_email]) if args.key?(:confirm_email)
 
     submit_button.click

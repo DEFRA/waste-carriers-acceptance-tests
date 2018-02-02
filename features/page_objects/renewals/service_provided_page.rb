@@ -13,6 +13,7 @@ class ServiceProvidedPage < SitePrism::Page
     when :main_service
       yes_main_service.click
     end
+
     submit_button.click
   end
 
