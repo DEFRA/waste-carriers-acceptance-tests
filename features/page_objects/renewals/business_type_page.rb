@@ -8,7 +8,9 @@ class BusinessTypePage < SitePrism::Page
 
   def submit(args = {})
     org_types.find { |btn| btn.value == args[:org_type] }.click if args.key?(:org_type)
+
     new_org_types.find { |btn| btn.value == args[:new_org_type] }.click if args.key?(:new_org_type)
+
     submit_button.click
   end
 

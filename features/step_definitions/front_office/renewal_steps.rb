@@ -119,10 +119,6 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
-Then(/^I will be notified that my registration has been renewed$/) do
-  expect(@renewals_app.renewal_complete_page).to have_text("Renewal complete")
-end
-
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
   @renewals_app.renewal_start_page.submit
   @renewals_app.business_type_page.wait_for_new_org_types
@@ -130,6 +126,7 @@ Given(/^I change the business type to "([^"]*)"$/) do |org_type|
 end
 
 Then(/^I will be able to continue my renewal$/) do
+  @renewals_app.other_businesses_page.wait_for_yes_other_businesses
   expect(@renewals_app.other_businesses_page.current_url).to include "/other-businesses"
   visit("/users/sign_out")
 end

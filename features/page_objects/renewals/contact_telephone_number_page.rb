@@ -5,6 +5,7 @@ class ContactTelephoneNumberPage < SitePrism::Page
 
   def submit(args = {})
     phone_number.set(args[:phone_number]) if args.key?(:phone_number)
+
     submit_button.click
   end
 

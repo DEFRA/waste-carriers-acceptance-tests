@@ -16,6 +16,7 @@ class RegistrationTypePage < SitePrism::Page
     when :carrier_broker_dealer
       carrier_broker_dealer.click
     end
+
     submit_button.click
   end
 

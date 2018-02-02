@@ -13,6 +13,7 @@ class WasteTypesPage < SitePrism::Page
     when :farm_waste
       yes_only.click
     end
+
     submit_button.click
   end
 
