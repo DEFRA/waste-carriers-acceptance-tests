@@ -19,18 +19,40 @@ task :run do
   sh %( bundle exec quke )
 end
 
-desc "Run browser test"
-task browserstack: [:reset] do
-  # sh %( QUKE_CONFIG=.config_iPhone_X.yml bundle exec quke --tags @wip)
-  # sh %( QUKE_CONFIG=.config_iPhone6s.yml bundle exec quke --tags @wip)
-  sh %( QUKE_CONFIG=.config_ie8_W7.yml bundle exec quke --tags @wip)
+desc "Run all browser tests"
+task browserstack: [:Chrome63_OSX, :Chrome63_W7, :Chrome64_OSX, :Edge16_W10, :Edge15_W10]
 
+desc "Run Chrome 64 OS X test"
+task Chrome64_OSX: [:reset] do
+  sh %( QUKE_CONFIG=.config_Chrome64_OSX.yml bundle exec quke --tags @wip)
+end
+
+desc "Run Chrome 63 OS X test"
+task Chrome63_OSX: [:reset] do
+  sh %( QUKE_CONFIG=.config_Chrome63_OSX.yml bundle exec quke --tags @wip)
+end
+
+desc "Run Chrome 63 Windows 7 test"
+task Chrome63_W7: [:reset] do
+  sh %( QUKE_CONFIG=.config_Chrome63_W7.yml bundle exec quke --tags @wip)
+end
+
+desc "Run Edge 16 Windows 10 test"
+task Edge16_W10: [:reset] do
+  sh %( QUKE_CONFIG=.config_Edge16_W10.yml bundle exec quke --tags @wip)
+end
+
+desc "Run Edge 15 Windows 10 test"
+task Edge15_W10: [:reset] do
+  sh %( QUKE_CONFIG=.config_Edge15_W10.yml bundle exec quke --tags @wip)
 end
 
 desc "Run any WIP after resetting the database"
 task clean_wip: [:reset] do
   sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @wip)
 end
+
+
 
 # rubocop:disable Metrics/LineLength
 desc "Reset the database in the vagrant environment"
