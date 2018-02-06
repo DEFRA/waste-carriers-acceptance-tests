@@ -9,7 +9,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: 'http:/localhost:3002'
+app_host: 'http://localhost:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -76,7 +76,7 @@ custom:
     # Local
     front_office: "http://localhost:3000/registrations/start"
     front_office_sign_in: "http:/localhost:3000/users/sign_in"
-    front_office_renewals: "http:/localhost:3002"
+    front_office_renewals: "http://localhost:3002"
     front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"
     back_office_admin: "http:/localhost:3000/admins/sign_in"
@@ -85,7 +85,7 @@ custom:
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
     # back_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
     # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
-    # front_office_renewals: "http:/localhost:3002"
+    # front_office_renewals: "http://localhost:3002"
     # front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     mail_checker: "https://www.mailinator.com"
 

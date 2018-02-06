@@ -9,7 +9,8 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: 'http:/localhost:3002'
+# Safari has issues using localhost urls https://www.browserstack.com/question/663
+app_host: 'http://10.64.68.210:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -76,8 +77,8 @@ custom:
     # Local
     front_office: "http://localhost:3000/registrations/start"
     front_office_sign_in: "http:/localhost:3000/users/sign_in"
-    front_office_renewals: "http:/localhost:3002"
-    front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
+    front_office_renewals: "http://10.64.68.210:3002"
+    front_office_renewals_sign_in: "http://10.64.68.210:3002/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"
     back_office_admin: "http:/localhost:3000/admins/sign_in"
     # Sandbox
@@ -85,7 +86,7 @@ custom:
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
     # back_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
     # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
-    # front_office_renewals: "http:/localhost:3002"
+    # front_office_renewals: "http://localhost:3002"
     # front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     mail_checker: "https://www.mailinator.com"
 
@@ -143,7 +144,7 @@ browserstack:
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
-    name: 'Samsung Galaxy S8'
+    name: 'Safari 9.1 OS X'
 
     # To avoid invalid certificate errors while testing set acceptSslCerts to
     # true. This is not listed on the general capabilities page but is here
@@ -169,7 +170,9 @@ browserstack:
     browserstack.maskSendKeys: true
 
     # https://www.browserstack.com/automate/capabilities
-    device: 'Samsung Galaxy S8'
-    realMobile: 'true'
-    os_version: '7.0'
-    deviceOrientation: 'landscape'
+    browser: Safari
+    os: 'OS X'
+    # device: 'iPhone X'
+    # realMobile: 'true'
+    browser_version: '9.1'
+    os_version: 'El Capitan'

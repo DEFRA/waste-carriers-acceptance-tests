@@ -3,7 +3,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
   As a carrier of commercial waste
   I want to change my registration details when I renew my waste carriers licence with the Environment Agency
   So my details are up to date and I continue to be compliant with the law
-@wip
+
     Scenario: Limited company changes business type and is informed to create a new registration
       Given I have signed in to renew my registration
       And I have chosen registration "CBDU2" ready for renewal
