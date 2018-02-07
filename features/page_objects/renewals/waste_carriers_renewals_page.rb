@@ -5,6 +5,8 @@ class WasteCarrierRenewalsPage < SitePrism::Page
     element(:renew_registration, "td:nth-child(6)")
   end
 
+  element(:first_registration, "tr:nth-child(1) a")
+
   def registration(registration_number)
     registrations.each do |registration|
       return registration if registration.registration_number.text == registration_number

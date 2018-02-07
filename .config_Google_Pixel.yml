@@ -169,9 +169,6 @@ browserstack:
     browserstack.maskSendKeys: true
 
     # https://www.browserstack.com/automate/capabilities
-    browser: Chrome
-    os: 'Windows'
-    # device: 'iPhone X'
-    # realMobile: 'true'
-    browser_version: '63.0'
-    os_version: '7'
+    device: 'Google Pixel'
+    realMobile: 'true'
+    os_version: '8.0'

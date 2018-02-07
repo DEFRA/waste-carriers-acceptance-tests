@@ -5,7 +5,7 @@ class RelevantConvictionsPage < SitePrism::Page
   element(:yes, "input[value='yes']", visible: false)
   element(:no, "input[value='no']", visible: false)
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     case args[:choice]

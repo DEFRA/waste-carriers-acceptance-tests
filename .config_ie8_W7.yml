@@ -76,7 +76,7 @@ custom:
     # Local
     front_office: "http://localhost:3000/registrations/start"
     front_office_sign_in: "http:/localhost:3000/users/sign_in"
-    front_office_renewals: "http:/localhost:3002"
+    front_office_renewals: "http://localhost:3002"
     front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"
     back_office_admin: "http:/localhost:3000/admins/sign_in"
@@ -85,7 +85,7 @@ custom:
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
     # back_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
     # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
-    # front_office_renewals: "http:/localhost:3002"
+    # front_office_renewals: "http://localhost:3002"
     # front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     mail_checker: "https://www.mailinator.com"
 
@@ -143,7 +143,7 @@ browserstack:
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
-    name: 'IE 8 Windows 7'
+    name: 'Sole trader renews upper tier registration from renewals page'
 
     # To avoid invalid certificate errors while testing set acceptSslCerts to
     # true. This is not listed on the general capabilities page but is here

@@ -4,7 +4,7 @@ class WasteTypesPage < SitePrism::Page
   element(:yes_only, "#waste_types_form_only_amf_true", visible: false)
   element(:not_only, "#waste_types_form_only_amf_false", visible: false)
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     case args[:choice]

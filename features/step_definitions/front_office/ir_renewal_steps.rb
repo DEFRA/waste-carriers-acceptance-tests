@@ -14,7 +14,7 @@ Given(/^I choose to renew my registration using my previous registration number$
 end
 
 When(/^I complete the public body registration renewal$/) do
-  @renewals_app.business_type_page.submit
+  @renewals_app.confirm_business_type_page.submit
   @renewals_app.other_businesses_page.submit(choice: :no)
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @renewals_app.registration_type_page.submit
