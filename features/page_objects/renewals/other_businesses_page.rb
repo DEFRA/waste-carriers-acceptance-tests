@@ -4,7 +4,7 @@ class OtherBusinessesPage < SitePrism::Page
   element(:yes_other_businesses, "#other_businesses_form_other_businesses_true", visible: false)
   element(:no_other_businesses, "#other_businesses_form_other_businesses_false", visible: false)
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     case args[:choice]
@@ -13,7 +13,7 @@ class OtherBusinessesPage < SitePrism::Page
     when :yes
       yes_other_businesses.click
     end
-
+    
     submit_button.click
   end
 

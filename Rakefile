@@ -21,7 +21,7 @@ end
 
 # rubocop:disable Metrics/LineLength
 desc "Run all browser tests"
-task browserstack: %i[Chrome63_OSX Chrome63_W7 Chrome64_OSX Edge16_W10 Edge15_W10 Firefox59_OSX Firefox59_W10 Firefox58_W8_1 Galaxy_Note_8 HTC_One_M8 Safari11_OSX Safari10_1_OSX Safari9_1_OSX iPhone_X iPhone7]
+task browserstack: %i[Chrome63_OSX Chrome63_W7 Chrome64_OSX Edge16_W10 Edge15_W10 Firefox59_OSX Firefox59_W10 Firefox58_W8_1 Galaxy_Note_8 Google_Pixel iPhone_X iPhone7]
 # rubocop:enable Metrics/LineLength
 
 desc "Run Chrome 64 OS X test"
@@ -114,10 +114,10 @@ task :Galaxy_Note_8 do
   sh %( QUKE_CONFIG=.config_Galaxy_Note_8.yml bundle exec quke --tags @wip)
 end
 
-desc "Run HTC One M8 test"
-task :HTC_One_M8  do
+desc "Run Google Pixel test"
+task :Google_Pixel  do
   reset
-  sh %( QUKE_CONFIG=.config_HTC_One_M8.yml bundle exec quke --tags @wip)
+  sh %( QUKE_CONFIG=.config_Google_Pixel.yml bundle exec quke --tags @wip)
 end
 
 desc "Run any WIP after resetting the database"

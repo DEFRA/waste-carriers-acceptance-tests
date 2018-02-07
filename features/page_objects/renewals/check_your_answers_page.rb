@@ -5,7 +5,7 @@ class CheckYourAnswersPage < SitePrism::Page
   element(:edit_registration_type, "#changeRegistrationType")
   element(:edit_key_people, "#edit_key_person")
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit(_args = {})
     submit_button.click

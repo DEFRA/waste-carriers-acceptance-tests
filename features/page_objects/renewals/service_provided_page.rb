@@ -4,7 +4,7 @@ class ServiceProvidedPage < SitePrism::Page
   element(:yes_main_service, "#service_provided_form_is_main_service_true", visible: false)
   element(:not_main_service, "#service_provided_form_is_main_service_false", visible: false)
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     case args[:choice]
