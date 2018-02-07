@@ -115,7 +115,7 @@ task :Galaxy_Note_8 do
 end
 
 desc "Run Google Pixel test"
-task :Google_Pixel  do
+task :Google_Pixel do
   reset
   sh %( QUKE_CONFIG=.config_Google_Pixel.yml bundle exec quke --tags @wip)
 end

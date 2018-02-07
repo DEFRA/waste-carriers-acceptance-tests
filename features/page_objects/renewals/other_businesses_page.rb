@@ -13,7 +13,7 @@ class OtherBusinessesPage < SitePrism::Page
     when :yes
       yes_other_businesses.click
     end
-    
+
     submit_button.click
   end
 
