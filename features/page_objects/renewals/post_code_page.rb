@@ -1,13 +1,13 @@
 class PostCodePage < SitePrism::Page
 
-  # whats the registered address of the company?
+  # whats the  address?
 
-  element(:post_code, "#address_postcode")
+  element(:postcode, "#company_postcode_form_temp_postcode")
 
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    post_code.set(args[:post_code]) if args.key?(:post_code)
+    postcode.set(args[:postcode]) if args.key?(:postcode)
 
     submit_button.click
   end
