@@ -88,7 +88,9 @@ Given(/^I have signed in to renew my registration$/) do
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WASTECARRIERSPASSWORD"]
   )
-  @renewals_app.waste_carriers_renewals_page.wait_for_first_registration
+  # Issue with time taken to sign in, wait_for was used
+  # but ie8 didn't like the elements css selector so just looking for text as workaround
+  expect(@renewals_app.waste_carriers_renewals_page).to have_text("Listing Registrations")
 end
 
 Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
@@ -104,8 +106,8 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit
-  @renewals_app.business_address_page.submit
+  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
+  @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
@@ -140,8 +142,8 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit
-  @renewals_app.business_address_page.submit
+  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
+  @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
@@ -164,8 +166,8 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit
-  @renewals_app.business_address_page.submit
+  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
+  @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
@@ -189,8 +191,8 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit
-  @renewals_app.business_address_page.submit
+  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
+  @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
@@ -213,8 +215,8 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit
-  @renewals_app.business_address_page.submit
+  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
+  @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.renew_key_people_page.submit
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit

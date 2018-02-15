@@ -5,6 +5,7 @@ class WasteCarrierRenewalsPage < SitePrism::Page
     element(:renew_registration, "td:nth-child(6)")
   end
 
+  element(:heading, ".heading-large")
   element(:first_registration, "tr:nth-child(1) a")
 
   def registration(registration_number)
