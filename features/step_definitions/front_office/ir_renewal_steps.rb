@@ -1,71 +1,79 @@
 Given(/^I renew my registration using my previous registration number "([^"]*)"$/) do |reg|
-  @renewals_app = RenewalsApp.new
-  @renewals_app.start_page.load
-  @renewals_app.start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: reg)
+  @front_app = FrontOfficeApp.new
+  @front_app.start_page.load
+  @front_app.start_page.submit(renewal: true)
+  @front_app.existing_registration_page.submit(reg_no: reg)
 end
 
 Given(/^I choose to renew my registration using my previous registration number$/) do
   Capybara.reset_session!
-  @renewals_app = RenewalsApp.new
-  @renewals_app.start_page.load
-  @renewals_app.start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: @registration_number)
+  @front_app = FrontOfficeApp.new
+  @front_app.start_page.load
+  @front_app.start_page.submit(renewal: true)
+  @front_app.existing_registration_page.submit(reg_no: @registration_number)
+end
+
+Given(/^the registration is expired$/) do
+  # Scenario reads better with this step
 end
 
 When(/^I complete the public body registration renewal$/) do
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :no)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
-  @renewals_app.registration_type_page.submit
-  @renewals_app.business_details_page.submit(
+  @front_app.business_type_page.submit
+  @front_app.other_businesses_question_page.submit(choice: :no)
+  @front_app.construction_waste_question_page.submit(choice: :yes)
+  @front_app.registration_type_page.submit
+  @front_app.business_details_page.submit(
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @renewals_app.generate_email
-  @renewals_app.contact_details_page.submit(
+  @email = @front_app.generate_email
+  @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
     email: @email
   )
-  @renewals_app.postal_address_page.submit
+  @front_app.postal_address_page.submit
 
-  people = @renewals_app.renew_key_people_page.key_people
+  people = @front_app.key_people_page.key_people
 
-  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
-  @renewals_app.relevant_convictions_page.submit(choice: :no)
-  @renewals_app.declaration_page.submit
-  @renewals_app.sign_up_page.submit(
+  @front_app.key_people_page.submit_key_person(person: people[0])
+  @front_app.relevant_convictions_page.submit(choice: :no)
+  @front_app.check_details_page.submit
+  @front_app.sign_up_page.submit(
     registration_password: "Secret123",
     confirm_password: "Secret123",
     confirm_email: @email
   )
-  @renewals_app.order_page.submit(
+  @front_app.order_page.submit(
     copy_card_number: "2",
     choice: :card_payment
   )
-  click(@renewals_app.worldpay_card_choice_page.maestro)
+  click(@front_app.worldpay_card_choice_page.maestro)
 
   # finds today's date and adds another year to expiry date
   time = Time.new
 
   @year = time.year + 1
 
-  @renewals_app.worldpay_card_details_page.submit_button.click(
+  @front_app.worldpay_card_details_page.submit_button.click(
     card_number: "6759649826438453",
     security_code: "555",
     cardholder_name: "3d.authorised",
     expiry_month: "12",
     expiry_year: @year
   )
-  @renewals_app.worldpay_card_details_page.submit_button.click_button.click
+  @front_app.worldpay_card_details_page.submit_button.click_button.click
   # Stores registration number for later use
-  @registration_number = @renewals_app.confirmation_page.registration_number.text
-  @renewals_app.mailinator_page.load
-  @renewals_app.mailinator_page.submit(inbox: @email)
-  @renewals_app.mailinator_inbox_page.confirmation_email.click
-  @renewals_app.mailinator_inbox_page.email_details do |frame|
+  @registration_number = @front_app.confirmation_page.registration_number.text
+  @front_app.mailinator_page.load
+  @front_app.mailinator_page.submit(inbox: @email)
+  @front_app.mailinator_inbox_page.confirmation_email.click
+  @front_app.mailinator_inbox_page.email_details do |frame|
     @new_window = window_opened_by { frame.confirm_email.click }
   end
+end
+
+Then(/^I will be told "([^"]*)"$/) do |message|
+  expect(@front_app.existing_registration_page).to have_text(message)
 end
