@@ -103,32 +103,6 @@ Given(/^I do not confirm my email address$/) do
   # Nothing to do to replicate step
 end
 
-Then(/^my registration status for "([^"]*)" will be "([^"]*)"$/) do |search_item, status|
-  @back_app = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
-  )
-  @back_app.registrations_page.search(search_input: search_item)
-  expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
-end
-
-Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
-  # resets session cookies to fix back office authentication issue
-  Capybara.reset_session!
-  @back_app = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
-  )
-  @back_app.registrations_page.search(search_input: @registration_number)
-  @back_app.registrations_page.wait_for_status(status)
-
-  expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
-end
-
 When(/^I have signed into my account$/) do
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(

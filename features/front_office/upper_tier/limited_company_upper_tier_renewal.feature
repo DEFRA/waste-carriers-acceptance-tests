@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal
+@frontoffice @upper_tier @renewal @email
 Feature: Limited company renews for new upper tier registration
   As a carrier of commercial waste
   I want to renew my waste carrier licence
@@ -11,7 +11,7 @@ Background:
       And I have signed into my account
      When I choose to renew my registration from my registrations list  
      
-@email
+
 Scenario: Limited company successfully renews registration paying by credit card
      When I complete my limited company renewal without changing any information paying by credit card
      Then I will have renewed my registration
