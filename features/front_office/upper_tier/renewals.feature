@@ -28,7 +28,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      When I complete my limited liability partnership renewal steps
      Then I will be notified "Renewal complete"
  
-  Scenario: Other registration type renews upper tier registration from renewals page
+  Scenario: Charity renews upper tier registration from renewals page and is notified to register as lower tier
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU9" ready for renewal
      When I confirm my business type
