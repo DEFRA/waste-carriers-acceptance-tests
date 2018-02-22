@@ -21,7 +21,7 @@ end
 
 # rubocop:disable Metrics/LineLength
 desc "Run all browser tests"
-task browserstack: %i[Chrome63_OSX Chrome63_W7 Chrome64_OSX Edge16_W10 Edge15_W10 Firefox59_OSX Firefox59_W10 Firefox58_W8_1 Galaxy_Note_8 Google_Pixel iPhone_X iPhone7 ie10_W8 ie9_W7 ie8_W7]
+task browserstack: %i[Chrome63_OSX Chrome63_W7 Chrome64_OSX Edge16_W10 Edge15_W10 Firefox59_OSX Firefox59_W10 Firefox58_W8_1 Galaxy_Note_8 Google_Pixel iPhone_X ie10_W8 ie9_W7 ie8_W7 iPhone7]
 # rubocop:enable Metrics/LineLength
 
 desc "Run Chrome 64 OS X test"
@@ -49,7 +49,7 @@ task :Edge16_W10  do
 end
 
 desc "Run Edge 15 Windows 10 test"
-task :Edge15_W7 do
+task :Edge15_W10 do
   reset
   sh %( QUKE_CONFIG=.config_Edge15_W10.yml bundle exec quke --tags @wip)
 end

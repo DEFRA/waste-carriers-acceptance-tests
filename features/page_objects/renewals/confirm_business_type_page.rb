@@ -8,6 +8,7 @@ class ConfirmBusinessTypePage < SitePrism::Page
   def submit(args = {})
     new_org_types.find { |btn| btn.value == args[:new_org_type] }.click if args.key?(:new_org_type)
     wait_for_submit_button
+
     submit_button.click
   end
 

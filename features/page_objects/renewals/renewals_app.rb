@@ -77,6 +77,10 @@ class RenewalsApp
     @last_page = RegistrationNumberPage.new
   end
 
+  def manual_address_page
+    @last_page = ManualAddressPage.new
+  end
+
   def other_businesses_page
     @last_page = OtherBusinessesPage.new
   end
