@@ -141,7 +141,7 @@ end
 desc "Run any WIP after resetting the database"
 task :clean_wip do
   reset
-  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @wip --tags ~@expiry)
+  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @wip)
 end
 
 desc "Runs the tests used by continuous integration to check the project"
