@@ -56,14 +56,14 @@ When(/^I complete the public body registration renewal$/) do
 
   @year = time.year + 1
 
-  @front_app.worldpay_card_details_page.submit_button.click(
+  @front_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
     cardholder_name: "3d.authorised",
     expiry_month: "12",
     expiry_year: @year
   )
-  @front_app.worldpay_card_details_page.submit_button.click_button.click
+  @front_app.worldpay_card_details_page.submit_button.click
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
   @front_app.mailinator_page.load
