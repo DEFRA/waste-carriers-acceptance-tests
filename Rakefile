@@ -177,10 +177,8 @@ def elastic_search
   raise ArgumentError, "Environment variable VAGRANT_KEY_LOCATION not set" if vagrant_loc.nil? || vagrant_loc.empty?
 
   vagrant_key = File.join(vagrant_loc, "private_key")
-  cmd = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-service/bin && export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && curl --ipv4 --silent -X POST http://localhost:9091/tasks/location'"
-  cmd2 = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-service/bin && export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && curl --ipv4 --silent -X POST http://localhost:9091/tasks/indexer -d '@registration_mapping.json''"
+  cmd = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-service/bin && WCRS_SERVICES_ADMIN_PORT=9091 . reindex_elasticsearch.sh'"
   system(cmd)
-  system(cmd2)
 
   puts "Elastic search reindexed"
 end
