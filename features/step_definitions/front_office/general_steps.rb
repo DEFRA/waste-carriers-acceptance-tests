@@ -107,6 +107,6 @@ When(/^I have signed into my account$/) do
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: @email,
-    password: "Secret123"
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
 end

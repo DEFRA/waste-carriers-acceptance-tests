@@ -27,8 +27,8 @@ Given(/^I have an application that is pending payment$/) do
   @back_app.relevant_convictions_page.submit(choice: :no)
   @back_app.check_details_page.submit
   @back_app.sign_up_page.submit(
-    registration_password: "Secret123",
-    confirm_password: "Secret123",
+    registration_password: ENV["WASTECARRIERSPASSWORD"],
+    confirm_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_email: @email
   )
   @back_app.order_page.submit(
