@@ -114,7 +114,8 @@ When(/^I complete my limited company renewal steps$/) do
     address_line_two: "Testville",
     city: "Teston"
   )
-  @renewals_app.renew_key_people_page.submit
+  people = @renewals_app.renew_key_people_page.key_people
+  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
@@ -150,7 +151,8 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
   @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  @renewals_app.renew_key_people_page.submit
+  people = @renewals_app.renew_key_people_page.key_people
+  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
@@ -174,7 +176,8 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
   @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  @renewals_app.renew_key_people_page.submit
+  people = @renewals_app.renew_key_people_page.key_people
+  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
@@ -205,7 +208,8 @@ When(/^I complete my limited liability partnership renewal steps$/) do
     address_line_two: "Testville",
     city: "Teston"
   )
-  @renewals_app.renew_key_people_page.submit
+  people = @renewals_app.renew_key_people_page.key_people
+  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
@@ -229,7 +233,8 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
   @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  @renewals_app.renew_key_people_page.submit
+  people = @renewals_app.renew_key_people_page.key_people
+  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit
@@ -257,7 +262,8 @@ When(/^I complete my overseas company renewal steps$/) do
     city: "Teston",
     country: "Testopia"
   )
-  @renewals_app.renew_key_people_page.submit
+  people = @renewals_app.renew_key_people_page.key_people
+  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
   @renewals_app.relevant_convictions_page.submit
   @renewals_app.renew_relevant_people_page.submit
   @renewals_app.contact_name_page.submit

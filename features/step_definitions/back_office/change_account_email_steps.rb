@@ -24,8 +24,8 @@ Given(/^the user has one registration$/) do
 
   @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
-    registration_password: "Secret123",
-    confirm_password: "Secret123",
+    registration_password: ENV["WASTECARRIERSPASSWORD"],
+    confirm_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_email: @email
   )
 
@@ -69,8 +69,8 @@ Given(/^the user has 2 registrations$/) do
   @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
-    registration_password: "Secret123",
-    confirm_password: "Secret123",
+    registration_password: ENV["WASTECARRIERSPASSWORD"],
+    confirm_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_email: @email
   )
 
@@ -106,7 +106,7 @@ Given(/^the user has 2 registrations$/) do
   @front_app.check_details_page.submit
 
   @front_app.waste_carrier_sign_in_page.submit(
-    password: "Secret123"
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
 
   @registrations << @front_app.confirmation_page.registration_number.text

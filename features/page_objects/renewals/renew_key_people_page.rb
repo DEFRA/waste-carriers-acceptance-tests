@@ -2,15 +2,15 @@ require "faker"
 
 class RenewKeyPeoplePage < SitePrism::Page
 
-  element(:first_name, "#key_person_first_name")
-  element(:last_name, "#key_person_last_name")
-  element(:dob_day, "#key_person_dob_day")
-  element(:dob_month, "#key_person_dob_month")
-  element(:dob_year, "#key_person_dob_year")
+  element(:first_name, "#key_people_form_first_name")
+  element(:last_name, "#key_people_form_last_name")
+  element(:dob_day, "#key_people_form_dob_day")
+  element(:dob_month, "#key_people_form_dob_month")
+  element(:dob_year, "#key_people_form_dob_year")
 
-  element(:add_person, "#add_btn")
+  element(:add_person, "a[href*='add']")
 
-  elements :remove_person, "a[href*='delete']"
+  element(:remove_person, "a[href*='delete']")
 
   element(:submit_button, "input[type='submit']")
 

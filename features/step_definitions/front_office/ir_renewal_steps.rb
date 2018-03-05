@@ -41,8 +41,8 @@ When(/^I complete the public body registration renewal$/) do
   @front_app.relevant_convictions_page.submit(choice: :no)
   @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
-    registration_password: "Secret123",
-    confirm_password: "Secret123",
+    registration_password: ENV["WASTECARRIERSPASSWORD"],
+    confirm_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_email: @email
   )
   @front_app.order_page.submit(

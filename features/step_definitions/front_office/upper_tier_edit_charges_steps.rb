@@ -8,7 +8,7 @@ When(/^I change my registration type to "([^"]*)"$/) do |registration_type|
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: @email,
-    password: "Secret123"
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.check_details_page.edit_registration_type.click
@@ -20,7 +20,7 @@ When(/^I add another partner to my registration$/) do
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: @email,
-    password: "Secret123"
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.check_details_page.edit_key_people.click
@@ -34,7 +34,7 @@ When(/^I remove a partner from my registration$/) do
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: @email,
-    password: "Secret123"
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.check_details_page.edit_key_people.click
@@ -53,7 +53,7 @@ When(/^I change my organisation type to a limited company$/) do
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: @email,
-    password: "Secret123"
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.check_details_page.edit_smart_answers.click
@@ -80,7 +80,7 @@ When(/^its companies house number changes to "([^"]*)"$/) do |ch_no|
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: @email,
-    password: "Secret123"
+    password: ENV["WASTECARRIERSPASSWORD"]
   )
   @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.check_details_page.edit_smart_answers.click
