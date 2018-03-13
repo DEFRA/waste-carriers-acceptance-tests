@@ -8,11 +8,11 @@ class RenewKeyPeoplePage < SitePrism::Page
   element(:dob_month, "#key_people_form_dob_month")
   element(:dob_year, "#key_people_form_dob_year")
 
-  element(:add_person, "a[href*='add']")
+  element(:add_person, "input[value='Add another person']")
 
   element(:remove_person, "a[href*='delete']")
 
-  element(:submit_button, "input[type='submit']")
+  element(:submit_button, "input[value='Continue']")
 
   def add_key_person(args = {})
     person = args[:person]
@@ -51,6 +51,9 @@ class RenewKeyPeoplePage < SitePrism::Page
   # rubocop:disable Metrics/LineLength
   def key_people
     [
+      { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, dob_day: 1, dob_month: 5, dob_year: 1984 },
+      { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, dob_day: 1, dob_month: 5, dob_year: 1984 },
+      { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, dob_day: 1, dob_month: 5, dob_year: 1984 },
       { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, dob_day: 1, dob_month: 5, dob_year: 1984 },
       { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, dob_day: 1, dob_month: 5, dob_year: 1984 },
       { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, dob_day: 1, dob_month: 5, dob_year: 1984 }
