@@ -21,7 +21,8 @@ end
 
 # rubocop:disable Metrics/LineLength
 desc "Run all browser tests"
-task browserstack: %i[Chrome63_OSX Chrome63_W7 Chrome64_OSX Edge16_W10 Edge15_W10 Firefox59_OSX Firefox59_W10 Firefox58_W8_1 Galaxy_Note_8 Google_Pixel iPhone_X ie10_W8 ie9_W7 ie8_W7 iPhone7]
+task browserstack: %i[ie10_W8 ie9_W7 ie8_W7 iPhone7]
+# task browserstack: %i[Chrome63_OSX Chrome63_W7 Chrome64_OSX Edge16_W10 Edge15_W10 Firefox59_OSX Firefox59_W10 Firefox58_W8_1 Galaxy_Note_8 Google_Pixel iPhone_X ie10_W8 ie9_W7 ie8_W7 iPhone7]
 # rubocop:enable Metrics/LineLength
 
 desc "Run Chrome 64 OS X test"

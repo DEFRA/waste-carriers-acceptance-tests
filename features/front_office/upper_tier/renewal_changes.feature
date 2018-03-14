@@ -10,11 +10,29 @@ Feature: Registered waste carrier chooses to renew their registration from start
       But I change the business type to "localAuthority"
       Then I will be notified "You cannot renew"
 
-   Scenario: Sole trader changes business type to based overseas
+   Scenario: Sole trader changes place of business location to not the UK
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU3" ready for renewal
-      But I change the business type to "overseas"
+      But I change my place of business location to "overseas"
      Then I will be able to continue my renewal
+  
+   Scenario: Sole trader changes place of business location to Northern Ireland
+    Given I have signed in to renew my registration
+      And I have chosen registration "CBDU18" ready for renewal
+      But I change my place of business location to "northern_ireland"
+     Then I will be notified "You should register in Northern Ireland"
+  
+  Scenario: Sole trader changes place of business location to Scotland
+    Given I have signed in to renew my registration
+      And I have chosen registration "CBDU19" ready for renewal
+      But I change my place of business location to "scotland"
+     Then I will be notified "You should register in Scotland"
+  
+  Scenario: Sole trader changes place of business location to Wales
+    Given I have signed in to renew my registration
+      And I have chosen registration "CBDU20" ready for renewal
+      But I change my place of business location to "wales"
+     Then I will be notified "You should register in Wales"
 
     Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change
     Given I have signed in to renew my registration
