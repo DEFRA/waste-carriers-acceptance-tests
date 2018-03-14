@@ -69,6 +69,10 @@ class RenewalsApp
     @last_page = ExistingRegistrationPage.new
   end
 
+  def location_page
+    @last_page = LocationPage.new
+  end
+
   def renew_key_people_page
     @last_page = RenewKeyPeoplePage.new
   end

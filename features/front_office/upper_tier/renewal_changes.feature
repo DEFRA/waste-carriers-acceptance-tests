@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal
+@frontoffice @upper_tier @renewal  @wip
 Feature: Registered waste carrier chooses to renew their registration from start page
   As a carrier of commercial waste
   I want to change my registration details when I renew my waste carriers licence with the Environment Agency
@@ -10,10 +10,10 @@ Feature: Registered waste carrier chooses to renew their registration from start
       But I change the business type to "localAuthority"
       Then I will be notified "You cannot renew"
 
-   Scenario: Sole trader changes business type to based overseas
+   Scenario: Sole trader changes place of business location to based overseas
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU3" ready for renewal
-      But I change the business type to "overseas"
+      But I change my place of business location to "overseas"
      Then I will be able to continue my renewal
 
     Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change

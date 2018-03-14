@@ -13,7 +13,7 @@ app_host: 'http://localhost:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
-driver: chrome
+driver: firefox
 
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
