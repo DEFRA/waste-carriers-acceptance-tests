@@ -6,8 +6,8 @@ class LocationPage < SitePrism::Page
   element(:submit_button, "input[type='submit']", visible: false)
 
   def submit(args = {})
+    wait_for_location
     location.find { |btn| btn.value == args[:location] }.click if args.key?(:location)
-    wait_for_submit_button
 
     submit_button.click
   end

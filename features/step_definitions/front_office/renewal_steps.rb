@@ -141,9 +141,9 @@ Given(/^I change the business type to "([^"]*)"$/) do |org_type|
   @renewals_app.confirm_business_type_page.submit(new_org_type: org_type)
 end
 
-Given(/^I change my place of business location to "([^"]*)"$/) do |org_type|
+Given(/^I change my place of business location to "([^"]*)"$/) do |location|
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "overseas")
+  @renewals_app.location_page.submit(location: location)
 end
 
 Then(/^I will be able to continue my renewal$/) do
