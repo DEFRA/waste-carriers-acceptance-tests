@@ -65,6 +65,10 @@ class RenewalsApp
     @last_page = DeclarationPage.new
   end
 
+  def declare_convictions_page
+    @last_page = DeclareConvictionsPage.new
+  end
+
   def existing_registration_page
     @last_page = ExistingRegistrationPage.new
   end
@@ -99,10 +103,6 @@ class RenewalsApp
 
   def registration_type_page
     @last_page = RegistrationTypePage.new
-  end
-
-  def relevant_convictions_page
-    @last_page = RelevantConvictionsPage.new
   end
 
   def renew_relevant_people_page

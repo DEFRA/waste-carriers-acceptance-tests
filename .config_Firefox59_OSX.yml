@@ -143,8 +143,8 @@ browserstack:
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
-    name: 'Location question'
-
+    name: 'Removing key person'
+    browserstack.console: errors
     # To avoid invalid certificate errors while testing set acceptSslCerts to
     # true. This is not listed on the general capabilities page but is here
     # https://www.browserstack.com/automate/ruby#self-signed-certificates
@@ -171,7 +171,6 @@ browserstack:
     # https://www.browserstack.com/automate/capabilities
     browser: Firefox
     os: 'OS X'
-    # device: 'iPhone X'
-    # realMobile: 'true'
-    browser_version: '59.0 beta'
+    javascriptEnabled: true
+    browser_version: '59.0'
     os_version: 'High Sierra'
