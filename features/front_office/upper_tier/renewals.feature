@@ -46,6 +46,13 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      When I complete my overseas company renewal steps
      Then I will be notified "Renewal complete"
 
+  Scenario: Partnership renews upper tier registration but requires more than one partner to renew
+    Given I have signed in to renew my registration
+      And I have chosen registration "CBDU21" ready for renewal
+     When I add two partners to my renewal
+      But remove one partner and attempt to continue with my renewal
+     Then I will be notified "You must add the details of at least 2 people"
+
 @expiry
     Scenario: Registration can not be renewed over one month before its expiry date
       Given I have an upper tier waste carrier licence

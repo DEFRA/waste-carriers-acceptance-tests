@@ -10,7 +10,7 @@ class RenewKeyPeoplePage < SitePrism::Page
 
   element(:add_person, "input[value='Add another person']")
 
-  element(:remove_person, "a[href*='delete']")
+  elements(:remove_person, "input[value='Delete']")
 
   element(:submit_button, "input[value='Continue']")
 
