@@ -8,6 +8,7 @@ class RegistrationTypePage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
+  	wait_for_carrier_broker_dealer
     find("label", text: (args[:answer])).click if args.key?(:answer)
     submit_button.click
   end

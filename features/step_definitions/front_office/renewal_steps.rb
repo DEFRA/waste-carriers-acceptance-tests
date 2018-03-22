@@ -93,7 +93,7 @@ Given(/^I have signed in to renew my registration$/) do
   )
   # Issue with time taken to sign in, wait_for was used
   # but ie8 didn't like the elements css selector so just looking for text as workaround
-  expect(@renewals_app.waste_carriers_renewals_page).to have_text("Listing Registrations")
+  @renewals_app.waste_carriers_renewals_page.wait_for_heading(5)
 end
 
 Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|

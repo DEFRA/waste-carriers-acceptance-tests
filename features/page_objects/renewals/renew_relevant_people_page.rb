@@ -44,6 +44,7 @@ class RenewRelevantPeoplePage < SitePrism::Page
   end
 
   def submit(args = {})
+    wait_for_submit_button
     first_name.set(args[:first_name]) if args.key?(:first_name)
     last_name.set(args[:last_name]) if args.key?(:last_name)
     dob_day.set(args[:dob_day]) if args.key?(:dob_day)

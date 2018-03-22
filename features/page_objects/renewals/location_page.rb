@@ -10,7 +10,7 @@ class LocationPage < SitePrism::Page
   # it looks for clickable text and clicks on that instead
 
   def submit(args = {})
-    wait_for_location
+    wait_for_location(5) 
 
     find("label", text: (args[:location])).click if args.key?(:location)
 
