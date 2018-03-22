@@ -76,7 +76,6 @@ custom:
     # Local
     front_office: "http://localhost:3000/registrations/start"
     front_office_sign_in: "http:/localhost:3000/users/sign_in"
-    front_office_sign_out: "http:/localhost:3000/users/sign_out"
     front_office_renewals: "http://localhost:3002"
     front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"

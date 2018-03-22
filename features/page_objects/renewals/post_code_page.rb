@@ -4,10 +4,11 @@ class PostCodePage < SitePrism::Page
 
   element(:postcode, "#company_postcode_form_temp_postcode")
   element(:manual_address, "a[href*='skip_to_manual_address']")
-
+  element(:heading, :xpath, "//h1[contains(text(), 'the address of the')]")
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
+  	wait_until_heading_visible(5)
     postcode.set(args[:postcode]) if args.key?(:postcode)
 
     submit_button.click
