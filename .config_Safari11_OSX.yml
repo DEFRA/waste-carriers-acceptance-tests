@@ -10,7 +10,7 @@
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
 # Safari has issues using localhost urls https://www.browserstack.com/question/663
-app_host: 'http://192.168.1.7:3002'
+app_host: 'http://localhost:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -77,8 +77,8 @@ custom:
     # Local
     front_office: "http://localhost:3000/registrations/start"
     front_office_sign_in: "http:/localhost:3000/users/sign_in"
-    front_office_renewals: "http://192.168.1.7:3002"
-    front_office_renewals_sign_in: "http://192.168.1.7:3002/users/sign_in"
+    front_office_renewals: "http://localhost:3002"
+    front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"
     back_office_admin: "http:/localhost:3000/admins/sign_in"
     # Sandbox
@@ -176,4 +176,3 @@ browserstack:
     # realMobile: 'true'
     browser_version: '11.0'
     os_version: 'High Sierra'
-    resolution: '1920x1080'

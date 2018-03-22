@@ -172,8 +172,6 @@ browserstack:
     # https://www.browserstack.com/automate/capabilities
     browser: Safari
     os: 'OS X'
-    # device: 'iPhone X'
-    # realMobile: 'true'
     browser_version: '9.1'
     os_version: 'El Capitan'
     javascriptEnabled: true
