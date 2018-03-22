@@ -7,13 +7,7 @@ class WasteTypesPage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    case args[:choice]
-    when :not_farm_waste
-      not_only.click
-    when :farm_waste
-      yes_only.click
-    end
-
+    find("label", text: (args[:answer])).click if args.key?(:answer)
     submit_button.click
   end
 

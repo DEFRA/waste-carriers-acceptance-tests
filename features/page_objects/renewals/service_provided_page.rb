@@ -7,13 +7,7 @@ class ServiceProvidedPage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    case args[:choice]
-    when :not_main_service
-      not_main_service.click
-    when :main_service
-      yes_main_service.click
-    end
-
+    find("label", text: (args[:answer])).click if args.key?(:answer)
     submit_button.click
   end
 

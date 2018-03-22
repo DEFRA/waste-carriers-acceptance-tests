@@ -3,8 +3,6 @@ class LocationPage < SitePrism::Page
   # Where is your principal place of business?
   elements(:location, "input[name='location_form[location]']", visible: false)
 
-  
-
   element(:submit_button, "input[type='submit']", visible: false)
 
   # It's possible to mark an element visble: false for all browsers but Safari
@@ -14,7 +12,7 @@ class LocationPage < SitePrism::Page
   def submit(args = {})
     wait_for_location
 
-    find("label", text: (args[:location])).click  if args.key?(:location)
+    find("label", text: (args[:location])).click if args.key?(:location)
 
     submit_button.click
   end

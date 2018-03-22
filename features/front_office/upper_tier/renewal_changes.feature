@@ -7,7 +7,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
     Scenario: Limited company changes business type and is informed to create a new registration
       Given I have signed in to renew my registration
       And I have chosen registration "CBDU2" ready for renewal
-      But I change the business type to "localAuthority"
+      But I change the business type to "Local authority or public body"
       Then I will be notified "You cannot renew"
 
    Scenario: Sole trader changes place of business location to not the UK
@@ -37,7 +37,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
     Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU4" ready for renewal
-     When I change my carrier broker dealer type to "carrier_broker_dealer"
+     When I change my carrier broker dealer type to "We do both (carrier, broker and dealer)"
      Then I will be notified "Because your carrier type has changed, there will also be a £40 charge"
 
     Scenario: On renewal a sole trader answers questions that direct to lower tier
@@ -49,13 +49,13 @@ Feature: Registered waste carrier chooses to renew their registration from start
   Scenario: Partnership changes business type to Limited Liability Partnership
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU14" ready for renewal
-      But I change the business type to "limitedLiabilityPartnership"
+      But I change the business type to "Limited liability partnership"
      Then I will be able to continue my renewal
 
   Scenario: Limited company changes business type to Limited Liability Partnership
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU15" ready for renewal
-      But I change the business type to "limitedLiabilityPartnership"
+      But I change the business type to "Limited liability partnership"
      Then I will be able to continue my renewal
 
   Scenario: Limited company changes companies house number and is informed to create a new registration

@@ -1,4 +1,4 @@
-
+# rubocop:disable Metrics/LineLength
 Then(/^the expiry date should be three years from the expiry date$/) do
   # Adds three years to expiry date and then checks expiry date reported in registration details
   registration_expiry_date = Date.new(2018, 5, 25)
@@ -69,19 +69,19 @@ When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_t
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :main_service)
-  @renewals_app.waste_types_page.submit(choice: :not_farm_waste)
-  @renewals_app.registration_type_page.submit(choice: registration_type.to_sym)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "We produce the waste as part of another service we provide to our customers (eg a gardener taking away grass cuttings)")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
+  @renewals_app.registration_type_page.submit(answer: registration_type)
 end
 
 When(/^I answer questions indicating I should be a lower tier waste carrier$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :no)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "Our customers create the waste; we just collect or move it for them")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
 end
 
 Given(/^I have signed in to renew my registration$/) do
@@ -104,8 +104,8 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :no)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(answer: "No")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
@@ -137,7 +137,7 @@ Given(/^I change the business type to "([^"]*)"$/) do |org_type|
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.wait_for_new_org_types
-  @renewals_app.confirm_business_type_page.submit(new_org_type: org_type)
+  @renewals_app.confirm_business_type_page.submit(answer: org_type)
 end
 
 Given(/^I change my place of business location to "([^"]*)"$/) do |location|
@@ -155,9 +155,9 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "We produce the waste as part of another service we provide to our customers (eg a gardener taking away grass cuttings)")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -180,9 +180,9 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :main_service)
-  @renewals_app.waste_types_page.submit(choice: :not_farm_waste)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "Our customers create the waste; we just collect or move it for them")
+  @renewals_app.waste_types_page.submit(answer: "No")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -206,9 +206,9 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "We produce the waste as part of another service we provide to our customers (eg a gardener taking away grass cuttings)")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
@@ -241,9 +241,9 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :main_service)
-  @renewals_app.waste_types_page.submit(choice: :not_farm_waste)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "Our customers create the waste; we just collect or move it for them")
+  @renewals_app.waste_types_page.submit(answer: "No")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -272,9 +272,9 @@ When(/^I add two partners to my renewal$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :main_service)
-  @renewals_app.waste_types_page.submit(choice: :not_farm_waste)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "Our customers create the waste; we just collect or move it for them")
+  @renewals_app.waste_types_page.submit(answer: "No")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -293,8 +293,8 @@ end
 When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "Not in the United Kingdom")
-  @renewals_app.other_businesses_page.submit(choice: :no)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(answer: "No")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -346,10 +346,11 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "We produce the waste as part of another service we provide to our customers (eg a gardener taking away grass cuttings)")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit(companies_house_number: number)
 end
+# rubocop:enable Metrics/LineLength
