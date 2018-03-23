@@ -6,7 +6,7 @@ class CompanyNamePage < SitePrism::Page
   element(:submit_button, "input[value='Continue']")
 
   def submit(args = {})
-  	wait_until_heading_visible(5)
+    wait_until_heading_visible(5)
     company_name.set(args[:company_name]) if args.key?(:company_name)
 
     submit_button.click

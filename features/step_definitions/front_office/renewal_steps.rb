@@ -81,7 +81,7 @@ When(/^I answer questions indicating I should be a lower tier waste carrier$/) d
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.other_businesses_page.submit(answer: "Yes")
   @renewals_app.service_provided_page.submit(answer: "Our customers create the waste; we just collect or move it for them")
-  @renewals_app.construction_waste_page.submit(answer: "Yes")
+  @renewals_app.waste_types_page.submit(answer: "Yes")
 end
 
 Given(/^I have signed in to renew my registration$/) do
@@ -111,7 +111,7 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.post_code_page.manual_address.click
+  @renewals_app.business_address_page.manual_address_submit
   @renewals_app.manual_address_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
@@ -146,7 +146,7 @@ Given(/^I change my place of business location to "([^"]*)"$/) do |location|
 end
 
 Then(/^I will be able to continue my renewal$/) do
-  @renewals_app.other_businesses_page.wait_for_yes_other_businesses
+  @renewals_app.other_businesses_page.wait_until_heading_visible(5)
   expect(@renewals_app.other_businesses_page.current_url).to include "/other-businesses"
   visit("/users/sign_out")
 end
@@ -214,7 +214,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.post_code_page.manual_address.click
+  @renewals_app.business_address_page.manual_address_submit
   @renewals_app.manual_address_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
@@ -326,7 +326,27 @@ When(/^I confirm my business type$/) do
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
+  @renewals_app.cannot_renew_lower_tier_page.wait_until_heading_visible(5)
   expect(@renewals_app.cannot_renew_lower_tier_page).to have_text(message)
+  visit("/users/sign_out")
+end
+
+Then(/^I will be asked to add another partner$/) do
+  @renewals_app.renew_key_people_page.wait_until_heading_visible(5)
+  expect(@renewals_app.renew_key_people_page).to have_text("You must add the details of at least 2 people")
+  visit("/users/sign_out")
+end
+
+Then(/^I will be notified my renewal is complete$/) do 
+  @renewals_app.renewal_complete_page.wait_until_heading_visible(5)
+  expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
+  visit("/users/sign_out")
+end
+
+
+Then(/^I will be advised "([^"]*)"$/) do |message|
+  @renewals_app.renewal_information_page.wait_until_heading_visible(5)
+  expect(@renewals_app.renewal_information_page).to have_text(message)
   visit("/users/sign_out")
 end
 

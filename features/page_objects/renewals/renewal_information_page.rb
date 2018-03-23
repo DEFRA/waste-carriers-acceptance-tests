@@ -5,7 +5,7 @@ class RenewalInformationPage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(_args = {})
-  	wait_until_heading_visible(5)
+    wait_until_heading_visible(5)
     submit_button.click
   end
 

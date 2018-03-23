@@ -8,7 +8,7 @@ class OtherBusinessesPage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-  	wait_until_heading_visible(5)
+    wait_until_heading_visible(5)
     find("label", text: (args[:answer])).click if args.key?(:answer)
 
     submit_button.click
