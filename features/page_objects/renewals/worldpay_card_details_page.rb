@@ -6,7 +6,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
   element(:expiry_month, "select[name='cardExp.month']")
   element(:expiry_year, "select[name='cardExp.year']")
   element(:cardholder_name, "#name")
-
+  element(:heading, :xpath, "//h1[contains(text(), 'Worldpay goes here')]")
   element(:pay, "#op-PMMakePayment")
 
   # Used for test simulation
@@ -30,6 +30,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
   @failed = "444"
 
   def submit(args = {})
+    wait_for_heading
     card_number.set(args[:card_number]) if args.key?(:card_number)
     security_code.set(args[:security_code]) if args.key?(:security_code)
     cardholder_name.set(args[:cardholder_name]) if args.key?(:cardholder_name)

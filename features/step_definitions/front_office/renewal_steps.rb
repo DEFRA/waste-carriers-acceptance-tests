@@ -1,4 +1,4 @@
-
+# rubocop:disable Metrics/LineLength
 Then(/^the expiry date should be three years from the expiry date$/) do
   # Adds three years to expiry date and then checks expiry date reported in registration details
   registration_expiry_date = Date.new(2018, 5, 25)
@@ -35,7 +35,7 @@ end
 
 When(/^the organisation type is changed to sole trader$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit(org_type: "soleTrader")
 end
 
@@ -67,21 +67,21 @@ end
 
 When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_type|
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :main_service)
-  @renewals_app.waste_types_page.submit(choice: :not_farm_waste)
-  @renewals_app.registration_type_page.submit(choice: registration_type.to_sym)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "We produce the waste as part of another service we provide to our customers (eg a gardener taking away grass cuttings)")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
+  @renewals_app.registration_type_page.submit(answer: registration_type)
 end
 
 When(/^I answer questions indicating I should be a lower tier waste carrier$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :no)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "Our customers create the waste; we just collect or move it for them")
+  @renewals_app.waste_types_page.submit(answer: "Yes")
 end
 
 Given(/^I have signed in to renew my registration$/) do
@@ -93,7 +93,7 @@ Given(/^I have signed in to renew my registration$/) do
   )
   # Issue with time taken to sign in, wait_for was used
   # but ie8 didn't like the elements css selector so just looking for text as workaround
-  expect(@renewals_app.waste_carriers_renewals_page).to have_text("Listing Registrations")
+  @renewals_app.waste_carriers_renewals_page.wait_for_heading(5)
 end
 
 Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
@@ -102,16 +102,16 @@ end
 
 When(/^I complete my limited company renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :no)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(answer: "No")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.post_code_page.manual_address.click
+  @renewals_app.business_address_page.manual_address_submit
   @renewals_app.manual_address_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
@@ -122,7 +122,7 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.renew_key_people_page.add_key_person(person: people[0])
   @renewals_app.renew_key_people_page.add_key_person(person: people[1])
   @renewals_app.renew_key_people_page.submit_key_person(person: people[2])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -130,14 +130,15 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.submit_button_renew
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.wait_for_new_org_types
-  @renewals_app.confirm_business_type_page.submit(new_org_type: org_type)
+  @renewals_app.confirm_business_type_page.submit(answer: org_type)
 end
 
 Given(/^I change my place of business location to "([^"]*)"$/) do |location|
@@ -146,18 +147,18 @@ Given(/^I change my place of business location to "([^"]*)"$/) do |location|
 end
 
 Then(/^I will be able to continue my renewal$/) do
-  @renewals_app.other_businesses_page.wait_for_yes_other_businesses
+  @renewals_app.other_businesses_page.wait_for_heading(5)
   expect(@renewals_app.other_businesses_page.current_url).to include "/other-businesses"
   visit("/users/sign_out")
 end
 
 When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "We produce the waste as part of another service we provide to our customers (eg a gardener taking away grass cuttings)")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -165,7 +166,7 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.renew_key_people_page.key_people
   @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -173,16 +174,17 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
 When(/^I complete my local authority renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :main_service)
-  @renewals_app.waste_types_page.submit(choice: :not_farm_waste)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "Our customers create the waste; we just collect or move it for them")
+  @renewals_app.waste_types_page.submit(answer: "No")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -191,7 +193,7 @@ When(/^I complete my local authority renewal steps$/) do
   people = @renewals_app.renew_key_people_page.key_people
   @renewals_app.renew_key_people_page.add_key_person(person: people[0])
   @renewals_app.renew_key_people_page.submit_key_person(person: people[1])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -199,22 +201,23 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
 When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "We produce the waste as part of another service we provide to our customers (eg a gardener taking away grass cuttings)")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.post_code_page.manual_address.click
+  @renewals_app.business_address_page.manual_address_submit
   @renewals_app.manual_address_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
@@ -225,8 +228,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.renew_key_people_page.add_key_person(person: people[0])
   @renewals_app.renew_key_people_page.add_key_person(person: people[1])
   @renewals_app.renew_key_people_page.submit_key_person(person: people[2])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
-
+  @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -234,16 +236,17 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
 When(/^I complete my partnership renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :main_service)
-  @renewals_app.waste_types_page.submit(choice: :not_farm_waste)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "Our customers create the waste; we just collect or move it for them")
+  @renewals_app.waste_types_page.submit(answer: "No")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -256,7 +259,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.renew_key_people_page.add_key_person(person: people[3])
   @renewals_app.renew_key_people_page.add_key_person(person: people[4])
   @renewals_app.renew_key_people_page.submit_key_person(person: people[5])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
 
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
@@ -265,16 +268,17 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
 When(/^I add two partners to my renewal$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :main_service)
-  @renewals_app.waste_types_page.submit(choice: :not_farm_waste)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "Our customers create the waste; we just collect or move it for them")
+  @renewals_app.waste_types_page.submit(answer: "No")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -283,7 +287,6 @@ When(/^I add two partners to my renewal$/) do
   people = @renewals_app.renew_key_people_page.key_people
   @renewals_app.renew_key_people_page.add_key_person(person: people[0])
   @renewals_app.renew_key_people_page.add_key_person(person: people[1])
-  sleep(10)
 end
 
 When(/^remove one partner and attempt to continue with my renewal$/) do
@@ -293,9 +296,9 @@ end
 
 When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "overseas")
-  @renewals_app.other_businesses_page.submit(choice: :no)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.location_page.submit(location: "Not in the United Kingdom")
+  @renewals_app.other_businesses_page.submit(answer: "No")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -308,7 +311,7 @@ When(/^I complete my overseas company renewal steps$/) do
   )
   people = @renewals_app.renew_key_people_page.key_people
   @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
 
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
@@ -317,17 +320,34 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
 When(/^I confirm my business type$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
   expect(@renewals_app.cannot_renew_lower_tier_page).to have_text(message)
+  visit("/users/sign_out")
+end
+
+Then(/^I will be asked to add another partner$/) do
+  expect(@renewals_app.renew_key_people_page).to have_text("You must add the details of at least 2 people")
+  visit("/users/sign_out")
+end
+
+Then(/^I will be notified my renewal is complete$/) do
+  @renewals_app.renewal_complete_page.wait_for_heading
+  expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
+  visit("/users/sign_out")
+end
+
+Then(/^I will be advised "([^"]*)"$/) do |message|
+  expect(@renewals_app.renewal_information_page).to have_text(message)
   visit("/users/sign_out")
 end
 
@@ -345,12 +365,13 @@ end
 
 Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(location: "england")
+  @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "We produce the waste as part of another service we provide to our customers (eg a gardener taking away grass cuttings)")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.registration_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit(companies_house_number: number)
 end
+# rubocop:enable Metrics/LineLength

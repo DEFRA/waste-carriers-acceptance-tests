@@ -6,10 +6,11 @@ class PaymentSummaryPage < SitePrism::Page
   element(:bank_transfer_payment, "#registration_payment_type_bank_transfer")
   element(:edit_charge, "#edit_charge")
   element(:charge, "#registration_registration_fee")
-
+  element(:heading, :xpath, "//h1[contains(text(), 'Payment summary')]")
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
+    wait_for_heading
     copy_cards.set(args[:copy_card_number]) if args.key?(:copy_card_number)
     case args[:choice]
     when :card_payment

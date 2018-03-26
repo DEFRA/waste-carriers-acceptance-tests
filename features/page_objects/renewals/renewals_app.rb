@@ -29,14 +29,6 @@ class RenewalsApp
     @last_page = CheckYourAnswersPage.new
   end
 
-  def correspondence_contact_name_page
-    @last_page = CorrespondenceContactNamePage.new
-  end
-
-  def correspondence_contact_telephone_page
-    @last_page = CorrespondenceContactTelephonePage.new
-  end
-
   def construction_waste_page
     @last_page = ConstructionWastePage.new
   end

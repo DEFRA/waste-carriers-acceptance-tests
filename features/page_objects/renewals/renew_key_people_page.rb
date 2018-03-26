@@ -11,10 +11,11 @@ class RenewKeyPeoplePage < SitePrism::Page
   element(:add_person, "input[value='Add another person']")
 
   elements(:remove_person, "input[value='Delete']")
-
+  element(:heading, :xpath, "//h1[contains(text(), 'details')]")
   element(:submit_button, "input[value='Continue']")
 
   def add_key_person(args = {})
+    wait_for_first_name
     person = args[:person]
 
     first_name.set(person[:first_name])
@@ -27,6 +28,7 @@ class RenewKeyPeoplePage < SitePrism::Page
   end
 
   def submit_key_person(args = {})
+    wait_for_first_name
     person = args[:person]
 
     first_name.set(person[:first_name])
@@ -39,6 +41,7 @@ class RenewKeyPeoplePage < SitePrism::Page
   end
 
   def submit(args = {})
+    wait_for_first_name
     first_name.set(args[:first_name]) if args.key?(:first_name)
     last_name.set(args[:last_name]) if args.key?(:last_name)
     dob_day.set(args[:dob_day]) if args.key?(:dob_day)
