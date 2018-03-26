@@ -122,7 +122,7 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.renew_key_people_page.add_key_person(person: people[0])
   @renewals_app.renew_key_people_page.add_key_person(person: people[1])
   @renewals_app.renew_key_people_page.submit_key_person(person: people[2])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -130,6 +130,7 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.submit_button_renew
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
@@ -146,7 +147,7 @@ Given(/^I change my place of business location to "([^"]*)"$/) do |location|
 end
 
 Then(/^I will be able to continue my renewal$/) do
-  @renewals_app.other_businesses_page.wait_until_heading_visible(5)
+  @renewals_app.other_businesses_page.wait_for_heading(5)
   expect(@renewals_app.other_businesses_page.current_url).to include "/other-businesses"
   visit("/users/sign_out")
 end
@@ -165,7 +166,7 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.renew_key_people_page.key_people
   @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -173,6 +174,7 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
@@ -191,7 +193,7 @@ When(/^I complete my local authority renewal steps$/) do
   people = @renewals_app.renew_key_people_page.key_people
   @renewals_app.renew_key_people_page.add_key_person(person: people[0])
   @renewals_app.renew_key_people_page.submit_key_person(person: people[1])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -199,6 +201,7 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
@@ -225,8 +228,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.renew_key_people_page.add_key_person(person: people[0])
   @renewals_app.renew_key_people_page.add_key_person(person: people[1])
   @renewals_app.renew_key_people_page.submit_key_person(person: people[2])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
-
+  @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -234,6 +236,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
@@ -256,7 +259,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.renew_key_people_page.add_key_person(person: people[3])
   @renewals_app.renew_key_people_page.add_key_person(person: people[4])
   @renewals_app.renew_key_people_page.submit_key_person(person: people[5])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
 
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
@@ -265,6 +268,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
@@ -307,7 +311,7 @@ When(/^I complete my overseas company renewal steps$/) do
   )
   people = @renewals_app.renew_key_people_page.key_people
   @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  @renewals_app.declare_convictions_page.submit(answer: "No")
 
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
@@ -316,6 +320,7 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
+  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
@@ -326,26 +331,22 @@ When(/^I confirm my business type$/) do
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
-  @renewals_app.cannot_renew_lower_tier_page.wait_until_heading_visible(5)
   expect(@renewals_app.cannot_renew_lower_tier_page).to have_text(message)
   visit("/users/sign_out")
 end
 
 Then(/^I will be asked to add another partner$/) do
-  @renewals_app.renew_key_people_page.wait_until_heading_visible(5)
   expect(@renewals_app.renew_key_people_page).to have_text("You must add the details of at least 2 people")
   visit("/users/sign_out")
 end
 
-Then(/^I will be notified my renewal is complete$/) do 
-  @renewals_app.renewal_complete_page.wait_until_heading_visible(5)
+Then(/^I will be notified my renewal is complete$/) do
+  @renewals_app.renewal_complete_page.wait_for_heading
   expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
   visit("/users/sign_out")
 end
 
-
 Then(/^I will be advised "([^"]*)"$/) do |message|
-  @renewals_app.renewal_information_page.wait_until_heading_visible(5)
   expect(@renewals_app.renewal_information_page).to have_text(message)
   visit("/users/sign_out")
 end

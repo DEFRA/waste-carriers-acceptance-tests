@@ -8,7 +8,7 @@ class PostCodePage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    wait_until_heading_visible(5)
+    wait_for_postcode
     postcode.set(args[:postcode]) if args.key?(:postcode)
 
     submit_button.click

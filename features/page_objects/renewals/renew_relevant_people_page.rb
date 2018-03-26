@@ -19,7 +19,7 @@ class RenewRelevantPeoplePage < SitePrism::Page
 
   def add_relevant_person(args = {})
     person = args[:person]
-
+    wait_for_first_name
     first_name.set(person[:first_name])
     last_name.set(person[:last_name])
     dob_day.set(person[:dob_day])
@@ -32,7 +32,7 @@ class RenewRelevantPeoplePage < SitePrism::Page
 
   def submit_relevant_person(args = {})
     person = args[:person]
-
+    wait_for_first_name
     first_name.set(person[:first_name])
     last_name.set(person[:last_name])
     dob_day.set(person[:dob_day])
@@ -44,7 +44,7 @@ class RenewRelevantPeoplePage < SitePrism::Page
   end
 
   def submit(args = {})
-    wait_for_submit_button
+    wait_for_first_name
     first_name.set(args[:first_name]) if args.key?(:first_name)
     last_name.set(args[:last_name]) if args.key?(:last_name)
     dob_day.set(args[:dob_day]) if args.key?(:dob_day)

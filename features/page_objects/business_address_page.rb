@@ -8,7 +8,7 @@ class BusinessAddressPage < SitePrism::Page
   element(:submit_button, "input[value='Continue']")
 
   def submit(args = {})
-  	wait_for_find_address_visible(5)
+    wait_for_find_address_visible(5)
     find_address.click
     results_dropdown.select(args[:result]) if args.key?(:result)
 

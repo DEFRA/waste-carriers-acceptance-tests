@@ -10,7 +10,7 @@
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
 # Safari has issues using localhost urls https://www.browserstack.com/question/663
-app_host: 'http://192.168.1.7:3002'
+app_host: 'http://10.64.65.78:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -30,7 +30,7 @@ stop_on_error: 1
 # immediately failing because the element cannot be found. This defaults to 2
 # seconds. However if the site you are working with is slow or features
 # elements that take some time to load you can increase this default.
-max_wait_time: 0
+max_wait_time: 5
 
 # Tell the driver Quke is using to send a different user-agent value to the site
 # under test. Useful if you want the underlying driver to spoof what kind of
@@ -75,12 +75,12 @@ custom:
       username: user@waste-exemplar.gov.uk
   urls:
     # Local
-    front_office: "http://10.65.67.234:3000/registrations/start"
-    front_office_sign_in: "http://192.168.1.7:3000/users/sign_in"
-    front_office_renewals: "http://192.168.1.7:3002"
-    front_office_renewals_sign_in: "http://192.168.1.7:3002/users/sign_in"
-    back_office: "http:/192.168.1.7:3000/agency_users/sign_in"
-    back_office_admin: "http:/192.168.1.7:3000/admins/sign_in"
+    front_office: "http://10.64.65.78:3000/registrations/start"
+    front_office_sign_in: "http://10.64.65.78:3000/users/sign_in"
+    front_office_renewals: "http://10.64.65.78:3002"
+    front_office_renewals_sign_in: "http://10.64.65.78:3002/users/sign_in"
+    back_office: "http:/10.64.65.78:3000/agency_users/sign_in"
+    back_office_admin: "http:/10.64.65.78:3000/admins/sign_in"
     # Sandbox
     # front_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/registrations/start"
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
@@ -144,7 +144,7 @@ browserstack:
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
-    # name: 'Removing key person'
+    # # name: 'Removing key person'
 
     # To avoid invalid certificate errors while testing set acceptSslCerts to
     # true. This is not listed on the general capabilities page but is here
@@ -172,7 +172,5 @@ browserstack:
     # https://www.browserstack.com/automate/capabilities
     browser: Safari
     os: 'OS X'
-    # device: 'iPhone X'
-    # realMobile: 'true'
     browser_version: '11.0'
     os_version: 'High Sierra'

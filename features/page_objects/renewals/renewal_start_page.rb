@@ -6,7 +6,6 @@ class RenewalStartPage < SitePrism::Page
   element(:heading, :xpath, "//h1[contains(text(), 'You are about to renew')]")
 
   def submit(_args = {})
-    wait_until_heading_visible(5)
     submit_button.click
   end
 

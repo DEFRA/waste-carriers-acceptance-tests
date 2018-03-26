@@ -6,7 +6,7 @@ class ConfirmBusinessTypePage < SitePrism::Page
   element(:submit_button, "input[type='submit']", visible: false)
 
   def submit(args = {})
-    wait_until_heading_visible(5)
+    wait_for_new_org_types
     find("label", text: (args[:answer])).click if args.key?(:answer)
     submit_button.click
   end

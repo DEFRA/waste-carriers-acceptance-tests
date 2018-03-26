@@ -13,7 +13,7 @@ app_host: 'http://localhost:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
-driver: firefox
+driver: chrome
 
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
@@ -138,12 +138,12 @@ browserstack:
     # Keep track of all your automated tests using the build and project
     # capabilities. Group your tests into builds, and builds further into
     # projects
-    project: 'Waste carriers'
+    project: 'Waste carriers renewals'
     build: 'Renewals'
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
-    name: 'Removing key person'
+    # name: 'Removing key person'
 
     # To avoid invalid certificate errors while testing set acceptSslCerts to
     # true. This is not listed on the general capabilities page but is here

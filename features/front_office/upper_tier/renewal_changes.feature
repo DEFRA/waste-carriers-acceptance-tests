@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal 
+@frontoffice @upper_tier @renewal
 Feature: Registered waste carrier chooses to renew their registration from start page
   As a carrier of commercial waste
   I want to change my registration details when I renew my waste carriers licence with the Environment Agency
@@ -21,7 +21,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
       And I have chosen registration "CBDU18" ready for renewal
       But I change my place of business location to "Northern Ireland"
      Then I will be notified "You should register in Northern Ireland"
-  
+ 
   Scenario: Sole trader changes place of business location to Scotland
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU19" ready for renewal
