@@ -69,12 +69,12 @@ class RenewalsApp
     @last_page = LocationPage.new
   end
 
-  def renew_key_people_page
-    @last_page = RenewKeyPeoplePage.new
-  end
-
   def registration_number_page
     @last_page = RegistrationNumberPage.new
+  end
+
+  def main_people_page
+    @last_page = MainPeoplePage.new
   end
 
   def manual_address_page
@@ -95,10 +95,6 @@ class RenewalsApp
 
   def registration_type_page
     @last_page = RegistrationTypePage.new
-  end
-
-  def renew_relevant_people_page
-    @last_page = RenewRelevantPeoplePage.new
   end
 
   def renewal_information_page
