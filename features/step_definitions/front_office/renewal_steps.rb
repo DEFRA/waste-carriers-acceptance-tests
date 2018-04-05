@@ -118,10 +118,10 @@ When(/^I complete my limited company renewal steps$/) do
     address_line_two: "Testville",
     city: "Teston"
   )
-  people = @renewals_app.renew_key_people_page.key_people
-  @renewals_app.renew_key_people_page.add_key_person(person: people[0])
-  @renewals_app.renew_key_people_page.add_key_person(person: people[1])
-  @renewals_app.renew_key_people_page.submit_key_person(person: people[2])
+  people = @renewals_app.main_people_page.main_people
+  @renewals_app.main_people_page.add_main_person(person: people[0])
+  @renewals_app.main_people_page.add_main_person(person: people[1])
+  @renewals_app.main_people_page.submit_main_person(person: people[2])
   @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
@@ -164,8 +164,8 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
   @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  people = @renewals_app.renew_key_people_page.key_people
-  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
+  people = @renewals_app.main_people_page.main_people
+  @renewals_app.main_people_page.submit_main_person(person: people[0])
   @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
@@ -190,9 +190,9 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
   @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  people = @renewals_app.renew_key_people_page.key_people
-  @renewals_app.renew_key_people_page.add_key_person(person: people[0])
-  @renewals_app.renew_key_people_page.submit_key_person(person: people[1])
+  people = @renewals_app.main_people_page.main_people
+  @renewals_app.main_people_page.add_main_person(person: people[0])
+  @renewals_app.main_people_page.submit_main_person(person: people[1])
   @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
@@ -224,10 +224,10 @@ When(/^I complete my limited liability partnership renewal steps$/) do
     address_line_two: "Testville",
     city: "Teston"
   )
-  people = @renewals_app.renew_key_people_page.key_people
-  @renewals_app.renew_key_people_page.add_key_person(person: people[0])
-  @renewals_app.renew_key_people_page.add_key_person(person: people[1])
-  @renewals_app.renew_key_people_page.submit_key_person(person: people[2])
+  people = @renewals_app.main_people_page.main_people
+  @renewals_app.main_people_page.add_main_person(person: people[0])
+  @renewals_app.main_people_page.add_main_person(person: people[1])
+  @renewals_app.main_people_page.submit_main_person(person: people[2])
   @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
@@ -252,13 +252,13 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
   @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  people = @renewals_app.renew_key_people_page.key_people
-  @renewals_app.renew_key_people_page.add_key_person(person: people[0])
-  @renewals_app.renew_key_people_page.add_key_person(person: people[1])
-  @renewals_app.renew_key_people_page.add_key_person(person: people[2])
-  @renewals_app.renew_key_people_page.add_key_person(person: people[3])
-  @renewals_app.renew_key_people_page.add_key_person(person: people[4])
-  @renewals_app.renew_key_people_page.submit_key_person(person: people[5])
+  people = @renewals_app.main_people_page.main_people
+  @renewals_app.main_people_page.add_main_person(person: people[0])
+  @renewals_app.main_people_page.add_main_person(person: people[1])
+  @renewals_app.main_people_page.add_main_person(person: people[2])
+  @renewals_app.main_people_page.add_main_person(person: people[3])
+  @renewals_app.main_people_page.add_main_person(person: people[4])
+  @renewals_app.main_people_page.submit_main_person(person: people[5])
   @renewals_app.declare_convictions_page.submit(answer: "No")
 
   @renewals_app.contact_name_page.submit
@@ -284,14 +284,14 @@ When(/^I add two partners to my renewal$/) do
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
   @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  people = @renewals_app.renew_key_people_page.key_people
-  @renewals_app.renew_key_people_page.add_key_person(person: people[0])
-  @renewals_app.renew_key_people_page.add_key_person(person: people[1])
+  people = @renewals_app.main_people_page.main_people
+  @renewals_app.main_people_page.add_main_person(person: people[0])
+  @renewals_app.main_people_page.add_main_person(person: people[1])
 end
 
 When(/^remove one partner and attempt to continue with my renewal$/) do
-  @renewals_app.renew_key_people_page.remove_person[0].click
-  @renewals_app.renew_key_people_page.submit_button.click
+  @renewals_app.main_people_page.remove_person[0].click
+  @renewals_app.main_people_page.submit_button.click
 end
 
 When(/^I complete my overseas company renewal steps$/) do
@@ -309,8 +309,8 @@ When(/^I complete my overseas company renewal steps$/) do
     city: "Teston",
     country: "Testopia"
   )
-  people = @renewals_app.renew_key_people_page.key_people
-  @renewals_app.renew_key_people_page.submit_key_person(person: people[0])
+  people = @renewals_app.main_people_page.main_people
+  @renewals_app.main_people_page.submit_main_person(person: people[0])
   @renewals_app.declare_convictions_page.submit(answer: "No")
 
   @renewals_app.contact_name_page.submit
@@ -336,7 +336,7 @@ Then(/^I will be notified "([^"]*)"$/) do |message|
 end
 
 Then(/^I will be asked to add another partner$/) do
-  expect(@renewals_app.renew_key_people_page).to have_text("You must add the details of at least 2 people")
+  expect(@renewals_app.main_people_page).to have_text("You must add the details of at least 2 people")
   visit("/users/sign_out")
 end
 
