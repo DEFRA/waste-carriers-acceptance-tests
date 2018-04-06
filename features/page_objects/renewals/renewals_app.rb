@@ -17,6 +17,10 @@ class RenewalsApp
     @last_page = ConfirmBusinessTypePage.new
   end
 
+  def conviction_details_page
+    @last_page = ConvictionDetailsPage.new
+  end
+
   def cannot_renew_lower_tier_page
     @last_page = CannotRenewLowerTierPage.new
   end
