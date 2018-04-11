@@ -45,6 +45,10 @@ class RenewalsApp
     @last_page = ContactAddressPage.new
   end
 
+  def contact_manual_address_page
+    @last_page = ContactManualAddressPage.new
+  end
+
   def contact_email_page
     @last_page = ContactEmailPage.new
   end
@@ -55,6 +59,10 @@ class RenewalsApp
 
   def contact_name_page
     @last_page = ContactNamePage.new
+  end
+
+  def contact_postcode_page
+    @last_page = ContactPostCodePage.new
   end
 
   def declaration_page

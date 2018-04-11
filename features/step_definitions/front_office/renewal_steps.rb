@@ -126,6 +126,7 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
+  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
@@ -169,7 +170,11 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.declare_convictions_page.submit(answer: "No")
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
-  @renewals_app.contact_email_page.submit
+  @renewals_app.contact_email_page.submit(
+    email: "test@example.com",
+    confirm_email: "test@example.com"
+  )
+  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
@@ -197,6 +202,7 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
+  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
@@ -232,6 +238,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
+  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
@@ -264,6 +271,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
+  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
@@ -312,11 +320,16 @@ When(/^I complete my overseas company renewal steps$/) do
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.submit_main_person(person: people[0])
   @renewals_app.declare_convictions_page.submit(answer: "No")
-
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
-  @renewals_app.contact_address_page.submit
+  @renewals_app.contact_manual_address_page.submit(
+    house_number: "1",
+    address_line_one: "Test lane",
+    address_line_two: "Testville",
+    city: "Teston",
+    country: "Slovakia"
+  )
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
