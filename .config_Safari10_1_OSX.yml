@@ -75,12 +75,12 @@ custom:
       username: user@waste-exemplar.gov.uk
   urls:
     # Local
-    front_office: "http://10.65.65.39/registrations/start"
-    front_office_sign_in: "http://10.65.65.39:3000/users/sign_in"
-    front_office_renewals: "http://10.65.65.39:3002"
-    front_office_renewals_sign_in: "http://10.65.65.39:3002/users/sign_in"
-    back_office: "http:/10.65.65.39:3000/agency_users/sign_in"
-    back_office_admin: "http:/10.65.65.39:3000/admins/sign_in"
+    front_office: "http://192.168.1.7/registrations/start"
+    front_office_sign_in: "http://192.168.1.7:3000/users/sign_in"
+    front_office_renewals: "http://192.168.1.7:3002"
+    front_office_renewals_sign_in: "http://192.168.1.7:3002/users/sign_in"
+    back_office: "http:/192.168.1.7:3000/agency_users/sign_in"
+    back_office_admin: "http:/192.168.1.7:3000/admins/sign_in"
     # Sandbox
     # front_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/registrations/start"
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"

@@ -126,8 +126,14 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit
+  @renewals_app.contact_postcode_page.submit(postcode: "BS1 9XX")
+  @renewals_app.contact_postcode_page.manual_address.click
+  @renewals_app.contact_manual_address_page.submit(
+    house_number: "1",
+    address_line_one: "Test lane",
+    address_line_two: "Testville",
+    city: "Teston"
+  )
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
