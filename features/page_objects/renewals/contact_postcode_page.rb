@@ -1,8 +1,8 @@
-class PostCodePage < SitePrism::Page
+class ContactPostCodePage < SitePrism::Page
 
   # whats the  address?
 
-  element(:postcode, "#company_postcode_form_temp_company_postcode")
+  element(:postcode, "#contact_postcode_form_temp_contact_postcode")
 
   element(:heading, :xpath, "//h1[contains(text(), 'the address of the')]")
   element(:submit_button, "input[type='submit']")

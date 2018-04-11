@@ -1,12 +1,15 @@
 class ContactEmailPage < SitePrism::Page
 
-  element(:email, "#registration_contactEmail")
+  element(:email, "#contact_email_form_contact_email")
+  element(:confirm_email, "#contact_email_form_confirmed_email")
+
   element(:heading, :xpath, "//h1[contains(text(), 'email address')]")
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    wait_for_heading
+    wait_for_email
     email.set(args[:email]) if args.key?(:email)
+    confirm_email.set(args[:confirm_email]) if args.key?(:confirm_email)
 
     submit_button.click
   end
