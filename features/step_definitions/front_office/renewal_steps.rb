@@ -181,7 +181,7 @@ When(/^I complete my sole trader renewal steps$/) do
     confirm_email: "test@example.com"
   )
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit
+  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
@@ -209,7 +209,7 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit
+  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
@@ -245,7 +245,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit
+  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
@@ -278,7 +278,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit
+  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.payment_summary_page.submit
