@@ -135,7 +135,7 @@ When(/^I complete my limited company renewal steps$/) do
     city: "Teston"
   )
   @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.payment_summary_page.submit
   @renewals_app.worldpay_card_details_page.submit_button_renew
   @renewals_app.worldpay_card_details_page.submit_button.click
@@ -183,7 +183,7 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.payment_summary_page.submit
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
@@ -211,7 +211,7 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.payment_summary_page.submit
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
@@ -247,7 +247,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.payment_summary_page.submit
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
@@ -280,7 +280,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.payment_summary_page.submit
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
@@ -337,7 +337,7 @@ When(/^I complete my overseas company renewal steps$/) do
     country: "Slovakia"
   )
   @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.payment_summary_page.submit
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click

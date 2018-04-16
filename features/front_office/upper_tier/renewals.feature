@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal 
+@frontoffice @upper_tier @renewal
 Feature: Registered waste carrier chooses to renew their registration from registrations
   As a carrier of commercial waste
   I want to renew my waste carriers licence with the Environment Agency
@@ -33,13 +33,13 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       And I have chosen registration "CBDU9" ready for renewal
      When I confirm my business type
      Then I will be notified "You should not renew"
-  
+
   Scenario: Partnership renews upper tier registration from renewals page
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU10" ready for renewal
      When I complete my partnership renewal steps
      Then I will be notified my renewal is complete
- 
+
   Scenario: Overseas company renews upper tier registration from renewals page
     Given I have signed in to renew my registration
       And I have chosen registration "CBDU11" ready for renewal
