@@ -133,6 +133,10 @@ class RenewalsApp
     @last_page = StartPage.new
   end
 
+  def tier_check_page
+    @last_page = TierCheckPage.new
+  end
+
   def waste_carriers_renewals_page
     @last_page = WasteCarrierRenewalsPage.new
   end
