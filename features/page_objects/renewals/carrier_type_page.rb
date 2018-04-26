@@ -1,4 +1,4 @@
-class RegistrationTypePage < SitePrism::Page
+class CarrierTypePage < SitePrism::Page
 
   # Do you carry the waste yourselves, or arrange for others to do it?
   element(:carrier_dealer, "input[value='carrier_dealer']", visible: false)

@@ -13,6 +13,10 @@ class RenewalsApp
     @last_page = BusinessAddressPage.new
   end
 
+  def carrier_type_page
+    @last_page = CarrierTypePage.new
+  end
+
   def confirm_business_type_page
     @last_page = ConfirmBusinessTypePage.new
   end
@@ -103,10 +107,6 @@ class RenewalsApp
 
   def post_code_page
     @last_page = PostCodePage.new
-  end
-
-  def registration_type_page
-    @last_page = RegistrationTypePage.new
   end
 
   def renewal_information_page

@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal 
+@frontoffice @upper_tier @renewal
 Feature: Registered waste carrier chooses to renew their registration from registrations
   As a member of the waste carriers team in NCCC
   I want to be informed of any potential matches with the Environment Agencies convictions database
