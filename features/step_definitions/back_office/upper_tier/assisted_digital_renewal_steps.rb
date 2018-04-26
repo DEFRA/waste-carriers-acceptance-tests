@@ -58,7 +58,7 @@ When(/^I have my public body upper tier renewal completed for me$/) do
   @back_app.business_type_page.submit
   @back_app.other_businesses_question_page.submit(choice: :no)
   @back_app.construction_waste_question_page.submit(choice: :yes)
-  @back_app.registration_type_page.submit
+  @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @back_app.renewal_information_page.submit
   @back_app.post_code_page.submit(postcode: "S60 1BY")
   @back_app.business_address_page.submit(
