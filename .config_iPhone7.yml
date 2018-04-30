@@ -9,7 +9,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: 'http://192.168.1.7:3002'
+app_host: 'http://10.65.67.6:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -76,8 +76,8 @@ custom:
     # Local
     front_office: "http://localhost:3000/registrations/start"
     front_office_sign_in: "http:/localhost:3000/users/sign_in"
-    front_office_renewals: "http://192.168.1.7:3002"
-    front_office_renewals_sign_in: "http://192.168.1.7:3002/users/sign_in"
+    front_office_renewals: "http://10.65.67.6:3002"
+    front_office_renewals_sign_in: "http://10.65.67.6:3002/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"
     back_office_admin: "http:/localhost:3000/admins/sign_in"
     # Sandbox
@@ -139,7 +139,7 @@ browserstack:
     # capabilities. Group your tests into builds, and builds further into
     # projects
     project: 'Waste carriers renewals'
-    build: 'Skip upper tier questions'
+    build: 'Payment summar'
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
@@ -172,3 +172,4 @@ browserstack:
     device: 'iPhone 7'
     realMobile: 'true'
     os_version: '10.3'
+    deviceOrientation: "landscape"

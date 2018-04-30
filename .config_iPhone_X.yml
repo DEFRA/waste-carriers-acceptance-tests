@@ -10,7 +10,7 @@
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
 # Using private IP address as currently an issue with Safari on iOS 10 and 11 
-app_host: 'http://192.168.1.7:3002'
+app_host: 'http://10.65.67.6:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -75,19 +75,19 @@ custom:
       username: user@waste-exemplar.gov.uk
   urls:
     # Local
-    front_office: "http://192.168.1.7:3000/registrations/start"
-    front_office_sign_in: "http:/192.168.1.7:3000/users/sign_in"
-    front_office_renewals: "http:/192.168.1.7:3002"
-    front_office_renewals_sign_in: "http://192.168.1.7:3002/users/sign_in"
-    back_office: "http:/192.168.1.7:3000/agency_users/sign_in"
-    back_office_admin: "http:/192.168.1.7:3000/admins/sign_in"
+    front_office: "http://10.65.67.6:3000/registrations/start"
+    front_office_sign_in: "http:/10.65.67.6:3000/users/sign_in"
+    front_office_renewals: "http:/10.65.67.6:3002"
+    front_office_renewals_sign_in: "http://10.65.67.6:3002/users/sign_in"
+    back_office: "http:/10.65.67.6:3000/agency_users/sign_in"
+    back_office_admin: "http:/10.65.67.6:3000/admins/sign_in"
     # Sandbox
     # front_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/registrations/start"
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
     # back_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
     # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
-    # front_office_renewals: "http:/192.168.1.7:3002"
-    # front_office_renewals_sign_in: "http://192.168.1.7:3002/users/sign_in"
+    # front_office_renewals: "http:/10.65.67.6:3002"
+    # front_office_renewals_sign_in: "http://10.65.67.6:3002/users/sign_in"
     mail_checker: "https://www.mailinator.com"
 
 # If you are running Quke behind a proxy you can configure the proxy details
@@ -140,7 +140,7 @@ browserstack:
     # capabilities. Group your tests into builds, and builds further into
     # projects
     project: 'Waste carriers renewals'
-    build: 'Skip upper tier questions'
+    build: 'Payment summar'
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
@@ -156,7 +156,7 @@ browserstack:
     # Required if you want to enable video recording during your test.
     # Browserstack default is true
     browserstack.video: true
-    # Required if you need to test a locally hosted (e.g. http://192.168.1.7:300)
+    # Required if you need to test a locally hosted (e.g. http://10.65.67.6:300)
     # or private internal web site. Browserstack has a feature called local
     # testing that Quke also supports, but to use
     # - Browserstack must be your selected driver

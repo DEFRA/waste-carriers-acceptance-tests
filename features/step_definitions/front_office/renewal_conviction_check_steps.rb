@@ -34,7 +34,8 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
-  @renewals_app.payment_summary_page.submit
+  @renewals_app.registration_cards_page.submit
+  @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
   @renewals_app.worldpay_card_details_page.submit_button_renew
   @renewals_app.worldpay_card_details_page.submit_button.click
 end

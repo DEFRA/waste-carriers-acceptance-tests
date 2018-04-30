@@ -6,13 +6,13 @@ Feature: Renewals of waste carrier licence from previous Integrated Regulartions
   
 
   Scenario: Public body renews expired registration from old waste carriers system
-  	Given I renew my registration using my previous registration number "CB/VM8888WW/A001"
+  	Given I renew my registration using my previous integrated regulations registration number "CB/VM8888WW/A001"
       But the registration is expired
      Then I will be told "The registration number you entered has expired"
       
 @email
   Scenario: Public body renews registration before registration expires
-  Given I renew my registration using my previous registration number "CB/VM8888WW/A002"
+  Given I renew my registration using my previous integrated regulations registration number "CB/VM8888WW/A002"
    When I complete the public body registration renewal
    Then the registration has a "Registered" status
     And the registration status in the registration export is set to "ACTIVE"

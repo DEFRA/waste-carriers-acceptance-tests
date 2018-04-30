@@ -80,7 +80,7 @@ You will also need to set the environment variable `VAGRANT_KEY_LOCATION` to the
 Go to the root of the Waste Carriers vagrant project and then run the following
 
 ```bash
-cd .vagrant/machines/development/virtualbox/
+cd .vagrant/machines/default/virtualbox/
 pwd
 ```
 

@@ -58,8 +58,9 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       Given I have an upper tier waste carrier licence
        When I renew my registration using my previous registration number "CBDU12"
         But the renewal date is over one month before it is due to expire
-       Then I will be notified "You can not renew this registration yet"
-@expiry
+       Then I will be notified "This registration is not eligible for renewal"
+
+@expiry @broken
     Scenario: Registration can not be renewed on day of expiry
       Given I have an upper tier waste carrier licence
        When I renew my registration using my previous registration number "CBDU13"
