@@ -1,4 +1,11 @@
 # rubocop:disable Metrics/LineLength
+Given(/^I renew my registration using my previous registration number "([^"]*)"$/) do |reg|
+  @renewals_app = RenewalsApp.new
+  @renewals_app.start_page.load
+  @renewals_app.start_page.submit(renewal: true)
+  @renewals_app.existing_registration_page.submit(reg_no: reg)
+end
+
 Then(/^the expiry date should be three years from the expiry date$/) do
   # Adds three years to expiry date and then checks expiry date reported in registration details
   registration_expiry_date = Date.new(2018, 5, 25)
@@ -19,7 +26,7 @@ end
 
 Given(/^I choose to renew my registration$/) do
   Capybara.reset_session!
-  @renewals_app = FrontOfficeApp.new
+  @renewals_app = RenewalsApp.new
   @renewals_app.start_page.load
   @renewals_app.start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: @registration_number)
@@ -50,7 +57,7 @@ end
 Then(/^a renewal confirmation email is received$/) do
   # resets session cookies to fix back office authentication issue
   Capybara.reset_session!
-  @renewals_app = FrontOfficeApp.new
+  @renewals_app = RenewalsApp.new
   @renewals_app.mailinator_page.load
   @renewals_app.mailinator_page.submit(inbox: @email)
   @renewals_app.mailinator_inbox_page.renewal_complete_email.click
@@ -139,7 +146,8 @@ When(/^I complete my limited company renewal steps$/) do
   )
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
-  @renewals_app.payment_summary_page.submit
+  @renewals_app.registration_cards_page.submit
+  @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
   @renewals_app.worldpay_card_details_page.submit_button_renew
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
@@ -188,7 +196,8 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
-  @renewals_app.payment_summary_page.submit
+  @renewals_app.registration_cards_page.submit
+  @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
@@ -214,7 +223,8 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
-  @renewals_app.payment_summary_page.submit
+  @renewals_app.registration_cards_page.submit
+  @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
@@ -251,7 +261,8 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
-  @renewals_app.payment_summary_page.submit
+  @renewals_app.registration_cards_page.submit
+  @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
@@ -285,7 +296,8 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
-  @renewals_app.payment_summary_page.submit
+  @renewals_app.registration_cards_page.submit
+  @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
@@ -332,6 +344,7 @@ When(/^I complete my overseas company renewal steps$/) do
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.submit_main_person(person: people[0])
   @renewals_app.declare_convictions_page.submit(answer: "No")
+  @renewals_app.registration_cards_page.submit
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
@@ -344,7 +357,8 @@ When(/^I complete my overseas company renewal steps$/) do
   )
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
-  @renewals_app.payment_summary_page.submit
+  @renewals_app.registration_cards_page.submit
+  @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
   @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
@@ -356,7 +370,7 @@ When(/^I confirm my business type$/) do
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
-  expect(@renewals_app.cannot_renew_lower_tier_page).to have_text(message)
+  expect(@renewals_app.waste_carriers_renewals_sign_in_page).to have_text(message)
   visit("/users/sign_out")
 end
 

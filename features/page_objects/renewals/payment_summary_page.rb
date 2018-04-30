@@ -1,23 +1,18 @@
 class PaymentSummaryPage < SitePrism::Page
 
   # Payment summary
-  element(:copy_cards, "#registration_copy_cards")
-  element(:card_payment, "#registration_payment_type_world_pay")
-  element(:bank_transfer_payment, "#registration_payment_type_bank_transfer")
-  element(:edit_charge, "#edit_charge")
+  element(:card_payment, "#payment_summary_form_temp_payment_method_card")
+  element(:bank_transfer_payment, "#payment_summary_form_temp_payment_method_bank_transfer")
+
   element(:charge, "#registration_registration_fee")
   element(:heading, :xpath, "//h1[contains(text(), 'Payment summary')]")
   element(:submit_button, "input[type='submit']")
+  element(:back_link, "a[href*='back']")
 
   def submit(args = {})
-    wait_for_heading
-    copy_cards.set(args[:copy_card_number]) if args.key?(:copy_card_number)
-    case args[:choice]
-    when :card_payment
-      card_payment.click
-    when :bank_transfer_payment
-      bank_transfer_payment.click
-    end
+    wait_for_card_payment
+    find("label", text: (args[:answer])).click if args.key?(:answer)
+
     submit_button.click
   end
 

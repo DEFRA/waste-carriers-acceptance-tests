@@ -109,6 +109,10 @@ class RenewalsApp
     @last_page = PostCodePage.new
   end
 
+  def registration_cards_page
+    @last_page = RegistrationCardsPage.new
+  end
+
   def renewal_information_page
     @last_page = RenewalInformationPage.new
   end

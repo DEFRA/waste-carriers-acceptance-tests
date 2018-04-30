@@ -1,4 +1,4 @@
-Given(/^I renew my registration using my previous registration number "([^"]*)"$/) do |reg|
+Given(/^I renew my registration using my previous integrated regulations registration number "([^"]*)"$/) do |reg|
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit(renewal: true)

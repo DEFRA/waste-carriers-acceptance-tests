@@ -1,10 +1,7 @@
 class CarrierTypePage < SitePrism::Page
 
   # Do you carry the waste yourselves, or arrange for others to do it?
-  element(:carrier_dealer, "input[value='carrier_dealer']", visible: false)
-  element(:broker_dealer, "input[value='broker_dealer']", visible: false)
-  element(:carrier_broker_dealer, "input[value='carrier_broker_dealer']", visible: false)
-  element(:heading, :xpath, "//h1[contains(text(), 'Do you carry the waste yourselves')]")
+  element(:carrier_dealer, "#cards_form_temp_cards", visible: false)
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
