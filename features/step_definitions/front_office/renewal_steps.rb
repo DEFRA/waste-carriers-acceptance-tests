@@ -4,6 +4,8 @@ Given(/^I renew my registration using my previous registration number "([^"]*)"$
   @renewals_app.start_page.load
   @renewals_app.start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: reg)
+  # save registration number for checks later on
+  @registration_number = reg
 end
 
 Then(/^the expiry date should be three years from the expiry date$/) do
@@ -391,6 +393,7 @@ end
 Then(/^I will be notified my renewal is complete$/) do
   @renewals_app.renewal_complete_page.wait_for_heading
   expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
+  expect(@renewals_app.renewal_complete_page).to have_text(@registration_number)
   visit("/users/sign_out")
 end
 
@@ -421,7 +424,9 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
 end
 
 Then(/^I will be notified my renewal is pending checks$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  @renewals_app.renewal_complete_page.wait_for_heading
+  expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
+  expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
 end
 
 Given(/^I have selected my registration to renew$/) do

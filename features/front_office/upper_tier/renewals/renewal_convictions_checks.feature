@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal
+@frontoffice @upper_tier @renewal @wip
 Feature: Registered waste carrier declares conviction during renewal
   As a member of the waste carriers team in NCCC
   I want to be informed of any potential matches with the Environment Agencies convictions database
