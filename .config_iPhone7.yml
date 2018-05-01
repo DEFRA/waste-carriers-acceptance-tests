@@ -74,12 +74,12 @@ custom:
       username: user@waste-exemplar.gov.uk
   urls:
     # Local
-    front_office: "http://localhost:3000/registrations/start"
-    front_office_sign_in: "http:/localhost:3000/users/sign_in"
+    front_office: "http://10.65.69.41:3000/registrations/start"
+    front_office_sign_in: "http:/10.65.69.41:3000/users/sign_in"
     front_office_renewals: "http://10.65.69.41:3002"
     front_office_renewals_sign_in: "http://10.65.69.41:3002/users/sign_in"
-    back_office: "http:/localhost:3000/agency_users/sign_in"
-    back_office_admin: "http:/localhost:3000/admins/sign_in"
+    back_office: "http:/10.65.69.41:3000/agency_users/sign_in"
+    back_office_admin: "http:/10.65.69.41:3000/admins/sign_in"
     # Sandbox
     # front_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/registrations/start"
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
@@ -172,4 +172,3 @@ browserstack:
     device: 'iPhone 7'
     realMobile: 'true'
     os_version: '10.3'
-    deviceOrientation: "landscape"

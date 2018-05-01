@@ -464,6 +464,7 @@ Then(/^I will be notified my renewal is pending checks$/) do
   @renewals_app.renewal_complete_page.wait_for_heading
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
+  visit("/users/sign_out")
 end
 
 Then(/^I will be notified my renewal is pending payment$/) do
@@ -471,9 +472,7 @@ Then(/^I will be notified my renewal is pending payment$/) do
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
   expect(@renewals_app.renewal_received_page).to have_text("pay the renewal charge")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
+  visit("/users/sign_out")
 end
 
-Given(/^I have selected my registration to renew$/) do
-  @renewals_app.waste_carrier_registrations_page.user_registrations[0].renew_registration.click
-end
 # rubocop:enable Metrics/LineLength
