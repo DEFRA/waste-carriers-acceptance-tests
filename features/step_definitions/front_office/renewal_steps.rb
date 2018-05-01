@@ -4,6 +4,8 @@ Given(/^I renew my registration using my previous registration number "([^"]*)"$
   @renewals_app.start_page.load
   @renewals_app.start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: reg)
+  # save registration number for checks later on
+  @registration_number = reg
 end
 
 Then(/^the expiry date should be three years from the expiry date$/) do
@@ -17,7 +19,12 @@ end
 
 Then(/^I will be shown the renewal information page$/) do
   expect(@renewals_app.renewal_start_page).to have_text(@registration_number)
-  expect(@renewals_app.renewal_start_page.current_url).to include "/renewal"
+  expect(@renewals_app.renewal_start_page.current_url).to include "/renewal-information"
+end
+
+Then(/^I will be shown the renewal start page$/) do
+  expect(@renewals_app.renewal_start_page).to have_text(@registration_number)
+  expect(@renewals_app.renewal_start_page.current_url).to include "/renew/CBDU"
 end
 
 When(/^I choose to renew my registration from my registrations list$/) do
@@ -94,15 +101,19 @@ When(/^I answer questions indicating I should be a lower tier waste carrier$/) d
 end
 
 Given(/^I have signed in to renew my registration$/) do
-  @renewals_app = RenewalsApp.new
-  @renewals_app.waste_carriers_renewals_sign_in_page.load
-  @renewals_app.waste_carriers_renewals_sign_in_page.submit(
+  @renewals_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WASTECARRIERSPASSWORD"]
   )
-  # Issue with time taken to sign in, wait_for was used
-  # but ie8 didn't like the elements css selector so just looking for text as workaround
-  @renewals_app.waste_carriers_renewals_page.wait_for_heading(5)
+end
+
+Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
+  @renewals_app = RenewalsApp.new
+  @renewals_app.waste_carrier_sign_in_page.load
+  @renewals_app.waste_carrier_sign_in_page.submit(
+    email: username,
+    password: ENV["WASTECARRIERSPASSWORD"]
+  )
 end
 
 Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
@@ -267,6 +278,43 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.worldpay_card_details_page.submit_button.click
 end
 
+When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
+  @renewals_app.renewal_start_page.submit
+  @renewals_app.location_page.submit(location: "England")
+  @renewals_app.confirm_business_type_page.submit
+  @renewals_app.tier_check_page.submit(answer: "I want to check if my tier is correct before renewing")
+  @renewals_app.other_businesses_page.submit(answer: "Yes")
+  @renewals_app.service_provided_page.submit(answer: "We produce the waste as part of another service we provide to our customers (eg a gardener taking away grass cuttings)")
+  @renewals_app.construction_waste_page.submit(answer: "Yes")
+  @renewals_app.carrier_type_page.submit
+  @renewals_app.renewal_information_page.submit
+  @renewals_app.registration_number_page.submit
+  @renewals_app.company_name_page.submit
+  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
+  @renewals_app.business_address_page.manual_address_submit
+  @renewals_app.manual_address_page.submit(
+    house_number: "1",
+    address_line_one: "Test lane",
+    address_line_two: "Testville",
+    city: "Teston"
+  )
+  people = @renewals_app.main_people_page.main_people
+  @renewals_app.main_people_page.add_main_person(person: people[0])
+  @renewals_app.main_people_page.add_main_person(person: people[1])
+  @renewals_app.main_people_page.submit_main_person(person: people[2])
+  @renewals_app.declare_convictions_page.submit(answer: "No")
+  @renewals_app.contact_name_page.submit
+  @renewals_app.contact_telephone_number_page.submit
+  @renewals_app.contact_email_page.submit
+  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
+  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.check_your_answers_page.submit
+  @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
+  @renewals_app.registration_cards_page.submit
+  @renewals_app.payment_summary_page.submit(answer: "Pay by bank transfer")
+  @renewals_app.bank_transfer_page.submit
+end
+
 When(/^I complete my partnership renewal steps$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
@@ -370,7 +418,7 @@ When(/^I confirm my business type$/) do
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
-  expect(@renewals_app.waste_carriers_renewals_sign_in_page).to have_text(message)
+  expect(@renewals_app.waste_carrier_sign_in_page).to have_text(message)
   visit("/users/sign_out")
 end
 
@@ -382,16 +430,13 @@ end
 Then(/^I will be notified my renewal is complete$/) do
   @renewals_app.renewal_complete_page.wait_for_heading
   expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
+  expect(@renewals_app.renewal_complete_page).to have_text(@registration_number)
   visit("/users/sign_out")
 end
 
 Then(/^I will be advised "([^"]*)"$/) do |message|
   expect(@renewals_app.renewal_information_page).to have_text(message)
   visit("/users/sign_out")
-end
-
-Given(/^I have an upper tier waste carrier licence$/) do
-  # No code to write here, step added so the test reads better
 end
 
 When(/^the renewal date is over one month before it is due to expire$/) do
@@ -414,4 +459,20 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit(companies_house_number: number)
 end
+
+Then(/^I will be notified my renewal is pending checks$/) do
+  @renewals_app.renewal_complete_page.wait_for_heading
+  expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
+  expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
+  visit("/users/sign_out")
+end
+
+Then(/^I will be notified my renewal is pending payment$/) do
+  @renewals_app.renewal_complete_page.wait_for_heading
+  expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
+  expect(@renewals_app.renewal_received_page).to have_text("pay the renewal charge")
+  expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
+  visit("/users/sign_out")
+end
+
 # rubocop:enable Metrics/LineLength
