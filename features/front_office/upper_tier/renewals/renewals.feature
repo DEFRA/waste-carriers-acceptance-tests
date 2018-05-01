@@ -15,7 +15,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       And I have signed in to renew my registration
      When I complete my sole trader renewal steps
      Then I will be notified my renewal is complete
-
+@wip
   Scenario: Local authority renews upper tier registration from renewals page
     Given I renew my registration using my previous registration number "CBDU7"
       And I have signed in to renew my registration
@@ -52,6 +52,12 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      When I add two partners to my renewal
       But remove one partner and attempt to continue with my renewal
      Then I will be asked to add another partner
+@wip
+  Scenario: Limited liability partnership renews upper tier registration from renewals page
+    Given I renew my registration using my previous registration number "CBDU24"
+      And I have signed in to renew my registration
+     When I complete my limited liability partnership renewal steps choosing to pay by bank transfer
+     Then I will be notified my renewal is pending payment
 
 @expiry
     Scenario: Registration can not be renewed over one month before its expiry date

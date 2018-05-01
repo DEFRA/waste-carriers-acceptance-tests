@@ -9,6 +9,10 @@ class RenewalsApp
   # RENEWAL SPECIFIC PAGES
   # /
 
+  def bank_transfer_page
+    @last_page = BankTransferPage.new
+  end
+
   def business_address_page
     @last_page = BusinessAddressPage.new
   end
