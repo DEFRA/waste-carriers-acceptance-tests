@@ -17,7 +17,12 @@ end
 
 Then(/^I will be shown the renewal information page$/) do
   expect(@renewals_app.renewal_start_page).to have_text(@registration_number)
-  expect(@renewals_app.renewal_start_page.current_url).to include "/renewal"
+  expect(@renewals_app.renewal_start_page.current_url).to include "/renewal-information"
+end
+
+Then(/^I will be shown the renewal start page$/) do
+  expect(@renewals_app.renewal_start_page).to have_text(@registration_number)
+  expect(@renewals_app.renewal_start_page.current_url).to include "/renew/CBDU"
 end
 
 When(/^I choose to renew my registration from my registrations list$/) do
@@ -94,15 +99,19 @@ When(/^I answer questions indicating I should be a lower tier waste carrier$/) d
 end
 
 Given(/^I have signed in to renew my registration$/) do
-  @renewals_app = RenewalsApp.new
-  @renewals_app.waste_carriers_renewals_sign_in_page.load
-  @renewals_app.waste_carriers_renewals_sign_in_page.submit(
+  @renewals_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WASTECARRIERSPASSWORD"]
   )
-  # Issue with time taken to sign in, wait_for was used
-  # but ie8 didn't like the elements css selector so just looking for text as workaround
-  @renewals_app.waste_carriers_renewals_page.wait_for_heading(5)
+end
+
+Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
+  @renewals_app = RenewalsApp.new
+  @renewals_app.waste_carrier_sign_in_page.load
+  @renewals_app.waste_carrier_sign_in_page.submit(
+    email: username,
+    password: ENV["WASTECARRIERSPASSWORD"]
+  )
 end
 
 Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
@@ -370,7 +379,7 @@ When(/^I confirm my business type$/) do
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
-  expect(@renewals_app.waste_carriers_renewals_sign_in_page).to have_text(message)
+  expect(@renewals_app.waste_carrier_sign_in_page).to have_text(message)
   visit("/users/sign_out")
 end
 
@@ -388,10 +397,6 @@ end
 Then(/^I will be advised "([^"]*)"$/) do |message|
   expect(@renewals_app.renewal_information_page).to have_text(message)
   visit("/users/sign_out")
-end
-
-Given(/^I have an upper tier waste carrier licence$/) do
-  # No code to write here, step added so the test reads better
 end
 
 When(/^the renewal date is over one month before it is due to expire$/) do
@@ -413,5 +418,13 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit(companies_house_number: number)
+end
+
+Then(/^I will be notified my renewal is pending checks$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given(/^I have selected my registration to renew$/) do
+  @renewals_app.waste_carrier_registrations_page.user_registrations[0].renew_registration.click
 end
 # rubocop:enable Metrics/LineLength

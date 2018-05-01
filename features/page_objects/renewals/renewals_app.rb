@@ -145,12 +145,16 @@ class RenewalsApp
     @last_page = WasteCarrierRenewalsPage.new
   end
 
-  def waste_carriers_renewals_sign_in_page
-    @last_page = WasteCarrierRenewalsSignInPage.new
+  def waste_carrier_sign_in_page
+    @last_page = WasteCarrierSignInPage.new
   end
 
   def waste_types_page
     @last_page = WasteTypesPage.new
+  end
+
+  def waste_carrier_registrations_page
+    @last_page = WasteCarrierRegistrationsPage.new
   end
 
   def worldpay_card_choice_page
