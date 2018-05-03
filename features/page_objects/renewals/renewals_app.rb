@@ -145,6 +145,10 @@ class RenewalsApp
     @last_page = TierCheckPage.new
   end
 
+  def unrenewable_page
+    @last_page = UnrenewablePage.new
+  end
+
   def waste_carriers_renewals_page
     @last_page = WasteCarrierRenewalsPage.new
   end

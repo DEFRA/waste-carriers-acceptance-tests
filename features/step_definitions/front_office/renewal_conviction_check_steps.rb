@@ -2,7 +2,7 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(location: "England")
   @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(answer: "I want to check if my tier is correct before renewing")
+  @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "No")
   @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.carrier_type_page.submit
