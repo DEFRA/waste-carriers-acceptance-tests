@@ -5,4 +5,6 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
     element(:renew_registration, "table>tbody>tr:nth-child(2) >td:nth-child(3)")
   end
 
+  element(:sign_out, "#signout_button")
+
 end
