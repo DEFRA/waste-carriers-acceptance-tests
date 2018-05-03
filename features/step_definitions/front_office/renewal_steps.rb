@@ -23,11 +23,13 @@ Then(/^I will be shown the renewal information page$/) do
 end
 
 Then(/^I will be shown the renewal start page$/) do
+  @renewals_app.renewal_start_page.wait_for_heading
   expect(@renewals_app.renewal_start_page).to have_text(@registration_number)
   expect(@renewals_app.renewal_start_page.current_url).to include "/renew/CBDU"
 end
 
 When(/^I choose to renew my registration from my registrations list$/) do
+  @renewals_app.waste_carrier_registrations_page.wait_for_sign_out
   @renewals_app.waste_carrier_registrations_page.user_registrations[0].renew_registration.click
 end
 
@@ -116,7 +118,7 @@ Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   )
 end
 
-Given(/^I have chosen registration "([^"]*)" ready for renewal$/) do |number|
+Given(/^I choose registration "([^"]*)" for renewal$/) do |number|
   visit("/renew/#{number}")
 end
 
