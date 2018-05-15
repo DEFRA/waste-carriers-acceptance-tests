@@ -48,6 +48,7 @@ Given(/^I have my public body upper tier registration completed for me$/) do
   )
   # Stores registration number and access code for later use
   @registration_number = @back_app.finish_assisted_page.registration_number.text
+  puts @registration_number
   @access_code = @back_app.finish_assisted_page.access_code.text
 end
 

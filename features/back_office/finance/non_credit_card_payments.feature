@@ -1,4 +1,4 @@
-@backoffice @finance
+@backoffice @finance @smoke 
 Feature: Recording of a non credit card registration by Environment Agency user
 As an Environment Agency User
 I want to be be able to enter non credit card payments 
