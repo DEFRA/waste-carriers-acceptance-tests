@@ -176,7 +176,17 @@ def reset
 
   vagrant_key = File.join(vagrant_loc, "private_key")
   cmd = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-renewals && export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && bundle exec rake db:reset'"
+  cmd2 = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-frontend && mongoimport --db waste-carriers --collection registrations --file CBDU100.json --username mongoUser --password password1234'"
+  cmd3 = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-frontend && mongoimport --db waste-carriers --collection registrations --file CBDU101.json --username mongoUser --password password1234'"
+  cmd4 = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-frontend && mongoimport --db waste-carriers --collection registrations --file CBDU102.json --username mongoUser --password password1234'"
+  cmd5 = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-frontend && mongoimport --db waste-carriers --collection registrations --file CBDU103.json --username mongoUser --password password1234'"
+  cmd6 = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-frontend && mongoimport --db waste-carriers --collection registrations --file CBDU104.json --username mongoUser --password password1234'"
   system(cmd)
+  system(cmd2)
+  system(cmd3)
+  system(cmd4)
+  system(cmd5)
+  system(cmd6)
 
   puts "Databases reset"
 end

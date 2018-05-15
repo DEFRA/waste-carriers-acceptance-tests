@@ -1,0 +1,134 @@
+{
+    "_id" : ObjectId("5afa90999098e106d7d3503d"),
+    "tier" : "UPPER",
+    "registrationType" : "carrier_dealer",
+    "businessType" : "soleTrader",
+    "otherBusinesses" : "yes",
+    "isMainService" : "no",
+    "constructionWaste" : "yes",
+    "companyName" : "UT Sole Trader",
+    "firstName" : "Bob",
+    "lastName" : "Debuilder",
+    "phoneNumber" : "012345678",
+    "contactEmail" : "user@waste-exemplar.gov.uk",
+    "accountEmail" : "user@waste-exemplar.gov.uk",
+    "declaredConvictions" : "no",
+    "declaration" : "1",
+    "regIdentifier" : "CBDU103",
+    "metaData" : {
+        "dateRegistered" : ISODate("2018-05-15T07:47:37.975Z"),
+        "anotherString" : "userDetailAddedAtRegistration",
+        "lastModified" : ISODate("2018-05-15T07:47:43.046Z"),
+        "dateActivated" : ISODate("2018-05-15T07:47:43.046Z"),
+        "status" : "ACTIVE",
+        "route" : "DIGITAL",
+        "distance" : "n/a"
+    },
+    "financeDetails" : {
+        "orders" : [ 
+            {
+                "orderId" : "1526370457",
+                "orderItems" : [ 
+                    {
+                        "amount" : 15400,
+                        "currency" : "GBP",
+                        "description" : "Initial Registration",
+                        "reference" : "",
+                        "type" : "NEW"
+                    }, 
+                    {
+                        "amount" : 1000,
+                        "currency" : "GBP",
+                        "description" : "2x Copy cards",
+                        "reference" : "",
+                        "type" : "COPY_CARDS"
+                    }
+                ],
+                "orderCode" : "1526370457",
+                "paymentMethod" : "ONLINE",
+                "merchantId" : "EASERRSIMECOM",
+                "totalAmount" : 16400,
+                "currency" : "GBP",
+                "dateCreated" : ISODate("2018-05-15T07:47:39.000Z"),
+                "worldPayStatus" : "AUTHORISED",
+                "dateLastUpdated" : ISODate("2018-05-15T07:47:43.148Z"),
+                "updatedByUser" : "user@waste-exemplar.gov.uk",
+                "description" : "New Waste Carrier Registration: CBDU9 for UT Sole Trader, Plus 2 copy cards"
+            }
+        ],
+        "payments" : [ 
+            {
+                "orderKey" : "1526370457",
+                "amount" : 16400,
+                "currency" : "GBP",
+                "mac_code" : "9255e0b1e59a2a0558675c48b29c8ac7",
+                "dateReceived" : ISODate("2018-05-15T07:47:43.037Z"),
+                "dateEntered" : ISODate("2018-05-15T07:47:43.040Z"),
+                "registrationReference" : "Worldpay",
+                "worldPayPaymentStatus" : "AUTHORISED",
+                "updatedByUser" : "user@waste-exemplar.gov.uk",
+                "comment" : "Paid via Worldpay",
+                "paymentType" : "WORLDPAY"
+            }
+        ],
+        "balance" : 0
+    },
+    "reg_uuid" : "AtoP9jkMfYATcMSUJFTvaw",
+    "addresses" : [ 
+        {
+            "uprn" : "200000567267",
+            "addressType" : "REGISTERED",
+            "addressMode" : "address-results",
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "BOW BRIDGE CLOSE",
+            "townCity" : "ROTHERHAM",
+            "postcode" : "S60 1BY",
+            "country" : "",
+            "dependentLocality" : "",
+            "dependentThoroughfare" : "",
+            "administrativeArea" : "ROTHERHAM",
+            "localAuthorityUpdateDate" : "",
+            "royalMailUpdateDate" : "",
+            "easting" : "442265",
+            "northing" : "391948",
+            "location" : {
+                "lat" : 53.410015,
+                "lon" : -1.339531
+            }
+        }, 
+        {
+            "addressType" : "POSTAL",
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "BOW BRIDGE CLOSE",
+            "addressLine2" : "",
+            "addressLine3" : "",
+            "addressLine4" : "",
+            "townCity" : "ROTHERHAM",
+            "postcode" : "S60 1BY",
+            "country" : "",
+            "firstName" : "Bob",
+            "lastName" : "Debuilder"
+        }
+    ],
+    "key_people" : [ 
+        {
+            "position" : "Business owner",
+            "first_name" : "Ronaldo",
+            "last_name" : "Lebsack",
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-15T07:47:17.526Z"),
+                "confirmed" : "no"
+            }
+        }
+    ],
+    "copy_cards" : "2",
+    "expires_on" : ISODate("2021-05-15T07:47:43.046Z"),
+    "conviction_search_result" : {
+        "match_result" : "NO",
+        "searched_at" : ISODate("2018-05-15T07:47:13.545Z"),
+        "confirmed" : "no"
+    }
+}
