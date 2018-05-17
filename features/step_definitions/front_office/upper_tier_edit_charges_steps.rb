@@ -1,28 +1,23 @@
-When(/^I change my registration type to "([^"]*)"$/) do |registration_type|
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.confirmation_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    @new_window = window_opened_by { frame.confirm_email.click }
-  end
+
+Given(/I choose to edit my registration "([^"]*)"$/) do |reg_no|
+  Capybara.reset_session!
+  @front_app = FrontOfficeApp.new
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
-    email: @email,
+    email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WASTECARRIERSPASSWORD"]
   )
-  @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
+  @front_app.waste_carrier_registrations_page.edit(reg: reg_no)
+  @registration_number = reg_no
+end
+
+When(/^I change my registration type to "([^"]*)"$/) do |registration_type|
   @front_app.check_details_page.edit_registration_type.click
   @front_app.registration_type_page.submit(choice: registration_type.to_sym)
   @front_app.check_details_page.submit
 end
 
 When(/^I add another partner to my registration$/) do
-  @front_app.waste_carrier_sign_in_page.load
-  @front_app.waste_carrier_sign_in_page.submit(
-    email: @email,
-    password: ENV["WASTECARRIERSPASSWORD"]
-  )
-  @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.check_details_page.edit_key_people.click
   people = @front_app.key_people_page.key_people
   @front_app.key_people_page.submit_key_person(person: people[0])
@@ -31,12 +26,6 @@ When(/^I add another partner to my registration$/) do
 end
 
 When(/^I remove a partner from my registration$/) do
-  @front_app.waste_carrier_sign_in_page.load
-  @front_app.waste_carrier_sign_in_page.submit(
-    email: @email,
-    password: ENV["WASTECARRIERSPASSWORD"]
-  )
-  @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.check_details_page.edit_key_people.click
 
   @front_app.key_people_page.remove_person[0].click
@@ -50,12 +39,6 @@ Then(/^I will not be charged for my change$/) do
 end
 
 When(/^I change my organisation type to a limited company$/) do
-  @front_app.waste_carrier_sign_in_page.load
-  @front_app.waste_carrier_sign_in_page.submit(
-    email: @email,
-    password: ENV["WASTECARRIERSPASSWORD"]
-  )
-  @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.check_details_page.edit_smart_answers.click
   @front_app.business_type_page.submit(org_type: "limitedCompany")
   @front_app.other_businesses_question_page.submit(choice: :yes)
@@ -71,18 +54,6 @@ When(/^I change my organisation type to a limited company$/) do
 end
 
 When(/^its companies house number changes to "([^"]*)"$/) do |ch_no|
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.confirmation_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    @new_window = window_opened_by { frame.confirm_email.click }
-  end
-  @front_app.waste_carrier_sign_in_page.load
-  @front_app.waste_carrier_sign_in_page.submit(
-    email: @email,
-    password: ENV["WASTECARRIERSPASSWORD"]
-  )
-  @front_app.waste_carrier_registrations_page.user_registrations[0].edit_registration.click
   @front_app.check_details_page.edit_smart_answers.click
   @front_app.business_type_page.submit
   @front_app.other_businesses_question_page.submit

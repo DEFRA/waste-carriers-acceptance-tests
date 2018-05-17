@@ -11,7 +11,7 @@
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
 # Safari has issues using localhost urls https://www.browserstack.com/question/663
-app_host: 'http://10.65.69.41:3002'
+app_host: 'http://10.64.66.173:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -76,12 +76,12 @@ custom:
       username: user@waste-exemplar.gov.uk
   urls:
     # Local
-    front_office: "http://10.65.69.41/registrations/start"
-    front_office_sign_in: "http://10.65.69.41:3000/users/sign_in"
-    front_office_renewals: "http://10.65.69.41:3002"
-    front_office_renewals_sign_in: "http://10.65.69.41:3002/users/sign_in"
-    back_office: "http:/10.65.69.41:3000/agency_users/sign_in"
-    back_office_admin: "http:/10.65.69.41:3000/admins/sign_in"
+    front_office: "http://10.64.66.173/registrations/start"
+    front_office_sign_in: "http://10.64.66.173:3000/users/sign_in"
+    front_office_renewals: "http://10.64.66.173:3002"
+    front_office_renewals_sign_in: "http://10.64.66.173:3002/users/sign_in"
+    back_office: "http:/10.64.66.173:3000/agency_users/sign_in"
+    back_office_admin: "http:/10.64.66.173:3000/admins/sign_in"
     # Sandbox
     # front_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/registrations/start"
     # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"

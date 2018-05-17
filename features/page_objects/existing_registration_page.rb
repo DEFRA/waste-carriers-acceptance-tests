@@ -7,6 +7,7 @@ class ExistingRegistrationPage < SitePrism::Page
   element(:error_message, "a[class='error-text']")
 
   def submit(args = {})
+    wait_for_submit_button
     reg_no.set(args[:reg_no]) if args.key?(:reg_no)
     submit_button.click
   end

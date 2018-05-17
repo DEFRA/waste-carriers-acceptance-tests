@@ -1,0 +1,158 @@
+{
+    "_id" : ObjectId("5afa977d9098e106d7d35044"),
+    "tier" : "UPPER",
+    "registrationType" : "carrier_broker_dealer",
+    "businessType" : "limitedCompany",
+    "otherBusinesses" : "no",
+    "constructionWaste" : "yes",
+    "companyName" : "UT Company limited",
+    "firstName" : "Bob",
+    "lastName" : "Carolgees",
+    "phoneNumber" : "012345678",
+    "contactEmail" : "user@waste-exemplar.gov.uk",
+    "accountEmail" : "user@waste-exemplar.gov.uk",
+    "declaredConvictions" : "no",
+    "declaration" : "1",
+    "regIdentifier" : "CBDU104",
+    "metaData" : {
+        "dateRegistered" : ISODate("2018-05-15T08:17:01.131Z"),
+        "anotherString" : "userDetailAddedAtRegistration",
+        "lastModified" : ISODate("2018-05-15T08:17:05.780Z"),
+        "dateActivated" : ISODate("2018-05-15T08:17:05.780Z"),
+        "status" : "ACTIVE",
+        "route" : "DIGITAL",
+        "distance" : "n/a"
+    },
+    "financeDetails" : {
+        "orders" : [ 
+            {
+                "orderId" : "1526372221",
+                "orderItems" : [ 
+                    {
+                        "amount" : 15400,
+                        "currency" : "GBP",
+                        "description" : "Initial Registration",
+                        "reference" : "",
+                        "type" : "NEW"
+                    }, 
+                    {
+                        "amount" : 1000,
+                        "currency" : "GBP",
+                        "description" : "2x Copy cards",
+                        "reference" : "",
+                        "type" : "COPY_CARDS"
+                    }
+                ],
+                "orderCode" : "1526372221",
+                "paymentMethod" : "ONLINE",
+                "merchantId" : "EASERRSIMECOM",
+                "totalAmount" : 16400,
+                "currency" : "GBP",
+                "dateCreated" : ISODate("2018-05-15T08:17:02.000Z"),
+                "worldPayStatus" : "AUTHORISED",
+                "dateLastUpdated" : ISODate("2018-05-15T08:17:05.861Z"),
+                "updatedByUser" : "user@waste-exemplar.gov.uk",
+                "description" : "New Waste Carrier Registration: CBDU12 for UT Company limited, Plus 2 copy cards"
+            }
+        ],
+        "payments" : [ 
+            {
+                "orderKey" : "1526372221",
+                "amount" : 16400,
+                "currency" : "GBP",
+                "mac_code" : "f6245a1252777d0c9b93805ea6e884e1",
+                "dateReceived" : ISODate("2018-05-15T08:17:05.772Z"),
+                "dateEntered" : ISODate("2018-05-15T08:17:05.776Z"),
+                "registrationReference" : "Worldpay",
+                "worldPayPaymentStatus" : "AUTHORISED",
+                "updatedByUser" : "user@waste-exemplar.gov.uk",
+                "comment" : "Paid via Worldpay",
+                "paymentType" : "WORLDPAY"
+            }
+        ],
+        "balance" : 0
+    },
+    "reg_uuid" : "aC0ZLFtchkHtHr8uvChaXg",
+    "company_no" : "00445790",
+    "addresses" : [ 
+        {
+            "uprn" : "200000567267",
+            "addressType" : "REGISTERED",
+            "addressMode" : "address-results",
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "BOW BRIDGE CLOSE",
+            "townCity" : "ROTHERHAM",
+            "postcode" : "S60 1BY",
+            "country" : "",
+            "dependentLocality" : "",
+            "dependentThoroughfare" : "",
+            "administrativeArea" : "ROTHERHAM",
+            "localAuthorityUpdateDate" : "",
+            "royalMailUpdateDate" : "",
+            "easting" : "442265",
+            "northing" : "391948",
+            "location" : {
+                "lat" : 53.410015,
+                "lon" : -1.339531
+            }
+        }, 
+        {
+            "addressType" : "POSTAL",
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "BOW BRIDGE CLOSE",
+            "addressLine2" : "",
+            "addressLine3" : "",
+            "addressLine4" : "",
+            "townCity" : "ROTHERHAM",
+            "postcode" : "S60 1BY",
+            "country" : "",
+            "firstName" : "Bob",
+            "lastName" : "Carolgees"
+        }
+    ],
+    "key_people" : [ 
+        {
+            "position" : "Director",
+            "first_name" : "Kallie",
+            "last_name" : "Harber",
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-15T08:16:29.171Z"),
+                "confirmed" : "no"
+            }
+        }, 
+        {
+            "position" : "Director",
+            "first_name" : "Hillard",
+            "last_name" : "Witting",
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-15T08:16:30.235Z"),
+                "confirmed" : "no"
+            }
+        }, 
+        {
+            "position" : "Director",
+            "first_name" : "Deondre",
+            "last_name" : "Koss",
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-15T08:16:31.314Z"),
+                "confirmed" : "no"
+            }
+        }
+    ],
+    "copy_cards" : "2",
+    "expires_on" : ISODate("2021-05-15T08:17:05.780Z"),
+    "conviction_search_result" : {
+        "match_result" : "NO",
+        "searched_at" : ISODate("2018-05-15T08:16:24.904Z"),
+        "confirmed" : "no"
+    }
+}

@@ -1,4 +1,4 @@
-@backoffice @functional @email
+@backoffice @functional @email @smoke 
 Feature: Change the account email for registrations
 As an agency user
 I need to be able to change the account linked to a registration

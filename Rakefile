@@ -175,8 +175,13 @@ def reset
   raise ArgumentError, "Environment variable VAGRANT_KEY_LOCATION not set" if vagrant_loc.nil? || vagrant_loc.empty?
 
   vagrant_key = File.join(vagrant_loc, "private_key")
-  cmd = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-renewals && export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && bundle exec rake db:reset'"
-  system(cmd)
+  system("ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-renewals && export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && bundle exec rake db:reset'")
+
+  current_directory = File.dirname(__FILE__)
+  Dir.glob("#{current_directory}/fixtures/*.json").each do |fixture|
+    path_to_file = "/vagrant/waste-carriers-acceptance-tests/fixtures/#{File.basename(fixture)}"
+    system("ssh -i #{vagrant_key} vagrant@192.168.33.11 'mongoimport --db waste-carriers --collection registrations --file #{path_to_file} --username mongoUser --password password1234'")
+  end
 
   puts "Databases reset"
 end

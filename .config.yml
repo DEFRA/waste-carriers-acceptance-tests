@@ -13,7 +13,7 @@ app_host: 'http://localhost:3002'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
-driver: phantomjs
+driver: chrome
 
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
@@ -29,7 +29,7 @@ stop_on_error: 1
 # immediately failing because the element cannot be found. This defaults to 2
 # seconds. However if the site you are working with is slow or features
 # elements that take some time to load you can increase this default.
-max_wait_time: 5
+max_wait_time: 10
 
 # Tell the driver Quke is using to send a different user-agent value to the site
 # under test. Useful if you want the underlying driver to spoof what kind of
