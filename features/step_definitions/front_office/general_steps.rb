@@ -91,10 +91,31 @@ Then(/^a registration confirmation email is received$/) do
 
 end
 
-Then(/^I will receive an application pending payment email$/) do
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  expect(@front_app.mailinator_inbox_page).to have_registration_pending_payment_email
+Then(/^I have received a "([^"]*)" email/) do |email_text|
+  # Waits for email to be sent otherwise it'll find the email confirmation email for some scenarios
+  sleep(5)
+  require "gmail"
+  gmail = Gmail.new(ENV["EMAIL_USERNAME"], ENV["EMAIL_PASSWORD"])
+
+  try(6) { @email = gmail.inbox.emails(:unread, from: "registrations@wastecarriersregistration.service.gov.uk").last }
+  message_body = @email.message.body
+  # subject = @email.message.subject
+  expect(message_body).to have_text(email_text)
+  # Marks email as read so it's not found in future searches of unread emails
+  @email.read!
+end
+
+Then(/^I have received an email confirming "([^"]*)"/) do |email_subject|
+  # Waits for email to be sent otherwise it'll find the email confirmation email for some scenarios
+  sleep(5)
+  require "gmail"
+  gmail = Gmail.new(ENV["EMAIL_USERNAME"], ENV["EMAIL_PASSWORD"])
+
+  try(6) { @email = gmail.inbox.emails(:unread, from: "registrations@wastecarriersregistration.service.gov.uk").last }
+  subject = @email.message.subject
+  expect(subject).to have_text(email_subject)
+  # Marks email as read so it's not found in future searches of unread emails
+  @email.read!
 end
 
 # rubocop:enable Lint/UnusedBlockArgument

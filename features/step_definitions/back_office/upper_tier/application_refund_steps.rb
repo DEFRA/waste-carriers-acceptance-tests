@@ -8,7 +8,7 @@ Given(/^I have an application paid by credit card$/) do
   @back_app.construction_waste_question_page.submit(choice: :yes)
   @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @back_app.business_details_page.submit(
-    companies_house_number: "00233462",
+    companies_house_number: "00445790",
     company_name: "Credit card test",
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"

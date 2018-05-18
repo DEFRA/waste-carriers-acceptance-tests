@@ -4,7 +4,7 @@ When(/^I complete my application of my limited company as an upper tier waste ca
   @front_app.construction_waste_question_page.submit(choice: :yes)
   @front_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @front_app.business_details_page.submit(
-    companies_house_number: "00233462",
+    companies_house_number: "00445790",
     company_name: "UT Company limited",
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"

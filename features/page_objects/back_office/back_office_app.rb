@@ -156,7 +156,7 @@ class BackOfficeApp
   end
 
   def generate_email
-    @email = "wastecarrier" + rand(100_000_000).to_s + "@mailinator.com"
+    @email = "waste.carrier.service" + "+" + rand(100_000_000).to_s + "@gmail.com"
   end
 
 end
