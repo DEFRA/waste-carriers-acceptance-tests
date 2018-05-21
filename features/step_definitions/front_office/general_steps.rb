@@ -32,19 +32,17 @@ end
 
 Then(/^I will be registered as an upper tier waste carrier$/) do
   expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
-  expect(@front_app.confirmation_page).to have_text @email
+  expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
-  new_window = windows.last
-  page.within_window new_window do
-    expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
-    expect(@front_app.confirmation_page).to have_text @email
-    # Stores registration number for later use
-    @registration_number = @front_app.confirmation_page.registration_number.text
-  end
+  expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
+  expect(@front_app.confirmation_page).to have_text @email_address
+  # Stores registration number for later use
+  @registration_number = @front_app.confirmation_page.registration_number.text
+  # end
 end
 
 When(/^I select that I don't know what business type to enter$/) do
@@ -65,7 +63,7 @@ end
 
 Then(/^I will be informed my registration is pending payment$/) do
   expect(@front_app.confirmation_page).to have_text "Application received"
-  expect(@front_app.confirmation_page).to have_text @email
+  expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
 end
@@ -73,7 +71,7 @@ end
 When(/^I have signed into my account$/) do
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
-    email: @email,
+    email: @email_address,
     password: ENV["WASTECARRIERSPASSWORD"]
   )
 end

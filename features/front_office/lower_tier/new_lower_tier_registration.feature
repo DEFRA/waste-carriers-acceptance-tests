@@ -16,31 +16,31 @@ Feature: New lower tier registrations
     When I confirm my email address
     Then I will be registered as a lower tier waste carrier
      And the registration status will be "Registered"
-
+ 
  Scenario: Public body successfully registers for a lower tier waste carriers licence
    Given I complete my application of my public body as a lower tier waste carrier
     When I confirm my email address
     Then I will be registered as a lower tier waste carrier
      And the registration status will be "Registered"
-
+ 
  Scenario: Partnership successfully registers for a lower tier waste carriers licence
    Given I complete my application of my partnership as a lower tier waste carrier
    	When I confirm my email address
     Then I will be registered as a lower tier waste carrier
      And the registration status will be "Registered"
-
+ 
  Scenario: Local authority successfully registers for a lower tier waste carriers licence
    Given I complete my application of my local authority as a lower tier waste carrier
    	When I confirm my email address
     Then I will be registered as a lower tier waste carrier
      And the registration status will be "Registered"
- 
+  
  Scenario: Limited company successfully registers for a lower tier waste carriers licence
    Given I complete my application of my limited company "LT Company limited" as a lower tier waste carrier
     When I confirm my email address
    	Then I will be registered as a lower tier waste carrier
     And the registration status will be "Registered"
-
+ 
  Scenario: Lower tier does not confirm their email address
   Given I complete my application of my limited company "Unconfirmed company ltd" as a lower tier waste carrier
     But I do not confirm my email address

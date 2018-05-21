@@ -144,7 +144,7 @@ class BackOfficeApp
   end
 
   def generate_email
-    @email = "waste.carrier.service" + "+" + rand(100_000_000).to_s + "@gmail.com"
+    @email_address = "waste.carrier.service" + "+" + rand(100_000_000).to_s + "@gmail.com"
   end
 
 end

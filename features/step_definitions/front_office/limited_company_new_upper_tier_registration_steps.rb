@@ -9,12 +9,12 @@ When(/^I complete my application of my limited company as an upper tier waste ca
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
 
@@ -29,7 +29,7 @@ When(/^I complete my application of my limited company as an upper tier waste ca
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end
 
@@ -48,12 +48,12 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
 
@@ -68,7 +68,7 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
   @front_app.order_page.submit(
     copy_card_number: "2",
@@ -90,7 +90,7 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   )
   @front_app.worldpay_card_details_page.submit_button.click
   expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
-  expect(@front_app.confirmation_page).to have_text @email
+  expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
 end

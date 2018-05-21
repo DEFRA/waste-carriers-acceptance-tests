@@ -26,12 +26,12 @@ When(/^I complete the public body registration renewal$/) do
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
 
@@ -43,7 +43,7 @@ When(/^I complete the public body registration renewal$/) do
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
   @front_app.order_page.submit(
     copy_card_number: "2",
