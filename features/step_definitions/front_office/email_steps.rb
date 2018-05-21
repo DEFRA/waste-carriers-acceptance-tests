@@ -31,13 +31,13 @@ When(/^I confirm (?:my|the) email address$/) do
   url = doc.at_css("a[id='confirmation_link']").text
   # Marks email as read so it's not found in future searches of unread emails
   @email.read!
+  @front_app = FrontOfficeApp.new
+  visit(url)
 
-  front_app.confirmation_page.email_details do |frame|
-    @new_window = window_opened_by { frame.visit(url) }
-  end
-
-  within_window @new_window do
+  new_window = windows.last
+  page.within_window new_window do
     @registration = @front_app.confirmation_page.registration_number.text
+    puts @registration
   end
 end
 
