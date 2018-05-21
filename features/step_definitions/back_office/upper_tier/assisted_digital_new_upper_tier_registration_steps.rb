@@ -58,7 +58,7 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @back_app.only_deal_with_question_page.submit(choice: :not_farm_waste)
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
-    company_name: "AD UT Partnership",
+    company_name: "AD Upper Tier Partnership",
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
@@ -260,7 +260,7 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.only_deal_with_question_page.submit(choice: :not_farm_waste)
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
-    company_name: "AD UT Partnership",
+    company_name: "AD Upper Tier Partnership",
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )

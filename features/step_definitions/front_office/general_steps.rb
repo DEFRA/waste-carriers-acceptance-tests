@@ -38,7 +38,14 @@ Then(/^I will be registered as an upper tier waste carrier$/) do
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
-  within_window @new_window do
+  # within_window @new_window do
+  # expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
+  # expect(@front_app.confirmation_page).to have_text @email
+  #   # Stores registration number for later use
+  #   @registration_number = @front_app.confirmation_page.registration_number.text
+  # end
+  new_window = windows.last
+  page.within_window new_window do
     expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
     expect(@front_app.confirmation_page).to have_text @email
     # Stores registration number for later use
@@ -67,61 +74,6 @@ Then(/^I will be informed my registration is pending payment$/) do
   expect(@front_app.confirmation_page).to have_text @email
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
-end
-
-When(/^I confirm my email address$/) do
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.confirmation_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    @new_window = window_opened_by { frame.confirm_email.click }
-  end
-end
-# rubocop:disable Lint/UnusedBlockArgument
-Then(/^a registration confirmation email is received$/) do
-  # resets session cookies to fix back office authentication issue
-  Capybara.reset_session!
-  @front_app = FrontOfficeApp.new
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.registration_complete_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    expect(@front_app.confirmation_page).to have_text @registration_number
-  end
-
-end
-
-Then(/^I have received a "([^"]*)" email/) do |email_text|
-  # Waits for email to be sent otherwise it'll find the email confirmation email for some scenarios
-  sleep(5)
-  require "gmail"
-  gmail = Gmail.new(ENV["EMAIL_USERNAME"], ENV["EMAIL_PASSWORD"])
-
-  try(6) { @email = gmail.inbox.emails(:unread, from: "registrations@wastecarriersregistration.service.gov.uk").last }
-  message_body = @email.message.body
-  # subject = @email.message.subject
-  expect(message_body).to have_text(email_text)
-  # Marks email as read so it's not found in future searches of unread emails
-  @email.read!
-end
-
-Then(/^I have received an email confirming "([^"]*)"/) do |email_subject|
-  # Waits for email to be sent otherwise it'll find the email confirmation email for some scenarios
-  sleep(5)
-  require "gmail"
-  gmail = Gmail.new(ENV["EMAIL_USERNAME"], ENV["EMAIL_PASSWORD"])
-
-  try(6) { @email = gmail.inbox.emails(:unread, from: "registrations@wastecarriersregistration.service.gov.uk").last }
-  subject = @email.message.subject
-  expect(subject).to have_text(email_subject)
-  # Marks email as read so it's not found in future searches of unread emails
-  @email.read!
-end
-
-# rubocop:enable Lint/UnusedBlockArgument
-
-Given(/^I do not confirm my email address$/) do
-  # Nothing to do to replicate step
 end
 
 When(/^I have signed into my account$/) do

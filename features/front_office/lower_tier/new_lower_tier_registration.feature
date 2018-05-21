@@ -3,12 +3,12 @@ Feature: New lower tier registrations
   As a carrier of domestic waste
   I want to register my company with the Environment Agency
   So I am compliant with the law
-   
+   @wip
  Scenario: Charity successfully registers for a lower tier waste carriers licence
    Given I complete my application of my charity as a lower tier waste carrier
     When I confirm my email address
     Then I will be registered as a lower tier waste carrier
-     And a registration confirmation email is received
+     And I have received an email "Waste Carrier Registration Complete" 
      And the registration status will be "Registered" 
 
  Scenario: Sole trader successfully registers for a lower tier waste carriers licence

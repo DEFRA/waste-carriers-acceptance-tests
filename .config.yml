@@ -73,12 +73,12 @@ custom:
     waste_carrier:
       username: user@waste-exemplar.gov.uk
   urls:
-    front_office: "https://wc-stg.aws.defra.cloud/registrations/start"
-    front_office_sign_in: "https://wc-stg.aws.defra.cloud/users/sign_in"
-    front_office_renewals: "https://wc-stg.aws.defra.cloud"
-    front_office_renewals_sign_in: "https://wc-stg.aws.defra.cloud/users/sign_in"
-    back_office: "https://admin.wc-stg.aws.defra.cloud/agency_users/sign_in"
-    back_office_admin: "https://admin.wc-stg.aws.defra.cloud/admins/sign_in"
+    front_office: "http://localhost:3000/registrations/start"
+    front_office_sign_in: "http:/localhost:3000/users/sign_in"
+    front_office_renewals: "http://localhost:3002"
+    front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
+    back_office: "http:/localhost:3000/agency_users/sign_in"
+    back_office_admin: "http:/localhost:3000/admins/sign_in"
 
 # If you are running Quke behind a proxy you can configure the proxy details
 # here. You'll need either the hostname or IP of the proxy server (don't include
