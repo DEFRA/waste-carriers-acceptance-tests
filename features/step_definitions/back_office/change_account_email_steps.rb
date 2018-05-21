@@ -28,17 +28,6 @@ Given(/^the user has one registration$/) do
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_email: @email
   )
-
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.confirmation_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    @new_window = window_opened_by { frame.confirm_email.click }
-  end
-
-  within_window @new_window do
-    @registration = @front_app.confirmation_page.registration_number.text
-  end
 end
 
 Given(/^the user has 2 registrations$/) do
@@ -73,18 +62,6 @@ Given(/^the user has 2 registrations$/) do
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_email: @email
   )
-
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.confirmation_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    @new_window = window_opened_by { frame.confirm_email.click }
-  end
-
-  within_window @new_window do
-    @registrations << @front_app.confirmation_page.registration_number.text
-  end
-
   @front_app.start_page.load
   @front_app.start_page.submit
   @front_app.business_type_page.submit(org_type: "charity")

@@ -6,6 +6,7 @@ So that users can continue to maintain registrations even if their details chang
 
   Scenario: Change the account where user has just one registration
     Given the user has one registration
+     And I confirm my email address
      When I change the account email
      Then I see a confirmation the change has been made
 

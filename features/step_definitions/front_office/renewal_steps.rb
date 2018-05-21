@@ -63,19 +63,6 @@ Then(/^I will have renewed my registration$/) do
   expect(@renewals_app.confirmation_page).to have_text("Renewal complete")
 end
 
-Then(/^a renewal confirmation email is received$/) do
-  # resets session cookies to fix back office authentication issue
-  Capybara.reset_session!
-  @renewals_app = RenewalsApp.new
-  @renewals_app.mailinator_page.load
-  @renewals_app.mailinator_page.submit(inbox: @email)
-  @renewals_app.mailinator_inbox_page.renewal_complete_email.click
-  @renewals_app.mailinator_inbox_page.email_details do |_frame|
-    expect(@renewals_app.confirmation_page).to have_text @registration_number
-  end
-
-end
-
 Then(/^I will be informed my renewal is received$/) do
   expect(@renewals_app.renewal_received_page).to have_text("Renewal received")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)

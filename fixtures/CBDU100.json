@@ -51,7 +51,7 @@
                 "dateCreated" : ISODate("2018-05-14T10:38:18.000Z"),
                 "worldPayStatus" : "AUTHORISED",
                 "dateLastUpdated" : ISODate("2018-05-14T10:38:22.826Z"),
-                "updatedByUser" : "wastecarrier35315542@mailinator.com",
+                "updatedByUser" : "user@waste-exemplar.gov.uk",
                 "description" : "New Waste Carrier Registration: CBDU4 for UT Company limited, Plus 2 copy cards"
             }
         ],
@@ -65,7 +65,7 @@
                 "dateEntered" : ISODate("2018-05-14T10:38:22.679Z"),
                 "registrationReference" : "Worldpay",
                 "worldPayPaymentStatus" : "AUTHORISED",
-                "updatedByUser" : "wastecarrier35315542@mailinator.com",
+                "updatedByUser" : "user@waste-exemplar.gov.uk",
                 "comment" : "Paid via Worldpay",
                 "paymentType" : "WORLDPAY"
             }

@@ -22,7 +22,7 @@ Then(/^I have received an email "([^"]*)"/) do |email_subject|
   @email.read!
 end
 
-When(/^I confirm my email address$/) do
+When(/^I confirm (?:my|the) email address$/) do
   gmail = Gmail.new(ENV["EMAIL_USERNAME"], ENV["EMAIL_PASSWORD"])
   try(6) { @email = gmail.inbox.emails(:unread, from: "registrations@wastecarriersregistration.service.gov.uk").last }
   message_body = @email.message.body.raw_source
@@ -31,8 +31,14 @@ When(/^I confirm my email address$/) do
   url = doc.at_css("a[id='confirmation_link']").text
   # Marks email as read so it's not found in future searches of unread emails
   @email.read!
-  puts url
-  visit(url)
+
+  front_app.confirmation_page.email_details do |frame|
+    @new_window = window_opened_by { frame.visit(url) }
+  end
+
+  within_window @new_window do
+    @registration = @front_app.confirmation_page.registration_number.text
+  end
 end
 
 Given(/^I do not confirm my email address$/) do

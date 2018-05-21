@@ -38,12 +38,6 @@ Then(/^I will be registered as an upper tier waste carrier$/) do
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
-  # within_window @new_window do
-  # expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
-  # expect(@front_app.confirmation_page).to have_text @email
-  #   # Stores registration number for later use
-  #   @registration_number = @front_app.confirmation_page.registration_number.text
-  # end
   new_window = windows.last
   page.within_window new_window do
     expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")

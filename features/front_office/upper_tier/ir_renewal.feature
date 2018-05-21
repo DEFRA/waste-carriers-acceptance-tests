@@ -14,6 +14,7 @@ Feature: Renewals of waste carrier licence from previous Integrated Regulartions
   Scenario: Public body renews registration before registration expires
   Given I renew my registration using my previous integrated regulations registration number "CB/VM8888WW/A002"
    When I complete the public body registration renewal
+    And I confirm my email address
    Then the registration has a "Registered" status
     And the registration status in the registration export is set to "ACTIVE"
     And the expiry date should be three years from the expiry date

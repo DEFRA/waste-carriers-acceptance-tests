@@ -66,12 +66,6 @@ When(/^I complete the public body registration renewal$/) do
   @front_app.worldpay_card_details_page.submit_button.click
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.confirmation_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    @new_window = window_opened_by { frame.confirm_email.click }
-  end
 end
 
 Then(/^I will be told "([^"]*)"$/) do |message|
