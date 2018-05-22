@@ -11,7 +11,7 @@ Scenario: Application pending payment has full payment recorded as received
   When I enter a cash payment for the full amount owed
   Then the registration will be marked as "Registered"
    And I have received an email "Waste Carrier Registration Complete" 
-@wip
+
  Scenario: Application pending payment has overpayment recorded
   Given I have an application that is pending payment
     And I am signed in as an Environment Agency user with refunds

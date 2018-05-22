@@ -41,7 +41,7 @@ Feature: New lower tier registrations
    	Then I will be registered as a lower tier waste carrier
     And the registration status will be "Registered"
  
- Scenario: Lower tier does not confirm their email address
+ Scenario: Lower tier waste carrier does not confirm their email address
   Given I complete my application of my limited company "Unconfirmed company ltd" as a lower tier waste carrier
     But I do not confirm my email address
    Then my registration status for "Unconfirmed company ltd" will be "Pending"
