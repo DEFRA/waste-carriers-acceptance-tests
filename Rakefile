@@ -147,10 +147,16 @@ task :Google_Pixel do
   sh %( QUKE_CONFIG=.config_Google_Pixel.yml bundle exec quke --tags @wip --tags ~@expiry)
 end
 
-desc "Run any WIP after #resetting the database"
-task :clean_wip do
-  reset
-  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @wip --tags ~@broken)
+desc "Run all renewal tests"
+task :renewals do
+  reset_renewals
+  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @renewal --tags ~@todo --tags ~@broken --tags ~@email)
+end
+
+desc "Run all registration tests"
+task :registrations do
+  reset_registrations
+  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags ~@renewal --tags ~@todo --tags ~@broken --tags ~@email)
 end
 
 desc "Runs the tests used by continuous integration to check the project"
@@ -161,7 +167,7 @@ end
 
 desc "#reset the database in the vagrant environment"
 task :reset_db do
-  reset
+  reset_renewals
 end
 
 desc "Reindex elastic search"
@@ -170,12 +176,21 @@ task :elastic_search do
 end
 
 # rubocop:disable Metrics/LineLength
-def reset
+def reset_renewals
   vagrant_loc = ENV["VAGRANT_KEY_LOCATION"]
   raise ArgumentError, "Environment variable VAGRANT_KEY_LOCATION not set" if vagrant_loc.nil? || vagrant_loc.empty?
 
   vagrant_key = File.join(vagrant_loc, "private_key")
   system("ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-renewals && export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && bundle exec rake db:reset'")
+
+  puts "Databases reset"
+end
+
+def reset_registrations
+  vagrant_loc = ENV["VAGRANT_KEY_LOCATION"]
+  raise ArgumentError, "Environment variable VAGRANT_KEY_LOCATION not set" if vagrant_loc.nil? || vagrant_loc.empty?
+
+  vagrant_key = File.join(vagrant_loc, "private_key")
 
   current_directory = File.dirname(__FILE__)
   Dir.glob("#{current_directory}/fixtures/*.json").each do |fixture|

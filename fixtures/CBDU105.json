@@ -1,7 +1,7 @@
 {
-    "_id" : ObjectId("5af967199098e106d7d35015"),
+    "_id" : ObjectId("5afa977d9098e106d7d35045"),
     "tier" : "UPPER",
-    "registrationType" : "carrier_dealer",
+    "registrationType" : "carrier_broker_dealer",
     "businessType" : "limitedCompany",
     "otherBusinesses" : "no",
     "constructionWaste" : "yes",
@@ -13,12 +13,12 @@
     "accountEmail" : "user@waste-exemplar.gov.uk",
     "declaredConvictions" : "no",
     "declaration" : "1",
-    "regIdentifier" : "CBDU100",
+    "regIdentifier" : "CBDU105",
     "metaData" : {
-        "dateRegistered" : ISODate("2018-05-14T10:38:17.311Z"),
+        "dateRegistered" : ISODate("2018-05-15T08:17:01.131Z"),
         "anotherString" : "userDetailAddedAtRegistration",
-        "lastModified" : ISODate("2018-05-14T10:38:22.692Z"),
-        "dateActivated" : ISODate("2018-05-14T10:38:22.692Z"),
+        "lastModified" : ISODate("2018-05-15T08:17:05.780Z"),
+        "dateActivated" : ISODate("2018-05-15T08:17:05.780Z"),
         "status" : "ACTIVE",
         "route" : "DIGITAL",
         "distance" : "n/a"
@@ -26,7 +26,7 @@
     "financeDetails" : {
         "orders" : [ 
             {
-                "orderId" : "1526294297",
+                "orderId" : "1526372221",
                 "orderItems" : [ 
                     {
                         "amount" : 15400,
@@ -43,26 +43,26 @@
                         "type" : "COPY_CARDS"
                     }
                 ],
-                "orderCode" : "1526294297",
+                "orderCode" : "1526372221",
                 "paymentMethod" : "ONLINE",
                 "merchantId" : "EASERRSIMECOM",
                 "totalAmount" : 16400,
                 "currency" : "GBP",
-                "dateCreated" : ISODate("2018-05-14T10:38:18.000Z"),
+                "dateCreated" : ISODate("2018-05-15T08:17:02.000Z"),
                 "worldPayStatus" : "AUTHORISED",
-                "dateLastUpdated" : ISODate("2018-05-14T10:38:22.826Z"),
+                "dateLastUpdated" : ISODate("2018-05-15T08:17:05.861Z"),
                 "updatedByUser" : "user@waste-exemplar.gov.uk",
-                "description" : "New Waste Carrier Registration: CBDU4 for UT Company limited, Plus 2 copy cards"
+                "description" : "New Waste Carrier Registration: CBDU12 for UT Company limited, Plus 2 copy cards"
             }
         ],
         "payments" : [ 
             {
-                "orderKey" : "1526294297",
+                "orderKey" : "1526372221",
                 "amount" : 16400,
                 "currency" : "GBP",
-                "mac_code" : "fa5f24ee0cb5cb6bc739fc7834ad074b",
-                "dateReceived" : ISODate("2018-05-14T10:38:22.675Z"),
-                "dateEntered" : ISODate("2018-05-14T10:38:22.679Z"),
+                "mac_code" : "f6245a1252777d0c9b93805ea6e884e1",
+                "dateReceived" : ISODate("2018-05-15T08:17:05.772Z"),
+                "dateEntered" : ISODate("2018-05-15T08:17:05.776Z"),
                 "registrationReference" : "Worldpay",
                 "worldPayPaymentStatus" : "AUTHORISED",
                 "updatedByUser" : "user@waste-exemplar.gov.uk",
@@ -72,7 +72,7 @@
         ],
         "balance" : 0
     },
-    "reg_uuid" : "MEhGfN-GH-2tPVdeqZmbQA",
+    "reg_uuid" : "aC0ZLFtchkHtHr8uvChaXg",
     "company_no" : "00445790",
     "addresses" : [ 
         {
@@ -113,46 +113,46 @@
     "key_people" : [ 
         {
             "position" : "Director",
-            "first_name" : "Rigoberto",
-            "last_name" : "Mohr",
+            "first_name" : "Kallie",
+            "last_name" : "Harber",
             "dob" : ISODate("1984-05-01T00:00:00.000Z"),
             "person_type" : "KEY",
             "conviction_search_result" : {
                 "match_result" : "NO",
-                "searched_at" : ISODate("2018-05-14T10:37:54.908Z"),
+                "searched_at" : ISODate("2018-05-15T08:16:29.171Z"),
                 "confirmed" : "no"
             }
         }, 
         {
             "position" : "Director",
-            "first_name" : "Rosalia",
-            "last_name" : "Mitchell",
+            "first_name" : "Hillard",
+            "last_name" : "Witting",
             "dob" : ISODate("1984-05-01T00:00:00.000Z"),
             "person_type" : "KEY",
             "conviction_search_result" : {
                 "match_result" : "NO",
-                "searched_at" : ISODate("2018-05-14T10:37:56.303Z"),
+                "searched_at" : ISODate("2018-05-15T08:16:30.235Z"),
                 "confirmed" : "no"
             }
         }, 
         {
             "position" : "Director",
-            "first_name" : "Haleigh",
-            "last_name" : "Hickle",
+            "first_name" : "Deondre",
+            "last_name" : "Koss",
             "dob" : ISODate("1984-05-01T00:00:00.000Z"),
             "person_type" : "KEY",
             "conviction_search_result" : {
                 "match_result" : "NO",
-                "searched_at" : ISODate("2018-05-14T10:37:57.529Z"),
+                "searched_at" : ISODate("2018-05-15T08:16:31.314Z"),
                 "confirmed" : "no"
             }
         }
     ],
     "copy_cards" : "2",
-    "expires_on" : ISODate("2021-05-14T10:38:22.692Z"),
+    "expires_on" : ISODate("2021-05-15T08:17:05.780Z"),
     "conviction_search_result" : {
         "match_result" : "NO",
-        "searched_at" : ISODate("2018-05-14T10:37:50.372Z"),
+        "searched_at" : ISODate("2018-05-15T08:16:24.904Z"),
         "confirmed" : "no"
     }
 }

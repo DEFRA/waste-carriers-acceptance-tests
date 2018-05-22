@@ -8,12 +8,12 @@ When(/^I complete my application of my charity as a lower tier waste carrier$/) 
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
   @front_app.check_details_page.submit
@@ -21,7 +21,7 @@ When(/^I complete my application of my charity as a lower tier waste carrier$/) 
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end
 
@@ -35,12 +35,12 @@ When(/^I complete my application of my local authority as a lower tier waste car
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
   @front_app.check_details_page.submit
@@ -48,7 +48,7 @@ When(/^I complete my application of my local authority as a lower tier waste car
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end
 
@@ -65,12 +65,12 @@ When(/^I complete my application of my partnership as a lower tier waste carrier
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Terry",
     last_name: "Griffiths",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
   @front_app.check_details_page.submit
@@ -78,7 +78,7 @@ When(/^I complete my application of my partnership as a lower tier waste carrier
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end
 
@@ -94,12 +94,12 @@ When(/^I complete my application of my public body as a lower tier waste carrier
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
   @front_app.check_details_page.submit
@@ -107,7 +107,7 @@ When(/^I complete my application of my public body as a lower tier waste carrier
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end
 
@@ -124,12 +124,12 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Terry",
     last_name: "Griffiths",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
   @front_app.check_details_page.submit
@@ -137,7 +137,7 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end
 
@@ -154,12 +154,12 @@ Given(/^I complete my application of my limited company "([^"]*)" as a lower tie
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
   @company_name = company_name
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
   @front_app.check_details_page.submit
@@ -167,6 +167,6 @@ Given(/^I complete my application of my limited company "([^"]*)" as a lower tie
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end

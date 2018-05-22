@@ -89,7 +89,7 @@ custom:
     # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
     # front_office_renewals: "http://localhost:3002"
     # front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
-    mail_checker: "https://www.mailinator.com"
+    
 
 # If you are running Quke behind a proxy you can configure the proxy details
 # here. You'll need either the hostname or IP of the proxy server (don't include

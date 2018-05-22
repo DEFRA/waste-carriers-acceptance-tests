@@ -29,7 +29,7 @@ When(/^I have my limited company as a upper tier waste carrier application compl
   @back_app.construction_waste_question_page.submit(choice: :yes)
   @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @back_app.business_details_page.submit(
-    companies_house_number: "00233462",
+    companies_house_number: "00445790",
     company_name: "AD UT Company limited",
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
@@ -58,7 +58,7 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @back_app.only_deal_with_question_page.submit(choice: :not_farm_waste)
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
-    company_name: "AD UT Partnership",
+    company_name: "AD Upper Tier Partnership",
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
@@ -163,7 +163,7 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
   @back_app.construction_waste_question_page.submit(choice: :yes)
   @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @back_app.business_details_page.submit(
-    companies_house_number: "00233462",
+    companies_house_number: "00445790",
     company_name: co_name,
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
@@ -260,7 +260,7 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.only_deal_with_question_page.submit(choice: :not_farm_waste)
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
-    company_name: "AD UT Partnership",
+    company_name: "AD Upper Tier Partnership",
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )

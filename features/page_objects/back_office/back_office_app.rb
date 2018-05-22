@@ -59,18 +59,6 @@ class BackOfficeApp
     @last_page = KeyPeoplePage.new
   end
 
-  def mailinator_page
-    @last_page = MailinatorPage.new
-  end
-
-  def mailinator_inbox_page
-    @last_page = MailinatorInboxPage.new
-  end
-
-  def mailinator_email_details_page
-    @last_page = MailinatorEmailDetailsPage.new
-  end
-
   def new_reversal_page
     @last_page = NewReversalPage.new
   end
@@ -156,7 +144,7 @@ class BackOfficeApp
   end
 
   def generate_email
-    @email = "wastecarrier" + rand(100_000_000).to_s + "@mailinator.com"
+    @email_address = "waste.carrier.service" + "+" + rand(100_000_000).to_s + "@gmail.com"
   end
 
 end

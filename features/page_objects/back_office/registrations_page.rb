@@ -19,12 +19,12 @@ class RegistrationsPage < SitePrism::Page
     element(:view_certificate, :xpath, "//a[contains(.,'View certificate)]")
     element(:edit_registration, :xpath, "//a[contains(.,'Edit registration')]")
     element(:change_account_email, :xpath, "//a[contains(.,'Change Account Email')]")
-    element(:de_register, :xpath, "//a[contains(.,'De-Register')]")
+    element(:de_register, "a[href*='confirm_delete']")
     element(:revoke, :xpath, "//a[contains(.,'Revoke')]")
     element(:approve, :xpath, "//a[contains(.,'Approve')]")
     element(:refuse, :xpath, "//a[contains(.,'Refuse')]")
     element(:renew, :xpath, "//a[contains(.,'Renew')]")
-    element(:payment_status, :xpath, "//a[contains(@id,'paymentStatus')]")
+    element(:payment_status, "a[href*='paymentstatus']")
 
   end
 

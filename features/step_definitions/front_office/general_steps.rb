@@ -32,18 +32,17 @@ end
 
 Then(/^I will be registered as an upper tier waste carrier$/) do
   expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
-  expect(@front_app.confirmation_page).to have_text @email
+  expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
-  within_window @new_window do
-    expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
-    expect(@front_app.confirmation_page).to have_text @email
-    # Stores registration number for later use
-    @registration_number = @front_app.confirmation_page.registration_number.text
-  end
+  expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
+  expect(@front_app.confirmation_page).to have_text @email_address
+  # Stores registration number for later use
+  @registration_number = @front_app.confirmation_page.registration_number.text
+  # end
 end
 
 When(/^I select that I don't know what business type to enter$/) do
@@ -64,49 +63,15 @@ end
 
 Then(/^I will be informed my registration is pending payment$/) do
   expect(@front_app.confirmation_page).to have_text "Application received"
-  expect(@front_app.confirmation_page).to have_text @email
+  expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
-end
-
-When(/^I confirm my email address$/) do
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.confirmation_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    @new_window = window_opened_by { frame.confirm_email.click }
-  end
-end
-# rubocop:disable Lint/UnusedBlockArgument
-Then(/^a registration confirmation email is received$/) do
-  # resets session cookies to fix back office authentication issue
-  Capybara.reset_session!
-  @front_app = FrontOfficeApp.new
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.registration_complete_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    expect(@front_app.confirmation_page).to have_text @registration_number
-  end
-
-end
-
-Then(/^I will receive an application pending payment email$/) do
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  expect(@front_app.mailinator_inbox_page).to have_registration_pending_payment_email
-end
-
-# rubocop:enable Lint/UnusedBlockArgument
-
-Given(/^I do not confirm my email address$/) do
-  # Nothing to do to replicate step
 end
 
 When(/^I have signed into my account$/) do
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
-    email: @email,
+    email: @email_address,
     password: ENV["WASTECARRIERSPASSWORD"]
   )
 end

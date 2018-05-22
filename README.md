@@ -42,10 +42,8 @@ Into that file you'll need to add as a minimum this
 
 ```yaml
 # Capybara will attempt to find an element for a period of time, rather than
-# immediately failing because the element cannot be found. This defaults to 2
-# seconds but with the need to confirm emails via mailinator, we have found we
-# need to increase this time to at least 5 seconds
-max_wait_time: 5
+# immediately failing because the element cannot be found.
+max_wait_time: 2
 
 custom:
   accounts:
@@ -62,7 +60,7 @@ custom:
     front_office_sign_in: "http://domainundertest.gov.uk/users/sign_in?locale=en"
     back_office: "http://domainundertest.gov.uk/agency_users/sign_in"
     back_office_admin: "http://domainundertest.gov.uk/admins/sign_in"
-    mail_checker: "https://www.mailinator.com"
+    
 ```
 
 If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**. You can however override this and other values using the standard [Quke configuration options](https://github.com/DEFRA/quke#configuration).

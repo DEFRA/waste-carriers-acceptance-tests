@@ -5,16 +5,16 @@ When(/^I complete my aplication of my partnership as a upper tier waste carrier$
   @front_app.only_deal_with_question_page.submit(choice: :not_farm_waste)
   @front_app.registration_type_page.submit(choice: :broker_dealer)
   @front_app.business_details_page.submit(
-    company_name: "UT Partnership",
+    company_name: "Upper Tier Partnership",
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
 
@@ -29,7 +29,7 @@ When(/^I complete my aplication of my partnership as a upper tier waste carrier$
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end
 
@@ -44,12 +44,12 @@ When(/^I complete my application of my public body as an upper tier waste carrie
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
 
@@ -61,7 +61,7 @@ When(/^I complete my application of my public body as an upper tier waste carrie
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end
 
@@ -76,12 +76,12 @@ When(/^I complete my application of my sole trader business as a upper tier wast
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
 
@@ -93,6 +93,6 @@ When(/^I complete my application of my sole trader business as a upper tier wast
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
 end

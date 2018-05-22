@@ -10,7 +10,7 @@ Scenario: Application pending payment has full payment recorded as received
    And I am signed in as an Environment Agency user with refunds
   When I enter a cash payment for the full amount owed
   Then the registration will be marked as "Registered"
-   And a registration confirmation email is received
+   And I have received an email "Waste Carrier Registration Complete" 
 
  Scenario: Application pending payment has overpayment recorded
   Given I have an application that is pending payment
@@ -31,3 +31,4 @@ Scenario: Application pending payment has full payment recorded as received
      And I am signed in as a finance user
     When I enter a bank transfer payment for the full amount owed
     Then the registration will be marked as "Registered"
+

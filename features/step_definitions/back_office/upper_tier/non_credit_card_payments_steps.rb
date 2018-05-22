@@ -12,12 +12,12 @@ Given(/^I have an application that is pending payment$/) do
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @back_app.generate_email
+  @email_address = @back_app.generate_email
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @back_app.postal_address_page.submit
 
@@ -29,7 +29,7 @@ Given(/^I have an application that is pending payment$/) do
   @back_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
   @back_app.order_page.submit(
     copy_card_number: "2",
@@ -62,6 +62,7 @@ When(/^I enter a cash payment for the full amount owed$/) do
 end
 
 When(/^I enter a cheque payment overpaying for the amount owed$/) do
+  puts @registration_number
   @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.search_results[0].payment_status.click
   @back_app.payment_status_page.enter_payment.click

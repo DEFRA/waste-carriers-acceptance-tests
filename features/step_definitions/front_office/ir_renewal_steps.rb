@@ -26,12 +26,12 @@ When(/^I complete the public body registration renewal$/) do
     postcode: "S60 1BY",
     result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
   )
-  @email = @front_app.generate_email
+  @email_address = @front_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
     phone_number: "012345678",
-    email: @email
+    email: @email_address
   )
   @front_app.postal_address_page.submit
 
@@ -43,7 +43,7 @@ When(/^I complete the public body registration renewal$/) do
   @front_app.sign_up_page.submit(
     registration_password: ENV["WASTECARRIERSPASSWORD"],
     confirm_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_email: @email
+    confirm_email: @email_address
   )
   @front_app.order_page.submit(
     copy_card_number: "2",
@@ -66,12 +66,6 @@ When(/^I complete the public body registration renewal$/) do
   @front_app.worldpay_card_details_page.submit_button.click
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
-  @front_app.mailinator_page.load
-  @front_app.mailinator_page.submit(inbox: @email)
-  @front_app.mailinator_inbox_page.confirmation_email.click
-  @front_app.mailinator_inbox_page.email_details do |frame|
-    @new_window = window_opened_by { frame.confirm_email.click }
-  end
 end
 
 Then(/^I will be told "([^"]*)"$/) do |message|

@@ -6,7 +6,7 @@
     "otherBusinesses" : "yes",
     "isMainService" : "yes",
     "onlyAMF" : "no",
-    "companyName" : "UT Partnership",
+    "companyName" : "Upper Tier Partnership",
     "firstName" : "Bob",
     "lastName" : "Carolgees",
     "phoneNumber" : "012345678",
@@ -53,7 +53,7 @@
                 "worldPayStatus" : "AUTHORISED",
                 "dateLastUpdated" : ISODate("2018-05-15T07:30:50.754Z"),
                 "updatedByUser" : "user@waste-exemplar.gov.uk",
-                "description" : "New Waste Carrier Registration: CBDU8 for UT Partnership, Plus 2 copy cards"
+                "description" : "New Waste Carrier Registration: CBDU8 for Upper Tier Partnership, Plus 2 copy cards"
             }
         ],
         "payments" : [ 
