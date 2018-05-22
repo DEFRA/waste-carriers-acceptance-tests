@@ -5,13 +5,13 @@ Feature: Registered waste carrier chooses to renew their registration from start
   So my details are up to date and I continue to be compliant with the law
 
     Scenario: Limited company changes business type and is informed to create a new registration
-      Given I renew my registration using my previous registration number "CBDU2"
+      Given I renew my registration using my previous registration number "CBDU26"
         And I have signed in to renew my registration
         But I change the business type to "Local authority or public body"
        Then I will be notified "You cannot renew"
 
    Scenario: Sole trader changes place of business location to not the UK
-      Given I renew my registration using my previous registration number "CBDU3"
+      Given I renew my registration using my previous registration number "CBDU27"
         And I have signed in to renew my registration
         But I change my place of business location to "Not in the United Kingdom"
        Then I will be able to continue my renewal

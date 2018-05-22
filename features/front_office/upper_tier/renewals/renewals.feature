@@ -5,7 +5,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   So I continue to be compliant with the law
 
   Scenario: Limited company renews upper tier registration from renewals page
-  	Given I renew my registration using my previous registration number "CBDU1"
+  	Given I renew my registration using my previous registration number "CBDU25"
       And I have signed in to renew my registration
   	 When I complete my limited company renewal steps
   	 Then I will be notified my renewal is complete

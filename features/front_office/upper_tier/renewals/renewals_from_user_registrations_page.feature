@@ -9,8 +9,8 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   	   Given I have signed in to renew my registration as "another-user@waste-exemplar.gov.uk"
   	    When I choose registration "CBDU23" for renewal
   	    Then I will be shown the renewal start page
-
-    Scenario: Limited company attempts to renews expired regisgration
+@todo
+    Scenario: Limited company attempts to renew expired regisgration
   	   Given I have signed in to renew my registration as "user@waste-exemplar.gov.uk"
   	    When I choose registration "CBDU13" for renewal
   	    Then I will be told my registration can not be renewed
