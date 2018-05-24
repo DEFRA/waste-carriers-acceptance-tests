@@ -1,0 +1,129 @@
+{
+    "_id" : ObjectId("5b054bbc219d480695038927"),
+    "tier" : "UPPER",
+    "registrationType" : "carrier_broker_dealer",
+    "businessType" : "limitedCompany",
+    "otherBusinesses" : "no",
+    "constructionWaste" : "yes",
+    "companyName" : "IR Company Name",
+    "firstName" : "Quynn",
+    "lastName" : "Mercado",
+    "phoneNumber" : "+318-29-9420281",
+    "contactEmail" : "user@waste-exemplar.gov.uk",
+    "accountEmail" : "user@waste-exemplar.gov.uk",
+    "declaredConvictions" : "no",
+    "declaration" : "1",
+    "regIdentifier" : "CBDU106",
+    "originalRegistrationNumber" : "CB/AE9999XX/A001",
+    "originalDateExpiry" : ISODate("2015-07-21T12:00:00.000Z"),
+    "metaData" : {
+        "dateRegistered" : ISODate("2015-07-21T12:00:00.000Z"),
+        "anotherString" : "userDetailAddedAtRegistration",
+        "lastModified" : ISODate("2015-07-21T12:00:00.000Z"),
+        "dateActivated" : ISODate("2015-07-21T12:00:00.000Z"),
+        "status" : "ACTIVE",
+        "route" : "DIGITAL",
+        "distance" : "n/a"
+    },
+    "financeDetails" : {
+        "orders" : [ 
+            {
+                "orderId" : "1527073724",
+                "orderItems" : [ 
+                    {
+                        "amount" : 10500,
+                        "currency" : "GBP",
+                        "description" : "Renewal of Registration",
+                        "reference" : "",
+                        "type" : "RENEW"
+                    }
+                ],
+                "orderCode" : "1527073724",
+                "paymentMethod" : "ONLINE",
+                "merchantId" : "EASERRSIMECOM",
+                "totalAmount" : 10500,
+                "currency" : "GBP",
+                "dateCreated" : ISODate("2018-05-23T11:08:48.000Z"),
+                "worldPayStatus" : "AUTHORISED",
+                "dateLastUpdated" : ISODate("2018-05-23T11:09:08.756Z"),
+                "updatedByUser" : "user@waste-exemplar.gov.uk",
+                "description" : "Renew Waste Carrier Registration: CBDU35 for IR Company Name"
+            }
+        ],
+        "payments" : [ 
+            {
+                "orderKey" : "1527073724",
+                "amount" : 10500,
+                "currency" : "GBP",
+                "mac_code" : "d64a59d04a194c9e908dc6ca341c2d07",
+                "dateReceived" : ISODate("2018-05-23T11:09:08.716Z"),
+                "dateEntered" : ISODate("2018-05-23T11:09:08.718Z"),
+                "registrationReference" : "Worldpay",
+                "worldPayPaymentStatus" : "AUTHORISED",
+                "updatedByUser" : "user@waste-exemplar.gov.uk",
+                "comment" : "Paid via Worldpay",
+                "paymentType" : "WORLDPAY"
+            }
+        ],
+        "balance" : 0
+    },
+    "reg_uuid" : "IJp5NjrRi3e19VCCE0T03A",
+    "company_no" : "10926928",
+    "addresses" : [ 
+        {
+            "uprn" : "340116",
+            "addressType" : "REGISTERED",
+            "addressMode" : "address-results",
+            "houseNumber" : "NATURAL ENGLAND",
+            "addressLine1" : "DEANERY ROAD",
+            "townCity" : "BRISTOL",
+            "postcode" : "BS1 5AH",
+            "country" : "",
+            "dependentLocality" : "",
+            "dependentThoroughfare" : "",
+            "administrativeArea" : "BRISTOL",
+            "localAuthorityUpdateDate" : "",
+            "royalMailUpdateDate" : "",
+            "easting" : "358205",
+            "northing" : "172708",
+            "location" : {
+                "lat" : 51.454813,
+                "lon" : -2.598741
+            }
+        }, 
+        {
+            "addressType" : "POSTAL",
+            "houseNumber" : "NATURAL ENGLAND",
+            "addressLine1" : "DEANERY ROAD",
+            "addressLine2" : "",
+            "addressLine3" : "",
+            "addressLine4" : "",
+            "townCity" : "BRISTOL",
+            "postcode" : "BS1 5AH",
+            "country" : "",
+            "firstName" : "Quynn",
+            "lastName" : "Mercado"
+        }
+    ],
+    "key_people" : [ 
+        {
+            "position" : "Director",
+            "first_name" : "Bertha",
+            "last_name" : "Sweeney",
+            "dob" : ISODate("1984-06-19T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-23T11:08:25.737Z"),
+                "confirmed" : "no"
+            }
+        }
+    ],
+    "copy_cards" : "0",
+    "expires_on" : ISODate("2021-08-21T12:00:00.000Z"),
+    "conviction_search_result" : {
+        "match_result" : "NO",
+        "searched_at" : ISODate("2018-05-23T11:07:51.660Z"),
+        "confirmed" : "no"
+    }
+}

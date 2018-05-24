@@ -13,6 +13,11 @@ Given(/^I choose to renew my registration using my previous registration number$
   @front_app.existing_registration_page.submit(reg_no: @registration_number)
 end
 
+Given(/^my previous integrated regulations waste carrier registration has been renewed as "([^"]*)"$/) do |_arg1|
+  # Nothing to do as imports as part of setup
+  # Just used to placehold registration number
+end
+
 Given(/^the registration is expired$/) do
   # Scenario reads better with this step
 end
