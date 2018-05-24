@@ -165,7 +165,7 @@ task :ci do
   sh %( QUKE_CONFIG=.config-ci.yml bundle exec quke --tags @ci )
 end
 
-desc "#reset the database in the vagrant environment"
+desc "reset the database in the vagrant environment"
 task :reset_db do
   reset_renewals
 end
