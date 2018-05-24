@@ -192,6 +192,8 @@ def reset_registrations
 
   vagrant_key = File.join(vagrant_loc, "private_key")
 
+  system("ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-frontend && export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && bundle exec rake db:reset'")
+
   current_directory = File.dirname(__FILE__)
   Dir.glob("#{current_directory}/fixtures/*.json").each do |fixture|
     path_to_file = "/vagrant/waste-carriers-acceptance-tests/fixtures/#{File.basename(fixture)}"

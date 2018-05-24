@@ -17,3 +17,10 @@ Feature: Renewals of waste carrier licence from previous Integrated Regulartions
    Then the registration has a "Registered" status
     And the registration status in the registration export is set to "ACTIVE"
     And the expiry date should be three years from the expiry date
+    
+ @broken
+  Scenario: Previously renewed Integrated Regulations waste carrier registration is not eligible for renewal
+    Given my previous integrated regulations waste carrier registration has been renewed as "CBDU106"
+     When I renew my registration using my previous integrated regulations registration number "CB/AE9999XX/A001"
+     Then I will be told "you can not renew a registration already used"
+

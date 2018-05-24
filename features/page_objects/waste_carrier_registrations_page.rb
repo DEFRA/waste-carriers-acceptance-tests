@@ -6,6 +6,7 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
   end
 
   elements(:edits, "[href*='/edit']")
+  elements(:renewals, "[href*='/renew']")
   element(:sign_out, "#signout_button")
 
   def edit(args = {})
@@ -13,6 +14,13 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
 
     search_val = "edit_#{args[:reg]}"
     edits.find { |chk| chk["id"] == search_val }.click
+  end
+
+  def renew(args = {})
+    return unless args.key?(:reg)
+
+    search_val = "renew_#{args[:reg]}"
+    renewals.find { |chk| chk["id"] == search_val }.click
   end
 
 end

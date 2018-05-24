@@ -106,7 +106,7 @@ Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
 end
 
 Given(/^I choose registration "([^"]*)" for renewal$/) do |number|
-  visit("/renew/#{number}")
+  @renewals_app.waste_carrier_registrations_page.renew(reg: number)
 end
 
 When(/^I complete my limited company renewal steps$/) do

@@ -62,7 +62,6 @@ When(/^I enter a cash payment for the full amount owed$/) do
 end
 
 When(/^I enter a cheque payment overpaying for the amount owed$/) do
-  puts @registration_number
   @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.search_results[0].payment_status.click
   @back_app.payment_status_page.enter_payment.click
