@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "_id" : ObjectId("5b0806ee219d48069ba3b379"),
     "tier" : "UPPER",
     "registrationType" : "carrier_dealer",
@@ -21,12 +22,40 @@
         "lastModified" : ISODate("2018-05-25T12:51:58.089Z"),
         "status" : "PENDING",
         "route" : "DIGITAL",
+=======
+    "_id" : ObjectId("5b081f92219d48068f29d59c"),
+    "tier" : "UPPER",
+    "registrationType" : "carrier_broker_dealer",
+    "businessType" : "limitedCompany",
+    "otherBusinesses" : "no",
+    "constructionWaste" : "yes",
+    "companyName" : "Upper tier deregister test",
+    "firstName" : "Bob",
+    "lastName" : "Carolgees",
+    "phoneNumber" : "012345678",
+    "accountEmail" : "agencyuser@nccc.gov.uk",
+    "declaredConvictions" : "no",
+    "declaration" : "1",
+    "regIdentifier" : "CBDU107",
+    "accessCode" : "LSWIFU",
+    "metaData" : {
+        "dateRegistered" : ISODate("2018-05-25T14:37:06.458Z"),
+        "anotherString" : "userDetailAddedAtRegistration",
+        "lastModified" : ISODate("2018-05-25T14:37:12.999Z"),
+        "dateActivated" : ISODate("2018-05-25T14:37:12.999Z"),
+        "status" : "INACTIVE",
+        "route" : "ASSISTED_DIGITAL",
+>>>>>>> adding seed data
         "distance" : "n/a"
     },
     "financeDetails" : {
         "orders" : [ 
             {
+<<<<<<< HEAD
                 "orderId" : "1527252718",
+=======
+                "orderId" : "1527259026",
+>>>>>>> adding seed data
                 "orderItems" : [ 
                     {
                         "amount" : 15400,
@@ -43,6 +72,7 @@
                         "type" : "COPY_CARDS"
                     }
                 ],
+<<<<<<< HEAD
                 "orderCode" : "1527252718",
                 "paymentMethod" : "OFFLINE",
                 "merchantId" : "n/a",
@@ -58,6 +88,39 @@
         "balance" : 16400
     },
     "reg_uuid" : "UqBA_prFbR3aIZ1CUK_13g",
+=======
+                "orderCode" : "1527259026",
+                "paymentMethod" : "ONLINE",
+                "merchantId" : "EASERRSIMMOTO",
+                "totalAmount" : 16400,
+                "currency" : "GBP",
+                "dateCreated" : ISODate("2018-05-25T14:37:07.000Z"),
+                "worldPayStatus" : "AUTHORISED",
+                "dateLastUpdated" : ISODate("2018-05-25T14:37:13.111Z"),
+                "updatedByUser" : "agencyuser@nccc.gov.uk",
+                "description" : "New Waste Carrier Registration: CBDU107 for Upper tier deregister test, Plus 2 copy cards"
+            }
+        ],
+        "payments" : [ 
+            {
+                "orderKey" : "1527259026",
+                "amount" : 16400,
+                "currency" : "GBP",
+                "mac_code" : "7e4cec1f4ce4bbecfdf0f409bec58ece",
+                "dateReceived" : ISODate("2018-05-25T14:37:12.840Z"),
+                "dateEntered" : ISODate("2018-05-25T14:37:12.855Z"),
+                "registrationReference" : "Worldpay",
+                "worldPayPaymentStatus" : "AUTHORISED",
+                "updatedByUser" : "agencyuser@nccc.gov.uk",
+                "comment" : "Paid via Worldpay",
+                "paymentType" : "WORLDPAY"
+            }
+        ],
+        "balance" : 0
+    },
+    "reg_uuid" : "fgvLG8_r3kqWe76hz9rYXA",
+    "company_no" : "00445790",
+>>>>>>> adding seed data
     "addresses" : [ 
         {
             "uprn" : "200000567267",
@@ -91,28 +154,73 @@
             "postcode" : "S60 1BY",
             "country" : "",
             "firstName" : "Bob",
+<<<<<<< HEAD
             "lastName" : "Debuilder"
+=======
+            "lastName" : "Carolgees"
+>>>>>>> adding seed data
         }
     ],
     "key_people" : [ 
         {
+<<<<<<< HEAD
             "position" : "Business owner",
             "first_name" : "Jane",
             "last_name" : "Schaefer",
+=======
+            "position" : "Director",
+            "first_name" : "Santiago",
+            "last_name" : "Mertz",
             "dob" : ISODate("1984-05-01T00:00:00.000Z"),
             "person_type" : "KEY",
             "conviction_search_result" : {
                 "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-25T14:37:01.694Z"),
+                "confirmed" : "no"
+            }
+        }, 
+        {
+            "position" : "Director",
+            "first_name" : "Jedediah",
+            "last_name" : "Denesik",
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-25T14:37:02.888Z"),
+                "confirmed" : "no"
+            }
+        }, 
+        {
+            "position" : "Director",
+            "first_name" : "Hilbert",
+            "last_name" : "Lindgren",
+>>>>>>> adding seed data
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+<<<<<<< HEAD
                 "searched_at" : ISODate("2018-05-25T12:51:54.386Z"),
+=======
+                "searched_at" : ISODate("2018-05-25T14:37:04.173Z"),
+>>>>>>> adding seed data
                 "confirmed" : "no"
             }
         }
     ],
     "copy_cards" : "2",
+<<<<<<< HEAD
     "expires_on" : ISODate("2021-05-25T00:00:00.000Z"),
     "conviction_search_result" : {
         "match_result" : "NO",
         "searched_at" : ISODate("2018-05-25T12:51:50.084Z"),
+=======
+    "expires_on" : ISODate("2021-05-25T14:37:12.999Z"),
+    "conviction_search_result" : {
+        "match_result" : "NO",
+        "searched_at" : ISODate("2018-05-25T14:36:57.073Z"),
+>>>>>>> adding seed data
         "confirmed" : "no"
     }
 }
