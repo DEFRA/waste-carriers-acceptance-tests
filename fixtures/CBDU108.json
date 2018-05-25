@@ -1,0 +1,118 @@
+{
+    "_id" : ObjectId("5b0806ee218d49069ba3b379"),
+    "tier" : "UPPER",
+    "registrationType" : "carrier_dealer",
+    "businessType" : "soleTrader",
+    "otherBusinesses" : "yes",
+    "isMainService" : "no",
+    "constructionWaste" : "yes",
+    "companyName" : "Offline payment",
+    "firstName" : "Bob",
+    "lastName" : "Debuilder",
+    "phoneNumber" : "012345678",
+    "contactEmail" : "waste.carrier.service+74456345@gmail.com",
+    "accountEmail" : "waste.carrier.service+74456345@gmail.com",
+    "declaredConvictions" : "no",
+    "declaration" : "1",
+    "regIdentifier" : "CBDU108",
+    "metaData" : {
+        "dateRegistered" : ISODate("2018-05-25T12:51:58.089Z"),
+        "anotherString" : "userDetailAddedAtRegistration",
+        "lastModified" : ISODate("2018-05-25T12:51:58.089Z"),
+        "status" : "PENDING",
+        "route" : "DIGITAL",
+        "distance" : "n/a"
+    },
+    "financeDetails" : {
+        "orders" : [ 
+            {
+                "orderId" : "1527252718",
+                "orderItems" : [ 
+                    {
+                        "amount" : 15400,
+                        "currency" : "GBP",
+                        "description" : "Initial Registration",
+                        "reference" : "",
+                        "type" : "NEW"
+                    }, 
+                    {
+                        "amount" : 1000,
+                        "currency" : "GBP",
+                        "description" : "2x Copy cards",
+                        "reference" : "",
+                        "type" : "COPY_CARDS"
+                    }
+                ],
+                "orderCode" : "1527252718",
+                "paymentMethod" : "OFFLINE",
+                "merchantId" : "n/a",
+                "totalAmount" : 16400,
+                "currency" : "GBP",
+                "dateCreated" : ISODate("2018-05-25T12:51:59.000Z"),
+                "worldPayStatus" : "n/a",
+                "dateLastUpdated" : ISODate("2018-05-25T12:51:59.350Z"),
+                "updatedByUser" : "waste.carrier.service+74456345@gmail.com",
+                "description" : "New Waste Carrier Registration: CBDU108 for Offline payment, Plus 2 copy cards"
+            }
+        ],
+        "balance" : 16400
+    },
+    "reg_uuid" : "UqBA_prFbR3aIZ1CUK_13g",
+    "addresses" : [ 
+        {
+            "uprn" : "200000567267",
+            "addressType" : "REGISTERED",
+            "addressMode" : "address-results",
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "BOW BRIDGE CLOSE",
+            "townCity" : "ROTHERHAM",
+            "postcode" : "S60 1BY",
+            "country" : "",
+            "dependentLocality" : "",
+            "dependentThoroughfare" : "",
+            "administrativeArea" : "ROTHERHAM",
+            "localAuthorityUpdateDate" : "",
+            "royalMailUpdateDate" : "",
+            "easting" : "442265",
+            "northing" : "391948",
+            "location" : {
+                "lat" : 53.410015,
+                "lon" : -1.339531
+            }
+        }, 
+        {
+            "addressType" : "POSTAL",
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "BOW BRIDGE CLOSE",
+            "addressLine2" : "",
+            "addressLine3" : "",
+            "addressLine4" : "",
+            "townCity" : "ROTHERHAM",
+            "postcode" : "S60 1BY",
+            "country" : "",
+            "firstName" : "Bob",
+            "lastName" : "Debuilder"
+        }
+    ],
+    "key_people" : [ 
+        {
+            "position" : "Business owner",
+            "first_name" : "Jane",
+            "last_name" : "Schaefer",
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-25T12:51:54.386Z"),
+                "confirmed" : "no"
+            }
+        }
+    ],
+    "copy_cards" : "2",
+    "expires_on" : ISODate("2021-05-25T00:00:00.000Z"),
+    "conviction_search_result" : {
+        "match_result" : "NO",
+        "searched_at" : ISODate("2018-05-25T12:51:50.084Z"),
+        "confirmed" : "no"
+    }
+}
