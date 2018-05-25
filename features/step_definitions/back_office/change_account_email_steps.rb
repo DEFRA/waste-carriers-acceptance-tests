@@ -2,7 +2,7 @@ require "faker"
 
 Given(/I have a registration "([^"]*)"$/) do |reg_no|
   # reserves registration number for specific test
-  @registration = reg_no
+  @registration_number = reg_no
 end
 
 Given(/^the user has 2 registrations$/) do
