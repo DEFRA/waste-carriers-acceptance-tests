@@ -6,9 +6,9 @@ So that they no longer have a valid waste carrier licence
 
 Background: 
 	Given an Environment Agency user has signed in
-@todo
+	
   Scenario: Agency user can deregister upper tier waste carrier licence
-    Given a limited company "Upper tier deregister test" registers as an upper tier waste carrier
+    Given I have a registration "CBDU107"
      When the registration is deregistered 
      Then the registration has a "De-Registered" status
       And the registration status in the registration export is set to "INACTIVE"
