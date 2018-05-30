@@ -11,7 +11,7 @@ Scenario: Application pending payment has full payment recorded as received
   When I enter a cash payment for the full amount owed
   Then the registration will be marked as "Registered"
    And I have received an email "Waste Carrier Registration Complete"
-
+@email
  Scenario: Application pending payment has overpayment recorded
   Given I have a registration "CBDU108"
     And I am signed in as an Environment Agency user with refunds
@@ -25,7 +25,7 @@ Scenario: Application pending payment has full payment recorded as received
    When I enter a postal order payment underpaying for the amount owed
    Then the registration will be marked as "Awaiting payment"
     And the payment status will be marked as underpaid  
-
+@email
  Scenario: Application pending payment has bank transfer recorded
    Given I have a registration "CBDU110"
      And I am signed in as a finance user
