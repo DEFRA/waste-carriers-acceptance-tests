@@ -156,7 +156,8 @@ end
 desc "Run all registration tests"
 task :registrations do
   reset_registrations
-  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags ~@renewal --tags ~@todo --tags ~@broken --tags ~@email)
+  # sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags ~@renewal --tags ~@todo --tags ~@broken --tags ~@email)
+  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags ~@renewal --tags @todod)
 end
 
 desc "Runs the tests used by continuous integration to check the project"

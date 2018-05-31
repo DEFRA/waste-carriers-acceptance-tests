@@ -1,0 +1,158 @@
+{
+    "_id" : ObjectId("5b0fb312219d48068f29d756"),
+    "tier" : "UPPER",
+    "registrationType" : "carrier_broker_dealer",
+    "businessType" : "limitedCompany",
+    "otherBusinesses" : "no",
+    "constructionWaste" : "yes",
+    "companyName" : "Credit card test",
+    "firstName" : "Bob",
+    "lastName" : "Carolgees",
+    "phoneNumber" : "012345678",
+    "accountEmail" : "agencyuser@nccc.gov.uk",
+    "declaredConvictions" : "no",
+    "declaration" : "1",
+    "regIdentifier" : "CBDU112",
+    "accessCode" : "BTBWRS",
+    "metaData" : {
+        "dateRegistered" : ISODate("2018-05-31T08:32:18.229Z"),
+        "anotherString" : "userDetailAddedAtRegistration",
+        "lastModified" : ISODate("2018-05-31T08:32:22.814Z"),
+        "dateActivated" : ISODate("2018-05-31T08:32:22.814Z"),
+        "status" : "ACTIVE",
+        "route" : "ASSISTED_DIGITAL",
+        "distance" : "n/a"
+    },
+    "financeDetails" : {
+        "orders" : [ 
+            {
+                "orderId" : "1527755538",
+                "orderItems" : [ 
+                    {
+                        "amount" : 15400,
+                        "currency" : "GBP",
+                        "description" : "Initial Registration",
+                        "reference" : "",
+                        "type" : "NEW"
+                    }, 
+                    {
+                        "amount" : 500,
+                        "currency" : "GBP",
+                        "description" : "1x Copy cards",
+                        "reference" : "",
+                        "type" : "COPY_CARDS"
+                    }
+                ],
+                "orderCode" : "1527755538",
+                "paymentMethod" : "ONLINE",
+                "merchantId" : "EASERRSIMMOTO",
+                "totalAmount" : 15900,
+                "currency" : "GBP",
+                "dateCreated" : ISODate("2018-05-31T08:32:19.000Z"),
+                "worldPayStatus" : "AUTHORISED",
+                "dateLastUpdated" : ISODate("2018-05-31T08:32:22.865Z"),
+                "updatedByUser" : "agencyuser@nccc.gov.uk",
+                "description" : "New Waste Carrier Registration: CBDU112 for Credit card test, Plus 1 copy cards"
+            }
+        ],
+        "payments" : [ 
+            {
+                "orderKey" : "1527755538",
+                "amount" : 15900,
+                "currency" : "GBP",
+                "mac_code" : "6ccb67b6cf37f2d2dbee3ffac052adad",
+                "dateReceived" : ISODate("2018-05-31T08:32:22.808Z"),
+                "dateEntered" : ISODate("2018-05-31T08:32:22.811Z"),
+                "registrationReference" : "Worldpay",
+                "worldPayPaymentStatus" : "AUTHORISED",
+                "updatedByUser" : "agencyuser@nccc.gov.uk",
+                "comment" : "Paid via Worldpay",
+                "paymentType" : "WORLDPAY"
+            }
+        ],
+        "balance" : 0
+    },
+    "reg_uuid" : "bu6RuOiNGt4xip9X1vBCGg",
+    "company_no" : "00445790",
+    "addresses" : [ 
+        {
+            "uprn" : "200000567267",
+            "addressType" : "REGISTERED",
+            "addressMode" : "address-results",
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "BOW BRIDGE CLOSE",
+            "townCity" : "ROTHERHAM",
+            "postcode" : "S60 1BY",
+            "country" : "",
+            "dependentLocality" : "",
+            "dependentThoroughfare" : "",
+            "administrativeArea" : "ROTHERHAM",
+            "localAuthorityUpdateDate" : "",
+            "royalMailUpdateDate" : "",
+            "easting" : "442265",
+            "northing" : "391948",
+            "location" : {
+                "lat" : 53.410015,
+                "lon" : -1.339531
+            }
+        }, 
+        {
+            "addressType" : "POSTAL",
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "BOW BRIDGE CLOSE",
+            "addressLine2" : "",
+            "addressLine3" : "",
+            "addressLine4" : "",
+            "townCity" : "ROTHERHAM",
+            "postcode" : "S60 1BY",
+            "country" : "",
+            "firstName" : "Bob",
+            "lastName" : "Carolgees"
+        }
+    ],
+    "key_people" : [ 
+        {
+            "position" : "Director",
+            "first_name" : "Hillary",
+            "last_name" : "Heller",
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-31T08:32:13.861Z"),
+                "confirmed" : "no"
+            }
+        }, 
+        {
+            "position" : "Director",
+            "first_name" : "Curtis",
+            "last_name" : "Feest",
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-31T08:32:15.018Z"),
+                "confirmed" : "no"
+            }
+        }, 
+        {
+            "position" : "Director",
+            "first_name" : "Richmond",
+            "last_name" : "Kozey",
+            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-05-31T08:32:16.183Z"),
+                "confirmed" : "no"
+            }
+        }
+    ],
+    "copy_cards" : "1",
+    "expires_on" : ISODate("2021-05-31T08:32:22.814Z"),
+    "conviction_search_result" : {
+        "match_result" : "NO",
+        "searched_at" : ISODate("2018-05-31T08:32:10.099Z"),
+        "confirmed" : "no"
+    }
+}
