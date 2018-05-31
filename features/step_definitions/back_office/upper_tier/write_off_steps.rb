@@ -5,6 +5,13 @@ When(/^I write off the small amount owed$/) do
   @back_app.write_offs_page.submit(comment: "small amount written off")
 end
 
+When(/^I write off the large amount owed$/) do
+  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search_results[0].payment_status.click
+  @back_app.payment_status_page.write_off_large.click
+  @back_app.write_offs_page.submit(comment: "large amount written off")
+end
+
 Then(/^the payment status will be marked as paid$/) do
   expect(@back_app.payment_status_page.payment_status.text).to eq("Paid in full")
   expect(@back_app.payment_status_page.balance.text).to eq("0.00")
