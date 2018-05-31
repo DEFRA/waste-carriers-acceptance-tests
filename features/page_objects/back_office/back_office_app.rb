@@ -143,6 +143,10 @@ class BackOfficeApp
     @last_page = WorldpayCardDetailsPage.new
   end
 
+  def write_offs_page
+    @last_page = WriteOffsPage.new
+  end
+
   def generate_email
     @email_address = "waste.carrier.service" + "+" + rand(100_000_000).to_s + "@gmail.com"
   end
