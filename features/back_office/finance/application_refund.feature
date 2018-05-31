@@ -1,4 +1,4 @@
-@backoffice @finance @todod
+@backoffice @finance
 Feature: Refund of application by finance administrator
 As a finance administrator 
 I want to be be able to refund payments made in error
