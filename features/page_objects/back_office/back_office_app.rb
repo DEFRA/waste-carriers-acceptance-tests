@@ -27,6 +27,10 @@ class BackOfficeApp
     @last_page = BusinessTypePage.new
   end
 
+  def charge_adjustments_page
+    @last_page = ChargeAdjustmentsPage.new
+  end
+
   def check_details_page
     @last_page = CheckDetailsPage.new
   end
@@ -57,6 +61,10 @@ class BackOfficeApp
 
   def key_people_page
     @last_page = KeyPeoplePage.new
+  end
+
+  def new_charge_adjustment_page
+    @last_page = NewChargeAdjustmentPage.new
   end
 
   def new_reversal_page

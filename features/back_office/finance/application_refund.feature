@@ -1,7 +1,7 @@
 @backoffice @finance
-Feature: Refund of application by finance administrator
+Feature: Refund (reversee) of application by finance administrator
 As a finance administrator 
-I want to be be able to refund payments made in error
+I want to be able to refund/reverse payments made in error
 So that the customer can be refunded their application charge
 
  Scenario: Refund of application charge from credit card payment
