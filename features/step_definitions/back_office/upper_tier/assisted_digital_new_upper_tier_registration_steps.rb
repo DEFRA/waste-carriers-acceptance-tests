@@ -135,7 +135,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
   @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: 2,
-    choice: :maestro
+    choice: :card_payment
   )
   click(@back_app.worldpay_card_choice_page.maestro)
 
@@ -185,7 +185,7 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
   @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: 2,
-    choice: :maestro
+    choice: :card_payment
   )
   click(@back_app.worldpay_card_choice_page.maestro)
 
@@ -232,7 +232,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
   @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: 2,
-    choice: :maestro
+    choice: :card_payment
   )
   click(@back_app.worldpay_card_choice_page.maestro)
 
@@ -283,7 +283,7 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: 2,
-    choice: :maestro
+    choice: :card_payment
   )
   click(@back_app.worldpay_card_choice_page.maestro)
 
