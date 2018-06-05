@@ -30,7 +30,7 @@ Given(/^I have an application paid by credit card$/) do
   @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: "1",
-    choice: :maestro
+    choice: :card_payment
   )
   click(@back_app.worldpay_card_choice_page.maestro)
 
