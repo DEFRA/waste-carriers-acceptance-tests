@@ -115,7 +115,7 @@ Then(/^the registration status in the registration export is set to "([^"]*)"$/)
   @back_app.registrations_page.registration_export.click
 
   @back_app.registration_export_page.submit(
-    report_from_date: @today,
+    report_from_date: "30-05-2018",
     report_to_date: @today
   )
   result = @back_app.registration_search_results_page.registration(@registration_number)

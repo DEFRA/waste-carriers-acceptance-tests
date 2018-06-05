@@ -58,7 +58,7 @@
         "payments" : [ 
             {
                 "orderKey" : "9501e1096532",
-                "amount" : 12000,
+                "amount" : 16000,
                 "currency" : "GBP",
                 "dateReceived" : ISODate("2017-01-01T00:00:00.000Z"),
                 "dateEntered" : ISODate("2018-05-31T12:22:27.409Z"),
@@ -68,7 +68,7 @@
                 "paymentType" : "POSTALORDER"
             }
         ],
-        "balance" : 100
+        "balance" : 4
     },
     "reg_uuid" : "UqBA_prFbR3aIZ1CUK_13g",
     "addresses" : [ 
