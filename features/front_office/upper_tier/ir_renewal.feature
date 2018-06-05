@@ -10,7 +10,6 @@ Feature: Renewals of waste carrier licence from previous Integrated Regulartions
       But the registration is expired
      Then I will be told "The registration number you entered has expired"
       
-@email
   Scenario: Public body renews registration before registration expires
   Given I renew my registration using my previous integrated regulations registration number "CB/VM8888WW/A002"
    When I complete the public body registration renewal
