@@ -72,6 +72,8 @@ custom:
       username: financebasic2@waste-exemplar.gov.uk
     waste_carrier:
       username: user@waste-exemplar.gov.uk
+    waste_carrier2:
+      username: another-user@waste-exemplar.gov.uk
 # Local setup    
   urls:
     front_office: "http://localhost:3000/registrations/start"
