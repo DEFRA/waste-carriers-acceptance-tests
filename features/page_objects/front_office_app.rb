@@ -25,6 +25,10 @@ class FrontOfficeApp
     @last_page = BusinessTypePage.new
   end
 
+  def confirm_delete_page
+    @last_page = ConfirmDeletePage.new
+  end
+
   def contact_address_page
     @last_page = ContactAddressPage.new
   end
