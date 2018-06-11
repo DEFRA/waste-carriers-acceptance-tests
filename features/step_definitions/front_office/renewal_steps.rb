@@ -30,7 +30,7 @@ end
 
 When(/^I choose to renew my registration from my registrations list$/) do
   @renewals_app.waste_carrier_registrations_page.wait_for_sign_out
-  @renewals_app.waste_carrier_registrations_page.user_registrations[0].renew_registration.click
+  @renewals_app.waste_carrier_registrations_page.registrations[0].renew_registration.click
 end
 
 Given(/^I choose to renew my registration$/) do

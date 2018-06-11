@@ -7,7 +7,7 @@ Given(/I choose to delete my registration "([^"]*)"$/) do |reg_no|
     password: ENV["WASTECARRIERSPASSWORD"]
   )
   @registration_number = reg_no
-  @front_app.waste_carrier_registrations_page.user_registrations[0].delete.click
+  @front_app.waste_carrier_registrations_page.registrations[0].delete.click
 end
 
 When(/^I delete my registration$/) do

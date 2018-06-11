@@ -156,7 +156,8 @@ end
 desc "Run all registration tests"
 task :registrations do
   reset_registrations
-  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags ~@renewal --tags ~@todo --tags ~@broken --tags ~@email)
+  # sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags ~@renewal --tags ~@todo --tags ~@broken --tags ~@email)
+  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @cert)
 end
 
 desc "Runs the tests used by continuous integration to check the project"
@@ -165,9 +166,14 @@ task :ci do
   sh %( QUKE_CONFIG=.config-ci.yml bundle exec quke --tags @ci )
 end
 
-desc "reset the database in the vagrant environment"
-task :reset_db do
+desc "reset the renewals database in the vagrant environment"
+task :reset_renewals_db do
   reset_renewals
+end
+
+desc "reset the registrations database in the vagrant environment"
+task :reset_registrations_db do
+  reset_registrations
 end
 
 desc "Reindex elastic search"

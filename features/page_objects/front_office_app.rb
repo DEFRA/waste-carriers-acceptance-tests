@@ -145,6 +145,14 @@ class FrontOfficeApp
     @last_page = WorldpayCardDetailsPage.new
   end
 
+  def view_certificate_page
+    @last_page = ViewCertificatePage.new
+  end
+
+  def view_pdf_certificate_page
+    @last_page = ViewPdfCertificatePage.new
+  end
+
   def generate_email
     @email_address = "waste.carrier.service" + "+" + rand(100_000_000).to_s + "@gmail.com"
   end
