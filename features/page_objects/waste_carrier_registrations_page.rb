@@ -16,6 +16,8 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
     element(:delete, "td:nth-child(5)")
   end
 
+  elements(:edits, "[href*='/edit']")
+  elements(:renewals, "[href*='/renew']")
   element(:sign_out, "#signout_button")
 
   def edit(args = {})
