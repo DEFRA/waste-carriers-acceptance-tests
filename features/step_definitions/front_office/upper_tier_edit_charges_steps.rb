@@ -7,8 +7,9 @@ Given(/I choose to edit my registration "([^"]*)"$/) do |reg_no|
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WASTECARRIERSPASSWORD"]
   )
-  @front_app.waste_carrier_registrations_page.edit(reg: reg_no)
   @registration_number = reg_no
+
+  @front_app.waste_carrier_registrations_page.edit(reg: reg_no)
 end
 
 When(/^I change my registration type to "([^"]*)"$/) do |registration_type|

@@ -30,7 +30,7 @@ end
 
 When(/^I choose to renew my registration from my registrations list$/) do
   @renewals_app.waste_carrier_registrations_page.wait_for_sign_out
-  @renewals_app.waste_carrier_registrations_page.user_registrations[0].renew_registration.click
+  @renewals_app.waste_carrier_registrations_page.registrations[0].renew_registration.click
 end
 
 Given(/^I choose to renew my registration$/) do
@@ -105,8 +105,11 @@ Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   )
 end
 
-Given(/^I choose registration "([^"]*)" for renewal$/) do |number|
-  @renewals_app.waste_carrier_registrations_page.renew(reg: number)
+Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
+  @registration_number = reg_no
+
+  @renewals_app.waste_carrier_registrations_page.renew(reg: reg_no)
+
 end
 
 When(/^I complete my limited company renewal steps$/) do
