@@ -7,7 +7,10 @@ Given(/I choose to delete my registration "([^"]*)"$/) do |reg_no|
     password: ENV["WASTECARRIERSPASSWORD"]
   )
   @registration_number = reg_no
-  @front_app.waste_carrier_registrations_page.registrations[0].delete.click
+
+  registration = @front_app.waste_carrier_registrations_page.registration(@registration_number)
+  # puts "Reg no is #{registration[:info].reg_number.text}"
+  registration[:controls].delete.click
 end
 
 When(/^I delete my registration$/) do

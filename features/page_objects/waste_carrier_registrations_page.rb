@@ -36,16 +36,15 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
     result = nil
 
     registration_info.each_with_index do |info, index|
-      if info.reg_number.text == registration_number
-        result = {
-          info: info,
-          controls: registration_controls[index]
-        }
-        break
-      end
+      next unless info.reg_number.text == registration_number
+      result = {
+        info: info,
+        controls: registration_controls[index]
+      }
+      break
     end
 
     result
   end
 
-  end
+end
