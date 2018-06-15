@@ -175,11 +175,6 @@ task :reset_registrations_db do
   reset_registrations
 end
 
-desc "Reindex elastic search"
-task :elastic_search do
-  elastic_search
-end
-
 # rubocop:disable Metrics/LineLength
 def reset_renewals
   vagrant_loc = ENV["VAGRANT_KEY_LOCATION"]
@@ -206,16 +201,5 @@ def reset_registrations
   end
 
   puts "Databases reset"
-end
-
-def elastic_search
-  vagrant_loc = ENV["VAGRANT_KEY_LOCATION"]
-  raise ArgumentError, "Environment variable VAGRANT_KEY_LOCATION not set" if vagrant_loc.nil? || vagrant_loc.empty?
-
-  vagrant_key = File.join(vagrant_loc, "private_key")
-  cmd = "ssh -i #{vagrant_key} vagrant@192.168.33.11 'cd /vagrant/waste-carriers-service/bin && WCRS_SERVICES_ADMIN_PORT=9091 . reindex_elasticsearch.sh'"
-  system(cmd)
-
-  puts "Elastic search reindexed"
 end
 # rubocop:enable Metrics/LineLength
