@@ -9,6 +9,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
   element(:heading, :xpath, "//h1[contains(text(), 'Worldpay goes here')]")
   element(:postcode, "#postcode")
   element(:pay, "#op-PMMakePayment")
+  element(:cancel, "img[alt='Cancel']")
 
   # Used for test simulation
   element(:submit_button_renew, "input[type='submit']")
@@ -24,7 +25,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
   # Card holder names
   @authorised = "3d.authorised"
   @refused = "3d.refused"
-  @error = "3d.error"
+  @error = "3d.errored"
 
   # Security codes (CSV)
   @approved = "555"

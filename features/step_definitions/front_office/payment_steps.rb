@@ -36,7 +36,7 @@ When(/^I have my credit card payment rejected$/) do
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -47,10 +47,19 @@ When(/^I have my credit card payment rejected$/) do
   @renewals_app.worldpay_secure_page.submit
 end
 
-Then(/^I can pay with another card$/) do
+When(/^I cancel my credit card payment$/) do
   @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
   @renewals_app.worldpay_card_choice_page.submit
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+  @renewals_app.worldpay_card_details_page.cancel.click
+end
+
+Then(/^(?:I can pay with another card|I try my credit card payment again)$/) do
+  @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
+  @renewals_app.worldpay_card_choice_page.submit
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
