@@ -150,7 +150,8 @@ end
 desc "Run all renewal tests"
 task :renewals do
   reset_renewals
-  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @renewal --tags ~@todo --tags ~@broken --tags ~@email)
+  # sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @renewal --tags ~@todo --tags ~@broken --tags ~@email)
+  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @payments)
 end
 
 desc "Run all registration tests"
