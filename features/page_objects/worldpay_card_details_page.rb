@@ -6,7 +6,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
   element(:expiry_month, "select[name='cardExp.month']")
   element(:expiry_year, "select[name='cardExp.year']")
   element(:cardholder_name, "#name")
-
+  element(:postcode, "#postcode")
   element(:pay, "#op-PMMakePayment")
 
   # Used for test simulation
@@ -34,6 +34,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
     cardholder_name.set(args[:cardholder_name]) if args.key?(:cardholder_name)
     expiry_month.select(args[:expiry_month]) if args.key?(:expiry_month)
     expiry_year.select(args[:expiry_year]) if args.key?(:expiry_year)
+    postcode.set(args[:postcode]) if args.key?(:postcode)
     click(pay)
   end
 

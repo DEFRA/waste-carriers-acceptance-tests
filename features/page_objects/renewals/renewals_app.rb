@@ -173,5 +173,9 @@ class RenewalsApp
     @last_page = WorldpayCardDetailsPage.new
   end
 
+  def worldpay_secure_page
+    @last_page = WorldpaySecurePage.new
+  end
+
 end
 # rubocop:enable Metrics/ClassLength

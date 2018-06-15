@@ -7,7 +7,9 @@ class WorldpayCardDetailsPage < SitePrism::Page
   element(:expiry_year, "select[name='cardExp.year']")
   element(:cardholder_name, "#name")
   element(:heading, :xpath, "//h1[contains(text(), 'Worldpay goes here')]")
+  element(:postcode, "#postcode")
   element(:pay, "#op-PMMakePayment")
+  element(:cancel, "img[alt='Cancel']")
 
   # Used for test simulation
   element(:submit_button_renew, "input[type='submit']")
@@ -23,7 +25,7 @@ class WorldpayCardDetailsPage < SitePrism::Page
   # Card holder names
   @authorised = "3d.authorised"
   @refused = "3d.refused"
-  @error = "3d.error"
+  @error = "3d.errored"
 
   # Security codes (CSV)
   @approved = "555"
@@ -34,9 +36,9 @@ class WorldpayCardDetailsPage < SitePrism::Page
     card_number.set(args[:card_number]) if args.key?(:card_number)
     security_code.set(args[:security_code]) if args.key?(:security_code)
     cardholder_name.set(args[:cardholder_name]) if args.key?(:cardholder_name)
-
     expiry_month.select(args[:expiry_month]) if args.key?(:expiry_month)
     expiry_year.select(args[:expiry_year]) if args.key?(:expiry_year)
+    postcode.set(args[:postcode]) if args.key?(:postcode)
     click(pay)
   end
 

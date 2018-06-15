@@ -151,8 +151,20 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
-  @renewals_app.worldpay_card_details_page.submit_button_renew
-  @renewals_app.worldpay_card_details_page.submit_button.click
+  @renewals_app.worldpay_card_choice_page.submit
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
+  @renewals_app.worldpay_card_details_page.wait_for_heading
+  @renewals_app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year
+  )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
@@ -201,8 +213,20 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
+  @renewals_app.worldpay_card_choice_page.submit
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
   @renewals_app.worldpay_card_details_page.wait_for_heading
-  @renewals_app.worldpay_card_details_page.submit_button.click
+  @renewals_app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year
+  )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I complete my local authority renewal steps$/) do
@@ -228,8 +252,20 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
+  @renewals_app.worldpay_card_choice_page.submit
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
   @renewals_app.worldpay_card_details_page.wait_for_heading
-  @renewals_app.worldpay_card_details_page.submit_button.click
+  @renewals_app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year
+  )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I complete my limited liability partnership renewal steps$/) do
@@ -266,8 +302,20 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
+  @renewals_app.worldpay_card_choice_page.submit
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
   @renewals_app.worldpay_card_details_page.wait_for_heading
-  @renewals_app.worldpay_card_details_page.submit_button.click
+  @renewals_app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year
+  )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
@@ -338,8 +386,20 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
+  @renewals_app.worldpay_card_choice_page.submit
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
   @renewals_app.worldpay_card_details_page.wait_for_heading
-  @renewals_app.worldpay_card_details_page.submit_button.click
+  @renewals_app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year
+  )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I add two partners to my renewal$/) do
@@ -399,8 +459,21 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
+  @renewals_app.worldpay_card_choice_page.submit
+  # finds today's date and adds another year to expiry date
+  time = Time.new
+
+  @year = time.year + 1
   @renewals_app.worldpay_card_details_page.wait_for_heading
-  @renewals_app.worldpay_card_details_page.submit_button.click
+  @renewals_app.worldpay_card_details_page.submit(
+    card_number: "6759649826438453",
+    security_code: "555",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: @year,
+    postcode: "90210"
+  )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I confirm my business type$/) do
