@@ -164,6 +164,7 @@ When(/^I complete my limited company renewal steps$/) do
     expiry_month: "12",
     expiry_year: @year
   )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
@@ -225,6 +226,7 @@ When(/^I complete my sole trader renewal steps$/) do
     expiry_month: "12",
     expiry_year: @year
   )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I complete my local authority renewal steps$/) do
@@ -263,6 +265,7 @@ When(/^I complete my local authority renewal steps$/) do
     expiry_month: "12",
     expiry_year: @year
   )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I complete my limited liability partnership renewal steps$/) do
@@ -312,6 +315,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
     expiry_month: "12",
     expiry_year: @year
   )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
@@ -395,6 +399,7 @@ When(/^I complete my partnership renewal steps$/) do
     expiry_month: "12",
     expiry_year: @year
   )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I add two partners to my renewal$/) do
@@ -465,8 +470,10 @@ When(/^I complete my overseas company renewal steps$/) do
     security_code: "555",
     cardholder_name: "3d.authorised",
     expiry_month: "12",
-    expiry_year: @year
+    expiry_year: @year,
+    postcode: "90210"
   )
+  @renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I confirm my business type$/) do

@@ -49,4 +49,5 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
     expiry_month: "12",
     expiry_year: @year
   )
+  @renewals_app.worldpay_secure_page.submit
 end
