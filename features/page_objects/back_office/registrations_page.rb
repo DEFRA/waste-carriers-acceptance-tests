@@ -39,7 +39,7 @@ class RegistrationsPage < SitePrism::Page
       if search_results[0].status.text == text_to_check
         refresh_cnt = 360
       else
-        # reloads the page if service layer hasn't updated elastic search in time
+        # reloads the page if service layer hasn't updated in time
         page.evaluate_script("window.location.reload()")
         sleep(1)
         refresh_cnt += 1
