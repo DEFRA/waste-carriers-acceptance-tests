@@ -7,7 +7,7 @@ def scroll_to(element)
          var element = document.evaluate('#{element.path}', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
          window.scrollTo(0, element.getBoundingClientRect().top + pageYOffset - 200);
        }();
-     SCRIPT
+  SCRIPT
 end
 
 def click(node)

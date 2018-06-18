@@ -1,4 +1,3 @@
-
 Given(/I choose to edit my registration "([^"]*)"$/) do |reg_no|
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
