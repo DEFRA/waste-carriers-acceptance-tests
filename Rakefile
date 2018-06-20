@@ -63,7 +63,7 @@ task :ie11_W10 do
   sh %( QUKE_CONFIG=.config_ie11_W10.yml bundle exec quke --tags @wip --tags ~@expiry)
 end
 
-desc "Run Internet explorer 9.0 Windows 7 test"
+desc "Run Internet explorer 10.0 Windows 8 test"
 task :ie10_W8 do
   reset
   sh %( QUKE_CONFIG=.config_ie10_W8.yml bundle exec quke --tags @wip --tags ~@expiry)

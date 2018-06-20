@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal
+@frontoffice @upper_tier @renewal @convictions
 Feature: Registered waste carrier declares conviction during renewal
   As a member of the waste carriers team in NCCC
   I want to be informed of any potential matches with the Environment Agencies convictions database
@@ -8,4 +8,16 @@ Feature: Registered waste carrier declares conviction during renewal
   	 Given I renew my registration using my previous registration number "CBDU22"
   	   And I have signed in to renew my registration
       When I complete my limited company renewal steps declaring a conviction
+  	  Then I will be notified my renewal is pending checks
+@todo
+   Scenario: Limited company renews upper tier registration from renewals page not declaring conviction
+  	 Given I renew my registration using my previous registration number "CBDU31"
+  	   And I have signed in to renew my registration
+  	  When I complete my limited company renewal steps not declaring a conviction
+  	  Then I will be notified my renewal is pending checks
+@todo
+   Scenario: Limited company renews upper tier registration from renewals page not declaring company conviction
+  	 Given I renew my registration using my previous registration number "CBDU32"
+  	   And I have signed in to renew my registration
+  	  When I complete my limited company renewal steps not declaring a company conviction
   	  Then I will be notified my renewal is pending checks
