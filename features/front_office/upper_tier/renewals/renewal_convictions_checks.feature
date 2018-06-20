@@ -9,13 +9,13 @@ Feature: Registered waste carrier declares conviction during renewal
   	   And I have signed in to renew my registration
       When I complete my limited company renewal steps declaring a conviction
   	  Then I will be notified my renewal is pending checks
-
+@todo
    Scenario: Limited company renews upper tier registration from renewals page not declaring conviction
   	 Given I renew my registration using my previous registration number "CBDU31"
   	   And I have signed in to renew my registration
   	  When I complete my limited company renewal steps not declaring a conviction
   	  Then I will be notified my renewal is pending checks
-
+@todo
    Scenario: Limited company renews upper tier registration from renewals page not declaring company conviction
   	 Given I renew my registration using my previous registration number "CBDU32"
   	   And I have signed in to renew my registration

@@ -112,6 +112,7 @@ end
 
 Then(/^a new registration will be "([^"]*)"$/) do |status|
   @back_app.agency_sign_in_page.load
+  puts @new_registration_number
   @back_app.registrations_page.search(search_input: @new_registration_number)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
