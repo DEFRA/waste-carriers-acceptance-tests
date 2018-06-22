@@ -5,7 +5,7 @@ Given(/^I am on the payment page$/) do
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "Yes")
-  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers (e.g. a gardener taking away grass cuttings)")
+  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers, for example a gardener taking away grass cuttings")
   @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit

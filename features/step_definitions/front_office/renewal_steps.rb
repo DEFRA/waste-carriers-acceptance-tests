@@ -74,7 +74,7 @@ When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_t
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "Yes")
-  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers (e.g. a gardener taking away grass cuttings)")
+  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers, for example a gardener taking away grass cuttings")
   @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.carrier_type_page.submit(answer: registration_type)
 end
@@ -86,7 +86,7 @@ When(/^I answer questions indicating I should be a lower tier waste carrier$/) d
   @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "Yes")
   @renewals_app.service_provided_page.submit(answer: "Our customers create the waste, we just collect or move it for them")
-  @renewals_app.waste_types_page.submit(answer: "Yes")
+  @renewals_app.waste_types_page.submit(answer: "We only deal with these types of waste")
 end
 
 Given(/^I have signed in to renew my registration$/) do
@@ -191,7 +191,7 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "Yes")
-  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers (e.g. a gardener taking away grass cuttings)")
+  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers, for example a gardener taking away grass cuttings")
   @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
@@ -274,7 +274,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "Yes")
-  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers (e.g. a gardener taking away grass cuttings)")
+  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers, for example a gardener taking away grass cuttings")
   @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
@@ -324,7 +324,7 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "Yes")
-  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers (e.g. a gardener taking away grass cuttings)")
+  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers, for example a gardener taking away grass cuttings")
   @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
@@ -362,7 +362,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "Yes")
   @renewals_app.service_provided_page.submit(answer: "Our customers create the waste, we just collect or move it for them")
-  @renewals_app.waste_types_page.submit(answer: "No")
+  @renewals_app.waste_types_page.submit(answer: "We deal with more than just the waste listed above")
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -409,7 +409,7 @@ When(/^I add two partners to my renewal$/) do
   @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "Yes")
   @renewals_app.service_provided_page.submit(answer: "Our customers create the waste, we just collect or move it for them")
-  @renewals_app.waste_types_page.submit(answer: "No")
+  @renewals_app.waste_types_page.submit(answer: "We deal with more than just the waste listed above")
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
@@ -522,7 +522,7 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
   @renewals_app.other_businesses_page.submit(answer: "Yes")
-  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers (e.g. a gardener taking away grass cuttings)")
+  @renewals_app.service_provided_page.submit(answer: "We create the waste as part of a service we provide to our customers, for example a gardener taking away grass cuttings")
   @renewals_app.construction_waste_page.submit(answer: "Yes")
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit

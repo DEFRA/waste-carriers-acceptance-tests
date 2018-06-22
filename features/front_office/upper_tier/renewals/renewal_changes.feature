@@ -20,19 +20,19 @@ Feature: Registered waste carrier chooses to renew their registration from start
       Given I renew my registration using my previous registration number "CBDU18"
         And I have signed in to renew my registration
         But I change my place of business location to "Northern Ireland"
-       Then I will be notified "You should register in Northern Ireland"
+       Then I will be notified "You can register in Northern Irelan"
  
   Scenario: Sole trader changes place of business location to Scotland
       Given I renew my registration using my previous registration number "CBDU19"
         And I have signed in to renew my registration
         But I change my place of business location to "Scotland"
-       Then I will be notified "You should register in Scotland"
+       Then I will be notified "You can register in Scotland"
 
   Scenario: Sole trader changes place of business location to Wales
       Given I renew my registration using my previous registration number "CBDU20"
         And I have signed in to renew my registration
         But I change my place of business location to "Wales"
-       Then I will be notified "You should register in Wales"
+       Then I will be notified "You can register in Wales"
 
     Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change
       Given I renew my registration using my previous registration number "CBDU4"
