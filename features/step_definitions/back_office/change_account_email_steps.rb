@@ -18,8 +18,8 @@ Given(/^the user has 2 registrations$/) do
 
   @front_app.business_details_page.submit(
     company_name: Faker::Company.name,
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
 
   @front_app.contact_details_page.submit(
@@ -43,8 +43,8 @@ Given(/^the user has 2 registrations$/) do
 
   @front_app.business_details_page.submit(
     company_name: Faker::Company.name,
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
 
   @front_app.contact_details_page.submit(

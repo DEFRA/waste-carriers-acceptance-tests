@@ -13,8 +13,8 @@ Given(/^I have my public body upper tier registration completed for me$/) do
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD UT Public Body",
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -60,9 +60,9 @@ When(/^I have my public body upper tier renewal completed for me$/) do
   @back_app.construction_waste_question_page.submit(choice: :yes)
   @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @back_app.renewal_information_page.submit
-  @back_app.post_code_page.submit(postcode: "S60 1BY")
+  @back_app.post_code_page.submit(postcode: "BS1 5AH")
   @back_app.business_address_page.submit(
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   people = @back_app.key_people_page.key_people
 
