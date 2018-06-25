@@ -7,9 +7,9 @@ When(/^I complete my limited company renewal without changing any information pa
   @front_app.renewal_information_page.submit
   @front_app.limited_company_number_page.submit(companies_house_number: @companies_house_number)
   @front_app.company_name_page.submit
-  @front_app.post_code_page.submit(postcode: "S60 1BY")
+  @front_app.post_code_page.submit(postcode: "BS1 5AH")
   @front_app.business_address_page.submit(
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   people = @front_app.key_people_page.key_people
 
@@ -52,9 +52,9 @@ When(/^I complete my limited company registration without changing any informati
   @front_app.renewal_information_page.submit
   @front_app.limited_company_number_page.submit(companies_house_number: @companies_house_number)
   @front_app.company_name_page.submit
-  @front_app.post_code_page.submit(postcode: "S60 1BY")
+  @front_app.post_code_page.submit(postcode: "BS1 5AH")
   @front_app.business_address_page.submit(
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   people = @front_app.key_people_page.key_people
 

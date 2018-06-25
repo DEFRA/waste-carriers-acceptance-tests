@@ -10,8 +10,8 @@ Given(/^I have an application paid by credit card$/) do
   @back_app.business_details_page.submit(
     companies_house_number: "00445790",
     company_name: "Credit card test",
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",

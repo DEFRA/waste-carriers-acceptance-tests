@@ -6,8 +6,8 @@ When(/^I have my sole trader upper tier waste carrier application completed for 
   @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD UT Sole Trader",
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -31,8 +31,8 @@ When(/^I have my limited company as a upper tier waste carrier application compl
   @back_app.business_details_page.submit(
     companies_house_number: "00445790",
     company_name: "AD UT Company limited",
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -59,8 +59,8 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD Upper Tier Partnership",
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -86,8 +86,8 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD UT Public Body",
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -113,8 +113,8 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
   @back_app.business_details_page.submit(
     companies_house_number: ch_no,
     company_name: "AD UT Company convictions check ltd",
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   # Stores companies house number for later
   @companies_house_number = ch_no
@@ -165,8 +165,8 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
   @back_app.business_details_page.submit(
     companies_house_number: "00445790",
     company_name: co_name,
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -215,8 +215,8 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
   @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD UT Sole Trader",
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -261,8 +261,8 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.registration_type_page.submit(choice: :broker_dealer)
   @back_app.business_details_page.submit(
     company_name: "AD Upper Tier Partnership",
-    postcode: "S60 1BY",
-    result: "ENVIRONMENT AGENCY, BOW BRIDGE CLOSE, ROTHERHAM, S60 1BY"
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
