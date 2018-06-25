@@ -27,8 +27,8 @@ When(/^I complete my application of my limited company as an upper tier waste ca
   @front_app.relevant_convictions_page.submit(choice: :no)
   @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end
@@ -66,8 +66,8 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   @front_app.relevant_convictions_page.submit(choice: :no)
   @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
   @front_app.order_page.submit(

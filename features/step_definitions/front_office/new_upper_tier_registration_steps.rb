@@ -27,8 +27,8 @@ When(/^I complete my aplication of my partnership as a upper tier waste carrier$
   @front_app.relevant_convictions_page.submit(choice: :no)
   @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end
@@ -59,8 +59,8 @@ When(/^I complete my application of my public body as an upper tier waste carrie
   @front_app.relevant_convictions_page.submit(choice: :no)
   @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end
@@ -91,8 +91,8 @@ When(/^I complete my application of my sole trader business as a upper tier wast
   @front_app.relevant_convictions_page.submit(choice: :no)
   @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end

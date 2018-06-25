@@ -24,7 +24,7 @@ Then(/^the registration has a "([^"]*)" status$/) do |status|
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.wait_for_status(status)

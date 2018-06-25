@@ -4,7 +4,7 @@ Given(/I choose to edit my registration "([^"]*)"$/) do |reg_no|
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @registration_number = reg_no
 
@@ -104,7 +104,7 @@ Then(/^its previous registration will be "([^"]*)"$/) do |status|
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @back_app.registrations_page.search(search_input: @registration_number)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)

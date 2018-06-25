@@ -33,8 +33,8 @@ Given(/^the user has 2 registrations$/) do
   @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
   @front_app.start_page.load
@@ -58,7 +58,7 @@ Given(/^the user has 2 registrations$/) do
   @front_app.check_details_page.submit
 
   @front_app.waste_carrier_sign_in_page.submit(
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 
   @registrations << @front_app.confirmation_page.registration_number.text
@@ -69,7 +69,7 @@ When(/^I change the account email$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 
   @back_app.registrations_page.search(search_input: @registration)
@@ -85,7 +85,7 @@ When(/^I change the account email for both$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 
   @registrations.each do |reg_no|
