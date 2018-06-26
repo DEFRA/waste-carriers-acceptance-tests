@@ -38,3 +38,5 @@ output.html
 # Ignore bundler config.
 /.bundle/
 
+# Dotenv config files
+.env
