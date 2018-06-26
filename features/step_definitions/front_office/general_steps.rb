@@ -72,6 +72,6 @@ When(/^I have signed into my account$/) do
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: @email_address,
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end

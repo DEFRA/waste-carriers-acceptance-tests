@@ -92,7 +92,7 @@ end
 Given(/^I have signed in to renew my registration$/) do
   @renewals_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
 
@@ -101,7 +101,7 @@ Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   @renewals_app.waste_carrier_sign_in_page.load
   @renewals_app.waste_carrier_sign_in_page.submit(
     email: username,
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
 

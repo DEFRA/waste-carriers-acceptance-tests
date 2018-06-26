@@ -19,8 +19,8 @@ When(/^I complete my application of my charity as a lower tier waste carrier$/) 
   @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end
@@ -46,8 +46,8 @@ When(/^I complete my application of my local authority as a lower tier waste car
   @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end
@@ -76,8 +76,8 @@ When(/^I complete my application of my partnership as a lower tier waste carrier
   @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end
@@ -105,8 +105,8 @@ When(/^I complete my application of my public body as a lower tier waste carrier
   @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end
@@ -135,8 +135,8 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
   @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end
@@ -165,8 +165,8 @@ Given(/^I complete my application of my limited company "([^"]*)" as a lower tie
   @front_app.check_details_page.submit
 
   @front_app.sign_up_page.submit(
-    registration_password: ENV["WASTECARRIERSPASSWORD"],
-    confirm_password: ENV["WASTECARRIERSPASSWORD"],
+    registration_password: ENV["WCRS_DEFAULT_PASSWORD"],
+    confirm_password: ENV["WCRS_DEFAULT_PASSWORD"],
     confirm_email: @email_address
   )
 end

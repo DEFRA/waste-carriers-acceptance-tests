@@ -4,7 +4,7 @@ Given(/I choose to delete my registration "([^"]*)"$/) do |reg_no|
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @registration_number = reg_no
 

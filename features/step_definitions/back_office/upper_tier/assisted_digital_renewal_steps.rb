@@ -3,7 +3,7 @@ Given(/^I have my public body upper tier registration completed for me$/) do
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WASTECARRIERSPASSWORD"]
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
