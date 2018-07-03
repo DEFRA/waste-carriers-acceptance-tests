@@ -30,7 +30,7 @@ Feature: Upper tier registration edit charges
 @broken
   Scenario: Limited company changing its companies house number incurring new registration charge
   Given I choose to edit my registration "CBDU104"
-   When its companies house number changes to "SC171417"
+   When its companies house number changes to "10926928"
     And the charge "£154.00" has been paid
    Then its previous registration will be "De-Registered"
     And a new registration will be "Registered"
