@@ -20,7 +20,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
       Given I renew my registration using my previous registration number "CBDU18"
         And I have signed in to renew my registration
         But I change my place of business location to "Northern Ireland"
-       Then I will be notified "You can register in Northern Irelan"
+       Then I will be notified "You can register in Northern Ireland"
  
   Scenario: Sole trader changes place of business location to Scotland
       Given I renew my registration using my previous registration number "CBDU19"
