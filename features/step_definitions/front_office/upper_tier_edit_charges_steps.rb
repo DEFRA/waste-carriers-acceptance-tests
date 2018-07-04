@@ -45,7 +45,9 @@ When(/^I change my organisation type to a limited company$/) do
   @front_app.service_provided_question_page.submit(choice: :not_main_service)
   @front_app.construction_waste_question_page.submit(choice: :yes)
   @front_app.registration_type_page.submit(choice: :carrier_dealer)
-  @front_app.business_details_page.submit(companies_house_number: "00445790")
+  @front_app.business_details_page.submit(companies_house_number: "00445790",
+                                          postcode: "BS1 5AH",
+                                          result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @front_app.contact_details_page.submit
   @front_app.postal_address_page.submit
   @front_app.key_people_page.submit
@@ -59,7 +61,11 @@ When(/^its companies house number changes to "([^"]*)"$/) do |ch_no|
   @front_app.other_businesses_question_page.submit
   @front_app.construction_waste_question_page.submit
   @front_app.registration_type_page.submit
-  @front_app.business_details_page.submit(companies_house_number: ch_no)
+  @front_app.business_details_page.submit(
+    companies_house_number: ch_no,
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  )
   @front_app.contact_details_page.submit
   @front_app.postal_address_page.submit
   @front_app.key_people_page.submit
@@ -112,7 +118,6 @@ end
 
 Then(/^a new registration will be "([^"]*)"$/) do |status|
   @back_app.agency_sign_in_page.load
-  puts @new_registration_number
   @back_app.registrations_page.search(search_input: @new_registration_number)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
