@@ -47,7 +47,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      Then I will be notified my renewal is complete
 
   Scenario: Partnership renews upper tier registration but requires more than one partner to renew
-    Given I renew my registration using my previous registration number "CBDU211"
+    Given I renew my registration using my previous registration number "CBDU204"
       And I have signed in to renew my registration
      When I add two partners to my renewal
       But remove one partner and attempt to continue with my renewal

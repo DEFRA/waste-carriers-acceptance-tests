@@ -47,7 +47,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
        Then I will be notified "You should register as a lower tier waste carrier"
 
   Scenario: Partnership changes business type to Limited Liability Partnership
-      Given I renew my registration using my previous registration number "CBDU14"
+      Given I renew my registration using my previous registration number "CBDU211"
         And I have signed in to renew my registration
         But I change the business type to "Limited liability partnership"
        Then I will be able to continue my renewal
