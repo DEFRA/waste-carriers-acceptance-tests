@@ -87,7 +87,7 @@ custom:
     # back_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
     # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
     # front_office_renewals: "http://localhost:3002"
-    # front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
+    # front_office_renewals_sign_in: "http://localhost:3002/fo/users/sign_in"
     
 
 # If you are running Quke behind a proxy you can configure the proxy details
