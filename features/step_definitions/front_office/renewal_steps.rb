@@ -182,7 +182,7 @@ end
 Then(/^I will be able to continue my renewal$/) do
   @renewals_app.other_businesses_page.wait_for_heading(5)
   expect(@renewals_app.other_businesses_page.current_url).to include "/tier-check"
-  visit("/users/sign_out")
+  visit("/fo/users/sign_out")
 end
 
 When(/^I complete my sole trader renewal steps$/) do
@@ -484,24 +484,24 @@ end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
   expect(@renewals_app.waste_carrier_sign_in_page).to have_text(message)
-  visit("/users/sign_out")
+  visit("/fo/users/sign_out")
 end
 
 Then(/^I will be asked to add another partner$/) do
   expect(@renewals_app.main_people_page).to have_text("You must add the details of at least 2 people")
-  visit("/users/sign_out")
+  visit("/fo/users/sign_out")
 end
 
 Then(/^I will be notified my renewal is complete$/) do
   @renewals_app.renewal_complete_page.wait_for_heading
   expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
   expect(@renewals_app.renewal_complete_page).to have_text(@registration_number)
-  visit("/users/sign_out")
+  visit("/fo/users/sign_out")
 end
 
 Then(/^I will be advised "([^"]*)"$/) do |message|
   expect(@renewals_app.renewal_information_page).to have_text(message)
-  visit("/users/sign_out")
+  visit("/fo/users/sign_out")
 end
 
 Then(/^I will be told my registration can not be renewed$/) do
@@ -533,7 +533,7 @@ Then(/^I will be notified my renewal is pending checks$/) do
   @renewals_app.renewal_complete_page.wait_for_heading
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
-  visit("/users/sign_out")
+  visit("/fo/users/sign_out")
 end
 
 Then(/^I will be notified my renewal is pending payment$/) do
@@ -541,7 +541,7 @@ Then(/^I will be notified my renewal is pending payment$/) do
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
   expect(@renewals_app.renewal_received_page).to have_text("pay the renewal charge")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
-  visit("/users/sign_out")
+  visit("/fo/users/sign_out")
 end
 
 # rubocop:enable Metrics/LineLength
