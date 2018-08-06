@@ -81,6 +81,8 @@ custom:
     front_office_renewals: "http://localhost:3002"
     front_office_renewals_sign_in: "http://localhost:3002/fo/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"
+    back_office_renewals: "http:/localhost:8001"
+    back_office_renewals_sign_in: "http:/localhost:8001/bo/users/sign_in"
     back_office_admin: "http:/localhost:3000/admins/sign_in"
 
   # Staging setup
