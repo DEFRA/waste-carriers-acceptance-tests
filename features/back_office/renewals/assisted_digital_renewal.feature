@@ -7,6 +7,6 @@ Feature: Assisted digital renewal of an upper tier public body
 
 Scenario: Public body has their upper tier registration renewed by NCCC
 Given I have signed into the renewals service
-  And I choose to renew "CBDU216"
- When I renew the public body registration
+  And I choose to renew "CBDU120"
+ When I renew the local authority registration
  Then my registration will have been renewed
