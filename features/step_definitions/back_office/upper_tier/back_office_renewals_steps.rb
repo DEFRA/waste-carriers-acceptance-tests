@@ -15,7 +15,7 @@ Given(/^I choose to renew "([^"]*)"$/) do |reg|
   # save registration number for checks later on
   @registration_number = reg
 end
-
+# rubocop:disable Metrics/LineLength
 When(/^I renew the local authority registration$/) do
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(location: "England")
@@ -41,6 +41,7 @@ When(/^I renew the local authority registration$/) do
   @back_renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
   @back_renewals_app.worldpay_card_choice_page.submit
   # finds today's date and adds another year to expiry date
+  # rubocop:enable Metrics/LineLength
   time = Time.new
 
   @year = time.year + 1
