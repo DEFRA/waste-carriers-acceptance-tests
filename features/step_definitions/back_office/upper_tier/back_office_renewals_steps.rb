@@ -19,7 +19,7 @@ end
 When(/^I renew the local authority registration$/) do
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(location: "England")
-  @back_renewals_app.confirm_business_type_page.submit
+  @back_renewals_app.confirm_business_type_page.submit(answer: "Local authority or public body")
   @back_renewals_app.tier_check_page.submit(answer: "I know I need an upper tier registration (continue)")
   @back_renewals_app.carrier_type_page.submit
   @back_renewals_app.renewal_information_page.submit
@@ -32,7 +32,10 @@ When(/^I renew the local authority registration$/) do
   @back_renewals_app.declare_convictions_page.submit(answer: "No")
   @back_renewals_app.contact_name_page.submit
   @back_renewals_app.contact_telephone_number_page.submit
-  @back_renewals_app.contact_email_page.submit
+  @back_renewals_app.contact_email_page.submit(
+    email: "bo-user@waste-exemplar.gov.uk",
+    confirm_email: "bo-user@waste-exemplar.gov.uk"
+  )
   @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @back_renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @back_renewals_app.check_your_answers_page.submit
