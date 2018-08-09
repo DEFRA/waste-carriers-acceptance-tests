@@ -137,7 +137,7 @@ end
 
 desc "Run all registration tests"
 task :registrations do
-  reset_dbs
+  # reset_dbs
   sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags ~@renewal --tags ~@todo --tags ~@broken --tags ~@email)
 end
 
