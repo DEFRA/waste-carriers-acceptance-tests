@@ -9,7 +9,7 @@
     "firstName" : "Bob",
     "lastName" : "Carolgees",
     "phoneNumber" : "012345678",
-    "accountEmail" : "agencyuser@nccc.gov.uk",
+    "accountEmail" : "agency-user@wcr.gov.uk",
     "declaredConvictions" : "no",
     "declaration" : "1",
     "regIdentifier" : "CBDU117",
@@ -51,7 +51,7 @@
                 "dateCreated" : ISODate("2018-05-30T08:05:11.000Z"),
                 "worldPayStatus" : "AUTHORISED",
                 "dateLastUpdated" : ISODate("2018-05-30T08:05:19.231Z"),
-                "updatedByUser" : "agencyuser@nccc.gov.uk",
+                "updatedByUser" : "agency-user@wcr.gov.uk",
                 "description" : "New Waste Carrier Registration: CBDU117 for Upper tier revoke, Plus 2 copy cards"
             }
         ],
@@ -65,7 +65,7 @@
                 "dateEntered" : ISODate("2018-05-30T08:05:19.166Z"),
                 "registrationReference" : "Worldpay",
                 "worldPayPaymentStatus" : "AUTHORISED",
-                "updatedByUser" : "agencyuser@nccc.gov.uk",
+                "updatedByUser" : "agency-user@wcr.gov.uk",
                 "comment" : "Paid via Worldpay",
                 "paymentType" : "WORLDPAY"
             }

@@ -63,15 +63,15 @@ javascript_errors: false
 custom:
   accounts:
     agency_user:
-      username: agencyuser@nccc.gov.uk
+      username: agency-user@wcr.gov.uk
     agency_user_with_payment_refund:
-      username: agencyrefundpayment1@waste-exemplar.gov.uk
+      username: agency-refund-payment-user@wcr.gov.uk
     finance_admin:
-      username: financeadmin1@waste-exemplar.gov.uk
+      username: finance-admin-user@wcr.gov.uk
     finance_basic:
-      username: financebasic2@waste-exemplar.gov.uk
+      username: finance-user@wcr.gov.uk
     waste_carrier:
-      username: user@waste-exemplar.gov.uk
+      username: user@wcr.gov.uk
   urls:
     # Local
     front_office: "http://10.64.66.173:3000/registrations/start"

@@ -9,8 +9,8 @@
     "firstName" : "Quynn",
     "lastName" : "Mercado",
     "phoneNumber" : "+318-29-9420281",
-    "contactEmail" : "user@waste-exemplar.gov.uk",
-    "accountEmail" : "user@waste-exemplar.gov.uk",
+    "contactEmail" : "user@wcr.gov.uk",
+    "accountEmail" : "user@wcr.gov.uk",
     "declaredConvictions" : "no",
     "declaration" : "1",
     "regIdentifier" : "CBDU106",
@@ -46,7 +46,7 @@
                 "dateCreated" : ISODate("2018-05-23T11:08:48.000Z"),
                 "worldPayStatus" : "AUTHORISED",
                 "dateLastUpdated" : ISODate("2018-05-23T11:09:08.756Z"),
-                "updatedByUser" : "user@waste-exemplar.gov.uk",
+                "updatedByUser" : "user@wcr.gov.uk",
                 "description" : "Renew Waste Carrier Registration: CBDU35 for IR Company Name"
             }
         ],
@@ -60,7 +60,7 @@
                 "dateEntered" : ISODate("2018-05-23T11:09:08.718Z"),
                 "registrationReference" : "Worldpay",
                 "worldPayPaymentStatus" : "AUTHORISED",
-                "updatedByUser" : "user@waste-exemplar.gov.uk",
+                "updatedByUser" : "user@wcr.gov.uk",
                 "comment" : "Paid via Worldpay",
                 "paymentType" : "WORLDPAY"
             }
