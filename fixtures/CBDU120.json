@@ -9,7 +9,7 @@
     "firstName" : "Xandra",
     "lastName" : "Chandler",
     "phoneNumber" : "0117 9140000",
-    "accountEmail" : "agency-refund-payment-user@wcr.gov.uk",
+    "accountEmail" : "agency-refund-payment-user@example.com",
     "declaredConvictions" : "no",
     "declaration" : "1",
     "regIdentifier" : "CBDU120",
@@ -44,7 +44,7 @@
                 "dateCreated" : ISODate("2018-08-06T11:21:59.000Z"),
                 "worldPayStatus" : "AUTHORISED",
                 "dateLastUpdated" : ISODate("2018-08-06T11:22:21.193Z"),
-                "updatedByUser" : "agency-refund-payment-user@wcr.gov.uk",
+                "updatedByUser" : "agency-refund-payment-user@example.com",
                 "description" : "New Waste Carrier Registration: CBDU11 for Cohen Cunningham Plc"
             }
         ],
@@ -58,7 +58,7 @@
                 "dateEntered" : ISODate("2018-08-06T11:22:20.988Z"),
                 "registrationReference" : "Worldpay",
                 "worldPayPaymentStatus" : "AUTHORISED",
-                "updatedByUser" : "agency-refund-payment-user@wcr.gov.uk",
+                "updatedByUser" : "agency-refund-payment-user@example.com",
                 "comment" : "Paid via Worldpay",
                 "paymentType" : "WORLDPAY"
             }

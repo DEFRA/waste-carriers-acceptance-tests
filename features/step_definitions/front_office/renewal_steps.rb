@@ -544,4 +544,10 @@ Then(/^I will be notified my renewal is pending payment$/) do
   visit("/fo/users/sign_out")
 end
 
+When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |reg_no|
+  # renewal_url = Quke::Quke.config.custom["urls"]["front_office_renewals"] + "/fo/renew/#{reg}"
+
+  visit("/fo/renew/#{reg_no}")
+end
+
 # rubocop:enable Metrics/LineLength
