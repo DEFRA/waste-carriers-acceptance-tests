@@ -64,15 +64,15 @@ javascript_errors: false
 custom:
   accounts:
     agency_user:
-      username: agency-user@wcr.gov.uk
+      username: agency-user@example.com
     agency_user_with_payment_refund:
-      username: agency-refund-payment-user@wcr.gov.uk
+      username: agency-refund-payment-user@example.com
     finance_admin:
-      username: finance-admin-user@wcr.gov.uk
+      username: finance-admin-user@example.com
     finance_basic:
-      username: finance-user@wcr.gov.uk
+      username: finance-user@example.com
     waste_carrier:
-      username: user@wcr.gov.uk
+      username: user@example.com
   urls:
     # Local
     front_office: "http://http://10.64.66.173:3000/registrations/start"

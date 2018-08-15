@@ -32,8 +32,8 @@ When(/^I renew the local authority registration$/) do
   @back_renewals_app.contact_name_page.submit
   @back_renewals_app.contact_telephone_number_page.submit
   @back_renewals_app.contact_email_page.submit(
-    email: "bo-user@wcr.gov.uk",
-    confirm_email: "bo-user@wcr.gov.uk"
+    email: "bo-user@example.com",
+    confirm_email: "bo-user@example.com"
   )
   @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @back_renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
@@ -85,8 +85,8 @@ When(/^I renew the limited company registration$/) do
   @back_renewals_app.contact_name_page.submit
   @back_renewals_app.contact_telephone_number_page.submit
   @back_renewals_app.contact_email_page.submit(
-    email: "bo-user@wcr.gov.uk",
-    confirm_email: "bo-user@wcr.gov.uk"
+    email: "bo-user@example.com",
+    confirm_email: "bo-user@example.com"
   )
   @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 9XX")
   @back_renewals_app.contact_postcode_page.manual_address.click

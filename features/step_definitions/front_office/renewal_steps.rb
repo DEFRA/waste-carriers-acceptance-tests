@@ -544,4 +544,21 @@ Then(/^I will be notified my renewal is pending payment$/) do
   visit("/fo/users/sign_out")
 end
 
+When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |reg_no|
+  # renewal_url = Quke::Quke.config.custom["urls"]["front_office_renewals"] + "/fo/renew/#{reg}"
+
+  visit("/fo/renew/#{reg_no}")
+end
+
+When(/^view my registration on the dashboard$/) do
+  @renewals_app.renewal_complete_page.finished.click
+end
+
+Then(/^I will see my registration has been renewed$/) do
+  expect(@renewals_app.waste_carrier_registrations_page.registration_info[0].status.text).to have_text("ACTIVE")
+
+  registration = @renewals_app.waste_carrier_registrations_page.registration(@registration_number)
+  expect(registration[:controls].renew_registration).not_to have_text("Renew")
+end
+
 # rubocop:enable Metrics/LineLength
