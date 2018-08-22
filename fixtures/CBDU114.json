@@ -63,7 +63,7 @@
                 "dateReceived" : ISODate("2017-01-01T00:00:00.000Z"),
                 "dateEntered" : ISODate("2018-05-31T12:22:27.409Z"),
                 "registrationReference" : "Test",
-                "updatedByUser" : "agency-refund-payment-user@example.com",
+                "updatedByUser" : "agency-refund-payment-user@wcr.gov.uk",
                 "comment" : "postal order underpayment payment",
                 "paymentType" : "POSTALORDER"
             }

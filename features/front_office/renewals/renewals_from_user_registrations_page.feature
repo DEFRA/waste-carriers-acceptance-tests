@@ -3,7 +3,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   As a carrier of commercial waste
   I want to renew my waste carriers licence with the Environment Agency
   So I continue to be compliant with the law
-@todo
+
   Scenario: Limited company renews upper tier registration from registrations list
        Given I have signed in to renew my registration as "another-user@example.com"
   	     And I choose registration "CBDU213" for renewal
