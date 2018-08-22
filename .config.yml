@@ -63,15 +63,15 @@ javascript_errors: false
 custom:
   accounts:
     agency_user:
-      username: agency-user@example.com
+      username: agency-user@wcr.gov.uk
     agency_user_with_payment_refund:
-      username: agency-refund-payment-user@example.com
+      username: agency-refund-payment-user@wcr.gov.uk
     back_office_renewals_user:
-     username: bo-user@example.com  
+     username: bo-user@wcr.gov.uk 
     finance_admin:
-      username: finance-admin-user@example.com
+      username: finance-admin-user@wcr.gov.uk
     finance_basic:
-      username: finance-user@example.com
+      username: finance-user@wcr.gov.uk
     waste_carrier:
       username: user@example.com
     waste_carrier2:
@@ -89,12 +89,12 @@ custom:
 
   # Staging setup
   # urls:
-  #   front_office: "https://wc-stg.aws.defra.cloud/registrations/start"
-  #   front_office_sign_in: "https://wc-stg.aws.defra.cloud/users/sign_in"
-  #   front_office_renewals: "https://wc-stg.aws.defra.cloud"
-  #   front_office_renewals_sign_in: "https://wc-stg.aws.defra.cloud/users/sign_in"
-  #   back_office: "https://admin.wc-stg.aws.defra.cloud/agency_users/sign_in"
-  #   back_office_admin: "https://admin.wc-stg.aws.defra.cloud/admins/sign_in"
+  #   front_office: "https://waste-carriers-pre.aws.defra.cloud"
+  #   front_office_sign_in: "https://waste-carriers-pre.aws.defra.cloud/users/sign_in"
+  #   front_office_renewals: "https://waste-carriers-pre.aws.defra.cloud"
+  #   front_office_renewals_sign_in: "https://waste-carriers-pre.aws.defra.cloud/fo/users/sign_in"
+  #   back_office: "https://admin-waste-carriers-pre.aws.defra.cloud"
+  #   back_office_admin: "https://admin-waste-carriers-pre.aws.defra.cloud/agency_users/sign_in"
 
 # If you are running Quke behind a proxy you can configure the proxy details
 # here. You'll need either the hostname or IP of the proxy server (don't include

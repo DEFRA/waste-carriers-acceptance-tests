@@ -1,4 +1,4 @@
-@backoffice @upper_tier @renewal @broken
+@backoffice @upper_tier @renewal @ts
 
 Feature: Assisted digital renewal of an upper tier public body
   As a carrier of commerical waste

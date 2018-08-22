@@ -3,7 +3,7 @@ Feature: Refund (reverse) of application by finance administrator
 As a finance administrator 
 I want to be able to refund/reverse payments made in error
 So that the customer can be refunded their application charge
-
+@test
  Scenario: Refund of application charge from credit card payment
  Given I have an application paid by credit card
    And I am signed in as a finance admin
