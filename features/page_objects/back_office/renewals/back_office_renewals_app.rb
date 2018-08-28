@@ -12,6 +12,10 @@ class BackOfficeRenewalsApp
     @last_page = AdminSignInPage.new
   end
 
+  def agency_sign_in_page
+    @last_page = AgencySignInPage.new
+  end
+
   def bank_transfer_page
     @last_page = BankTransferPage.new
   end
@@ -88,6 +92,10 @@ class BackOfficeRenewalsApp
     @last_page = ExistingRegistrationPage.new
   end
 
+  def finish_assisted_page
+    @last_page = FinishAssistedPage.new
+  end
+
   def location_page
     @last_page = LocationPage.new
   end
@@ -120,6 +128,10 @@ class BackOfficeRenewalsApp
     @last_page = RegistrationCardsPage.new
   end
 
+  def renewals_dashboard_page
+    @last_page = RenewalsDashboardPage.new
+  end
+
   def renewal_information_page
     @last_page = RenewalInformationPage.new
   end
@@ -142,6 +154,10 @@ class BackOfficeRenewalsApp
 
   def start_page
     @last_page = StartPage.new
+  end
+
+  def transient_registrations_page
+    @last_page = TransientRegistrationsPage.new
   end
 
   def tier_check_page
