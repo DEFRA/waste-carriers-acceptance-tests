@@ -1,0 +1,123 @@
+{
+    "_id" : ObjectId("5b722f534f621c06c9fcb4cb"),
+    "tier" : "UPPER",
+    "registrationType" : "broker_dealer",
+    "businessType" : "publicBody",
+    "otherBusinesses" : "no",
+    "constructionWaste" : "yes",
+    "companyName" : "Cohen Cunningham Plc",
+    "firstName" : "Xandra",
+    "lastName" : "Chandler",
+    "phoneNumber" : "0117 9140000",
+    "contactEmail" : "user@example.com",
+    "accountEmail" : "user@example.com",
+    "declaredConvictions" : "no",
+    "declaration" : "1",
+    "regIdentifier" : "CBDU122",
+    "accessCode" : "DUBJQR",
+    "metaData" : {
+        "dateRegistered" : ISODate("2018-08-06T11:21:55.114Z"),
+        "anotherString" : "userDetailAddedAtRegistration",
+        "lastModified" : ISODate("2018-08-06T11:22:21.122Z"),
+        "dateActivated" : ISODate("2018-08-06T11:22:21.122Z"),
+        "status" : "ACTIVE",
+        "route" : "DIGITAL",
+        "distance" : "n/a"
+    },
+    "financeDetails" : {
+        "orders" : [ 
+            {
+                "orderId" : "1533554514",
+                "orderItems" : [ 
+                    {
+                        "amount" : 15400,
+                        "currency" : "GBP",
+                        "description" : "Initial Registration",
+                        "reference" : "",
+                        "type" : "NEW"
+                    }
+                ],
+                "orderCode" : "1533554514",
+                "paymentMethod" : "ONLINE",
+                "merchantId" : "EASERRSIMMOTO",
+                "totalAmount" : 15400,
+                "currency" : "GBP",
+                "dateCreated" : ISODate("2018-08-06T11:21:59.000Z"),
+                "worldPayStatus" : "AUTHORISED",
+                "dateLastUpdated" : ISODate("2018-08-06T11:22:21.193Z"),
+                "updatedByUser" : "agency-refund-payment-user@wcr.gov.uk",
+                "description" : "New Waste Carrier Registration: CBDU11 for Cohen Cunningham Plc"
+            }
+        ],
+        "payments" : [ 
+            {
+                "orderKey" : "1533554514",
+                "amount" : 15400,
+                "currency" : "GBP",
+                "mac_code" : "89857a3f0ed77f3c2d1c35789eb2083e",
+                "dateReceived" : ISODate("2018-08-06T11:22:20.964Z"),
+                "dateEntered" : ISODate("2018-08-06T11:22:20.988Z"),
+                "registrationReference" : "Worldpay",
+                "worldPayPaymentStatus" : "AUTHORISED",
+                "updatedByUser" : "agency-refund-payment-user@wcr.gov.uk",
+                "comment" : "Paid via Worldpay",
+                "paymentType" : "WORLDPAY"
+            }
+        ],
+        "balance" : 0
+    },
+    "reg_uuid" : "A7S_zMZH0NmccYbwN1XtMA",
+    "addresses" : [ 
+        {
+            "uprn" : "340116",
+            "addressType" : "REGISTERED",
+            "addressMode" : "address-results",
+            "houseNumber" : "NATURAL ENGLAND",
+            "addressLine1" : "DEANERY ROAD",
+            "townCity" : "BRISTOL",
+            "postcode" : "BS1 5AH",
+            "country" : "",
+            "dependentLocality" : "",
+            "dependentThoroughfare" : "",
+            "administrativeArea" : "BRISTOL",
+            "localAuthorityUpdateDate" : "",
+            "royalMailUpdateDate" : "",
+            "easting" : "358205",
+            "northing" : "172708"
+        }, 
+        {
+            "addressType" : "POSTAL",
+            "houseNumber" : "NATURAL ENGLAND",
+            "addressLine1" : "DEANERY ROAD",
+            "addressLine2" : "",
+            "addressLine3" : "",
+            "addressLine4" : "",
+            "townCity" : "BRISTOL",
+            "postcode" : "BS1 5AH",
+            "country" : "",
+            "firstName" : "Xandra",
+            "lastName" : "Chandler"
+        }
+    ],
+    "key_people" : [ 
+        {
+            "position" : "Chief executive",
+            "first_name" : "Shea",
+            "last_name" : "Gaines",
+            "dob" : ISODate("1970-05-21T00:00:00.000Z"),
+            "person_type" : "KEY",
+            "conviction_search_result" : {
+                "match_result" : "NO",
+                "searched_at" : ISODate("2018-10-05T11:21:45.269Z"),
+                "confirmed" : "no"
+            }
+        }
+    ],
+    "copy_cards" : "0",
+    "expires_on" : ISODate("2018-11-06T11:22:21.122Z"),
+    "conviction_search_result" : {
+        "match_result" : "NO",
+        "searched_at" : ISODate("2018-08-06T11:21:29.760Z"),
+        "confirmed" : "no"
+    }
+}

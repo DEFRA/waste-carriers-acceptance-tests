@@ -1,4 +1,4 @@
-@backoffice @upper_tier @renewal @ts
+@backoffice @upper_tier @renewal @broken
 
 Feature: Assisted digital renewal of an upper tier public body
   As a carrier of commerical waste
@@ -6,10 +6,11 @@ Feature: Assisted digital renewal of an upper tier public body
   So I can complete my regisration and I am compliant with the law
 
 Background:
-  Given I have signed into the renewals service
+  Given an Environment Agency user has signed in to complete a renewal
 
 Scenario: Public body has their upper tier registration renewed by NCCC
   Given I choose to renew "CBDU120"
+    And I have signed into the renewals service
    When I renew the local authority registration
    Then my registration will have been renewed
 
