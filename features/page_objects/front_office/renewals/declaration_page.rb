@@ -4,9 +4,8 @@ class DeclarationPage < SitePrism::Page
   element(:heading, :xpath, "//h1[contains(text(), 'Declaration')]")
   element(:submit_button, "input[type='submit']")
 
-  def submit(args = {})
-    wait_for_declaration
-    find("label", text: (args[:declaration])).click if args.key?(:declaration)
+  def submit(_args = {})
+    declaration.click
     submit_button.click
   end
 

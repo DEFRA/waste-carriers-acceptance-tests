@@ -9,7 +9,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       And I have signed in to renew my registration
   	 When I complete my limited company renewal steps
   	 Then I will be notified my renewal is complete
- 
+
   Scenario: Sole trader renews upper tier registration from renewals page
     Given I renew my registration using my previous registration number "CBDU225"
       And I have signed in to renew my registration
@@ -21,7 +21,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       And I have signed in to renew my registration
      When I complete my local authority renewal steps
      Then I will be notified my renewal is complete
-  
+ 
   Scenario: Limited liability partnership renews upper tier registration from renewals page
     Given I renew my registration using my previous registration number "CBDU227"
       And I have signed in to renew my registration
