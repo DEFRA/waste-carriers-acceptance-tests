@@ -8,7 +8,7 @@ Feature: Partnership applies for new upper tier registration
    Given I start a new registration
    	When I complete my aplication of my partnership as a upper tier waste carrier
 
-@email
+@email 
   Scenario: Partnership successfully registers for a upper tier waste carriers licence paying by credit card
     When I pay for my application by maestro ordering 2 copy cards
    	Then I will be registered as an upper tier waste carrier
