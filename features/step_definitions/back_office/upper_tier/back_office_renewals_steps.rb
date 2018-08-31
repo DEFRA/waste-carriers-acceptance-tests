@@ -20,9 +20,9 @@ end
 # rubocop:disable Metrics/LineLength
 When(/^I renew the local authority registration$/) do
   @back_renewals_app.renewal_start_page.submit
-  @back_renewals_app.location_page.submit(location: "England")
-  @back_renewals_app.confirm_business_type_page.submit(answer: "Local authority or public body")
-  @back_renewals_app.tier_check_page.submit(answer: "I know I need an upper tier registration (continue)")
+  @back_renewals_app.location_page.submit(choice: :england)
+  @back_renewals_app.confirm_business_type_page.submit(org_type: "Local authority or public body")
+  @back_renewals_app.tier_check_page.submit(choice: :skip_check)
   @back_renewals_app.carrier_type_page.submit
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.company_name_page.submit
@@ -31,7 +31,7 @@ When(/^I renew the local authority registration$/) do
   people = @back_renewals_app.main_people_page.main_people
   @back_renewals_app.main_people_page.add_main_person(person: people[0])
   @back_renewals_app.main_people_page.submit_main_person(person: people[1])
-  @back_renewals_app.declare_convictions_page.submit(answer: "No")
+  @back_renewals_app.declare_convictions_page.submit(choice: :no)
   @back_renewals_app.contact_name_page.submit
   @back_renewals_app.contact_telephone_number_page.submit
   @back_renewals_app.contact_email_page.submit(
@@ -41,9 +41,9 @@ When(/^I renew the local authority registration$/) do
   @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @back_renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @back_renewals_app.check_your_answers_page.submit
-  @back_renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
+  @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
-  @back_renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
+  @back_renewals_app.payment_summary_page.submit(choice: :card_payment)
   @back_renewals_app.worldpay_card_choice_page.submit
   # finds today's date and adds another year to expiry date
 
@@ -63,11 +63,11 @@ end
 
 When(/^I renew the limited company registration$/) do
   @back_renewals_app.renewal_start_page.submit
-  @back_renewals_app.location_page.submit(location: "England")
+  @back_renewals_app.location_page.submit(choice: :england)
   @back_renewals_app.confirm_business_type_page.submit
-  @back_renewals_app.tier_check_page.submit(answer: "I want to check my tier is correct before renewing")
-  @back_renewals_app.other_businesses_page.submit(answer: "No")
-  @back_renewals_app.construction_waste_page.submit(answer: "Yes")
+  @back_renewals_app.tier_check_page.submit(choice: :check_tier)
+  @back_renewals_app.other_businesses_page.submit(choice: :no)
+  @back_renewals_app.construction_waste_page.submit(choice: :yes)
   @back_renewals_app.carrier_type_page.submit
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.registration_number_page.submit
@@ -84,7 +84,7 @@ When(/^I renew the limited company registration$/) do
   @back_renewals_app.main_people_page.add_main_person(person: people[0])
   @back_renewals_app.main_people_page.add_main_person(person: people[1])
   @back_renewals_app.main_people_page.submit_main_person(person: people[2])
-  @back_renewals_app.declare_convictions_page.submit(answer: "No")
+  @back_renewals_app.declare_convictions_page.submit(choice: :no)
   @back_renewals_app.contact_name_page.submit
   @back_renewals_app.contact_telephone_number_page.submit
   @back_renewals_app.contact_email_page.submit(
@@ -100,9 +100,9 @@ When(/^I renew the limited company registration$/) do
     city: "Teston"
   )
   @back_renewals_app.check_your_answers_page.submit
-  @back_renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
+  @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
-  @back_renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
+  @back_renewals_app.payment_summary_page.submit(choice: :card_payment)
   @back_renewals_app.worldpay_card_choice_page.submit
   # finds today's date and adds another year to expiry date
   time = Time.new
@@ -131,9 +131,9 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @back_renewals_app.renewal_start_page.submit
-  @back_renewals_app.location_page.submit(location: "England")
-  @back_renewals_app.confirm_business_type_page.submit(answer: "Local authority or public body")
-  @back_renewals_app.tier_check_page.submit(answer: "I know I need an upper tier registration (continue)")
+  @back_renewals_app.location_page.submit(choice: :england)
+  @back_renewals_app.confirm_business_type_page.submit(org_type: "Local authority or public body")
+  @back_renewals_app.tier_check_page.submit(choice: :skip_check)
   visit("/fo/users/sign_out")
 end
 
@@ -148,16 +148,16 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |_reg|
   people = @back_renewals_app.main_people_page.main_people
   @back_renewals_app.main_people_page.add_main_person(person: people[0])
   @back_renewals_app.main_people_page.submit_main_person(person: people[1])
-  @back_renewals_app.declare_convictions_page.submit(answer: "No")
+  @back_renewals_app.declare_convictions_page.submit(choice: :no)
   @back_renewals_app.contact_name_page.submit
   @back_renewals_app.contact_telephone_number_page.submit
   @back_renewals_app.contact_email_page.submit
   @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @back_renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @back_renewals_app.check_your_answers_page.submit
-  @back_renewals_app.declaration_page.submit(declaration: "I understand and agree with the declaration above")
+  @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
-  @back_renewals_app.payment_summary_page.submit(answer: "Pay by credit card or debit card")
+  @back_renewals_app.payment_summary_page.submit(choice: :card_payment)
   @back_renewals_app.worldpay_card_choice_page.submit
   # finds today's date and adds another year to expiry date
 
