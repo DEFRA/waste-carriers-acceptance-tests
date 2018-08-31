@@ -23,7 +23,6 @@ When(/^I complete my aplication of my partnership as a upper tier waste carrier$
   @front_app.key_people_page.add_key_person(person: people[0])
   @front_app.key_people_page.add_key_person(person: people[1])
   @front_app.key_people_page.submit_key_person(person: people[2])
-
   @front_app.relevant_convictions_page.submit(choice: :no)
   @front_app.check_details_page.submit
   @front_app.sign_up_page.submit(

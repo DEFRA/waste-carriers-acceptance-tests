@@ -8,9 +8,9 @@ Feature: Registered waste carrier chooses to renew their registration from start
       Given I renew my registration using my previous registration number "CBDU216"
         And I have signed in to renew my registration
         But I change the business type to "Local authority or public body"
-       Then I will be notified "You cannot renew"
+       Then I will be notified "You need a new registration"
 
-   Scenario: Sole trader changes place of business location to not the UK
+   Scenario: Sole trader changes place of business location to outside the UK
       Given I renew my registration using my previous registration number "CBDU217"
         And I have signed in to renew my registration
         But I change my place of business location to "Not in the United Kingdom"
@@ -44,7 +44,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
       Given I renew my registration using my previous registration number "CBDU224"
         And I have signed in to renew my registration
        When I answer questions indicating I should be a lower tier waste carrier
-       Then I will be notified "You should register as a lower tier waste carrier"
+       Then I will be notified "You can register as a lower tier waste carrier"
 
   Scenario: Partnership changes business type to Limited Liability Partnership
       Given I renew my registration using my previous registration number "CBDU211"
