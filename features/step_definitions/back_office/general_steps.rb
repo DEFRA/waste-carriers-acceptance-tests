@@ -1,4 +1,5 @@
 Given(/^an Environment Agency user has signed in$/) do
+  Capybara.reset_session!
   @back_app = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(

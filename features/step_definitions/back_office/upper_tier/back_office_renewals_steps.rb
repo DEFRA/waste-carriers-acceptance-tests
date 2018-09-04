@@ -8,20 +8,15 @@ Given(/^I have signed into the renewals service$/) do
 end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
-  # renewal_url = Quke::Quke.config.custom["urls"]["back_office_renewals"] + "/bo/renew/#{reg}"
   @registration_number = reg
-  # visit(renewal_url)
-  # @back_renewals_app.agency_sign_in_page.load
   @back_renewals_app.registrations_page.search(search_input: @registration_number)
   @back_renewals_app.registrations_page.search_results[0].renew.click
-  # save registration number for checks later on
-
 end
 # rubocop:disable Metrics/LineLength
 When(/^I renew the local authority registration$/) do
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(choice: :england)
-  @back_renewals_app.confirm_business_type_page.submit(org_type: "Local authority or public body")
+  @back_renewals_app.confirm_business_type_page.submit
   @back_renewals_app.tier_check_page.submit(choice: :skip_check)
   @back_renewals_app.carrier_type_page.submit
   @back_renewals_app.renewal_information_page.submit
@@ -58,7 +53,6 @@ When(/^I renew the local authority registration$/) do
     expiry_month: "12",
     expiry_year: @year
   )
-  @back_renewals_app.worldpay_secure_page.submit
 end
 
 When(/^I renew the limited company registration$/) do
@@ -116,7 +110,6 @@ When(/^I renew the limited company registration$/) do
     expiry_month: "12",
     expiry_year: @year
   )
-  @back_renewals_app.worldpay_secure_page.submit
 end
 
 Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|

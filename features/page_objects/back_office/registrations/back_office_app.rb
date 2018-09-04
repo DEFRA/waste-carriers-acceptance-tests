@@ -27,6 +27,10 @@ class BackOfficeApp
     @last_page = BusinessTypePage.new
   end
 
+  def carrier_type_page
+    @last_page = CarrierTypePage.new
+  end
+
   def charge_adjustments_page
     @last_page = ChargeAdjustmentsPage.new
   end
@@ -37,6 +41,10 @@ class BackOfficeApp
 
   def confirmation_page
     @last_page = ConfirmationPage.new
+  end
+
+  def confirm_business_type_page
+    @last_page = ConfirmBusinessTypePage.new
   end
 
   def confirm_delete_page
@@ -61,6 +69,10 @@ class BackOfficeApp
 
   def key_people_page
     @last_page = KeyPeoplePage.new
+  end
+
+  def location_page
+    @last_page = LocationPage.new
   end
 
   def new_charge_adjustment_page
@@ -111,12 +123,40 @@ class BackOfficeApp
     @last_page = RegistrationSearchResultsPage.new
   end
 
+  def registration_number_page
+    @last_page = RegistrationNumberPage.new
+  end
+
+  def registration_cards_page
+    @last_page = RegistrationCardsPage.new
+  end
+
+  def renewals_dashboard_page
+    @last_page = RenewalsDashboardPage.new
+  end
+
+  def renewal_information_page
+    @last_page = RenewalInformationPage.new
+  end
+
   def relevant_people_page
     @last_page = RelevantPeoplePage.new
   end
 
   def relevant_convictions_page
     @last_page = RelevantConvictionsPage.new
+  end
+
+  def renewal_received_page
+    @last_page = RenewalReceivedPage.new
+  end
+
+  def renewal_complete_page
+    @last_page = RenewalCompletePage.new
+  end
+
+  def renewal_start_page
+    @last_page = RenewalStartPage.new
   end
 
   def registrations_page
@@ -141,6 +181,10 @@ class BackOfficeApp
 
   def sign_up_page
     @last_page = SignupPage.new
+  end
+
+  def tier_check_page
+    @last_page = TierCheckPage.new
   end
 
   def worldpay_card_choice_page
