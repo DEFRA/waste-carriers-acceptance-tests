@@ -4,22 +4,10 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   I want to renew my waste carriers licence with the Environment Agency
   So I continue to be compliant with the law
 
-  Scenario: Limited company renews upper tier registration from renewals page
-  	Given I renew my registration using my previous registration number "CBDU215"
-      And I have signed in to renew my registration
-  	 When I complete my limited company renewal steps
-  	 Then I will be notified my renewal is complete
-
   Scenario: Sole trader renews upper tier registration from renewals page
     Given I renew my registration using my previous registration number "CBDU225"
       And I have signed in to renew my registration
      When I complete my sole trader renewal steps
-     Then I will be notified my renewal is complete
-
-  Scenario: Local authority renews upper tier registration from renewals page
-    Given I renew my registration using my previous registration number "CBDU226"
-      And I have signed in to renew my registration
-     When I complete my local authority renewal steps
      Then I will be notified my renewal is complete
  
   Scenario: Limited liability partnership renews upper tier registration from renewals page

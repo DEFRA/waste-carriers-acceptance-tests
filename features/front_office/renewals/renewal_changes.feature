@@ -15,24 +15,12 @@ Feature: Registered waste carrier chooses to renew their registration from start
         And I have signed in to renew my registration
         But I change my place of business location to "overseas"
        Then I will be able to continue my renewal
-
-   Scenario: Sole trader changes place of business location to Northern Ireland
-      Given I renew my registration using my previous registration number "CBDU208"
-        And I have signed in to renew my registration
-        But I change my place of business location to "northern_ireland"
-       Then I will be notified "You can register in Northern Ireland"
  
   Scenario: Sole trader changes place of business location to Scotland
       Given I renew my registration using my previous registration number "CBDU209"
         And I have signed in to renew my registration
         But I change my place of business location to "scotland"
        Then I will be notified "You can register in Scotland"
-
-  Scenario: Sole trader changes place of business location to Wales
-      Given I renew my registration using my previous registration number "CBDU210"
-        And I have signed in to renew my registration
-        But I change my place of business location to "wales"
-       Then I will be notified "You can register in Wales"
 
     Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change
       Given I renew my registration using my previous registration number "CBDU223"
@@ -48,12 +36,6 @@ Feature: Registered waste carrier chooses to renew their registration from start
 
   Scenario: Partnership changes business type to Limited Liability Partnership
       Given I renew my registration using my previous registration number "CBDU211"
-        And I have signed in to renew my registration
-        But I change the business type to "limitedLiabilityPartnership"
-       Then I will be able to continue my renewal
-
-  Scenario: Limited company changes business type to Limited Liability Partnership
-      Given I renew my registration using my previous registration number "CBDU205"
         And I have signed in to renew my registration
         But I change the business type to "limitedLiabilityPartnership"
        Then I will be able to continue my renewal
