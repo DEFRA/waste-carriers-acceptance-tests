@@ -41,7 +41,7 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -93,7 +93,7 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -145,7 +145,7 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",

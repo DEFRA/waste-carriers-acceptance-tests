@@ -15,7 +15,6 @@ class MainPeoplePage < SitePrism::Page
   element(:submit_button, "input[value='Continue']")
 
   def add_main_person(args = {})
-    wait_for_first_name
     person = args[:person]
 
     first_name.set(person[:first_name])
@@ -28,7 +27,6 @@ class MainPeoplePage < SitePrism::Page
   end
 
   def submit_main_person(args = {})
-    wait_for_first_name
     person = args[:person]
 
     first_name.set(person[:first_name])
@@ -41,7 +39,6 @@ class MainPeoplePage < SitePrism::Page
   end
 
   def submit(args = {})
-    wait_for_first_name
     first_name.set(args[:first_name]) if args.main?(:first_name)
     last_name.set(args[:last_name]) if args.main?(:last_name)
     dob_day.set(args[:dob_day]) if args.main?(:dob_day)

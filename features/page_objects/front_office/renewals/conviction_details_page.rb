@@ -18,7 +18,6 @@ class ConvictionDetailsPage < SitePrism::Page
   element(:submit_button, "input[value='Continue']")
 
   def add_conviction(args = {})
-    wait_for_first_name
     person = args[:person]
 
     first_name.set(person[:first_name])
@@ -32,7 +31,6 @@ class ConvictionDetailsPage < SitePrism::Page
   end
 
   def submit(args = {})
-    wait_for_first_name
     person = args[:person]
 
     first_name.set(person[:first_name])

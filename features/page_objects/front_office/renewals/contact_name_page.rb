@@ -6,7 +6,6 @@ class ContactNamePage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    wait_for_heading
     contact_name.set(args[:contact_name]) if args.key?(:contact_name)
 
     submit_button.click

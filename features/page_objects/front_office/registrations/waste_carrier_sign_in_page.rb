@@ -12,7 +12,6 @@ class WasteCarrierSignInPage < SitePrism::Page
   element(:submit_button, "input[type=submit]")
 
   def submit(args = {})
-    wait_for_email_address
     email_address.set(args[:email]) if args.key?(:email)
     password.set(args[:password]) if args.key?(:password)
 

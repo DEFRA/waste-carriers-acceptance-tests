@@ -7,7 +7,6 @@ class ContactEmailPage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    wait_for_email
     email.set(args[:email]) if args.key?(:email)
     confirm_email.set(args[:confirm_email]) if args.key?(:confirm_email)
 
