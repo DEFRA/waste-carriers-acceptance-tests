@@ -155,7 +155,7 @@ When(/^I complete my limited company renewal steps$/) do
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -174,7 +174,6 @@ end
 
 Given(/^I change my place of business location to "([^"]*)"$/) do |location|
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.wait_for_submit_button
   @renewals_app.location_page.submit(choice: location.to_sym)
 end
 
@@ -217,7 +216,7 @@ When(/^I complete my sole trader renewal steps$/) do
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -256,7 +255,7 @@ When(/^I complete my local authority renewal steps$/) do
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -306,7 +305,6 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -390,7 +388,7 @@ When(/^I complete my partnership renewal steps$/) do
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -463,7 +461,7 @@ When(/^I complete my overseas company renewal steps$/) do
   time = Time.new
 
   @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.wait_for_heading
+
   @renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",

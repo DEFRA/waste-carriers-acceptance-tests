@@ -5,7 +5,6 @@ class WorldpaySecurePage < SitePrism::Page
   element(:heading, :xpath, "//h1[contains(text(), '3D Secure Simulator')]")
 
   def submit(_args = {})
-    wait_for_heading
     submit_button.click
   end
 

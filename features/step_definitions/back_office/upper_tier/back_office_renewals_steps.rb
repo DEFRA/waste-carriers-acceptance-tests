@@ -45,7 +45,7 @@ When(/^I renew the local authority registration$/) do
   time = Time.new
 
   @year = time.year + 1
-  @back_renewals_app.worldpay_card_details_page.wait_for_heading
+
   @back_renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -102,7 +102,7 @@ When(/^I renew the limited company registration$/) do
   time = Time.new
 
   @year = time.year + 1
-  @back_renewals_app.worldpay_card_details_page.wait_for_heading
+
   @back_renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",
@@ -157,7 +157,7 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |_reg|
   time = Time.new
 
   @year = time.year + 1
-  @back_renewals_app.worldpay_card_details_page.wait_for_heading
+
   @back_renewals_app.worldpay_card_details_page.submit(
     card_number: "6759649826438453",
     security_code: "555",

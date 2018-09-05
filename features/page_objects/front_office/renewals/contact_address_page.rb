@@ -8,7 +8,6 @@ class ContactAddressPage < SitePrism::Page
   element(:submit_button, "input[value='Continue']")
 
   def submit(args = {})
-    wait_for_results_dropdown
     results_dropdown.select(args[:result]) if args.key?(:result)
     submit_button.click
   end

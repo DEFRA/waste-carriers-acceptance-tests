@@ -12,7 +12,6 @@ class ManualAddressPage < SitePrism::Page
   element(:submit_button, "input[value='Continue']")
 
   def submit(args = {})
-    wait_for_house_number
     house_number.set(args[:house_number]) if args.key?(:house_number)
     address_line_one.set(args[:address_line_one]) if args.key?(:address_line_one)
     address_line_two.set(args[:address_line_two]) if args.key?(:address_line_two)
