@@ -24,6 +24,10 @@ class BackOfficeRenewalsApp
     @last_page = BusinessAddressPage.new
   end
 
+  def cash_payment_page
+    @last_page = CashPaymentPage.new
+  end
+
   def carrier_type_page
     @last_page = CarrierTypePage.new
   end
@@ -34,6 +38,10 @@ class BackOfficeRenewalsApp
 
   def conviction_details_page
     @last_page = ConvictionDetailsPage.new
+  end
+
+  def contact_email_page
+    @last_page = ContactEmailPage.new
   end
 
   def cannot_renew_lower_tier_page
@@ -62,10 +70,6 @@ class BackOfficeRenewalsApp
 
   def contact_manual_address_page
     @last_page = ContactManualAddressPage.new
-  end
-
-  def contact_email_page
-    @last_page = ContactEmailPage.new
   end
 
   def company_name_page
@@ -114,6 +118,10 @@ class BackOfficeRenewalsApp
 
   def other_businesses_page
     @last_page = OtherBusinessesPage.new
+  end
+
+  def payments_page
+    @last_page = PaymentsPage.new
   end
 
   def payment_summary_page

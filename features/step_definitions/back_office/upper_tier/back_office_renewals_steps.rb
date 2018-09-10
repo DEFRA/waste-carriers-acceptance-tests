@@ -1,8 +1,17 @@
-Given(/^I have signed into the renewals service$/) do
+Given(/^I have signed into the renewals service as an agency user$/) do
   @back_renewals_app = BackOfficeRenewalsApp.new
   @back_renewals_app.admin_sign_in_page.load
   @back_renewals_app.admin_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["back_office_renewals_user"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+end
+
+Given(/^I have signed into the renewals service as an agency user with refunds$/) do
+  @back_renewals_app = BackOfficeRenewalsApp.new
+  @back_renewals_app.admin_sign_in_page.load
+  @back_renewals_app.admin_sign_in_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
@@ -202,6 +211,33 @@ Given(/^an Environment Agency user has signed in to complete a renewal$/) do
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
+end
+
+When(/^I search for "([^"]*)"$/) do |search_term|
+  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: search_term.to_sym)
+  # saves registration for later use
+  @search_term = search_term
+end
+
+When(/^mark the renewal payment as received$/) do
+  @back_renewals_app.renewals_dashboard_page.results[0].actions.click
+  @back_renewals_app.transient_registrations_page.process_payment.click
+  @back_renewals_app.payments_page.submit(choice: :cash)
+  @back_renewals_app.cash_payment_page.submit(
+    amount: "105",
+    day: "01",
+    month: "01",
+    year: "1980",
+    reference: "0101010",
+    comment: "cash money"
+  )
+end
+
+Then(/^the registration will have a renewed status$/) do
+  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: @search_term)
+  expect(@back_renewals_app.renewals_dashboard_page.results[0].status).to have_text("Blah")
 end
 
 # rubocop:enable Metrics/LineLength
