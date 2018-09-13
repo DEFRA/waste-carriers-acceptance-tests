@@ -65,14 +65,7 @@ Given(/^the user has 2 registrations$/) do
 end
 
 When(/^I change the account email$/) do
-  @back_app = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-
-  @back_app.registrations_page.search(search_input: @registration)
+  @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.search_results[0].change_account_email.click
 
   @new_email = @back_app.generate_email
@@ -80,16 +73,8 @@ When(/^I change the account email$/) do
 end
 
 When(/^I change the account email for both$/) do
-  Capybara.reset_sessions!
-  @back_app = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-
-  @registrations.each do |reg_no|
-    @back_app.registrations_page.search(search_input: reg_no)
+  @registrations.each do |_reg_no|
+    @back_app.registrations_page.search(search_input: @registration_number)
     @back_app.registrations_page.search_results[0].change_account_email.click
 
     @new_email = @front_app.generate_email

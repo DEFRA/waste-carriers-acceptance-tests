@@ -223,7 +223,7 @@ end
 When(/^mark the renewal payment as received$/) do
   @back_renewals_app.renewals_dashboard_page.results[0].actions.click
   @back_renewals_app.transient_registrations_page.process_payment.click
-  @back_renewals_app.payments_page.submit(choice: :cash)
+  @back_renewals_app.renewal_payments_page.submit(choice: :cash)
   @back_renewals_app.cash_payment_page.submit(
     amount: "105",
     day: "01",
@@ -238,6 +238,21 @@ Then(/^the registration will have a renewed status$/) do
   @back_renewals_app.renewals_dashboard_page.back_office_link.click
   @back_renewals_app.renewals_dashboard_page.submit(search_term: @search_term)
   expect(@back_renewals_app.renewals_dashboard_page.results[0].status).to have_text("Blah")
+end
+
+Then(/^the registration will have a "([^"]*)" status$/) do |status|
+  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: @search_term)
+  expect(@back_renewals_app.renewals_dashboard_page.results[0].status).to have_text(status)
+end
+
+Then(/^the expiry date should be three years from the previous expiry date$/) do
+  # Adds three years to expiry date and then checks expiry date reported in registration details
+  @expected_expiry_date = @expiry_date_year_first.next_year(3)
+  visit(Quke::Quke.config.custom["urls"]["back_office"])
+  @back_renewals_app.registrations_page.search(search_input: @registration_number)
+  actual_expiry_date = Date.parse(@back_renewals_app.registrations_page.search_results[0].expiry_date.text)
+  expect(@expected_expiry_date).to eq(actual_expiry_date)
 end
 
 # rubocop:enable Metrics/LineLength

@@ -6,8 +6,8 @@ So that the payment can be recorded and the registration completed
 
 @email
 Scenario: Application pending payment has full payment recorded as received
- Given I have a registration "CBDU107"
-   And I am signed in as an Environment Agency user with refunds
+ Given I am signed in as an Environment Agency user with refunds
+   And I have a registration "CBDU107"
   When I enter a cash payment for the full amount owed
   Then the registration will be marked as "Registered"
    And I have received an email "Waste Carrier Registration Complete"

@@ -119,6 +119,7 @@ Then(/^the registration status in the registration export is set to "([^"]*)"$/)
     report_from_date: "30-05-2018",
     report_to_date: @today
   )
+
   result = @back_app.registration_search_results_page.registration(@registration_number)
   expect(result.status.text).to eq(status)
   @back_app.registration_search_results_page.back_link.click

@@ -175,6 +175,10 @@ class BackOfficeApp
     @last_page = PaymentsPage.new
   end
 
+  def renewal_payments_page
+    @last_page = RenewalPaymentsPage.new
+  end
+
   def postal_address_page
     @last_page = PostalAddressPage.new
   end

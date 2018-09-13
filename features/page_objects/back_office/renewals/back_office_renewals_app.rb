@@ -124,6 +124,10 @@ class BackOfficeRenewalsApp
     @last_page = PaymentsPage.new
   end
 
+  def renewal_payments_page
+    @last_page = RenewalPaymentsPage.new
+  end
+
   def payment_summary_page
     @last_page = PaymentSummaryPage.new
   end

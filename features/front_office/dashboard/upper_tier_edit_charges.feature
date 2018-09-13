@@ -1,8 +1,11 @@
-@frontoffice @upper_tier
+@frontoffice @upper_tier @ts
 Feature: Upper tier registration edit charges
   As a carrier of commercial waste
   I want to be able to change my registration details
   So that my details are up to date and I'm compliant with the regulations
+
+  Background:
+  Given I have signed in as "user@example.com"
 
   Scenario: Limited company changing its carrier type incurs a charge
   Given I choose to edit my registration "CBDU100"

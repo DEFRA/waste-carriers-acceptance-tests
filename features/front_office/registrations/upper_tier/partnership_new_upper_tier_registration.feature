@@ -15,7 +15,7 @@ Feature: Partnership applies for new upper tier registration
      And I have received an email "Waste Carrier Registration Complete" 
      And the registration status will be "Registered"
 
-@smoke @test
+@smoke
    Scenario: Partnership successfully applies for an upper tier waste carriers licence choosing to pay by bank transfer
     When I choose to pay for my application by bank transfer ordering 0 copy cards
     Then I will be informed my registration is pending payment 	

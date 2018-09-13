@@ -51,14 +51,14 @@ Given(/^I have an application paid by credit card$/) do
   @back_app.registrations_page.sign_out.click
 end
 
-When(/^I refund the application payment$/) do
+When(/^I reverse the application payment$/) do
   @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.search_results[0].payment_status.click
   @payment_amount = @back_app.payment_status_page.payment_history_amount.text
   expect(@back_app.payment_reversals_page).to have_text(@registration_number)
   @back_app.payment_status_page.reversals.click
   @back_app.payment_reversals_page.select_payment.click
-  @back_app.new_reversal_page.submit(payment_comment: "Refund for " + @registration_number)
+  @back_app.new_reversal_page.submit(payment_comment: "Reversal for " + @registration_number)
 end
 
 When(/^I select the application to refund$/) do
@@ -69,13 +69,13 @@ When(/^I select the application to refund$/) do
   @back_app.payment_status_page.reversals.click
 end
 
-Then(/^the application payment will be refunded$/) do
+Then(/^the application payment will be reversed$/) do
   expect(@back_app.payment_status_page).to have_text("Reversal sucessfully entered")
 
 end
 
-Then(/^the refund will be shown in the payment history$/) do
-  expect(@back_app.payment_status_page).to have_text("Refund for " + @registration_number)
+Then(/^the reversal will be shown in the payment history$/) do
+  expect(@back_app.payment_status_page).to have_text("Reversal for " + @registration_number)
 end
 
 Then(/^the outstanding balance will be the amount previously paid$/) do

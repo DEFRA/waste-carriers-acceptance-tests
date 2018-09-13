@@ -1,4 +1,4 @@
-class PaymentsPage < SitePrism::Page
+class RenewalPaymentsPage < SitePrism::Page
 
   # How was this payment made?
   element(:cash, "#payment_form_payment_type_cash", visible: false)
