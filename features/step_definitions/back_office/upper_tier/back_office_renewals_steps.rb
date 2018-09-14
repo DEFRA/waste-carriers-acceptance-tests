@@ -1,8 +1,17 @@
-Given(/^I have signed into the renewals service$/) do
+Given(/^I have signed into the renewals service as an agency user$/) do
   @back_renewals_app = BackOfficeRenewalsApp.new
   @back_renewals_app.admin_sign_in_page.load
   @back_renewals_app.admin_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["back_office_renewals_user"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+end
+
+Given(/^I have signed into the renewals service as an agency user with refunds$/) do
+  @back_renewals_app = BackOfficeRenewalsApp.new
+  @back_renewals_app.admin_sign_in_page.load
+  @back_renewals_app.admin_sign_in_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
@@ -202,6 +211,48 @@ Given(/^an Environment Agency user has signed in to complete a renewal$/) do
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
+end
+
+When(/^I search for "([^"]*)"$/) do |search_term|
+  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: search_term.to_sym)
+  # saves registration for later use
+  @search_term = search_term
+end
+
+When(/^mark the renewal payment as received$/) do
+  @back_renewals_app.renewals_dashboard_page.results[0].actions.click
+  @back_renewals_app.transient_registrations_page.process_payment.click
+  @back_renewals_app.renewal_payments_page.submit(choice: :cash)
+  @back_renewals_app.cash_payment_page.submit(
+    amount: "105",
+    day: "01",
+    month: "01",
+    year: "1980",
+    reference: "0101010",
+    comment: "cash money"
+  )
+end
+
+Then(/^the registration will have a renewed status$/) do
+  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: @search_term)
+  expect(@back_renewals_app.renewals_dashboard_page.results[0].status).to have_text("Blah")
+end
+
+Then(/^the registration will have a "([^"]*)" status$/) do |status|
+  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: @search_term)
+  expect(@back_renewals_app.renewals_dashboard_page.results[0].status).to have_text(status)
+end
+
+Then(/^the expiry date should be three years from the previous expiry date$/) do
+  # Adds three years to expiry date and then checks expiry date reported in registration details
+  @expected_expiry_date = @expiry_date_year_first.next_year(3)
+  visit(Quke::Quke.config.custom["urls"]["back_office"])
+  @back_renewals_app.registrations_page.search(search_input: @registration_number)
+  actual_expiry_date = Date.parse(@back_renewals_app.registrations_page.search_results[0].expiry_date.text)
+  expect(@expected_expiry_date).to eq(actual_expiry_date)
 end
 
 # rubocop:enable Metrics/LineLength

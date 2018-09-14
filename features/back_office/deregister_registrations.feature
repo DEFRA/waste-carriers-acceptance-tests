@@ -8,7 +8,6 @@ Background:
 	Given an Environment Agency user has signed in
 	
   Scenario: Agency user can deregister upper tier waste carrier licence
-    Given I have a registration "CBDU107"
+    Given I have a registration "CBDU106"
      When the registration is deregistered 
      Then the registration has a "De-Registered" status
-      And the registration status in the registration export is set to "INACTIVE"

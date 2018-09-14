@@ -7,15 +7,6 @@ Given(/^I renew my registration using my previous registration number "([^"]*)"$
   @registration_number = reg
 end
 
-Then(/^the expiry date should be three years from the expiry date$/) do
-  # Adds three years to expiry date and then checks expiry date reported in registration details
-  registration_expiry_date = Date.new(2018, 9, 5)
-
-  @new_expiry_date = registration_expiry_date.next_year(3).strftime("%d/%m/%Y")
-  @back_app.registrations_page.search(search_input: @registration_number)
-  expect(@back_app.registrations_page.search_results[0].expiry_date.text).to eq(@new_expiry_date)
-end
-
 Then(/^I will be shown the renewal information page$/) do
   expect(@renewals_app.renewal_start_page).to have_text(@registration_number)
   expect(@renewals_app.renewal_start_page.current_url).to include "/renewal-information"

@@ -19,8 +19,16 @@ class BackOfficeApp
     @last_page = AdminSignInPage.new
   end
 
+  def bank_transfer_page
+    @last_page = BankTransferPage.new
+  end
+
   def business_details_page
     @last_page = BusinessDetailsPage.new
+  end
+
+  def business_address_page
+    @last_page = BusinessAddressPage.new
   end
 
   def business_type_page
@@ -31,12 +39,20 @@ class BackOfficeApp
     @last_page = CarrierTypePage.new
   end
 
+  def cash_payment_page
+    @last_page = CashPaymentPage.new
+  end
+
   def charge_adjustments_page
     @last_page = ChargeAdjustmentsPage.new
   end
 
   def check_details_page
     @last_page = CheckDetailsPage.new
+  end
+
+  def check_your_answers_page
+    @last_page = CheckYourAnswersPage.new
   end
 
   def confirmation_page
@@ -55,8 +71,44 @@ class BackOfficeApp
     @last_page = ContactDetailsPage.new
   end
 
+  def company_name_page
+    @last_page = CompanyNamePage.new
+  end
+
   def construction_waste_question_page
     @last_page = ConstructionWasteQuestionPage.new
+  end
+
+  def contact_telephone_number_page
+    @last_page = ContactTelephoneNumberPage.new
+  end
+
+  def contact_address_page
+    @last_page = ContactAddressPage.new
+  end
+
+  def contact_manual_address_page
+    @last_page = ContactManualAddressPage.new
+  end
+
+  def contact_email_page
+    @last_page = ContactEmailPage.new
+  end
+
+  def contact_name_page
+    @last_page = ContactNamePage.new
+  end
+
+  def contact_postcode_page
+    @last_page = ContactPostCodePage.new
+  end
+
+  def declare_convictions_page
+    @last_page = DeclareConvictionsPage.new
+  end
+
+  def declaration_page
+    @last_page = DeclarationPage.new
   end
 
   def edit_account_email_page
@@ -73,6 +125,14 @@ class BackOfficeApp
 
   def location_page
     @last_page = LocationPage.new
+  end
+
+  def manual_address_page
+    @last_page = ManualAddressPage.new
+  end
+
+  def main_people_page
+    @last_page = MainPeoplePage.new
   end
 
   def new_charge_adjustment_page
@@ -103,6 +163,10 @@ class BackOfficeApp
     @last_page = PaymentStatusPage.new
   end
 
+  def payment_summary_page
+    @last_page = PaymentSummaryPage.new
+  end
+
   def payment_reversals_page
     @last_page = PaymentReversalsPage.new
   end
@@ -111,8 +175,20 @@ class BackOfficeApp
     @last_page = PaymentsPage.new
   end
 
+  def renewal_payments_page
+    @last_page = RenewalPaymentsPage.new
+  end
+
   def postal_address_page
     @last_page = PostalAddressPage.new
+  end
+
+  def post_code_page
+    @last_page = PostCodePage.new
+  end
+
+  def registration_cards_page
+    @last_page = RegistrationCardsPage.new
   end
 
   def registration_export_page
@@ -125,10 +201,6 @@ class BackOfficeApp
 
   def registration_number_page
     @last_page = RegistrationNumberPage.new
-  end
-
-  def registration_cards_page
-    @last_page = RegistrationCardsPage.new
   end
 
   def renewals_dashboard_page
@@ -165,6 +237,10 @@ class BackOfficeApp
 
   def registration_type_page
     @last_page = RegistrationTypePage.new
+  end
+
+  def transient_registrations_page
+    @last_page = TransientRegistrationsPage.new
   end
 
   def revoke_page

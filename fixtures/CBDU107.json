@@ -1,32 +1,31 @@
 {
-    "_id" : ObjectId("5b0807ee218d49069ba3b379"),
+    "_id" : ObjectId("5b7a28804f621c06b84b9725"),
     "tier" : "UPPER",
-    "registrationType" : "carrier_broker_dealer",
-    "businessType" : "limitedCompany",
+    "registrationType" : "broker_dealer",
+    "businessType" : "soleTrader",
     "otherBusinesses" : "no",
     "constructionWaste" : "yes",
-    "companyName" : "Upper tier revoke",
-    "firstName" : "Bob",
-    "lastName" : "Carolgees",
-    "phoneNumber" : "012345678",
-    "accountEmail" : "agency-user@wcr.gov.uk",
+    "companyName" : "Humphrey Todd Co",
+    "firstName" : "Chloe",
+    "lastName" : "Gordon",
+    "phoneNumber" : "0117 9140000",
+    "contactEmail" : "waste.carrier.service+test@gmail.com",
+    "accountEmail" : "waste.carrier.service+test@gmail.com",
     "declaredConvictions" : "no",
     "declaration" : "1",
     "regIdentifier" : "CBDU107",
-    "accessCode" : "GXBVAX",
     "metaData" : {
-        "dateRegistered" : ISODate("2018-05-30T08:05:10.870Z"),
+        "dateRegistered" : ISODate("2018-09-13T09:06:08.226Z"),
         "anotherString" : "userDetailAddedAtRegistration",
-        "lastModified" : ISODate("2018-05-30T08:05:19.174Z"),
-        "dateActivated" : ISODate("2018-05-30T08:05:19.174Z"),
-        "status" : "ACTIVE",
-        "route" : "ASSISTED_DIGITAL",
+        "lastModified" : ISODate("2018-09-13T09:06:08.226Z"),
+        "status" : "PENDING",
+        "route" : "DIGITAL",
         "distance" : "n/a"
     },
     "financeDetails" : {
         "orders" : [ 
             {
-                "orderId" : "1527667510",
+                "orderId" : "1536829568",
                 "orderItems" : [ 
                     {
                         "amount" : 15400,
@@ -34,125 +33,74 @@
                         "description" : "Initial Registration",
                         "reference" : "",
                         "type" : "NEW"
-                    }, 
-                    {
-                        "amount" : 1000,
-                        "currency" : "GBP",
-                        "description" : "2x Copy cards",
-                        "reference" : "",
-                        "type" : "COPY_CARDS"
                     }
                 ],
-                "orderCode" : "1527667510",
-                "paymentMethod" : "ONLINE",
-                "merchantId" : "EASERRSIMMOTO",
-                "totalAmount" : 16400,
+                "orderCode" : "1536829568",
+                "paymentMethod" : "OFFLINE",
+                "merchantId" : "n/a",
+                "totalAmount" : 15400,
                 "currency" : "GBP",
-                "dateCreated" : ISODate("2018-05-30T08:05:11.000Z"),
-                "worldPayStatus" : "AUTHORISED",
-                "dateLastUpdated" : ISODate("2018-05-30T08:05:19.231Z"),
-                "updatedByUser" : "agency-user@wcr.gov.uk",
-                "description" : "New Waste Carrier Registration: CBDU107 for Upper tier revoke, Plus 2 copy cards"
+                "dateCreated" : ISODate("2018-09-13T09:06:12.000Z"),
+                "worldPayStatus" : "n/a",
+                "dateLastUpdated" : ISODate("2018-09-13T09:06:12.945Z"),
+                "updatedByUser" : "waste.carrier.service+test@gmail.com",
+                "description" : "New Waste Carrier Registration: CBDU1 for Humphrey Todd Co"
             }
         ],
-        "payments" : [ 
-            {
-                "orderKey" : "1527667510",
-                "amount" : 16400,
-                "currency" : "GBP",
-                "mac_code" : "4a6542bb4dd668ebd838efb723e1ccad",
-                "dateReceived" : ISODate("2018-05-30T08:05:19.159Z"),
-                "dateEntered" : ISODate("2018-05-30T08:05:19.166Z"),
-                "registrationReference" : "Worldpay",
-                "worldPayPaymentStatus" : "AUTHORISED",
-                "updatedByUser" : "agency-user@wcr.gov.uk",
-                "comment" : "Paid via Worldpay",
-                "paymentType" : "WORLDPAY"
-            }
-        ],
-        "balance" : 0
+        "balance" : 15400
     },
-    "reg_uuid" : "dwjdYA3cwVxYEAxddh_BRg",
-    "company_no" : "00445790",
+    "reg_uuid" : "yHZRUskW_qPTpAAZN6UurQ",
     "addresses" : [ 
         {
-            "uprn" : "200000567267",
+            "uprn" : "340116",
             "addressType" : "REGISTERED",
             "addressMode" : "address-results",
-            "houseNumber" : "ENVIRONMENT AGENCY",
-            "addressLine1" : "BOW BRIDGE CLOSE",
-            "townCity" : "ROTHERHAM",
+            "houseNumber" : "NATURAL ENGLAND",
+            "addressLine1" : "DEANERY ROAD",
+            "townCity" : "BRISTOL",
             "postcode" : "BS1 5AH",
             "country" : "",
             "dependentLocality" : "",
             "dependentThoroughfare" : "",
-            "administrativeArea" : "ROTHERHAM",
+            "administrativeArea" : "BRISTOL",
             "localAuthorityUpdateDate" : "",
             "royalMailUpdateDate" : "",
-            "easting" : "442265",
-            "northing" : "391948",
-            "location" : {
-                "lat" : 53.410015,
-                "lon" : -1.339531
-            }
+            "easting" : "358205",
+            "northing" : "172708"
         }, 
         {
             "addressType" : "POSTAL",
-            "houseNumber" : "ENVIRONMENT AGENCY",
-            "addressLine1" : "BOW BRIDGE CLOSE",
+            "houseNumber" : "NATURAL ENGLAND",
+            "addressLine1" : "DEANERY ROAD",
             "addressLine2" : "",
             "addressLine3" : "",
             "addressLine4" : "",
-            "townCity" : "ROTHERHAM",
+            "townCity" : "BRISTOL",
             "postcode" : "BS1 5AH",
             "country" : "",
-            "firstName" : "Bob",
-            "lastName" : "Carolgees"
+            "firstName" : "Chloe",
+            "lastName" : "Gordon"
         }
     ],
     "key_people" : [ 
         {
-            "position" : "Director",
-            "first_name" : "Columbus",
-            "last_name" : "Witting",
-            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
+            "position" : "Business owner",
+            "first_name" : "Chloe",
+            "last_name" : "Gordon",
+            "dob" : ISODate("1980-01-01T00:00:00.000Z"),
             "person_type" : "KEY",
             "conviction_search_result" : {
                 "match_result" : "NO",
-                "searched_at" : ISODate("2018-05-30T08:05:06.314Z"),
-                "confirmed" : "no"
-            }
-        }, 
-        {
-            "position" : "Director",
-            "first_name" : "Nakia",
-            "last_name" : "Pacocha",
-            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
-            "person_type" : "KEY",
-            "conviction_search_result" : {
-                "match_result" : "NO",
-                "searched_at" : ISODate("2018-05-30T08:05:07.521Z"),
-                "confirmed" : "no"
-            }
-        }, 
-        {
-            "position" : "Director",
-            "first_name" : "Ernie",
-            "last_name" : "Hagenes",
-            "dob" : ISODate("1984-05-01T00:00:00.000Z"),
-            "person_type" : "KEY",
-            "conviction_search_result" : {
-                "match_result" : "NO",
-                "searched_at" : ISODate("2018-05-30T08:05:08.887Z"),
+                "searched_at" : ISODate("2018-09-13T09:05:48.890Z"),
                 "confirmed" : "no"
             }
         }
     ],
-    "copy_cards" : "2",
-    "expires_on" : ISODate("2021-05-30T08:05:19.174Z"),
+    "copy_cards" : "0",
+    "expires_on" : ISODate("2021-09-13T00:00:00.000Z"),
     "conviction_search_result" : {
         "match_result" : "NO",
-        "searched_at" : ISODate("2018-05-30T08:05:02.327Z"),
+        "searched_at" : ISODate("2018-09-13T09:03:35.679Z"),
         "confirmed" : "no"
     }
 }

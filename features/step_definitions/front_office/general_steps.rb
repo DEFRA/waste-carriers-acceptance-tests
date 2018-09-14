@@ -75,3 +75,24 @@ When(/^I have signed into my account$/) do
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
+
+Given(/^I have signed in as "([^"]*)"$/) do |username|
+  @front_app = FrontOfficeApp.new
+  @front_app.waste_carrier_sign_in_page.load
+  @front_app.waste_carrier_sign_in_page.submit(
+    email: username,
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+end
+
+Given(/^I choose to renew my registration using my previous registration number$/) do
+  Capybara.reset_session!
+  @front_app = FrontOfficeApp.new
+  @front_app.start_page.load
+  @front_app.start_page.submit(renewal: true)
+  @front_app.existing_registration_page.submit(reg_no: @registration_number)
+end
+
+Then(/^I will be told "([^"]*)"$/) do |message|
+  expect(@front_app.existing_registration_page).to have_text(message)
+end

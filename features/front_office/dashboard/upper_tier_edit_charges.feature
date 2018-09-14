@@ -4,6 +4,9 @@ Feature: Upper tier registration edit charges
   I want to be able to change my registration details
   So that my details are up to date and I'm compliant with the regulations
 
+  Background:
+  Given I have signed in as "user@example.com"
+
   Scenario: Limited company changing its carrier type incurs a charge
   Given I choose to edit my registration "CBDU100"
    When I change my registration type to "carrier_broker_dealer"

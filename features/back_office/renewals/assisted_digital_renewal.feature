@@ -10,12 +10,12 @@ Background:
 
 Scenario: Public body has their upper tier registration renewed by NCCC
   Given I choose to renew "CBDU230"
-    And I have signed into the renewals service
+    And I have signed into the renewals service as an agency user
    When I renew the local authority registration
    Then the registration will have been renewed
 
 Scenario: Limited company has their upper tier registration renewed by NCCC
   Given I choose to renew "CBDU231"
-   And I have signed into the renewals service
+   And I have signed into the renewals service as an agency user
    When I renew the limited company registration
    Then the registration will have been renewed
