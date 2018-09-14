@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @ts
+@frontoffice @upper_tier
 Feature: Upper tier registration edit charges
   As a carrier of commercial waste
   I want to be able to change my registration details
