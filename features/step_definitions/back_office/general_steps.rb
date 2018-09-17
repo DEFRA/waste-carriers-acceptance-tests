@@ -9,6 +9,7 @@ Given(/^an Environment Agency user has signed in$/) do
 end
 
 Given(/^I am signed in as an Environment Agency user with refunds$/) do
+  Capybara.reset_session!
   @back_app = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(

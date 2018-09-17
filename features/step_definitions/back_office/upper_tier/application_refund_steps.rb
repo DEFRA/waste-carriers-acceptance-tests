@@ -64,9 +64,24 @@ end
 When(/^I select the application to refund$/) do
   @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.search_results[0].payment_status.click
+end
+
+When(/^I refund the worldpay payment$/) do
+  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search_results[0].payment_status.click
   @payment_amount = @back_app.payment_status_page.payment_history_amount.text
-  expect(@back_app.payment_reversals_page).to have_text(@registration_number)
-  @back_app.payment_status_page.reversals.click
+  @back_app.payment_status_page.refund.click
+  @back_app.refunds_page.refund.click
+  @back_app.worldpay_refunds_page.refund.click
+end
+
+When(/^the refund will be completed successfully$/) do
+  expect(@back_app.refund_complete_page).to have_text("Refund complete")
+  @back_app.refund_complete_page.payment_status.click
+end
+
+When(/^the balance is paid in full$/) do
+  expect(@back_app.payment_status_page).to have_text("Paid in full")
 end
 
 Then(/^the application payment will be reversed$/) do
