@@ -9,7 +9,7 @@ So that the customer can be refunded their application charge
     And I am signed in as a finance user
    When I select the application to refund
    Then the refund option will not be available
-@ts
+
  Scenario: Worldpay payment for registration refunded by agency user with refunds
   Given I have an application paid by credit card
     And I am signed in as a finance admin
