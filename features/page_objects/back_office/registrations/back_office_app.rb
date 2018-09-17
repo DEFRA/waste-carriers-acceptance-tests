@@ -175,6 +175,10 @@ class BackOfficeApp
     @last_page = PaymentsPage.new
   end
 
+  def refunds_page
+    @last_page = RefundsPage.new
+  end
+
   def renewal_payments_page
     @last_page = RenewalPaymentsPage.new
   end
@@ -243,6 +247,10 @@ class BackOfficeApp
     @last_page = TransientRegistrationsPage.new
   end
 
+  def refund_complete_page
+    @last_page = RefundCompletePage.new
+  end
+
   def revoke_page
     @last_page = RevokePage.new
   end
@@ -269,6 +277,10 @@ class BackOfficeApp
 
   def worldpay_card_details_page
     @last_page = WorldpayCardDetailsPage.new
+  end
+
+  def worldpay_refunds_page
+    @last_page = WorldpayRefundsPage.new
   end
 
   def write_offs_page

@@ -7,6 +7,7 @@ class PaymentStatusPage < SitePrism::Page
   element(:write_off_small, "#writeOffSmall")
   element(:write_off_large, "#writeOffLarge")
   element(:reversals, "#reversals")
+  element(:refund, "#refund")
   element(:charge_adjustments, "#adjustments")
 
   element(:payment_history_amount, :xpath, ".//*[@id='payment_history_table']/tbody/tr/td[4]")
