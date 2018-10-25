@@ -1,4 +1,4 @@
-@backoffice @finance @smoke
+@backoffice @finance
 Feature: Writing off an amount of money owed by a registration
 As a finance admin
 I want to be able to adjust the charge associated to a registration

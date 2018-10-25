@@ -134,14 +134,16 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
   )
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(choice: :england)
-  @back_renewals_app.confirm_business_type_page.submit(org_type: "Local authority or public body")
-  @back_renewals_app.tier_check_page.submit(choice: :skip_check)
+
   visit("/fo/users/sign_out")
 end
 
-When(/^I complete the renewal "([^"]*)" for the account holder$/) do |_reg|
+When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
+  @back_renewals_app.renewals_dashboard_page.search_for_in_progress_renewal(search_term: reg)
   @back_renewals_app.renewals_dashboard_page.results[0].actions.click
   @back_renewals_app.transient_registrations_page.continue_as_assisted_digital.click
+  @back_renewals_app.confirm_business_type_page.submit
+  @back_renewals_app.tier_check_page.submit(choice: :skip_check)
   @back_renewals_app.carrier_type_page.submit
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.company_name_page.submit

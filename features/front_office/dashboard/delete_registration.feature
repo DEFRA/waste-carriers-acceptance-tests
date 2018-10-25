@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @smoke
+@frontoffice @upper_tier
 Feature: Upper tier registration deletes registration
   As a carrier of commercial waste
   I want to be able to remove any registration that is not required
