@@ -134,14 +134,19 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
   )
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(choice: :england)
-  @back_renewals_app.confirm_business_type_page.submit(org_type: "Local authority or public body")
-  @back_renewals_app.tier_check_page.submit(choice: :skip_check)
+
   visit("/fo/users/sign_out")
 end
 
-When(/^I complete the renewal "([^"]*)" for the account holder$/) do |_reg|
+When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
+  @back_renewals_app.renewals_dashboard_page.submit(
+    search_term: reg,
+    choice: :in_progress
+  )
   @back_renewals_app.renewals_dashboard_page.results[0].actions.click
   @back_renewals_app.transient_registrations_page.continue_as_assisted_digital.click
+  @back_renewals_app.confirm_business_type_page.submit
+  @back_renewals_app.tier_check_page.submit(choice: :skip_check)
   @back_renewals_app.carrier_type_page.submit
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.company_name_page.submit
@@ -213,11 +218,14 @@ Given(/^an Environment Agency user has signed in to complete a renewal$/) do
   )
 end
 
-When(/^I search for "([^"]*)"$/) do |search_term|
+When(/^I search for "([^"]*)" pending payment$/) do |reg|
   @back_renewals_app.renewals_dashboard_page.back_office_link.click
-  @back_renewals_app.renewals_dashboard_page.submit(search_term: search_term.to_sym)
+  @back_renewals_app.renewals_dashboard_page.submit(
+    search_term: reg.to_sym,
+    choice: :pending_payment
+  )
   # saves registration for later use
-  @search_term = search_term
+  @reg = reg
 end
 
 When(/^mark the renewal payment as received$/) do
@@ -234,15 +242,10 @@ When(/^mark the renewal payment as received$/) do
   )
 end
 
-Then(/^the registration will have a renewed status$/) do
-  @back_renewals_app.renewals_dashboard_page.back_office_link.click
-  @back_renewals_app.renewals_dashboard_page.submit(search_term: @search_term)
-  expect(@back_renewals_app.renewals_dashboard_page.results[0].status).to have_text("Blah")
-end
-
 Then(/^the registration will have a "([^"]*)" status$/) do |status|
   @back_renewals_app.renewals_dashboard_page.back_office_link.click
-  @back_renewals_app.renewals_dashboard_page.submit(search_term: @search_term)
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: @reg,
+                                                    choice: :pending_conviction)
   expect(@back_renewals_app.renewals_dashboard_page.results[0].status).to have_text(status)
 end
 

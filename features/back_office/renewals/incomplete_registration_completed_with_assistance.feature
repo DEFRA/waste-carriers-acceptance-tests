@@ -1,4 +1,4 @@
-@backoffice @upper_tier @renewal @broken
+@backoffice @upper_tier @renewal
 
 Feature: Assisted digital renewal of an upper tier public body
   As a carrier of commerical waste
@@ -7,6 +7,6 @@ Feature: Assisted digital renewal of an upper tier public body
 
 Scenario: Public body has their upper tier registration renewed by NCCC
   Given "CBDU229" has been partially renewed by the account holder
-    And I have signed into the renewals service
+    And I have signed into the renewals service as an agency user
    When I complete the renewal "CBDU229" for the account holder
    Then the registration will have been renewed

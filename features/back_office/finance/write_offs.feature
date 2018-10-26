@@ -1,4 +1,4 @@
-@backoffice @finance @smoke 
+@backoffice @finance
 Feature: Writing off an amount of money owed by a registration
 As a back office user
 I want to be be able to write off an amount of money owed to the Environment agency
