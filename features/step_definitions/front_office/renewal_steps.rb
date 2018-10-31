@@ -500,7 +500,7 @@ When(/^the renewal date is over one month before it is due to expire$/) do
   # No code to write here, step added so the test reads better
 end
 
-When(/^the renewal date is today$/) do
+When(/^the renewal date is over three days after expiry$/) do
   # No code to write here, step added so the test reads better
 end
 
@@ -533,9 +533,9 @@ Then(/^I will be notified my renewal is pending payment$/) do
 end
 
 When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |reg_no|
-  # renewal_url = Quke::Quke.config.custom["urls"]["front_office_renewals"] + "/fo/renew/#{reg}"
+  renewal_url = Quke::Quke.config.custom["urls"]["front_office_renewals"] + "/fo/renew/#{reg_no}"
 
-  visit("/fo/renew/#{reg_no}")
+  visit(renewal_url)
 end
 
 When(/^view my registration on the dashboard$/) do
