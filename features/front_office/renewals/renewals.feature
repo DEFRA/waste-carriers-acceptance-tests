@@ -53,8 +53,8 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       But the renewal date is over one month before it is due to expire
      Then I will be notified "This registration is not eligible for renewal"
 
-@expiry @broken
+@expiry
     Scenario: Registration can not be renewed on day of expiry
       Given I renew my registration using my previous registration number "CBDU203"
-        But the renewal date is today
-       Then I will be notified "Registration expired"
+        But the renewal date is over three days after expiry
+       Then I will be notified "The registration number you entered has expired"
