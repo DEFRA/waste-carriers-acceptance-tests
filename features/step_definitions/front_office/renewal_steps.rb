@@ -500,7 +500,7 @@ When(/^the renewal date is over one month before it is due to expire$/) do
   # No code to write here, step added so the test reads better
 end
 
-When(/^the renewal date is over three days after expiry$/) do
+When(/^the registration is within the expiry grace renewal window$/) do
   # No code to write here, step added so the test reads better
 end
 
@@ -547,4 +547,9 @@ Then(/^I will see my registration has been renewed$/) do
 
   registration = @renewals_app.waste_carrier_registrations_page.registration(@registration_number)
   expect(registration[:controls].renew_registration).not_to have_text("Renew")
+end
+
+Then(/^I will be prompted to sign in to complete the renewal$/) do
+  @renewals_app.waste_carriers_renewals_sign_in_page.wait_for_email_address
+  expect(@renewals_app.waste_carriers_renewals_sign_in_page.current_url).to include "/users/sign_in"
 end
