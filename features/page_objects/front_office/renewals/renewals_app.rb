@@ -161,6 +161,10 @@ class RenewalsApp
     @last_page = WasteTypesPage.new
   end
 
+  def waste_carriers_renewals_sign_in_page
+    @last_page = WasteCarrierRenewalsSignInPage.new
+  end
+
   def waste_carrier_registrations_page
     @last_page = WasteCarrierRegistrationsPage.new
   end

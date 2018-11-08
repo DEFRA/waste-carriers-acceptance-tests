@@ -54,7 +54,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      Then I will be notified "This registration is not eligible for renewal"
 
 @expiry
-    Scenario: Registration can not be renewed on day of expiry
+    Scenario: Registration can be renewed in expiry grace renewal window
       Given I renew my registration using my previous registration number "CBDU203"
-        But the renewal date is over three days after expiry
-       Then I will be notified "The registration number you entered has expired"
+        But the registration is within the expiry grace renewal window
+       Then I will be prompted to sign in to complete the renewal
