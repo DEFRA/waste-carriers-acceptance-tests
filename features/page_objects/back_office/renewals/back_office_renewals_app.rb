@@ -8,6 +8,11 @@ class BackOfficeRenewalsApp
 
   # RENEWAL SPECIFIC PAGES
   # /
+
+  def approve_convictions_page
+    @last_page = ApproveConvictionsPage.new
+  end
+
   def admin_sign_in_page
     @last_page = AdminSignInPage.new
   end
@@ -34,6 +39,10 @@ class BackOfficeRenewalsApp
 
   def confirm_business_type_page
     @last_page = ConfirmBusinessTypePage.new
+  end
+
+  def convictions_page
+    @last_page = ConvictionsPage.new
   end
 
   def conviction_details_page
@@ -134,6 +143,10 @@ class BackOfficeRenewalsApp
 
   def post_code_page
     @last_page = PostCodePage.new
+  end
+
+  def registrations_page
+    @last_page = RegistrationsPage.new
   end
 
   def registration_cards_page

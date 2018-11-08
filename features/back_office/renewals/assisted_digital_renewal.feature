@@ -16,6 +16,15 @@ Scenario: Public body has their upper tier registration renewed by NCCC
 
 Scenario: Limited company has their upper tier registration renewed by NCCC
   Given I choose to renew "CBDU231"
-   And I have signed into the renewals service as an agency user
+    And I have signed into the renewals service as an agency user
    When I renew the limited company registration
    Then the registration will have been renewed
+@ts
+ Scenario: Expired registration in renewal grace window is only renewed after conviction check and payment is made
+  Given I choose to renew "CBDU231"
+    And I have signed into the renewals service as an agency user
+    And I renew the limited company registration declaring a conviction and paying by bank transfer
+    And I search for "CBDU231" pending payment
+   When I mark the renewal payment as received
+    And I approve the conviction check
+   Then the expiry date should be three years from the previous expiry date

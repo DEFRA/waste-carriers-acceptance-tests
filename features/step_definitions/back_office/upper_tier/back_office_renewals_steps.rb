@@ -19,6 +19,9 @@ end
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
   @registration_number = reg
   @back_renewals_app.registrations_page.search(search_input: @registration_number)
+  @expiry_date = @back_renewals_app.registrations_page.search_results[0].expiry_date.text
+  # Turns the text expiry date into a date
+  @expiry_date_year_first = Date.parse(@expiry_date)
   @back_renewals_app.registrations_page.search_results[0].renew.click
 end
 # rubocop:disable Metrics/LineLength
@@ -228,7 +231,7 @@ When(/^I search for "([^"]*)" pending payment$/) do |reg|
   @reg = reg
 end
 
-When(/^mark the renewal payment as received$/) do
+When(/^I mark the renewal payment as received$/) do
   @back_renewals_app.renewals_dashboard_page.results[0].actions.click
   @back_renewals_app.transient_registrations_page.process_payment.click
   @back_renewals_app.renewal_payments_page.submit(choice: :cash)
@@ -244,8 +247,10 @@ end
 
 Then(/^the registration will have a "([^"]*)" status$/) do |status|
   @back_renewals_app.renewals_dashboard_page.back_office_link.click
-  @back_renewals_app.renewals_dashboard_page.submit(search_term: @reg,
-                                                    choice: :pending_conviction)
+  @back_renewals_app.renewals_dashboard_page.submit(
+    search_term: @reg,
+    choice: :pending_conviction
+  )
   expect(@back_renewals_app.renewals_dashboard_page.results[0].status).to have_text(status)
 end
 
@@ -258,4 +263,53 @@ Then(/^the expiry date should be three years from the previous expiry date$/) do
   expect(@expected_expiry_date).to eq(actual_expiry_date)
 end
 
+Given(/^I renew the limited company registration declaring a conviction and paying by bank transfer$/) do
+  @back_renewals_app.renewal_start_page.submit
+  @back_renewals_app.location_page.submit(choice: :england)
+  @back_renewals_app.confirm_business_type_page.submit
+  @back_renewals_app.tier_check_page.submit(choice: :check_tier)
+  @back_renewals_app.other_businesses_page.submit(choice: :no)
+  @back_renewals_app.construction_waste_page.submit(choice: :yes)
+  @back_renewals_app.carrier_type_page.submit
+  @back_renewals_app.renewal_information_page.submit
+  @back_renewals_app.registration_number_page.submit
+  @back_renewals_app.company_name_page.submit
+  @back_renewals_app.post_code_page.submit(postcode: "BS1 5AH")
+  @back_renewals_app.business_address_page.submit(
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  )
+  people = @back_renewals_app.main_people_page.main_people
+  @back_renewals_app.main_people_page.add_main_person(person: people[0])
+  @back_renewals_app.main_people_page.add_main_person(person: people[1])
+  @back_renewals_app.main_people_page.submit_main_person(person: people[2])
+  @back_renewals_app.declare_convictions_page.submit(choice: :yes)
+  people = @back_renewals_app.conviction_details_page.main_people
+  @back_renewals_app.conviction_details_page.submit(person: people[0])
+  @back_renewals_app.contact_name_page.submit
+  @back_renewals_app.contact_telephone_number_page.submit
+  @back_renewals_app.contact_email_page.submit(
+    email: "bo-user@example.com",
+    confirm_email: "bo-user@example.com"
+  )
+  @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
+  @back_renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @back_renewals_app.check_your_answers_page.submit
+  @back_renewals_app.declaration_page.submit
+  @back_renewals_app.registration_cards_page.submit
+  @back_renewals_app.payment_summary_page.submit(choice: :bank_transfer_payment)
+  @back_renewals_app.bank_transfer_page.submit
+  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+end
+
+When(/^I approve the conviction check$/) do
+  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.submit(
+    search_term: @reg,
+    choice: :conviction_check
+  )
+  @back_renewals_app.renewals_dashboard_page.results[0].actions.click
+  @back_renewals_app.transient_registrations_page.check_convictions.click
+  @back_renewals_app.convictions_page.approve.click
+  @back_renewals_app.approve_convictions_page.submit(approval_reason: "ok")
+end
 # rubocop:enable Metrics/LineLength
