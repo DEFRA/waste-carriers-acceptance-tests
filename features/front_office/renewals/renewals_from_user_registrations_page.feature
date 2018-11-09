@@ -13,5 +13,5 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   	   
     Scenario: Limited company attempts to renew expired registration
   	   Given I have signed in to renew my registration as "user@example.com"
-        When I try to renew anyway by guessing the renewal url for "CBDU203"
+        When I try to renew anyway by guessing the renewal url for "CBDU233"
         Then I will be told my registration can not be renewed

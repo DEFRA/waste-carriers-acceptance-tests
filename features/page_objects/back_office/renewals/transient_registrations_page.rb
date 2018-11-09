@@ -1,4 +1,8 @@
+require_relative "sections/govuk_banner.rb"
+
 class TransientRegistrationsPage < SitePrism::Page
+
+  section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
   element(:continue_as_assisted_digital, "a[href^='/bo/renew']")
   element(:process_payment, "a[href$='/payments']")

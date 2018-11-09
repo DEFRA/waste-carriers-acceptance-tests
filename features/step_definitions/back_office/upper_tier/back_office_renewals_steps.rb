@@ -222,7 +222,7 @@ Given(/^an Environment Agency user has signed in to complete a renewal$/) do
 end
 
 When(/^I search for "([^"]*)" pending payment$/) do |reg|
-  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.govuk_banner.home_page.click
   @back_renewals_app.renewals_dashboard_page.submit(
     search_term: reg.to_sym,
     choice: :pending_payment
@@ -246,7 +246,7 @@ When(/^I mark the renewal payment as received$/) do
 end
 
 Then(/^the registration will have a "([^"]*)" status$/) do |status|
-  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.govuk_banner.home_page.click
   @back_renewals_app.renewals_dashboard_page.submit(
     search_term: @reg,
     choice: :pending_conviction
@@ -298,11 +298,11 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   @back_renewals_app.registration_cards_page.submit
   @back_renewals_app.payment_summary_page.submit(choice: :bank_transfer_payment)
   @back_renewals_app.bank_transfer_page.submit
-  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.govuk_banner.home_page.click
 end
 
 When(/^I approve the conviction check$/) do
-  @back_renewals_app.renewals_dashboard_page.back_office_link.click
+  @back_renewals_app.renewals_dashboard_page.govuk_banner.home_page.click
   @back_renewals_app.renewals_dashboard_page.submit(
     search_term: @reg,
     choice: :conviction_check
