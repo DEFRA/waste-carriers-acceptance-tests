@@ -1,4 +1,9 @@
+require_relative "sections/govuk_banner.rb"
+
 class CashPaymentPage < SitePrism::Page
+
+  section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
+
   # Add a cash payment
   element(:amount, "#cash_payment_form_amount")
   element(:day, "#cash_payment_form_date_received_day")
