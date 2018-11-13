@@ -181,6 +181,10 @@ class BackOfficeRenewalsApp
     @last_page = StartPage.new
   end
 
+  def transfer_registration_page
+    @last_page = TransferRegistrationPage.new
+  end
+
   def transient_registrations_page
     @last_page = TransientRegistrationsPage.new
   end

@@ -1,4 +1,4 @@
-@backoffice @functional @smoke @broken
+@backoffice
 Feature: Change the account email for registrations
 As an agency user
 I need to be able to change the account linked to a registration
@@ -6,13 +6,8 @@ So that users can continue to maintain registrations even if their details chang
 
   Scenario: Change the account where user has just one registration
     Given an Environment Agency user has signed in
-      And I have a registration "CBDU105"
-     When I change the account email
+      And I choose to transfer ownership of "CBDU234" to another user
+      And I have signed into the renewals service as an agency user
+     When I change the account email to "user@example.com"
      Then I see a confirmation the change has been made
 
-
-  Scenario: Change the account where user has just multiple registrations
-    Given the user has 2 registrations
-      And an Environment Agency user has signed in
-     When I change the account email for both
-     Then I see a confirmation for both

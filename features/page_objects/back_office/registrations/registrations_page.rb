@@ -25,6 +25,7 @@ class RegistrationsPage < SitePrism::Page
     element(:refuse, :xpath, "//a[contains(.,'Refuse')]")
     element(:renew, :xpath, "//a[contains(.,'Renew')]")
     element(:payment_status, "a[href*='paymentstatus']")
+    element(:transfer, "a[href*='transfer-registration']")
 
   end
 
