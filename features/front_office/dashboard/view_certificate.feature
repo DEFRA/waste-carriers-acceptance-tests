@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @smoke
+@frontoffice @upper_tier
 Feature: Waste carrier views certificate from user registrations dashboard
   As a carrier of commercial waste
   I want to be able to view my registration certificate
