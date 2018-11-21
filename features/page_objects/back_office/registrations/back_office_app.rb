@@ -11,6 +11,10 @@ class BackOfficeApp
     @last_page = AgencySignInPage.new
   end
 
+  def agency_users_page
+    @last_page = AgencyUsersPage.new
+  end
+
   def approve_page
     @last_page = ApprovePage.new
   end
@@ -255,6 +259,10 @@ class BackOfficeApp
     @last_page = RevokePage.new
   end
 
+  def migrate_page
+    @last_page = MigratePage.new
+  end
+
   def start_page
     @last_page = StartPage.new
   end
@@ -265,6 +273,10 @@ class BackOfficeApp
 
   def sign_up_page
     @last_page = SignupPage.new
+  end
+
+  def sign_in_page
+    @last_page = SignInPage.new
   end
 
   def tier_check_page
@@ -285,6 +297,10 @@ class BackOfficeApp
 
   def write_offs_page
     @last_page = WriteOffsPage.new
+  end
+
+  def users_page
+    @last_page = UsersPage.new
   end
 
   def generate_email

@@ -1,4 +1,4 @@
-class AdminSignInPage < SitePrism::Page
+class SignInPage < SitePrism::Page
 
   set_url(Quke::Quke.config.custom["urls"]["back_office_renewals_sign_in"])
 

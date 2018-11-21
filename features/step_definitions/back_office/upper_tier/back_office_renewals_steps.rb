@@ -1,7 +1,7 @@
 Given(/^I have signed into the renewals service as an agency user$/) do
   @back_renewals_app = BackOfficeRenewalsApp.new
-  @back_renewals_app.admin_sign_in_page.load
-  @back_renewals_app.admin_sign_in_page.submit(
+  @back_renewals_app.sign_in_page.load
+  @back_renewals_app.sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -9,8 +9,8 @@ end
 
 Given(/^I have signed into the renewals service as an agency user with refunds$/) do
   @back_renewals_app = BackOfficeRenewalsApp.new
-  @back_renewals_app.admin_sign_in_page.load
-  @back_renewals_app.admin_sign_in_page.submit(
+  @back_renewals_app.sign_in_page.load
+  @back_renewals_app.sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -219,6 +219,46 @@ Given(/^an Environment Agency user has signed in to complete a renewal$/) do
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
+end
+
+Given(/^an Agency super user has signed in to the admin area$/) do
+  @back_renewals_app = BackOfficeApp.new
+  @back_renewals_app.admin_sign_in_page.load
+  @back_renewals_app.admin_sign_in_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["agency_super"]["username"],
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+end
+
+Given(/^has created an agency user for "([^"]*)"$/) do |user|
+  @back_renewals_app.agency_users_page.add_user.click
+  @back_renewals_app.agency_users_page.submit(
+    email: user,
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+  @user = user
+  expect(@back_renewals_app.agency_users_page).to have_text("Agency user was successfully created.")
+  @back_renewals_app.agency_users_page.sign_out.click
+end
+
+When(/^an Agency super user has signed into the back office$/) do
+  @back_renewals_app.sign_in_page.load
+  @back_renewals_app.sign_in_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["agency_super"]["username"],
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+end
+
+When(/^migrates the backend users to the back office$/) do
+  @back_renewals_app.renewals_dashboard_page.govuk_banner.manage_users.click
+  expect(@back_renewals_app.users_page).to_not have_text(@user)
+  @back_renewals_app.users_page.migrate_users.click
+  @back_renewals_app.migrate_page.migrate_users.click
+  expect(@back_renewals_app.migrate_page).to have_text(@user)
+end
+
+Then(/^the user has been added to the back office$/) do
+  expect(@back_renewals_app.migrate_page).to have_text(@user)
 end
 
 When(/^I search for "([^"]*)" pending payment$/) do |reg|
