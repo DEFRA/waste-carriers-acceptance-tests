@@ -6,7 +6,7 @@ Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
   # Turns the text expiry date into a date
   @expiry_date_year_first = Date.parse(@expiry_date)
   @back_renewals_app.registrations_page.search_results[0].renew.click
-  @back_renewals_app.admin_sign_in_page.submit(
+  @back_renewals_app.sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )

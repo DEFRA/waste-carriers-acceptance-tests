@@ -13,10 +13,6 @@ class BackOfficeRenewalsApp
     @last_page = ApproveConvictionsPage.new
   end
 
-  def admin_sign_in_page
-    @last_page = AdminSignInPage.new
-  end
-
   def agency_sign_in_page
     @last_page = AgencySignInPage.new
   end
@@ -125,6 +121,10 @@ class BackOfficeRenewalsApp
     @last_page = ManualAddressPage.new
   end
 
+  def migrate_page
+    @last_page = MigratePage.new
+  end
+
   def other_businesses_page
     @last_page = OtherBusinessesPage.new
   end
@@ -181,6 +181,10 @@ class BackOfficeRenewalsApp
     @last_page = StartPage.new
   end
 
+  def sign_in_page
+    @last_page = SignInPage.new
+  end
+
   def transfer_registration_page
     @last_page = TransferRegistrationPage.new
   end
@@ -191,6 +195,10 @@ class BackOfficeRenewalsApp
 
   def tier_check_page
     @last_page = TierCheckPage.new
+  end
+
+  def users_page
+    @last_page = UsersPage.new
   end
 
   def unrenewable_page

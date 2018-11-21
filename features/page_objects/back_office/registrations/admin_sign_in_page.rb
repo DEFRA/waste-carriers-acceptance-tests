@@ -1,9 +1,9 @@
 class AdminSignInPage < SitePrism::Page
 
-  set_url(Quke::Quke.config.custom["urls"]["back_office_admin"])
+  set_url(Quke::Quke.config.custom["urls"]["backend_admin"])
 
-  element(:email, "#agency_user_email")
-  element(:password, "#agency_user_password")
+  element(:email, "#admin_email")
+  element(:password, "#admin_password")
 
   element(:submit_button, "#sign_in")
 
