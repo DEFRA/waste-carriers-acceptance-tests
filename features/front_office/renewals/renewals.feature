@@ -4,7 +4,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   I want to renew my waste carriers licence with the Environment Agency
   So I continue to be compliant with the law
 
-@email @ts
+@email
   Scenario: Sole trader renews upper tier registration from renewals page
     Given I renew my registration using my previous registration number "CBDU225"
       And I have signed in to renew my registration
