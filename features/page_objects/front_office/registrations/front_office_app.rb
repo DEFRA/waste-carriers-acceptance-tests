@@ -73,6 +73,14 @@ class FrontOfficeApp
     @last_page = KeyPeoplePage.new
   end
 
+  def mailcatcher_main_page
+    @last_page = MailcatcherMainPage.new
+  end
+
+  def mailcatcher_messages_page
+    @last_page = MailcatcherMessagesPage.new
+  end
+
   def no_registration_page
     @last_page = NoRegistrationPage.new
   end

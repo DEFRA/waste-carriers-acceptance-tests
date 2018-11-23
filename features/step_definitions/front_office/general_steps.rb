@@ -42,7 +42,6 @@ Then(/^I will be registered as a lower tier waste carrier$/) do
   expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
-  # end
 end
 
 When(/^I select that I don't know what business type to enter$/) do

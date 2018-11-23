@@ -4,7 +4,7 @@ As an Environment Agency User
 I want to be be able to enter non credit card payments 
 So that the payment can be recorded and the registration completed
 
-@email
+@email @broken
 Scenario: Application pending payment has full payment recorded as received
  Given I am signed in as an Environment Agency user with refunds
    And I have a registration "CBDU107"
