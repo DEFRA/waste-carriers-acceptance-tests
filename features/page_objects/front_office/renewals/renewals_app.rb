@@ -93,6 +93,14 @@ class RenewalsApp
     @last_page = RegistrationNumberPage.new
   end
 
+  def mailcatcher_main_page
+    @last_page = MailcatcherMainPage.new
+  end
+
+  def mailcatcher_messages_page
+    @last_page = MailcatcherMessagesPage.new
+  end
+
   def main_people_page
     @last_page = MainPeoplePage.new
   end
