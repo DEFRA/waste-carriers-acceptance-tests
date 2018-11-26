@@ -1,8 +1,8 @@
 # rubocop:disable Metrics/LineLength
 Then(/^I will receive a confirmation email of my renewal$/) do
   if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
-    @renewals_app.mailcatcher_main_page.open_email(1)
-    expect(@renewals_app.mailcatcher_messages_page).to have_text("Your registration as an upper tier waste carrier, broker and dealer has been renewed")
+    @email_app.mailcatcher_main_page.open_email(1)
+    expect(@email_app.mailcatcher_messages_page).to have_text("Your registration as an upper tier waste carrier, broker and dealer has been renewed")
   else
     gmail = Gmail.new(ENV["EMAIL_USERNAME"], ENV["EMAIL_PASSWORD"])
     try(20) { @email = gmail.inbox.emails(:unread, from: "registrations@wastecarriersregistration.service.gov.uk").last }
@@ -19,8 +19,8 @@ end
 
 Then(/^I will receive a renewal appliction received email$/) do
   if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
-    @renewals_app.mailcatcher_main_page.open_email(1)
-    expect(@renewals_app.mailcatcher_messages_page).to have_text("Your application to renew your waste carrier, broker and dealer registration has been received")
+    @email_app.mailcatcher_main_page.open_email(1)
+    expect(@email_app.mailcatcher_messages_page).to have_text("Your application to renew your waste carrier, broker and dealer registration has been received")
   else
     gmail = Gmail.new(ENV["EMAIL_USERNAME"], ENV["EMAIL_PASSWORD"])
     try(20) { @email = gmail.inbox.emails(:unread, from: "registrations@wastecarriersregistration.service.gov.uk").last }

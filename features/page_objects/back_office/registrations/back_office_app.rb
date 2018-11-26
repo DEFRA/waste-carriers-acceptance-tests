@@ -303,9 +303,5 @@ class BackOfficeApp
     @last_page = UsersPage.new
   end
 
-  def generate_email
-    @email_address = "waste.carrier.service" + "+" + rand(100_000_000).to_s + "@gmail.com"
-  end
-
 end
 # rubocop:enable Metrics/ClassLength

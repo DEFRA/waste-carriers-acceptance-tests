@@ -8,7 +8,7 @@ When(/^I complete my application of my charity as a lower tier waste carrier$/) 
     postcode: "BS1 5AH",
     result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @email_address = @front_app.generate_email
+  @email_address = @email_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
@@ -35,7 +35,7 @@ When(/^I complete my application of my local authority as a lower tier waste car
     postcode: "BS1 5AH",
     result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @email_address = @front_app.generate_email
+  @email_address = @email_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
@@ -65,7 +65,7 @@ When(/^I complete my application of my partnership as a lower tier waste carrier
     postcode: "BS1 5AH",
     result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @email_address = @front_app.generate_email
+  @email_address = @email_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Terry",
     last_name: "Griffiths",
@@ -94,7 +94,7 @@ When(/^I complete my application of my public body as a lower tier waste carrier
     postcode: "BS1 5AH",
     result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @email_address = @front_app.generate_email
+  @email_address = @email_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
@@ -124,7 +124,7 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
     postcode: "BS1 5AH",
     result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @email_address = @front_app.generate_email
+  @email_address = @email_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Terry",
     last_name: "Griffiths",
@@ -154,7 +154,7 @@ Given(/^I complete my application of my limited company "([^"]*)" as a lower tie
     result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @company_name = company_name
-  @email_address = @front_app.generate_email
+  @email_address = @email_app.generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
