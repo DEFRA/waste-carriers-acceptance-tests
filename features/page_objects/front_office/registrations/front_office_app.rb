@@ -81,6 +81,18 @@ class FrontOfficeApp
     @last_page = MailcatcherMessagesPage.new
   end
 
+  def mailinator_inbox_page
+    @last_page = MailinatorInboxPage.new
+  end
+
+  def mailinator_page
+    @last_page = MailinatorPage.new
+  end
+
+  def mailinator_email_details_page
+    @last_page = MailinatorEmailDetailsPage.new
+  end
+
   def no_registration_page
     @last_page = NoRegistrationPage.new
   end
@@ -162,7 +174,7 @@ class FrontOfficeApp
   end
 
   def generate_email
-    @email_address = "waste.carrier.service" + "+" + rand(100_000_000).to_s + "@gmail.com"
+    @email_address = rand(100_000_000).to_s + "@mailinator.com"
   end
 
 end

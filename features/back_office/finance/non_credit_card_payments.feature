@@ -10,7 +10,7 @@ Scenario: Application pending payment has full payment recorded as received
    And I have a registration "CBDU107"
   When I enter a cash payment for the full amount owed
   Then the registration will be marked as "Registered"
-   And I have received an email "Waste Carrier Registration Complete"
+   And I have received an registration complete email
 
  Scenario: Application pending payment has overpayment recorded
   Given I have a registration "CBDU108"
