@@ -30,4 +30,3 @@ class EmailApp
   end
 
 end
-# rubocop:enable Metrics/ClassLength
