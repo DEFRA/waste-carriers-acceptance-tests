@@ -16,10 +16,7 @@ Given(/^I am on the payment page$/) do
   @renewals_app.declare_convictions_page.submit(choice: :no)
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
-  @renewals_app.contact_email_page.submit(
-    email: "test@example.com",
-    confirm_email: "test@example.com"
-  )
+  @renewals_app.contact_email_page.submit
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
   @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit

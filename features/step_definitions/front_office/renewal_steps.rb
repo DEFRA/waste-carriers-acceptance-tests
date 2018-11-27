@@ -79,23 +79,26 @@ When(/^I answer questions indicating I should be a lower tier waste carrier$/) d
   @renewals_app.waste_types_page.submit(choice: :yes_only)
 end
 
-Given(/^I have signed in to renew my registration$/) do
-  @renewals_app.waste_carrier_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-end
-
 Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   @renewals_app = RenewalsApp.new
-  @renewals_app.waste_carrier_sign_in_page.load
   @renewals_app.waste_carrier_sign_in_page.submit(
+    email: username,
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+  @email_address = username
+end
+
+Given(/^I have signed in to view my registrations as "([^"]*)"$/) do |username|
+  @front_app = FrontOfficeApp.new
+  @front_app.waste_carrier_sign_in_page.load
+  @front_app.waste_carrier_sign_in_page.submit(
     email: username,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
 
 Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
+  @renewals_app = RenewalsApp.new
   @registration_number = reg_no
 
   @renewals_app.waste_carrier_registrations_page.renew(reg: reg_no)
@@ -533,6 +536,7 @@ Then(/^I will be notified my renewal is pending payment$/) do
 end
 
 When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |reg_no|
+  @renewals_app = RenewalsApp.new
   renewal_url = Quke::Quke.config.custom["urls"]["front_office_renewals"] + "/fo/renew/#{reg_no}"
 
   visit(renewal_url)

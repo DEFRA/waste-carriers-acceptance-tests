@@ -31,7 +31,6 @@ When(/^I confirm (?:my|the) email address$/) do
     @email_app.mailcatcher_messages_page.confirmation_link.click
   else
     @email_app.mailinator_page.load
-    puts @email_address
     @email_app.mailinator_page.submit(inbox: @email_address)
     @email_app.mailinator_inbox_page.wait_for_email
     @email_app.mailinator_inbox_page.confirmation_email.click
@@ -44,4 +43,29 @@ end
 
 Given(/^I do not confirm my email address$/) do
   # Nothing to do to replicate step
+end
+
+Then(/^I will receive an email informing me "([^"]*)"$/) do |text|
+  if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
+    @email_app.mailcatcher_main_page.open_email(1)
+    expect(@email_app.mailcatcher_messages_page).to have_text(text)
+  else
+    @email_app.mailinator_page.load
+    @email_app.mailinator_page.submit(inbox: @email_address)
+    expect(@email_app.mailinator_inbox_page).to have_text(text)
+  end
+end
+
+Then(/^I will receive a renewal appliction received email$/) do
+  if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
+    @email_app.mailcatcher_main_page.open_email(1)
+    expect(@email_app.mailcatcher_messages_page).to have_text("Your application to renew")
+  else
+    @email_app.mailinator_page
+    @email_app.mailinator_page.load
+    @email_app.mailinator_page.submit(inbox: @email_address)
+    expect(@email_app.mailinator_page.application_received).to have_text("Your application to renew")
+    @email_app.mailinator_page.application_received.click
+    @email_app.mailcatcher_messages_page.trash.click
+  end
 end
