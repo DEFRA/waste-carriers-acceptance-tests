@@ -138,7 +138,7 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(choice: :england)
 
-  visit("/fo/users/sign_out")
+  Capybara.reset_session!
 end
 
 When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|

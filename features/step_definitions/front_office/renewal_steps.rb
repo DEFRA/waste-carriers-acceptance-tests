@@ -174,7 +174,7 @@ end
 Then(/^I will be able to continue my renewal$/) do
   @renewals_app.tier_check_page.wait_for_check_tier
   expect(@renewals_app.tier_check_page.current_url).to include "/tier-check"
-  visit("/fo/users/sign_out")
+  Capybara.reset_session!
 end
 
 When(/^I complete my sole trader renewal steps$/) do
@@ -475,24 +475,24 @@ end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
   expect(@renewals_app.waste_carrier_sign_in_page).to have_text(message)
-  visit("/fo/users/sign_out")
+  Capybara.reset_session!
 end
 
 Then(/^I will be asked to add another partner$/) do
   expect(@renewals_app.main_people_page).to have_text("You must add the details of at least 2 people")
-  visit("/fo/users/sign_out")
+  Capybara.reset_session!
 end
 
 Then(/^I will be notified my renewal is complete$/) do
   @renewals_app.renewal_complete_page.wait_for_heading
   expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
   expect(@renewals_app.renewal_complete_page).to have_text(@registration_number)
-  visit("/fo/users/sign_out")
+  Capybara.reset_session!
 end
 
 Then(/^I will be advised "([^"]*)"$/) do |message|
   expect(@renewals_app.renewal_information_page).to have_text(message)
-  visit("/fo/users/sign_out")
+  Capybara.reset_session!
 end
 
 Then(/^I will be told my registration can not be renewed$/) do
@@ -524,7 +524,7 @@ Then(/^I will be notified my renewal is pending checks$/) do
   @renewals_app.renewal_complete_page.wait_for_heading
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
-  visit("/fo/users/sign_out")
+  Capybara.reset_session!
 end
 
 Then(/^I will be notified my renewal is pending payment$/) do
@@ -532,7 +532,7 @@ Then(/^I will be notified my renewal is pending payment$/) do
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
   expect(@renewals_app.renewal_received_page).to have_text("pay the renewal charge")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
-  visit("/fo/users/sign_out")
+  Capybara.reset_session!
 end
 
 When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |reg_no|
