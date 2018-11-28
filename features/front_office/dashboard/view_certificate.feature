@@ -6,5 +6,5 @@ Feature: Waste carrier views certificate from user registrations dashboard
 
   Scenario: Limited company changing its carrier type incurs a charge
   Given I have registration "CBDU118"
-  When I choose to view my certificate for "CBDU118"
-  Then I can view my certificate of registration
+   When I choose to view my certificate for "CBDU118"
+   Then I can view my certificate of registration

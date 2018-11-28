@@ -1,5 +1,5 @@
 Then(/^I have received an registration complete email/) do
-  if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
+  if @email_app.local?
     # Opens the second email as the confirmation email will always be first
     @email_app.mailcatcher_main_page.open_email(2)
     expect(@email_app.mailcatcher_main_page).to have_text "You are now registered"
@@ -15,7 +15,7 @@ Then(/^I have received an registration complete email/) do
 end
 
 Then(/^I have received an application received email/) do
-  if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
+  if @email_app.local?
     @email_app.mailcatcher_main_page.load
   else
     # Waits for email to be sent otherwise it could find the email confirmation email for some scenarios
@@ -46,7 +46,7 @@ Given(/^I do not confirm my email address$/) do
 end
 
 Then(/^I will receive an email informing me "([^"]*)"$/) do |text|
-  if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
+  if @email_app.local?
     @email_app.mailcatcher_main_page.open_email(1)
     expect(@email_app.mailcatcher_messages_page).to have_text(text)
   else
@@ -57,7 +57,7 @@ Then(/^I will receive an email informing me "([^"]*)"$/) do |text|
 end
 
 Then(/^I will receive a renewal appliction received email$/) do
-  if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
+  if @email_app.local?
     @email_app.mailcatcher_main_page.open_email(1)
     expect(@email_app.mailcatcher_messages_page).to have_text("Your application to renew")
   else

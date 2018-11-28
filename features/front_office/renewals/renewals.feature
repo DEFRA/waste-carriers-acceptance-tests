@@ -4,7 +4,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   I want to renew my waste carriers licence with the Environment Agency
   So I continue to be compliant with the law
 
-@email
+  @email
   Scenario: Sole trader renews upper tier registration from renewals page
     Given I renew my registration using my previous registration number "CBDU225"
       And I have signed in to renew my registration as "wcr-user@mailinator.com"
@@ -49,13 +49,13 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      When I complete my limited liability partnership renewal steps choosing to pay by bank transfer
      Then I will be notified my renewal is pending payment
 
-@expiry
+    @expiry
     Scenario: Registration can not be renewed over one month before its expiry date
     Given I renew my registration using my previous registration number "CBDU202"
       But the renewal date is over one month before it is due to expire
      Then I will be notified "This registration is not eligible for renewal"
 
-@expiry
+    @expiry
     Scenario: Registration can be renewed in expiry grace renewal window
       Given I renew my registration using my previous registration number "CBDU203"
         But the registration is within the expiry grace renewal window

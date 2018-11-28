@@ -11,7 +11,7 @@ Feature: Public body applies for new upper tier registration
   Scenario: Public body successfully registers for a upper tier waste carriers licence paying by credit card
     When I pay for my application by maestro ordering 1 copy card
    	Then I will be registered as an upper tier waste carrier
-    And the registration status will be "Registered"
+     And the registration status will be "Registered"
 
 @smoke 
    Scenario: Public body successfully applies for an upper tier waste carriers licence choosing to pay by bank transfer
