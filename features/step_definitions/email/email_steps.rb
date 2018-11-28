@@ -64,8 +64,9 @@ Then(/^I will receive a renewal appliction received email$/) do
     @email_app.mailinator_page
     @email_app.mailinator_page.load
     @email_app.mailinator_page.submit(inbox: @email_address)
-    expect(@email_app.mailinator_page.application_received).to have_text("Your application to renew")
-    @email_app.mailinator_page.application_received.click
+    expect(@email_app.mailinator_inbox_page).to have_text("Your application to renew")
+    @email_app.mailinator_inbox_page.application_received.click
+    @email_app.mailcatcher_messages_page.wait_for_trash
     @email_app.mailcatcher_messages_page.trash.click
   end
 end
