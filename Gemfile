@@ -12,6 +12,3 @@ gem "rake"
 
 # Create random names
 gem "faker"
-
-# Enables email testing with gmail
-gem "gmail"

@@ -38,11 +38,20 @@ Then(/^I will be registered as an upper tier waste carrier$/) do
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
-  expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
-  expect(@front_app.confirmation_page).to have_text @email_address
-  # Stores registration number for later use
-  @registration_number = @front_app.confirmation_page.registration_number.text
-  # end
+  if @email_app.local?
+    expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
+    expect(@front_app.confirmation_page).to have_text @email_address
+    # Stores registration number for later use
+    @registration_number = @front_app.confirmation_page.registration_number.text
+  else
+    within_window @new_window do
+      @front_app.confirmation_page.wait_for_registration_number
+      expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
+      expect(@front_app.confirmation_page).to have_text @email
+      # Stores registration number for later use
+      @registration_number = @front_app.confirmation_page.registration_number.text
+    end
+  end
 end
 
 When(/^I select that I don't know what business type to enter$/) do

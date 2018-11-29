@@ -17,5 +17,5 @@ Feature: Limited company applies for new upper tier registration
   Scenario: Limited company successfully applies for an upper tier waste carriers licence choosing to pay by bank transfer
    When I choose to pay for my application by bank transfer ordering 2 copy cards
    Then I will be informed my registration is pending payment
-    And I have received a "Application received" email 
+    And I have received an application received email
     And my registration status will be "Awaiting payment"

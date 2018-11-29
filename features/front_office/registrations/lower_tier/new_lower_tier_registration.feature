@@ -4,12 +4,12 @@ Feature: New lower tier registrations
   I want to register my company with the Environment Agency
   So I am compliant with the law
 
-@email 
+ @email
  Scenario: Charity successfully registers for a lower tier waste carriers licence
    Given I complete my application of my charity as a lower tier waste carrier
     When I confirm my email address
     Then I will be registered as a lower tier waste carrier
-     And I have received an email "Waste Carrier Registration Complete" 
+     And I have received an registration complete email 
      And the registration status will be "Registered" 
  
  Scenario: Lower tier waste carrier does not confirm their email address

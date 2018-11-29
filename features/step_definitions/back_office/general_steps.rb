@@ -36,6 +36,11 @@ Given(/^I am signed in as a finance user$/) do
   )
 end
 
+Given(/^I have a registration "([^"]*)"$/) do |reg|
+  # stores registration number for later use
+  @registration_number = reg
+end
+
 Given(/^the registration details are found in the backoffice$/) do
   step "an Environment Agency user has signed in"
   @back_app.registrations_page.search(search_input: @registration_number)
