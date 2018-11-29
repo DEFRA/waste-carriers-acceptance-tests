@@ -38,7 +38,7 @@ Then(/^I will be registered as an upper tier waste carrier$/) do
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
-  if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
+  if @email_app.local?
     expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
     expect(@front_app.confirmation_page).to have_text @email_address
     # Stores registration number for later use

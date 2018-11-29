@@ -26,7 +26,7 @@ Then(/^I have received an application received email/) do
 end
 
 When(/^I confirm (?:my|the) email address$/) do
-  if (Quke::Quke.config.custom["urls"]["front_office"]).include? "local"
+  if @email_app.local?
     @email_app.mailcatcher_main_page.open_email(1)
     @email_app.mailcatcher_messages_page.confirmation_link.click
   else

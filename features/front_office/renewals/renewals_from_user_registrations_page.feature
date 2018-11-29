@@ -11,7 +11,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
          And view my registration on the dashboard
         Then I will see my registration has been renewed
   	   
-    Scenario: Limited company attempts to renew expired registration
+  Scenario: Limited company attempts to renew expired registration
   	   Given I have signed in to view my registrations as "user@example.com"
         When I try to renew anyway by guessing the renewal url for "CBDU233"
         Then I will be told my registration can not be renewed
