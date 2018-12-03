@@ -342,13 +342,9 @@ Given(/^I renew the limited company registration declaring a conviction and payi
 end
 
 When(/^I approve the conviction check$/) do
-  @back_renewals_app.renewals_dashboard_page.govuk_banner.home_page.click
-  @back_renewals_app.renewals_dashboard_page.submit(
-    search_term: @reg,
-    choice: :conviction_check
-  )
-  @back_renewals_app.renewals_dashboard_page.results[0].actions.click
-  @back_renewals_app.transient_registrations_page.check_convictions.click
+  @back_renewals_app.renewals_dashboard_page.govuk_banner.conviction_checks.click
+  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/#{@reg}/convictions")
+
   @back_renewals_app.convictions_page.approve.click
   @back_renewals_app.approve_convictions_page.submit(approval_reason: "ok")
 end

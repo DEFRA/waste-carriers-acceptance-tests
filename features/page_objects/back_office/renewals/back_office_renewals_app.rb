@@ -41,6 +41,10 @@ class BackOfficeRenewalsApp
     @last_page = ConvictionsPage.new
   end
 
+  def convictions_dashboard_page
+    @last_page = ConvictionsDashboardPage.new
+  end
+
   def conviction_details_page
     @last_page = ConvictionDetailsPage.new
   end
