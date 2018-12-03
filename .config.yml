@@ -9,7 +9,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: 'https://waste-carriers-tst.aws.defra.cloud'
+app_host: 'http://localhost:3000'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -46,7 +46,7 @@ max_wait_time: 10
 # For example you may be dealing with a legacy site and JavaScript errors
 # are out of your scope. You still want to test other aspects of the site
 # but not let these errors prevent you from using phantomjs.
-javascript_errors: false
+javascript_errors: true
 
 # Anything you place under the 'custom' node in the `.config.yml` file will be
 # available within your steps and page objects by calling
