@@ -101,6 +101,7 @@ Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
   @renewals_app = RenewalsApp.new
   @registration_number = reg_no
 
+  @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
   @renewals_app.waste_carrier_registrations_page.renew(reg: reg_no)
 
 end
