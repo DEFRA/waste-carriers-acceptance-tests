@@ -51,9 +51,10 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
     find(:css, element).text
   end
 
-  def renewable(registration_number)
+  def renewable?(registration_number)
     element = "#" + registration_number.to_s + " li:nth-child(3) a"
-    find(:css, element).text
+    element_txt = find(:css, element).text
+    element_txt.include? "Renew"
   end
 
   def find_registration(registration_number)
