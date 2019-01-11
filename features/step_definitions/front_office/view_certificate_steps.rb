@@ -12,10 +12,8 @@ When(/^I choose to view my certificate for "([^"]*)"$/) do |reg_no|
   )
   @registration_number = reg_no
 
-  registration = @front_app.waste_carrier_registrations_page.registration(@registration_number)
-  # puts "Reg no is #{registration[:info].reg_number.text}"
-  registration[:controls].view_certificate.click
-
+  @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
+  @front_app.waste_carrier_registrations_page.view_certificate(@registration_number)
 end
 
 Then(/^I can view my certificate of registration$/) do

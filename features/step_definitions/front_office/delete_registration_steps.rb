@@ -3,11 +3,11 @@ Given(/I choose to delete my registration "([^"]*)"$/) do |reg_no|
   @front_app = FrontOfficeApp.new
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @registration_number = reg_no
-# Looks for registration on each page of the registrations dashboard
+  # Looks for registration on each page of the registrations dashboard
   @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
   @front_app.waste_carrier_registrations_page.delete(@registration_number)
 

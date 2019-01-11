@@ -102,8 +102,7 @@ Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
   @registration_number = reg_no
 
   @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
-  @renewals_app.waste_carrier_registrations_page.renew(reg: reg_no)
-
+  @front_app.waste_carrier_registrations_page.renew(@registration_number)
 end
 
 When(/^I complete my limited company renewal steps$/) do
@@ -547,11 +546,16 @@ When(/^view my registration on the dashboard$/) do
   @renewals_app.renewal_complete_page.finished.click
 end
 
-Then(/^I will see my registration has been renewed$/) do
-  expect(@renewals_app.waste_carrier_registrations_page.registration_info[0].status.text).to have_text("ACTIVE")
+Then(/^I will see my registration "([^"]*)" has been renewed$/) do |reg|
+  @registration_number = reg
+  @renewals_app.waste_carrier_registrations_page.find_registration(@registration_number)
 
-  registration = @renewals_app.waste_carrier_registrations_page.registration(@registration_number)
-  expect(registration[:controls].renew_registration).not_to have_text("Renew")
+  status = @renewals_app.waste_carrier_registrations_page.check_status(@registration_number)
+  expect(status).to have_text("Active")
+
+  renewable = @renewals_app.waste_carrier_registrations_page.renewable(@registration_number)
+  puts renewable.txt
+  expect(renewable).not_to have_text("Renew")
 end
 
 Then(/^I will be prompted to sign in to complete the renewal$/) do

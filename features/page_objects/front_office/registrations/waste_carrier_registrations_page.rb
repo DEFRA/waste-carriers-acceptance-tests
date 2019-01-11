@@ -19,23 +19,41 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
 
   elements(:edits, "[href*='/edit']")
   elements(:renewals, "[href*='/renew']")
+  elements(:deletes, "[hreg*='/confirm_delete']")
+
   element(:sign_out, "#signout_button")
 
   element(:next_page, "a[aria-label='Next page']")
   element(:last_page, "a[aria-label='Last page']")
 
-  def edit(args = {})
-    return unless args.key?(:reg)
-
-    search_val = "edit_#{args[:reg]}"
-    edits.find { |chk| chk["id"] == search_val }.click
+  def view_certificate(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(1) a"
+    find(:css, element).click
   end
 
-  def renew(args = {})
-    return unless args.key?(:reg)
+  def renew(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(3) a"
+    find(:css, element).click
+  end
 
-    search_val = "renew_#{args[:reg]}"
-    renewals.find { |chk| chk["id"] == search_val }.click
+  def delete(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(4) a"
+    find(:css, element).click
+  end
+
+  def edit(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(2) a"
+    find(:css, element).click
+  end
+
+  def check_status(registration_number)
+    element = "#" + registration_number.to_s + " .column-one-quarter:nth-child(3) li+ li"
+    find(:css, element).text
+  end
+
+  def renewable(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(3) a"
+    find(:css, element).text
   end
 
   def find_registration(registration_number)
