@@ -8,7 +8,8 @@ Given(/I choose to edit my registration "([^"]*)"$/) do |reg_no|
   )
   @registration_number = reg_no
 
-  @front_app.waste_carrier_registrations_page.edit(reg: reg_no)
+  @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
+  @front_app.waste_carrier_registrations_page.edit(@registration_number)
 end
 
 When(/^I change my registration type to "([^"]*)"$/) do |registration_type|
@@ -35,7 +36,7 @@ When(/^I remove a partner from my registration$/) do
 end
 
 Then(/^I will not be charged for my change$/) do
-  expect(@front_app.waste_carrier_registrations_page.current_url).to include "/registrations"
+  expect(@front_app.waste_carrier_registrations_page.current_url).to include "/fo"
 end
 
 When(/^I change my organisation type to a limited company$/) do
@@ -45,9 +46,11 @@ When(/^I change my organisation type to a limited company$/) do
   @front_app.service_provided_question_page.submit(choice: :not_main_service)
   @front_app.construction_waste_question_page.submit(choice: :yes)
   @front_app.registration_type_page.submit(choice: :carrier_dealer)
-  @front_app.business_details_page.submit(companies_house_number: "00445790",
-                                          postcode: "BS1 5AH",
-                                          result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @front_app.business_details_page.submit(
+    companies_house_number: "00445790",
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  )
   @front_app.contact_details_page.submit
   @front_app.postal_address_page.submit
   @front_app.key_people_page.submit

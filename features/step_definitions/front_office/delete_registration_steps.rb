@@ -7,10 +7,10 @@ Given(/I choose to delete my registration "([^"]*)"$/) do |reg_no|
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @registration_number = reg_no
+  # Looks for registration on each page of the registrations dashboard
+  @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
+  @front_app.waste_carrier_registrations_page.delete(@registration_number)
 
-  registration = @front_app.waste_carrier_registrations_page.registration(@registration_number)
-  # puts "Reg no is #{registration[:info].reg_number.text}"
-  registration[:controls].delete.click
 end
 
 When(/^I delete my registration$/) do

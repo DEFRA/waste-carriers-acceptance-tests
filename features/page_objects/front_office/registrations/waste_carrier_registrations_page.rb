@@ -8,45 +8,71 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
     element(:expiry_date, "td:nth-child(5)")
   end
 
-  sections(:registration_controls, "table tbody tr:nth-child(even)") do
-    element(:view_certificate, "td:nth-child(1)")
-    element(:edit_registration, "td:nth-child(2)")
-    element(:renew_registration, "td:nth-child(3)")
-    element(:order_copy_cards, "td:nth-child(4)")
-    element(:delete, "td:nth-child(5)")
+  sections(:registration_controls, ".registration-list") do
+    element(:reg_no, ".column-one-quarter:nth-child(2) li:nth-child(1)")
+    element(:view_certificate, "li:nth-child(1) a")
+    element(:edit_registration, "li:nth-child(2) a")
+    element(:renew_registration, "li:nth-child(3) a")
+    element(:order_copy_cards, "li:nth-child(4) a")
+    element(:delete, "li:nth-child(5) a")
   end
 
   elements(:edits, "[href*='/edit']")
   elements(:renewals, "[href*='/renew']")
+  elements(:deletes, "[hreg*='/confirm_delete']")
+
   element(:sign_out, "#signout_button")
 
-  def edit(args = {})
-    return unless args.key?(:reg)
+  element(:next_page, "a[aria-label='Next page']")
+  element(:last_page, "a[aria-label='Last page']")
 
-    search_val = "edit_#{args[:reg]}"
-    edits.find { |chk| chk["id"] == search_val }.click
+  def view_certificate(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(1) a"
+    find(:css, element).click
   end
 
-  def renew(args = {})
-    return unless args.key?(:reg)
-
-    search_val = "renew_#{args[:reg]}"
-    renewals.find { |chk| chk["id"] == search_val }.click
+  def renew(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(3) a"
+    find(:css, element).click
   end
 
-  def registration(registration_number)
-    result = nil
+  def delete(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(4) a"
+    find(:css, element).click
+  end
 
-    registration_info.each_with_index do |info, index|
-      next unless info.reg_number.text == registration_number
-      result = {
-        info: info,
-        controls: registration_controls[index]
-      }
-      break
+  def edit(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(2) a"
+    find(:css, element).click
+  end
+
+  def check_status(registration_number)
+    element = "#" + registration_number.to_s + " .column-one-quarter:nth-child(3) li+ li"
+    find(:css, element).text
+  end
+
+  def renewable(registration_number)
+    element = "#" + registration_number.to_s + " li:nth-child(3) a"
+    find(:css, element).text
+  end
+
+  def find_registration(registration_number)
+    found = false
+    loop do
+
+      found = page.has_content?(registration_number)
+      break if found
+
+      begin
+        last_page
+      rescue StandardError
+        break
+      end
+
+      next_page.click
     end
 
-    result
+    raise "Registration not found" unless found
   end
 
 end
