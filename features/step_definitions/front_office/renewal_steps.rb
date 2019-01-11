@@ -553,9 +553,7 @@ Then(/^I will see my registration "([^"]*)" has been renewed$/) do |reg|
   status = @renewals_app.waste_carrier_registrations_page.check_status(@registration_number)
   expect(status).to have_text("Active")
 
-  renewable = @renewals_app.waste_carrier_registrations_page.renewable(@registration_number)
-  puts renewable.txt
-  expect(renewable).not_to have_text("Renew")
+  expect(@renewals_app.waste_carrier_registrations_page.renewable?(@registration_number)).to be false
 end
 
 Then(/^I will be prompted to sign in to complete the renewal$/) do
