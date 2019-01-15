@@ -25,10 +25,6 @@ class EmailApp
     @last_page = MailinatorEmailDetailsPage.new
   end
 
-  def generate_email
-    @email_address = rand(100_000_000).to_s + "@mailinator.com"
-  end
-
   def local?
     (Quke::Quke.config.custom["urls"]["mail_client"]).include? "local"
   end

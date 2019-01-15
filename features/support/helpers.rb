@@ -27,3 +27,7 @@ def try(number_of_times)
     count += 1
   end
 end
+
+def generate_email
+  @email_address = rand(100_000_000).to_s + "@mailinator.com"
+end

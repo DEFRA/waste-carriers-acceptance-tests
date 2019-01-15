@@ -99,5 +99,6 @@ Then(/^the outstanding balance will be the amount previously paid$/) do
 end
 
 Then(/^the refund option will not be available$/) do
+  @back_app.payment_status_page.reversals.click
   expect(@back_app.payment_reversals_page.select_payment.text).to eq("n/a")
 end
