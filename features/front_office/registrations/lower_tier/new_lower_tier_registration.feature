@@ -1,10 +1,9 @@
-@frontoffice @lower_tier @smoke 
+@frontoffice @lower_tier @smoke @email
 Feature: New lower tier registrations
   As a carrier of domestic waste
   I want to register my company with the Environment Agency
   So I am compliant with the law
 
- @email
  Scenario: Charity successfully registers for a lower tier waste carriers licence
    Given I complete my application of my charity as a lower tier waste carrier
     When I confirm my email address
