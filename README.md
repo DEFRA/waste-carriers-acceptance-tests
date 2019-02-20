@@ -10,11 +10,11 @@ This project contains the acceptance tests for the Waste carriers digital servic
 
 ## Pre-requisites
 
-This project is setup to run against version 2.2.3 of Ruby.
+This project is setup to run against version 2.4.2 of Ruby.
 
 The rest of the pre-requisites are the same as those for [Quke](https://github.com/DEFRA/quke#pre-requisites).
 
-Also some of the [rake](https://github.com/ruby/rake) tasks (to see the available list call `bundle exec rake -T`) and `config.yml` files assume you have the Waste Carriers [Vagrant](https://www.vagrantup.com/) environment running locally. Contact [Alan Cruikshanks](https://github.com/Cruikshanks) or [Tim Stone](https://github.com/timstone) for details if unsure.
+Also some of the [rake](https://github.com/ruby/rake) tasks (to see the available list call `bundle exec rake -T`) and `config.yml` files assume you have the Waste Carriers [Vagrant](https://www.vagrantup.com/) environment running locally. Contact [Alan Cruikshanks](https://github.com/Cruikshanks) for details if unsure.
 
 ## Installation
 

@@ -5,7 +5,6 @@ class GovukBanner < SitePrism::Section
   SELECTOR ||= "#global-header".freeze
 
   element(:home_page, "#proposition-name")
-  element(:manage_users, "a[href='/bo/users']")
-  element(:conviction_checks, "a[href='/bo/convictions']")
+  element(:manage_users, "a[href='/users']")
 
 end
