@@ -13,13 +13,13 @@ Then(/^I will be shown the renewal information page$/) do
 end
 
 Then(/^I will be shown the renewal start page$/) do
-  @renewals_app.renewal_start_page.wait_for_heading
+  @renewals_app.renewal_start_page.wait_until_heading_visible
   expect(@renewals_app.renewal_start_page).to have_text(@registration_number)
   expect(@renewals_app.renewal_start_page.current_url).to include "/renew/CBDU"
 end
 
 When(/^I choose to renew my registration from my registrations list$/) do
-  @renewals_app.waste_carrier_registrations_page.wait_for_sign_out
+  @renewals_app.waste_carrier_registrations_page.wait_until_sign_out_visible
   @renewals_app.waste_carrier_registrations_page.registrations[0].renew_registration.click
 end
 
@@ -172,7 +172,7 @@ Given(/^I change my place of business location to "([^"]*)"$/) do |location|
 end
 
 Then(/^I will be able to continue my renewal$/) do
-  @renewals_app.tier_check_page.wait_for_check_tier
+  @renewals_app.tier_check_page.wait_until_check_tier_visible
   expect(@renewals_app.tier_check_page.current_url).to include "/tier-check"
   Capybara.reset_session!
 end
@@ -484,7 +484,7 @@ Then(/^I will be asked to add another partner$/) do
 end
 
 Then(/^I will be notified my renewal is complete$/) do
-  @renewals_app.renewal_complete_page.wait_for_heading
+  @renewals_app.renewal_complete_page.wait_until_heading_visible
   expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
   expect(@renewals_app.renewal_complete_page).to have_text(@registration_number)
   Capybara.reset_session!
@@ -521,14 +521,14 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
 end
 
 Then(/^I will be notified my renewal is pending checks$/) do
-  @renewals_app.renewal_complete_page.wait_for_heading
+  @renewals_app.renewal_received_page.wait_until_heading_visible
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
   Capybara.reset_session!
 end
 
 Then(/^I will be notified my renewal is pending payment$/) do
-  @renewals_app.renewal_complete_page.wait_for_heading
+  @renewals_app.renewal_received_page.wait_until_heading_visible
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
   expect(@renewals_app.renewal_received_page).to have_text("pay the renewal charge")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
@@ -557,6 +557,6 @@ Then(/^I will see my registration "([^"]*)" has been renewed$/) do |reg|
 end
 
 Then(/^I will be prompted to sign in to complete the renewal$/) do
-  @renewals_app.waste_carriers_renewals_sign_in_page.wait_for_email_address
+  @renewals_app.waste_carriers_renewals_sign_in_page.wait_until_email_address_visible
   expect(@renewals_app.waste_carriers_renewals_sign_in_page.current_url).to include "/users/sign_in"
 end

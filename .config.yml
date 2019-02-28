@@ -15,6 +15,11 @@ app_host: 'http://localhost:3000'
 # browserstack and phantomjs, with the default being phantomjs
 driver: chrome
 
+# Runs either Chrome or Firefox driver headlessly if set to true
+headless: true
+
+parallel: false
+
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
 # default is 0

@@ -45,7 +45,7 @@ Then(/^I will be registered as a lower tier waste carrier$/) do
     @registration_number = @front_app.confirmation_page.registration_number.text
   else
     within_window @new_window do
-      @front_app.confirmation_page.wait_for_registration_number
+      @front_app.confirmation_page.wait_until_registration_number_visible
       expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
       expect(@front_app.confirmation_page).to have_text @email
       # Stores registration number for later use
