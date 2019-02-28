@@ -6,5 +6,6 @@ class GovukBanner < SitePrism::Section
 
   element(:home_page, "#proposition-name")
   element(:manage_users, "a[href='/users']")
+  element(:conviction_checks, "a[href='/bo/convictions']")
 
 end
