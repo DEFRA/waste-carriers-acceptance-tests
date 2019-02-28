@@ -24,10 +24,10 @@ end
 
 Then(/^the outstanding balance will be £(\d+)$/) do |charge|
   expect(@back_app.payment_status_page.payment_status.text).to eq("Awaiting payment")
-  expect(@back_app.payment_status_page.balance.text).to eq(charge + ".00")
+  expect(@back_app.payment_status_page.balance.text).to eq(charge.to_s + ".00")
 end
 
 Then(/^the overpaid amount will be £(\d+)$/) do |charge|
   expect(@back_app.payment_status_page.payment_status.text).to eq("Overpaid by")
-  expect(@back_app.payment_status_page.balance.text).to eq(charge + ".00")
+  expect(@back_app.payment_status_page.balance.text).to eq(charge.to_s + ".00")
 end
