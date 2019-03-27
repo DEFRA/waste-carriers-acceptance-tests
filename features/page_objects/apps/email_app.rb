@@ -1,5 +1,5 @@
-# Represents all pages in the front office. Was created to avoid needing to
-# create individual instances of each page throughout the steps.
+# frozen_string_literal: true
+
 # https://github.com/natritmeyer/site_prism#epilogue
 class EmailApp
   # Using an attr_reader automatically gives us a my_app.last_page method
