@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContactAddressPage < SitePrism::Page
 
   # whats the address of the person we should contact?
@@ -10,11 +12,8 @@ class ContactAddressPage < SitePrism::Page
   element(:post_code, "#address_postcode")
   element(:country, "#address_country")
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "#continue")
 
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/PerceivedComplexity
   def submit(args = {})
     house_number.set(args[:house_number]) if args.key?(:house_number)
     address_line_one.set(args[:address_line_one]) if args.key?(:address_line_one)
@@ -27,7 +26,4 @@ class ContactAddressPage < SitePrism::Page
 
     submit_button.click
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/CyclomaticComplexity
-  # rubocop:enable Metrics/PerceivedComplexity
 end

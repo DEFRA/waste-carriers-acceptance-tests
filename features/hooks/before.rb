@@ -1,16 +1,19 @@
-require "quke/configuration"
+# frozen_string_literal: true
+
+# Because of the way Cucumber is put together with everything loaded in the
+# global namespace and no main() method to speak of, there doesn't seem to be
+# any better way of persisting state between runs.
+# rubocop:disable Style/GlobalVars
 Before do
-  # This 'before' hook ensures that the page is
-  # resized before every scenario when run headlessly.
-  Capybara.page.current_window.resize_to(1280, 800) if Capybara.current_driver == :phantomjs
+  $world_state ||= World.new
+  @world = $world_state
 end
 
 # clears emails from mailcatcher before running tests if running tests locally
 Before("@email") do
-  @email_app = EmailApp.new
-  if @email_app.local?
-    @email_app.mailcatcher_main_page.load
-    @email_app.mailcatcher_main_page.clear_all_messages.click
+  if @world.email.local?
+    @world.email.mailcatcher_main_page.load
+    @world.email.mailcatcher_main_page.clear_all_messages.click
     popup = page.driver.browser.switch_to.alert
     popup.accept
   end

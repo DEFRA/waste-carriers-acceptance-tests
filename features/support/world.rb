@@ -2,29 +2,17 @@
 
 class World
 
-  attr_reader :renewal_journey, :registration_journey, :bo, :email
+  attr_reader :renewal_journey, :registration_journey, :bo, :backend, :email
+  attr_accessor :current_reg
+  attr_accessor :last_email, :last_reference
 
   def initialize
     @renewal_journey = RenewalJourneyApp.new
     @registration_journey = RegistrationJourneyApp.new
     @bo = BackOfficeApp.new
+    @backend = BackendApp.new
     @email = EmailApp.new
   end
-
-  agency_user:
-      username: agency-user@wcr.gov.uk
-    agency_user_with_payment_refund:
-      username: agency-refund-payment-user@wcr.gov.uk
-    finance_admin:
-      username: finance-admin-user@wcr.gov.uk
-    finance_basic:
-      username: finance-user@wcr.gov.uk
-    waste_carrier:
-      username: user@example.com
-    waste_carrier2:
-      username: another-user@example.com
-    agency_super:
-      username: agency-super@wcr.gov.uk
 
   def agency_user
     Quke::Quke.config.custom["accounts"]["agency_user"]["username"]
@@ -50,12 +38,20 @@ class World
     ENV["WCR_DEFAULT_PASSWORD"]
   end
 
-  def external_url
-    Quke::Quke.config.custom["urls"]["external"]
+  def frontend_url
+    Quke::Quke.config.custom["urls"]["frontend"]
   end
 
-  def internal_url
-    Quke::Quke.config.custom["urls"]["internal"]
+  def backend_url
+    Quke::Quke.config.custom["urls"]["backend"]
+  end
+
+  def front_office_url
+    Quke::Quke.config.custom["urls"]["front_office"]
+  end
+
+  def back_office_url
+    Quke::Quke.config.custom["urls"]["back_office"]
   end
 
   def mail_client_url

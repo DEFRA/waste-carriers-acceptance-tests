@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require "uri"
+
 # Scroll to any element/section
 # @param element [Capybara::Node::Element, SitePrism::Section]
 def scroll_to(element)
@@ -28,6 +32,13 @@ def try(number_of_times)
   end
 end
 
-def generate_email
-  @email_address = rand(100_000_000).to_s + "@mailinator.com"
+def join_url(domain, path = "")
+  URI.join(domain, path).to_s
+end
+
+def current_url_is_internal?
+  internal_hosts = [URI(@world.backend_url).host, URI(@world.back_office_url).host]
+  current_host = URI(current_url).host
+
+  internal_hosts.include?(current_host)
 end

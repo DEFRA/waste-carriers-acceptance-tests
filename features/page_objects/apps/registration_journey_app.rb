@@ -1,13 +1,29 @@
+# frozen_string_literal: true
+
 # Represents all pages in the front office. Was created to avoid needing to
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
+
 # rubocop:disable Metrics/ClassLength
-class FrontOfficeApp
+class RegistrationJourneyApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
 
-  # FRONT OFFICE SPECIFIC PAGES
-  # /
+  def start_page
+    @last_page = StartPage.new
+  end
+
+  def location_page
+    @last_page = LocationPage.new
+  end
+
+  def business_type_page
+    @last_page = BusinessTypePage.new
+  end
+
+  def business_details_page
+    @last_page = BusinessDetailsPage.new
+  end
 
   def agency_users_sign_in_page
     @last_page = SignInPage.new
@@ -17,37 +33,33 @@ class FrontOfficeApp
     @last_page = BusinessAddressPage.new
   end
 
-  def business_details_page
-    @last_page = BusinessDetailsPage.new
-  end
-
-  def business_type_page
-    @last_page = BusinessTypePage.new
-  end
-
-  def confirm_delete_page
-    @last_page = ConfirmDeletePage.new
+  def contact_details_page
+    @last_page = ContactDetailsPage.new
   end
 
   def contact_address_page
     @last_page = ContactAddressPage.new
   end
 
-  def contact_name_page
-    @last_page = ContactNamePage.new
+  def confirm_delete_page
+    @last_page = ConfirmDeletePage.new
   end
 
   def check_details_page
     @last_page = CheckDetailsPage.new
   end
 
+  def contact_name_page
+    @last_page = ContactNamePage.new
+  end
+
+  
+
   def company_name_page
     @last_page = CompanyNamePage.new
   end
 
-  def contact_details_page
-    @last_page = ContactDetailsPage.new
-  end
+  
 
   def confirmation_page
     @last_page = ConfirmationPage.new

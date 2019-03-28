@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 # Represents all pages in the front office. Was created to avoid needing to
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
+
 # rubocop:disable Metrics/ClassLength
 class BackOfficeApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
-  # BACK OFFICE SPECIFIC PAGES
-  # /
+
   def agency_sign_in_page
     @last_page = AgencySignInPage.new
   end

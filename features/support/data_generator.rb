@@ -1,0 +1,61 @@
+# frozen_string_literal: true
+
+require "faker"
+
+def generate_registration(business_type, operator_name = nil)
+  contact = generate_person
+  operator_name ||= generate_operator_name(business_type, "#{contact[:first_name]} #{contact[:last_name]}")
+
+  {
+    business_type: business_type,
+    operator: generate_operator(business_type, operator_name),
+    partners: generate_partners(business_type),
+    contact: contact
+  }
+end
+
+def generate_operator(business_type, operator_name)
+  data = {
+    operator_name: operator_name,
+    postcode: "BS1 5AH",
+    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+  }
+
+  data[:registration_number] = "00445790" if business_type == :limited
+
+  data
+end
+
+def generate_person
+  first_name ||= Faker::Name.first_name
+  last_name ||= Faker::Name.last_name
+
+  {
+    first_name: first_name,
+    last_name: last_name,
+    telephone: "0117 9000000",
+    email: generate_example_email(first_name, last_name)
+  }
+end
+
+def generate_operator_name(business_type, operator_name)
+  operator_name = "#{Faker::Company.name} Ltd" if business_type == :limited
+  operator_name
+end
+
+def generate_partners(business_type)
+  return [generate_person, generate_person] if business_type == :partnership
+
+  []
+end
+
+def generate_example_email(first_name, last_name)
+  first_name ||= Faker::Name.first_name
+  last_name ||= Faker::Name.last_name
+
+  "#{first_name.downcase}.#{last_name.downcase}#{rand(1..999)}@example.com".delete("'")
+end
+
+def generate_mailinator_email
+  "#{rand(100_000_000)}@mailinator.com"
+end

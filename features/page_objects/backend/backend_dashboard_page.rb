@@ -1,4 +1,6 @@
-class RegistrationsPage < SitePrism::Page
+# frozen_string_literal: true
+
+class BackendDashboardPage < SitePrism::Page
 
   # Registration search
   element(:new_registration, "#new_registration")
@@ -15,6 +17,7 @@ class RegistrationsPage < SitePrism::Page
     element :status, "div:nth-child(2) > div > ul > li:nth-child(2) > p"
     element :date_registered, "div:nth-child(3) > div > ul > li:nth-child(1) > p"
     element :expiry_date, "div:nth-child(3) > div > ul > li:nth-child(2) > p"
+
     # Actions
     element(:view_certificate, :xpath, "//a[contains(.,'View certificate)]")
     element(:edit_registration, "a[href*='edit_process']")
@@ -26,7 +29,6 @@ class RegistrationsPage < SitePrism::Page
     element(:renew, :xpath, "//a[contains(.,'Renew')]")
     element(:payment_status, "a[href*='paymentstatus']")
     element(:transfer, "a[href*='transfer-registration']")
-
   end
 
   def search(args = {})

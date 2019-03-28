@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CheckDetailsPage < SitePrism::Page
 
   # Check your details before registering
@@ -6,7 +8,7 @@ class CheckDetailsPage < SitePrism::Page
   element(:edit_key_people, "#edit_key_person")
   element(:declaration, "#registration_declaration")
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "#confirm")
 
   def submit(_args = {})
     declaration.click

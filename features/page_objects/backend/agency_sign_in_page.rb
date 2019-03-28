@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AgencySignInPage < SitePrism::Page
 
-  set_url(Quke::Quke.config.custom["urls"]["back_office"])
+  set_url(join_url(Quke::Quke.config.custom["urls"]["backend"], "/agency_users/sign_in"))
 
   element(:email, "#agency_user_email")
   element(:password, "#agency_user_password")
@@ -10,6 +12,7 @@ class AgencySignInPage < SitePrism::Page
   def submit(args = {})
     email.set(args[:email]) if args.key?(:email)
     password.set(args[:password]) if args.key?(:password)
+
     submit_button.click
   end
 
