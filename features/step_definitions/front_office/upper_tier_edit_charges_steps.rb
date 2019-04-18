@@ -49,7 +49,7 @@ When(/^I change my organisation type to a limited company$/) do
   @front_app.business_details_page.submit(
     companies_house_number: "00445790",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @front_app.contact_details_page.submit
   @front_app.postal_address_page.submit
@@ -67,7 +67,7 @@ When(/^its companies house number changes to "([^"]*)"$/) do |ch_no|
   @front_app.business_details_page.submit(
     companies_house_number: ch_no,
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @front_app.contact_details_page.submit
   @front_app.postal_address_page.submit

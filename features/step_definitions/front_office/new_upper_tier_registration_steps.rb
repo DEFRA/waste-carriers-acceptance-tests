@@ -7,7 +7,7 @@ When(/^I complete my aplication of my partnership as a upper tier waste carrier$
   @front_app.business_details_page.submit(
     company_name: "Upper Tier Partnership",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(
@@ -41,7 +41,7 @@ When(/^I complete my application of my public body as an upper tier waste carrie
   @front_app.business_details_page.submit(
     company_name: "UT Public Body",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
 
   @email_address = generate_email
@@ -74,7 +74,7 @@ When(/^I complete my application of my sole trader business as a upper tier wast
   @front_app.business_details_page.submit(
     company_name: "UT Sole Trader",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(

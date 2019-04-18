@@ -189,7 +189,7 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.submit_main_person(person: people[0])
   @renewals_app.declare_convictions_page.submit(choice: :no)
@@ -200,7 +200,7 @@ When(/^I complete my sole trader renewal steps$/) do
     confirm_email: "test@example.com"
   )
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -230,7 +230,7 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.add_main_person(person: people[0])
   @renewals_app.main_people_page.submit_main_person(person: people[1])
@@ -239,7 +239,7 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -289,7 +289,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -338,7 +338,7 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -358,7 +358,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.add_main_person(person: people[0])
   @renewals_app.main_people_page.add_main_person(person: people[1])
@@ -372,7 +372,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -405,7 +405,7 @@ When(/^I add two partners to my renewal$/) do
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
   @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.add_main_person(person: people[0])
   @renewals_app.main_people_page.add_main_person(person: people[1])

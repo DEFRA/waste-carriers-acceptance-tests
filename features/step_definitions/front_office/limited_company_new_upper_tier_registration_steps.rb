@@ -7,7 +7,7 @@ When(/^I complete my application of my limited company as an upper tier waste ca
     companies_house_number: "00445790",
     company_name: "UT Company limited",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(
@@ -46,7 +46,7 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
     companies_house_number: no,
     company_name: "UT Company limited",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(

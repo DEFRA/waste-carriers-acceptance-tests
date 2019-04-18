@@ -18,7 +18,7 @@ def generate_operator(business_type, operator_name)
   data = {
     operator_name: operator_name,
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   }
 
   data[:registration_number] = "00445790" if business_type == :limited
