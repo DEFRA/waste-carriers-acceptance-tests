@@ -25,22 +25,6 @@ Then(/^I have received an application received email/) do
   expect(@email_app.mailcatcher_main_page).to have_text "has been received"
 end
 
-When(/^I confirm (?:my|the) email address$/) do
-  if @email_app.local?
-    @email_app.mailcatcher_main_page.open_email(1)
-    @email_app.mailcatcher_messages_page.confirmation_link.click
-  else
-    @email_app.mailinator_page.load
-    @email_app.mailinator_page.submit(inbox: @email_address)
-    @email_app.mailinator_inbox_page.wait_for_email
-    @email_app.mailinator_inbox_page.confirmation_email.click
-    @email_app.mailinator_inbox_page.email_details do |frame|
-      @new_window = window_opened_by { frame.confirm_email.click }
-    end
-  end
-
-end
-
 Given(/^I do not confirm my email address$/) do
   # Nothing to do to replicate step
 end
