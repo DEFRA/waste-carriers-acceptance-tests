@@ -14,24 +14,28 @@ class World
     @email = EmailApp.new
   end
 
-  def agency_user
-    Quke::Quke.config.custom["accounts"]["agency_user"]["username"]
+  def agency_super_user
+    Quke::Quke.config.custom["accounts"]["agency_super"]["username"]
   end
 
   def agency_with_payment_refund_user
     Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"]
   end
 
+  def agency_user
+    Quke::Quke.config.custom["accounts"]["agency_user"]["username"]
+  end
+
+  def finance_super_user
+    Quke::Quke.config.custom["accounts"]["finance_super"]["username"]
+  end
+
   def finance_admin_user
     Quke::Quke.config.custom["accounts"]["finance_admin"]["username"]
   end
 
-  def finance_basic_user
-    Quke::Quke.config.custom["accounts"]["finance_basic"]["username"]
-  end
-
-  def agency_super_user
-    Quke::Quke.config.custom["accounts"]["agency_super"]["username"]
+  def finance_user
+    Quke::Quke.config.custom["accounts"]["finance_user"]["username"]
   end
 
   def default_password
