@@ -7,7 +7,7 @@ When(/^I have my sole trader upper tier waste carrier application completed for 
   @back_app.business_details_page.submit(
     company_name: "AD UT Sole Trader",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -32,7 +32,7 @@ When(/^I have my limited company as a upper tier waste carrier application compl
     companies_house_number: "00445790",
     company_name: "AD UT Company limited",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -60,7 +60,7 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @back_app.business_details_page.submit(
     company_name: "AD Upper Tier Partnership",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -87,7 +87,7 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.business_details_page.submit(
     company_name: "AD UT Public Body",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -106,6 +106,8 @@ end
 Given(/^a limited company with companies house number "([^"]*)" is registered as an upper tier waste carrier$/) do |ch_no|
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
+  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
   @back_app.other_businesses_question_page.submit(choice: :no)
   @back_app.construction_waste_question_page.submit(choice: :yes)
@@ -114,7 +116,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
     companies_house_number: ch_no,
     company_name: "AD UT Company convictions check ltd",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   # Stores companies house number for later
   @companies_house_number = ch_no
@@ -158,6 +160,8 @@ end
 Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
+  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
   @back_app.other_businesses_question_page.submit(choice: :no)
   @back_app.construction_waste_question_page.submit(choice: :yes)
@@ -166,7 +170,7 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
     companies_house_number: "00445790",
     company_name: co_name,
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -208,6 +212,8 @@ end
 Given(/a key person with a conviction registers as a sole trader upper tier waste carrier$/) do
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
+  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "soleTrader")
   @back_app.other_businesses_question_page.submit(choice: :yes)
   @back_app.service_provided_question_page.submit(choice: :not_main_service)
@@ -216,7 +222,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
   @back_app.business_details_page.submit(
     company_name: "AD UT Sole Trader",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -254,6 +260,8 @@ end
 Given(/^a conviction is declared when registering their partnership for an upper tier waste carrier$/) do
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
+  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "partnership")
   @back_app.other_businesses_question_page.submit(choice: :yes)
   @back_app.service_provided_question_page.submit(choice: :main_service)
@@ -262,7 +270,7 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.business_details_page.submit(
     company_name: "AD Upper Tier Partnership",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
