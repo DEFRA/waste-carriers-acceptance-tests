@@ -55,7 +55,7 @@
             "uprn" : "340116",
             "addressType" : "REGISTERED",
             "addressMode" : "address-results",
-            "houseNumber" : "NATURAL ENGLAND",
+            "houseNumber" : "ENVIRONMENT AGENCY",
             "addressLine1" : "DEANERY ROAD",
             "townCity" : "BRISTOL",
             "postcode" : "BS1 5AH",
@@ -70,7 +70,7 @@
         }, 
         {
             "addressType" : "POSTAL",
-            "houseNumber" : "NATURAL ENGLAND",
+            "houseNumber" : "ENVIRONMENT AGENCY",
             "addressLine1" : "DEANERY ROAD",
             "addressLine2" : "",
             "addressLine3" : "",

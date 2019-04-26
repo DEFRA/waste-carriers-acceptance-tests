@@ -34,7 +34,7 @@ When(/^I renew the local authority registration$/) do
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.company_name_page.submit
   @back_renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @back_renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @back_renewals_app.main_people_page.main_people
   @back_renewals_app.main_people_page.add_main_person(person: people[0])
   @back_renewals_app.main_people_page.submit_main_person(person: people[1])
@@ -46,7 +46,7 @@ When(/^I renew the local authority registration$/) do
     confirm_email: "bo-user@example.com"
   )
   @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @back_renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @back_renewals_app.check_your_answers_page.submit
   @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
@@ -154,7 +154,7 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.company_name_page.submit
   @back_renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.business_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @back_renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @back_renewals_app.main_people_page.main_people
   @back_renewals_app.main_people_page.add_main_person(person: people[0])
   @back_renewals_app.main_people_page.submit_main_person(person: people[1])
@@ -163,7 +163,7 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
   @back_renewals_app.contact_telephone_number_page.submit
   @back_renewals_app.contact_email_page.submit
   @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @back_renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @back_renewals_app.check_your_answers_page.submit
   @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
@@ -199,7 +199,7 @@ When(/^I have my public body upper tier renewal completed for me$/) do
   @back_app.renewal_information_page.submit
   @back_app.post_code_page.submit(postcode: "BS1 5AH")
   @back_app.business_address_page.submit(
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   people = @back_app.key_people_page.key_people
 
@@ -316,7 +316,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   @back_renewals_app.company_name_page.submit
   @back_renewals_app.post_code_page.submit(postcode: "BS1 5AH")
   @back_renewals_app.business_address_page.submit(
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   people = @back_renewals_app.main_people_page.main_people
   @back_renewals_app.main_people_page.add_main_person(person: people[0])
@@ -332,7 +332,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
     confirm_email: "bo-user@example.com"
   )
   @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.contact_address_page.submit(result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @back_renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @back_renewals_app.check_your_answers_page.submit
   @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit

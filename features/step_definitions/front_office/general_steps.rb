@@ -2,6 +2,10 @@ Given(/^I start a new registration$/) do
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
+  # Redirects to "Where is your principal place of business?"
+  expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
+  # Select England as the principal place of business:
+  @front_app.location_page.submit(choice: :england)
 end
 
 When(/^I pay for my application by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|

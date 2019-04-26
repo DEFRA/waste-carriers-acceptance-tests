@@ -16,7 +16,7 @@ app_host: 'http://localhost:3000'
 driver: chrome
 
 # Runs either Chrome or Firefox driver headlessly if set to true
-headless: true
+headless: false
 
 parallel: false
 
@@ -81,17 +81,18 @@ custom:
       username: another-user@example.com
     agency_super:
       username: agency-super@wcr.gov.uk
-# Local setup    
-  urls:
-    front_office: "http://localhost:3000/registrations/start"
-    front_office_sign_in: "http://localhost:3000/users/sign_in"
-    front_office_renewals: "http://localhost:3002"
-    front_office_renewals_sign_in: "http://localhost:3002/fo/users/sign_in"
-    back_office: "http://localhost:3000/agency_users/sign_in"
-    back_office_renewals: "http://localhost:8001"
-    back_office_renewals_sign_in: "http://localhost:8001/bo/users/sign_in"
-    backend_admin: "http://localhost:3000/admins/sign_in"
-    mail_client: "http://localhost:1080"
+# Hide or unhide the relevant URLs for the environment you want to test:
+# Local setup
+  # urls:
+  #   front_office: "http://localhost:3000/registrations/start"
+  #   front_office_sign_in: "http://localhost:3000/users/sign_in"
+  #   front_office_renewals: "http://localhost:3002"
+  #   front_office_renewals_sign_in: "http://localhost:3002/fo/users/sign_in"
+  #   back_office: "http://localhost:3000/agency_users/sign_in"
+  #   back_office_renewals: "http://localhost:8001"
+  #   back_office_renewals_sign_in: "http://localhost:8001/bo/users/sign_in"
+  #   backend_admin: "http://localhost:3000/admins/sign_in"
+  #   mail_client: "http://localhost:1080"
 
   # Test setup
   # urls:
@@ -105,14 +106,15 @@ custom:
   #   mail_client: "https://www.mailinator.com"
 
   # Staging setup
-  # urls:
-  #   front_office: "https://waste-carriers-pre.aws.defra.cloud"
-  #   front_office_sign_in: "https://waste-carriers-pre.aws.defra.cloud/users/sign_in"
-  #   front_office_renewals: "https://waste-carriers-pre.aws.defra.cloud"
-  #   front_office_renewals_sign_in: "https://waste-carriers-pre.aws.defra.cloud/fo/users/sign_in"
-  #   back_office: "https://admin-waste-carriers-pre.aws.defra.cloud"
-  #   back_office_admin: "https://admin-waste-carriers-pre.aws.defra.cloud/agency_users/sign_in"
-  #   back_office_renewals_sign_in: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/users/sign_in"
+  urls:
+    front_office: "https://waste-carriers-pre.aws.defra.cloud"
+    front_office_sign_in: "https://waste-carriers-pre.aws.defra.cloud/users/sign_in"
+    front_office_renewals: "https://waste-carriers-pre.aws.defra.cloud"
+    front_office_renewals_sign_in: "https://waste-carriers-pre.aws.defra.cloud/fo/users/sign_in"
+    back_office: "https://admin-waste-carriers-pre.aws.defra.cloud"
+    back_office_admin: "https://admin-waste-carriers-pre.aws.defra.cloud/agency_users/sign_in"
+    back_office_renewals_sign_in: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/users/sign_in"
+    mail_client: "https://www.mailinator.com"
 
 # If you are running Quke behind a proxy you can configure the proxy details
 # here. You'll need either the hostname or IP of the proxy server (don't include
@@ -141,8 +143,8 @@ browserstack:
   # If you don't want to put these credentials in the config file (because you
   # want to commit it to source control), Quke will also check for the existance
   # of the environment variables BROWSERSTACK_USERNAME and BROWSERSTACK_AUTH_KEY
-  # username: 
-  # auth_key: 
+  # username:
+  # auth_key:
 
   # If you want to use local testing you must provide a key. You can find this
   # in Browserstack once logged in under settings. Its typically the same value
@@ -150,7 +152,7 @@ browserstack:
   # If you don't want to put this credential in the config file (because you
   # want to commit it to source control), Quke will also check for the existance
   # of the environment variable BROWSERSTACK_LOCAL_KEY
-  # local_key: 
+  # local_key:
 
   # Anything set under capabilities will be passed directly by Quke to
   # browserstack as means of configuring the test.

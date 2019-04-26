@@ -7,7 +7,7 @@ When(/^I complete my application of my limited company as an upper tier waste ca
     companies_house_number: "00445790",
     company_name: "UT Company limited",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(
@@ -38,6 +38,8 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
+  expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "limitedCompany")
   @front_app.other_businesses_question_page.submit(choice: :no)
   @front_app.construction_waste_question_page.submit(choice: :yes)
@@ -46,7 +48,7 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
     companies_house_number: no,
     company_name: "UT Company limited",
     postcode: "BS1 5AH",
-    result: "NATURAL ENGLAND, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(
