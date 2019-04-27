@@ -221,26 +221,6 @@ Given(/^an Environment Agency user has signed in to complete a renewal$/) do
   )
 end
 
-Given(/^an Agency super user has signed in to the admin area$/) do
-  @back_renewals_app = BackOfficeApp.new
-  @back_renewals_app.admin_sign_in_page.load
-  @back_renewals_app.admin_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_super"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-end
-
-Given(/^has created an agency user for "([^"]*)"$/) do |user|
-  @back_renewals_app.agency_users_page.add_user.click
-  @back_renewals_app.agency_users_page.submit(
-    email: user,
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-  @user = user
-  expect(@back_renewals_app.agency_users_page).to have_text("Agency user was successfully created.")
-  @back_renewals_app.agency_users_page.sign_out.click
-end
-
 When(/^an Agency super user has signed into the back office$/) do
   @back_renewals_app.sign_in_page.load
   @back_renewals_app.sign_in_page.submit(

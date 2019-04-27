@@ -13,16 +13,8 @@ class BackOfficeApp
     @last_page = AgencySignInPage.new
   end
 
-  def agency_users_page
-    @last_page = AgencyUsersPage.new
-  end
-
   def approve_page
     @last_page = ApprovePage.new
-  end
-
-  def admin_sign_in_page
-    @last_page = AdminSignInPage.new
   end
 
   def bank_transfer_page

@@ -1,17 +1,18 @@
-class AgencyUsersPage < SitePrism::Page
+# frozen_string_literal: true
 
-  # Listing agency users
+class NewUsersPage < SitePrism::Page
 
-  element(:add_user, "#new_agency_user")
+  set_url(join_url(Quke::Quke.config.custom["urls"]["backend"], "/agency_users/new"))
+
   element(:email, "#agency_user_email")
   element(:password, "#agency_user_password")
-  element(:sign_out, "#signout_button")
 
   element(:submit_button, "input[name='continue']")
 
   def submit(args = {})
     email.set(args[:email]) if args.key?(:email)
     password.set(args[:password]) if args.key?(:password)
+
     submit_button.click
   end
 

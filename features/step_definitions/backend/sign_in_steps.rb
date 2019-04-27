@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Given("I sign in as an agency user") do
+Then("I sign in as an agency user") do
   login_backend_user(@world.agency_user)
 end
 
@@ -18,4 +18,8 @@ end
 
 Given(/^I sign in as (?:a|an) agency super user/) do
   login_backend_user(@world.agency_super_user)
+end
+
+Then("I sign in as an admin user") do
+  login_backend_admin(@world.agency_super_user)
 end

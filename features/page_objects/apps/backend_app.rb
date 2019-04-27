@@ -20,4 +20,12 @@ class BackendApp
   def dashboard_page
     @last_page = BackendDashboardPage.new
   end
+
+  def new_users_page
+    @last_page = NewUsersPage.new
+  end
+
+  def users_page
+    @last_page = UsersPage.new
+  end
 end
