@@ -25,4 +25,6 @@ def create_backend_user(email, load_root_page = true)
     email: email,
     password: @world.default_password
   )
+
+  @world.add_backend_user(email, :agency) if page.has_text?("Agency user was successfully created.")
 end

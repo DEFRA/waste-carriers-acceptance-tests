@@ -61,10 +61,6 @@ class BackOfficeApp
     @last_page = ConfirmBusinessTypePage.new
   end
 
-  def confirm_delete_page
-    @last_page = ConfirmDeletePage.new
-  end
-
   def contact_details_page
     @last_page = ContactDetailsPage.new
   end

@@ -28,4 +28,8 @@ class BackendApp
   def users_page
     @last_page = UsersPage.new
   end
+
+  def delete_user_page
+    @last_page = DeleteUserPage.new
+  end
 end

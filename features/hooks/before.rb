@@ -9,6 +9,25 @@ Before do
   @world = $world_state
 end
 
+Before("@data") do
+  # We use this before hook to generate some data so that scenarios that
+  # rely on there being some existing data don't have to create them as part
+  # of their tests. For example we have multiple scenarios that involve
+  # searching for a registration. Without this hook to support running them
+  # independently each one would have to create the registrations it needs. Now
+  # we can create them once here saving time and effort in the tests themselves.
+  $seeded_data ||= false
+
+  unless $seeded_data
+    seed_backend_users
+    # Clears session otherwise any scenario which attempts to login first would
+    # fail as we are already logged in.
+    Capybara.reset_session!
+  end
+
+  $seeded_data = true
+end
+
 # clears emails from mailcatcher before running tests if running tests locally
 Before("@email") do
   if @world.email.local?
