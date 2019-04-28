@@ -12,6 +12,11 @@ Feature: Manage backend users
     Then the new backend user can sign in
 
   @data @wip
+  Scenario: Admin user edits a user
+    When I edit a backend user
+    Then the edited backend user can sign in
+
+  @data @wip
   Scenario: Admin user deletes a user
     When I delete a backend user
     Then the backend user cannot sign in

@@ -7,16 +7,22 @@ Then("I create a new backend user") do
   @world.backend.users_page.sign_out.click
 end
 
-Then("the new backend user can sign in") do
+Then("the new/edited backend user can sign in") do
   login_backend_user(@world.last_email)
 
   expect(@world.backend.dashboard_page).to have_text("Signed in successfully.")
 end
 
+Then("I edit a backend user") do
+  edit_backend_user(nil, false)
+
+  expect(@world.backend.users_page).to have_text("Agency user was successfully updated.")
+
+  @world.backend.users_page.sign_out.click
+end
+
 Then("I delete a backend user") do
-  @world.backend_user = @world.select_backend_users(type: :agency).first
-  @world.backend.users_page.delete_link(@world.backend_user[:email]).click
-  @world.backend.delete_user_page.submit
+  delete_backend_user(nil, false)
 
   expect(@world.backend.users_page).to have_text("Agency user was successfully deleted.")
 

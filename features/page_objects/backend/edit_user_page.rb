@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class NewUsersPage < SitePrism::Page
-
-  set_url(join_url(Quke::Quke.config.custom["urls"]["backend"], "/agency_users/new"))
+class EditUserPage < SitePrism::Page
 
   element(:email, "#agency_user_email")
   element(:password, "#agency_user_password")

@@ -21,15 +21,19 @@ class BackendApp
     @last_page = BackendDashboardPage.new
   end
 
+  def delete_user_page
+    @last_page = DeleteUserPage.new
+  end
+
+  def edit_user_page
+    @last_page = EditUserPage.new
+  end
+
   def new_users_page
     @last_page = NewUsersPage.new
   end
 
   def users_page
     @last_page = UsersPage.new
-  end
-
-  def delete_user_page
-    @last_page = DeleteUserPage.new
   end
 end
