@@ -16,10 +16,10 @@ Given(/^I sign in as a finance basic user/) do
   login_backend_user(@world.finance_basic_user)
 end
 
-Given(/^I sign in as (?:a|an) agency super user/) do
-  login_backend_user(@world.agency_super_user)
+Then("I sign in as an agency super user") do
+  login_backend_admin(@world.agency_super_user)
 end
 
-Then("I sign in as an admin user") do
-  login_backend_admin(@world.agency_super_user)
+Then("I sign in as a finance super user") do
+  login_backend_admin(@world.finance_super_user)
 end

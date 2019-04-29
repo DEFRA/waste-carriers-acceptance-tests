@@ -1,6 +1,17 @@
+# frozen_string_literal: true
+
 Then("I create a new backend user") do
   @world.last_email = generate_example_email(nil, nil)
-  create_backend_user(@world.last_email, false)
+  create_backend_user(@world.last_email, nil, false)
+
+  expect(@world.backend.users_page).to have_text("Agency user was successfully created.")
+
+  @world.backend.users_page.sign_out.click
+end
+
+Then("I create a new finance backend user") do
+  @world.last_email = generate_example_email(nil, nil)
+  create_backend_user(@world.last_email, :finance_basic, :false)
 
   expect(@world.backend.users_page).to have_text("Agency user was successfully created.")
 

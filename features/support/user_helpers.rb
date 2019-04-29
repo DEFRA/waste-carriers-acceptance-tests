@@ -18,13 +18,12 @@ def login_backend_admin(user_email)
   )
 end
 
-def create_backend_user(email, load_root_page = true)
+def create_backend_user(email, role = nil, load_root_page = true)
   @world.backend.users_page.load if load_root_page
   @world.backend.users_page.add_user.click
-  @world.backend.new_users_page.submit(
-    email: email,
-    password: @world.default_password
-  )
+  args = { email: email, password: @world.default_password}
+  args[:role] = role if role
+  @world.backend.new_users_page.submit(args)
 
   @world.add_backend_user(email, :agency) if page.has_text?("Agency user was successfully created.")
 end
