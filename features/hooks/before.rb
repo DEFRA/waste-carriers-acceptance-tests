@@ -27,13 +27,3 @@ Before("@data") do
 
   $seeded_data = true
 end
-
-# clears emails from mailcatcher before running tests if running tests locally
-Before("@email") do
-  if @world.email.local?
-    @world.email.mailcatcher_main_page.load
-    @world.email.mailcatcher_main_page.clear_all_messages.click
-    popup = page.driver.browser.switch_to.alert
-    popup.accept
-  end
-end

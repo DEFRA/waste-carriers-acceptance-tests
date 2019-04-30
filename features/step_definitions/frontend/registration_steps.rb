@@ -11,8 +11,9 @@ Then("I register") do
 end
 
 Then("I confirm my email address") do
-  # TODO: Add logic for confirming email
-  pending # Waiting for the implementation of the mail helper as done in WEX
+  visit(File.join(Quke::Quke.config.custom["urls"]["frontend"], "last-email"))
+  confirmation_url = @world.email.last_email_page.confirmation_url(@world.last_email)
+  visit(confirmation_url)
 end
 
 Then("I will be informed the registration is complete") do

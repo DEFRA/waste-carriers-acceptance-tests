@@ -1,4 +1,4 @@
-@backend @email
+@backend
 Feature: Backend user completes assisted digital registration for a user
   As an agency user
   I need to register a waste carrier
