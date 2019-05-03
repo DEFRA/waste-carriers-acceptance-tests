@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-# Represents all pages in the front office. Was created to avoid needing to
-# create individual instances of each page throughout the steps.
+# Represents all pages in the registration journey.
+# We use apps avoid needing to create individual instances of each page
+# throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
 
 # rubocop:disable Metrics/ClassLength
@@ -23,10 +24,6 @@ class RegistrationJourneyApp
 
   def business_details_page
     @last_page = BusinessDetailsPage.new
-  end
-
-  def agency_users_sign_in_page
-    @last_page = SignInPage.new
   end
 
   def business_address_page
@@ -53,13 +50,9 @@ class RegistrationJourneyApp
     @last_page = ContactNamePage.new
   end
 
-  
-
   def company_name_page
     @last_page = CompanyNamePage.new
   end
-
-  
 
   def confirmation_page
     @last_page = ConfirmationPage.new
@@ -75,10 +68,6 @@ class RegistrationJourneyApp
 
   def declaration_page
     @last_page = DeclarationPage.new
-  end
-
-  def existing_registration_page
-    @last_page = ExistingRegistrationPage.new
   end
 
   def key_people_page
@@ -125,44 +114,12 @@ class RegistrationJourneyApp
     @last_page = RelevantPeoplePage.new
   end
 
-  def start_page
-    @last_page = StartPage.new
-  end
-
   def service_provided_question_page
     @last_page = ServiceProvidedQuestionPage.new
   end
 
   def sign_up_page
     @last_page = SignupPage.new
-  end
-
-  def type_change_page
-    @last_page = TypeChangePage.new
-  end
-
-  def waste_carrier_sign_in_page
-    @last_page = WasteCarrierSignInPage.new
-  end
-
-  def waste_carrier_registrations_page
-    @last_page = WasteCarrierRegistrationsPage.new
-  end
-
-  def worldpay_card_choice_page
-    @last_page = WorldpayCardChoicePage.new
-  end
-
-  def worldpay_card_details_page
-    @last_page = WorldpayCardDetailsPage.new
-  end
-
-  def view_certificate_page
-    @last_page = ViewCertificatePage.new
-  end
-
-  def view_pdf_certificate_page
-    @last_page = ViewPdfCertificatePage.new
   end
 
 end
