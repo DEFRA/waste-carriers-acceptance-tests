@@ -3,7 +3,7 @@
 class World
 
   attr_reader :renewal_journey, :registration_journey, :email
-  attr_reader :bo, :backend, :frontend
+  attr_reader :bo, :backend, :frontend, :worldpay
   attr_reader :backend_users
   attr_accessor :current_reg, :backend_user
   attr_accessor :last_email, :last_reference
@@ -15,6 +15,7 @@ class World
     @backend = BackendApp.new
     @frontend = FrontendApp.new
     @email = EmailApp.new
+    @worldpay = WorldpayApp.new
 
     @backend_users = []
   end

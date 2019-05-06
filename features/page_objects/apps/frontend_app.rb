@@ -5,7 +5,7 @@
 # throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
 
-class RegistrationJourneyApp
+class FrontendApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
 

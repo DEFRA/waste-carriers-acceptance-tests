@@ -10,8 +10,9 @@ class CheckDetailsPage < SitePrism::Page
 
   element(:submit_button, "#confirm")
 
-  def submit(_args = {})
-    declaration.click
+  def submit(args = {})
+    declaration.click if args[:declaration] == true
+
     submit_button.click
   end
 

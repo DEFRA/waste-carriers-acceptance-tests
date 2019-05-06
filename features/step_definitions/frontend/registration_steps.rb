@@ -4,6 +4,10 @@ Then("I am a charity") do
   @world.current_reg = generate_registration(:charity)
 end
 
+Then("I am an individual") do
+  @world.current_reg = generate_registration(:individual)
+end
+
 Then("I register") do
   add_submitted_registration(@world.current_reg)
   @world.last_email = @world.current_reg[:contact][:email]

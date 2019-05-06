@@ -58,8 +58,8 @@ class RegistrationJourneyApp
     @last_page = ConfirmationPage.new
   end
 
-  def construction_waste_question_page
-    @last_page = ConstructionWasteQuestionPage.new
+  def construction_waste_page
+    @last_page = ConstructionWastePage.new
   end
 
   def confirm_account_page
@@ -86,8 +86,8 @@ class RegistrationJourneyApp
     @last_page = OrderPage.new
   end
 
-  def other_businesses_question_page
-    @last_page = OtherBusinessesQuestionPage.new
+  def other_businesses_page
+    @last_page = OtherBusinessesPage.new
   end
 
   def only_deal_with_question_page

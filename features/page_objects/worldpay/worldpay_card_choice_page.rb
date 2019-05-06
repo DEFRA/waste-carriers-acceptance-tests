@@ -7,8 +7,4 @@ class WorldpayCardChoicePage < SitePrism::Page
 
   element(:cancel, :xpath, "//b[contains(.,'Cancel')]")
 
-  def submit(_args = {})
-    maestro.click
-  end
-
 end

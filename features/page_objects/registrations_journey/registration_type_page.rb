@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-class WorldpayCardChoicePage < SitePrism::Page
+class RegistrationTypePage < SitePrism::Page
 
-  # Secure Payment Page
-  element(:mastercard, "input[alt='Mastercard']")
-  element(:visa, "input[alt='Visa']")
-  element(:maestro, "input[alt='Maestro']")
+  element(:carrier_dealer, "#registration_registrationType_carrier_dealer")
+  element(:broker_dealer, "#registration_registrationType_broker_dealer")
+  element(:carrier_broker_dealer, "#registration_registrationType_carrier_broker_dealer")
 
-  element(:cancel, :xpath, "//b[contains(.,'Cancel')]")
+  element(:submit_button, "#continue")
 
   def submit(args = {})
     # As long as the arg passed in matches the name of an element we can simply
@@ -15,6 +14,8 @@ class WorldpayCardChoicePage < SitePrism::Page
     # overly long case/switch statements that check the value of the arg to
     # determine which element to select
     send(args[:choice]).select_option
+
+    submit_button.click
   end
 
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WorldpaySecurePage < SitePrism::Page
 
   # 3D Secure Simulator

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WorldpayCardDetailsPage < SitePrism::Page
 
   # Secure Payment Page
@@ -12,30 +14,14 @@ class WorldpayCardDetailsPage < SitePrism::Page
   # Used for test simulation
   element(:submit_button, "input[type='submit']")
 
-  # Test credit card details
-
-  # Card numbers
-  @mastercard_number = "5100080000000000"
-  @visacard_number = "4917610000000000"
-  @maestrocard_number = "6759649826438453"
-
-  # Card holder names
-  @authorised = "3d.authorised"
-  @refused = "3d.refused"
-  @error = "3d.error"
-
-  # Security codes (CSV)
-  @approved = "555"
-  @failed = "444"
-
   def submit(args = {})
-    card_number.set(args[:card_number]) if args.key?(:card_number)
+    card_number.set(args[:number]) if args.key?(:number)
     security_code.set(args[:security_code]) if args.key?(:security_code)
-    cardholder_name.set(args[:cardholder_name]) if args.key?(:cardholder_name)
+    cardholder_name.set(args[:holder_name]) if args.key?(:holder_name)
     expiry_month.select(args[:expiry_month]) if args.key?(:expiry_month)
     expiry_year.select(args[:expiry_year]) if args.key?(:expiry_year)
-    postcode.set(args[:postcode]) if args.key?(:postcode)
-    click(pay)
+
+    pay.click
   end
 
 end
