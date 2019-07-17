@@ -60,7 +60,7 @@ custom:
     front_office_sign_in: "http://domainundertest.gov.uk/users/sign_in?locale=en"
     back_office: "http://domainundertest.gov.uk/agency_users/sign_in"
     back_office_admin: "http://domainundertest.gov.uk/admins/sign_in"
-    
+
 ```
 
 If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**. You can however override this and other values using the standard [Quke configuration options](https://github.com/DEFRA/quke#configuration).
@@ -140,6 +140,7 @@ To have consistency across the project the following tags are defined and should
 |@happypath|A scenario which details a complete registration with no errors|
 |@functional|Any feature or scenario which is testing just a specific function of the service e.g. validation errors|
 |@email|Indicates when an email is sent out during the scenario. Useful for testing emails or for omitting email tests when testing within corporate network|
+|@once|Can only be run once between database resets.|
 |@broken|A scenario which is known to be broken due to the service not meeting expected behaviour|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
 |@convictions| Tests the convictions service|

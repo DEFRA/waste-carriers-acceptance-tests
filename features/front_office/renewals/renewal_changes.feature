@@ -15,7 +15,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
         And I have signed in to renew my registration as "user@example.com"
         But I change my place of business location to "overseas"
        Then I will be able to continue my renewal
- 
+
   Scenario: Sole trader changes place of business location to Scotland
       Given I renew my registration using my previous registration number "CBDU209"
         And I have signed in to renew my registration as "user@example.com"
@@ -45,9 +45,3 @@ Feature: Registered waste carrier chooses to renew their registration from start
         And I have signed in to renew my registration as "user@example.com"
         But I change my companies house number to "10926928"
        Then I will be notified "You cannot renew"
-
-
-
-
-
-

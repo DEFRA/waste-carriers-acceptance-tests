@@ -1,6 +1,6 @@
 Given(/^I am on the payment page$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
