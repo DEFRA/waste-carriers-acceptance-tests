@@ -1,4 +1,4 @@
-@frontoffice @lower_tier @smokeNO @email
+@frontoffice @lower_tier @email
 Feature: New lower tier registrations
   As a carrier of domestic waste
   I want to register my company with the Environment Agency
@@ -11,6 +11,7 @@ Feature: New lower tier registrations
      And I have received an registration complete email
      And the registration status will be "Registered"
 
+@smoke
  Scenario: Lower tier waste carrier does not confirm their email address
   Given I complete my application of my limited company "Unconfirmed company ltd" as a lower tier waste carrier
     But I do not confirm my email address

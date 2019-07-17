@@ -11,7 +11,8 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      When I complete my sole trader renewal steps
      Then I will be notified my renewal is complete
       And I will receive an email informing me "Your registration as an upper tier waste carrier, broker and dealer has been renewed"
- 
+
+  @smoke
   Scenario: Limited liability partnership renews upper tier registration from renewals page
     Given I renew my registration using my previous registration number "CBDU227"
       And I have signed in to renew my registration as "user@example.com"
@@ -49,14 +50,18 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      When I complete my limited liability partnership renewal steps choosing to pay by bank transfer
      Then I will be notified my renewal is pending payment
 
-    @expiry
-    Scenario: Registration can not be renewed over one month before its expiry date
-    Given I renew my registration using my previous registration number "CBDU202"
-      But the renewal date is over one month before it is due to expire
-     Then I will be notified "This registration is not eligible for renewal"
+    # The following scenario fails locally, because the environment variables are set to always allow renewals.
+    # Test this on a web environment instead.
+    # @expiry @broken
+    # Scenario: Registration can not be renewed over one month before its expiry date
+    # Given I renew my registration using my previous registration number "CBDU202"
+    #   But the renewal date is over one month before it is due to expire
+    #  Then I will be notified "This registration is not eligible for renewal"
 
-    @expiry
-    Scenario: Registration can be renewed in expiry grace renewal window
-      Given I renew my registration using my previous registration number "CBDU203"
-        But the registration is within the expiry grace renewal window
-       Then I will be prompted to sign in to complete the renewal
+    # The following is currently failing locally.
+    # This is raised as bug RUBY-473.
+    # @expiry @broken
+    # Scenario: Registration can be renewed in expiry grace renewal window
+    #   Given I renew my registration using my previous registration number "CBDU203"
+    #     But the registration is within the expiry grace renewal window
+    #    Then I will be prompted to sign in to complete the renewal

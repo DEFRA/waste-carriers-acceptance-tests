@@ -11,7 +11,7 @@ Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @back_renewals_app.renewal_start_page.submit
-  @back_renewals_app.location_page.submit(choice: :england)
+  @back_renewals_app.location_page.submit(choice: :england_new)
   @back_renewals_app.confirm_business_type_page.submit
   @back_renewals_app.tier_check_page.submit(choice: :skip_check)
   @back_renewals_app.carrier_type_page.submit

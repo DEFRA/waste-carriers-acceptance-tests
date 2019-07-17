@@ -41,7 +41,7 @@ end
 
 When(/^the organisation type is changed to sole trader$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit(org_type: "soleTrader")
 end
 
@@ -60,7 +60,7 @@ end
 
 When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_type|
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
@@ -71,7 +71,7 @@ end
 
 When(/^I answer questions indicating I should be a lower tier waste carrier$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
@@ -107,7 +107,7 @@ end
 
 When(/^I complete my limited company renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :no)
@@ -162,7 +162,7 @@ end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit(org_type: org_type)
 end
 
@@ -179,7 +179,7 @@ end
 
 When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
@@ -225,7 +225,7 @@ end
 
 When(/^I complete my local authority renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :skip_check)
   @renewals_app.carrier_type_page.submit
@@ -266,7 +266,7 @@ end
 
 When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
@@ -315,7 +315,7 @@ end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
@@ -352,7 +352,7 @@ end
 
 When(/^I complete my partnership renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
@@ -401,7 +401,7 @@ end
 
 When(/^I add two partners to my renewal$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
@@ -477,7 +477,7 @@ end
 
 When(/^I confirm my business type$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
 end
 
@@ -517,7 +517,7 @@ end
 
 Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england)
+  @renewals_app.location_page.submit(choice: :england_new)
   @renewals_app.confirm_business_type_page.submit
   @renewals_app.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)

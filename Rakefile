@@ -164,7 +164,9 @@ def reset_dbs
   raise ArgumentError, "Environment variable VAGRANT_KEY_LOCATION not set" if vagrant_loc.nil? || vagrant_loc.empty?
 
   vagrant_key = File.join(vagrant_loc, "private_key")
-  # system("ssh -i #{vagrant_key} vagrant@192.168.33.11 'export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && cd /vagrant/dbreset && . reset_all_and_seed.sh'")
+  # The following line does fully reset the local database but prevents tests from running due to MongoDB errors.
+  # Uncomment this, bundle exec rake reset_dbs, then vagrant reload.
+  system("ssh -i #{vagrant_key} vagrant@192.168.33.11 'export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && cd /vagrant/dbreset && . reset_all_and_seed.sh'")
 
   current_directory = File.dirname(__FILE__)
   Dir.glob("#{current_directory}/fixtures/*.json").each do |fixture|

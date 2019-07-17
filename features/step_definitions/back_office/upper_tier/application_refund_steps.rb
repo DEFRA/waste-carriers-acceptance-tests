@@ -3,8 +3,8 @@ Given(/^I have an application paid by credit card$/) do
 
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
-  expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
-  @front_app.location_page.submit(choice: :england)
+  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
   @back_app.other_businesses_question_page.submit(choice: :no)
   @back_app.construction_waste_question_page.submit(choice: :yes)
