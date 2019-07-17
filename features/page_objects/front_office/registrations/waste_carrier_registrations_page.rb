@@ -14,12 +14,13 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
     element(:edit_registration, "li:nth-child(2) a")
     element(:renew_registration, "li:nth-child(3) a")
     element(:order_copy_cards, "li:nth-child(4) a")
-    element(:delete, "li:nth-child(5) a")
+    # element(:delete, "li:nth-child(5) a")
+    element(:delete, "[href*='/confirm_delete']")
   end
 
   elements(:edits, "[href*='/edit']")
   elements(:renewals, "[href*='/renew']")
-  elements(:deletes, "[hreg*='/confirm_delete']")
+  elements(:deletes, "[href*='/confirm_delete']")
 
   element(:sign_out, "#signout_button")
 
@@ -37,7 +38,7 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
   end
 
   def delete(registration_number)
-    element = "#" + registration_number.to_s + " li:nth-child(4) a"
+    element = "#" + registration_number.to_s + " li:nth-child(5) a"
     find(:css, element).click
   end
 

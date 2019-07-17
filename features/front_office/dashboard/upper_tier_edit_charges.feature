@@ -24,7 +24,7 @@ Feature: Upper tier registration edit charges
    When I remove a partner from my registration
    Then I will not be charged for my change
 
-  Scenario: Sole trader changes organsisation type incurring new registraiton charge
+  Scenario: Sole trader changes organsisation type incurring new registration charge
    Given I choose to edit my registration "CBDU103"
     When I change my organisation type to a limited company
      And the charge "£154.00" has been paid

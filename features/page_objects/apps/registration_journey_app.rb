@@ -74,6 +74,10 @@ class RegistrationJourneyApp
     @last_page = KeyPeoplePage.new
   end
 
+  def location_page
+    @last_page = LocationPage.new
+  end
+
   def no_registration_page
     @last_page = NoRegistrationPage.new
   end

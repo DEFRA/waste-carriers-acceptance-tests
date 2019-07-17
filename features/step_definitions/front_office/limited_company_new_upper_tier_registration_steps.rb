@@ -38,6 +38,8 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
+  expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "limitedCompany")
   @front_app.other_businesses_question_page.submit(choice: :no)
   @front_app.construction_waste_question_page.submit(choice: :yes)

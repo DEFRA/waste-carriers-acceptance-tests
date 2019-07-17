@@ -106,6 +106,8 @@ end
 Given(/^a limited company with companies house number "([^"]*)" is registered as an upper tier waste carrier$/) do |ch_no|
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
+  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
   @back_app.other_businesses_question_page.submit(choice: :no)
   @back_app.construction_waste_question_page.submit(choice: :yes)
@@ -158,6 +160,8 @@ end
 Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
+  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
   @back_app.other_businesses_question_page.submit(choice: :no)
   @back_app.construction_waste_question_page.submit(choice: :yes)
@@ -208,6 +212,8 @@ end
 Given(/a key person with a conviction registers as a sole trader upper tier waste carrier$/) do
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
+  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "soleTrader")
   @back_app.other_businesses_question_page.submit(choice: :yes)
   @back_app.service_provided_question_page.submit(choice: :not_main_service)
@@ -254,6 +260,8 @@ end
 Given(/^a conviction is declared when registering their partnership for an upper tier waste carrier$/) do
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
+  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "partnership")
   @back_app.other_businesses_question_page.submit(choice: :yes)
   @back_app.service_provided_question_page.submit(choice: :main_service)

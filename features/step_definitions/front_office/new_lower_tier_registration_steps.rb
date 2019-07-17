@@ -2,6 +2,8 @@ When(/^I complete my application of my charity as a lower tier waste carrier$/) 
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
+  expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "charity")
   @front_app.business_details_page.submit(
     company_name: "LT charity",
@@ -29,6 +31,8 @@ When(/^I complete my application of my local authority as a lower tier waste car
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
+  expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "authority")
   @front_app.business_details_page.submit(
     company_name: "LT local athority",
@@ -56,6 +60,8 @@ When(/^I complete my application of my partnership as a lower tier waste carrier
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
+  expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "partnership")
   @front_app.other_businesses_question_page.submit(choice: :yes)
   @front_app.service_provided_question_page.submit(choice: :not_main_service)
@@ -115,6 +121,8 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
+  expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "soleTrader")
   @front_app.other_businesses_question_page.submit(choice: :yes)
   @front_app.service_provided_question_page.submit(choice: :not_main_service)
@@ -145,6 +153,8 @@ Given(/^I complete my application of my limited company "([^"]*)" as a lower tie
   @front_app = FrontOfficeApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
+  expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
+  @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "limitedCompany")
   @front_app.other_businesses_question_page.submit(choice: :no)
   @front_app.construction_waste_question_page.submit(choice: :no)

@@ -27,7 +27,7 @@ end
 # rubocop:disable Metrics/LineLength
 When(/^I renew the local authority registration$/) do
   @back_renewals_app.renewal_start_page.submit
-  @back_renewals_app.location_page.submit(choice: :england)
+  @back_renewals_app.location_page.submit(choice: :england_new)
   @back_renewals_app.confirm_business_type_page.submit
   @back_renewals_app.tier_check_page.submit(choice: :skip_check)
   @back_renewals_app.carrier_type_page.submit
@@ -69,7 +69,7 @@ end
 
 When(/^I renew the limited company registration$/) do
   @back_renewals_app.renewal_start_page.submit
-  @back_renewals_app.location_page.submit(choice: :england)
+  @back_renewals_app.location_page.submit(choice: :england_new)
   @back_renewals_app.confirm_business_type_page.submit
   @back_renewals_app.tier_check_page.submit(choice: :check_tier)
   @back_renewals_app.other_businesses_page.submit(choice: :no)
@@ -136,7 +136,7 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @back_renewals_app.renewal_start_page.submit
-  @back_renewals_app.location_page.submit(choice: :england)
+  @back_renewals_app.location_page.submit(choice: :england_new)
 
   Capybara.reset_session!
 end
@@ -285,7 +285,7 @@ end
 
 Given(/^I renew the limited company registration declaring a conviction and paying by bank transfer$/) do
   @back_renewals_app.renewal_start_page.submit
-  @back_renewals_app.location_page.submit(choice: :england)
+  @back_renewals_app.location_page.submit(choice: :england_new)
   @back_renewals_app.confirm_business_type_page.submit
   @back_renewals_app.tier_check_page.submit(choice: :check_tier)
   @back_renewals_app.other_businesses_page.submit(choice: :no)
