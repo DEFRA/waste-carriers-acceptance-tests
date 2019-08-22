@@ -1,8 +1,7 @@
 # Waste carriers acceptance tests
 
-[![Build Status](https://travis-ci.org/DEFRA/waste-carriers-acceptance-tests.svg?branch=master)](https://travis-ci.org/DEFRA/waste-carriers-acceptance-tests)
+[![Build Status](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests.svg?branch=master)](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests)
 [![security](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master.svg)](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master)
-[![Dependency Status](https://dependencyci.com/github/DEFRA/waste-carriers-acceptance-tests/badge)](https://dependencyci.com/github/DEFRA/waste-carriers-acceptance-tests)
 
 If your business carries waste then it could require a waste carriers licence
 
