@@ -10,6 +10,7 @@
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
 # app_host: 'http://localhost:3000'
+# app_host: 'https://waste-carriers-tst.aws.defra.cloud'
 app_host: 'https://waste-carriers-pre.aws.defra.cloud'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
@@ -53,6 +54,15 @@ max_wait_time: 10
 # are out of your scope. You still want to test other aspects of the site
 # but not let these errors prevent you from using phantomjs.
 javascript_errors: true
+
+# If set Quke will tell Cucumber to output to the console using its
+# 'progress' formatter (simply displays a . for each passing scenario and F for
+# each failing one), rather than the default 'pretty' which displays each
+# scenario in detail.
+# If you don't need to see the detail on each run, this might be easier to
+# follow than the detailed output you see using the default 'pretty' print
+# format.
+print_progress: false
 
 # Anything you place under the 'custom' node in the `.config.yml` file will be
 # available within your steps and page objects by calling
