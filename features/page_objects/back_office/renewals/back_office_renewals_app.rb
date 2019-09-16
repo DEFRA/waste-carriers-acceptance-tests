@@ -9,6 +9,10 @@ class BackOfficeRenewalsApp
   # RENEWAL SPECIFIC PAGES
   # /
 
+  def ad_privacy_policy_page
+    @last_page = AdPrivacyPolicyPage.new
+  end
+
   def approve_convictions_page
     @last_page = ApproveConvictionsPage.new
   end
@@ -165,6 +169,7 @@ class BackOfficeRenewalsApp
     @last_page = RenewalInformationPage.new
   end
 
+  # This is actually defined in the front office page objects:
   def renewal_start_page
     @last_page = RenewalStartPage.new
   end

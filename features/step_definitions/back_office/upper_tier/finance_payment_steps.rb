@@ -10,6 +10,7 @@ Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
     email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
+  @back_renewals_app.ad_privacy_policy_page.submit
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(choice: :england_new)
   @back_renewals_app.confirm_business_type_page.submit

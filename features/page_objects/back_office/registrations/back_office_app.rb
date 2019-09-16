@@ -7,6 +7,11 @@ class BackOfficeApp
   attr_reader :last_page
   # BACK OFFICE SPECIFIC PAGES
   # /
+
+  def ad_privacy_policy_page
+    @last_page = AdPrivacyPolicyPage.new
+  end
+
   def agency_sign_in_page
     @last_page = AgencySignInPage.new
   end
