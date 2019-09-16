@@ -307,7 +307,6 @@ Then(/^the expiry date should be three years from the previous expiry date$/) do
 end
 
 Given(/^I renew the limited company registration declaring a conviction and paying by bank transfer$/) do
-  puts page.text
   @back_renewals_app.ad_privacy_policy_page.submit
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(choice: :england_new)
