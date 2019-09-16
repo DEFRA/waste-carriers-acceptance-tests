@@ -26,6 +26,8 @@ Given(/^I choose to renew "([^"]*)"$/) do |reg|
 end
 # rubocop:disable Metrics/LineLength
 When(/^I renew the local authority registration$/) do
+  @back_renewals_app.ad_privacy_policy_page.submit
+  expect(@back_renewals_app.renewal_start_page.heading).to have_text("You are about to renew")
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(choice: :england_new)
   @back_renewals_app.confirm_business_type_page.submit
@@ -68,6 +70,7 @@ When(/^I renew the local authority registration$/) do
 end
 
 When(/^I renew the limited company registration$/) do
+  @back_renewals_app.ad_privacy_policy_page.submit
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(choice: :england_new)
   @back_renewals_app.confirm_business_type_page.submit
@@ -304,6 +307,8 @@ Then(/^the expiry date should be three years from the previous expiry date$/) do
 end
 
 Given(/^I renew the limited company registration declaring a conviction and paying by bank transfer$/) do
+  puts page.text
+  @back_renewals_app.ad_privacy_policy_page.submit
   @back_renewals_app.renewal_start_page.submit
   @back_renewals_app.location_page.submit(choice: :england_new)
   @back_renewals_app.confirm_business_type_page.submit
