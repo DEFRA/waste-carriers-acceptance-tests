@@ -20,7 +20,7 @@ Scenario: Limited company has their upper tier registration renewed by NCCC
    When I renew the limited company registration
    Then the registration will have been renewed
 
- Scenario: Expired registration in renewal grace window is only renewed after conviction check and payment is made
+Scenario: Expired registration in renewal grace window is only renewed after conviction check and payment is made
   Given I choose to renew "CBDU232"
     And I have signed into the renewals service as an agency user
     And I renew the limited company registration declaring a conviction and paying by bank transfer

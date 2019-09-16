@@ -1,4 +1,4 @@
-@backoffice @upper_tier @renewal 
+@backoffice @upper_tier @renewal
 Feature: Recording of a non worldpay renewal payment and negative conviction check marks the registration renewal as completed.
   As an administrator of the Waste Carriers service
   I need to be able to record payments and conviction check results
@@ -17,6 +17,3 @@ Feature: Recording of a non worldpay renewal payment and negative conviction che
        When I search for "CBDU207" pending payment
         And I mark the renewal payment as received
        Then the registration will have a "PENDING CONVICTIONS" status
-
-
-
