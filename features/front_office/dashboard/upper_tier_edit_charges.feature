@@ -31,7 +31,6 @@ Feature: Upper tier registration edit charges
     Then its previous registration will be "De-Registered"
      And a new registration will be "Registered"
 
-@wip
   Scenario: Limited company changing its companies house number incurring new registration charge
   Given I choose to edit my registration "CBDU104"
    When its companies house number changes to "10926928"

@@ -12,7 +12,7 @@ class PostalAddressPage < SitePrism::Page
   element(:post_code, "#address_postcode")
   element(:country, "#address_country")
 
-  element(:submit_button, "input[type='Submit']")
+  element(:submit_button, "#continue")
 
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/CyclomaticComplexity

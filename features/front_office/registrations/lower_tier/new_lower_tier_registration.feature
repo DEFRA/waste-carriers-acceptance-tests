@@ -1,4 +1,4 @@
-@frontoffice @lower_tier @email @wip
+@frontoffice @lower_tier @email
 Feature: New lower tier registrations
   As a carrier of domestic waste
   I want to register my company with the Environment Agency

@@ -10,6 +10,13 @@ Feature: Registered waste carrier pays for their renewal
         And I am on the payment page
         But I have my credit card payment rejected
        When I can pay with another card
+
+       # Currently failing from here:
+       # Unable to find css "#payment_summary_form_temp_payment_method_card" (Capybara::ElementNotFound)
+       # ./features/page_objects/front_office/renewals/payment_summary_page.rb:16:in `submit'
+       # ./features/step_definitions/front_office/payment_steps.rb:41:in `/^(?:I can pay with another card|I try my credit card payment again)$/'
+       # features/front_office/renewals/payments.feature:12:in `When I can pay with another card'
+       
        Then I will be notified my renewal is complete
 
     @email
