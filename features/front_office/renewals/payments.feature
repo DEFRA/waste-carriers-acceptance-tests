@@ -1,4 +1,4 @@
-@frontoffice @upper_tier @renewal
+@frontoffice @upper_tier @renewal @wip
 Feature: Registered waste carrier pays for their renewal
   As a carrier of commercial waste
   I want to be able to pay the relevant charge for my renewal

@@ -36,6 +36,7 @@ end
 # rubocop:disable Metrics/LineLength
 Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |no|
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
@@ -76,21 +77,9 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
     copy_card_number: "2",
     choice: :card_payment
   )
-  click(@front_app.worldpay_card_choice_page.maestro)
 
-  # finds today's date and adds another year to expiry date
-  time = Time.new
+  submit_valid_card_payment
 
-  @year = time.year + 1
-
-  @front_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @front_app.worldpay_card_details_page.submit_button.click
   expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
   expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use

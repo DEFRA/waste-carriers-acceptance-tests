@@ -31,3 +31,35 @@ end
 def generate_email
   @email_address = rand(100_000_000).to_s + "@mailinator.com"
 end
+
+def next_year
+  time = Time.new
+  time.year + 1
+end
+
+def submit_valid_card_payment
+  expect(@journey_app.worldpay_payment_page.test_mode_text).to have_text("Test Mode - This is not a live transaction")
+  @journey_app.worldpay_payment_page.submit(
+    card_number: "6759649826438453",
+    cardholder_name: "3d.authorised",
+    expiry_month: "12",
+    expiry_year: next_year,
+    security_code: "555"
+  )
+  verify_cardholder if @journey_app.worldpay_payment_page.has_verification_heading?
+end
+
+def submit_invalid_card_payment
+  expect(@journey_app.worldpay_payment_page.test_mode_text).to have_text("Test Mode - This is not a live transaction")
+  @journey_app.worldpay_payment_page.submit(
+    card_number: "6759649826438453",
+    cardholder_name: "3d.refused",
+    expiry_month: "12",
+    expiry_year: next_year,
+    security_code: "555"
+  )
+end
+
+def verify_cardholder
+  @journey_app.worldpay_payment_page.verify(response: "Cardholder authenticated")
+end

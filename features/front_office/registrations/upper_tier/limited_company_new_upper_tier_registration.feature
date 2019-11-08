@@ -1,4 +1,4 @@
-@frontoffice @upper_tier
+@frontoffice @upper_tier @wip
 Feature: Limited company applies for new upper tier registration
   As a carrier of commercial waste
   I want to register my company with the Environment Agency

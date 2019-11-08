@@ -2,15 +2,19 @@ class ContactManualAddressPage < SitePrism::Page
 
   # whats the address?
 
-  element(:change_postcode, "a[href^='/company-address-manual/back']")
-  element(:house_number, "#contact_address_manual_form_house_number")
-  element(:address_line_one, "#contact_address_manual_form_address_line_1")
-  element(:address_line_two, "#contact_address_manual_form_address_line_2")
-  element(:city, "#contact_address_manual_form_town_city")
-  element(:postcode, "#contact_address_manual_form_postcode")
-  element(:country, "#contact_address_manual_form_country")
+  # Consider merging this with manual_address_page as per WEX
 
-  element(:submit_button, "input[type='submit']")
+  element(:change_postcode, "a[href^='/contact-address-manual/back']")
+  element(:house_number, "#contact_address_manual_form_contact_address_house_number")
+  element(:address_line_one, "#contact_address_manual_form_contact_address_address_line_1")
+  element(:address_line_two, "#contact_address_manual_form_contact_address_address_line_2")
+  element(:city, "#contact_address_manual_form_contact_address_town_city")
+
+  # DELETE THESE if tests pass:
+  # element(:postcode, "#contact_address_manual_form_postcode")
+  # element(:country, "#contact_address_manual_form_country")
+
+  element(:submit_button, ".button")
 
   def submit(args = {})
     house_number.set(args[:house_number]) if args.key?(:house_number)

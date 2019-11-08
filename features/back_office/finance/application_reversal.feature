@@ -1,6 +1,6 @@
 @backoffice @finance
 Feature: Reversal of payment by finance administrator
-As a finance administrator 
+As a finance administrator
 I want to be able to reverse payments made in error
 So that payments made in error can be reversed.
 
@@ -12,4 +12,3 @@ So that payments made in error can be reversed.
   Then the application payment will be reversed
    And the reversal will be shown in the payment history
    And the outstanding balance will be the amount previously paid
- 

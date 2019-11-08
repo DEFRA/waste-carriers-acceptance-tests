@@ -34,20 +34,9 @@ Given(/^I have an application paid by credit card$/) do
     copy_card_number: "1",
     choice: :card_payment
   )
-  click(@back_app.worldpay_card_choice_page.maestro)
 
-  # finds today's date and adds another year to expiry date
-  time = Time.new
+  submit_valid_card_payment
 
-  @year = time.year + 1
-
-  @back_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
   @registration_number = @back_app.finish_assisted_page.registration_number.text
   @back_app.agency_sign_in_page.load
   @back_app.registrations_page.sign_out.click

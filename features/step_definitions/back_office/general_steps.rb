@@ -1,6 +1,7 @@
 Given(/^an Environment Agency user has signed in$/) do
   Capybara.reset_session!
   @back_app = BackOfficeApp.new
+  @journey_app = JourneyApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
@@ -76,20 +77,7 @@ When(/^I pay for my application over the phone by maestro ordering (\d+) copy (?
     copy_card_number: copy_card_number,
     choice: :card_payment
   )
-  click(@back_app.worldpay_card_choice_page.maestro)
-
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @back_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
+  submit_valid_card_payment
 end
 
 Then(/^I will have a lower tier registration$/) do

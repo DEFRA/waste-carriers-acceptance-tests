@@ -1,5 +1,7 @@
 class WasteCarrierRegistrationsPage < SitePrism::Page
 
+  element(:heading, ".heading-large")
+
   sections(:registration_info, "table tbody tr:nth-child(odd)") do
     element(:name, "td:nth-child(1)")
     element(:postcode, "td:nth-child(2)")

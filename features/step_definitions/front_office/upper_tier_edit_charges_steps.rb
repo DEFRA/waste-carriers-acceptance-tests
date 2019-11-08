@@ -1,6 +1,7 @@
 Given(/I choose to edit my registration "([^"]*)"$/) do |reg_no|
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
@@ -36,6 +37,7 @@ When(/^I remove a partner from my registration$/) do
 end
 
 Then(/^I will not be charged for my change$/) do
+  expect(@front_app.waste_carrier_registrations_page.heading).to have_text("Your waste carrier registrations")
   expect(@front_app.waste_carrier_registrations_page.current_url).to include "/fo"
 end
 
@@ -91,21 +93,8 @@ Then(/^the charge "([^"]*)" has been paid$/) do |charge|
     copy_card_number: "1",
     choice: :card_payment
   )
-  click(@front_app.worldpay_card_choice_page.maestro)
-
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @front_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @front_app.worldpay_card_details_page.submit_button.click
+  submit_valid_card_payment
+  expect(@front_app.confirmation_page.confirmation_message).to have_text("Registration complete")
   @new_registration_number = @front_app.confirmation_page.registration_number.text
 end
 

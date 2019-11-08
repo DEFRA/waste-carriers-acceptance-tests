@@ -26,21 +26,9 @@ When(/^I complete my limited company renewal without changing any information pa
     copy_card_number: "1",
     choice: :card_payment
   )
-  click(@front_app.worldpay_card_choice_page.maestro)
 
-  # finds today's date and adds another year to expiry date
-  time = Time.new
+  submit_valid_card_payment
 
-  @year = time.year + 1
-
-  @front_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @front_app.worldpay_card_details_page.submit_button.click
 end
 
 When(/^I complete my limited company registration without changing any information paying by bank transfer$/) do

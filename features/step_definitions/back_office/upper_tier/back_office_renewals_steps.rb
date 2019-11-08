@@ -1,5 +1,6 @@
 Given(/^I have signed into the renewals service as an agency user$/) do
   @back_renewals_app = BackOfficeRenewalsApp.new
+  @journey_app = JourneyApp.new
   @back_renewals_app.sign_in_page.load
   @back_renewals_app.sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
@@ -9,6 +10,7 @@ end
 
 Given(/^I have signed into the renewals service as an agency user with refunds$/) do
   @back_renewals_app = BackOfficeRenewalsApp.new
+  @journey_app = JourneyApp.new
   @back_renewals_app.sign_in_page.load
   @back_renewals_app.sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
@@ -53,20 +55,9 @@ When(/^I renew the local authority registration$/) do
   @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
   @back_renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @back_renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
 
-  time = Time.new
+  submit_valid_card_payment
 
-  @year = time.year + 1
-
-  @back_renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
 end
 
 When(/^I renew the limited company registration$/) do
@@ -112,25 +103,16 @@ When(/^I renew the limited company registration$/) do
   @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
   @back_renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @back_renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
-  time = Time.new
 
-  @year = time.year + 1
+  submit_valid_card_payment
 
-  @back_renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
 end
 
 Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
   # save registration number for checks later on
   @registration_number = reg
   @back_renewals_app = RenewalsApp.new
+  @journey_app = JourneyApp.new
   @back_renewals_app.start_page.load
   @back_renewals_app.start_page.submit(renewal: true)
   @back_renewals_app.existing_registration_page.submit(reg_no: @registration_number)
@@ -145,12 +127,9 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
 end
 
 When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
-  @back_renewals_app.renewals_dashboard_page.submit(
-    search_term: reg,
-    choice: :in_progress
-  )
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: reg)
   @back_renewals_app.renewals_dashboard_page.results[0].actions.click
-  @back_renewals_app.transient_registrations_page.continue_as_assisted_digital.click
+  find_link("Resume application").click
   @back_renewals_app.confirm_business_type_page.submit
   @back_renewals_app.tier_check_page.submit(choice: :skip_check)
   @back_renewals_app.carrier_type_page.submit
@@ -171,20 +150,9 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
   @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
   @back_renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @back_renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
 
-  time = Time.new
+  submit_valid_card_payment
 
-  @year = time.year + 1
-
-  @back_renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
 end
 
 Then(/^the registration will have been renewed$/) do
@@ -217,6 +185,7 @@ end
 
 Given(/^an Environment Agency user has signed in to complete a renewal$/) do
   @back_renewals_app = BackOfficeApp.new
+  @journey_app = JourneyApp.new
   @back_renewals_app.agency_sign_in_page.load
   @back_renewals_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
@@ -226,6 +195,7 @@ end
 
 Given(/^an Agency super user has signed in to the admin area$/) do
   @back_renewals_app = BackOfficeApp.new
+  @journey_app = JourneyApp.new
   @back_renewals_app.admin_sign_in_page.load
   @back_renewals_app.admin_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_super"]["username"],
@@ -266,10 +236,7 @@ end
 
 When(/^I search for "([^"]*)" pending payment$/) do |reg|
   @back_renewals_app.renewals_dashboard_page.govuk_banner.home_page.click
-  @back_renewals_app.renewals_dashboard_page.submit(
-    search_term: reg.to_sym,
-    choice: :pending_payment
-  )
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: reg.to_sym)
   # saves registration for later use
   @reg = reg
 end
@@ -290,11 +257,8 @@ end
 
 Then(/^the registration will have a "([^"]*)" status$/) do |status|
   @back_renewals_app.renewals_dashboard_page.govuk_banner.home_page.click
-  @back_renewals_app.renewals_dashboard_page.submit(
-    search_term: @reg,
-    choice: :pending_conviction
-  )
-  expect(@back_renewals_app.renewals_dashboard_page.results[0].status).to have_text(status)
+  @back_renewals_app.renewals_dashboard_page.submit(search_term: @reg)
+  expect(@back_renewals_app.renewals_dashboard_page.results_table).to have_text(status)
 end
 
 Then(/^the expiry date should be three years from the previous expiry date$/) do

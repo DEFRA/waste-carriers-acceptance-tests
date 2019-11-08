@@ -23,4 +23,3 @@ So that registration is completed
    When I write off the large amount owed
    Then the payment status will be marked as paid
     And the registration will be marked as "Registered"
-

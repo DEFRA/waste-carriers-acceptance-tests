@@ -288,10 +288,12 @@ class BackOfficeApp
     @last_page = TierCheckPage.new
   end
 
+  # Delete this when tests pass
   def worldpay_card_choice_page
     @last_page = WorldpayCardChoicePage.new
   end
 
+  # Delete this when tests pass
   def worldpay_card_details_page
     @last_page = WorldpayCardDetailsPage.new
   end
