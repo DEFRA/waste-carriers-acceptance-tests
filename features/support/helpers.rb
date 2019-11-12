@@ -38,6 +38,7 @@ def next_year
 end
 
 def submit_valid_card_payment
+  sleep(1)
   expect(@journey_app.worldpay_payment_page.test_mode_text).to have_text("Test Mode - This is not a live transaction")
   @journey_app.worldpay_payment_page.submit(
     card_number: "6759649826438453",
@@ -46,6 +47,8 @@ def submit_valid_card_payment
     expiry_year: next_year,
     security_code: "555"
   )
+  # We don't always know when WorldPay will request an additional 3D secure verification.
+  # The next function detects whether it has been requested, and simulates the verification result.
   verify_cardholder if @journey_app.worldpay_payment_page.has_verification_heading?
 end
 
@@ -58,6 +61,7 @@ def submit_invalid_card_payment
     expiry_year: next_year,
     security_code: "555"
   )
+  verify_cardholder if @journey_app.worldpay_payment_page.has_verification_heading?
 end
 
 def verify_cardholder

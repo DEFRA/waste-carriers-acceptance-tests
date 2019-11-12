@@ -375,10 +375,11 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.company_name_page.submit
   @renewals_app.manual_address_page.submit(
     house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston",
-    country: "Testopia"
+    address_line_one: "Via poerio",
+    address_line_two: "Via poerio",
+    postcode: "00152", # required, as tests currently fail without a postcode
+    city: "Rome",
+    country: "Italy"
   )
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.submit_main_person(person: people[0])
@@ -389,15 +390,17 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_manual_address_page.submit(
     house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston",
-    country: "Slovakia"
+    address_line_one: "Via poerio",
+    address_line_two: "Via Poerio",
+    city: "Rome",
+    postcode: "00152", # required, as tests currently fail without a postcode
+    country: "Italy"
   )
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  sleep(1)
   submit_valid_card_payment
 end
 

@@ -1,5 +1,6 @@
 class PostCodePage < SitePrism::Page
 
+  # Consider merging this with contact_postcode_page to allow reusable functions
   # whats the  address?
 
   element(:postcode, "#company_postcode_form_temp_company_postcode")

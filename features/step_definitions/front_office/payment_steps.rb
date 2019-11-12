@@ -34,7 +34,7 @@ end
 
 When(/^I cancel my credit card payment$/) do
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @journey_app.worldpay_payment_page.cancel_payment_button.click
+  @journey_app.worldpay_payment_page.cancel_payment
 end
 
 Then(/^(?:I can pay with another card|I try my credit card payment again)$/) do
