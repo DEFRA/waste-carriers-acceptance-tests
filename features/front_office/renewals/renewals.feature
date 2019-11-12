@@ -44,7 +44,6 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       But remove one partner and attempt to continue with my renewal
      Then I will be asked to add another partner
 
-@wip
   Scenario: Limited liability partnership renews upper tier registration from renewals page
     Given I renew my registration using my previous registration number "CBDU214"
       And I have signed in to renew my registration as "user@example.com"
