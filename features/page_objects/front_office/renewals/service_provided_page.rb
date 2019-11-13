@@ -4,7 +4,7 @@ class ServiceProvidedPage < SitePrism::Page
   element(:yes_main_service, "#service_provided_form_is_main_service_yes", visible: false)
   element(:not_main_service, "#service_provided_form_is_main_service_no", visible: false)
   element(:heading, :xpath, "//h1[contains(text(), 'Who produces the waste that you deal with')]")
-  element(:submit_button, "input[type='submit']")
+  element(:submit_button, ".button")
 
   def submit(args = {})
     case args[:choice]

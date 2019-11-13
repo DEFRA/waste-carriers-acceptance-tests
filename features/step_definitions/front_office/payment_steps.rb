@@ -29,43 +29,17 @@ end
 
 When(/^I have my credit card payment rejected$/) do
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.refused",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @renewals_app.worldpay_secure_page.submit
+  submit_invalid_card_payment
 end
 
 When(/^I cancel my credit card payment$/) do
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @renewals_app.worldpay_card_choice_page.submit
-  @renewals_app.worldpay_card_details_page.cancel.click
+  @journey_app.worldpay_payment_page.cancel_payment
 end
 
 Then(/^(?:I can pay with another card|I try my credit card payment again)$/) do
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @renewals_app.worldpay_secure_page.submit
+  submit_valid_card_payment
 end
 
 When(/^I can pay by bank transfer$/) do

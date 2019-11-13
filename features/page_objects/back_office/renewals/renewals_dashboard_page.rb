@@ -5,10 +5,14 @@ class RenewalsDashboardPage < SitePrism::Page
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
   element(:search_term, "#term")
-  element(:submit_button, "input[name='commit']")
-  element(:in_progress_filter, "#in_progress", visible: false)
-  element(:pending_payment_filter, "#pending_payment", visible: false)
-  element(:conviction_check_filter, "#pending_conviction_check", visible: false)
+  element(:submit_button, ".button")
+
+  # Delete these when tests pass:
+  # element(:in_progress_filter, "#in_progress", visible: false)
+  # element(:pending_payment_filter, "#pending_payment", visible: false)
+  # element(:conviction_check_filter, "#pending_conviction_check", visible: false)
+
+  element(:results_table, "table")
 
   sections :results, "table tbody tr" do
     element(:registration_number, "td:nth-child(1)")

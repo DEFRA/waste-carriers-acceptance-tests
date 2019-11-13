@@ -1,5 +1,6 @@
 Given(/^I start a new registration$/) do
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   # Redirects to "Where is your principal place of business?"
@@ -13,21 +14,8 @@ When(/^I pay for my application by maestro ordering (\d+) copy (?:card|cards)$/)
     copy_card_number: copy_card_number,
     choice: :card_payment
   )
-  click(@front_app.worldpay_card_choice_page.maestro)
 
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @front_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @front_app.worldpay_card_details_page.submit_button.click
+  submit_valid_card_payment
 end
 
 Then(/^I will be asked to confirm my email address$/) do
@@ -91,6 +79,7 @@ end
 
 Given(/^I have signed in as "([^"]*)"$/) do |username|
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: username,
@@ -101,6 +90,7 @@ end
 Given(/^I choose to renew my registration using my previous registration number$/) do
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit(renewal: true)
   @front_app.existing_registration_page.submit(reg_no: @registration_number)

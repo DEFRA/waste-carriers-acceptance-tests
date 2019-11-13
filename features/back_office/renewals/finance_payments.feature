@@ -16,4 +16,4 @@ Feature: Recording of a non worldpay renewal payment and negative conviction che
         And registration "CBDU207" has a renewal paid by bank transfer
        When I search for "CBDU207" pending payment
         And I mark the renewal payment as received
-       Then the registration will have a "PENDING CONVICTIONS" status
+       Then the registration will have a "CONVICTIONS" status

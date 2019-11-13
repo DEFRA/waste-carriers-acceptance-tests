@@ -4,7 +4,7 @@ class ConstructionWastePage < SitePrism::Page
   element(:yes_construction_waste, "#construction_demolition_form_construction_waste_yes", visible: false)
   element(:no_construction_waste, "#construction_demolition_form_construction_waste_no", visible: false)
   element(:heading, :xpath, "//h1[contains(text(), 'Do you ever deal')]")
-  element(:submit_button, "input[type='submit']")
+  element(:submit_button, ".button")
 
   def submit(args = {})
     case args[:choice]

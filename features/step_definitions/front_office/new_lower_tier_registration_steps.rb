@@ -1,5 +1,6 @@
 When(/^I complete my application of my charity as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
@@ -29,6 +30,7 @@ end
 
 When(/^I complete my application of my local authority as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
@@ -58,6 +60,7 @@ end
 
 When(/^I complete my application of my partnership as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
@@ -90,6 +93,7 @@ end
 
 When(/^I complete my application of my public body as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   @front_app.business_type_page.submit(org_type: "publicBody")
@@ -119,6 +123,7 @@ end
 
 Given(/^I complete my application of a sole trader business as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
@@ -151,6 +156,7 @@ end
 
 Given(/^I complete my application of my limited company "([^"]*)" as a lower tier waste carrier$/) do |company_name|
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")

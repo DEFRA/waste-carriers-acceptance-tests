@@ -14,6 +14,7 @@ class LocationPage < SitePrism::Page
   element(:heading, :xpath, "//h1[contains(text(), 'Where is your principal place of business')]")
   element(:submit_button, "input[type='submit']")
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def submit(args = {})
     case args[:choice]
     when :england
@@ -31,5 +32,6 @@ class LocationPage < SitePrism::Page
     end
     submit_button.click
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
 end

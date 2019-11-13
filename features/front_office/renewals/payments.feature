@@ -12,7 +12,7 @@ Feature: Registered waste carrier pays for their renewal
        When I can pay with another card
        Then I will be notified my renewal is complete
 
-    @email
+@email
     Scenario: Rejected worldpay payment can be paid for by bank transfer
       Given I renew my registration using my previous registration number "CBDU219"
         And I have signed in to renew my registration as "wcr-user@mailinator.com"

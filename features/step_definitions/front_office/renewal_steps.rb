@@ -1,5 +1,6 @@
 Given(/^I renew my registration using my previous registration number "([^"]*)"$/) do |reg|
   @renewals_app = RenewalsApp.new
+  @journey_app = JourneyApp.new
   @renewals_app.start_page.load
   @renewals_app.start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: reg)
@@ -26,6 +27,7 @@ end
 Given(/^I choose to renew my registration$/) do
   Capybara.reset_session!
   @renewals_app = RenewalsApp.new
+  @journey_app = JourneyApp.new
   @renewals_app.start_page.load
   @renewals_app.start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: @registration_number)
@@ -81,6 +83,7 @@ end
 
 Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   @renewals_app = RenewalsApp.new
+  @journey_app = JourneyApp.new
   @renewals_app.waste_carrier_sign_in_page.submit(
     email: username,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
@@ -90,6 +93,7 @@ end
 
 Given(/^I have signed in to view my registrations as "([^"]*)"$/) do |username|
   @front_app = FrontOfficeApp.new
+  @journey_app = JourneyApp.new
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: username,
@@ -144,20 +148,7 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @renewals_app.worldpay_secure_page.submit
+  submit_valid_card_payment
 end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
@@ -207,20 +198,7 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @renewals_app.worldpay_secure_page.submit
+  submit_valid_card_payment
 end
 
 When(/^I complete my local authority renewal steps$/) do
@@ -248,20 +226,7 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @renewals_app.worldpay_secure_page.submit
+  submit_valid_card_payment
 end
 
 When(/^I complete my limited liability partnership renewal steps$/) do
@@ -298,19 +263,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-  @renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @renewals_app.worldpay_secure_page.submit
+  submit_valid_card_payment
 end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
@@ -383,20 +336,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year
-  )
-  @renewals_app.worldpay_secure_page.submit
+  submit_valid_card_payment
 end
 
 When(/^I add two partners to my renewal$/) do
@@ -435,10 +375,11 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.company_name_page.submit
   @renewals_app.manual_address_page.submit(
     house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston",
-    country: "Testopia"
+    address_line_one: "Via poerio",
+    address_line_two: "Via poerio",
+    postcode: "00152", # required, as tests currently fail without a postcode
+    city: "Rome",
+    country: "Italy"
   )
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.submit_main_person(person: people[0])
@@ -449,30 +390,17 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.contact_email_page.submit
   @renewals_app.contact_manual_address_page.submit(
     house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston",
-    country: "Slovakia"
+    address_line_one: "Via poerio",
+    address_line_two: "Via Poerio",
+    city: "Rome",
+    postcode: "00152", # required, as tests currently fail without a postcode
+    country: "Italy"
   )
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  @renewals_app.worldpay_card_choice_page.submit
-  # finds today's date and adds another year to expiry date
-  time = Time.new
-
-  @year = time.year + 1
-
-  @renewals_app.worldpay_card_details_page.submit(
-    card_number: "6759649826438453",
-    security_code: "555",
-    cardholder_name: "3d.authorised",
-    expiry_month: "12",
-    expiry_year: @year,
-    postcode: "90210"
-  )
-  @renewals_app.worldpay_secure_page.submit
+  submit_valid_card_payment
 end
 
 When(/^I confirm my business type$/) do
@@ -545,6 +473,7 @@ end
 
 When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |reg_no|
   @renewals_app = RenewalsApp.new
+  @journey_app = JourneyApp.new
   renewal_url = Quke::Quke.config.custom["urls"]["front_office_renewals"] + "/fo/renew/#{reg_no}"
 
   visit(renewal_url)

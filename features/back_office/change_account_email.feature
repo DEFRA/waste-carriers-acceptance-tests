@@ -10,4 +10,3 @@ So that users can continue to maintain registrations even if their details chang
       And I have signed into the renewals service as an agency user
      When I change the account email to "user@example.com"
      Then I see a confirmation the change has been made
-
