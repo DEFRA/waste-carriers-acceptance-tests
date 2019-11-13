@@ -44,8 +44,8 @@ class RelevantPeoplePage < SitePrism::Page
   end
 
   def submit(args = {})
-    first_name.set(args[:first_name]) if args.key?(:first_name)
-    last_name.set(args[:last_name]) if args.key?(:last_name)
+    first_name.set(args[:first_name])
+    last_name.set(args[:last_name])
     dob_day.set(args[:dob_day]) if args.key?(:dob_day)
     dob_month.set(args[:dob_month]) if args.key?(:dob_month)
     dob_year.set(args[:dob_year]) if args.key?(:dob_year)

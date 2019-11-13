@@ -141,14 +141,6 @@ class FrontOfficeApp
     @last_page = WasteCarrierRegistrationsPage.new
   end
 
-  def worldpay_card_choice_page
-    @last_page = WorldpayCardChoicePage.new
-  end
-
-  def worldpay_card_details_page
-    @last_page = WorldpayCardDetailsPage.new
-  end
-
   def view_certificate_page
     @last_page = ViewCertificatePage.new
   end

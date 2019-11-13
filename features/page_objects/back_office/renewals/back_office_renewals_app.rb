@@ -230,17 +230,5 @@ class BackOfficeRenewalsApp
     @last_page = WasteCarrierRegistrationsPage.new
   end
 
-  def worldpay_card_choice_page
-    @last_page = WorldpayCardChoicePage.new
-  end
-
-  def worldpay_card_details_page
-    @last_page = WorldpayCardDetailsPage.new
-  end
-
-  def worldpay_secure_page
-    @last_page = WorldpaySecurePage.new
-  end
-
 end
 # rubocop:enable Metrics/ClassLength

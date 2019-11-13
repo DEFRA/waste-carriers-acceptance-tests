@@ -15,7 +15,7 @@ class CashPaymentPage < SitePrism::Page
   element(:submit_button, "input[name='commit']")
 
   def submit(args = {})
-    amount.set(args[:amount]) if args.key?(:amount)
+    amount.set(args[:amount])
     day.set(args[:day]) if args.key?(:day)
     month.set(args[:month]) if args.key?(:month)
     year.set(args[:year]) if args.key?(:year)
