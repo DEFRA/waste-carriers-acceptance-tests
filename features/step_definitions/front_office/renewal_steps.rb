@@ -400,7 +400,6 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
-  sleep(1)
   submit_valid_card_payment
 end
 
