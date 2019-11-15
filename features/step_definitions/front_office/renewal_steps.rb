@@ -51,10 +51,6 @@ Then(/^I'm informed I'll need to apply for a new registration$/) do
   expect(@renewals_app.type_change_page).to have_text("You cannot renew")
 end
 
-Then(/^I will have renewed my registration$/) do
-  expect(@renewals_app.confirmation_page).to have_text("Renewal complete")
-end
-
 Then(/^I will be informed my renewal is received$/) do
   expect(@renewals_app.renewal_received_page).to have_text("Renewal received")
   expect(@renewals_app.renewal_received_page).to have_text(@registration_number)

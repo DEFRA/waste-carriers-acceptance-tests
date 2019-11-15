@@ -84,5 +84,6 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use
   @registration_number = @front_app.confirmation_page.registration_number.text
+  puts "Upper tier registration " + @registration_number + " completed by a limited company"
 end
 # rubocop:enable Metrics/LineLength

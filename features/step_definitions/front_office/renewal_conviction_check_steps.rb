@@ -78,6 +78,7 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
 
+  # This is currently failing:
   submit_valid_card_payment
 
 end
