@@ -13,10 +13,6 @@ class RenewalsApp
     @last_page = BankTransferPage.new
   end
 
-  def business_address_page
-    @last_page = BusinessAddressPage.new
-  end
-
   def carrier_type_page
     @last_page = CarrierTypePage.new
   end
@@ -49,14 +45,6 @@ class RenewalsApp
     @last_page = ContactTelephoneNumberPage.new
   end
 
-  def contact_address_page
-    @last_page = ContactAddressPage.new
-  end
-
-  def contact_manual_address_page
-    @last_page = ContactManualAddressPage.new
-  end
-
   def contact_email_page
     @last_page = ContactEmailPage.new
   end
@@ -67,10 +55,6 @@ class RenewalsApp
 
   def contact_name_page
     @last_page = ContactNamePage.new
-  end
-
-  def contact_postcode_page
-    @last_page = ContactPostCodePage.new
   end
 
   def declaration_page
@@ -97,20 +81,12 @@ class RenewalsApp
     @last_page = MainPeoplePage.new
   end
 
-  def manual_address_page
-    @last_page = ManualAddressPage.new
-  end
-
   def other_businesses_page
     @last_page = OtherBusinessesPage.new
   end
 
   def payment_summary_page
     @last_page = PaymentSummaryPage.new
-  end
-
-  def post_code_page
-    @last_page = PostCodePage.new
   end
 
   def registration_cards_page

@@ -25,10 +25,6 @@ class BackOfficeRenewalsApp
     @last_page = BankTransferPage.new
   end
 
-  def business_address_page
-    @last_page = BusinessAddressPage.new
-  end
-
   def cash_payment_page
     @last_page = CashPaymentPage.new
   end
@@ -77,24 +73,12 @@ class BackOfficeRenewalsApp
     @last_page = ContactTelephoneNumberPage.new
   end
 
-  def contact_address_page
-    @last_page = ContactAddressPage.new
-  end
-
-  def contact_manual_address_page
-    @last_page = ContactManualAddressPage.new
-  end
-
   def company_name_page
     @last_page = CompanyNamePage.new
   end
 
   def contact_name_page
     @last_page = ContactNamePage.new
-  end
-
-  def contact_postcode_page
-    @last_page = ContactPostCodePage.new
   end
 
   def declaration_page
@@ -125,10 +109,6 @@ class BackOfficeRenewalsApp
     @last_page = MainPeoplePage.new
   end
 
-  def manual_address_page
-    @last_page = ManualAddressPage.new
-  end
-
   def migrate_page
     @last_page = MigratePage.new
   end
@@ -147,10 +127,6 @@ class BackOfficeRenewalsApp
 
   def payment_summary_page
     @last_page = PaymentSummaryPage.new
-  end
-
-  def post_code_page
-    @last_page = PostCodePage.new
   end
 
   def registrations_page

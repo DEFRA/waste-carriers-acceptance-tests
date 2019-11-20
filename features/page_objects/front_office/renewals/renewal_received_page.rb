@@ -1,6 +1,6 @@
 class RenewalReceivedPage < SitePrism::Page
 
   # Registration complete
-  element(:heading, :xpath, "//h1[contains(text(), 'Application received')]")
+  element(:heading, ".heading-xlarge")
 
 end

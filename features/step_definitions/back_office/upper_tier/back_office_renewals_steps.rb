@@ -26,7 +26,7 @@ Given(/^I choose to renew "([^"]*)"$/) do |reg|
   @expiry_date_year_first = Date.parse(@expiry_date)
   @back_renewals_app.registrations_page.search_results[0].renew.click
 end
-# rubocop:disable Metrics/LineLength
+
 When(/^I renew the local authority registration$/) do
   @back_renewals_app.ad_privacy_policy_page.submit
   expect(@back_renewals_app.renewal_start_page.heading).to have_text("You are about to renew")
@@ -37,8 +37,7 @@ When(/^I renew the local authority registration$/) do
   @back_renewals_app.carrier_type_page.submit
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.company_name_page.submit
-  @back_renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_lookup_page.submit_valid_address
   people = @back_renewals_app.main_people_page.main_people
   @back_renewals_app.main_people_page.add_main_person(person: people[0])
   @back_renewals_app.main_people_page.submit_main_person(person: people[1])
@@ -49,8 +48,7 @@ When(/^I renew the local authority registration$/) do
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_lookup_page.submit_valid_address
   @back_renewals_app.check_your_answers_page.submit
   @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
@@ -72,9 +70,8 @@ When(/^I renew the limited company registration$/) do
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.registration_number_page.submit
   @back_renewals_app.company_name_page.submit
-  @back_renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.business_address_page.manual_address_submit
-  @back_renewals_app.manual_address_page.submit(
+  @journey_app.address_lookup_page.choose_manual_address
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -91,9 +88,8 @@ When(/^I renew the limited company registration$/) do
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 9XX")
-  @back_renewals_app.contact_postcode_page.manual_address.click
-  @back_renewals_app.contact_manual_address_page.submit(
+  @journey_app.address_lookup_page.submit_invalid_address
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -135,8 +131,7 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
   @back_renewals_app.carrier_type_page.submit
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.company_name_page.submit
-  @back_renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_lookup_page.submit_valid_address
   people = @back_renewals_app.main_people_page.main_people
   @back_renewals_app.main_people_page.add_main_person(person: people[0])
   @back_renewals_app.main_people_page.submit_main_person(person: people[1])
@@ -144,8 +139,7 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
   @back_renewals_app.contact_name_page.submit
   @back_renewals_app.contact_telephone_number_page.submit
   @back_renewals_app.contact_email_page.submit
-  @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_lookup_page.submit_valid_address
   @back_renewals_app.check_your_answers_page.submit
   @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
@@ -158,29 +152,6 @@ end
 Then(/^the registration will have been renewed$/) do
   expect(@back_renewals_app.finish_assisted_page).to have_text(@registration_number)
   expect(@back_renewals_app.finish_assisted_page).to have_text("Renewal complete")
-end
-When(/^I have my public body upper tier renewal completed for me$/) do
-  @back_app.agency_sign_in_page.load
-  @back_app.registrations_page.search(search_input: @registration_number)
-  @back_app.registrations_page.search_results[0].renew.click
-  @back_app.business_type_page.submit
-  @back_app.other_businesses_question_page.submit(choice: :no)
-  @back_app.construction_waste_question_page.submit(choice: :yes)
-  @back_app.registration_type_page.submit(choice: :carrier_broker_dealer)
-  @back_app.renewal_information_page.submit
-  @back_app.post_code_page.submit(postcode: "BS1 5AH")
-  @back_app.business_address_page.submit(
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  )
-  people = @back_app.key_people_page.key_people
-
-  @back_app.key_people_page.submit_key_person(person: people[0])
-  @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.correspondence_contact_name_page.submit
-  @back_app.correspondence_contact_telephone_page.submit
-  @back_app.correspondence_contact_email_page.submit
-  @back_app.contact_address_page.submit
-  @back_app.check_details_page.submit_button.click
 end
 
 Given(/^an Environment Agency user has signed in to complete a renewal$/) do
@@ -282,10 +253,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.registration_number_page.submit
   @back_renewals_app.company_name_page.submit
-  @back_renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.business_address_page.submit(
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  )
+  @journey_app.address_lookup_page.submit_valid_address
   people = @back_renewals_app.main_people_page.main_people
   @back_renewals_app.main_people_page.add_main_person(person: people[0])
   @back_renewals_app.main_people_page.add_main_person(person: people[1])
@@ -299,8 +267,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_lookup_page.submit_valid_address
   @back_renewals_app.check_your_answers_page.submit
   @back_renewals_app.declaration_page.submit
   @back_renewals_app.registration_cards_page.submit
@@ -316,4 +283,3 @@ When(/^I approve the conviction check$/) do
   @back_renewals_app.convictions_page.approve.click
   @back_renewals_app.approve_convictions_page.submit(approval_reason: "ok")
 end
-# rubocop:enable Metrics/LineLength
