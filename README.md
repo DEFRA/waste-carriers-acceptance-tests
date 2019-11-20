@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests.svg?branch=master)](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests)
 [![security](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master.svg)](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master)
 
-If your business carries waste then it could require a waste carriers licence
+If your business carries waste then it could require a waste carriers licence.
 
 This project contains the acceptance tests for the Waste carriers digital service. It is built around [Quke](https://github.com/DEFRA/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
 
@@ -90,12 +90,17 @@ To run all tests call
 ```bash
 bundle exec quke
 ```
+As the test suite is quite large, tests are split into four main categories:
 
-To run just the back or front office tests call
+* @fo_new - front office (external) dashboard and renewals
+* @bo_new - back office (internal) renewals
+* @fo_old - front office registrations
+* @bo_old - back office dashboard and registrations
+
+We are gradually moving functionality from "old" code to "new" code. For example, to test new front office functionality, call:
 
 ```bash
-bundle exec quke --tags @frontoffice
-bundle exec quke --tags @backoffice
+bundle exec quke --tags @fo_new
 ```
 
 You can create [multiple config files](https://github.com/DEFRA/quke#multiple-configs), for example you may wish to have one setup for running against **Chrome**, and another to run against a different environment. You can tell **Quke** which config file to use by adding an environment variable argument to the command.
@@ -116,16 +121,16 @@ Feature: Validations within the digital service
 ```
 
 ```gherkin
-@frontoffice @happypath
+@fo_old @happypath
 Scenario: Registration by an individual
 ```
 
 When applied you then have the ability to filter which tests will be used during any given run
 
 ```bash
-bundle exec quke --tags @frontoffice # Run only things tagged with this
-bundle exec quke --tags @frontoffice,@happypath # Run all things with these tags
-bundle exec quke --tags ~@functional # Don't run anything with this tag (run everything else)
+bundle exec quke --tags @fo_old # Run only things tagged with this
+bundle exec quke --tags @fo_old,@happypath # Run all things with these tags
+bundle exec quke --tags ~@fo_old # Don't run anything with this tag (run everything else)
 ```
 
 ### In this project
@@ -134,17 +139,19 @@ To have consistency across the project the following tags are defined and should
 
 |Tag|Description|
 |---|---|
-|@frontoffice|Any feature or scenario expected to be run against the front office application|
-|@backoffice|Any feature or scenario expected to be run against the back office|
+|@fo_old|Front office functionality in the older parts of the service|
+|@fo_new|Front office functionality in the newer parts of the service|
+|@bo_old|Back office functionality in the older parts of the service|
+|@bo_new|Back office functionality in the newer parts of the service|
 |@happypath|A scenario which details a complete registration with no errors|
 |@functional|Any feature or scenario which is testing just a specific function of the service e.g. validation errors|
 |@email|Indicates when an email is sent out during the scenario. Useful for testing emails or for omitting email tests when testing within corporate network|
-|@once|Can only be run once between database resets.|
 |@broken|A scenario which is known to be broken due to the service not meeting expected behaviour|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
 |@convictions| Tests the convictions service|
 |@smoke| Specifically for testing on an environment where test data is created during the test so no reliance on any data or test payment environment to run the tests. Gives a confirmation that environment is setup correctly |
-|@dashboard| User registrations dashboard functionality |
+|Back office tags| @bo_renew, @bo_dashboard, @bo_finance, @bo_reg |
+|Front office tags| @fo_renew, @fo_dashboard, @fo_reg |
 
 It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
 
