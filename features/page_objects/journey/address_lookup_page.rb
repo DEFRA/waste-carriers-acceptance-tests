@@ -1,32 +1,45 @@
 class AddressLookupPage < SitePrism::Page
 
-  # Use this for all new RENEWAL functionality.
+  # Use this for all RENEWAL functionality, for company and contact addresses.
   # Don't use for registrations until tech debt is complete.
   # This is a merge of the following pages to be consistent with WEX:
   # - renewals > business_address_page
-  # - contact_address_page
-  # Move this to journey app once the registration journey aligns with renewals.
+  # - renewals > contact_address_page
+  # - renewals > post_code_page
+  # - renewals > contact_postcode_page
 
   element(:back_link, ".link-back")
   element(:heading, ".heading-large")
 
-  # Suspect :address is not used. Delete this if tests pass:
-  # element(:address, "#contact/company_address_form_temp_address")
+  # Initial postcode selection:
+  element(:postcode, "input[id*='postcode_form_temp']")
+  element(:find_address_button, "input[value='Find address']")
 
-  # find_address is used from back_app.
-  element(:find_address, "#find_address")
+  # Once result is shown:
   element(:change_postcode, "a[href*='company-address/back']")
   element(:results_dropdown, "select[id*='address_uprn']")
   element(:manual_address, "a[href*='skip_to_manual_address']")
   element(:submit_button, ".button")
 
-  def submit(args = {})
-    results_dropdown.select(args[:result]) if args.key?(:result)
+  def submit_valid_address(_args = {})
+    enter_postcode("BS1 5AH")
+    results_dropdown.select("ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
     submit_button.click
   end
 
-  def manual_address_submit(_args = {})
+  def submit_invalid_address(_args = {})
+    enter_postcode("BS1 9XX")
     manual_address.click
+  end
+
+  def choose_manual_address(_args = {})
+    enter_postcode("BS1 5AH")
+    manual_address.click
+  end
+
+  def enter_postcode(postcode_entry)
+    postcode.set(postcode_entry)
+    find_address_button.click
   end
 
   # All address page objects for reference while I'm merging page objects:

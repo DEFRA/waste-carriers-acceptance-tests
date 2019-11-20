@@ -15,10 +15,6 @@ class JourneyApp
     @last_page = AddressManualPage.new
   end
 
-  def address_postcode_page
-    @last_page = AddressPostcodePage.new
-  end
-
   def worldpay_payment_page
     @last_page = WorldpayPaymentPage.new
   end

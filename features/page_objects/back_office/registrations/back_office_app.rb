@@ -92,6 +92,7 @@ class BackOfficeApp
     @last_page = ContactTelephoneNumberPage.new
   end
 
+  # Pages such as these are actually defined in front_app:
   def contact_address_page
     @last_page = ContactAddressPage.new
   end
