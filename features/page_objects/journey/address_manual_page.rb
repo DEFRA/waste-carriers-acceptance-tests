@@ -1,8 +1,6 @@
 class AddressManualPage < SitePrism::Page
 
-  # New manual address page. Replaces:
-  # - (back/front) renewals > manual_address_page
-  # - (back/front) renewals > contact_manual_address_page
+  # Use this for all manual addresses for renewals
 
   element(:change_postcode, "a[href*='address-manual/back']")
   element(:house_number, "input[id*='address_house_number']")
@@ -26,15 +24,5 @@ class AddressManualPage < SitePrism::Page
 
     submit_button.click
   end
-
-  # Page objects from company address flow:
-  # Change postcode link: #new_company_address_manual_form a OR /fo/company-address-manual/back
-  # House number field: #company_address_manual_form_company_address_house_number
-  # Address line 1 field: #company_address_manual_form_company_address_address_line_1
-  # Address line 2 field: #company_address_manual_form_company_address_address_line_2
-  # Town or city field: #company_address_manual_form_company_address_town_city
-  # Postcode (doesn't always appear): #contact_address_manual_form_contact_address_postcode
-  # Country (doesn't always appear): #contact_address_manual_form_contact_address_country
-  # Continue button: .button
 
 end
