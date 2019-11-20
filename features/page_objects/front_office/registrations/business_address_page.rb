@@ -1,5 +1,7 @@
 class BusinessAddressPage < SitePrism::Page
 
+  # Merge this into journey > address_lookup_page when registration tech debt is complete
+
   # whats the address?
 
   element(:find_address, "#find_address")

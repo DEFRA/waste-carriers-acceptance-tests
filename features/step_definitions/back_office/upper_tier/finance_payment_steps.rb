@@ -19,9 +19,9 @@ Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
   @back_renewals_app.renewal_information_page.submit
   @back_renewals_app.registration_number_page.submit
   @back_renewals_app.company_name_page.submit
-  @back_renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @back_renewals_app.business_address_page.manual_address_submit
-  @back_renewals_app.manual_address_page.submit(
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.manual_address_submit
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -38,9 +38,9 @@ Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @back_renewals_app.contact_postcode_page.submit(postcode: "BS1 9XX")
-  @back_renewals_app.contact_postcode_page.manual_address.click
-  @back_renewals_app.contact_manual_address_page.submit(
+  @journey_app.address_postcode_page.submit(postcode: "BS1 9XX")
+  @journey_app.address_lookup_page.manual_address.click
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",

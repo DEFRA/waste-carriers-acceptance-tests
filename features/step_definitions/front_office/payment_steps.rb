@@ -9,18 +9,16 @@ Given(/^I am on the payment page$/) do
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  # rubocop:disable Metrics/LineLength
-  @renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  # rubocop:enable Metrics/LineLength
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.submit_main_person(person: people[0])
   @renewals_app.declare_convictions_page.submit(choice: :no)
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit

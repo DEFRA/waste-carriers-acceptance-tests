@@ -99,6 +99,7 @@ end
 
 Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
   @renewals_app = RenewalsApp.new
+  @journey_app = JourneyApp.new
   @registration_number = reg_no
 
   @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
@@ -116,9 +117,9 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.manual_address_submit
-  @renewals_app.manual_address_page.submit(
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.manual_address_submit
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -132,9 +133,9 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 9XX")
-  @renewals_app.contact_postcode_page.manual_address.click
-  @renewals_app.contact_manual_address_page.submit(
+  @journey_app.address_postcode_page.submit(postcode: "BS1 9XX")
+  @journey_app.address_lookup_page.manual_address.click
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -175,10 +176,8 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  # rubocop:disable Metrics/LineLength
-  @renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  # rubocop:enable Metrics/LineLength
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.submit_main_person(person: people[0])
   @renewals_app.declare_convictions_page.submit(choice: :no)
@@ -188,8 +187,8 @@ When(/^I complete my sole trader renewal steps$/) do
     email: "test@example.com",
     confirm_email: "test@example.com"
   )
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -205,10 +204,8 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  # rubocop:disable Metrics/LineLength
-  @renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  # rubocop:enable Metrics/LineLength
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.add_main_person(person: people[0])
   @renewals_app.main_people_page.submit_main_person(person: people[1])
@@ -216,8 +213,8 @@ When(/^I complete my local authority renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -237,9 +234,9 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.manual_address_submit
-  @renewals_app.manual_address_page.submit(
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.manual_address_submit
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -253,8 +250,8 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -274,9 +271,9 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.manual_address_submit
-  @renewals_app.manual_address_page.submit(
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.manual_address_submit
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -290,8 +287,8 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -310,10 +307,8 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  # rubocop:disable Metrics/LineLength
-  @renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  # rubocop:enable Metrics/LineLength
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.add_main_person(person: people[0])
   @renewals_app.main_people_page.add_main_person(person: people[1])
@@ -326,8 +321,8 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -346,10 +341,8 @@ When(/^I add two partners to my renewal$/) do
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  # rubocop:disable Metrics/LineLength
-  @renewals_app.business_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
-  # rubocop:enable Metrics/LineLength
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   people = @renewals_app.main_people_page.main_people
   @renewals_app.main_people_page.add_main_person(person: people[0])
   @renewals_app.main_people_page.add_main_person(person: people[1])
@@ -369,7 +362,7 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.manual_address_page.submit(
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Via poerio",
     address_line_two: "Via poerio",
@@ -384,7 +377,7 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.contact_name_page.submit
   @renewals_app.contact_telephone_number_page.submit
   @renewals_app.contact_email_page.submit
-  @renewals_app.contact_manual_address_page.submit(
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Via poerio",
     address_line_two: "Via Poerio",

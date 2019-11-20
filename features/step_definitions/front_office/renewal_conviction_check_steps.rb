@@ -9,9 +9,9 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.manual_address_submit
-  @renewals_app.manual_address_page.submit(
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.manual_address_submit
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -30,8 +30,8 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
     email: "test@example.com",
     confirm_email: "test@example.com"
   )
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -52,9 +52,9 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.manual_address_submit
-  @renewals_app.manual_address_page.submit(
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.manual_address_submit
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -71,8 +71,8 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
     email: "test@example.com",
     confirm_email: "test@example.com"
   )
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
@@ -94,9 +94,9 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   @renewals_app.renewal_information_page.submit
   @renewals_app.registration_number_page.submit
   @renewals_app.company_name_page.submit
-  @renewals_app.post_code_page.submit(postcode: "BS1 5AH")
-  @renewals_app.business_address_page.manual_address_submit
-  @renewals_app.manual_address_page.submit(
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.manual_address_submit
+  @journey_app.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
@@ -113,8 +113,8 @@ When(/^I complete my limited company renewal steps not declaring a company convi
     email: "test@example.com",
     confirm_email: "test@example.com"
   )
-  @renewals_app.contact_postcode_page.submit(postcode: "BS1 5AH")
-  @renewals_app.contact_address_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+  @journey_app.address_postcode_page.submit(postcode: "BS1 5AH")
+  @journey_app.address_lookup_page.submit(result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
   @renewals_app.check_your_answers_page.submit
   @renewals_app.declaration_page.submit
   @renewals_app.registration_cards_page.submit
