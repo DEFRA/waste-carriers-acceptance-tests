@@ -12,9 +12,6 @@ Feature: Registered waste carrier declares conviction during renewal
   	  Then I will be notified my renewal is pending checks
        And I will receive a renewal appliction received email
 
-@broken
-# This is not working as expected due to issue #6 identified in RUBY-741 (conviction check story).
-# Remove @broken tag once resolved.
    Scenario: Limited company renews upper tier registration from renewals page not declaring conviction
   	 Given I renew my registration using my previous registration number "CBDU221"
   	   And I have signed in to renew my registration as "user@example.com"
