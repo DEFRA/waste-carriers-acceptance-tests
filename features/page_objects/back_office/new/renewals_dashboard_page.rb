@@ -28,7 +28,7 @@ class RenewalsDashboardPage < SitePrism::Page
   end
 
   def view_transient_reg_details(args = {})
-    submit(args[:search_term]) if args.key?(:search_term)
+    submit(search_term: args[:search_term])
     transient_reg_details_links[0].click
   end
 

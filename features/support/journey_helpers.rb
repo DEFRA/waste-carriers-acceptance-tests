@@ -136,7 +136,6 @@ def sign_in_to_back_office
 end
 
 def check_registration_details(reg)
-  # Build this function
   find_link("Registrations search").click
   @bo.renewals_dashboard_page.view_reg_details(search_term: reg)
   expect(@bo.registration_details_page.heading).to have_text("Registration " + reg)
