@@ -1,6 +1,6 @@
-@bo_new @upper_tier @bo_renew @renewal
+@bo_new @upper_tier @bo_renew @renewal @wip
 
-Feature: Assisted digital renewal of an upper tier public body
+Feature: Incomplete renewal of an upper tier public body completed by NCCC
   As a carrier of commerical waste
   I want assistance with my waste carrier renewal from the Environment Agency
   So I can complete my regisration and I am compliant with the law

@@ -20,11 +20,11 @@ end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
   @registration_number = reg
-  @bo.registrations_page.search(search_input: @registration_number)
-  @expiry_date = @bo.registrations_page.search_results[0].expiry_date.text
+  @back_app.registrations_page.search(search_input: @registration_number)
+  @expiry_date = @back_app.registrations_page.search_results[0].expiry_date.text
   # Turns the text expiry date into a date
   @expiry_date_year_first = Date.parse(@expiry_date)
-  @bo.registrations_page.search_results[0].renew.click
+  @back_app.registrations_page.search_results[0].renew.click
 end
 
 When(/^I renew the local authority registration$/) do
@@ -107,17 +107,19 @@ end
 Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
   # save registration number for checks later on
   @registration_number = reg
-  @bo = RenewalsApp.new
+  @front_app = FrontOfficeApp.new
+  @renewals_app = RenewalsApp.new
   @journey_app = JourneyApp.new
-  @bo.start_page.load
-  @bo.start_page.submit(renewal: true)
-  @bo.existing_registration_page.submit(reg_no: @registration_number)
-  @bo.waste_carrier_sign_in_page.submit(
+  @front_app.start_page.load
+  @front_app.start_page.submit(renewal: true)
+  @front_app.existing_registration_page.submit(reg_no: @registration_number)
+  @front_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @bo.renewal_start_page.submit
-  @bo.location_page.submit(choice: :england_new)
+  # Move this to @journey_app:
+  @renewals_app.renewal_start_page.submit
+  @renewals_app.location_page.submit(choice: :england_new)
 
   Capybara.reset_session!
 end
@@ -155,10 +157,11 @@ Then(/^the registration will have been renewed$/) do
 end
 
 Given(/^an Environment Agency user has signed in to complete a renewal$/) do
+  @back_app = BackEndApp.new
   @bo = BackOfficeApp.new
   @journey_app = JourneyApp.new
-  @bo.agency_sign_in_page.load
-  @bo.agency_sign_in_page.submit(
+  @back_app.agency_sign_in_page.load
+  @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
