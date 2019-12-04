@@ -8,6 +8,8 @@ class RenewalsDashboardPage < SitePrism::Page
   element(:submit_button, ".button")
 
   element(:results_table, "table")
+  elements(:reg_details_links, "a[href*='/registrations/CBD']")
+  elements(:transient_reg_details_links, "a[href*='/renewing-registrations/CBD']")
 
   sections :results, "table tbody tr" do
     element(:registration_number, "td:nth-child(1)")
@@ -16,16 +18,18 @@ class RenewalsDashboardPage < SitePrism::Page
   end
 
   def submit(args = {})
-    case args[:choice]
-    when :in_progress
-      in_progress_filter.click
-    when :pending_payment
-      pending_payment_filter.click
-    when :conviction_check
-      conviction_check_filter.click
-    end
     search_term.set(args[:search_term]) if args.key?(:search_term)
     submit_button.click
+  end
+
+  def view_reg_details(args = {})
+    submit(search_term: args[:search_term])
+    reg_details_links[0].click
+  end
+
+  def view_transient_reg_details(args = {})
+    submit(args[:search_term]) if args.key?(:search_term)
+    transient_reg_details_links[0].click
   end
 
 end

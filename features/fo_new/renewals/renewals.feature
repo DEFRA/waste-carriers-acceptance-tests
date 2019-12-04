@@ -37,6 +37,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      When I complete my overseas company renewal steps
      Then I will be notified my renewal is complete
 
+# Combine this with partner scenario above
   Scenario: Partnership renews upper tier registration but requires more than one partner to renew
     Given I renew my registration using my previous registration number "CBDU204"
       And I have signed in to renew my registration as "user@example.com"

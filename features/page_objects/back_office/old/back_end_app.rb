@@ -2,7 +2,7 @@
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
 # rubocop:disable Metrics/ClassLength
-class BackOfficeApp
+class BackEndApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
   # BACK OFFICE SPECIFIC PAGES

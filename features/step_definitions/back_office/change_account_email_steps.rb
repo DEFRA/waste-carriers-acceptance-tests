@@ -5,7 +5,7 @@ Given(/^I choose to transfer ownership of "([^"]*)" to another user$/) do |reg|
 end
 
 When(/^I change the account email to "([^"]*)"$/) do |email|
-  @back_renewals_app.transfer_registration_page.submit(
+  @bo.transfer_registration_page.submit(
     email: email,
     confirm_email: email
   )
@@ -14,5 +14,5 @@ When(/^I change the account email to "([^"]*)"$/) do |email|
 end
 
 Then(/^I see a confirmation the change has been made$/) do
-  expect(@back_renewals_app.transfer_registration_page).to have_text(@email)
+  expect(@bo.transfer_registration_page).to have_text(@email)
 end
