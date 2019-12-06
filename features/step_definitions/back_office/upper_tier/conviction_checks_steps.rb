@@ -20,7 +20,8 @@ end
 
 Then(/^the registration has a "([^"]*)" status$/) do |status|
   Capybara.reset_session!
-  @back_app = BackOfficeApp.new
+  @back_app = BackEndApp.new
+  @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],

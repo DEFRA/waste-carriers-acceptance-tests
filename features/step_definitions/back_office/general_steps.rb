@@ -1,6 +1,7 @@
 Given(/^an Environment Agency user has signed in$/) do
   Capybara.reset_session!
-  @back_app = BackOfficeApp.new
+  @back_app = BackEndApp.new
+  @bo = BackOfficeApp.new
   @journey_app = JourneyApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
@@ -11,7 +12,8 @@ end
 
 Given(/^I am signed in as an Environment Agency user with refunds$/) do
   Capybara.reset_session!
-  @back_app = BackOfficeApp.new
+  @back_app = BackEndApp.new
+  @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
@@ -20,7 +22,8 @@ Given(/^I am signed in as an Environment Agency user with refunds$/) do
 end
 
 Given(/^I am signed in as a finance admin$/) do
-  @back_app = BackOfficeApp.new
+  @back_app = BackEndApp.new
+  @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["finance_admin"]["username"],
@@ -29,7 +32,8 @@ Given(/^I am signed in as a finance admin$/) do
 end
 
 Given(/^I am signed in as a finance user$/) do
-  @back_app = BackOfficeApp.new
+  @back_app = BackEndApp.new
+  @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["finance_basic"]["username"],
@@ -135,7 +139,8 @@ When(/^the registration is deregistered$/) do
 end
 
 Then(/^my registration status for "([^"]*)" will be "([^"]*)"$/) do |search_item, status|
-  @back_app = BackOfficeApp.new
+  @back_app = BackEndApp.new
+  @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
@@ -148,7 +153,8 @@ end
 Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
   # resets session cookies to fix back office authentication issue
   Capybara.reset_session!
-  @back_app = BackOfficeApp.new
+  @back_app = BackEndApp.new
+  @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],

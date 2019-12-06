@@ -1,5 +1,7 @@
 class EditAccountEmailPage < SitePrism::Page
 
+  # This page object is not currently called
+
   element(:notice, ".validation-summary.notice")
   element(:back_link, "a[href*='/registrations']")
 
