@@ -37,10 +37,6 @@ class BackOfficeApp
     @last_page = ConvictionsDashboardPage.new
   end
 
-  def conviction_details_page
-    @last_page = ConvictionDetailsPage.new
-  end
-
   def cannot_renew_lower_tier_page
     @last_page = CannotRenewLowerTierPage.new
   end
@@ -99,11 +95,6 @@ class BackOfficeApp
 
   def renewal_information_page
     @last_page = RenewalInformationPage.new
-  end
-
-  # This is actually defined in the front office page objects:
-  def renewal_start_page
-    @last_page = RenewalStartPage.new
   end
 
   def renewal_received_page

@@ -1,4 +1,4 @@
-@bo_new @upper_tier @bo_dashboard @wip
+@bo_new @upper_tier @bo_dashboard
 Feature: NCCC agent views new back office dashboard
   As an NCCC agent
   I want to view registration and renewal details on one service

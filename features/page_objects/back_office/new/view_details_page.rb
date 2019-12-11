@@ -14,7 +14,7 @@ class ViewDetailsPage < SitePrism::Page
   element(:business_name, ".wcr-panel-border-all .heading-medium")
 
   element(:actions_box, ".wcr-actions--push-down")
-  element(:renew_link, "a[href*='/renew/CBD']")
+  element(:renew_link, "a[href*='/ad-privacy-policy/CBD']")
   element(:transfer_link, "a[href*='/transfer-registration']")
 
 end

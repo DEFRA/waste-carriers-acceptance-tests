@@ -10,6 +10,7 @@ class CompanyPeoplePage < SitePrism::Page
   element(:dob_month, "#main_people_form_dob_month")
   element(:dob_year, "#main_people_form_dob_year")
 
+  # For business types other than sole trader:
   element(:add_person, "input[value='Add another person']")
 
   elements(:remove_person, "input[value='Delete']")

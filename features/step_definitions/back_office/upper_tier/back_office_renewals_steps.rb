@@ -118,6 +118,7 @@ When(/^I renew the limited company registration$/) do
   @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
   submit_business_details
+  submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
   @journey.contact_phone_page.submit
@@ -162,6 +163,7 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
   @bo.dashboard_page.submit(search_term: reg)
   @bo.dashboard_page.results[0].actions.click
   find_link("Resume application").click
+  @bo.ad_privacy_policy_page.submit
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
   @journey.carrier_type_page.submit
@@ -185,6 +187,7 @@ Given(/^an Environment Agency user has signed in to complete a renewal$/) do
   @back_app = BackEndApp.new
   @bo = BackOfficeApp.new
   @journey = JourneyApp.new
+  @renewals_app = RenewalsApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],

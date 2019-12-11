@@ -24,8 +24,8 @@ class WorldpayPaymentPage < SitePrism::Page
   # old - delete if not needed:
 
   # Used for test simulation
-  element(:submit_button_renew, "input[type='submit']")
-  element(:submit_button, "input[value='Submit']")
+  # element(:submit_button_renew, "input[type='submit']")
+  # element(:submit_button, "input[value='Submit']")
 
   def submit(args = {})
     card_number.set(args[:card_number]) if args.key?(:card_number)

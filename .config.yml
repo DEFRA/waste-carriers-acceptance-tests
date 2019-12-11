@@ -93,7 +93,7 @@ custom:
     agency_super:
       username: agency-super@wcr.gov.uk
 # Hide or unhide the relevant URLs for the environment you want to test:
-# # Local setup
+# Local setup
   urls:
     front_office: "http://localhost:3000/registrations/start"
     front_office_sign_in: "http://localhost:3000/users/sign_in"

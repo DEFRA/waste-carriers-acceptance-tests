@@ -61,7 +61,8 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  submit_business_details
+  # Submit the existing company name, as it has a conviction against it:
+  submit_limited_company_details("existing")
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit

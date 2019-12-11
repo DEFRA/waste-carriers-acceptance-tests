@@ -57,8 +57,8 @@ def old_submit_business_details
 end
 
 def submit_business_details
-  if @journey.company_number_page.heading.has_text? "What's the registration number of the company?"
-    # then it's a limited company:
+  if @journey.company_number_page.heading.has_text? "What's the registration number"
+    # then it's a limited company or LLP:
     business_name = "AD Renewal Ltd"
     submit_limited_company_details(business_name)
   else
@@ -82,8 +82,14 @@ end
 def submit_limited_company_details(business_name)
   # Submit existing company number:
   @journey.company_number_page.submit
-  @journey.company_name_page.submit(company_name: business_name)
-  # TODO: Create functions for lookup and manual addresses, and randomise it
+
+  if business_name == "existing"
+    @journey.company_name_page.submit
+  else
+    @journey.company_name_page.submit(company_name: business_name)
+  end
+
+  # TODO: Create functions for lookup and manual addresses, and randomise it in a single function
   @journey.address_lookup_page.choose_manual_address
   @journey.address_manual_page.submit(
     house_number: "1",
@@ -115,10 +121,16 @@ def old_submit_company_people
 end
 
 def submit_company_people
-  # Consider adding an argument to specify how many people are added here, and vary it
   people = @journey.company_people_page.main_people
-  @journey.company_people_page.add_main_person(person: people[0])
-  @journey.company_people_page.add_main_person(person: people[1])
+
+  # If they are a sole trader then only one person can be added here.
+  heading = @journey.company_people_page.heading.text
+  if heading != "Business owner details"
+    # then they're not a sole trader, so add more people:
+    @journey.company_people_page.add_main_person(person: people[0])
+    @journey.company_people_page.add_main_person(person: people[1])
+  end
+
   @journey.company_people_page.submit_main_person(person: people[2])
 end
 
@@ -135,8 +147,8 @@ def submit_convictions(convictions)
     @journey.conviction_declare_page.submit(choice: :no)
   else
     @journey.conviction_declare_page.submit(choice: :yes)
-    people = @bo.conviction_details_page.main_people
-    @bo.conviction_details_page.submit(person: people[0])
+    people = @journey.conviction_details_page.main_people
+    @journey.conviction_details_page.submit(person: people[0])
   end
 end
 
