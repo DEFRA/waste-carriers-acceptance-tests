@@ -93,10 +93,6 @@ class BackOfficeApp
     @last_page = RegistrationCardsPage.new
   end
 
-  def registration_details_page
-    @last_page = RegistrationDetailsPage.new
-  end
-
   def dashboard_page
     @last_page = RenewalsDashboardPage.new
   end
@@ -146,8 +142,8 @@ class BackOfficeApp
     @last_page = UnrenewablePage.new
   end
 
-  def waste_carriers_renewals_page
-    @last_page = WasteCarrierRenewalsPage.new
+  def view_details_page
+    @last_page = ViewDetailsPage.new
   end
 
   def waste_carrier_sign_in_page

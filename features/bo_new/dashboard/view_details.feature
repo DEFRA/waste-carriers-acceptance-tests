@@ -8,17 +8,18 @@ Feature: NCCC agent views new back office dashboard
 Scenario: NCCC user creates registration and renewal, and checks status
   Given an Environment Agency user has signed in to the backend
    When NCCC partially registers an "upper" tier "carrier_broker_dealer" "limitedCompany" with "no convictions"
-    And pays by bank card
+    And the applicant pays by bank card
     And NCCC finishes the registration
    Then the back office pages show the correct registration details
 
   Given there is an existing registration
    When NCCC partially renews an existing registration with "no convictions"
-    And pays by bank card
    Then the back office pages show the correct transient renewal details
 
-   When NCCC finishes the renewal
-   Then the back office pages show the correct registration details
+  Given NCCC goes back to the in progress renewal
+   When the applicant pays by bank card
+   Then the renewal is complete
+    And the back office pages show the correct registration details
 
 # Add payment by bank transfer and check status
 # Add convictions check and check status, when convictions story is ready for registrations

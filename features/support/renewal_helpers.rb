@@ -1,7 +1,7 @@
 # Steps specific to renewals
 
 def start_internal_renewal
-  # BUG:
+  # BUG RUBY-803:
   # The following clause is necessary because the AD privacy policy is bypassed when renewing from the new app.
   @bo.ad_privacy_policy_page.submit unless @app == "new"
   expect(@bo.renewal_start_page.heading).to have_text("You are about to renew")

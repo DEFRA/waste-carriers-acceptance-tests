@@ -72,10 +72,6 @@ class RenewalsApp
     @last_page = UnrenewablePage.new
   end
 
-  def waste_carriers_renewals_page
-    @last_page = WasteCarrierRenewalsPage.new
-  end
-
   def waste_carrier_sign_in_page
     @last_page = WasteCarrierSignInPage.new
   end

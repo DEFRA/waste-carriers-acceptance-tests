@@ -166,7 +166,7 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
 
-And(/^pays by bank card$/) do
+And(/^the applicant pays by bank card$/) do
   # On the new app, the payment choice is on a different screen from order copy cards
   if @app == "old"
     old_order_copy_cards(3)

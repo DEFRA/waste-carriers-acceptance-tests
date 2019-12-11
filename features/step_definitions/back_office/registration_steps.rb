@@ -20,16 +20,16 @@ Given(/^NCCC partially registers an "([^"]*)" tier "([^"]*)" "([^"]*)" with "([^
 end
 
 And(/^NCCC finishes the registration$/) do
-  @reg = old_complete_registration_from_bo(@business, @tier, @carrier)
+  @registration_number = old_complete_registration_from_bo(@business, @tier, @carrier)
 end
 
 Then(/^the back office pages show the correct registration details$/) do
   sign_in_to_back_office
-  check_registration_details(@reg)
-  info_panel = @bo.registration_details_page.info_panel
-  page_content = @bo.registration_details_page.content
-  expect(@bo.registration_details_page.business_name).to have_text(@business_name)
-  expect(@bo.registration_details_page.content).to have_text("Bob Carolgees")
+  check_registration_details(@registration_number)
+  info_panel = @bo.view_details_page.info_panel
+  page_content = @bo.view_details_page.content
+  expect(@bo.view_details_page.business_name).to have_text(@business_name)
+  expect(@bo.view_details_page.content).to have_text("Bob Carolgees")
 
   if @tier == "upper"
     expect(info_panel).to have_text("Upper tier")

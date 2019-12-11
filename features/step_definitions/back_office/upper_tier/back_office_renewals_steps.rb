@@ -19,8 +19,7 @@ Given(/^I have signed into the renewals service as an agency user with refunds$/
 end
 
 Given(/^there is an existing registration$/) do
-  # This assumes user is logged in to back office in the current tab
-  find_link("Registrations search").click
+  # No action, this just exists to make the feature look nicer
 end
 
 Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |convictions|
@@ -30,8 +29,9 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   @convictions = convictions
 
   # Search for registration to renew:
-  @bo.dashboard_page.view_reg_details(search_term: @reg)
-  @bo.registration_details_page.renew_link.click
+  sign_in_to_back_office
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.renew_link.click
   start_internal_renewal
 
   # Submit carrier details for the business, tier and carrier:
@@ -48,12 +48,32 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
 end
 
 Given(/^the back office pages show the correct transient renewal details$/) do
-  # TODO
+  sign_in_to_back_office
+  @bo.dashboard_page.view_transient_reg_details(search_term: @registration_number)
+
+  expect(@bo.view_details_page.heading).to have_text("Renewal " + @registration_number)
+  expect(@bo.view_details_page).to have_text "Application in progress"
+  expect(@bo.view_details_page).to have_continue_as_ad_button
+  expect(@bo.view_details_page.info_panel).to have_text(@business_name)
+  expect(@bo.view_details_page.content).to have_text("Bob Carolgees")
+  expect(@bo.view_details_page.content).to have_text("Application still in progress. No finance data yet.")
+
+  if @convictions == "no convictions"
+    expect(@bo.view_details_page.content).to have_text("There are no convictions for this registration")
+  end
+
 end
 
-Given(/^NCCC finishes the renewal$/) do
+Given(/^NCCC goes back to the in progress renewal$/) do
+  @bo.view_details_page.continue_as_ad_button.click
+end
+
+Then(/^the renewal is complete$/) do
   expect(@renewals_app.renewal_complete_page.heading).to have_text("Renewal complete")
-  expect(@renewals_app.renewal_complete_page.confirmation_box).to have_text("registration number is still\n" + @reg)
+  # rubocop:disable Metrics/LineLength
+  expect(@renewals_app.renewal_complete_page.confirmation_box).to have_text("Your registration number is still\n" + @registration_number)
+  # rubocop:enable Metrics/LineLength
+  puts "Renewal " + @registration_number + " complete"
 end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
@@ -161,12 +181,6 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
 
 end
 
-Then(/^the registration will have been renewed$/) do
-  expect(@bo.finish_assisted_page).to have_text(@registration_number)
-  expect(@bo.finish_assisted_page).to have_text("Renewal complete")
-  puts "Renewal " + @registration_number + " complete"
-end
-
 Given(/^an Environment Agency user has signed in to complete a renewal$/) do
   @back_app = BackEndApp.new
   @bo = BackOfficeApp.new
@@ -224,7 +238,7 @@ When(/^I search for "([^"]*)" pending payment$/) do |reg|
   @bo.dashboard_page.govuk_banner.home_page.click
   @bo.dashboard_page.submit(search_term: reg.to_sym)
   # saves registration for later use
-  @reg = reg
+  @registration_number = reg
 end
 
 When(/^I mark the renewal payment as received$/) do
@@ -243,7 +257,7 @@ end
 
 Then(/^the registration will have a "([^"]*)" status$/) do |status|
   @bo.dashboard_page.govuk_banner.home_page.click
-  @bo.dashboard_page.submit(search_term: @reg)
+  @bo.dashboard_page.submit(search_term: @registration_number)
   expect(@bo.dashboard_page.results_table).to have_text(status)
 end
 
@@ -283,7 +297,9 @@ end
 
 When(/^I approve the conviction check$/) do
   @bo.dashboard_page.govuk_banner.conviction_checks.click
-  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/#{@reg}/convictions")
+  # rubocop:disable Metrics/LineLength
+  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/#{@registration_number}/convictions")
+  # rubocop:enable Metrics/LineLength
 
   @bo.convictions_page.approve.click
   @bo.approve_convictions_page.submit(approval_reason: "ok")
