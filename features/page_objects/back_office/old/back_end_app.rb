@@ -210,7 +210,7 @@ class BackEndApp
   end
 
   def dashboard_page
-    @last_page = RenewalsDashboardPage.new
+    @last_page = DashboardPage.new
   end
 
   def renewal_information_page

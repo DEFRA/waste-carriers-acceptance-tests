@@ -49,6 +49,10 @@ class BackOfficeApp
     @last_page = ConstructionWastePage.new
   end
 
+  def dashboard_page
+    @last_page = DashboardPage.new
+  end
+
   def existing_registration_page
     @last_page = ExistingRegistrationPage.new
   end
@@ -87,10 +91,6 @@ class BackOfficeApp
 
   def registration_cards_page
     @last_page = RegistrationCardsPage.new
-  end
-
-  def dashboard_page
-    @last_page = RenewalsDashboardPage.new
   end
 
   def renewal_information_page
