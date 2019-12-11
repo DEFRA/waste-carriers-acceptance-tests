@@ -111,15 +111,7 @@ When(/^I complete my limited company renewal steps$/) do
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_number_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.choose_manual_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -163,8 +155,7 @@ When(/^I complete my sole trader renewal steps$/) do
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_business_details
   people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: people[0])
   submit_convictions("no convictions")
@@ -187,8 +178,7 @@ When(/^I complete my local authority renewal steps$/) do
   @journey.tier_check_page.submit(choice: :skip_check)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -210,15 +200,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_number_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.choose_manual_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -240,15 +222,7 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_number_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.choose_manual_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -270,8 +244,7 @@ When(/^I complete my partnership renewal steps$/) do
   @renewals_app.waste_types_page.submit(choice: :not_only)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -293,8 +266,7 @@ When(/^I add two partners to my renewal$/) do
   @renewals_app.waste_types_page.submit(choice: :not_only)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_business_details
   people = @journey.company_people_page.main_people
   @journey.company_people_page.add_main_person(person: people[0])
   @journey.company_people_page.add_main_person(person: people[1])
@@ -316,11 +288,11 @@ When(/^I complete my overseas company renewal steps$/) do
   @journey.company_name_page.submit
   @journey.address_manual_page.submit(
     house_number: "1",
-    address_line_one: "Via poerio",
-    address_line_two: "Via poerio",
-    postcode: "00152", # required, as tests currently fail without a postcode
-    city: "Rome",
-    country: "Italy"
+    address_line_one: "Starý Most",
+    address_line_two: "River Danube",
+    postcode: "811 02", # required, as tests currently fail without a postcode
+    city: "Bratislava",
+    country: "Slovakia"
   )
   people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: people[0])

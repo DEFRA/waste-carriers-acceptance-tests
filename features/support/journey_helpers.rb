@@ -83,6 +83,7 @@ def submit_limited_company_details(business_name)
   # Submit existing company number:
   @journey.company_number_page.submit
   @journey.company_name_page.submit(company_name: business_name)
+  # TODO: Create functions for lookup and manual addresses, and randomise it
   @journey.address_lookup_page.choose_manual_address
   @journey.address_manual_page.submit(
     house_number: "1",
@@ -198,7 +199,11 @@ end
 
 def sign_in_to_back_office
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
-  expect(@journey.standard_page.heading).to have_text "Sign in"
+  heading = @journey.standard_page.heading.text
+
+  # Bypass if already logged in:
+  return unless heading == "Sign in"
+
   @bo.sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
@@ -207,6 +212,6 @@ end
 
 def check_registration_details(reg)
   find_link("Registrations search").click
-  @bo.renewals_dashboard_page.view_reg_details(search_term: reg)
+  @bo.dashboard_page.view_reg_details(search_term: reg)
   expect(@bo.registration_details_page.heading).to have_text("Registration " + reg)
 end

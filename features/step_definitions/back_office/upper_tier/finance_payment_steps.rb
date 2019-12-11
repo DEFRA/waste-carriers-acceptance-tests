@@ -15,15 +15,7 @@ Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
   @journey.tier_check_page.submit(choice: :skip_check)
   @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
-  @journey.company_number_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.choose_manual_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit

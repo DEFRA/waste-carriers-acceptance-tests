@@ -30,7 +30,7 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   @convictions = convictions
 
   # Search for registration to renew:
-  @bo.renewals_dashboard_page.view_reg_details(search_term: @reg)
+  @bo.dashboard_page.view_reg_details(search_term: @reg)
   @bo.registration_details_page.renew_link.click
   start_internal_renewal
 
@@ -71,8 +71,7 @@ When(/^I renew the local authority registration$/) do
   @journey.tier_check_page.submit(choice: :skip_check)
   @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -98,15 +97,7 @@ When(/^I renew the limited company registration$/) do
   @bo.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
-  @journey.company_number_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.choose_manual_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_business_details
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
   @journey.contact_phone_page.submit
@@ -148,15 +139,14 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
 end
 
 When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
-  @bo.renewals_dashboard_page.submit(search_term: reg)
-  @bo.renewals_dashboard_page.results[0].actions.click
+  @bo.dashboard_page.submit(search_term: reg)
+  @bo.dashboard_page.results[0].actions.click
   find_link("Resume application").click
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
   @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -219,7 +209,7 @@ When(/^an Agency super user has signed into the back office$/) do
 end
 
 When(/^migrates the backend users to the back office$/) do
-  @bo.renewals_dashboard_page.govuk_banner.manage_users.click
+  @bo.dashboard_page.govuk_banner.manage_users.click
   expect(@bo.users_page).to_not have_text(@user)
   @bo.users_page.migrate_users.click
   @bo.migrate_page.migrate_users.click
@@ -231,14 +221,14 @@ Then(/^the user has been added to the back office$/) do
 end
 
 When(/^I search for "([^"]*)" pending payment$/) do |reg|
-  @bo.renewals_dashboard_page.govuk_banner.home_page.click
-  @bo.renewals_dashboard_page.submit(search_term: reg.to_sym)
+  @bo.dashboard_page.govuk_banner.home_page.click
+  @bo.dashboard_page.submit(search_term: reg.to_sym)
   # saves registration for later use
   @reg = reg
 end
 
 When(/^I mark the renewal payment as received$/) do
-  @bo.renewals_dashboard_page.results[0].actions.click
+  @bo.dashboard_page.results[0].actions.click
   @bo.transient_registrations_page.process_payment.click
   @bo.renewal_payments_page.submit(choice: :cash)
   @bo.cash_payment_page.submit(
@@ -252,9 +242,9 @@ When(/^I mark the renewal payment as received$/) do
 end
 
 Then(/^the registration will have a "([^"]*)" status$/) do |status|
-  @bo.renewals_dashboard_page.govuk_banner.home_page.click
-  @bo.renewals_dashboard_page.submit(search_term: @reg)
-  expect(@bo.renewals_dashboard_page.results_table).to have_text(status)
+  @bo.dashboard_page.govuk_banner.home_page.click
+  @bo.dashboard_page.submit(search_term: @reg)
+  expect(@bo.dashboard_page.results_table).to have_text(status)
 end
 
 Then(/^the expiry date should be three years from the previous expiry date$/) do
@@ -274,9 +264,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   @bo.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
-  @journey.company_number_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_business_details
   submit_company_people
   submit_convictions("convictions")
   @journey.contact_name_page.submit
@@ -290,11 +278,11 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   @bo.registration_cards_page.submit
   @bo.payment_summary_page.submit(choice: :bank_transfer_payment)
   @bo.bank_transfer_page.submit
-  @bo.renewals_dashboard_page.govuk_banner.home_page.click
+  @bo.dashboard_page.govuk_banner.home_page.click
 end
 
 When(/^I approve the conviction check$/) do
-  @bo.renewals_dashboard_page.govuk_banner.conviction_checks.click
+  @bo.dashboard_page.govuk_banner.conviction_checks.click
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/#{@reg}/convictions")
 
   @bo.convictions_page.approve.click

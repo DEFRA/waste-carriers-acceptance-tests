@@ -6,15 +6,7 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_number_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.choose_manual_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_business_details
   submit_company_people
   submit_convictions("convictions")
   @journey.contact_name_page.submit
@@ -40,15 +32,7 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_number_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.choose_manual_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_business_details
   people = @journey.company_people_page.dodgy_people
   @journey.company_people_page.add_main_person(person: people[0])
   @journey.company_people_page.add_main_person(person: people[1])
@@ -77,15 +61,7 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_number_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.choose_manual_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit

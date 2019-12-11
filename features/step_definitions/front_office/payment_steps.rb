@@ -7,8 +7,7 @@ Given(/^I am on the payment page$/) do
   @renewals_app.construction_waste_page.submit(choice: :yes)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @journey.company_name_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_business_details
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
