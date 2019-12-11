@@ -1,7 +1,6 @@
 # Represents all pages in the front office. Was created to avoid needing to
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
-# rubocop:disable Metrics/ClassLength
 class RenewalsApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
@@ -13,18 +12,6 @@ class RenewalsApp
     @last_page = BankTransferPage.new
   end
 
-  def carrier_type_page
-    @last_page = CarrierTypePage.new
-  end
-
-  def confirm_business_type_page
-    @last_page = ConfirmBusinessTypePage.new
-  end
-
-  def conviction_details_page
-    @last_page = ConvictionDetailsPage.new
-  end
-
   def cannot_renew_lower_tier_page
     @last_page = CannotRenewLowerTierPage.new
   end
@@ -33,36 +20,8 @@ class RenewalsApp
     @last_page = CannotRenewTypeChangePage.new
   end
 
-  def check_your_answers_page
-    @last_page = CheckYourAnswersPage.new
-  end
-
   def construction_waste_page
     @last_page = ConstructionWastePage.new
-  end
-
-  def contact_telephone_number_page
-    @last_page = ContactTelephoneNumberPage.new
-  end
-
-  def contact_email_page
-    @last_page = ContactEmailPage.new
-  end
-
-  def company_name_page
-    @last_page = CompanyNamePage.new
-  end
-
-  def contact_name_page
-    @last_page = ContactNamePage.new
-  end
-
-  def declaration_page
-    @last_page = DeclarationPage.new
-  end
-
-  def declare_convictions_page
-    @last_page = DeclareConvictionsPage.new
   end
 
   def existing_registration_page
@@ -71,14 +30,6 @@ class RenewalsApp
 
   def location_page
     @last_page = LocationPage.new
-  end
-
-  def registration_number_page
-    @last_page = RegistrationNumberPage.new
-  end
-
-  def main_people_page
-    @last_page = MainPeoplePage.new
   end
 
   def other_businesses_page
@@ -117,10 +68,6 @@ class RenewalsApp
     @last_page = StartPage.new
   end
 
-  def tier_check_page
-    @last_page = TierCheckPage.new
-  end
-
   def unrenewable_page
     @last_page = UnrenewablePage.new
   end
@@ -146,4 +93,3 @@ class RenewalsApp
   end
 
 end
-# rubocop:enable Metrics/ClassLength

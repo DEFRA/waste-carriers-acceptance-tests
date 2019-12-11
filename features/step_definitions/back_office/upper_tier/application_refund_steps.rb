@@ -1,5 +1,5 @@
 Given(/^I have an application paid by credit card$/) do
-  step "an Environment Agency user has signed in"
+  step "an Environment Agency user has signed in to the backend"
 
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit

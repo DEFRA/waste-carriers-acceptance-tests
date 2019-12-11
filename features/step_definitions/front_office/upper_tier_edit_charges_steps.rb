@@ -1,7 +1,7 @@
 Given(/I choose to edit my registration "([^"]*)"$/) do |reg_no|
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],

@@ -5,7 +5,7 @@ Feature: Assisted digital registration of an upper tier partnership
   So I can complete my regisration and I am compliant with the law
 
    Background:
-   Given an Environment Agency user has signed in
+   Given an Environment Agency user has signed in to the backend
      And I request assistance with a new registration
     When I have my partnership upper tier waste carrier application completed for me
 

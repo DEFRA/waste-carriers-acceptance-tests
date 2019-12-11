@@ -5,7 +5,7 @@ Feature: Assisted digital lower tier registrations
   So I can complete my regisration and I am compliant with the law
 
    Background:
-   Given an Environment Agency user has signed in
+   Given an Environment Agency user has signed in to the backend
 
  Scenario: NCCC successfully registers a charity with a lower tier waste carriers licence
    Given I request assistance with a new registration

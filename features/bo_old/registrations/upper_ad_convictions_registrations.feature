@@ -5,7 +5,7 @@ Feature: Conviction checks during upper tier waste carrier registrations
   So that I can decide whether they are allowed to hold a waste carriers licence
 
    Background:
-   Given an Environment Agency user has signed in
+   Given an Environment Agency user has signed in to the backend
 
   Scenario: Limited company with an undeclared relevant conviction is marked for a conviction check during an upper tier registration taken by NCCC due to a match on its companies house number
   	Given a limited company with companies house number "01649776" is registered as an upper tier waste carrier

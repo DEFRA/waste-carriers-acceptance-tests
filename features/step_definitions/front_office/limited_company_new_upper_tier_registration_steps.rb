@@ -36,7 +36,7 @@ end
 # rubocop:disable Metrics/LineLength
 Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |no|
   @front_app = FrontOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")

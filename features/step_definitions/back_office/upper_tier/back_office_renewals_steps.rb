@@ -1,6 +1,6 @@
 Given(/^I have signed into the renewals service as an agency user$/) do
   @bo = BackOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @bo.sign_in_page.load
   @bo.sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
@@ -10,12 +10,50 @@ end
 
 Given(/^I have signed into the renewals service as an agency user with refunds$/) do
   @bo = BackOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @bo.sign_in_page.load
   @bo.sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
+end
+
+Given(/^there is an existing registration$/) do
+  # This assumes user is logged in to back office in the current tab
+  find_link("Registrations search").click
+end
+
+Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |convictions|
+
+  # Set variables that can be reused across steps.
+  @app = "new"
+  @convictions = convictions
+
+  # Search for registration to renew:
+  @bo.renewals_dashboard_page.view_reg_details(search_term: @reg)
+  @bo.registration_details_page.renew_link.click
+  start_internal_renewal
+
+  # Submit carrier details for the business, tier and carrier:
+  submit_carrier_details("existing", "existing", "existing")
+  expect(@bo.renewal_information_page).to have_text("you still need an upper tier registration")
+  @bo.renewal_information_page.submit
+
+  @business_name = submit_business_details
+  submit_company_people
+  submit_convictions(convictions)
+  submit_contact_details_from_bo
+  check_your_answers
+
+end
+
+Given(/^the back office pages show the correct transient renewal details$/) do
+  # TODO
+end
+
+Given(/^NCCC finishes the renewal$/) do
+  expect(@renewals_app.renewal_complete_page.heading).to have_text("Renewal complete")
+  expect(@renewals_app.renewal_complete_page.confirmation_box).to have_text("registration number is still\n" + @reg)
 end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
@@ -28,29 +66,23 @@ Given(/^I choose to renew "([^"]*)"$/) do |reg|
 end
 
 When(/^I renew the local authority registration$/) do
-  @bo.ad_privacy_policy_page.submit
-  expect(@bo.renewal_start_page.heading).to have_text("You are about to renew")
-  @bo.renewal_start_page.submit
-  @bo.location_page.submit(choice: :england_new)
-  @bo.confirm_business_type_page.submit
-  @bo.tier_check_page.submit(choice: :skip_check)
-  @bo.carrier_type_page.submit
+  start_internal_renewal
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :skip_check)
+  @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
-  @bo.company_name_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  people = @bo.main_people_page.main_people
-  @bo.main_people_page.add_main_person(person: people[0])
-  @bo.main_people_page.submit_main_person(person: people[1])
-  @bo.declare_convictions_page.submit(choice: :no)
-  @bo.contact_name_page.submit
-  @bo.contact_telephone_number_page.submit
-  @bo.contact_email_page.submit(
+  @journey.company_name_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  submit_company_people
+  submit_convictions("no convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit(
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @journey_app.address_lookup_page.submit_valid_address
-  @bo.check_your_answers_page.submit
-  @bo.declaration_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  check_your_answers
   @bo.registration_cards_page.submit
   @bo.payment_summary_page.submit(choice: :card_payment)
 
@@ -59,44 +91,37 @@ When(/^I renew the local authority registration$/) do
 end
 
 When(/^I renew the limited company registration$/) do
-  @bo.ad_privacy_policy_page.submit
-  @bo.renewal_start_page.submit
-  @bo.location_page.submit(choice: :england_new)
-  @bo.confirm_business_type_page.submit
-  @bo.tier_check_page.submit(choice: :check_tier)
+  start_internal_renewal
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @bo.other_businesses_page.submit(choice: :no)
   @bo.construction_waste_page.submit(choice: :yes)
-  @bo.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
-  @bo.registration_number_page.submit
-  @bo.company_name_page.submit
-  @journey_app.address_lookup_page.choose_manual_address
-  @journey_app.address_manual_page.submit(
+  @journey.company_number_page.submit
+  @journey.company_name_page.submit
+  @journey.address_lookup_page.choose_manual_address
+  @journey.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
     city: "Teston"
   )
-  people = @bo.main_people_page.main_people
-  @bo.main_people_page.add_main_person(person: people[0])
-  @bo.main_people_page.add_main_person(person: people[1])
-  @bo.main_people_page.submit_main_person(person: people[2])
-  @bo.declare_convictions_page.submit(choice: :no)
-  @bo.contact_name_page.submit
-  @bo.contact_telephone_number_page.submit
-  @bo.contact_email_page.submit(
+  submit_convictions("no convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit(
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @journey_app.address_lookup_page.submit_invalid_address
-  @journey_app.address_manual_page.submit(
+  @journey.address_lookup_page.submit_invalid_address
+  @journey.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
     city: "Teston"
   )
-  @bo.check_your_answers_page.submit
-  @bo.declaration_page.submit
+  check_your_answers
   @bo.registration_cards_page.submit
   @bo.payment_summary_page.submit(choice: :card_payment)
 
@@ -109,7 +134,7 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
   @registration_number = reg
   @front_app = FrontOfficeApp.new
   @renewals_app = RenewalsApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit(renewal: true)
   @front_app.existing_registration_page.submit(reg_no: @registration_number)
@@ -117,9 +142,7 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  # Move this to @journey_app:
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
+  agree_to_renew_in_england
 
   Capybara.reset_session!
 end
@@ -128,22 +151,19 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
   @bo.renewals_dashboard_page.submit(search_term: reg)
   @bo.renewals_dashboard_page.results[0].actions.click
   find_link("Resume application").click
-  @bo.confirm_business_type_page.submit
-  @bo.tier_check_page.submit(choice: :skip_check)
-  @bo.carrier_type_page.submit
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :skip_check)
+  @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
-  @bo.company_name_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  people = @bo.main_people_page.main_people
-  @bo.main_people_page.add_main_person(person: people[0])
-  @bo.main_people_page.submit_main_person(person: people[1])
-  @bo.declare_convictions_page.submit(choice: :no)
-  @bo.contact_name_page.submit
-  @bo.contact_telephone_number_page.submit
-  @bo.contact_email_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  @bo.check_your_answers_page.submit
-  @bo.declaration_page.submit
+  @journey.company_name_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  submit_company_people
+  submit_convictions("no convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  check_your_answers
   @bo.registration_cards_page.submit
   @bo.payment_summary_page.submit(choice: :card_payment)
 
@@ -154,12 +174,13 @@ end
 Then(/^the registration will have been renewed$/) do
   expect(@bo.finish_assisted_page).to have_text(@registration_number)
   expect(@bo.finish_assisted_page).to have_text("Renewal complete")
+  puts "Renewal " + @registration_number + " complete"
 end
 
 Given(/^an Environment Agency user has signed in to complete a renewal$/) do
   @back_app = BackEndApp.new
   @bo = BackOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
@@ -170,7 +191,7 @@ end
 Given(/^an Agency super user has signed in to the admin area$/) do
   @back_app = BackEndApp.new
   @bo = BackOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @back_app.admin_sign_in_page.load
   @back_app.admin_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_super"]["username"],
@@ -246,34 +267,26 @@ Then(/^the expiry date should be three years from the previous expiry date$/) do
 end
 
 Given(/^I renew the limited company registration declaring a conviction and paying by bank transfer$/) do
-  @bo.ad_privacy_policy_page.submit
-  @bo.renewal_start_page.submit
-  @bo.location_page.submit(choice: :england_new)
-  @bo.confirm_business_type_page.submit
-  @bo.tier_check_page.submit(choice: :check_tier)
+  start_internal_renewal
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @bo.other_businesses_page.submit(choice: :no)
   @bo.construction_waste_page.submit(choice: :yes)
-  @bo.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @bo.renewal_information_page.submit
-  @bo.registration_number_page.submit
-  @bo.company_name_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  people = @bo.main_people_page.main_people
-  @bo.main_people_page.add_main_person(person: people[0])
-  @bo.main_people_page.add_main_person(person: people[1])
-  @bo.main_people_page.submit_main_person(person: people[2])
-  @bo.declare_convictions_page.submit(choice: :yes)
-  people = @bo.conviction_details_page.main_people
-  @bo.conviction_details_page.submit(person: people[0])
-  @bo.contact_name_page.submit
-  @bo.contact_telephone_number_page.submit
-  @bo.contact_email_page.submit(
+  @journey.company_number_page.submit
+  @journey.company_name_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  submit_company_people
+  submit_convictions("convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit(
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @journey_app.address_lookup_page.submit_valid_address
-  @bo.check_your_answers_page.submit
-  @bo.declaration_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  check_your_answers
   @bo.registration_cards_page.submit
   @bo.payment_summary_page.submit(choice: :bank_transfer_payment)
   @bo.bank_transfer_page.submit
