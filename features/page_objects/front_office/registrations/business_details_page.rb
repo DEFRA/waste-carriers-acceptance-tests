@@ -1,6 +1,7 @@
 class BusinessDetailsPage < SitePrism::Page
 
   # Business details
+  element(:heading, "#groupLabel")
   element(:companies_house_number, "#registration_company_no")
   element(:company_name, "#registration_companyName")
   element(:postcode, "#sPostcode")

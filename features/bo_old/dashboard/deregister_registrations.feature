@@ -7,7 +7,7 @@ I need to be able to deregister a registered waste carrier
 So that they no longer have a valid waste carrier licence
 
 Background:
-	Given an Environment Agency user has signed in
+	Given an Environment Agency user has signed in to the backend
 
   Scenario: Agency user can deregister upper tier waste carrier licence
     Given I have a registration "CBDU106"

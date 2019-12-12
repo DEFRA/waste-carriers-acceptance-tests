@@ -1,6 +1,6 @@
 Given(/^I start a new registration$/) do
   @front_app = FrontOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit
   # Redirects to "Where is your principal place of business?"
@@ -81,7 +81,7 @@ end
 
 Given(/^I have signed in as "([^"]*)"$/) do |username|
   @front_app = FrontOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: username,
@@ -92,7 +92,7 @@ end
 Given(/^I choose to renew my registration using my previous registration number$/) do
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit(renewal: true)
   @front_app.existing_registration_page.submit(reg_no: @registration_number)

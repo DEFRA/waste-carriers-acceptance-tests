@@ -16,6 +16,7 @@ class CarrierTypePage < SitePrism::Page
     when :carrier_broker_dealer
       carrier_broker_dealer.click
     end
+    # If the carrier type is "existing" then skip these and just click submit:
     submit_button.click
   end
 

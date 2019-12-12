@@ -155,6 +155,14 @@ To have consistency across the project the following tags are defined and should
 
 It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
 
+## Principles
+
+This repository is being updated on the following principles:
+
+* Share helper functions across steps to reduce repetition
+* Share page objects in the @journey app as much as possible, where there is duplication between old/new apps, and front/back office
+* Reduce the number of files and apps where possible
+
 ## Tips
 
 In our experience one of the most complex and time consuming aspects of creating new features is identifying the right [CSS selector](http://www.w3schools.com/cssref/css_selectors.asp) to use, to pick the HTML element you need to work with.

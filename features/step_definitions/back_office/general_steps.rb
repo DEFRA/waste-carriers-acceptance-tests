@@ -1,8 +1,9 @@
-Given(/^an Environment Agency user has signed in$/) do
+Given(/^an Environment Agency user has signed in to the backend$/) do
   Capybara.reset_session!
   @back_app = BackEndApp.new
   @bo = BackOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
+  @renewals_app = RenewalsApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
@@ -47,7 +48,7 @@ Given(/^I have a registration "([^"]*)"$/) do |reg|
 end
 
 Given(/^the registration details are found in the backoffice$/) do
-  step "an Environment Agency user has signed in"
+  step "an Environment Agency user has signed in to the backend"
   @back_app.registrations_page.search(search_input: @registration_number)
 end
 
@@ -163,4 +164,15 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
   @back_app.registrations_page.search(search_input: @registration_number)
   @back_app.registrations_page.wait_for_status(status)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
+end
+
+And(/^the applicant pays by bank card$/) do
+  # On the new app, the payment choice is on a different screen from order copy cards
+  if @app == "old"
+    old_order_copy_cards(3)
+  else
+    order_copy_cards(1)
+    @bo.payment_summary_page.submit(choice: :card_payment)
+  end
+  submit_valid_card_payment
 end

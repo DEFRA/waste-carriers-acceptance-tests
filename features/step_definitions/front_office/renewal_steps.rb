@@ -1,6 +1,6 @@
 Given(/^I renew my registration using my previous registration number "([^"]*)"$/) do |reg|
   @renewals_app = RenewalsApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @renewals_app.start_page.load
   @renewals_app.start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: reg)
@@ -27,7 +27,7 @@ end
 Given(/^I choose to renew my registration$/) do
   Capybara.reset_session!
   @renewals_app = RenewalsApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @renewals_app.start_page.load
   @renewals_app.start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: @registration_number)
@@ -42,9 +42,8 @@ Then(/^I'm informed "([^"]*)"$/) do |error_message|
 end
 
 When(/^the organisation type is changed to sole trader$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit(org_type: "soleTrader")
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit(org_type: "soleTrader")
 end
 
 Then(/^I'm informed I'll need to apply for a new registration$/) do
@@ -57,21 +56,19 @@ Then(/^I will be informed my renewal is received$/) do
 end
 
 When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_type|
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
   @renewals_app.service_provided_page.submit(choice: :not_main_service)
   @renewals_app.construction_waste_page.submit(choice: :yes)
-  @renewals_app.carrier_type_page.submit(choice: registration_type.to_sym)
+  @journey.carrier_type_page.submit(choice: registration_type.to_sym)
 end
 
 When(/^I answer questions indicating I should be a lower tier waste carrier$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
   @renewals_app.service_provided_page.submit(choice: :main_service)
   @renewals_app.waste_types_page.submit(choice: :yes_only)
@@ -79,7 +76,7 @@ end
 
 Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   @renewals_app = RenewalsApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @renewals_app.waste_carrier_sign_in_page.submit(
     email: username,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
@@ -89,7 +86,7 @@ end
 
 Given(/^I have signed in to view my registrations as "([^"]*)"$/) do |username|
   @front_app = FrontOfficeApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @front_app.waste_carrier_sign_in_page.load
   @front_app.waste_carrier_sign_in_page.submit(
     email: username,
@@ -99,7 +96,7 @@ end
 
 Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
   @renewals_app = RenewalsApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   @registration_number = reg_no
 
   @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
@@ -107,49 +104,35 @@ Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
 end
 
 When(/^I complete my limited company renewal steps$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :no)
   @renewals_app.construction_waste_page.submit(choice: :yes)
-  @renewals_app.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @renewals_app.registration_number_page.submit
-  @renewals_app.company_name_page.submit
-  @journey_app.address_lookup_page.choose_manual_address
-  @journey_app.address_manual_page.submit(
+  submit_business_details
+  submit_company_people
+  submit_convictions("no convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit
+  @journey.address_lookup_page.submit_invalid_address
+  @journey.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Test lane",
     address_line_two: "Testville",
     city: "Teston"
   )
-  people = @renewals_app.main_people_page.main_people
-  @renewals_app.main_people_page.add_main_person(person: people[0])
-  @renewals_app.main_people_page.add_main_person(person: people[1])
-  @renewals_app.main_people_page.submit_main_person(person: people[2])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
-  @renewals_app.contact_name_page.submit
-  @renewals_app.contact_telephone_number_page.submit
-  @renewals_app.contact_email_page.submit
-  @journey_app.address_lookup_page.submit_invalid_address
-  @journey_app.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
-  @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  check_your_answers
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit(org_type: org_type)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit(org_type: org_type)
 end
 
 Given(/^I change my place of business location to "([^"]*)"$/) do |location|
@@ -158,213 +141,167 @@ Given(/^I change my place of business location to "([^"]*)"$/) do |location|
 end
 
 Then(/^I will be able to continue my renewal$/) do
-  @renewals_app.tier_check_page.wait_until_check_tier_visible
-  expect(@renewals_app.tier_check_page.current_url).to include "/tier-check"
+  @journey.tier_check_page.wait_until_check_tier_visible
+  expect(@journey.tier_check_page.current_url).to include "/tier-check"
   Capybara.reset_session!
 end
 
 When(/^I complete my sole trader renewal steps$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
   @renewals_app.service_provided_page.submit(choice: :not_main_service)
   @renewals_app.construction_waste_page.submit(choice: :yes)
-  @renewals_app.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @renewals_app.company_name_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  people = @renewals_app.main_people_page.main_people
-  @renewals_app.main_people_page.submit_main_person(person: people[0])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
-  @renewals_app.contact_name_page.submit
-  @renewals_app.contact_telephone_number_page.submit
-  @renewals_app.contact_email_page.submit(
+  submit_business_details
+  people = @journey.company_people_page.main_people
+  @journey.company_people_page.submit_main_person(person: people[0])
+  submit_convictions("no convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit(
     email: "test@example.com",
     confirm_email: "test@example.com"
   )
-  @journey_app.address_lookup_page.submit_valid_address
-  @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  check_your_answers
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I complete my local authority renewal steps$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :skip_check)
-  @renewals_app.carrier_type_page.submit
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :skip_check)
+  @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @renewals_app.company_name_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  people = @renewals_app.main_people_page.main_people
-  @renewals_app.main_people_page.add_main_person(person: people[0])
-  @renewals_app.main_people_page.submit_main_person(person: people[1])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
-  @renewals_app.contact_name_page.submit
-  @renewals_app.contact_telephone_number_page.submit
-  @renewals_app.contact_email_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  submit_business_details
+  submit_company_people
+  submit_convictions("no convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  check_your_answers
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I complete my limited liability partnership renewal steps$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
   @renewals_app.service_provided_page.submit(choice: :not_main_service)
   @renewals_app.construction_waste_page.submit(choice: :yes)
-  @renewals_app.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @renewals_app.registration_number_page.submit
-  @renewals_app.company_name_page.submit
-  @journey_app.address_lookup_page.choose_manual_address
-  @journey_app.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
-  people = @renewals_app.main_people_page.main_people
-  @renewals_app.main_people_page.add_main_person(person: people[0])
-  @renewals_app.main_people_page.add_main_person(person: people[1])
-  @renewals_app.main_people_page.submit_main_person(person: people[2])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
-  @renewals_app.contact_name_page.submit
-  @renewals_app.contact_telephone_number_page.submit
-  @renewals_app.contact_email_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  submit_business_details
+  submit_company_people
+  submit_convictions("no convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  check_your_answers
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
   @renewals_app.service_provided_page.submit(choice: :not_main_service)
   @renewals_app.construction_waste_page.submit(choice: :yes)
-  @renewals_app.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @renewals_app.registration_number_page.submit
-  @renewals_app.company_name_page.submit
-  @journey_app.address_lookup_page.choose_manual_address
-  @journey_app.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
-  people = @renewals_app.main_people_page.main_people
-  @renewals_app.main_people_page.add_main_person(person: people[0])
-  @renewals_app.main_people_page.add_main_person(person: people[1])
-  @renewals_app.main_people_page.submit_main_person(person: people[2])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
-  @renewals_app.contact_name_page.submit
-  @renewals_app.contact_telephone_number_page.submit
-  @renewals_app.contact_email_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  submit_business_details
+  submit_company_people
+  submit_convictions("no convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  check_your_answers
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :bank_transfer_payment)
   @renewals_app.bank_transfer_page.submit
 end
 
 When(/^I complete my partnership renewal steps$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
   @renewals_app.service_provided_page.submit(choice: :main_service)
   @renewals_app.waste_types_page.submit(choice: :not_only)
-  @renewals_app.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @renewals_app.company_name_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  people = @renewals_app.main_people_page.main_people
-  @renewals_app.main_people_page.add_main_person(person: people[0])
-  @renewals_app.main_people_page.add_main_person(person: people[1])
-  @renewals_app.main_people_page.add_main_person(person: people[2])
-  @renewals_app.main_people_page.add_main_person(person: people[3])
-  @renewals_app.main_people_page.add_main_person(person: people[4])
-  @renewals_app.main_people_page.submit_main_person(person: people[5])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
-
-  @renewals_app.contact_name_page.submit
-  @renewals_app.contact_telephone_number_page.submit
-  @renewals_app.contact_email_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  submit_business_details
+  submit_company_people
+  submit_convictions("no convictions")
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit
+  @journey.address_lookup_page.submit_valid_address
+  check_your_answers
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I add two partners to my renewal$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
   @renewals_app.service_provided_page.submit(choice: :main_service)
   @renewals_app.waste_types_page.submit(choice: :not_only)
-  @renewals_app.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @renewals_app.company_name_page.submit
-  @journey_app.address_lookup_page.submit_valid_address
-  people = @renewals_app.main_people_page.main_people
-  @renewals_app.main_people_page.add_main_person(person: people[0])
-  @renewals_app.main_people_page.add_main_person(person: people[1])
+  submit_business_details
+  people = @journey.company_people_page.main_people
+  @journey.company_people_page.add_main_person(person: people[0])
+  @journey.company_people_page.add_main_person(person: people[1])
 end
 
 When(/^remove one partner and attempt to continue with my renewal$/) do
-  @renewals_app.main_people_page.remove_person[0].click
-  @renewals_app.main_people_page.submit_button.click
+  @journey.company_people_page.remove_person[0].click
+  @journey.company_people_page.submit_button.click
 end
 
 When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(choice: :overseas)
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :no)
   @renewals_app.construction_waste_page.submit(choice: :yes)
-  @renewals_app.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @renewals_app.company_name_page.submit
-  @journey_app.address_manual_page.submit(
+  @journey.company_name_page.submit
+  @journey.address_manual_page.submit(
     house_number: "1",
-    address_line_one: "Via poerio",
-    address_line_two: "Via poerio",
-    postcode: "00152", # required, as tests currently fail without a postcode
-    city: "Rome",
-    country: "Italy"
+    address_line_one: "Starý Most",
+    address_line_two: "River Danube",
+    postcode: "811 02", # required, as tests currently fail without a postcode
+    city: "Bratislava",
+    country: "Slovakia"
   )
-  people = @renewals_app.main_people_page.main_people
-  @renewals_app.main_people_page.submit_main_person(person: people[0])
-  @renewals_app.declare_convictions_page.submit(choice: :no)
+  people = @journey.company_people_page.main_people
+  @journey.company_people_page.submit_main_person(person: people[0])
+  submit_convictions("no convictions")
   @renewals_app.registration_cards_page.submit
-  @renewals_app.contact_name_page.submit
-  @renewals_app.contact_telephone_number_page.submit
-  @renewals_app.contact_email_page.submit
-  @journey_app.address_manual_page.submit(
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit
+  @journey.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Via poerio",
     address_line_two: "Via Poerio",
@@ -372,17 +309,15 @@ When(/^I complete my overseas company renewal steps$/) do
     postcode: "00152", # required, as tests currently fail without a postcode
     country: "Italy"
   )
-  @renewals_app.check_your_answers_page.submit
-  @renewals_app.declaration_page.submit
+  check_your_answers
   @renewals_app.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I confirm my business type$/) do
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
@@ -391,7 +326,7 @@ Then(/^I will be notified "([^"]*)"$/) do |message|
 end
 
 Then(/^I will be asked to add another partner$/) do
-  expect(@renewals_app.main_people_page).to have_text("You must add the details of at least 2 people")
+  expect(@journey.company_people_page).to have_text("You must add the details of at least 2 people")
   Capybara.reset_session!
 end
 
@@ -420,16 +355,15 @@ When(/^the registration is within the expiry grace renewal window$/) do
 end
 
 Given(/^I change my companies house number to "([^"]*)"$/) do |number|
-  @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
-  @renewals_app.confirm_business_type_page.submit
-  @renewals_app.tier_check_page.submit(choice: :check_tier)
+  agree_to_renew_in_england
+  @journey.confirm_business_type_page.submit
+  @journey.tier_check_page.submit(choice: :check_tier)
   @renewals_app.other_businesses_page.submit(choice: :yes)
   @renewals_app.service_provided_page.submit(choice: :not_main_service)
   @renewals_app.construction_waste_page.submit(choice: :yes)
-  @renewals_app.carrier_type_page.submit
+  @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  @renewals_app.registration_number_page.submit(companies_house_number: number.to_sym)
+  @journey.company_number_page.submit(companies_house_number: number.to_sym)
 end
 
 Then(/^I will be notified my renewal is pending checks$/) do
@@ -449,7 +383,7 @@ end
 
 When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |reg_no|
   @renewals_app = RenewalsApp.new
-  @journey_app = JourneyApp.new
+  @journey = JourneyApp.new
   renewal_url = Quke::Quke.config.custom["urls"]["front_office_renewals"] + "/fo/renew/#{reg_no}"
 
   visit(renewal_url)

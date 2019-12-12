@@ -68,10 +68,6 @@ class BackEndApp
     @last_page = ConfirmationPage.new
   end
 
-  def confirm_business_type_page
-    @last_page = ConfirmBusinessTypePage.new
-  end
-
   def confirm_delete_page
     @last_page = ConfirmDeletePage.new
   end
@@ -139,10 +135,6 @@ class BackEndApp
 
   def manual_address_page
     @last_page = ManualAddressPage.new
-  end
-
-  def main_people_page
-    @last_page = MainPeoplePage.new
   end
 
   def new_charge_adjustment_page
@@ -213,12 +205,12 @@ class BackEndApp
     @last_page = RegistrationSearchResultsPage.new
   end
 
-  def registration_number_page
+  def company_number_page
     @last_page = RegistrationNumberPage.new
   end
 
-  def renewals_dashboard_page
-    @last_page = RenewalsDashboardPage.new
+  def dashboard_page
+    @last_page = DashboardPage.new
   end
 
   def renewal_information_page
@@ -283,10 +275,6 @@ class BackEndApp
 
   def sign_in_page
     @last_page = SignInPage.new
-  end
-
-  def tier_check_page
-    @last_page = TierCheckPage.new
   end
 
   def worldpay_refunds_page

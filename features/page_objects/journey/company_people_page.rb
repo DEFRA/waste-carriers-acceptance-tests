@@ -1,6 +1,8 @@
 require "faker"
 
-class MainPeoplePage < SitePrism::Page
+class CompanyPeoplePage < SitePrism::Page
+
+  element(:heading, ".heading-large")
 
   element(:first_name, "#main_people_form_first_name")
   element(:last_name, "#main_people_form_last_name")
@@ -8,10 +10,10 @@ class MainPeoplePage < SitePrism::Page
   element(:dob_month, "#main_people_form_dob_month")
   element(:dob_year, "#main_people_form_dob_year")
 
+  # For business types other than sole trader:
   element(:add_person, "input[value='Add another person']")
 
   elements(:remove_person, "input[value='Delete']")
-  element(:heading, :xpath, "//h1[contains(text(), 'details')]")
   element(:submit_button, "input[value='Continue']")
 
   def add_main_person(args = {})

@@ -1,7 +1,9 @@
-class ContactTelephoneNumberPage < SitePrism::Page
+class ContactPhonePage < SitePrism::Page
 
+  # What's the contact telephone number?
+
+  element(:heading, ".heading-large")
   element(:phone_number, "#contact_phone_form_phone_number")
-  element(:heading, :xpath, "//h1[contains(text(), 'telephone number')]")
   element(:submit_button, ".button")
 
   def submit(args = {})

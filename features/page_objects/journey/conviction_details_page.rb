@@ -4,6 +4,7 @@ class ConvictionDetailsPage < SitePrism::Page
 
   # Details of the person with a conviction
 
+  element(:heading, ".heading-large")
   element(:first_name, "#conviction_details_form_first_name")
   element(:last_name, "#conviction_details_form_last_name")
   element(:dob_day, "#conviction_details_form_dob_day")

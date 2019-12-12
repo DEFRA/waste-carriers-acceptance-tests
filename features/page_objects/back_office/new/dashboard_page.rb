@@ -1,8 +1,9 @@
 require_relative "sections/govuk_banner.rb"
 
-class RenewalsDashboardPage < SitePrism::Page
+class DashboardPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
+  element(:heading, ".heading-large")
 
   element(:search_term, "#term")
   element(:submit_button, ".button")
