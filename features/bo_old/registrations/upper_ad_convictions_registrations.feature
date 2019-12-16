@@ -7,26 +7,43 @@ Feature: Conviction checks during upper tier waste carrier registrations
    Background:
    Given an Environment Agency user has signed in to the backend
 
-  Scenario: Limited company with an undeclared relevant conviction is marked for a conviction check during an upper tier registration taken by NCCC due to a match on its companies house number
+  Scenario: Limited company with an undeclared conviction match by company number is marked for a conviction check
   	Given a limited company with companies house number "01649776" is registered as an upper tier waste carrier
-  	 When the limited company registration has the conviction check approved by an agency user
-  	 Then the registration has a "Registered" status
+      And the registration has a status of "CONVICTIONS"
+
+  	 When the conviction check is immediately approved by an agency user
+
+     Then the registration has a status of "ACTIVE"
+      And the registration does not have a status of "CONVICTIONS"
   	  And the registration status in the registration export is set to "ACTIVE"
 
-  Scenario: Sole trader with a relevant and undeclared relevant conviction is marked for a conviction check during an upper tier registration taken by NCCC
+  Scenario: Sole trader with an undeclared conviction match by name is marked for a conviction check
     Given a key person with a conviction registers as a sole trader upper tier waste carrier
-     When the key person has the conviction check approved by an agency user
-     Then the registration has a "Registered" status
-      And the registration status in the registration export is set to "ACTIVE"
+      And the registration has a status of "CONVICTIONS"
 
-  Scenario: A partnership with a relevant declared conviction is marked for a conviction check during an upper tier registration taken by NCCC
+     When the conviction check is immediately approved by an agency user
+
+     Then the registration has a status of "ACTIVE"
+      And the registration does not have a status of "CONVICTIONS"
+  	  And the registration status in the registration export is set to "ACTIVE"
+
+  Scenario: A partnership with a declared conviction is marked for a conviction check
     Given a conviction is declared when registering their partnership for an upper tier waste carrier
-     When the key person has the conviction check approved by an agency user
-     Then the registration has a "Registered" status
-      And the registration status in the registration export is set to "ACTIVE"
+      And the registration has a status of "CONVICTIONS"
 
-  Scenario: Limited company with an undeclared relevant conviction is marked for a conviction check during an upper tier registration taken by NCCC due to a match on its company name
+     When the conviction check is flagged by an agency user
+      And the flagged conviction is approved by an agency user
+
+     Then the registration has a status of "ACTIVE"
+      And the registration does not have a status of "CONVICTIONS"
+  	  And the registration status in the registration export is set to "ACTIVE"
+
+  Scenario: Limited company with an undeclared conviction match by name is marked for a conviction check and rejected
     Given a limited company "CACI" registers as an upper tier waste carrier
-     When the limited company registration has the conviction check approved by an agency user
-     Then the registration has a "Registered" status
-      And the registration status in the registration export is set to "ACTIVE"
+      And the registration has a status of "CONVICTIONS"
+
+      When the conviction check is flagged by an agency user
+       And the flagged conviction is rejected by an agency user
+
+      Then the registration has a status of "REFUSED"
+       And the registration has a status of "CONVICTIONS"

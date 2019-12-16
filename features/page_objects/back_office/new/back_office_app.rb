@@ -13,10 +13,6 @@ class BackOfficeApp
     @last_page = AdPrivacyPolicyPage.new
   end
 
-  def approve_convictions_page
-    @last_page = ApproveConvictionsPage.new
-  end
-
   def agency_sign_in_page
     @last_page = AgencySignInPage.new
   end
@@ -29,12 +25,16 @@ class BackOfficeApp
     @last_page = CashPaymentPage.new
   end
 
-  def convictions_page
-    @last_page = ConvictionsPage.new
+  def convictions_bo_details_page
+    @last_page = ConvictionsBoDetailsPage.new
   end
 
   def convictions_dashboard_page
     @last_page = ConvictionsDashboardPage.new
+  end
+
+  def convictions_decision_page
+    @last_page = ConvictionsDecisionPage.new
   end
 
   def cannot_renew_lower_tier_page

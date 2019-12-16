@@ -66,6 +66,7 @@ end
 
 Given(/^NCCC goes back to the in progress renewal$/) do
   @bo.view_details_page.continue_as_ad_button.click
+  @bo.ad_privacy_policy_page.submit
 end
 
 Then(/^the renewal is complete$/) do
@@ -160,9 +161,8 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
 end
 
 When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
-  @bo.dashboard_page.submit(search_term: reg)
-  @bo.dashboard_page.results[0].actions.click
-  find_link("Resume application").click
+  @bo.dashboard_page.view_transient_reg_details(search_term: reg)
+  @bo.view_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
@@ -258,12 +258,6 @@ When(/^I mark the renewal payment as received$/) do
   )
 end
 
-Then(/^the registration will have a "([^"]*)" status$/) do |status|
-  @bo.dashboard_page.govuk_banner.home_page.click
-  @bo.dashboard_page.submit(search_term: @registration_number)
-  expect(@bo.dashboard_page.results_table).to have_text(status)
-end
-
 Then(/^the expiry date should be three years from the previous expiry date$/) do
   # Adds three years to expiry date and then checks expiry date reported in registration details
   @expected_expiry_date = @expiry_date_year_first.next_year(3)
@@ -305,5 +299,5 @@ When(/^I approve the conviction check$/) do
   # rubocop:enable Metrics/LineLength
 
   @bo.convictions_page.approve.click
-  @bo.approve_convictions_page.submit(approval_reason: "ok")
+  @bo.convictions_decision_page.submit(conviction_reason: "ok")
 end

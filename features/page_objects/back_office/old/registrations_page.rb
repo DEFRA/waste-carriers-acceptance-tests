@@ -16,7 +16,8 @@ class RegistrationsPage < SitePrism::Page
     element :date_registered, "div:nth-child(3) > div > ul > li:nth-child(1) > p"
     element :expiry_date, "div:nth-child(3) > div > ul > li:nth-child(2) > p"
     # Actions
-    element(:view_certificate, :xpath, "//a[contains(.,'View certificate)]")
+    element(:view_details, "a[text*='Details']")
+    element(:view_certificate, "a[text*='View certificate']")
     element(:edit_registration, "a[href*='edit_process']")
     element(:change_account_email, "a[href*='edit_account_email']")
     element(:de_register, "a[href*='confirm_delete']")
@@ -25,7 +26,7 @@ class RegistrationsPage < SitePrism::Page
     element(:refuse, :xpath, "//a[contains(.,'Refuse')]")
     element(:renew, :xpath, "//a[contains(.,'Renew')]")
     element(:payment_status, "a[href*='paymentstatus']")
-    element(:transfer, "a[href*='transfer-registration']")
+    element(:transfer, "a[href*='/transfer']")
 
   end
 

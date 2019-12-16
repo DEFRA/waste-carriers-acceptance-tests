@@ -103,7 +103,23 @@ Then(/^I will be informed by the person taking the call that registration is pen
 
 end
 
+Then(/^the registration has a status of "([^"]*)"$/) do |status|
+  sign_in_to_back_office
+  @bo.dashboard_page.govuk_banner.home_page.click
+  @bo.dashboard_page.submit(search_term: @registration_number)
+  expect(@bo.dashboard_page.results_table).to have_text(status)
+end
+
+Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
+  sign_in_to_back_office
+  @bo.dashboard_page.govuk_banner.home_page.click
+  @bo.dashboard_page.submit(search_term: @registration_number)
+  expect(@bo.dashboard_page.results_table).to have_no_text(status)
+end
+
 Then(/^the registration status in the registration export is set to "([^"]*)"$/) do |status|
+  visit(Quke::Quke.config.custom["urls"]["back_end_dashboard"])
+
   # finds today's date and saves them for use in export from and to date
   time = Time.new
 

@@ -2,6 +2,8 @@ class ApprovePage < SitePrism::Page
 
   # Approve registration
 
+  # THIS PAGE HAS MOVED TO NEW APP - DELETE ONCE NEW CODE RELEASED
+
   element(:conviction_match_info, :xpath, ".//*[@id='revoke']/fieldset/div[1]/div[5]")
   element(:approval_reason, "#registration_metaData_approveReason")
 
