@@ -1,4 +1,4 @@
-@bo_old @upper_tier @bo_reg @wip
+@bo_old @upper_tier @bo_reg
 Feature: Assisted digital registration of an upper tier public body
   As a carrier of commerical waste
   I want assistance with my waste carrier registration from the Environment Agency
