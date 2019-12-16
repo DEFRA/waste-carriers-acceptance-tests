@@ -30,12 +30,17 @@ def submit_carrier_details(business, tier, carrier)
 end
 
 def old_select_upper_tier_options(carrier)
+  # Carrier can have options:
+  # carrier_broker_dealer, broker_dealer, carrier_dealer
   @back_app.other_businesses_question_page.submit(choice: :no)
   @back_app.construction_waste_question_page.submit(choice: :yes)
   @back_app.registration_type_page.submit(choice: carrier.to_sym)
 end
 
 def select_upper_tier_options(carrier)
+  # Carrier can have options:
+  # carrier_broker_dealer, broker_dealer, carrier_dealer
+
   # Combine these pages into @journey:
   @renewals_app.other_businesses_page.submit(choice: :yes)
   @renewals_app.service_provided_page.submit(choice: :not_main_service)
@@ -89,14 +94,26 @@ def submit_limited_company_details(business_name)
     @journey.company_name_page.submit(company_name: business_name)
   end
 
-  # TODO: Create functions for lookup and manual addresses, and randomise it in a single function
-  @journey.address_lookup_page.choose_manual_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  complete_address
+end
+
+def complete_address
+  i = rand(0..2)
+  if i.zero?
+    # Submit address manually
+    puts "Address type: manual"
+    @journey.address_lookup_page.choose_manual_address
+    @journey.address_manual_page.submit(
+      house_number: "1",
+      address_line_one: "Test lane",
+      address_line_two: "Testville",
+      city: "Teston"
+    )
+  else
+    # Do a lookup
+    puts "Address type: lookup"
+    @journey.address_lookup_page.submit_valid_address
+  end
 end
 
 def old_submit_organisation_details(business_name)
@@ -110,7 +127,7 @@ end
 
 def submit_organisation_details(business_name)
   @journey.company_name_page.submit(company_name: business_name)
-  @journey.address_lookup_page.submit_valid_address
+  complete_address
 end
 
 def old_submit_company_people

@@ -1,23 +1,21 @@
-When(/^the limited company registration has the conviction check approved by an agency user$/) do
-  @back_app.agency_sign_in_page.load
-  @back_app.registrations_page.search(search_input: @registration_number)
-  @back_app.registrations_page.wait_for_status("Conviction Check")
-  expect(@back_app.registrations_page.search_results[0].status.text).to eq("Conviction Check")
-  @back_app.registrations_page.search_results[0].approve.click
-  expect(@back_app.approve_page.conviction_match_info.text).to have_text("Yes (company)")
-  @back_app.approve_page.submit(approval_reason: "Company check pass")
-
+When(/^the conviction check is immediately approved by an agency user$/) do
+  approve_conviction_immediately_for_reg(@registration_number, @company_name)
 end
 
-When(/^the key person has the conviction check approved by an agency user$/) do
-  @back_app.agency_sign_in_page.load
-  @back_app.registrations_page.search(search_input: @registration_number)
-  @back_app.registrations_page.wait_for_status("Conviction Check")
-  expect(@back_app.registrations_page.search_results[0].status.text).to eq("Conviction Check")
-  @back_app.registrations_page.search_results[0].approve.click
-  @back_app.approve_page.submit(approval_reason: "Key person check pass")
+When(/^the conviction check is flagged by an agency user$/) do
+  flag_conviction_for_reg(@registration_number, @company_name)
 end
 
+When(/^the flagged conviction is approved by an agency user$/) do
+  approve_flagged_conviction_for_reg(@registration_number, @company_name)
+end
+
+When(/^the flagged conviction is rejected by an agency user$/) do
+  reject_flagged_conviction_for_reg(@registration_number, @company_name)
+end
+
+# Delete this function when deregister has moved to the new app.
+# Its nearest equivalent is "the registration has a status of":
 Then(/^the registration has a "([^"]*)" status$/) do |status|
   Capybara.reset_session!
   @back_app = BackEndApp.new
