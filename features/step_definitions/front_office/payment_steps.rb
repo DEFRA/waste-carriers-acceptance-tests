@@ -2,10 +2,7 @@ Given(/^I am on the payment page$/) do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
-  @journey.carrier_type_page.submit
+  select_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details
   submit_company_people

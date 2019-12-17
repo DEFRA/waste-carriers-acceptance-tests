@@ -114,9 +114,7 @@ When(/^I renew the limited company registration$/) do
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  @bo.other_businesses_page.submit(choice: :no)
-  @bo.construction_waste_page.submit(choice: :yes)
-  @journey.carrier_type_page.submit
+  select_upper_tier_options("existing")
   @bo.renewal_information_page.submit
   submit_business_details
   submit_company_people
@@ -271,9 +269,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  @bo.other_businesses_page.submit(choice: :no)
-  @bo.construction_waste_page.submit(choice: :yes)
-  @journey.carrier_type_page.submit
+  select_upper_tier_options("existing")
   @bo.renewal_information_page.submit
   submit_business_details
   submit_company_people
@@ -298,6 +294,6 @@ When(/^I approve the conviction check$/) do
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/#{@registration_number}/convictions")
   # rubocop:enable Metrics/LineLength
 
-  @bo.convictions_page.approve.click
+  @bo.convictions_bo_details_page.approve_button.click
   @bo.convictions_decision_page.submit(conviction_reason: "ok")
 end

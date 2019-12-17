@@ -1,7 +1,6 @@
 # Represents all pages in the back office. Was created to avoid needing to
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
-# rubocop:disable Metrics/ClassLength
 class BackOfficeApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
@@ -45,10 +44,6 @@ class BackOfficeApp
     @last_page = CannotRenewTypeChangePage.new
   end
 
-  def construction_waste_page
-    @last_page = ConstructionWastePage.new
-  end
-
   def dashboard_page
     @last_page = DashboardPage.new
   end
@@ -67,10 +62,6 @@ class BackOfficeApp
 
   def migrate_page
     @last_page = MigratePage.new
-  end
-
-  def other_businesses_page
-    @last_page = OtherBusinessesPage.new
   end
 
   def payments_page
@@ -103,10 +94,6 @@ class BackOfficeApp
 
   def renewal_complete_page
     @last_page = RenewalCompletePage.new
-  end
-
-  def service_provided_page
-    @last_page = ServiceProvidedPage.new
   end
 
   def start_page
@@ -150,4 +137,3 @@ class BackOfficeApp
   end
 
 end
-# rubocop:enable Metrics/ClassLength
