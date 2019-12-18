@@ -20,20 +20,12 @@ class RenewalsApp
     @last_page = CannotRenewTypeChangePage.new
   end
 
-  def construction_waste_page
-    @last_page = ConstructionWastePage.new
-  end
-
   def existing_registration_page
     @last_page = ExistingRegistrationPage.new
   end
 
   def location_page
     @last_page = LocationPage.new
-  end
-
-  def other_businesses_page
-    @last_page = OtherBusinessesPage.new
   end
 
   def payment_summary_page
@@ -58,10 +50,6 @@ class RenewalsApp
 
   def renewal_complete_page
     @last_page = RenewalCompletePage.new
-  end
-
-  def service_provided_page
-    @last_page = ServiceProvidedPage.new
   end
 
   def start_page

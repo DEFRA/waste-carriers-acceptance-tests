@@ -69,6 +69,22 @@ class JourneyApp
     @last_page = TierCheckPage.new
   end
 
+  def tier_construction_waste_page
+    @last_page = TierConstructionWastePage.new
+  end
+
+  def tier_farm_only_page
+    @last_page = TierFarmOnlyPage.new
+  end
+
+  def tier_other_businesses_page
+    @last_page = TierOtherBusinessesPage.new
+  end
+
+  def tier_service_provided_page
+    @last_page = TierServiceProvidedPage.new
+  end
+
   def worldpay_payment_page
     @last_page = WorldpayPaymentPage.new
   end

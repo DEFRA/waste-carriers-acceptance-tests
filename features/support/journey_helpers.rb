@@ -30,22 +30,28 @@ def submit_carrier_details(business, tier, carrier)
 end
 
 def old_select_upper_tier_options(carrier)
-  # Carrier can have options:
-  # carrier_broker_dealer, broker_dealer, carrier_dealer
   @back_app.other_businesses_question_page.submit(choice: :no)
   @back_app.construction_waste_question_page.submit(choice: :yes)
   @back_app.registration_type_page.submit(choice: carrier.to_sym)
 end
 
 def select_upper_tier_options(carrier)
-  # Carrier can have options:
-  # carrier_broker_dealer, broker_dealer, carrier_dealer
-
-  # Combine these pages into @journey:
-  @renewals_app.other_businesses_page.submit(choice: :yes)
-  @renewals_app.service_provided_page.submit(choice: :not_main_service)
-  @renewals_app.construction_waste_page.submit(choice: :yes)
-  # Question: are the carrier types the same for old and new apps? If tests pass then delete this comment.
+  # Randomise between 3 ways to achieve an upper tier registration:
+  i = rand(1..3)
+  if i == 1
+    @journey.tier_other_businesses_page.submit(choice: :yes)
+    @journey.tier_service_provided_page.submit(choice: :not_main_service)
+    @journey.tier_construction_waste_page.submit(choice: :yes)
+  elsif i == 2
+    @journey.tier_other_businesses_page.submit(choice: :yes)
+    @journey.tier_service_provided_page.submit(choice: :main_service)
+    @journey.tier_farm_only_page.submit(choice: :no)
+  else
+    @journey.tier_other_businesses_page.submit(choice: :no)
+    @journey.tier_construction_waste_page.submit(choice: :yes)
+  end
+  # Carrier options (same for old and new apps):
+  # carrier_broker_dealer, broker_dealer, carrier_dealer, existing
   @journey.carrier_type_page.submit(choice: carrier.to_sym)
 end
 
@@ -101,7 +107,6 @@ def complete_address
   i = rand(0..2)
   if i.zero?
     # Submit address manually
-    puts "Address type: manual"
     @journey.address_lookup_page.choose_manual_address
     @journey.address_manual_page.submit(
       house_number: "1",
@@ -111,7 +116,6 @@ def complete_address
     )
   else
     # Do a lookup
-    puts "Address type: lookup"
     @journey.address_lookup_page.submit_valid_address
   end
 end

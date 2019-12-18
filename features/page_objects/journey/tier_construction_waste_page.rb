@@ -1,9 +1,9 @@
-class ConstructionWastePage < SitePrism::Page
+class TierConstructionWastePage < SitePrism::Page
 
   # Do you ever deal with waste from other businesses or households?
+  element(:heading, ".heading-large")
   element(:yes_construction_waste, "#construction_demolition_form_construction_waste_yes", visible: false)
   element(:no_construction_waste, "#construction_demolition_form_construction_waste_no", visible: false)
-  element(:heading, :xpath, "//h1[contains(text(), 'Do you ever deal')]")
   element(:submit_button, ".button")
 
   def submit(args = {})
