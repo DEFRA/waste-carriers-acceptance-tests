@@ -5,6 +5,8 @@ class DashboardPage < SitePrism::Page
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
   element(:heading, ".heading-large")
 
+  element(:flash_message, ".flash-message")
+
   element(:search_term, "#term")
   element(:submit_button, ".button")
 

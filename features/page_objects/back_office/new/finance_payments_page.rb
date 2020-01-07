@@ -1,8 +1,9 @@
 require_relative "sections/govuk_banner.rb"
 
-class RenewalPaymentsPage < SitePrism::Page
+class FinancePaymentsPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
+  element(:heading, ".heading-large")
 
   # How was this payment made?
   element(:cash, "#payment_form_payment_type_cash", visible: false)

@@ -1,14 +1,16 @@
 Given(/^an Environment Agency user has signed in to the backend$/) do
   Capybara.reset_session!
-  @back_app = BackEndApp.new
-  @bo = BackOfficeApp.new
-  @journey = JourneyApp.new
-  @renewals_app = RenewalsApp.new
+  load_all_apps
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
+end
+
+Given(/^an Environment Agency user has signed in to the back office$/) do
+  load_all_apps
+  sign_in_to_back_office
 end
 
 Given(/^I am signed in as an Environment Agency user with refunds$/) do
@@ -143,16 +145,27 @@ Then(/^the registration status in the registration export is set to "([^"]*)"$/)
 end
 
 When(/^the registration is revoked$/) do
-  @back_app.registrations_page.search(search_input: @registration_number)
-  @back_app.registrations_page.wait_for_status("Registered")
-  @back_app.registrations_page.search_results[0].revoke.click
-  @back_app.revoke_page.submit(revoked_reason: "Did a bad thing")
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.cease_or_revoke_link.click
+  @bo.cease_or_revoke_page.submit(
+    choice: :revoke,
+    reason: "Did a naughty thing"
+  )
+  expect(@bo.cease_or_revoke_page.heading).to have_text("Confirm revoke for registration " + @registration_number)
+  @bo.cease_or_revoke_page.confirm_button.click
+  expect(@bo.dashboard_page.flash_message).to have_text(@registration_number + " has been translation missing")
 end
 
-When(/^the registration is deregistered$/) do
-  @back_app.registrations_page.search(search_input: @registration_number)
-  @back_app.registrations_page.search_results[0].de_register.click
-  @back_app.confirm_delete_page.submit
+When(/^the registration is ceased$/) do
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.cease_or_revoke_link.click
+  @bo.cease_or_revoke_page.submit(
+    choice: :cease,
+    reason: "Carrier has stopped carrying waste"
+  )
+  expect(@bo.cease_or_revoke_page.heading).to have_text("Confirm cease for registration " + @registration_number)
+  @bo.cease_or_revoke_page.confirm_button.click
+  expect(@bo.dashboard_page.flash_message).to have_text(@registration_number + " has been translation missing")
 end
 
 Then(/^my registration status for "([^"]*)" will be "([^"]*)"$/) do |search_item, status|

@@ -1,14 +1,10 @@
-Given(/^I have signed into the renewals service as an agency user$/) do
+Given(/^I have signed into back office as an agency user$/) do
   @bo = BackOfficeApp.new
   @journey = JourneyApp.new
-  @bo.sign_in_page.load
-  @bo.sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
+  sign_in_to_back_office
 end
 
-Given(/^I have signed into the renewals service as an agency user with refunds$/) do
+Given(/^I have signed into back office as an agency user with refunds$/) do
   @bo = BackOfficeApp.new
   @journey = JourneyApp.new
   @bo.sign_in_page.load
@@ -181,18 +177,6 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
 
 end
 
-Given(/^an Environment Agency user has signed in to complete a renewal$/) do
-  @back_app = BackEndApp.new
-  @bo = BackOfficeApp.new
-  @journey = JourneyApp.new
-  @renewals_app = RenewalsApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-end
-
 Given(/^an Agency super user has signed in to the admin area$/) do
   @back_app = BackEndApp.new
   @bo = BackOfficeApp.new
@@ -237,23 +221,14 @@ end
 
 When(/^I search for "([^"]*)" pending payment$/) do |reg|
   @bo.dashboard_page.govuk_banner.home_page.click
-  @bo.dashboard_page.submit(search_term: reg.to_sym)
+  @bo.dashboard_page.view_transient_reg_details(search_term: reg)
   # saves registration for later use
   @registration_number = reg
 end
 
 When(/^I mark the renewal payment as received$/) do
-  @bo.dashboard_page.results[0].actions.click
   @bo.transient_registrations_page.process_payment.click
-  @bo.renewal_payments_page.submit(choice: :cash)
-  @bo.cash_payment_page.submit(
-    amount: "105",
-    day: "01",
-    month: "01",
-    year: "1980",
-    reference: "0101010",
-    comment: "cash money"
-  )
+  pay_by_cash(105)
 end
 
 Then(/^the expiry date should be three years from the previous expiry date$/) do
