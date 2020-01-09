@@ -153,7 +153,7 @@ When(/^the registration is revoked$/) do
   )
   expect(@bo.cease_or_revoke_page.heading).to have_text("Confirm revoke for registration " + @registration_number)
   @bo.cease_or_revoke_page.confirm_button.click
-  expect(@bo.dashboard_page.flash_message).to have_text(@registration_number + " has been translation missing")
+  expect(@bo.dashboard_page.flash_message).to have_text(@registration_number + " has been revoked")
 end
 
 When(/^the registration is ceased$/) do
@@ -165,7 +165,7 @@ When(/^the registration is ceased$/) do
   )
   expect(@bo.cease_or_revoke_page.heading).to have_text("Confirm cease for registration " + @registration_number)
   @bo.cease_or_revoke_page.confirm_button.click
-  expect(@bo.dashboard_page.flash_message).to have_text(@registration_number + " has been translation missing")
+  expect(@bo.dashboard_page.flash_message).to have_text(@registration_number + " has been ceased")
 end
 
 Then(/^my registration status for "([^"]*)" will be "([^"]*)"$/) do |search_item, status|
