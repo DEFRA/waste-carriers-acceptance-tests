@@ -2,8 +2,6 @@ class CeaseOrRevokePage < SitePrism::Page
 
   # Revoke or cease registration CBDU1
 
-  # TODO: add new pages to site map
-
   element(:back_link, ".link-back")
   element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")

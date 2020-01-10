@@ -75,7 +75,7 @@ end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
   @registration_number = reg
-  # To do: convert this to back office and create function to get expiry date:
+
   @back_app.registrations_page.search(search_input: @registration_number)
   @expiry_date = @back_app.registrations_page.search_results[0].expiry_date.text
   # Turns the text expiry date into a date

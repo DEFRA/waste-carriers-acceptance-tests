@@ -1,7 +1,6 @@
 Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
   @registration_number = reg
 
-  # TODO: Convert this to back office:
   @bo.registrations_page.search(search_input: reg.to_sym)
   @expiry_date = @bo.registrations_page.search_results[0].expiry_date.text
   # Turns the text expiry date into a date
