@@ -1,7 +1,7 @@
 Given(/^I choose to transfer ownership of "([^"]*)" to another user$/) do |reg|
   @registration_number = reg
-  @back_app.registrations_page.search(search_input: @registration_number)
-  @back_app.registrations_page.search_results[0].transfer.click
+  @bo.dashboard_page.view_reg_details(search_term: reg)
+  @bo.view_details_page.transfer_link.click
 end
 
 When(/^I change the account email to "([^"]*)"$/) do |email|

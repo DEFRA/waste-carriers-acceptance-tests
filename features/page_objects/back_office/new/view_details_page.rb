@@ -15,7 +15,10 @@ class ViewDetailsPage < SitePrism::Page
 
   element(:actions_box, ".wcr-actions--push-down")
   element(:renew_link, "a[href*='/ad-privacy-policy/CBD']")
-  element(:transfer_link, "a[href*='/transfer-registration']")
+  element(:transfer_link, "a[href*='/transfer']")
+  element(:order_copy_cards_link, "a[href*='/order-copy-cards']")
+  element(:payment_details_link, "a[href*='/finance_details']")
+  element(:cease_or_revoke_link, "a[href*='/cease-or-revoke']")
 
   # Sample text on this page:
   #

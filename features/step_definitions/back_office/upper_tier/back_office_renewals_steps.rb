@@ -1,14 +1,10 @@
-Given(/^I have signed into the renewals service as an agency user$/) do
+Given(/^I have signed into back office as an agency user$/) do
   @bo = BackOfficeApp.new
   @journey = JourneyApp.new
-  @bo.sign_in_page.load
-  @bo.sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
+  sign_in_to_back_office
 end
 
-Given(/^I have signed into the renewals service as an agency user with refunds$/) do
+Given(/^I have signed into back office as an agency user with refunds$/) do
   @bo = BackOfficeApp.new
   @journey = JourneyApp.new
   @bo.sign_in_page.load
@@ -79,14 +75,16 @@ end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
   @registration_number = reg
+
   @back_app.registrations_page.search(search_input: @registration_number)
   @expiry_date = @back_app.registrations_page.search_results[0].expiry_date.text
   # Turns the text expiry date into a date
   @expiry_date_year_first = Date.parse(@expiry_date)
-  @back_app.registrations_page.search_results[0].renew.click
 end
 
 When(/^I renew the local authority registration$/) do
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
@@ -111,6 +109,8 @@ When(/^I renew the local authority registration$/) do
 end
 
 When(/^I renew the limited company registration$/) do
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
@@ -181,18 +181,6 @@ When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
 
 end
 
-Given(/^an Environment Agency user has signed in to complete a renewal$/) do
-  @back_app = BackEndApp.new
-  @bo = BackOfficeApp.new
-  @journey = JourneyApp.new
-  @renewals_app = RenewalsApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-end
-
 Given(/^an Agency super user has signed in to the admin area$/) do
   @back_app = BackEndApp.new
   @bo = BackOfficeApp.new
@@ -237,23 +225,14 @@ end
 
 When(/^I search for "([^"]*)" pending payment$/) do |reg|
   @bo.dashboard_page.govuk_banner.home_page.click
-  @bo.dashboard_page.submit(search_term: reg.to_sym)
+  @bo.dashboard_page.view_transient_reg_details(search_term: reg)
   # saves registration for later use
   @registration_number = reg
 end
 
 When(/^I mark the renewal payment as received$/) do
-  @bo.dashboard_page.results[0].actions.click
   @bo.transient_registrations_page.process_payment.click
-  @bo.renewal_payments_page.submit(choice: :cash)
-  @bo.cash_payment_page.submit(
-    amount: "105",
-    day: "01",
-    month: "01",
-    year: "1980",
-    reference: "0101010",
-    comment: "cash money"
-  )
+  pay_by_cash(105)
 end
 
 Then(/^the expiry date should be three years from the previous expiry date$/) do
@@ -266,6 +245,8 @@ Then(/^the expiry date should be three years from the previous expiry date$/) do
 end
 
 Given(/^I renew the limited company registration declaring a conviction and paying by bank transfer$/) do
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)

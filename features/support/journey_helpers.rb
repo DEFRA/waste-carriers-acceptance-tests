@@ -230,19 +230,6 @@ def old_complete_registration_from_bo(business, tier, carrier)
   @registration_number
 end
 
-def sign_in_to_back_office
-  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
-  heading = @journey.standard_page.heading.text
-
-  # Bypass if already logged in:
-  return unless heading == "Sign in"
-
-  @bo.sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-end
-
 def check_registration_details(reg)
   find_link("Registrations search").click
   @bo.dashboard_page.view_reg_details(search_term: reg)

@@ -1,5 +1,26 @@
 # Scroll to any element/section
 # @param element [Capybara::Node::Element, SitePrism::Section]
+
+def load_all_apps
+  @back_app = BackEndApp.new
+  @bo = BackOfficeApp.new
+  @journey = JourneyApp.new
+  @renewals_app = RenewalsApp.new
+end
+
+def sign_in_to_back_office
+  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
+  heading = @journey.standard_page.heading.text
+
+  # Bypass if already logged in:
+  return unless heading == "Sign in"
+
+  @bo.sign_in_page.submit(
+    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+end
+
 def scroll_to(element)
   element = element.root_element if element.respond_to?(:root_element)
   Capybara.evaluate_script <<-SCRIPT

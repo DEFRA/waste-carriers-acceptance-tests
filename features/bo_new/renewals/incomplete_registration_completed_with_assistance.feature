@@ -7,6 +7,6 @@ Feature: Incomplete renewal of an upper tier public body completed by NCCC
 
 Scenario: Public body has their upper tier registration renewed by NCCC
   Given "CBDU229" has been partially renewed by the account holder
-    And I have signed into the renewals service as an agency user
+    And I have signed into back office as an agency user
    When I complete the renewal "CBDU229" for the account holder
    Then the renewal is complete
