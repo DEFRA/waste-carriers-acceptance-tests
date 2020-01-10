@@ -75,14 +75,16 @@ end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
   @registration_number = reg
+  # To do: convert this to back office and create function to get expiry date:
   @back_app.registrations_page.search(search_input: @registration_number)
   @expiry_date = @back_app.registrations_page.search_results[0].expiry_date.text
   # Turns the text expiry date into a date
   @expiry_date_year_first = Date.parse(@expiry_date)
-  @back_app.registrations_page.search_results[0].renew.click
 end
 
 When(/^I renew the local authority registration$/) do
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
@@ -107,6 +109,8 @@ When(/^I renew the local authority registration$/) do
 end
 
 When(/^I renew the limited company registration$/) do
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
@@ -241,6 +245,8 @@ Then(/^the expiry date should be three years from the previous expiry date$/) do
 end
 
 Given(/^I renew the limited company registration declaring a conviction and paying by bank transfer$/) do
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)

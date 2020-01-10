@@ -6,7 +6,7 @@ Feature: Assisted digital renewal of an upper tier public body
   So I can complete my regisration and I am compliant with the law
 
 Background:
-  Given an Environment Agency user has signed in to the back office
+  Given an Environment Agency user has signed in to the backend
 
 Scenario: Public body has their upper tier registration renewed by NCCC
   Given I choose to renew "CBDU230"

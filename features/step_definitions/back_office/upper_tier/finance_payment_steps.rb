@@ -1,15 +1,20 @@
 Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
-  @bo.registrations_page.search(search_input: reg.to_sym)
   @registration_number = reg
 
+  # TODO: Convert this to back office:
+  @bo.registrations_page.search(search_input: reg.to_sym)
   @expiry_date = @bo.registrations_page.search_results[0].expiry_date.text
   # Turns the text expiry date into a date
   @expiry_date_year_first = Date.parse(@expiry_date)
-  @bo.registrations_page.search_results[0].renew.click
+
+  @bo.sign_in_page.load
   @bo.sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
+  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.view_details_page.renew_link.click
+
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
