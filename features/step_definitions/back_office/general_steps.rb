@@ -8,9 +8,17 @@ Given(/^an Environment Agency user has signed in to the backend$/) do
   )
 end
 
-Given(/^an Environment Agency user has signed in to the back office$/) do
+Given(/^I sign into the back office as "([^"]*)"$/) do |user|
+  # Use this step to sign in to the back office as any of the following users:
+  # agency_user
+  # agency_user_with_payment_refund
+  # finance_admin
+  # finance_basic
+  # waste_carrier
+  # waste_carrier2
+  # agency_super
   load_all_apps
-  sign_in_to_back_office
+  sign_in_to_back_office(user)
 end
 
 Given(/^I am signed in as an Environment Agency user with refunds$/) do
@@ -106,14 +114,14 @@ Then(/^I will be informed by the person taking the call that registration is pen
 end
 
 Then(/^the registration has a status of "([^"]*)"$/) do |status|
-  sign_in_to_back_office
+  sign_in_to_back_office("agency_user")
   @bo.dashboard_page.govuk_banner.home_page.click
   @bo.dashboard_page.submit(search_term: @registration_number)
   expect(@bo.dashboard_page.results_table).to have_text(status)
 end
 
 Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
-  sign_in_to_back_office
+  sign_in_to_back_office("agency_user")
   @bo.dashboard_page.govuk_banner.home_page.click
   @bo.dashboard_page.submit(search_term: @registration_number)
   expect(@bo.dashboard_page.results_table).to have_no_text(status)

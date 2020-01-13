@@ -1,19 +1,3 @@
-Given(/^I have signed into back office as an agency user$/) do
-  @bo = BackOfficeApp.new
-  @journey = JourneyApp.new
-  sign_in_to_back_office
-end
-
-Given(/^I have signed into back office as an agency user with refunds$/) do
-  @bo = BackOfficeApp.new
-  @journey = JourneyApp.new
-  @bo.sign_in_page.load
-  @bo.sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-end
-
 Given(/^there is an existing registration$/) do
   # No action, this just exists to make the feature look nicer
 end
@@ -25,7 +9,7 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   @convictions = convictions
 
   # Search for registration to renew:
-  sign_in_to_back_office
+  sign_in_to_back_office("agency_user")
   @bo.dashboard_page.view_reg_details(search_term: @registration_number)
   @bo.view_details_page.renew_link.click
   start_internal_renewal
@@ -44,7 +28,7 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
 end
 
 Given(/^the back office pages show the correct transient renewal details$/) do
-  sign_in_to_back_office
+  sign_in_to_back_office("agency_user")
   @bo.dashboard_page.view_transient_reg_details(search_term: @registration_number)
 
   expect(@bo.view_details_page.heading).to have_text("Renewal " + @registration_number)
@@ -201,14 +185,6 @@ Given(/^has created an agency user for "([^"]*)"$/) do |user|
   @user = user
   expect(@back_app.agency_users_page).to have_text("Agency user was successfully created.")
   @back_app.agency_users_page.sign_out.click
-end
-
-When(/^an Agency super user has signed into the back office$/) do
-  @bo.sign_in_page.load
-  @bo.sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_super"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
 end
 
 When(/^migrates the backend users to the back office$/) do

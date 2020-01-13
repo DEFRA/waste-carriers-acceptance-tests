@@ -24,7 +24,7 @@ And(/^NCCC finishes the registration$/) do
 end
 
 Then(/^the back office pages show the correct registration details$/) do
-  sign_in_to_back_office
+  sign_in_to_back_office("agency_user")
   check_registration_details(@registration_number)
   info_panel = @bo.view_details_page.info_panel
   page_content = @bo.view_details_page.content
