@@ -8,7 +8,7 @@ def load_all_apps
   @renewals_app = RenewalsApp.new
 end
 
-def sign_in_to_back_office
+def sign_in_to_back_office(user)
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
   heading = @journey.standard_page.heading.text
 
@@ -16,7 +16,7 @@ def sign_in_to_back_office
   return unless heading == "Sign in"
 
   @bo.sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    email: Quke::Quke.config.custom["accounts"][user]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
