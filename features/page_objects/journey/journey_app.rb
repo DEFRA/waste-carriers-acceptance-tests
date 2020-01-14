@@ -13,6 +13,18 @@ class JourneyApp
     @last_page = AddressManualPage.new
   end
 
+  def cards_confirmation_page
+    @last_page = CardsConfirmationPage.new
+  end
+
+  def cards_order_page
+    @last_page = CardsOrderPage.new
+  end
+
+  def cards_payment_page
+    @last_page = CardsPaymentPage.new
+  end
+
   def carrier_type_page
     @last_page = CarrierTypePage.new
   end
