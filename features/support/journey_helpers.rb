@@ -210,14 +210,15 @@ def check_your_answers
   @journey.declaration_page.submit
 end
 
-def old_order_copy_cards(number_of_cards)
+def old_order_cards_during_journey(number_of_cards)
   @back_app.order_page.submit(
     copy_card_number: number_of_cards,
     choice: :card_payment
   )
 end
 
-def order_copy_cards(number_of_cards)
+def order_cards_during_journey(number_of_cards)
+  # This covers ordering copy cards during a registration or renewal, from the new app
   @bo.registration_cards_page.submit(cards: number_of_cards)
 end
 

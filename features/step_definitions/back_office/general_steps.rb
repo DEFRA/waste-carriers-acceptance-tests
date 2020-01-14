@@ -206,9 +206,9 @@ end
 And(/^the applicant pays by bank card$/) do
   # On the new app, the payment choice is on a different screen from order copy cards
   if @app == "old"
-    old_order_copy_cards(3)
+    old_order_cards_during_journey(3)
   else
-    order_copy_cards(1)
+    order_cards_during_journey(1)
     @bo.payment_summary_page.submit(choice: :card_payment)
   end
   submit_valid_card_payment
