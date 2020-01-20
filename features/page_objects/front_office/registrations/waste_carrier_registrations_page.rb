@@ -15,8 +15,7 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
     element(:view_certificate, "li:nth-child(1) a")
     element(:edit_registration, "li:nth-child(2) a")
     element(:renew_registration, "li:nth-child(3) a")
-    element(:order_copy_cards, "li:nth-child(4) a")
-    # element(:delete, "li:nth-child(5) a")
+    element(:order_cards_link, "li:nth-child(4) a")
     element(:delete, "[href*='/confirm_delete']")
   end
 

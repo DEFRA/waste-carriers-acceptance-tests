@@ -14,7 +14,7 @@ class ConvictionDetailsPage < SitePrism::Page
 
   element(:add_person, "input[value='Add another person']")
 
-  elements :remove_person, "a[href*='delete']"
+  elements(:remove_person, "a[href*='delete']")
 
   element(:submit_button, "input[value='Continue']")
 
