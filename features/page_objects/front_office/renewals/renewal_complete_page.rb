@@ -4,6 +4,6 @@ class RenewalCompletePage < SitePrism::Page
   element(:confirmation_box, ".govuk-box-highlight")
   element(:heading, :xpath, "//h1[contains(text(), 'Renewal complete')]")
 
-  element(:finished, "a[href$='/registrations']")
+  element(:finished, "a[href$='/fo']")
 
 end
