@@ -359,7 +359,7 @@ end
 When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |reg_no|
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  renewal_url = Quke::Quke.config.custom["urls"]["front_office_renewals"] + "/fo/renew/#{reg_no}"
+  renewal_url = Quke::Quke.config.custom["urls"]["front_office_renewals"] + "/fo/#{reg_no}/renew"
 
   visit(renewal_url)
 end
