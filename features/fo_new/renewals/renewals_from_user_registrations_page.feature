@@ -12,10 +12,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
          And view my registration on the dashboard
         Then I will see my registration "CBDU213" has been renewed
 
-  # This test fails because the seeded data puts this registration within the renewal window.
-  # Either the test or the data needs rewriting.
-  # @broken
-  # Scenario: Limited company attempts to renew expired registration
-  # 	   Given I have signed in to view my registrations as "user@example.com"
-  #       When I try to renew anyway by guessing the renewal url for "CBDU233"
-  #       Then I will be told my registration can not be renewed
+  Scenario: Limited company attempts to renew expired registration
+  	   Given I have signed in to view my registrations as "user@example.com"
+        When I try to renew anyway by guessing the renewal url for "CBDU233"
+        Then I will be told my registration can not be renewed
