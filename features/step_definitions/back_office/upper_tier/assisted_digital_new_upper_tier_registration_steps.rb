@@ -4,7 +4,7 @@ When(/^I have my sole trader upper tier waste carrier application completed for 
   @back_app.business_details_page.submit(
     company_name: "AD UT Sole Trader",
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -29,7 +29,7 @@ When(/^I have my limited company as a upper tier waste carrier application compl
     companies_house_number: "00445790",
     company_name: "AD UT Company limited",
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -57,7 +57,7 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @back_app.business_details_page.submit(
     company_name: "AD Upper Tier Partnership",
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -84,7 +84,7 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.business_details_page.submit(
     company_name: "AD UT Public Body",
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -117,7 +117,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
     companies_house_number: @companies_house_number,
     company_name: @company_name,
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
 
   @back_app.contact_details_page.submit(
@@ -158,7 +158,7 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
     companies_house_number: "00445790",
     company_name: co_name,
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -198,7 +198,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
   @back_app.business_details_page.submit(
     company_name: @company_name,
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
@@ -233,7 +233,7 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.business_details_page.submit(
     company_name: @company_name,
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",

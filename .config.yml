@@ -10,6 +10,7 @@
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
 app_host: 'http://localhost:3000'
+# app_host: 'https://waste-carriers-dev.aws.defra.cloud'
 # app_host: 'https://waste-carriers-tst.aws.defra.cloud'
 # app_host: 'https://waste-carriers-pre.aws.defra.cloud'
 
@@ -18,7 +19,7 @@ app_host: 'http://localhost:3000'
 driver: chrome
 
 # Runs either Chrome or Firefox driver headlessly if set to true
-headless: false
+headless: true
 
 parallel: false
 
@@ -105,6 +106,19 @@ custom:
     back_office_renewals_sign_in: "http://localhost:8001/bo/users/sign_in"
     backend_admin: "http://localhost:3000/admins/sign_in"
     mail_client: "http://localhost:1080"
+
+  # # Dev setup
+  # urls:
+  #   front_office: "https://waste-carriers-dev.aws.defra.cloud"
+  #   front_office_sign_in: "https://waste-carriers-dev.aws.defra.cloud/users/sign_in"
+  #   front_office_renewals: "https://waste-carriers-dev.aws.defra.cloud"
+  #   front_office_renewals_sign_in: "https://waste-carriers-dev.aws.defra.cloud/fo/users/sign_in"
+  #   back_end_dashboard: "https://admin-waste-carriers-dev.aws.defra.cloud/registrations?locale=en"
+  #   back_office: "https://admin-waste-carriers-dev.aws.defra.cloud"
+  #   back_office_admin: "https://admin-waste-carriers-dev.aws.defra.cloud/agency_users/sign_in"
+  #   back_office_renewals: "https://admin-waste-carriers-dev.aws.defra.cloud/"
+  #   back_office_renewals_sign_in: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/users/sign_in"
+  #   mail_client: "https://www.mailinator.com"
 
   # # Test setup
   # urls:

@@ -9,7 +9,7 @@ When(/^I complete my limited company renewal without changing any information pa
   @front_app.company_name_page.submit
   @front_app.post_code_page.submit(postcode: "BS1 5AH")
   @front_app.business_address_page.submit(
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   people = @front_app.key_people_page.key_people
 
@@ -42,7 +42,7 @@ When(/^I complete my limited company registration without changing any informati
   @front_app.company_name_page.submit
   @front_app.post_code_page.submit(postcode: "BS1 5AH")
   @front_app.business_address_page.submit(
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   people = @front_app.key_people_page.key_people
 
