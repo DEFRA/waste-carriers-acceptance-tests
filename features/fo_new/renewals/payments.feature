@@ -22,6 +22,8 @@ Feature: Registered waste carrier pays for their renewal
        Then I will be notified my renewal is pending payment
         And I will receive a renewal appliction received email
 
+# This test won't work if the mock is in place
+@no_mock
     Scenario: Cancelled worldpay payment can be paid for by retrying card payment
       Given I renew my registration using my previous registration number "CBDU220"
         And I have signed in to renew my registration as "user@example.com"

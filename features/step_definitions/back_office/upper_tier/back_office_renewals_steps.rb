@@ -55,6 +55,9 @@ Then(/^the renewal is complete$/) do
   expect(@renewals_app.renewal_complete_page.confirmation_box).to have_text("Your registration number is still\n" + @registration_number)
   # rubocop:enable Metrics/LineLength
   puts "Renewal " + @registration_number + " complete"
+
+  @renewals_app.renewal_complete_page.finished_button.click
+  expect(@bo.view_details_page.heading).to have_text("Registration " + @registration_number)
 end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
