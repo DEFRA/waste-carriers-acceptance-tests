@@ -18,7 +18,8 @@ class AddressLookupPage < SitePrism::Page
 
   def submit_valid_address(_args = {})
     enter_postcode("BS1 5AH")
-    results_dropdown.select("ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
+    # This uses a partial match, so works regardless of whether the address is Natural England or Environment Agency
+    results_dropdown.select("HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH")
     submit_button.click
   end
 

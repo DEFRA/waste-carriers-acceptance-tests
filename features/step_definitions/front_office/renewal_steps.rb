@@ -312,6 +312,9 @@ Then(/^I will be notified my renewal is complete$/) do
   @renewals_app.renewal_complete_page.wait_until_heading_visible
   expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
   expect(@renewals_app.renewal_complete_page).to have_text(@registration_number)
+
+  @renewals_app.renewal_complete_page.finished_button.click
+  expect(@renewals_app.waste_carrier_registrations_page.heading).to have_text("Your waste carrier registrations")
   Capybara.reset_session!
 end
 
@@ -365,7 +368,7 @@ When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |re
 end
 
 When(/^view my registration on the dashboard$/) do
-  @renewals_app.renewal_complete_page.finished.click
+  @renewals_app.renewal_complete_page.finished_button.click
 end
 
 Then(/^I will see my registration "([^"]*)" has been renewed$/) do |reg|

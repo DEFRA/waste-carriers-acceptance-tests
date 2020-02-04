@@ -9,7 +9,7 @@ When(/^I complete my application of my charity as a lower tier waste carrier$/) 
   @front_app.business_details_page.submit(
     company_name: "LT charity",
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(
@@ -39,7 +39,7 @@ When(/^I complete my application of my local authority as a lower tier waste car
   @front_app.business_details_page.submit(
     company_name: "LT local athority",
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(
@@ -72,7 +72,7 @@ When(/^I complete my application of my partnership as a lower tier waste carrier
   @front_app.business_details_page.submit(
     company_name: "LT partnership",
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(
@@ -102,7 +102,7 @@ When(/^I complete my application of my public body as a lower tier waste carrier
   @front_app.business_details_page.submit(
     company_name: "LT public body",
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(
@@ -135,7 +135,7 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
   @front_app.business_details_page.submit(
     company_name: "LT Sole Trader",
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @email_address = generate_email
   @front_app.contact_details_page.submit(
@@ -167,7 +167,7 @@ Given(/^I complete my application of my limited company "([^"]*)" as a lower tie
   @front_app.business_details_page.submit(
     company_name: company_name,
     postcode: "BS1 5AH",
-    result: "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @company_name = company_name
   @email_address = generate_email
