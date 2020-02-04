@@ -165,7 +165,7 @@ def reset_dbs
 
   vagrant_key = File.join(vagrant_loc, "private_key")
   # The following line fully resets the local database and resets the environment without a full vagrant reload:
-  system("ssh -i #{vagrant_key} vagrant@192.168.33.11 'export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && cd /vagrant/dbreset && . reset_environment.sh'")
+  system("ssh -i #{vagrant_key} vagrant@192.168.33.11 'export PATH=\"$HOME/.rbenv/bin:$PATH\" && eval \"$(rbenv init -)\" && source /etc/profile.d/myvars.sh && source /vagrant/dbreset/reset_environment.sh'")
 
   current_directory = File.dirname(__FILE__)
   Dir.glob("#{current_directory}/fixtures/*.json").each do |fixture|
