@@ -1,7 +1,7 @@
 @bo_new @upper_tier @bo_renew @renewal
 
 Feature: Assisted digital renewal of an upper tier public body
-  As a carrier of commerical waste
+  As a carrier of commercial waste
   I want assistance with my waste carrier renewal from the Environment Agency
   So I can complete my regisration and I am compliant with the law
 
@@ -22,7 +22,7 @@ Scenario: Limited company has their upper tier registration renewed by NCCC
 
 Scenario: Expired registration in renewal grace window is only renewed after conviction check and payment is made
   Given I choose to renew "CBDU232"
-    And I sign into the back office as "agency_user"
+    And I sign into the back office as "agency_user_with_payment_refund"
     And I renew the limited company registration declaring a conviction and paying by bank transfer
     And I search for "CBDU232" pending payment
    When I mark the renewal payment as received
