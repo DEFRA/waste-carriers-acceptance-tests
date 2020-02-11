@@ -51,9 +51,9 @@ end
 
 Then(/^the renewal is complete$/) do
   expect(@renewals_app.renewal_complete_page.heading).to have_text("Renewal complete")
-  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Layout/LineLength
   expect(@renewals_app.renewal_complete_page.confirmation_box).to have_text("Your registration number is still\n" + @registration_number)
-  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/LineLength
   puts "Renewal " + @registration_number + " complete"
 
   @renewals_app.renewal_complete_page.finished_button.click
@@ -250,9 +250,9 @@ end
 
 When(/^I approve the conviction check$/) do
   @bo.dashboard_page.govuk_banner.conviction_checks.click
-  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Layout/LineLength
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/#{@registration_number}/convictions")
-  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/LineLength
 
   @bo.convictions_bo_details_page.approve_button.click
   @bo.convictions_decision_page.submit(conviction_reason: "ok")

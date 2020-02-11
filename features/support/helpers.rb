@@ -16,6 +16,7 @@ def sign_in_to_back_office(user)
   return unless heading == "Sign in"
 
   @bo.sign_in_page.submit(
+    # user must match the user headings in .config.yml
     email: Quke::Quke.config.custom["accounts"][user]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )

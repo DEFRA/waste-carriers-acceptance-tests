@@ -99,7 +99,7 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.relevant_convictions_page.submit(choice: :no)
   @back_app.check_details_page.submit
 end
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 Given(/^a limited company with companies house number "([^"]*)" is registered as an upper tier waste carrier$/) do |ch_no|
 
   # Store company name and number for later tests:
@@ -144,7 +144,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
   @registration_number = @back_app.finish_assisted_page.registration_number.text
   puts "Registration " + @registration_number + " completed with conviction match on company number"
 end
-# rubocop:enable Metrics/LineLength
+# rubocop:enable Layout/LineLength
 
 Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
   @company_name = co_name
