@@ -1,6 +1,6 @@
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 Given(/^NCCC partially registers an "([^"]*)" tier "([^"]*)" "([^"]*)" with "([^"]*)"$/) do |tier, carrier, business, convictions|
-  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/LineLength
 
   # Set variables that can be reused across steps
   @app = "old"

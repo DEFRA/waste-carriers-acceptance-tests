@@ -19,13 +19,13 @@ task :run do
   sh %( bundle exec quke )
 end
 
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 desc "Run all browserstack tests"
 task browserstack: %i[Edge16_W10 Edge15_W10 Firefox58_W8_1 Galaxy_Note_8 Google_Pixel ie11_W10 Chrome63_OSX Chrome63_W7 Chrome64_OSX ie8_W7 iPhone7 iPhone_X Safari11_OSX]
 # Firefox59_OSX Firefox59_W10
 desc "Run all Safari browser tests"
 task safari_browserstack: %i[iPhone7 iPhone_X Safari9_1_OSX Safari10_1_OSX Safari11_OSX]
-# rubocop:enable Metrics/LineLength
+# rubocop:enable Layout/LineLength
 
 desc "Run Chrome 64 OS X test"
 task :Chrome64_OSX  do
@@ -157,7 +157,7 @@ task :reset_dbs do
   reset_dbs
 end
 
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 
 def reset_dbs
   vagrant_loc = ENV["VAGRANT_KEY_LOCATION"]
@@ -174,4 +174,4 @@ def reset_dbs
   end
   puts "Databases reset"
 end
-# rubocop:enable Metrics/LineLength
+# rubocop:enable Layout/LineLength

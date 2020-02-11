@@ -33,7 +33,7 @@ When(/^I complete my application of my limited company as an upper tier waste ca
   )
 end
 
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers as an upper tier waste carrier$/) do |no|
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
@@ -86,4 +86,4 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   @registration_number = @front_app.confirmation_page.registration_number.text
   puts "Upper tier registration " + @registration_number + " completed by a limited company"
 end
-# rubocop:enable Metrics/LineLength
+# rubocop:enable Layout/LineLength

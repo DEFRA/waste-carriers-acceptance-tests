@@ -54,7 +54,7 @@ class RelevantPeoplePage < SitePrism::Page
     submit_button.click
   end
 
-  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Layout/LineLength
   def relevant_people
     [
       { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, dob_day: 1, dob_month: 5, dob_year: 1984, position: "Head honcho" },
@@ -70,5 +70,5 @@ class RelevantPeoplePage < SitePrism::Page
       { first_name: "Alex", last_name: "Smith-Brown", dob_day: 1, dob_month: 5, dob_year: 1984, position: "Head honcho" }
     ]
   end
-  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/LineLength
 end

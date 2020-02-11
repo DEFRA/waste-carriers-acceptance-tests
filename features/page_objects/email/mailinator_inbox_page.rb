@@ -1,10 +1,10 @@
 class MailinatorInboxPage < SitePrism::Page
   # Mailinator inbox
-  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Layout/LineLength
   element(:confirmation_email, :xpath, "//*[normalize-space()='Confirm your email address']")
   element(:registration_complete_email, :xpath, "//*[normalize-space()='Waste Carrier Registration Complete']")
   element(:application_received, :xpath, "//*[text()[contains(.,'Your application to renew waste carriers registration')]]")
-  # rubocop:enable Metrics/LineLength
+  # rubocop:enable Layout/LineLength
 
   iframe :email_details, MailinatorEmailDetailsPage, "#msg_body"
 
