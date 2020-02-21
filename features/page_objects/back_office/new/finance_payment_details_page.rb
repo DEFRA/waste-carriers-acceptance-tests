@@ -31,10 +31,10 @@ class FinancePaymentDetailsPage < SitePrism::Page
   #
   # Charges and amendments
   # Date Charge Amount in GBP
-  # 21/02/2020 09:08 Initial Registration	154.00
+  # 21/02/2020 09:08 Initial Registration 154.00
   # 21/02/2020 09:08 1x Copy cards 5.00
   # Payment history
-  # Date Method Reference	Comment	Amount in GBP
+  # Date Method Reference Comment Amount in GBP
   # Balance
   # Status Amount in GBP
   # Payment required 159.00

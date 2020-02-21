@@ -1,4 +1,4 @@
-@bo_new @upper_tier @bo_renew @finance @wip
+@bo_new @upper_tier @bo_renew @finance
 
 Feature: Pay for registrations [RUBY-826]
   As a user with finance privilieges
