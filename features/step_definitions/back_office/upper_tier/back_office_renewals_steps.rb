@@ -216,7 +216,8 @@ When(/^I mark the renewal payment as received$/) do
 end
 
 Then(/^the expiry date should be three years from the previous expiry date$/) do
-  # Adds three years to expiry date and then checks expiry date reported in registration details
+  # Adds three years to expiry date and then checks expiry date reported in registration details.
+  # Need to convert this step to new app!
   @expected_expiry_date = @expiry_date_year_first.next_year(3)
   visit(Quke::Quke.config.custom["urls"]["back_office"])
   @bo.registrations_page.search(search_input: @registration_number)

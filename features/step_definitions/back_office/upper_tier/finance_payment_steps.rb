@@ -1,11 +1,9 @@
 When(/^the registration's balance is (\d+)$/) do |balance|
-  # This step assumes that any back office user is already logged in
-  # and the payment status is viewable for that registration
+  sign_in_to_back_office("agency_user_with_payment_refund")
 
   # Firstly, check the balance for that registration:
   check_registration_details(@registration_number)
-  @bo.registration_details_page.payment_details_link.click
-  expect(retrieve_balance_from_page).to eq(balance.to_f)
+  check_balance(balance)
 
   # Once confirmed, set the balance variable to that value for future steps
   @reg_balance = balance
@@ -16,7 +14,12 @@ When(/^the transient renewal's balance is (\d+)$/) do |balance|
   # This step assumes that any back office user is already logged in
   # and the payment status is viewable for that renewal (it's been submitted)
 
-  # Adapt from similar registration step
+  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
+  @bo.dashboard_page.view_transient_reg_details(search_term: @registration_number)
+  check_balance(balance)
+
+  # Once checked, set the balance variable to that value for future steps
+  @reg_balance = balance
 end
 
 When(/^NCCC makes a payment of (\d+) by "([^"]*)"$/) do |amount, method|
