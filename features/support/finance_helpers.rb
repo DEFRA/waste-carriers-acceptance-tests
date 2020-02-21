@@ -54,7 +54,6 @@ def enter_payment(amount, method)
   # Amount can be a string or number.
   # List of method options is in finance_payment_method_page.rb
 
-  puts "Adding payment for " + amount.to_s + " by " + method
   @bo.finance_payment_method_page.submit(choice: method.to_sym)
   expect(@bo.finance_payment_input_page.heading).to have_text("payment for " + @registration_number)
   time = Time.new
