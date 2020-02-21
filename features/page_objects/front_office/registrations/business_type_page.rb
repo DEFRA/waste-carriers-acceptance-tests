@@ -7,6 +7,14 @@ class BusinessTypePage < SitePrism::Page
 
   def submit(args = {})
     org_types.find { |btn| btn.value == args[:org_type] }.click if args.key?(:org_type)
+    # Options on backend are:
+    # limitedCompany
+    # soleTrader
+    # partnership
+    # publicBody
+    # charity
+    # authority
+    # other (= I don't know)
 
     submit_button.click
   end

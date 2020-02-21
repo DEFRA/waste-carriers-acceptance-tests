@@ -3,7 +3,7 @@ When(/^an agency user orders "([^"]*)" registration (?:card|cards) for "([^"]*)"
   @number_of_cards = cards.to_i
 
   @bo.dashboard_page.view_reg_details(search_term: reg)
-  @bo.view_details_page.order_cards_link.click
+  @bo.registration_details_page.order_cards_link.click
   expect(@journey.cards_order_page.heading).to have_text("Order registration cards for " + reg)
 
   # Look for the correct contact address for the seeded data:
@@ -55,8 +55,8 @@ Then(/^the card order is confirmed awaiting payment$/) do
   expect(@journey.cards_confirmation_page.awaiting_payment_message).to have_text("Order is awaiting payment.")
 
   @journey.cards_confirmation_page.details_for_reg_button.click
-  expect(@bo.view_details_page.heading).to have_text("Registration " + @registration_number)
-  expect(@bo.view_details_page.content).to have_text("Payment required")
+  expect(@bo.registration_details_page.heading).to have_text("Registration " + @registration_number)
+  expect(@bo.registration_details_page.content).to have_text("Payment required")
 end
 
 Then(/^the carrier receives an email saying their card order is being printed$/) do

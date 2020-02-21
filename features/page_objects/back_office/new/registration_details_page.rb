@@ -1,4 +1,4 @@
-class ViewDetailsPage < SitePrism::Page
+class RegistrationDetailsPage < SitePrism::Page
 
   # View details for registrations or transient renewals
 
@@ -9,16 +9,19 @@ class ViewDetailsPage < SitePrism::Page
 
   element(:content, ".column-full")
   element(:continue_as_ad_button, ".button", text: "Continue as assisted digital")
-
-  element(:actions_box, ".wcr-actions--push-down")
-  element(:renew_link, "a[href*='/ad-privacy-policy/CBD']")
-  element(:transfer_link, "a[href*='/transfer']")
-  element(:order_cards_link, "a[href*='/order-copy-cards']")
-  element(:payment_details_link, "a[href*='/finance_details']")
-  element(:cease_or_revoke_link, "a[href*='/cease-or-revoke']")
+  element(:process_payment_button, "a.button[href*='/payments']")
 
   element(:info_panel, ".wcr-panel-border-all")
   element(:business_name, ".wcr-panel-border-all .heading-medium")
+
+  element(:actions_box, ".wcr-actions--push-down")
+  element(:transfer_link, "a[href*='/transfer']")
+  element(:edit_link, "a[href*='/edit']")
+  element(:view_certificate_link, "a[href*='/certificate']")
+  element(:renew_link, "a[href*='/ad-privacy-policy/CBD']")
+  element(:order_cards_link, "a[href*='/order-copy-cards']")
+  element(:payment_details_link, "a[href*='/finance-details']")
+  element(:cease_or_revoke_link, "a[href*='/cease-or-revoke']")
 
   # Sample text on this page:
   #

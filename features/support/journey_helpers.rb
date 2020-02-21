@@ -234,5 +234,5 @@ end
 def check_registration_details(reg)
   find_link("Registrations search").click
   @bo.dashboard_page.view_reg_details(search_term: reg)
-  expect(@bo.view_details_page.heading).to have_text("Registration " + reg)
+  expect(@bo.registration_details_page.heading).to have_text("Registration " + reg)
 end

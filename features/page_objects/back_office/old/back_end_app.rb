@@ -48,7 +48,7 @@ class BackEndApp
     @last_page = CarrierTypePage.new
   end
 
-  def cash_payment_page
+  def finance_payment_input_page
     @last_page = CashPaymentPage.new
   end
 
@@ -239,10 +239,6 @@ class BackEndApp
 
   def registration_type_page
     @last_page = RegistrationTypePage.new
-  end
-
-  def transient_registrations_page
-    @last_page = TransientRegistrationsPage.new
   end
 
   def refund_complete_page

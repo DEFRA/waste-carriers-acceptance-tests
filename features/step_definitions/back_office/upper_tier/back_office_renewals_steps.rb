@@ -11,7 +11,7 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   # Search for registration to renew:
   sign_in_to_back_office("agency_user")
   @bo.dashboard_page.view_reg_details(search_term: @registration_number)
-  @bo.view_details_page.renew_link.click
+  @bo.registration_details_page.renew_link.click
   start_internal_renewal
 
   # Submit carrier details for the business, tier and carrier:
@@ -31,21 +31,21 @@ Given(/^the back office pages show the correct transient renewal details$/) do
   sign_in_to_back_office("agency_user")
   @bo.dashboard_page.view_transient_reg_details(search_term: @registration_number)
 
-  expect(@bo.view_details_page.heading).to have_text("Renewal " + @registration_number)
-  expect(@bo.view_details_page).to have_text "Application in progress"
-  expect(@bo.view_details_page).to have_continue_as_ad_button
-  expect(@bo.view_details_page.info_panel).to have_text(@business_name)
-  expect(@bo.view_details_page.content).to have_text("Bob Carolgees")
-  expect(@bo.view_details_page.content).to have_text("Application still in progress. No finance data yet.")
+  expect(@bo.registration_details_page.heading).to have_text("Renewal " + @registration_number)
+  expect(@bo.registration_details_page).to have_text "Application in progress"
+  expect(@bo.registration_details_page).to have_continue_as_ad_button
+  expect(@bo.registration_details_page.info_panel).to have_text(@business_name)
+  expect(@bo.registration_details_page.content).to have_text("Bob Carolgees")
+  expect(@bo.registration_details_page.content).to have_text("Application still in progress. No finance data yet.")
 
   if @convictions == "no convictions"
-    expect(@bo.view_details_page.content).to have_text("There are no convictions for this registration")
+    expect(@bo.registration_details_page.content).to have_text("There are no convictions for this registration")
   end
 
 end
 
 Given(/^NCCC goes back to the in progress renewal$/) do
-  @bo.view_details_page.continue_as_ad_button.click
+  @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit
 end
 
@@ -57,7 +57,7 @@ Then(/^the renewal is complete$/) do
   puts "Renewal " + @registration_number + " complete"
 
   @renewals_app.renewal_complete_page.finished_button.click
-  expect(@bo.view_details_page.heading).to have_text("Registration " + @registration_number)
+  expect(@bo.registration_details_page.heading).to have_text("Registration " + @registration_number)
 end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
@@ -71,7 +71,7 @@ end
 
 When(/^I renew the local authority registration$/) do
   @bo.dashboard_page.view_reg_details(search_term: @registration_number)
-  @bo.view_details_page.renew_link.click
+  @bo.registration_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
@@ -97,7 +97,7 @@ end
 
 When(/^I renew the limited company registration$/) do
   @bo.dashboard_page.view_reg_details(search_term: @registration_number)
-  @bo.view_details_page.renew_link.click
+  @bo.registration_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
@@ -147,7 +147,7 @@ end
 
 When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
   @bo.dashboard_page.view_transient_reg_details(search_term: reg)
-  @bo.view_details_page.continue_as_ad_button.click
+  @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
@@ -210,8 +210,9 @@ When(/^I search for "([^"]*)" pending payment$/) do |reg|
 end
 
 When(/^I mark the renewal payment as received$/) do
-  @bo.transient_registrations_page.process_payment.click
+  @bo.registration_details_page.process_payment_button.click
   pay_by_cash(105)
+  @is_transient_renewal = false
 end
 
 Then(/^the expiry date should be three years from the previous expiry date$/) do
@@ -225,7 +226,7 @@ end
 
 Given(/^I renew the limited company registration declaring a conviction and paying by bank transfer$/) do
   @bo.dashboard_page.view_reg_details(search_term: @registration_number)
-  @bo.view_details_page.renew_link.click
+  @bo.registration_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)

@@ -1,5 +1,41 @@
+When(/^the registration's balance is (\d+)$/) do |balance|
+  # This step assumes that any back office user is already logged in
+  # and the payment status is viewable for that registration
+
+  # Firstly, check the balance for that registration:
+  check_registration_details(@registration_number)
+  @bo.registration_details_page.payment_details_link.click
+  expect(retrieve_balance_from_page).to eq(balance.to_f)
+
+  # Once confirmed, set the balance variable to that value for future steps
+  @reg_balance = balance
+
+end
+
+When(/^the transient renewal's balance is (\d+)$/) do |balance|
+  # This step assumes that any back office user is already logged in
+  # and the payment status is viewable for that renewal (it's been submitted)
+
+  # Adapt from similar registration step
+end
+
+When(/^NCCC makes a payment of (\d+) by "([^"]*)"$/) do |amount, method|
+  sign_in_as_appropriate_finance_user(method)
+  go_to_payment(@registration_number)
+  enter_payment(amount, method)
+  check_payment_confirmation_message(amount)
+end
+
+When(/^NCCC pays the remaining balance by "([^"]*)"$/) do |method|
+  sign_in_as_appropriate_finance_user(method)
+  go_to_payment(@registration_number)
+  enter_payment(@reg_balance, method)
+  check_payment_confirmation_message(@reg_balance)
+end
+
 Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
   @registration_number = reg
+  @is_transient_renewal = true
 
   @bo.registrations_page.search(search_input: reg.to_sym)
   @expiry_date = @bo.registrations_page.search_results[0].expiry_date.text
@@ -12,7 +48,7 @@ Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @bo.dashboard_page.view_reg_details(search_term: @registration_number)
-  @bo.view_details_page.renew_link.click
+  @bo.registration_details_page.renew_link.click
 
   start_internal_renewal
   @journey.confirm_business_type_page.submit

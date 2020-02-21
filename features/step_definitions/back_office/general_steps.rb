@@ -62,12 +62,20 @@ Given(/^the registration details are found in the backoffice$/) do
   @back_app.registrations_page.search(search_input: @registration_number)
 end
 
-When(/^I ask to pay for my application by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
+When(/^the applicant chooses to pay by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
   @back_app.order_page.submit(
     copy_card_number: copy_card_number,
     choice: :bank_transfer_payment
   )
   @back_app.offline_payment_page.submit
+
+  # Show "Registration pending" page
+  expect(@back_app.finish_assisted_page).to have_text("Registration pending")
+  expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDU")
+
+  @registration_number = @back_app.finish_assisted_page.registration_number.text
+  puts "Registration " + @registration_number + " submitted by bank transfer with " + copy_card_number.to_s + " card(s)"
+
 end
 
 Given(/^I request assistance with a new registration$/) do
@@ -97,18 +105,9 @@ end
 
 Then(/^I will have a lower tier registration$/) do
   expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDL")
-
   expect(@back_app.finish_assisted_page).to have_view_certificate
 
   # Stores registration number and access code for later use
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
-
-end
-
-Then(/^I will be informed by the person taking the call that registration is pending payment$/) do
-  expect(@back_app.finish_assisted_page).to have_text("Registration pending")
-  expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDU")
-
   @registration_number = @back_app.finish_assisted_page.registration_number.text
 
 end
@@ -154,7 +153,7 @@ end
 
 When(/^the registration is revoked$/) do
   @bo.dashboard_page.view_reg_details(search_term: @registration_number)
-  @bo.view_details_page.cease_or_revoke_link.click
+  @bo.registration_details_page.cease_or_revoke_link.click
   @bo.cease_or_revoke_page.submit(
     choice: :revoke,
     reason: "Did a naughty thing"
@@ -166,7 +165,7 @@ end
 
 When(/^the registration is ceased$/) do
   @bo.dashboard_page.view_reg_details(search_term: @registration_number)
-  @bo.view_details_page.cease_or_revoke_link.click
+  @bo.registration_details_page.cease_or_revoke_link.click
   @bo.cease_or_revoke_page.submit(
     choice: :cease,
     reason: "Carrier has stopped carrying waste"
