@@ -4,6 +4,7 @@ class DashboardPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
   element(:heading, ".heading-large")
+  element(:sign_out_link, "a[href*='/bo/users/sign_out']")
 
   element(:flash_message, ".flash-message")
 

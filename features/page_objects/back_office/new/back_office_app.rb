@@ -22,10 +22,6 @@ class BackOfficeApp
     @last_page = BankTransferPage.new
   end
 
-  def cash_payment_page
-    @last_page = CashPaymentPage.new
-  end
-
   def cease_or_revoke_page
     @last_page = CeaseOrRevokePage.new
   end
@@ -58,8 +54,16 @@ class BackOfficeApp
     @last_page = ExistingRegistrationPage.new
   end
 
-  def finance_payments_page
-    @last_page = FinancePaymentsPage.new
+  def finance_payment_details_page
+    @last_page = FinancePaymentDetailsPage.new
+  end
+
+  def finance_payment_input_page
+    @last_page = FinancePaymentInputPage.new
+  end
+
+  def finance_payment_method_page
+    @last_page = FinancePaymentMethodPage.new
   end
 
   def finish_assisted_page
@@ -90,6 +94,10 @@ class BackOfficeApp
     @last_page = RegistrationCardsPage.new
   end
 
+  def registration_details_page
+    @last_page = RegistrationDetailsPage.new
+  end
+
   def renewal_information_page
     @last_page = RenewalInformationPage.new
   end
@@ -114,20 +122,12 @@ class BackOfficeApp
     @last_page = TransferRegistrationPage.new
   end
 
-  def transient_registrations_page
-    @last_page = TransientRegistrationsPage.new
-  end
-
   def users_page
     @last_page = UsersPage.new
   end
 
   def unrenewable_page
     @last_page = UnrenewablePage.new
-  end
-
-  def view_details_page
-    @last_page = ViewDetailsPage.new
   end
 
   def waste_carrier_sign_in_page

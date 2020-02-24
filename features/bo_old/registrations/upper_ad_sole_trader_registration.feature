@@ -16,6 +16,5 @@ Feature: Assisted digital registration of an upper tier sole trader
 
 @smoke
   Scenario: NCCC successfully registers a sole trader for a upper tier waste carriers licence choosing to pay by bank transfer
-    When I ask to pay for my application by bank transfer ordering 3 copy cards
-    Then I will be informed by the person taking the call that registration is pending payment
-     And the registration status will be "Awaiting payment"
+    When the applicant chooses to pay by bank transfer ordering 3 copy cards
+    Then the registration status will be "Awaiting payment"

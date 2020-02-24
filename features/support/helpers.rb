@@ -22,6 +22,18 @@ def sign_in_to_back_office(user)
   )
 end
 
+def sign_out_of_back_office
+  # Check not already signed out
+  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
+  heading = @journey.standard_page.heading.text
+
+  # Bypass if already logged out:
+  return unless heading == "Waste carriers registrations"
+
+  @bo.dashboard_page.sign_out_link.click
+  expect(@journey.standard_page.heading).to have_text("Sign in")
+end
+
 def scroll_to(element)
   element = element.root_element if element.respond_to?(:root_element)
   Capybara.evaluate_script <<-SCRIPT
