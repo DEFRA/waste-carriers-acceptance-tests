@@ -64,25 +64,27 @@ end
 Then(/^the carrier receives an email saying their card order is being printed$/) do
   visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
 
-  # Get the text of the last email containing the chosen text.
-  # Take care that this test does not pick up an email from a previous test run.
-  # This test could fail if a similar copy card order has been placed recently.
-  email_text = @journey.last_email_page.get_page_text("We’re printing your waste carriers registration card")
+  text_to_check = [
+    "We’re printing your waste carriers registration card",
+    @registration_number,
+    "Order: " + @number_of_cards.to_s + " registration card",
+    "Paid: £" + (@number_of_cards.to_i * 5).to_s + " by debit or credit card"
+  ]
 
-  # Validate the email text against what's expected:
-  expect(email_text).to include(@registration_number)
-  expect(email_text).to include("Order: " + @number_of_cards.to_s + " registration card")
-  expect(email_text).to include("Paid: £" + (@number_of_cards.to_i * 5).to_s + " by debit or credit card")
+  # Check there is an email containing all required strings:
+  expect(@journey.last_email_page.check_email_for_text(text_to_check)).to eq("Success")
 end
 
 Then(/^the carrier receives an email saying they need to pay for their card order$/) do
   visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
 
-  # Get the text of the last email containing the chosen text:
-  email_text = @journey.last_email_page.get_page_text("You need to pay for your waste carriers registration card")
+  text_to_check = [
+    "You need to pay for your waste carriers registration card",
+    @registration_number,
+    "We cannot print the cards until we receive confirmation that you have paid",
+    "You ordered " + @number_of_cards.to_s + " registration card"
+  ]
 
-  # Validate the email text against what's expected:
-  expect(email_text).to include(@registration_number)
-  expect(email_text).to include("We cannot print the cards until we receive confirmation that you have paid")
-  expect(email_text).to include("You ordered " + @number_of_cards.to_s + " registration card")
+  # Check there is an email containing all required strings:
+  expect(@journey.last_email_page.check_email_for_text(text_to_check)).to eq("Success")
 end
