@@ -73,6 +73,10 @@ class JourneyApp
     @last_page = DeclarationPage.new
   end
 
+  def last_email_page
+    @last_page = LastEmailPage.new
+  end
+
   def standard_page
     @last_page = StandardPage.new
   end
