@@ -16,7 +16,7 @@ class LastEmailPage < SitePrism::Page
 
   def check_email_for_text(expected_text)
     # Look for an email containing all the strings in the given array
-    # and returns the whole text of the page.
+    # and returns true if all the expected text is present.
 
     10.times do
       page_text = email_content.text
