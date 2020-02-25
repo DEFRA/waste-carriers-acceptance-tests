@@ -8,7 +8,7 @@ Given(/^NCCC partially registers an "([^"]*)" tier "([^"]*)" "([^"]*)" with "([^
   @carrier = carrier
   @business = business
   @convictions = convictions
-  @is_transient_renewal = false # May not need this. Delete before next PR if I haven't called it.
+  @is_transient_renewal = false
 
   old_start_internal_registration
   old_submit_carrier_details("limitedCompany", "upper", "carrier_broker_dealer")

@@ -33,7 +33,9 @@ When(/^the agency user pays for the (?:card|cards) by bank card$/) do
   submit_valid_card_payment
 end
 
-When(/^the agency user pays for the (?:card|cards) by bank transfer$/) do
+When(/^the agency user chooses to pay for the (?:card|cards) by bank transfer$/) do
+  # This feature will fail if the registration's balance is not 0 at the start of the test.
+  # Reset database if needed.
   @journey.cards_payment_page.submit(choice: :alternative_payment)
 
   expect(@journey.standard_page.heading).to have_text("Details for bank transfer")
@@ -60,9 +62,27 @@ Then(/^the card order is confirmed awaiting payment$/) do
 end
 
 Then(/^the carrier receives an email saying their card order is being printed$/) do
-  # add steps here when last-email functionality is implemented
+  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
+
+  # Get the text of the last email containing the chosen text.
+  # Take care that this test does not pick up an email from a previous test run.
+  # This test could fail if a similar copy card order has been placed recently.
+  email_text = @journey.last_email_page.get_page_text("We’re printing your waste carriers registration card")
+
+  # Validate the email text against what's expected:
+  expect(email_text).to include(@registration_number)
+  expect(email_text).to include("Order: " + @number_of_cards.to_s + " registration card")
+  expect(email_text).to include("Paid: £" + (@number_of_cards.to_i * 5).to_s + " by debit or credit card")
 end
 
 Then(/^the carrier receives an email saying they need to pay for their card order$/) do
-  # add steps here when last-email functionality is implemented
+  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
+
+  # Get the text of the last email containing the chosen text:
+  email_text = @journey.last_email_page.get_page_text("You need to pay for your waste carriers registration card")
+
+  # Validate the email text against what's expected:
+  expect(email_text).to include(@registration_number)
+  expect(email_text).to include("We cannot print the cards until we receive confirmation that you have paid")
+  expect(email_text).to include("You ordered " + @number_of_cards.to_s + " registration card")
 end
