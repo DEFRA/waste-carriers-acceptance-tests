@@ -31,13 +31,13 @@ class LastEmailPage < SitePrism::Page
         end
       end
 
-      return "Success" if email_contains_all_text == true
+      return email_contains_all_text if email_contains_all_text == true
 
       page.evaluate_script "window.location.reload()"
     end
 
-    puts "Couldn't find email containing string: " + expected_string
-    "Email not found"
+    puts "Couldn't find email containing text: " + expected_text.to_s
+    email_contains_all_text
   end
 
 end

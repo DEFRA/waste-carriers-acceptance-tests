@@ -1,4 +1,4 @@
-@bo_new @upper_tier @bo_dashboard @wip
+@bo_new @upper_tier @bo_dashboard
 Feature: NCCC agent orders registration cards from back office
   As an NCCC agent
   I want to order registration cards

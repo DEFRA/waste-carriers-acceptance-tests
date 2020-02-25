@@ -62,8 +62,6 @@ Then(/^the card order is confirmed awaiting payment$/) do
 end
 
 Then(/^the carrier receives an email saying their card order is being printed$/) do
-  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
-
   text_to_check = [
     "We’re printing your waste carriers registration card",
     @registration_number,
@@ -71,13 +69,12 @@ Then(/^the carrier receives an email saying their card order is being printed$/)
     "Paid: £" + (@number_of_cards.to_i * 5).to_s + " by debit or credit card"
   ]
 
-  # Check there is an email containing all required strings:
-  expect(@journey.last_email_page.check_email_for_text(text_to_check)).to eq("Success")
+  # Check there is an email containing all strings in text_to_check:
+  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
+  expect(@journey.last_email_page.check_email_for_text(text_to_check))
 end
 
 Then(/^the carrier receives an email saying they need to pay for their card order$/) do
-  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
-
   text_to_check = [
     "You need to pay for your waste carriers registration card",
     @registration_number,
@@ -85,6 +82,7 @@ Then(/^the carrier receives an email saying they need to pay for their card orde
     "You ordered " + @number_of_cards.to_s + " registration card"
   ]
 
-  # Check there is an email containing all required strings:
-  expect(@journey.last_email_page.check_email_for_text(text_to_check)).to eq("Success")
+  # Check there is an email containing all strings in text_to_check:
+  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
+  expect(@journey.last_email_page.check_email_for_text(text_to_check))
 end
