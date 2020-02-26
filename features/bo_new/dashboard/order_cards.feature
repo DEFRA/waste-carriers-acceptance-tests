@@ -1,5 +1,5 @@
 @bo_new @upper_tier @bo_dashboard
-Feature: NCCC agent orders registration cards from back office
+Feature: [RUBY-767] NCCC agent orders registration cards from back office
   As an NCCC agent
   I want to order registration cards
   So that I can help a waste carrier prove they are registered

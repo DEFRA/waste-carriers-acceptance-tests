@@ -77,6 +77,10 @@ class JourneyApp
     @last_page = LastEmailPage.new
   end
 
+  def registration_cards_page
+    @last_page = RegistrationCardsPage.new
+  end
+
   def standard_page
     @last_page = StandardPage.new
   end

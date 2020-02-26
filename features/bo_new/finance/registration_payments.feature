@@ -1,13 +1,13 @@
-@bo_new @upper_tier @bo_renew @finance
+@bo_new @upper_tier @finance
 
-Feature: Pay for registrations [RUBY-826]
+Feature: [RUBY-826] Pay for registrations
   As a user with finance privilieges
   I want to help a user pay for a registration
   So that their registration can be activated
 
   Background:
       Given an Environment Agency user has signed in to the backend
-        And NCCC partially registers an "upper" tier "broker_dealer" "soleTrader" with "no convictions"
+        And NCCC partially registers an upper tier "broker_dealer" "soleTrader" with "no convictions"
         And the applicant chooses to pay by bank transfer ordering 1 copy card
         And I sign into the back office as "agency_user"
         And the registration's balance is 159
