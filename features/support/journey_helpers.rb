@@ -8,11 +8,11 @@ def old_start_internal_registration
 end
 
 def old_submit_carrier_details(business, tier, carrier)
+  @back_app.business_type_page.submit(org_type: business)
   if tier == "upper"
-    @back_app.business_type_page.submit(org_type: business)
     old_select_upper_tier_options(carrier)
   else
-    puts "Put old app lower tier steps here"
+    old_select_lower_tier_options
   end
 end
 
@@ -35,6 +35,11 @@ def old_select_upper_tier_options(carrier)
   @back_app.registration_type_page.submit(choice: carrier.to_sym)
 end
 
+def old_select_lower_tier_options
+  @back_app.other_businesses_question_page.submit(choice: :no)
+  @back_app.construction_waste_question_page.submit(choice: :no)
+end
+
 def select_upper_tier_options(carrier)
   # Randomise between 3 ways to achieve an upper tier registration:
   i = rand(1..3)
@@ -55,39 +60,42 @@ def select_upper_tier_options(carrier)
   @journey.carrier_type_page.submit(choice: carrier.to_sym)
 end
 
-def old_submit_business_details
+def old_submit_business_details(business_name, tier)
   if @back_app.business_details_page.heading.has_text? "Business details"
     # then it's a limited company:
-    business_name = "AD UT Company limited"
-    old_submit_limited_company_details(business_name)
+    old_submit_limited_company_details(business_name, tier)
   else
-    business_name = "AD UT Organisation limited"
     old_submit_organisation_details(business_name)
   end
-  business_name
 end
 
-def submit_business_details
+def submit_business_details(business_name)
   if @journey.company_number_page.heading.has_text? "What's the registration number"
     # then it's a limited company or LLP:
-    business_name = "AD Renewal Ltd"
     submit_limited_company_details(business_name)
   else
     # it'll be the company name page, which will have a heading like "What's the name of the business?"
-    business_name = "AD Renewal Organisation"
     submit_organisation_details(business_name)
   end
-  business_name
 end
 
-def old_submit_limited_company_details(business_name)
+def old_submit_limited_company_details(business_name, tier)
   # Remove this function once tech debt is complete for registrations
-  @back_app.business_details_page.submit(
-    companies_house_number: "00445790",
-    company_name: business_name,
-    postcode: "BS1 5AH",
-    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  )
+  if tier == "upper"
+    @back_app.business_details_page.submit(
+      companies_house_number: "00445790",
+      company_name: business_name,
+      postcode: "BS1 5AH",
+      result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    )
+  else
+    # Companies House number is not requested for lower tier
+    @back_app.business_details_page.submit(
+      company_name: business_name,
+      postcode: "BS1 5AH",
+      result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
+    )
+  end
 end
 
 def submit_limited_company_details(business_name)
@@ -134,11 +142,10 @@ def submit_organisation_details(business_name)
   complete_address
 end
 
-def old_submit_company_people
+def old_submit_company_people(business)
   people = @back_app.key_people_page.key_people
-  @back_app.key_people_page.add_key_person(person: people[0])
-  @back_app.key_people_page.add_key_person(person: people[1])
-  @back_app.key_people_page.submit_key_person(person: people[2])
+  @back_app.key_people_page.add_key_person(person: people[0]) if business == "partnership"
+  @back_app.key_people_page.submit_key_person(person: people[1])
 end
 
 def submit_company_people
@@ -219,13 +226,15 @@ end
 
 def order_cards_during_journey(number_of_cards)
   # This covers ordering copy cards during a registration or renewal, from the new app
-  @bo.registration_cards_page.submit(cards: number_of_cards)
+  @journey.registration_cards_page.submit(cards: number_of_cards)
 end
 
 def old_complete_registration_from_bo(business, tier, carrier)
-  expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDU")
+  expect(@back_app.finish_assisted_page.heading).to have_text("Registration complete")
+  expect(@back_app.finish_assisted_page.registration_number).to have_text("CBD")
   expect(@back_app.finish_assisted_page).to have_view_certificate
-  # Stores registration number and access code for later use
+
+  # Stores registration number for later use
   @registration_number = @back_app.finish_assisted_page.registration_number.text
   puts "Registration " + @registration_number + " completed for " + tier + " tier " + business + " " + carrier
   @registration_number

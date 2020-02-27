@@ -1,26 +1,44 @@
-# rubocop:disable Layout/LineLength
-Given(/^NCCC partially registers an "([^"]*)" tier "([^"]*)" "([^"]*)" with "([^"]*)"$/) do |tier, carrier, business, convictions|
-  # rubocop:enable Layout/LineLength
+Given(/^NCCC partially registers an upper tier "([^"]*)" "([^"]*)" with "([^"]*)"$/) do |carrier, business, convictions|
 
   # Set variables that can be reused across steps
   @app = "old"
-  @tier = tier
+  @tier = "upper"
   @carrier = carrier
   @business = business
+  # Generate the business name, stripping out any illegal characters such as _:
+  @business_name = "Registered " + carrier.gsub!(/[^0-9A-Za-z]/, "") + " " + business + " with " + convictions
   @convictions = convictions
-  @is_transient_renewal = false # May not need this. Delete before next PR if I haven't called it.
+  @is_renewal = false
+  @is_transient_renewal = false
 
   old_start_internal_registration
-  old_submit_carrier_details("limitedCompany", "upper", "carrier_broker_dealer")
-  @business_name = old_submit_business_details
+  old_submit_carrier_details(business, "upper", "carrier_broker_dealer")
+  old_submit_business_details(@business_name, @tier)
   old_submit_contact_details_from_bo
-  old_submit_company_people
+  old_submit_company_people(business)
   old_submit_convictions(convictions)
   old_check_your_answers
 
 end
 
 And(/^NCCC finishes the registration$/) do
+  @registration_number = old_complete_registration_from_bo(@business, @tier, @carrier)
+end
+
+Given(/^NCCC registers a lower tier "([^"]*)"$/) do |business|
+  @app = "old"
+  @tier = "lower"
+  @carrier = "-"
+  @business = business
+  @business_name = "Registered lower tier " + business
+  @is_renewal = false
+  @is_transient_renewal = false
+
+  old_start_internal_registration
+  old_submit_carrier_details(@business, @tier, @carrier)
+  old_submit_business_details(@business_name, @tier)
+  old_submit_contact_details_from_bo
+  old_check_your_answers
   @registration_number = old_complete_registration_from_bo(@business, @tier, @carrier)
 end
 
@@ -52,6 +70,23 @@ Then(/^the back office pages show the correct registration details$/) do
 
 end
 
-# Add the following functions:
-#   check_conviction_details
-#   check_payment_details
+Then(/^the certificate shows the correct details$/) do
+  # Assume user is already at the "registration details" page here.
+  # As we cannot directly read PDFs through web test automation, use a dedicated URL to view the content as HTML.
+  # Also, when testing headlessly, the direct link to the certificate PDF doesn't work.
+  # So we need to bypass the PDF link by going directly to the HTML version of the link.
+  # Get target URL from certificate link:
+  letter_html_url = @bo.registration_details_page.view_certificate_link[:href].to_s + "?show_as_html=true"
+  visit(letter_html_url)
+
+  expect(@bo.registration_certificate_page.heading).to have_text("Certificate of Registration")
+  page_content = @bo.registration_certificate_page.content
+  expect(page_content).to have_text(@business_name)
+  expect(page_content).to have_text(@registration_number)
+  expect(@bo.registration_certificate_page.certificate_dates_are_correct(@tier, @is_renewal)).to be true
+  if @tier == "upper"
+    expect(page_content).to have_text("Your registration will last 3 years")
+  else
+    expect(page_content).to have_text("Your registration will last indefinitely")
+  end
+end

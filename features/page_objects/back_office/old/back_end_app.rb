@@ -64,6 +64,14 @@ class BackEndApp
     @last_page = CheckYourAnswersPage.new
   end
 
+  def company_name_page
+    @last_page = CompanyNamePage.new
+  end
+
+  def company_number_page
+    @last_page = RegistrationNumberPage.new
+  end
+
   def confirmation_page
     @last_page = ConfirmationPage.new
   end
@@ -74,10 +82,6 @@ class BackEndApp
 
   def contact_details_page
     @last_page = ContactDetailsPage.new
-  end
-
-  def company_name_page
-    @last_page = CompanyNamePage.new
   end
 
   def construction_waste_question_page
@@ -109,6 +113,10 @@ class BackEndApp
     @last_page = ContactPostCodePage.new
   end
 
+  def dashboard_page
+    @last_page = DashboardPage.new
+  end
+
   def declare_convictions_page
     @last_page = DeclareConvictionsPage.new
   end
@@ -135,6 +143,10 @@ class BackEndApp
 
   def manual_address_page
     @last_page = ManualAddressPage.new
+  end
+
+  def migrate_page
+    @last_page = MigratePage.new
   end
 
   def new_charge_adjustment_page
@@ -189,48 +201,12 @@ class BackEndApp
     @last_page = PostCodePage.new
   end
 
-  def registration_cards_page
-    @last_page = RegistrationCardsPage.new
-  end
-
   def registration_export_page
     @last_page = RegistrationExportPage.new
   end
 
   def registration_search_results_page
     @last_page = RegistrationSearchResultsPage.new
-  end
-
-  def company_number_page
-    @last_page = RegistrationNumberPage.new
-  end
-
-  def dashboard_page
-    @last_page = DashboardPage.new
-  end
-
-  def renewal_information_page
-    @last_page = RenewalInformationPage.new
-  end
-
-  def relevant_people_page
-    @last_page = RelevantPeoplePage.new
-  end
-
-  def relevant_convictions_page
-    @last_page = RelevantConvictionsPage.new
-  end
-
-  def renewal_received_page
-    @last_page = RenewalReceivedPage.new
-  end
-
-  def renewal_complete_page
-    @last_page = RenewalCompletePage.new
-  end
-
-  def renewal_start_page
-    @last_page = RenewalStartPage.new
   end
 
   def registrations_page
@@ -245,12 +221,32 @@ class BackEndApp
     @last_page = RefundCompletePage.new
   end
 
-  def revoke_page
-    @last_page = RevokePage.new
+  def relevant_people_page
+    @last_page = RelevantPeoplePage.new
   end
 
-  def migrate_page
-    @last_page = MigratePage.new
+  def relevant_convictions_page
+    @last_page = RelevantConvictionsPage.new
+  end
+
+  def renewal_information_page
+    @last_page = RenewalInformationPage.new
+  end
+
+  def renewal_received_page
+    @last_page = RenewalReceivedPage.new
+  end
+
+  def renewal_complete_page
+    @last_page = RenewalCompletePage.new
+  end
+
+  def renewal_start_page
+    @last_page = RenewalStartPage.new
+  end
+
+  def revoke_page
+    @last_page = RevokePage.new
   end
 
   def start_page

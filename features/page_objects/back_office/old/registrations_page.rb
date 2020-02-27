@@ -1,6 +1,6 @@
 class RegistrationsPage < SitePrism::Page
 
-  # Registration search
+  # Registration search on old app
   element(:new_registration, "#new_registration")
   element(:registration_export, "a[href*='reports/registrations']")
   element(:search_input, "#q")

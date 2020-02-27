@@ -1,6 +1,7 @@
 class FinishAssistedPage < SitePrism::Page
 
   # Registration complete / Registration pending
+  element(:heading, ".heading-large")
   element(:registration_number, "#registrationNumber")
   element(:access_code, "#accessCode")
   element(:view_certificate, "#view_certificate")
