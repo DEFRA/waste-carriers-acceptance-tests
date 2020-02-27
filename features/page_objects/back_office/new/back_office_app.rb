@@ -2,7 +2,6 @@
 # create individual instances of each page throughout the steps.
 # https://github.com/natritmeyer/site_prism#epilogue
 
-# rubocop:disable Metrics/ClassLength
 class BackOfficeApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
@@ -86,12 +85,8 @@ class BackOfficeApp
     @last_page = PaymentSummaryPage.new
   end
 
-  def registrations_page
-    @last_page = RegistrationsPage.new
-  end
-
-  def registration_cards_page
-    @last_page = RegistrationCardsPage.new
+  def registration_certificate_page
+    @last_page = RegistrationCertificatePage.new
   end
 
   def registration_details_page
@@ -143,4 +138,3 @@ class BackOfficeApp
   end
 
 end
-# rubocop:enable Metrics/ClassLength

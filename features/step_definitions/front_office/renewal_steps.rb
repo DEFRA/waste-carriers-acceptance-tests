@@ -101,12 +101,13 @@ Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
 end
 
 When(/^I complete my limited company renewal steps$/) do
+  @business_name = "Ltd Company renewal"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   select_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
-  submit_business_details
+  submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -120,7 +121,7 @@ When(/^I complete my limited company renewal steps$/) do
     city: "Teston"
   )
   check_your_answers
-  @renewals_app.registration_cards_page.submit
+  @journey.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
@@ -142,12 +143,13 @@ Then(/^I will be able to continue my renewal$/) do
 end
 
 When(/^I complete my sole trader renewal steps$/) do
+  @business_name = "Sole trader renewal"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   select_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
-  submit_business_details
+  submit_business_details(@business_name)
   people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: people[0])
   submit_convictions("no convictions")
@@ -159,18 +161,19 @@ When(/^I complete my sole trader renewal steps$/) do
   )
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @renewals_app.registration_cards_page.submit
+  @journey.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I complete my local authority renewal steps$/) do
+  @business_name = "Local authority renewal"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
   @journey.carrier_type_page.submit
   @renewals_app.renewal_information_page.submit
-  submit_business_details
+  submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -178,18 +181,19 @@ When(/^I complete my local authority renewal steps$/) do
   @journey.contact_email_page.submit
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @renewals_app.registration_cards_page.submit
+  @journey.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I complete my limited liability partnership renewal steps$/) do
+  @business_name = "LLP renewal"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   select_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
-  submit_business_details
+  submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -197,18 +201,19 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   @journey.contact_email_page.submit
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @renewals_app.registration_cards_page.submit
+  @journey.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
+  @business_name = "LLP renewal via bank transfer"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   select_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
-  submit_business_details
+  submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -216,18 +221,19 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @journey.contact_email_page.submit
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @renewals_app.registration_cards_page.submit
+  @journey.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :bank_transfer_payment)
   @renewals_app.bank_transfer_page.submit
 end
 
 When(/^I complete my partnership renewal steps$/) do
+  @business_name = "Partnership renewal"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   select_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
-  submit_business_details
+  submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
   @journey.contact_name_page.submit
@@ -235,18 +241,19 @@ When(/^I complete my partnership renewal steps$/) do
   @journey.contact_email_page.submit
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @renewals_app.registration_cards_page.submit
+  @journey.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I add two partners to my renewal$/) do
+  @business_name = "Partnership renewal"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   select_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
-  submit_business_details
+  submit_business_details(@business_name)
   people = @journey.company_people_page.main_people
   @journey.company_people_page.add_main_person(person: people[0])
   @journey.company_people_page.add_main_person(person: people[1])
@@ -275,7 +282,7 @@ When(/^I complete my overseas company renewal steps$/) do
   people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: people[0])
   submit_convictions("no convictions")
-  @renewals_app.registration_cards_page.submit
+  @journey.registration_cards_page.submit
   @journey.contact_name_page.submit
   @journey.contact_phone_page.submit
   @journey.contact_email_page.submit
@@ -288,7 +295,7 @@ When(/^I complete my overseas company renewal steps$/) do
     country: "Italy"
   )
   check_your_answers
-  @renewals_app.registration_cards_page.submit
+  @journey.registration_cards_page.submit
   @renewals_app.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end

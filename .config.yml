@@ -122,6 +122,9 @@ custom:
   #   back_office_renewals: "https://admin-waste-carriers-dev.aws.defra.cloud/"
   #   back_office_renewals_sign_in: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/users/sign_in"
   #   mail_client: "https://www.mailinator.com"
+  #   last_email_fe: "https://waste-carriers-dev.aws.defra.cloud/email/last-email"
+  #   last_email_fo: "https://waste-carriers-dev.aws.defra.cloud/fo/email/last-email"
+  #   last_email_bo: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/email/last-email"
 
   # # Test setup
   # urls:
@@ -151,6 +154,9 @@ custom:
   #   back_office_renewals: "https://admin-waste-carriers-pre.aws.defra.cloud/"
   #   back_office_renewals_sign_in: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/users/sign_in"
   #   mail_client: "https://www.mailinator.com"
+  #   last_email_fe: "https://waste-carriers-pre.aws.defra.cloud/email/last-email"
+  #   last_email_fo: "https://waste-carriers-pre.aws.defra.cloud/fo/email/last-email"
+  #   last_email_bo: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/email/last-email"
 
 # If you are running Quke behind a proxy you can configure the proxy details
 # here. You'll need either the hostname or IP of the proxy server (don't include

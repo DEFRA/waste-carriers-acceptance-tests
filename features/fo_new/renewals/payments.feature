@@ -4,6 +4,9 @@ Feature: Registered waste carrier pays for their renewal
   I want to be able to pay the relevant charge for my renewal
   So that my renewal is completed without any delay
 
+# Need to rewrite these steps so that they work when the mock is in place. Specifically:
+# a payment can be rejected by submitting business details with 'reject' in the name
+
     Scenario: Rejected worldpay payment can be paid for on another credit card
       Given I renew my registration using my previous registration number "CBDU218"
         And I have signed in to renew my registration as "user@example.com"
@@ -22,7 +25,7 @@ Feature: Registered waste carrier pays for their renewal
        Then I will be notified my renewal is pending payment
         And I will receive a renewal appliction received email
 
-# This test won't work if the mock is in place
+# This test can't work if the mock is in place, as there's no cancel option
 @no_mock
     Scenario: Cancelled worldpay payment can be paid for by retrying card payment
       Given I renew my registration using my previous registration number "CBDU220"
