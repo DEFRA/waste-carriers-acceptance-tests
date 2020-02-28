@@ -8,7 +8,7 @@ Feature: [RUBY-826] Pay for registrations
   Background:
       Given an Environment Agency user has signed in to the backend
         And NCCC partially registers an upper tier "broker_dealer" "soleTrader" with "no convictions"
-        And the applicant chooses to pay by bank transfer ordering 1 copy card
+        And the applicant chooses to pay for the registration by bank transfer ordering 1 copy card
         And I sign into the back office as "agency_user"
         And the registration's balance is 159
 
@@ -36,5 +36,4 @@ Feature: [RUBY-826] Pay for registrations
         And the back office pages show the correct registration details
         And the registration's balance is 0
 
-# Next: pay for copy cards, partly by postal order, complete by bank transfer
-# Then: pay for a registration with convictions (adapt from bo_old/upper_ad_convictions_registrations)
+# To add: pay for a registration with convictions (adapt from bo_old/upper_ad_convictions_registrations)

@@ -1,5 +1,5 @@
 When(/^I add a positive charge of £(\d+) to the registration$/) do |charge|
-  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search(search_input: @reg_number)
   @back_app.registrations_page.search_results[0].payment_status.click
   @back_app.payment_status_page.charge_adjustments.click
   @back_app.charge_adjustments_page.add_charge.click
@@ -11,7 +11,7 @@ When(/^I add a positive charge of £(\d+) to the registration$/) do |charge|
 end
 
 When(/^I add a negative charge of £(\d+) to the registration$/) do |charge|
-  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search(search_input: @reg_number)
   @back_app.registrations_page.search_results[0].payment_status.click
   @back_app.payment_status_page.charge_adjustments.click
   @back_app.charge_adjustments_page.add_negative_charge.click

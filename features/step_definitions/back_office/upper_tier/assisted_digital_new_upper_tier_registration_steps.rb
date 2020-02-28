@@ -99,7 +99,7 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.relevant_convictions_page.submit(choice: :no)
   @back_app.check_details_page.submit
 end
-# rubocop:disable Layout/LineLength
+
 Given(/^a limited company with companies house number "([^"]*)" is registered as an upper tier waste carrier$/) do |ch_no|
 
   # Store company name and number for later tests:
@@ -141,10 +141,9 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
 
   submit_valid_card_payment
 
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
-  puts "Registration " + @registration_number + " completed with conviction match on company number"
+  @reg_number = @back_app.finish_assisted_page.registration_number.text
+  puts "Registration " + @reg_number + " completed with conviction match on company number"
 end
-# rubocop:enable Layout/LineLength
 
 Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
   @company_name = co_name
@@ -182,7 +181,7 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
 
   submit_valid_card_payment
 
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
+  @reg_number = @back_app.finish_assisted_page.registration_number.text
   @back_app.agency_sign_in_page.load
 end
 
@@ -219,7 +218,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
 
   submit_valid_card_payment
 
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
+  @reg_number = @back_app.finish_assisted_page.registration_number.text
 end
 
 Given(/^a conviction is declared when registering their partnership for an upper tier waste carrier$/) do
@@ -259,5 +258,5 @@ Given(/^a conviction is declared when registering their partnership for an upper
 
   submit_valid_card_payment
 
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
+  @reg_number = @back_app.finish_assisted_page.registration_number.text
 end

@@ -235,9 +235,9 @@ def old_complete_registration_from_bo(business, tier, carrier)
   expect(@back_app.finish_assisted_page).to have_view_certificate
 
   # Stores registration number for later use
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
-  puts "Registration " + @registration_number + " completed for " + tier + " tier " + business + " " + carrier
-  @registration_number
+  @reg_number = @back_app.finish_assisted_page.registration_number.text
+  puts "Registration " + @reg_number + " completed for " + tier + " tier " + business + " " + carrier
+  @reg_number
 end
 
 def check_registration_details(reg)

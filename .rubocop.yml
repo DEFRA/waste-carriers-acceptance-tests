@@ -10,6 +10,11 @@ Metrics/BlockLength:
   Exclude:
     - "features/step_definitions/**/*"
 
+Layout/LineLength:
+  Exclude:
+    - "features/step_definitions/**/*"
+    - "features/support/**/*"
+
 # With Cucumber everything gets loaded into the 'world' from the start so there
 # is no single point of entry where we can instantiate and control state that
 # that needs to be shared. One of the ways this manifests is with helper

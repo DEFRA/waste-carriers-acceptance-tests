@@ -28,7 +28,7 @@ def sign_out_of_back_office
   heading = @journey.standard_page.heading.text
 
   # Bypass if already logged out:
-  return unless heading == "Waste carriers registrations"
+  return if heading != "Waste carriers registrations"
 
   @bo.dashboard_page.sign_out_link.click
   expect(@journey.standard_page.heading).to have_text("Sign in")

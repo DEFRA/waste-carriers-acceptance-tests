@@ -1,5 +1,5 @@
 When(/^an agency user orders "([^"]*)" registration (?:card|cards) for "([^"]*)"$/) do |cards, reg|
-  @registration_number = reg
+  @reg_number = reg
   @number_of_cards = cards.to_i
 
   @bo.dashboard_page.view_reg_details(search_term: reg)
@@ -47,7 +47,7 @@ end
 Then(/^the card order is confirmed with cleared payment$/) do
   expect(@journey.cards_confirmation_page.confirmation_message).to have_text("Order completed.\nPayment has cleared.")
   expect(@journey.cards_confirmation_page.info_table).to have_text("£ " + (@number_of_cards * 5).to_s)
-  expect(@journey.cards_confirmation_page.info_table).to have_text(@registration_number)
+  expect(@journey.cards_confirmation_page.info_table).to have_text(@reg_number)
 
   @journey.cards_confirmation_page.go_to_search_button.click
   expect(@bo.dashboard_page.heading).to have_text("Waste carriers registrations")
@@ -57,14 +57,14 @@ Then(/^the card order is confirmed awaiting payment$/) do
   expect(@journey.cards_confirmation_page.awaiting_payment_message).to have_text("Order is awaiting payment.")
 
   @journey.cards_confirmation_page.details_for_reg_button.click
-  expect(@bo.registration_details_page.heading).to have_text("Registration " + @registration_number)
+  expect(@bo.registration_details_page.heading).to have_text("Registration " + @reg_number)
   expect(@bo.registration_details_page.content).to have_text("Payment required")
 end
 
 Then(/^the carrier receives an email saying their card order is being printed$/) do
   text_to_check = [
     "We’re printing your waste carriers registration card",
-    @registration_number,
+    @reg_number,
     "Order: " + @number_of_cards.to_s + " registration card",
     "Paid: £" + (@number_of_cards.to_i * 5).to_s + " by debit or credit card"
   ]
@@ -77,7 +77,7 @@ end
 Then(/^the carrier receives an email saying they need to pay for their card order$/) do
   text_to_check = [
     "You need to pay for your waste carriers registration card",
-    @registration_number,
+    @reg_number,
     "We cannot print the cards until we receive confirmation that you have paid",
     "You ordered " + @number_of_cards.to_s + " registration card"
   ]

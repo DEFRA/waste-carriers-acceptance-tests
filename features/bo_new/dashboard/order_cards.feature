@@ -22,7 +22,11 @@ Scenario: NCCC user orders 3 cards by bank transfer
    And the carrier receives an email saying they need to pay for their card order
    And the registration's balance is 15
 
-  When NCCC makes a payment of 10 by "transfer"
+  When NCCC makes a payment of 5 by "transfer"
+  Then the registration has a status of "PAYMENT NEEDED"
+   And the registration's balance is 10
+
+  When NCCC makes a payment of 5 by "postal"
   Then the registration has a status of "PAYMENT NEEDED"
    And the registration's balance is 5
 

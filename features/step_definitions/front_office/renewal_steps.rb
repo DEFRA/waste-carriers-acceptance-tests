@@ -5,17 +5,17 @@ Given(/^I renew my registration using my previous registration number "([^"]*)"$
   @renewals_app.start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: reg)
   # save registration number for checks later on
-  @registration_number = reg
+  @reg_number = reg
 end
 
 Then(/^I will be shown the renewal information page$/) do
-  expect(@renewals_app.renewal_start_page).to have_text(@registration_number)
+  expect(@renewals_app.renewal_start_page).to have_text(@reg_number)
   expect(@renewals_app.renewal_start_page.current_url).to include "/renewal-information"
 end
 
 Then(/^I will be shown the renewal start page$/) do
   @renewals_app.renewal_start_page.wait_until_heading_visible
-  expect(@renewals_app.renewal_start_page).to have_text(@registration_number)
+  expect(@renewals_app.renewal_start_page).to have_text(@reg_number)
   expect(@renewals_app.renewal_start_page.current_url).to include "/renew/CBDU"
 end
 
@@ -30,7 +30,7 @@ Given(/^I choose to renew my registration$/) do
   @journey = JourneyApp.new
   @renewals_app.start_page.load
   @renewals_app.start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: @registration_number)
+  @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
 end
 
 When(/^I enter my lower tier registration number "([^"]*)"$/) do |reg_no|
@@ -52,7 +52,7 @@ end
 
 Then(/^I will be informed my renewal is received$/) do
   expect(@renewals_app.renewal_received_page).to have_text("Renewal received")
-  expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
+  expect(@renewals_app.renewal_received_page).to have_text(@reg_number)
 end
 
 When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_type|
@@ -94,10 +94,10 @@ end
 Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @registration_number = reg_no
+  @reg_number = reg_no
 
-  @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
-  @front_app.waste_carrier_registrations_page.renew(@registration_number)
+  @front_app.waste_carrier_registrations_page.find_registration(@reg_number)
+  @front_app.waste_carrier_registrations_page.renew(@reg_number)
 end
 
 When(/^I complete my limited company renewal steps$/) do
@@ -318,7 +318,7 @@ end
 Then(/^I will be notified my renewal is complete$/) do
   @renewals_app.renewal_complete_page.wait_until_heading_visible
   expect(@renewals_app.renewal_complete_page.heading.text).to eq("Renewal complete")
-  expect(@renewals_app.renewal_complete_page).to have_text(@registration_number)
+  expect(@renewals_app.renewal_complete_page).to have_text(@reg_number)
 
   @renewals_app.renewal_complete_page.finished_button.click
   expect(@renewals_app.waste_carrier_registrations_page.heading).to have_text("Your waste carrier registrations")
@@ -354,7 +354,7 @@ end
 Then(/^I will be notified my renewal is pending checks$/) do
   @renewals_app.renewal_received_page.wait_until_heading_visible
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
-  expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
+  expect(@renewals_app.renewal_received_page).to have_text(@reg_number)
   Capybara.reset_session!
 end
 
@@ -362,7 +362,7 @@ Then(/^I will be notified my renewal is pending payment$/) do
   @renewals_app.renewal_received_page.wait_until_heading_visible
   expect(@renewals_app.renewal_received_page.heading.text).to eq("Application received")
   expect(@renewals_app.renewal_received_page).to have_text("pay the renewal charge")
-  expect(@renewals_app.renewal_received_page).to have_text(@registration_number)
+  expect(@renewals_app.renewal_received_page).to have_text(@reg_number)
   Capybara.reset_session!
 end
 
@@ -379,13 +379,13 @@ When(/^view my registration on the dashboard$/) do
 end
 
 Then(/^I will see my registration "([^"]*)" has been renewed$/) do |reg|
-  @registration_number = reg
-  @renewals_app.waste_carrier_registrations_page.find_registration(@registration_number)
+  @reg_number = reg
+  @renewals_app.waste_carrier_registrations_page.find_registration(@reg_number)
 
-  status = @renewals_app.waste_carrier_registrations_page.check_status(@registration_number)
+  status = @renewals_app.waste_carrier_registrations_page.check_status(@reg_number)
   expect(status).to have_text("Active")
 
-  expect(@renewals_app.waste_carrier_registrations_page.renewable?(@registration_number)).to be false
+  expect(@renewals_app.waste_carrier_registrations_page.renewable?(@reg_number)).to be false
 end
 
 Then(/^I will be prompted to sign in to complete the renewal$/) do

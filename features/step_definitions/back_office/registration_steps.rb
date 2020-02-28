@@ -22,7 +22,7 @@ Given(/^NCCC partially registers an upper tier "([^"]*)" "([^"]*)" with "([^"]*)
 end
 
 And(/^NCCC finishes the registration$/) do
-  @registration_number = old_complete_registration_from_bo(@business, @tier, @carrier)
+  @reg_number = old_complete_registration_from_bo(@business, @tier, @carrier)
 end
 
 Given(/^NCCC registers a lower tier "([^"]*)"$/) do |business|
@@ -39,12 +39,12 @@ Given(/^NCCC registers a lower tier "([^"]*)"$/) do |business|
   old_submit_business_details(@business_name, @tier)
   old_submit_contact_details_from_bo
   old_check_your_answers
-  @registration_number = old_complete_registration_from_bo(@business, @tier, @carrier)
+  @reg_number = old_complete_registration_from_bo(@business, @tier, @carrier)
 end
 
 Then(/^the back office pages show the correct registration details$/) do
   sign_in_to_back_office("agency_user")
-  check_registration_details(@registration_number)
+  check_registration_details(@reg_number)
   info_panel = @bo.registration_details_page.info_panel
   page_content = @bo.registration_details_page.content
   expect(@bo.registration_details_page.business_name).to have_text(@business_name)
@@ -82,7 +82,7 @@ Then(/^the certificate shows the correct details$/) do
   expect(@bo.registration_certificate_page.heading).to have_text("Certificate of Registration")
   page_content = @bo.registration_certificate_page.content
   expect(page_content).to have_text(@business_name)
-  expect(page_content).to have_text(@registration_number)
+  expect(page_content).to have_text(@reg_number)
   expect(@bo.registration_certificate_page.certificate_dates_are_correct(@tier, @is_renewal)).to be true
   if @tier == "upper"
     expect(page_content).to have_text("Your registration will last 3 years")
