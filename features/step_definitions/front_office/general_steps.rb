@@ -26,8 +26,8 @@ Then(/^I will be registered as an upper tier waste carrier$/) do
   expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
   expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use
-  @registration_number = @front_app.confirmation_page.registration_number.text
-  puts "Upper tier registration " + @registration_number + " completed"
+  @reg_number = @front_app.confirmation_page.registration_number.text
+  puts "Upper tier registration " + @reg_number + " completed"
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
@@ -35,17 +35,17 @@ Then(/^I will be registered as a lower tier waste carrier$/) do
     expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
     expect(@front_app.confirmation_page).to have_text @email_address
     # Stores registration number for later use
-    @registration_number = @front_app.confirmation_page.registration_number.text
+    @reg_number = @front_app.confirmation_page.registration_number.text
   else
     within_window @new_window do
       @front_app.confirmation_page.wait_until_registration_number_visible
       expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
       expect(@front_app.confirmation_page).to have_text @email
       # Stores registration number for later use
-      @registration_number = @front_app.confirmation_page.registration_number.text
+      @reg_number = @front_app.confirmation_page.registration_number.text
     end
   end
-  puts "Lower tier registration " + @registration_number + " completed"
+  puts "Lower tier registration " + @reg_number + " completed"
 end
 
 When(/^I select that I don't know what business type to enter$/) do
@@ -68,7 +68,7 @@ Then(/^I will be informed my registration is pending payment$/) do
   expect(@front_app.confirmation_page).to have_text "Application received"
   expect(@front_app.confirmation_page).to have_text @email_address
   # Stores registration number for later use
-  @registration_number = @front_app.confirmation_page.registration_number.text
+  @reg_number = @front_app.confirmation_page.registration_number.text
 end
 
 When(/^I have signed into my account$/) do
@@ -95,7 +95,7 @@ Given(/^I choose to renew my registration using my previous registration number$
   @journey = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit(renewal: true)
-  @front_app.existing_registration_page.submit(reg_no: @registration_number)
+  @front_app.existing_registration_page.submit(reg_no: @reg_number)
 end
 
 Then(/^I will be told "([^"]*)"$/) do |message|

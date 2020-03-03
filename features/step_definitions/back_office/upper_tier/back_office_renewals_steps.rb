@@ -10,10 +10,11 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   @convictions = convictions
   @business_name = "AD Renewal with " + @convictions
   @is_renewal = true
+  @is_transient_renewal = true
 
   # Search for registration to renew:
   sign_in_to_back_office("agency_user")
-  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.renew_link.click
   start_internal_renewal
 
@@ -27,14 +28,14 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   submit_convictions(convictions)
   submit_contact_details_from_bo
   check_your_answers
-
+  # User has submitted the declaration and is on the "certificate and registration cards" page
 end
 
 Given(/^the back office pages show the correct transient renewal details$/) do
   sign_in_to_back_office("agency_user")
-  @bo.dashboard_page.view_transient_reg_details(search_term: @registration_number)
+  @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
 
-  expect(@bo.registration_details_page.heading).to have_text("Renewal " + @registration_number)
+  expect(@bo.registration_details_page.heading).to have_text("Renewal " + @reg_number)
   expect(@bo.registration_details_page).to have_text "Application in progress"
   expect(@bo.registration_details_page).to have_continue_as_ad_button
   expect(@bo.registration_details_page.info_panel).to have_text(@business_name)
@@ -55,19 +56,17 @@ end
 
 Then(/^the renewal is complete$/) do
   expect(@renewals_app.renewal_complete_page.heading).to have_text("Renewal complete")
-  # rubocop:disable Layout/LineLength
-  expect(@renewals_app.renewal_complete_page.confirmation_box).to have_text("Your registration number is still\n" + @registration_number)
-  # rubocop:enable Layout/LineLength
-  puts "Renewal " + @registration_number + " complete"
+  expect(@renewals_app.renewal_complete_page.confirmation_box).to have_text("Your registration number is still\n" + @reg_number)
+  puts "Renewal " + @reg_number + " complete"
 
   @renewals_app.renewal_complete_page.finished_button.click
-  expect(@bo.registration_details_page.heading).to have_text("Registration " + @registration_number)
+  expect(@bo.registration_details_page.heading).to have_text("Registration " + @reg_number)
 end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
-  @registration_number = reg
+  @reg_number = reg
 
-  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search(search_input: @reg_number)
   @expiry_date = @back_app.registrations_page.search_results[0].expiry_date.text
   # Turns the text expiry date into a date
   @expiry_date_year_first = Date.parse(@expiry_date)
@@ -75,7 +74,7 @@ end
 
 When(/^I renew the local authority registration$/) do
   @business_name = "Local authority renewal"
-  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
@@ -102,7 +101,7 @@ end
 
 When(/^I renew the limited company registration$/) do
   @business_name = "Limited company renewal"
-  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
@@ -135,13 +134,13 @@ end
 
 Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
   # save registration number for checks later on
-  @registration_number = reg
+  @reg_number = reg
   @front_app = FrontOfficeApp.new
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
   @front_app.start_page.load
   @front_app.start_page.submit(renewal: true)
-  @front_app.existing_registration_page.submit(reg_no: @registration_number)
+  @front_app.existing_registration_page.submit(reg_no: @reg_number)
   @front_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
@@ -213,7 +212,7 @@ When(/^I search for "([^"]*)" pending payment$/) do |reg|
   @bo.dashboard_page.govuk_banner.home_page.click
   @bo.dashboard_page.view_transient_reg_details(search_term: reg)
   # saves registration for later use
-  @registration_number = reg
+  @reg_number = reg
 end
 
 When(/^I mark the renewal payment as received$/) do
@@ -227,14 +226,14 @@ Then(/^the expiry date should be three years from the previous expiry date$/) do
   # Need to convert this step to new app!
   @expected_expiry_date = @expiry_date_year_first.next_year(3)
   visit(Quke::Quke.config.custom["urls"]["back_office"])
-  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search(search_input: @reg_number)
   actual_expiry_date = Date.parse(@back_app.registrations_page.search_results[0].expiry_date.text)
   expect(@expected_expiry_date).to eq(actual_expiry_date)
 end
 
 Given(/^I renew the limited company registration declaring a conviction and paying by bank transfer$/) do
   @business_name = "Renewal with conviction via bank transfer"
-  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.renew_link.click
   start_internal_renewal
   @journey.confirm_business_type_page.submit
@@ -260,9 +259,7 @@ end
 
 When(/^I approve the conviction check$/) do
   @bo.dashboard_page.govuk_banner.conviction_checks.click
-  # rubocop:disable Layout/LineLength
-  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/#{@registration_number}/convictions")
-  # rubocop:enable Layout/LineLength
+  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/#{@reg_number}/convictions")
 
   @bo.convictions_bo_details_page.approve_button.click
   @bo.convictions_decision_page.submit(conviction_reason: "ok")

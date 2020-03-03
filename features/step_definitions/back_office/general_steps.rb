@@ -54,28 +54,12 @@ end
 
 Given(/^I have a registration "([^"]*)"$/) do |reg|
   # stores registration number for later use
-  @registration_number = reg
+  @reg_number = reg
 end
 
 Given(/^the registration details are found in the backoffice$/) do
   step "an Environment Agency user has signed in to the backend"
-  @back_app.registrations_page.search(search_input: @registration_number)
-end
-
-When(/^the applicant chooses to pay by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
-  @back_app.order_page.submit(
-    copy_card_number: copy_card_number,
-    choice: :bank_transfer_payment
-  )
-  @back_app.offline_payment_page.submit
-
-  # Show "Registration pending" page
-  expect(@back_app.finish_assisted_page).to have_text("Registration pending")
-  expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDU")
-
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
-  puts "Registration " + @registration_number + " submitted by bank transfer with " + copy_card_number.to_s + " card(s)"
-
+  @back_app.registrations_page.search(search_input: @reg_number)
 end
 
 Given(/^I request assistance with a new registration$/) do
@@ -91,16 +75,8 @@ Then(/^I will have an upper tier registration$/) do
   expect(@back_app.finish_assisted_page).to have_view_certificate
 
   # Stores registration number and access code for later use
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
+  @reg_number = @back_app.finish_assisted_page.registration_number.text
 
-end
-
-When(/^I pay for my application over the phone by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
-  @back_app.order_page.submit(
-    copy_card_number: copy_card_number,
-    choice: :card_payment
-  )
-  submit_valid_card_payment
 end
 
 Then(/^I will have a lower tier registration$/) do
@@ -108,21 +84,21 @@ Then(/^I will have a lower tier registration$/) do
   expect(@back_app.finish_assisted_page).to have_view_certificate
 
   # Stores registration number and access code for later use
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
+  @reg_number = @back_app.finish_assisted_page.registration_number.text
 
 end
 
 Then(/^the registration has a status of "([^"]*)"$/) do |status|
   sign_in_to_back_office("agency_user")
   @bo.dashboard_page.govuk_banner.home_page.click
-  @bo.dashboard_page.submit(search_term: @registration_number)
+  @bo.dashboard_page.submit(search_term: @reg_number)
   expect(@bo.dashboard_page.results_table).to have_text(status)
 end
 
 Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
   sign_in_to_back_office("agency_user")
   @bo.dashboard_page.govuk_banner.home_page.click
-  @bo.dashboard_page.submit(search_term: @registration_number)
+  @bo.dashboard_page.submit(search_term: @reg_number)
   expect(@bo.dashboard_page.results_table).to have_no_text(status)
 end
 
@@ -145,34 +121,34 @@ Then(/^the registration status in the registration export is set to "([^"]*)"$/)
     report_to_date: @today
   )
 
-  result = @back_app.registration_search_results_page.registration(@registration_number)
+  result = @back_app.registration_search_results_page.registration(@reg_number)
   expect(result.status.text).to eq(status)
   @back_app.registration_search_results_page.back_link.click
   @back_app.registration_export_page.back_link.click
 end
 
 When(/^the registration is revoked$/) do
-  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.cease_or_revoke_link.click
   @bo.cease_or_revoke_page.submit(
     choice: :revoke,
     reason: "Did a naughty thing"
   )
-  expect(@bo.cease_or_revoke_page.heading).to have_text("Confirm revoke for registration " + @registration_number)
+  expect(@bo.cease_or_revoke_page.heading).to have_text("Confirm revoke for registration " + @reg_number)
   @bo.cease_or_revoke_page.confirm_button.click
-  expect(@bo.dashboard_page.flash_message).to have_text(@registration_number + " has been revoked")
+  expect(@bo.dashboard_page.flash_message).to have_text(@reg_number + " has been revoked")
 end
 
 When(/^the registration is ceased$/) do
-  @bo.dashboard_page.view_reg_details(search_term: @registration_number)
+  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.cease_or_revoke_link.click
   @bo.cease_or_revoke_page.submit(
     choice: :cease,
     reason: "Carrier has stopped carrying waste"
   )
-  expect(@bo.cease_or_revoke_page.heading).to have_text("Confirm cease for registration " + @registration_number)
+  expect(@bo.cease_or_revoke_page.heading).to have_text("Confirm cease for registration " + @reg_number)
   @bo.cease_or_revoke_page.confirm_button.click
-  expect(@bo.dashboard_page.flash_message).to have_text(@registration_number + " has been ceased")
+  expect(@bo.dashboard_page.flash_message).to have_text(@reg_number + " has been ceased")
 end
 
 Then(/^my registration status for "([^"]*)" will be "([^"]*)"$/) do |search_item, status|
@@ -197,18 +173,7 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search(search_input: @reg_number)
   @back_app.registrations_page.wait_for_status(status)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
-end
-
-And(/^the applicant pays by bank card$/) do
-  # On the new app, the payment choice is on a different screen from order copy cards
-  if @app == "old"
-    old_order_cards_during_journey(3)
-  else
-    order_cards_during_journey(1)
-    @bo.payment_summary_page.submit(choice: :card_payment)
-  end
-  submit_valid_card_payment
 end

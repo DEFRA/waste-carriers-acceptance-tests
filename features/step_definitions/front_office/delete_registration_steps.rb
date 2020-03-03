@@ -7,10 +7,10 @@ Given(/I choose to delete my registration "([^"]*)"$/) do |reg_no|
     email: Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @registration_number = reg_no
+  @reg_number = reg_no
   # Looks for registration on each page of the registrations dashboard
-  @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
-  @front_app.waste_carrier_registrations_page.delete(@registration_number)
+  @front_app.waste_carrier_registrations_page.find_registration(@reg_number)
+  @front_app.waste_carrier_registrations_page.delete(@reg_number)
 
 end
 

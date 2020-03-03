@@ -7,10 +7,10 @@ Given(/I choose to edit my registration "([^"]*)"$/) do |reg_no|
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @registration_number = reg_no
+  @reg_number = reg_no
 
-  @front_app.waste_carrier_registrations_page.find_registration(@registration_number)
-  @front_app.waste_carrier_registrations_page.edit(@registration_number)
+  @front_app.waste_carrier_registrations_page.find_registration(@reg_number)
+  @front_app.waste_carrier_registrations_page.edit(@reg_number)
 end
 
 When(/^I change my registration type to "([^"]*)"$/) do |registration_type|
@@ -107,7 +107,7 @@ Then(/^its previous registration will be "([^"]*)"$/) do |status|
     email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search(search_input: @reg_number)
   expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
 end
 

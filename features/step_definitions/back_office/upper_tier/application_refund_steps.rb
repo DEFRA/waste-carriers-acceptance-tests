@@ -37,28 +37,28 @@ Given(/^I have an application paid by credit card$/) do
 
   submit_valid_card_payment
 
-  @registration_number = @back_app.finish_assisted_page.registration_number.text
+  @reg_number = @back_app.finish_assisted_page.registration_number.text
   @back_app.agency_sign_in_page.load
   @back_app.registrations_page.sign_out.click
 end
 
 When(/^I reverse the application payment$/) do
-  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search(search_input: @reg_number)
   @back_app.registrations_page.search_results[0].payment_status.click
   @payment_amount = @back_app.payment_status_page.payment_history_amount.text
-  expect(@back_app.payment_reversals_page).to have_text(@registration_number)
+  expect(@back_app.payment_reversals_page).to have_text(@reg_number)
   @back_app.payment_status_page.reversals.click
   @back_app.payment_reversals_page.select_payment.click
-  @back_app.new_reversal_page.submit(payment_comment: "Reversal for " + @registration_number)
+  @back_app.new_reversal_page.submit(payment_comment: "Reversal for " + @reg_number)
 end
 
 When(/^I select the application to refund$/) do
-  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search(search_input: @reg_number)
   @back_app.registrations_page.search_results[0].payment_status.click
 end
 
 When(/^I refund the worldpay payment$/) do
-  @back_app.registrations_page.search(search_input: @registration_number)
+  @back_app.registrations_page.search(search_input: @reg_number)
   @back_app.registrations_page.search_results[0].payment_status.click
   @payment_amount = @back_app.payment_status_page.payment_history_amount.text
   @back_app.payment_status_page.refund.click
@@ -81,7 +81,7 @@ Then(/^the application payment will be reversed$/) do
 end
 
 Then(/^the reversal will be shown in the payment history$/) do
-  expect(@back_app.payment_status_page).to have_text("Reversal for " + @registration_number)
+  expect(@back_app.payment_status_page).to have_text("Reversal for " + @reg_number)
 end
 
 Then(/^the outstanding balance will be the amount previously paid$/) do
