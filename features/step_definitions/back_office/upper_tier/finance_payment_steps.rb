@@ -63,7 +63,7 @@ When(/^NCCC pays the remaining balance by "([^"]*)"$/) do |method|
   @reg_balance = 0
 end
 
-Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
+Given(/^registration "([^"]*)" has an unsubmitted renewal$/) do |reg|
   @reg_number = reg
   @is_transient_renewal = true
   @business_name = "Renewal via bank transfer"
@@ -105,6 +105,18 @@ Given(/^registration "([^"]*)" has a renewal paid by bank transfer$/) do |reg|
   check_your_answers
   @journey.registration_cards_page.submit
   @bo.payment_summary_page.submit(choice: :bank_transfer_payment)
+
+end
+
+Then(/^I cannot access payments until the bank transfer option is selected$/) do
+  # Check that there is no payment details link just before submitting a renewal (see RUBY-908):
+  find_link("Registrations search").click
+  @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
+  expect(@bo.registration_details_page).to have_no_payment_details_link
+
+  # Then submit the renewal:
+  @bo.registration_details_page.continue_as_ad_button.click
+  @bo.ad_privacy_policy_page.submit
   @bo.bank_transfer_page.submit
 end
 
