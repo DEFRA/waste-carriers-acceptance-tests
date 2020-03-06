@@ -1,4 +1,5 @@
-@fo_new @upper_tier @fo_dashboard
+This feature will be obsolete when removal of the Delete link goes live.
+This functionality will only be available through back office.
 
 Feature: Upper tier registration deletes registration
   As a carrier of commercial waste

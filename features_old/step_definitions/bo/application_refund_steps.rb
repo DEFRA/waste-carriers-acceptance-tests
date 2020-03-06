@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 Given(/^I have an application paid by credit card$/) do
   step "an Environment Agency user has signed in to the backend"
 
@@ -41,6 +42,7 @@ Given(/^I have an application paid by credit card$/) do
   @back_app.agency_sign_in_page.load
   @back_app.registrations_page.sign_out.click
 end
+# rubocop:enable Metrics/BlockLength
 
 When(/^I reverse the application payment$/) do
   @back_app.registrations_page.search(search_input: @reg_number)

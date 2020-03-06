@@ -8,10 +8,6 @@ class BackEndApp
   # BACK OFFICE SPECIFIC PAGES
   # /
 
-  def ad_privacy_policy_page
-    @last_page = AdPrivacyPolicyPage.new
-  end
-
   def agency_sign_in_page
     @last_page = AgencySignInPage.new
   end
@@ -20,16 +16,8 @@ class BackEndApp
     @last_page = AgencyUsersPage.new
   end
 
-  def approve_page
-    @last_page = ApprovePage.new
-  end
-
   def admin_sign_in_page
     @last_page = AdminSignInPage.new
-  end
-
-  def bank_transfer_page
-    @last_page = BankTransferPage.new
   end
 
   def business_details_page
@@ -48,20 +36,8 @@ class BackEndApp
     @last_page = CarrierTypePage.new
   end
 
-  def finance_payment_input_page
-    @last_page = CashPaymentPage.new
-  end
-
-  def charge_adjustments_page
-    @last_page = ChargeAdjustmentsPage.new
-  end
-
   def check_details_page
     @last_page = CheckDetailsPage.new
-  end
-
-  def check_your_answers_page
-    @last_page = CheckYourAnswersPage.new
   end
 
   def company_name_page
@@ -70,14 +46,6 @@ class BackEndApp
 
   def company_number_page
     @last_page = RegistrationNumberPage.new
-  end
-
-  def confirmation_page
-    @last_page = ConfirmationPage.new
-  end
-
-  def confirm_delete_page
-    @last_page = ConfirmDeletePage.new
   end
 
   def contact_details_page
@@ -113,10 +81,6 @@ class BackEndApp
     @last_page = ContactPostCodePage.new
   end
 
-  def dashboard_page
-    @last_page = DashboardPage.new
-  end
-
   def declare_convictions_page
     @last_page = DeclareConvictionsPage.new
   end
@@ -149,14 +113,6 @@ class BackEndApp
     @last_page = MigratePage.new
   end
 
-  def new_charge_adjustment_page
-    @last_page = NewChargeAdjustmentPage.new
-  end
-
-  def new_reversal_page
-    @last_page = NewReversalPage.new
-  end
-
   def offline_payment_page
     @last_page = OfflinePaymentPage.new
   end
@@ -173,24 +129,8 @@ class BackEndApp
     @last_page = OrderPage.new
   end
 
-  def payment_status_page
-    @last_page = PaymentStatusPage.new
-  end
-
   def payment_summary_page
     @last_page = PaymentSummaryPage.new
-  end
-
-  def payment_reversals_page
-    @last_page = PaymentReversalsPage.new
-  end
-
-  def payments_page
-    @last_page = PaymentsPage.new
-  end
-
-  def refunds_page
-    @last_page = RefundsPage.new
   end
 
   def postal_address_page
@@ -217,10 +157,6 @@ class BackEndApp
     @last_page = RegistrationTypePage.new
   end
 
-  def refund_complete_page
-    @last_page = RefundCompletePage.new
-  end
-
   def relevant_people_page
     @last_page = RelevantPeoplePage.new
   end
@@ -245,10 +181,6 @@ class BackEndApp
     @last_page = RenewalStartPage.new
   end
 
-  def revoke_page
-    @last_page = RevokePage.new
-  end
-
   def start_page
     @last_page = StartPage.new
   end
@@ -263,14 +195,6 @@ class BackEndApp
 
   def sign_in_page
     @last_page = SignInPage.new
-  end
-
-  def worldpay_refunds_page
-    @last_page = WorldpayRefundsPage.new
-  end
-
-  def write_offs_page
-    @last_page = WriteOffsPage.new
   end
 
   def users_page
