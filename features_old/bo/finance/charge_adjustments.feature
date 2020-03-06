@@ -1,4 +1,6 @@
-@bo_old @bo_finance
+This feature will be obsolete when back office finance admin goes live.
+Equivalent features have been written in back office.
+
 Feature: Writing off an amount of money owed by a registration
 As a finance admin
 I want to be able to adjust the charge associated to a registration

@@ -32,34 +32,9 @@ Given(/^I am signed in as an Environment Agency user with refunds$/) do
   )
 end
 
-Given(/^I am signed in as a finance admin$/) do
-  @back_app = BackEndApp.new
-  @bo = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["finance_admin"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-end
-
-Given(/^I am signed in as a finance user$/) do
-  @back_app = BackEndApp.new
-  @bo = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["finance_basic"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-end
-
 Given(/^I have a registration "([^"]*)"$/) do |reg|
   # stores registration number for later use
   @reg_number = reg
-end
-
-Given(/^the registration details are found in the backoffice$/) do
-  step "an Environment Agency user has signed in to the backend"
-  @back_app.registrations_page.search(search_input: @reg_number)
 end
 
 Given(/^I request assistance with a new registration$/) do

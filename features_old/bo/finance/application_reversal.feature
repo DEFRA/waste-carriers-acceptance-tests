@@ -1,4 +1,6 @@
-@bo_old @bo_finance
+This feature will be obsolete when back office finance admin goes live.
+Equivalent features have been written in back office.
+
 Feature: Reversal of payment by finance administrator
 As a finance administrator
 I want to be able to reverse payments made in error
