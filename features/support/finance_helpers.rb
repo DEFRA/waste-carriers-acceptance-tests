@@ -38,7 +38,12 @@ def check_balance(expected_balance)
 end
 
 def go_to_payments_page(reg)
-  # Find the payment details for the registration/renewal:
+  # Find the payment details for the registration/renewal.
+  # This assumes the user is already logged in anywhere in back office.
+  heading_text = @journey.standard_page.heading.text
+  return if heading_text.include?("Payment details")
+
+  find_link("Registrations search").click
   if @is_transient_renewal == true
     @bo.dashboard_page.view_transient_reg_details(search_term: reg)
   else
@@ -55,6 +60,7 @@ def enter_payment(amount, method)
 
   @bo.finance_payment_details_page.enter_payment_button.click
   @bo.finance_payment_method_page.submit(choice: method.to_sym)
+  expect(@bo.finance_payment_input_page).to have_amount
   expect(@bo.finance_payment_input_page.heading).to have_text("payment for " + @reg_number)
   time = Time.new
   @bo.finance_payment_input_page.submit(

@@ -83,16 +83,18 @@ custom:
       username: agency-user@wcr.gov.uk
     agency_user_with_payment_refund:
       username: agency-refund-payment-user@wcr.gov.uk
+    agency_super:
+      username: agency-super@wcr.gov.uk
     finance_admin:
       username: finance-admin-user@wcr.gov.uk
     finance_basic:
       username: finance-user@wcr.gov.uk
+    finance_super:
+      username: finance-super@wcr.gov.uk
     waste_carrier:
       username: user@example.com
     waste_carrier2:
       username: another-user@example.com
-    agency_super:
-      username: agency-super@wcr.gov.uk
 # Hide or unhide the relevant URLs for the environment you want to test:
 # Local setup
   urls:
