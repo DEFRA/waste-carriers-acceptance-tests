@@ -136,4 +136,5 @@ And(/^the applicant pays by bank card$/) do
   end
   submit_valid_card_payment
   @is_transient_renewal = false
+  @reg_balance = 0
 end

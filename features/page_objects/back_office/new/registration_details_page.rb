@@ -15,10 +15,10 @@ class RegistrationDetailsPage < SitePrism::Page
   element(:business_name, ".wcr-panel-border-all .heading-medium")
 
   element(:actions_box, ".wcr-actions--push-down")
+  element(:renew_link, "a[href*='/ad-privacy-policy/CBD']")
   element(:transfer_link, "a[href*='/transfer']")
   element(:edit_link, "a[href*='/edit']")
   element(:view_certificate_link, "a[href*='/certificate']")
-  element(:renew_link, "a[href*='/ad-privacy-policy/CBD']")
   element(:order_cards_link, "a[href*='/order-copy-cards']")
   element(:payment_details_link, "a[href*='/finance-details']")
   element(:cease_or_revoke_link, "a[href*='/cease-or-revoke']")

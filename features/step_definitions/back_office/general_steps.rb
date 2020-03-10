@@ -21,6 +21,10 @@ Given(/^I sign into the back office as "([^"]*)"$/) do |user|
   sign_in_to_back_office(user)
 end
 
+Given(/^I sign out of back office$/) do
+  sign_out_of_back_office
+end
+
 Given(/^I am signed in as an Environment Agency user with refunds$/) do
   Capybara.reset_session!
   @back_app = BackEndApp.new

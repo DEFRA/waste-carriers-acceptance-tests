@@ -197,7 +197,7 @@ Given(/^has created an agency user for "([^"]*)"$/) do |user|
 end
 
 When(/^migrates the backend users to the back office$/) do
-  @bo.dashboard_page.govuk_banner.manage_users.click
+  @bo.dashboard_page.govuk_banner.manage_users_link.click
   expect(@bo.users_page).to_not have_text(@user)
   @bo.users_page.migrate_users.click
   @bo.migrate_page.migrate_users.click
@@ -258,7 +258,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
 end
 
 When(/^I approve the conviction check$/) do
-  @bo.dashboard_page.govuk_banner.conviction_checks.click
+  @bo.dashboard_page.govuk_banner.conviction_checks_link.click
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/#{@reg_number}/convictions")
 
   @bo.convictions_bo_details_page.approve_button.click
