@@ -8,8 +8,7 @@ Then(/^I have the correct permissions for an agency user$/) do
   expect(@bo.registration_details_page).to have_payment_details_link
   expect(@bo.registration_details_page).to have_no_cease_or_revoke_link
   expect(@bo.registration_details_page.govuk_banner).to have_no_manage_users_link
-  # This will soon be unavailable due to RUBY-945:
-  expect(@bo.registration_details_page.govuk_banner).to have_conviction_checks_link
+  expect(@bo.registration_details_page.govuk_banner).to have_no_conviction_checks_link
 
   go_to_payments_page(@reg_number)
   expect(@bo.finance_payment_details_page).to have_no_enter_payment_button
@@ -90,8 +89,7 @@ Then(/^I have the correct permissions for a finance user$/) do
   expect(@bo.registration_details_page).to have_payment_details_link
   expect(@bo.registration_details_page).to have_no_cease_or_revoke_link
   expect(@bo.registration_details_page.govuk_banner).to have_no_manage_users_link
-  # This will soon be unavailable due to RUBY-945:
-  expect(@bo.registration_details_page.govuk_banner).to have_conviction_checks_link
+  expect(@bo.registration_details_page.govuk_banner).to have_no_conviction_checks_link
 
   go_to_payments_page(@reg_number)
   expect(@bo.finance_payment_details_page).to have_enter_payment_button
@@ -112,8 +110,7 @@ Then(/^I have the correct permissions for a finance admin user$/) do
   expect(@bo.registration_details_page).to have_payment_details_link
   expect(@bo.registration_details_page).to have_no_cease_or_revoke_link
   expect(@bo.registration_details_page.govuk_banner).to have_no_manage_users_link
-  # This will soon be unavailable due to RUBY-945:
-  expect(@bo.registration_details_page.govuk_banner).to have_conviction_checks_link
+  expect(@bo.registration_details_page.govuk_banner).to have_no_conviction_checks_link
 
   go_to_payments_page(@reg_number)
   expect(@bo.finance_payment_details_page).to have_enter_payment_button
@@ -134,8 +131,7 @@ Then(/^I have the correct permissions for a finance super user$/) do
   expect(@bo.registration_details_page).to have_payment_details_link
   expect(@bo.registration_details_page).to have_no_cease_or_revoke_link
   expect(@bo.registration_details_page.govuk_banner).to have_manage_users_link
-  # This will soon be unavailable due to RUBY-945:
-  expect(@bo.registration_details_page.govuk_banner).to have_conviction_checks_link
+  expect(@bo.registration_details_page.govuk_banner).to have_no_conviction_checks_link
 
   go_to_payments_page(@reg_number)
   expect(@bo.finance_payment_details_page).to have_enter_payment_button
