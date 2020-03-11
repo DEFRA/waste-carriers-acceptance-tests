@@ -49,7 +49,7 @@ class WorldpayPaymentPage < SitePrism::Page
     # - Cardholder failed authentication
     # - The error code is invalid. The order does not proceed to authorisation.
     within_frame verification_iframe do
-      sleep(5) # as the 3D simulator can take time to load
+      sleep(6) # as the 3D simulator can take time to load
       verification_select_response.select(args[:response]) if args.key?(:response)
       verification_submit_response.click
     end

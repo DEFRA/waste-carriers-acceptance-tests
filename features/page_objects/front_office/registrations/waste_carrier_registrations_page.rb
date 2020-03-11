@@ -1,6 +1,7 @@
 class WasteCarrierRegistrationsPage < SitePrism::Page
 
   element(:heading, ".heading-large")
+  element(:content, "#content")
 
   sections(:registration_info, "table tbody tr:nth-child(odd)") do
     element(:name, "td:nth-child(1)")
@@ -49,12 +50,6 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
   def check_status(registration_number)
     element = "#" + registration_number.to_s + " .column-one-quarter:nth-child(3) li+ li"
     find(:css, element).text
-  end
-
-  def renewable?(registration_number)
-    element = "#" + registration_number.to_s + " li:nth-child(3) a"
-    element_txt = find(:css, element).text
-    element_txt.include? "Renew"
   end
 
   def find_registration(registration_number)
