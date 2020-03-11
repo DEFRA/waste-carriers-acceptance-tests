@@ -49,7 +49,8 @@ def reject_flagged_conviction_for_reg(reg, company_name)
 end
 
 def go_to_conviction_dashboard
-  sign_in_to_back_office("agency_user")
+  sign_out_of_back_office
+  sign_in_to_back_office("agency_user_with_payment_refund")
   @bo.dashboard_page.govuk_banner.conviction_checks_link.click
 end
 
