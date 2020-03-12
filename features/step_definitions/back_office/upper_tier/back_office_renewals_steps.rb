@@ -13,7 +13,7 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   @is_transient_renewal = true
 
   # Search for registration to renew:
-  sign_in_to_back_office("agency_user")
+  sign_in_to_back_office("agency-user")
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.renew_link.click
   start_internal_renewal
@@ -32,7 +32,7 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
 end
 
 Given(/^the back office pages show the correct transient renewal details$/) do
-  sign_in_to_back_office("agency_user")
+  sign_in_to_back_office("agency-user")
   @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
 
   expect(@bo.registration_details_page.heading).to have_text("Renewal " + @reg_number)
@@ -180,7 +180,7 @@ Given(/^an Agency super user has signed in to the admin area$/) do
   @journey = JourneyApp.new
   @back_app.admin_sign_in_page.load
   @back_app.admin_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_super"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["agency-super"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end

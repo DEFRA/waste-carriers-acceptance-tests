@@ -19,7 +19,7 @@ Given(/^I have an application paid by credit card$/) do
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
 

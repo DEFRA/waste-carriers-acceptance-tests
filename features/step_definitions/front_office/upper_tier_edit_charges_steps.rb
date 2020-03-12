@@ -104,7 +104,7 @@ Then(/^its previous registration will be "([^"]*)"$/) do |status|
   @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["agency-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @back_app.registrations_page.search(search_input: @reg_number)

@@ -166,7 +166,9 @@ def old_submit_convictions(convictions)
   if convictions == "no convictions"
     @back_app.relevant_convictions_page.submit(choice: :no)
   else
-    puts "Need steps to declare a conviction on old app here"
+    @back_app.relevant_convictions_page.submit(choice: :yes)
+    people = @back_app.relevant_people_page.relevant_people
+    @back_app.relevant_people_page.submit_relevant_person(person: people[0])
   end
 end
 

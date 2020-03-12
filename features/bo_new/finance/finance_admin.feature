@@ -61,16 +61,16 @@ Feature: Finance admin
         And NCCC makes a payment of 10 by "cheque"
 
       Given the registration's balance is -5
-       When an "agency_user_with_payment_refund" reverses the previous payment
+       When an "agency-refund-payment-user" reverses the previous payment
        Then the registration has a status of "ACTIVE"
         And the registration has a status of "PAYMENT NEEDED"
 
       Given the registration's balance is 5
-       When an "agency_user_with_payment_refund" writes off the outstanding balance
+       When an "agency-refund-payment-user" writes off the outstanding balance
        Then the registration's balance is 0
         And the registration does not have a status of "PAYMENT NEEDED"
 
       Given a finance admin user adjusts the charge by 6
-       When a "finance_admin" writes off the outstanding balance
+       When a "finance-admin-user" writes off the outstanding balance
        Then the registration's balance is 0
         And the registration does not have a status of "PAYMENT NEEDED"

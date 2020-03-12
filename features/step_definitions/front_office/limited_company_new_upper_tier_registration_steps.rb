@@ -13,7 +13,7 @@ When(/^I complete my application of my limited company as an upper tier waste ca
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit
@@ -54,7 +54,7 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit

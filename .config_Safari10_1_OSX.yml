@@ -64,13 +64,13 @@ javascript_errors: false
 # available in your tests.
 custom:
   accounts:
-    agency_user:
+    agency-user:
       username: agency-user@wcr.gov.uk
-    agency_user_with_payment_refund:
+    agency-refund-payment-user:
       username: agency-refund-payment-user@wcr.gov.uk
-    finance_admin:
+    finance-admin-user:
       username: finance-admin-user@wcr.gov.uk
-    finance_basic:
+    finance-user:
       username: finance-user@wcr.gov.uk
     waste_carrier:
       username: user@example.com

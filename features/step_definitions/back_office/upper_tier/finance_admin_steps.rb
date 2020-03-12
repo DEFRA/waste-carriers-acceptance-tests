@@ -1,7 +1,6 @@
 Given(/^an agency-refund-payment-user refunds the WorldPay payment$/) do
 
-  sign_out_of_back_office
-  sign_in_to_back_office("agency_user_with_payment_refund")
+  sign_in_to_back_office("agency-refund-payment-user")
   go_to_payments_page(@reg_number)
 
   @bo.finance_payment_details_page.refund_button.click
@@ -30,8 +29,7 @@ end
 
 Given(/^a finance admin user adjusts the charge by (-?\d+)$/) do |amount|
   # input is a positive or negative integer amount
-  sign_out_of_back_office
-  sign_in_to_back_office("finance_admin")
+  sign_in_to_back_office("finance-admin-user")
   go_to_payments_page(@reg_number)
   random_number = rand(0..999_999) # to help identify transaction later
   amount = amount.to_i
@@ -44,7 +42,6 @@ Given(/^a finance admin user adjusts the charge by (-?\d+)$/) do |amount|
 end
 
 Given(/^(?:a|an) "([^"]*)" reverses the previous payment$/) do |user|
-  sign_out_of_back_office
   sign_in_to_back_office(user)
   go_to_payments_page(@reg_number)
   reverse_last_transaction
@@ -54,9 +51,8 @@ Given(/^(?:a|an) "([^"]*)" reverses the previous payment$/) do |user|
 end
 
 Given(/^(?:a|an) "([^"]*)" writes off the outstanding balance$/) do |user|
-  # An agency_user_with_payment_refund is able to write off up to +/- 5 pounds.
-  # A finance_admin user can write off any amount.
-  sign_out_of_back_office
+  # An agency-refund-payment-user is able to write off up to +/- 5 pounds.
+  # A finance-admin-user can write off any amount.
   sign_in_to_back_office(user)
   go_to_payments_page(@reg_number)
 

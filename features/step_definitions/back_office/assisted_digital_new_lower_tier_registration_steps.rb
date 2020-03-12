@@ -8,7 +8,7 @@ When(/^I have my registration of my charity as a lower tier waste carrier comple
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
   @back_app.check_details_page.submit
@@ -24,7 +24,7 @@ When(/^I have my registration of my local authority as a lower tier waste carrie
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
   @back_app.check_details_page.submit
@@ -43,7 +43,7 @@ Given(/^I have my registration of my limited company as a lower tier waste carri
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
   @back_app.check_details_page.submit
@@ -62,7 +62,7 @@ When(/^I have my registration of my partnership as a lower tier waste carrier co
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
   @back_app.check_details_page.submit
@@ -81,7 +81,7 @@ When(/^I have my registration of my public body as a lower tier waste carrier co
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
   @back_app.check_details_page.submit
@@ -100,7 +100,7 @@ When(/^I have my sole trader business lower tier waste carrier registration comp
   @back_app.contact_details_page.submit(
     first_name: "Terry",
     last_name: "Griffiths",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
   @back_app.check_details_page.submit

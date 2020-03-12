@@ -5,7 +5,7 @@ Given(/^I am signed in as a finance admin$/) do
   @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["finance_admin"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["finance-admin-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
@@ -15,7 +15,7 @@ Given(/^I am signed in as a finance user$/) do
   @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["finance_basic"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["finance-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
