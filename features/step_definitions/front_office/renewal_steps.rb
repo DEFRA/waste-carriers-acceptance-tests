@@ -385,7 +385,10 @@ Then(/^I will see my registration "([^"]*)" has been renewed$/) do |reg|
   status = @renewals_app.waste_carrier_registrations_page.check_status(@reg_number)
   expect(status).to have_text("Active")
 
-  expect(@renewals_app.waste_carrier_registrations_page.renewable?(@reg_number)).to be false
+  # This variable gets all page text, including visually-hidden text, which isn't captured by default.
+  # See https://blog.tomoyukikashiro.me/post/feature-test-tips-using-capybara/#can-not-find-text
+  all_page_text = @renewals_app.waste_carrier_registrations_page.content.text(:all)
+  expect(all_page_text).not_to include "Renew registration for Ltd Company renewal"
 end
 
 Then(/^I will be prompted to sign in to complete the renewal$/) do
