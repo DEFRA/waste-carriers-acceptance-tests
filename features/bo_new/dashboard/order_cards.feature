@@ -5,7 +5,7 @@ Feature: [RUBY-767] NCCC agent orders registration cards from back office
   So that I can help a waste carrier prove they are registered
 
 Background:
-	Given I sign into the back office as "agency_user"
+	Given I sign into the back office as "agency-user"
 
 Scenario: NCCC user orders one card by bank card
   When an agency user orders "1" registration card for "CBDU208"

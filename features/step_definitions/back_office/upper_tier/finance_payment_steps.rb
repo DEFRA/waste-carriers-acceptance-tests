@@ -1,5 +1,5 @@
 When(/^the registration's balance is (-?\d+)$/) do |balance|
-  sign_in_to_back_office("agency_user_with_payment_refund")
+  sign_in_to_back_office("agency-refund-payment-user")
 
   # Firstly, check the balance for that registration:
   check_registration_details(@reg_number)
@@ -75,7 +75,7 @@ Given(/^registration "([^"]*)" has an unsubmitted renewal$/) do |reg|
 
   @bo.sign_in_page.load
   @bo.sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["agency-refund-payment-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
@@ -135,6 +135,6 @@ And(/^the applicant pays by bank card$/) do
     @bo.payment_summary_page.submit(choice: :card_payment)
   end
   submit_valid_card_payment
-  @is_transient_renewal = false
+  @is_transient_renewal = false unless @convictions == "convictions"
   @reg_balance = 0
 end

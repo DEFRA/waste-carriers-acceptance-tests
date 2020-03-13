@@ -49,14 +49,17 @@ def reject_flagged_conviction_for_reg(reg, company_name)
 end
 
 def go_to_conviction_dashboard
-  sign_out_of_back_office
-  sign_in_to_back_office("agency_user_with_payment_refund")
+  sign_in_to_back_office("agency-refund-payment-user")
   @bo.dashboard_page.govuk_banner.conviction_checks_link.click
 end
 
 def go_to_conviction_for_reg(reg)
-  # Because it is difficult to find a unique link to the registration's conviction checks, visit the URL directly:
-  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/registrations/" + reg + "/convictions")
+  if @is_transient_renewal
+    # Because it is difficult to find a unique link to the registration's conviction checks, visit the URL directly:
+    visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/" + reg + "/convictions")
+  else # it's a registration
+    visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/registrations/" + reg + "/convictions")
+  end
   expect(@bo.convictions_bo_details_page.heading).to have_text("Conviction information for " + reg)
 
   # Registration sample URL:
@@ -72,7 +75,12 @@ end
 
 def approve_conviction(reg)
   @bo.convictions_bo_details_page.approve_button.click
-  expect(@bo.convictions_decision_page.heading).to have_text("Approve a registration with possible convictions: " + reg)
+  expected_heading = if @is_transient_renewal
+                       "Approve a renewal with possible convictions: " + reg
+                     else
+                       "Approve a registration with possible convictions: " + reg
+                     end
+  expect(@bo.convictions_decision_page.heading).to have_text(expected_heading)
   @bo.convictions_decision_page.submit(conviction_reason: "Test conviction approved")
   puts reg + " approved following conviction check"
 end
@@ -88,7 +96,12 @@ end
 
 def reject_conviction(reg)
   @bo.convictions_bo_details_page.reject_button.click
-  expect(@bo.convictions_decision_page.heading).to have_text("Reject a registration with possible convictions: " + reg)
+  expected_heading = if @is_transient_renewal
+                       "Reject a renewal with possible convictions: " + reg
+                     else
+                       "Reject a registration with possible convictions: " + reg
+                     end
+  expect(@bo.convictions_decision_page.heading).to have_text(expected_heading)
   @bo.convictions_decision_page.submit(conviction_reason: "Test conviction rejected")
   puts reg + " rejected due to convictions"
 end

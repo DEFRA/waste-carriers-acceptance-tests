@@ -16,7 +16,6 @@ Then(/^I have the correct permissions for an agency user$/) do
   expect(@bo.finance_payment_details_page).to have_no_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_no_refund_button
   expect(@bo.finance_payment_details_page).to have_no_write_off_button
-  sign_out_of_back_office
 end
 
 Then(/^I have the correct permissions for an agency refund payment user$/) do
@@ -39,23 +38,19 @@ Then(/^I have the correct permissions for an agency refund payment user$/) do
   expect(@bo.finance_payment_details_page).to have_write_off_button
 
   # Check agency-refund-payment-user cannot write off more than 5 pounds:
-  sign_out_of_back_office
-  sign_in_to_back_office("finance_admin")
+  sign_in_to_back_office("finance-admin-user")
   go_to_payments_page(@reg_number)
   adjust_charge(1, 999) # adjust charge by +1 pound, passing a dummy number for second argument
 
   # Check that write off button is no longer available:
-  sign_out_of_back_office
-  sign_in_to_back_office("agency_user")
+  sign_in_to_back_office("agency-user")
   go_to_payments_page(@reg_number)
   expect(@bo.finance_payment_details_page).to have_no_write_off_button
 
   # Set the balance back to 5 pounds for remaining tests
-  sign_out_of_back_office
-  sign_in_to_back_office("finance_admin")
+  sign_in_to_back_office("finance-admin-user")
   go_to_payments_page(@reg_number)
   adjust_charge(-1, 999) # adjust charge by -1 pound, passing a dummy number for second argument
-  sign_out_of_back_office
 end
 
 Then(/^I have the correct permissions for an agency super user$/) do
@@ -76,7 +71,6 @@ Then(/^I have the correct permissions for an agency super user$/) do
   expect(@bo.finance_payment_details_page).to have_no_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_refund_button
   expect(@bo.finance_payment_details_page).to have_write_off_button
-  sign_out_of_back_office
 end
 
 Then(/^I have the correct permissions for a finance user$/) do
@@ -97,7 +91,6 @@ Then(/^I have the correct permissions for a finance user$/) do
   expect(@bo.finance_payment_details_page).to have_no_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_no_refund_button
   expect(@bo.finance_payment_details_page).to have_no_write_off_button
-  sign_out_of_back_office
 end
 
 Then(/^I have the correct permissions for a finance admin user$/) do
@@ -118,7 +111,6 @@ Then(/^I have the correct permissions for a finance admin user$/) do
   expect(@bo.finance_payment_details_page).to have_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_no_refund_button
   expect(@bo.finance_payment_details_page).to have_write_off_button
-  sign_out_of_back_office
 end
 
 Then(/^I have the correct permissions for a finance super user$/) do
@@ -139,5 +131,4 @@ Then(/^I have the correct permissions for a finance super user$/) do
   expect(@bo.finance_payment_details_page).to have_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_no_refund_button
   expect(@bo.finance_payment_details_page).to have_write_off_button
-  sign_out_of_back_office
 end

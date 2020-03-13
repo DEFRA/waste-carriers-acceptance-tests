@@ -3,20 +3,21 @@ Given(/^an Environment Agency user has signed in to the backend$/) do
   load_all_apps
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["agency-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
 
 Given(/^I sign into the back office as "([^"]*)"$/) do |user|
   # Use this step to sign in to the back office as any of the following users:
-  # agency_user
-  # agency_user_with_payment_refund
-  # finance_admin
-  # finance_basic
+  # agency-user
+  # agency-refund-payment-user
+  # agency-super
+  # finance-user
+  # finance-admin-user
+  # finance-super
   # waste_carrier
   # waste_carrier2
-  # agency_super
   load_all_apps
   sign_in_to_back_office(user)
 end
@@ -31,7 +32,7 @@ Given(/^I am signed in as an Environment Agency user with refunds$/) do
   @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user_with_payment_refund"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["agency-refund-payment-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
@@ -68,14 +69,14 @@ Then(/^I will have a lower tier registration$/) do
 end
 
 Then(/^the registration has a status of "([^"]*)"$/) do |status|
-  sign_in_to_back_office("agency_user")
+  sign_in_to_back_office("agency-refund-payment-user")
   @bo.dashboard_page.govuk_banner.home_page.click
   @bo.dashboard_page.submit(search_term: @reg_number)
   expect(@bo.dashboard_page.results_table).to have_text(status)
 end
 
 Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
-  sign_in_to_back_office("agency_user")
+  sign_in_to_back_office("agency-refund-payment-user")
   @bo.dashboard_page.govuk_banner.home_page.click
   @bo.dashboard_page.submit(search_term: @reg_number)
   expect(@bo.dashboard_page.results_table).to have_no_text(status)
@@ -135,7 +136,7 @@ Then(/^my registration status for "([^"]*)" will be "([^"]*)"$/) do |search_item
   @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["agency-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @back_app.registrations_page.search(search_input: search_item)
@@ -149,7 +150,7 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
   @bo = BackOfficeApp.new
   @back_app.agency_sign_in_page.load
   @back_app.agency_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["agency_user"]["username"],
+    email: Quke::Quke.config.custom["accounts"]["agency-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @back_app.registrations_page.search(search_input: @reg_number)

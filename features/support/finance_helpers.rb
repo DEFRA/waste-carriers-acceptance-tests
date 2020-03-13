@@ -3,14 +3,13 @@
 def sign_in_as_appropriate_finance_user(method)
   # Select user with appropriate permissions for the payment method:
   user = if %w[cash cheque postal].include? method
-           "agency_user_with_payment_refund"
+           "agency-refund-payment-user"
          elsif method == "transfer"
-           "finance_basic"
+           "finance-user"
          else
-           "finance_admin"
+           "finance-admin-user"
          end
 
-  sign_out_of_back_office
   sign_in_to_back_office(user)
 end
 

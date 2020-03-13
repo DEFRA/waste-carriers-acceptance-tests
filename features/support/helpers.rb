@@ -9,14 +9,20 @@ def load_all_apps
 end
 
 def sign_in_to_back_office(user)
+  # Check whether user is already logged in by visiting root page:
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
+
+  # Return if already logged in as that user.
+  # This relies on the user property name in .config.yml being the same as the start of the user's email address:
+  return if page.text.include? "Signed in as " + user
+
+  # If user is already signed in as a different user, then sign them out:
   heading = @journey.standard_page.heading.text
+  sign_out_of_back_office if heading != "Sign in"
 
-  # Bypass if already logged in:
-  return unless heading == "Sign in"
-
+  # Then sign in as the correct user:
   @bo.sign_in_page.submit(
-    # user must match the user headings in .config.yml
+    # user must match the user headings in .config.yml:
     email: Quke::Quke.config.custom["accounts"][user]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )

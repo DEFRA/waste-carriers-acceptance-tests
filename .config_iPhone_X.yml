@@ -9,7 +9,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-# Using private IP address as currently an issue with Safari on iOS 10 and 11 
+# Using private IP address as currently an issue with Safari on iOS 10 and 11
 app_host: 'http://localhost:3000'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
@@ -63,13 +63,13 @@ javascript_errors: false
 # available in your tests.
 custom:
   accounts:
-    agency_user:
+    agency-user:
       username: agency-user@wcr.gov.uk
-    agency_user_with_payment_refund:
+    agency-refund-payment-user:
       username: agency-refund-payment-user@wcr.gov.uk
-    finance_admin:
+    finance-admin-user:
       username: finance-admin-user@wcr.gov.uk
-    finance_basic:
+    finance-user:
       username: finance-user@wcr.gov.uk
     waste_carrier:
       username: user@example.com
@@ -88,7 +88,7 @@ custom:
     # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
     # front_office_renewals: "http:/localhost:3002"
     # front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
-    
+
 
 # If you are running Quke behind a proxy you can configure the proxy details
 # here. You'll need either the hostname or IP of the proxy server (don't include
@@ -117,8 +117,8 @@ browserstack:
   # If you don't want to put these credentials in the config file (because you
   # want to commit it to source control), Quke will also check for the existance
   # of the environment variables BROWSERSTACK_USERNAME and BROWSERSTACK_AUTH_KEY
-  # username: 
-  # auth_key: 
+  # username:
+  # auth_key:
 
   # If you want to use local testing you must provide a key. You can find this
   # in Browserstack once logged in under settings. Its typically the same value
@@ -126,7 +126,7 @@ browserstack:
   # If you don't want to put this credential in the config file (because you
   # want to commit it to source control), Quke will also check for the existance
   # of the environment variable BROWSERSTACK_LOCAL_KEY
-  # local_key: 
+  # local_key:
 
   # Anything set under capabilities will be passed directly by Quke to
   # browserstack as means of configuring the test.

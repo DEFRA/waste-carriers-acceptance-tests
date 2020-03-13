@@ -9,7 +9,7 @@ When(/^I have my sole trader upper tier waste carrier application completed for 
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
 
@@ -34,7 +34,7 @@ When(/^I have my limited company as a upper tier waste carrier application compl
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
 
@@ -62,7 +62,7 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
 
@@ -89,7 +89,7 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
 
@@ -103,7 +103,7 @@ end
 Given(/^a limited company with companies house number "([^"]*)" is registered as an upper tier waste carrier$/) do |ch_no|
 
   # Store company name and number for later tests:
-  @company_name = "AD UT Company convictions check ltd"
+  @business_name = "AD UT Company convictions check ltd"
   @companies_house_number = ch_no
 
   @back_app.registrations_page.new_registration.click
@@ -115,7 +115,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
 
   @back_app.business_details_page.submit(
     companies_house_number: @companies_house_number,
-    company_name: @company_name,
+    company_name: @business_name,
     postcode: "BS1 5AH",
     result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
@@ -123,7 +123,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
 
@@ -146,7 +146,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
 end
 
 Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
-  @company_name = co_name
+  @business_name = co_name
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
   expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
@@ -162,7 +162,7 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
 
@@ -187,7 +187,7 @@ end
 
 Given(/a key person with a conviction registers as a sole trader upper tier waste carrier$/) do
 
-  @company_name = "AD UT Sole Trader"
+  @business_name = "AD UT Sole Trader"
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
   expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
@@ -195,14 +195,14 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
   @back_app.business_type_page.submit(org_type: "soleTrader")
   old_select_upper_tier_options("carrier_broker_dealer")
   @back_app.business_details_page.submit(
-    company_name: @company_name,
+    company_name: @business_name,
     postcode: "BS1 5AH",
     result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
 
@@ -222,7 +222,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
 end
 
 Given(/^a conviction is declared when registering their partnership for an upper tier waste carrier$/) do
-  @company_name = "AD Upper Tier Partnership"
+  @business_name = "AD Upper Tier Partnership"
   @back_app.registrations_page.new_registration.click
   @back_app.start_page.submit
   expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
@@ -230,14 +230,14 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.business_type_page.submit(org_type: "partnership")
   old_select_upper_tier_options("carrier_broker_dealer")
   @back_app.business_details_page.submit(
-    company_name: @company_name,
+    company_name: @business_name,
     postcode: "BS1 5AH",
     result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
   @back_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678"
+    phone_number: "0117 4960000"
   )
   @back_app.postal_address_page.submit
 
@@ -247,9 +247,7 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.key_people_page.add_key_person(person: people[1])
   @back_app.key_people_page.submit_key_person(person: people[2])
 
-  @back_app.relevant_convictions_page.submit(choice: :yes)
-  people = @back_app.relevant_people_page.relevant_people
-  @back_app.relevant_people_page.submit_relevant_person(person: people[0])
+  old_submit_convictions("convictions")
   @back_app.check_details_page.submit
   @back_app.order_page.submit(
     copy_card_number: 2,

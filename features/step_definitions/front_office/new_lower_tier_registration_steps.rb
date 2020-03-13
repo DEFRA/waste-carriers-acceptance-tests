@@ -15,7 +15,7 @@ When(/^I complete my application of my charity as a lower tier waste carrier$/) 
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit
@@ -45,7 +45,7 @@ When(/^I complete my application of my local authority as a lower tier waste car
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit
@@ -78,7 +78,7 @@ When(/^I complete my application of my partnership as a lower tier waste carrier
   @front_app.contact_details_page.submit(
     first_name: "Terry",
     last_name: "Griffiths",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit
@@ -108,7 +108,7 @@ When(/^I complete my application of my public body as a lower tier waste carrier
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit
@@ -141,7 +141,7 @@ Given(/^I complete my application of a sole trader business as a lower tier wast
   @front_app.contact_details_page.submit(
     first_name: "Terry",
     last_name: "Griffiths",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit
@@ -169,12 +169,12 @@ Given(/^I complete my application of my limited company "([^"]*)" as a lower tie
     postcode: "BS1 5AH",
     result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
   )
-  @company_name = company_name
+  @business_name = company_name
   @email_address = generate_email
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit

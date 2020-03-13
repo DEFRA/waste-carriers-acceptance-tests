@@ -46,14 +46,14 @@ max_wait_time: 2
 
 custom:
   accounts:
-    agency_user:
-      username: agency_user@example.gov.uk
-    finance_admin:
-      username: finance_admin@example.gov.uk
-    finance_basic:
-      username: finance_basic@example.gov.uk
-    agency_user_with_payment_refund:
-      username: agency_user_with_payment_refund@example.gov.uk
+    agency-user:
+      username: agency-user@example.gov.uk
+    finance-admin-user:
+      username: finance-admin-user@example.gov.uk
+    finance-user:
+      username: finance-user@example.gov.uk
+    agency-refund-payment-user:
+      username: agency-refund-payment-user@example.gov.uk
   urls:
     front_office: "http://domainundertest.gov.uk/registrations/start"
     front_office_sign_in: "http://domainundertest.gov.uk/users/sign_in?locale=en"

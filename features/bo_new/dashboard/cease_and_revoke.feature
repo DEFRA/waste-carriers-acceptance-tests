@@ -7,7 +7,7 @@ I need to be able to deregister a registered waste carrier
 So that they no longer have a valid waste carrier licence
 
 Background:
-	Given I sign into the back office as "agency_user_with_payment_refund"
+	Given I sign into the back office as "agency-refund-payment-user"
 
   Scenario: Agency user can cease upper tier waste carrier licence
     Given I have a registration "CBDU106"

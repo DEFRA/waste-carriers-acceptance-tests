@@ -13,20 +13,20 @@ Background:
     And I sign out of back office
 
 Scenario: Permissions
-   When I sign into the back office as "agency_user"
+   When I sign into the back office as "agency-user"
    Then I have the correct permissions for an agency user
 
-   When I sign into the back office as "agency_user_with_payment_refund"
+   When I sign into the back office as "agency-refund-payment-user"
    Then I have the correct permissions for an agency refund payment user
 
-   When I sign into the back office as "agency_super"
+   When I sign into the back office as "agency-super"
    Then I have the correct permissions for an agency super user
 
-   When I sign into the back office as "finance_basic"
+   When I sign into the back office as "finance-user"
    Then I have the correct permissions for a finance user
 
-   When I sign into the back office as "finance_admin"
+   When I sign into the back office as "finance-admin-user"
    Then I have the correct permissions for a finance admin user
 
-   When I sign into the back office as "finance_super"
+   When I sign into the back office as "finance-super"
    Then I have the correct permissions for a finance super user

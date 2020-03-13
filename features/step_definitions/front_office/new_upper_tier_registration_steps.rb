@@ -13,7 +13,7 @@ When(/^I complete my application of my partnership as a upper tier waste carrier
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Carolgees",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit
@@ -48,7 +48,7 @@ When(/^I complete my application of my public body as an upper tier waste carrie
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit
@@ -80,7 +80,7 @@ When(/^I complete my application of my sole trader business as a upper tier wast
   @front_app.contact_details_page.submit(
     first_name: "Bob",
     last_name: "Debuilder",
-    phone_number: "012345678",
+    phone_number: "0117 4960000",
     email: @email_address
   )
   @front_app.postal_address_page.submit
