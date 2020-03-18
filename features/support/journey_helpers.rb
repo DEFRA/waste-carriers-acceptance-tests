@@ -232,8 +232,8 @@ def order_cards_during_journey(number_of_cards)
 end
 
 def old_complete_registration_from_bo(business, tier, carrier)
-  expect(@back_app.finish_assisted_page.heading).to have_text("Registration complete")
   expect(@back_app.finish_assisted_page.registration_number).to have_text("CBD")
+  expect(@back_app.finish_assisted_page.heading).to have_text("Registration complete")
   expect(@back_app.finish_assisted_page).to have_view_certificate
 
   # Stores registration number for later use

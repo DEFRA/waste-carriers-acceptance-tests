@@ -1,10 +1,9 @@
-@bo_new @upper_tier @bo_dashboard
+@bo_new @upper_tier @bo_dashboard @smoke
 Feature: NCCC agent views registrations from back office
   As an NCCC agent
   I want to view registration and renewal details on one service
   So that I can quickly answer user queries
 
-@smoke
 Scenario: NCCC user creates registration and renewal, and checks status
   Given an Environment Agency user has signed in to the backend
    When NCCC partially registers an upper tier "carrier_broker_dealer" "limitedCompany" with "no convictions"
