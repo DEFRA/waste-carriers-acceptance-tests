@@ -11,7 +11,7 @@ Feature: Conviction checks during upper tier waste carrier registrations
   	Given a limited company with companies house number "01649776" is registered as an upper tier waste carrier
       And the registration has a status of "CONVICTIONS"
 
-  	 When the conviction check is immediately approved by an agency user
+  	 When the conviction check is immediately approved by an NCCC user
 
      Then the registration has a status of "ACTIVE"
       And the registration does not have a status of "CONVICTIONS"
@@ -21,7 +21,7 @@ Feature: Conviction checks during upper tier waste carrier registrations
     Given a key person with a conviction registers as a sole trader upper tier waste carrier
       And the registration has a status of "CONVICTIONS"
 
-     When the conviction check is immediately approved by an agency user
+     When the conviction check is immediately approved by an NCCC user
 
      Then the registration has a status of "ACTIVE"
       And the registration does not have a status of "CONVICTIONS"
@@ -31,8 +31,8 @@ Feature: Conviction checks during upper tier waste carrier registrations
       And the applicant pays by bank card
       And the registration has a status of "CONVICTIONS"
 
-     When the conviction check is flagged by an agency user
-      And the flagged conviction is approved by an agency user
+     When the conviction check is flagged by an NCCC user
+      And the flagged conviction is approved by an NCCC user
 
      Then the registration does not have a status of "CONVICTIONS"
       And the registration does not have a status of "IN PROGRESS"
@@ -41,8 +41,8 @@ Feature: Conviction checks during upper tier waste carrier registrations
     Given a conviction is declared when registering their partnership for an upper tier waste carrier
       And the registration has a status of "CONVICTIONS"
 
-     When the conviction check is flagged by an agency user
-      And the flagged conviction is approved by an agency user
+     When the conviction check is flagged by an NCCC user
+      And the flagged conviction is approved by an NCCC user
 
      Then the registration has a status of "ACTIVE"
       And the registration does not have a status of "CONVICTIONS"
@@ -52,8 +52,8 @@ Feature: Conviction checks during upper tier waste carrier registrations
       And the applicant pays by bank card
       And the registration has a status of "CONVICTIONS"
 
-     When the conviction check is flagged by an agency user
-      And the flagged conviction is rejected by an agency user
+     When the conviction check is flagged by an NCCC user
+      And the flagged conviction is rejected by an NCCC user
 
      Then the registration has a status of "CONVICTIONS"
       And the registration has a status of "REVOKED"
@@ -62,8 +62,8 @@ Feature: Conviction checks during upper tier waste carrier registrations
     Given a limited company "CACI" registers as an upper tier waste carrier
       And the registration has a status of "CONVICTIONS"
 
-      When the conviction check is flagged by an agency user
-       And the flagged conviction is rejected by an agency user
+      When the conviction check is flagged by an NCCC user
+       And the flagged conviction is rejected by an NCCC user
 
       Then the registration has a status of "REFUSED"
        And the registration has a status of "CONVICTIONS"
