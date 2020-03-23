@@ -31,7 +31,7 @@ pause: 0
 # Specify whether Quke should stop all tests once an error occurs. Useful in
 # Continuous Integration (CI) environments where a quick Yes/No is preferable to
 # a detailed response.
-stop_on_error: 5
+stop_on_error: 0
 
 # Capybara will attempt to find an element for a period of time, rather than
 # immediately failing because the element cannot be found. This defaults to 2
