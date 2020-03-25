@@ -9,7 +9,11 @@ class UserInvitePage < SitePrism::Page
   element :submit_form, 'input[type="submit"]'
 
   element :agency_user_radio, 'input[value="agency"]', visible: false
-  # element :agency_user_with_refund_radio, '#user_role_agency_with_refund'
-  # element :agency_super_user_radio, '#user_role_agency_super'
-  # element :developer_user_radio, '#user_role_developer'
+  element :agency_user_with_refund_radio, '#user_role_agency_with_refund', visible: false
+  element :agency_super_user_radio, '#user_role_agency_super', visible: false
+  element :developer_user_radio, '#user_role_developer', visible: false
+
+  element :finance_user_radio, '#user_role_finance', visible: false
+  element :finance_admin_user_radio, '#user_role_finance_admin', visible: false
+  element :finance_super_user_radio, '#user_role_finance_super', visible: false
 end
