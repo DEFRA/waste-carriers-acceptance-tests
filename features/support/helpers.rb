@@ -69,7 +69,7 @@ def try(number_of_times)
 end
 
 def generate_email
-  @email_address = rand(100_000_000).to_s + "@mailinator.com"
+  @email_address = "#{SecureRandom.uuid[0..10]}@example.com"
 end
 
 def next_year

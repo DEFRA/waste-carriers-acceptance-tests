@@ -154,6 +154,10 @@ class BackOfficeApp
     @last_page = WasteCarrierSignInPage.new
   end
 
+  def invite_user_page
+    @last_page = InviteUserPage.new
+  end
+
   def waste_types_page
     @last_page = WasteTypesPage.new
   end
