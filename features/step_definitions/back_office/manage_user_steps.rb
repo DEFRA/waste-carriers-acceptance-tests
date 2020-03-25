@@ -6,17 +6,17 @@ When(/^I invite a new "([^"]*)" user$/) do |user_type|
 
   @bo.users_page.invite_user.click
 
-  invite_user_page = @bo.invite_user_page
+  user_invite_page = @bo.user_invite_page
 
-  expect(invite_user_page).to be_displayed
+  expect(user_invite_page).to be_displayed
 
   @new_user_email = generate_email
   @new_user_role = user_type
   element = "#{user_type}_user_radio"
 
-  invite_user_page.email_field.set(@new_user_email)
-  invite_user_page.public_send(element).click
-  invite_user_page.submit_form.click
+  user_invite_page.email_field.set(@new_user_email)
+  user_invite_page.public_send(element).click
+  user_invite_page.submit_form.click
 
   expect(@bo.users_page).to be_displayed
 end
@@ -39,13 +39,11 @@ Then("the new user is able to setup a password following the email's link") do
   Capybara.reset_session!
   visit(@confirm_waste_carriers_email_link)
 
-  accept_invitation_page = AcceptInvitationPage.new
+  user_accept_invite_page = UserAcceptInvitePage.new
 
-  new_user_password = "Secret123"
-
-  accept_invitation_page.password_field.set(new_user_password)
-  accept_invitation_page.confirm_password_field.set(new_user_password)
-  accept_invitation_page.submit_field.click
+  user_accept_invite_page.password_field.set(ENV["WCRS_DEFAULT_PASSWORD"])
+  user_accept_invite_page.confirm_password_field.set(ENV["WCRS_DEFAULT_PASSWORD"])
+  user_accept_invite_page.submit_field.click
 end
 
 Then("the new user is logged in") do
@@ -60,10 +58,10 @@ When(/^I update the new user role to an "([^"]*)"$/) do |new_role|
     click_link("Change role")
   end
 
-  change_role_page = ChangeRolePage.new
+  user_amend_page = UserAmendPage.new
   radio_button = "#{new_role.gsub(" ", "_")}_user_radio"
-  change_role_page.public_send(radio_button).click
-  change_role_page.submit_field.click
+  user_amend_page.public_send(radio_button).click
+  user_amend_page.submit_field.click
 end
 
 When(/^I remove the new user$/) do

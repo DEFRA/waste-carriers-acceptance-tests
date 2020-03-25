@@ -1,6 +1,6 @@
 require_relative "sections/govuk_banner.rb"
 
-class AcceptInvitationPage < SitePrism::Page
+class UserAcceptInvitePage < SitePrism::Page
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
   element :password_field, '#user_password'

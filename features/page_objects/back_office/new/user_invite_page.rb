@@ -1,6 +1,6 @@
 require_relative "sections/govuk_banner.rb"
 
-class InviteUserPage < SitePrism::Page
+class UserInvitePage < SitePrism::Page
   set_url "#{Quke::Quke.config.custom["urls"]["back_office_renewals"]}/bo/users/invitation/new"
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
