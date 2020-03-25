@@ -57,6 +57,7 @@ Feature: Finance admin
        Then the registration's balance is -5
         And the registration has a status of "ACTIVE"
 
+@smoke
   Scenario: [RUBY-809 & 810] Reverse and write off
       Given the applicant chooses to pay for the registration by bank transfer ordering 1 copy card
         And NCCC makes a payment of 154 by "cash"
