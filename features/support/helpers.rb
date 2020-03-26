@@ -76,9 +76,7 @@ def look_into_paginated_content_for(text)
   # Start from first page. Look for the known text on page.
   # If it's not there, click Next and look again.
   # Break after 30 pages.
-  if page.has_text?("« First")
-    find_link("« First").click
-  end
+  find_link("« First").click if page.has_text?("« First")
 
   30.times do
     break if page.has_text?(text)

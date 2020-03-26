@@ -24,7 +24,7 @@ end
 Then(/^the new user has the correct back office permissions$/) do
   look_into_paginated_content_for(@new_user_email)
 
-  within page.first(:css, 'tr', text: /.*#{Regexp.quote(@new_user_email)}.*/) do
+  within page.first(:css, "tr", text: /.*#{Regexp.quote(@new_user_email)}.*/) do
     expect(page).to have_text(@new_user_role)
   end
 end
@@ -56,12 +56,12 @@ When(/^I update the new user role to an "([^"]*)"$/) do |new_role|
 
   look_into_paginated_content_for(@new_user_email)
 
-  within page.first(:css, 'tr', text: /.*#{Regexp.quote(@new_user_email)}.*/) do
+  within page.first(:css, "tr", text: /.*#{Regexp.quote(@new_user_email)}.*/) do
     click_link("Change role")
   end
 
   user_amend_page = UserAmendPage.new
-  radio_button = "#{new_role.gsub(" ", "_")}_user_radio"
+  radio_button = "#{new_role.gsub(' ', '_')}_user_radio"
   user_amend_page.public_send(radio_button).click
   user_amend_page.submit_field.click
 end
@@ -71,7 +71,7 @@ When(/^I deactivate the new user$/) do
 
   look_into_paginated_content_for(@new_user_email)
 
-  within page.first(:css, 'tr', text: /.*#{Regexp.quote(@new_user_email)}.*/) do
+  within page.first(:css, "tr", text: /.*#{Regexp.quote(@new_user_email)}.*/) do
     click_link("Deactivate")
   end
 
@@ -101,7 +101,7 @@ Then(/^I cannot manage finance users$/) do
   ["finance-user@wcr.gov.uk", "finance-super@wcr.gov.uk", "finance-admin-user@wcr.gov.uk"].each do |email|
     look_into_paginated_content_for(email)
 
-    within page.first(:css, 'tr', text: /.*#{Regexp.quote(email)}.*/) do
+    within page.first(:css, "tr", text: /.*#{Regexp.quote(email)}.*/) do
       expect(page).to_not have_link("Deactivate")
       expect(page).to_not have_link("Change role")
     end
@@ -112,7 +112,7 @@ Then(/^I cannot manage agency users$/) do
   ["agency-refund-payment-user@wcr.gov.uk", "agency-super@wcr.gov.uk", "agency-user@wcr.gov.uk"].each do |email|
     look_into_paginated_content_for(email)
 
-    within page.first(:css, 'tr', text: /.*#{Regexp.quote(email)}.*/) do
+    within page.first(:css, "tr", text: /.*#{Regexp.quote(email)}.*/) do
       expect(page).to_not have_link("Deactivate")
       expect(page).to_not have_link("Change role")
     end
