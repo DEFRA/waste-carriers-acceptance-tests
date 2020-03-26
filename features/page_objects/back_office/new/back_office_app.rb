@@ -142,12 +142,12 @@ class BackOfficeApp
     @last_page = TransferRegistrationPage.new
   end
 
-  def users_page
-    @last_page = UsersPage.new
-  end
-
   def unrenewable_page
     @last_page = UnrenewablePage.new
+  end
+
+  def users_page
+    @last_page = UsersPage.new
   end
 
   def waste_carrier_sign_in_page

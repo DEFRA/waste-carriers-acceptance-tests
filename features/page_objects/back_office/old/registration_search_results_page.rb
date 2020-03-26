@@ -7,9 +7,9 @@ class RegistrationSearchResultsPage < SitePrism::Page
   element(:back_link, :xpath, "//a[contains(.,'Back')]")
 
   sections :registrations, "table tbody tr" do
-    element :registration_number, "td:nth-child(1)"
-    element :company_name, "td:nth-child(2)"
-    element :status, "td:nth-child(37)"
+    element(:registration_number, "td:nth-child(1)")
+    element(:company_name, "td:nth-child(2)")
+    element(:status, "td:nth-child(37)")
   end
 
   def registration(registration_number)
