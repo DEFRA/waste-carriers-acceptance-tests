@@ -9,6 +9,8 @@ class LastEmailPage < SitePrism::Page
   # The page will be loaded up to 10 times until the email shows
   # (a 1 in 1024 chance of the email not showing).
 
+  set_url Quke::Quke.config.custom["urls"]["last_email_bo"]
+
   element(:email_content, "pre")
 
   # Copy additional functions from WEX tests as needed:

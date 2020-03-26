@@ -145,7 +145,7 @@ custom:
   #   last_email_fo: "https://waste-carriers-tst.aws.defra.cloud/fo/email/last-email"
   #   last_email_bo: "https://admin-waste-carriers-tst.aws.defra.cloud/bo/email/last-email"
 
-  # # Preprod / staging setup
+  # Preprod / staging setup
   # urls:
   #   front_office: "https://waste-carriers-pre.aws.defra.cloud"
   #   front_office_sign_in: "https://waste-carriers-pre.aws.defra.cloud/users/sign_in"

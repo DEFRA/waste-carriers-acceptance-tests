@@ -9,12 +9,12 @@ class RegistrationsPage < SitePrism::Page
   element(:sign_out, "#signout_button")
 
   sections :search_results, ".agency-edit" do
-    element :reg_name, "div:nth-child(1) > div > ul > li:nth-child(1) > p"
-    element :postcode, "div:nth-child(1) > div > ul > li:nth-child(2) > p"
-    element :registration_number, "div:nth-child(2) > div > ul > li:nth-child(1) > p"
-    element :status, "div:nth-child(2) > div > ul > li:nth-child(2) > p"
-    element :date_registered, "div:nth-child(3) > div > ul > li:nth-child(1) > p"
-    element :expiry_date, "div:nth-child(3) > div > ul > li:nth-child(2) > p"
+    element(:reg_name, "div:nth-child(1) > div > ul > li:nth-child(1) > p")
+    element(:postcode, "div:nth-child(1) > div > ul > li:nth-child(2) > p")
+    element(:registration_number, "div:nth-child(2) > div > ul > li:nth-child(1) > p")
+    element(:status, "div:nth-child(2) > div > ul > li:nth-child(2) > p")
+    element(:date_registered, "div:nth-child(3) > div > ul > li:nth-child(1) > p")
+    element(:expiry_date, "div:nth-child(3) > div > ul > li:nth-child(2) > p")
     # Actions
     element(:view_details, "a[text*='Details']")
     element(:view_certificate, "a[text*='View certificate']")

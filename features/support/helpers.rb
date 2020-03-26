@@ -69,7 +69,20 @@ def try(number_of_times)
 end
 
 def generate_email
-  @email_address = rand(100_000_000).to_s + "@mailinator.com"
+  @email_address = "#{rand(100_000_000)}@example.com"
+end
+
+def look_into_paginated_content_for(text)
+  # Start from first page. Look for the known text on page.
+  # If it's not there, click Next and look again.
+  # Break after 30 pages.
+  find_link("« First").click if page.has_text?("« First")
+
+  30.times do
+    break if page.has_text?(text)
+
+    find_link("Next ›").click
+  end
 end
 
 def next_year
