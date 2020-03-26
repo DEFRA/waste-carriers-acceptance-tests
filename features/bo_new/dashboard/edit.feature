@@ -12,10 +12,26 @@ Background:
 
 Scenario: NCCC user edits an upper tier registration
   Given I sign into the back office as "agency-user"
-   When I edit the most recent registration # new. Suggest including random info in a variable to use in the edit, and check against this later
-    And I confirm the changes # new
-   Then I can see the changes on the registration details page # new but will be similar to "the back office pages show the correct registration details"
-
    When I edit the most recent registration
-    And I cancel the edit # new
-   Then I cannot see the changes on the registration details page # new
+    And I confirm the changes
+   Then I can see the changes on the registration details page
+    And the registration's balance is 0
+
+  Given I sign into the back office as "agency-user"
+   When I edit the most recent registration type to "carrier_dealer"
+    And I confirm the changes
+    And I pay by card
+   Then I can see the changes on the registration details page
+    And the registration's balance is 0
+
+  Given I sign into the back office as "agency-user"
+   When I edit the most recent registration type to "carrier_broker_dealer"
+    And I confirm the changes
+    And I pay by bank transfer
+   Then I can see the changes on the registration details page
+    And the registration's balance is 40
+
+  Given I sign into the back office as "agency-user"
+   When I edit the most recent registration
+    And I cancel the edit
+   Then I cannot see the changes on the registration details page
