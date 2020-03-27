@@ -2,12 +2,11 @@ When(/^the registration's balance is (-?\d+)$/) do |balance|
   sign_in_to_back_office("agency-refund-payment-user")
 
   # Firstly, check the balance for that registration:
-  check_registration_details(@reg_number)
+  visit_registration_details_page(@reg_number)
   check_balance(balance)
 
   # Once confirmed, set the balance variable to that value for future steps
   @reg_balance = balance
-
 end
 
 When(/^the applicant chooses to pay for the registration by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
@@ -39,8 +38,7 @@ When(/^the transient renewal's balance is (-?\d+)$/) do |balance|
   # This step assumes that any back office user is already logged in
   # and the payment status is viewable for that renewal (it's been submitted)
 
-  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
-  @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
+  visit_renewal_details_page(@reg_number)
   check_balance(balance)
 
   # Once checked, set the balance variable to that value for future steps

@@ -50,6 +50,14 @@ class BackOfficeApp
     @last_page = DashboardPage.new
   end
 
+  def edit_confirm_cancel_page
+    @last_page = EditConfirmCancelPage.new
+  end
+
+  def edit_page
+    @last_page = EditPage.new
+  end
+
   def existing_registration_page
     @last_page = ExistingRegistrationPage.new
   end
