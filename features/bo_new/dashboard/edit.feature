@@ -1,4 +1,4 @@
-@bo_new @upper_tier @bo_dashboard @smoke
+@bo_new @upper_tier @bo_dashboard @smoke @wip
 Feature: NCCC agent edits registration from back office
   As an NCCC agent
   I want to edit the details of a registration

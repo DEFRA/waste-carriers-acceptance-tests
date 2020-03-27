@@ -9,5 +9,4 @@ class StandardPage < SitePrism::Page
   element(:heading, ".heading-large")
   element(:content, "#content")
   element(:button, ".button")
-
 end

@@ -4,8 +4,8 @@ class PaymentSummaryPage < SitePrism::Page
   element(:back_link, "a[href*='back']")
   element(:heading, :xpath, "//h1[contains(text(), 'Payment summary')]")
 
-  element(:card_payment, "#payment_summary_form_temp_payment_method_card", visible: false)
-  element(:bank_transfer_payment, "#payment_summary_form_temp_payment_method_bank_transfer", visible: false)
+  element(:card_payment, "input[value='card']", visible: false)
+  element(:bank_transfer_payment, "input[value='bank_transfer']", visible: false)
 
   element(:charge, "#registration_registration_fee")
   element(:submit_button, ".button")
