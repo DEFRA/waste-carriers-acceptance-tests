@@ -8,7 +8,7 @@ class CarrierTypePage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    case args[:choice].to_sym
+    case args[:choice]&.to_sym
     when :carrier_dealer
       carrier_dealer.click
     when :broker_dealer

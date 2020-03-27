@@ -8,6 +8,14 @@ def load_all_apps
   @renewals_app = RenewalsApp.new
 end
 
+def visit_registration_details_page(reg_identifier)
+  visit("#{Quke::Quke.config.custom['urls']['back_office_renewals']}/bo/registrations/#{reg_identifier}")
+end
+
+def visit_renewal_details_page(reg_identifier)
+  visit("#{Quke::Quke.config.custom['urls']['back_office_renewals']}/bo/renewing-registrations/#{reg_identifier}")
+end
+
 def sign_in_to_back_office(user)
   # Check whether user is already logged in by visiting root page:
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
