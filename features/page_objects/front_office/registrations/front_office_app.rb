@@ -101,6 +101,10 @@ class FrontOfficeApp
     @last_page = PostCodePage.new
   end
 
+  def registration_sign_in_page
+    @last_page = RegistrationSignInPage.new
+  end
+
   def registration_type_page
     @last_page = RegistrationTypePage.new
   end

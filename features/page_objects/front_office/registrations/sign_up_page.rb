@@ -13,5 +13,4 @@ class SignupPage < SitePrism::Page
     confirm_password.set(args[:confirm_password]) if args.key?(:confirm_password)
     submit_button.click
   end
-
 end
