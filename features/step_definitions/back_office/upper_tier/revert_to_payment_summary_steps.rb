@@ -1,6 +1,6 @@
 require "pry"
 
-When(/^I renew my last registration"$/) do |reg|
+When(/^I renew my last registration"$/) do
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
   @renewals_app.start_page.load
