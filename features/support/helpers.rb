@@ -18,7 +18,10 @@ end
 
 def sign_in_to_front_end_if_necessary(email)
   @renewals_app = RenewalsApp.new
-  @renewals_app.waste_carriers_renewals_sign_in_page.load unless @renewals_app.waste_carriers_renewals_sign_in_page.displayed?
+
+  unless @renewals_app.waste_carriers_renewals_sign_in_page.displayed?
+    @renewals_app.waste_carriers_renewals_sign_in_page.load
+  end
 
   return if page.has_text?("Signed in as")
 
