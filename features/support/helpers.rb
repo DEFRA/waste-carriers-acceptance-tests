@@ -20,12 +20,12 @@ def sign_in_to_front_end_if_necessary(email)
   @renewals_app = RenewalsApp.new
   @renewals_app.waste_carriers_renewals_sign_in_page.load unless @renewals_app.waste_carriers_renewals_sign_in_page.displayed?
 
-  unless page.has_text?("Signed in as")
-    @renewals_app.waste_carriers_renewals_sign_in_page.submit(
-      email: email,
-      password: ENV["WCRS_DEFAULT_PASSWORD"]
-    )
-  end
+  return if page.has_text?("Signed in as")
+
+  @renewals_app.waste_carriers_renewals_sign_in_page.submit(
+    email: email,
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
 end
 
 def sign_in_to_back_office(user)
