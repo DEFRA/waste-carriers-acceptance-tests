@@ -16,6 +16,21 @@ def visit_renewal_details_page(reg_identifier)
   visit("#{Quke::Quke.config.custom['urls']['back_office_renewals']}/bo/renewing-registrations/#{reg_identifier}")
 end
 
+def sign_in_to_front_end_if_necessary(email)
+  @renewals_app = RenewalsApp.new
+
+  unless @renewals_app.waste_carriers_renewals_sign_in_page.displayed?
+    @renewals_app.waste_carriers_renewals_sign_in_page.load
+  end
+
+  return if page.has_text?("Signed in as")
+
+  @renewals_app.waste_carriers_renewals_sign_in_page.submit(
+    email: email,
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+end
+
 def sign_in_to_back_office(user)
   # Check whether user is already logged in by visiting root page:
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")

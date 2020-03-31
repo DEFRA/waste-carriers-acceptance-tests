@@ -23,6 +23,7 @@ class RegistrationDetailsPage < SitePrism::Page
   element(:payment_details_link, "a[href*='/finance-details']")
   element(:cease_or_revoke_link, "a[href*='/cease-or-revoke']")
 
+  element(:revert_to_payment_summary_link, "a[href$='revert-to-payment-summary']")
   # Sample text on this page:
   #
   # Conviction check required
