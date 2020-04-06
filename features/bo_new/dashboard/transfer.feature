@@ -1,10 +1,9 @@
-@bo_new @bo_dashboard
+@bo_new @bo_dashboard @smoke
 Feature: Change the account email for registrations
 As an agency user
 I need to be able to change the account linked to a registration
 So that users can continue to maintain registrations even if their details change
 
-@smoke
   Scenario: Change the account where user has just one registration
     Given I sign into the back office as "agency-user"
       And I choose to transfer ownership of "CBDU234" to another user
