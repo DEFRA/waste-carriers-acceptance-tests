@@ -5,14 +5,16 @@ Given(/^NCCC partially registers an upper tier "([^"]*)" "([^"]*)" with "([^"]*)
   @tier = "upper"
   @carrier = carrier
   @business = business
-  # Generate the business name, stripping out any illegal characters such as _:
-  @business_name = "Registered " + carrier.gsub!(/[^0-9A-Za-z]/, "") + " " + business + " with " + convictions
+  # Generate the business name, stripping out any illegal characters such as _.
+  # As gsub amends the original value of carrier, plus any references to it, work from a clone instead:
+  carrier_without_underscore = carrier.clone.gsub!(/[^0-9A-Za-z]/, "")
+  @business_name = "Registered " + carrier_without_underscore + " " + business + " with " + convictions
   @convictions = convictions
   @is_renewal = false
   @is_transient_renewal = false
 
   old_start_internal_registration
-  old_submit_carrier_details(business, "upper", "carrier_broker_dealer")
+  old_submit_carrier_details(business, "upper", @carrier)
   old_submit_business_details(@business_name, @tier)
   old_submit_contact_details_from_bo
   old_submit_company_people(business)
@@ -62,10 +64,12 @@ Then(/^the back office pages show the correct registration details$/) do
     expect(page_content).to have_text("Lower tier registration - convictions are not applicable")
   end
 
-  if @tier == "carrier_broker_dealer"
+  if @carrier == "carrier_broker_dealer"
     expect(info_panel).to have_text("Carrier, broker and dealer")
-  elsif @tier == "broker_dealer"
+  elsif @carrier == "broker_dealer"
     expect(info_panel).to have_text("Broker and dealer")
+  else
+    expect(info_panel).to have_text("Carrier and dealer")
   end
 
 end
