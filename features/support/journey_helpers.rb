@@ -25,7 +25,7 @@ def submit_carrier_details(business, tier, carrier)
     @journey.carrier_type_page.submit(choice: carrier.to_sym)
   else
     @journey.tier_check_page.submit(choice: :check_tier)
-    select_upper_tier_options(carrier)
+    select_random_upper_tier_options(carrier)
   end
 end
 
@@ -40,7 +40,7 @@ def old_select_lower_tier_options
   @back_app.construction_waste_question_page.submit(choice: :no)
 end
 
-def select_upper_tier_options(carrier)
+def select_random_upper_tier_options(carrier)
   # Randomise between 3 ways to achieve an upper tier registration:
   i = rand(1..3)
   if i == 1
@@ -108,10 +108,10 @@ def submit_limited_company_details(business_name)
     @journey.company_name_page.submit(company_name: business_name)
   end
 
-  complete_address
+  complete_address_with_random_method
 end
 
-def complete_address
+def complete_address_with_random_method
   i = rand(0..2)
   if i.zero?
     # Submit address manually
@@ -139,7 +139,7 @@ end
 
 def submit_organisation_details(business_name)
   @journey.company_name_page.submit(company_name: business_name)
-  complete_address
+  complete_address_with_random_method
 end
 
 def old_submit_company_people(business)

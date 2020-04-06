@@ -12,7 +12,7 @@ class FinancePaymentMethodPage < SitePrism::Page
   element(:transfer, "#payment_form_payment_type_bank_transfer", visible: false)
   element(:missed_worldpay, "#payment_form_payment_type_worldpay_missed", visible: false)
 
-  element(:submit_button, ".button")
+  element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
     case args[:choice]

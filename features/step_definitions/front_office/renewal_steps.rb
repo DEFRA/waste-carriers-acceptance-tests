@@ -67,7 +67,7 @@ When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_t
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options(registration_type.to_sym)
+  select_random_upper_tier_options(registration_type.to_sym)
 end
 
 When(/^I answer questions indicating I should be a lower tier waste carrier$/) do
@@ -117,7 +117,7 @@ When(/^I complete my limited company renewal steps$/) do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options("existing")
+  select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
@@ -159,7 +159,7 @@ When(/^I complete my sole trader renewal steps$/) do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options("existing")
+  select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details(@business_name)
   people = @journey.company_people_page.main_people
@@ -203,7 +203,7 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options("existing")
+  select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
@@ -223,7 +223,7 @@ When(/^I complete my limited liability partnership renewal steps and get stuck$/
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options("existing")
+  select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
@@ -242,7 +242,7 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options("existing")
+  select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
@@ -262,7 +262,7 @@ When(/^I complete my partnership renewal steps$/) do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options("existing")
+  select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
@@ -282,7 +282,7 @@ When(/^I add two partners to my renewal$/) do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options("existing")
+  select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details(@business_name)
   people = @journey.company_people_page.main_people
@@ -299,7 +299,7 @@ When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.renewal_start_page.submit
   @renewals_app.location_page.submit(choice: :overseas)
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options("existing")
+  select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   @journey.company_name_page.submit
   @journey.address_manual_page.submit(
@@ -377,7 +377,7 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_upper_tier_options("existing")
+  select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   @journey.company_number_page.submit(companies_house_number: number.to_sym)
 end
