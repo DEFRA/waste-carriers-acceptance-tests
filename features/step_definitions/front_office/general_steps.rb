@@ -1,8 +1,8 @@
 Given(/^I start a new registration$/) do
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit
   # Redirects to "Where is your principal place of business?"
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
   # Select England as the principal place of business:
@@ -95,8 +95,8 @@ Given(/^I choose to renew my registration using my previous registration number$
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit(renewal: true)
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit(renewal: true)
   @front_app.existing_registration_page.submit(reg_no: @reg_number)
 end
 

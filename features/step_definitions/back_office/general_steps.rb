@@ -44,7 +44,7 @@ end
 
 Given(/^I request assistance with a new registration$/) do
   @back_app.registrations_page.new_registration.click
-  @back_app.start_page.submit
+  @back_app.old_start_page.submit
   expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
   @back_app.location_page.submit(choice: :england)
 end

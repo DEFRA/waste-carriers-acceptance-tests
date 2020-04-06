@@ -1,8 +1,8 @@
 When(/^I complete my application of my charity as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
   @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "charity")
@@ -31,8 +31,8 @@ end
 When(/^I complete my application of my local authority as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
   @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "authority")
@@ -61,8 +61,8 @@ end
 When(/^I complete my application of my partnership as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
   @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "partnership")
@@ -94,8 +94,8 @@ end
 When(/^I complete my application of my public body as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit
   @front_app.business_type_page.submit(org_type: "publicBody")
   @front_app.other_businesses_question_page.submit(choice: :no)
   @front_app.construction_waste_question_page.submit(choice: :no)
@@ -124,8 +124,8 @@ end
 Given(/^I complete my application of a sole trader business as a lower tier waste carrier$/) do
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
   @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "soleTrader")
@@ -157,8 +157,8 @@ end
 Given(/^I complete my application of my limited company "([^"]*)" as a lower tier waste carrier$/) do |company_name|
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit
   expect(@front_app.location_page.heading).to have_text("Where is your principal place of business?")
   @front_app.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "limitedCompany")

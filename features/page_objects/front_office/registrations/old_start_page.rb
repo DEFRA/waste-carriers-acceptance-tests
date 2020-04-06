@@ -1,4 +1,4 @@
-class StartPage < SitePrism::Page
+class OldStartPage < SitePrism::Page
 
   set_url(Quke::Quke.config.custom["urls"]["front_office"])
 

@@ -138,8 +138,8 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
   @front_app = FrontOfficeApp.new
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @front_app.start_page.load
-  @front_app.start_page.submit(renewal: true)
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit(renewal: true)
   @front_app.existing_registration_page.submit(reg_no: @reg_number)
   @front_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],

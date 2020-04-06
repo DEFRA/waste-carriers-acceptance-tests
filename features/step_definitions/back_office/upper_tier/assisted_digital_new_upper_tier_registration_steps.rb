@@ -107,7 +107,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
   @companies_house_number = ch_no
 
   @back_app.registrations_page.new_registration.click
-  @back_app.start_page.submit
+  @back_app.old_start_page.submit
   expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
   @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
@@ -148,7 +148,7 @@ end
 Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
   @business_name = co_name
   @back_app.registrations_page.new_registration.click
-  @back_app.start_page.submit
+  @back_app.old_start_page.submit
   expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
   @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
@@ -189,7 +189,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
 
   @business_name = "AD UT Sole Trader"
   @back_app.registrations_page.new_registration.click
-  @back_app.start_page.submit
+  @back_app.old_start_page.submit
   expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
   @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "soleTrader")
@@ -224,7 +224,7 @@ end
 Given(/^a conviction is declared when registering their partnership for an upper tier waste carrier$/) do
   @business_name = "AD Upper Tier Partnership"
   @back_app.registrations_page.new_registration.click
-  @back_app.start_page.submit
+  @back_app.old_start_page.submit
   expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
   @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "partnership")
