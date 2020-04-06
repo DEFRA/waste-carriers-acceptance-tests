@@ -28,6 +28,10 @@ class RenewalsApp
     @last_page = LocationPage.new
   end
 
+  def old_start_page
+    @last_page = OldStartPage.new
+  end
+
   def payment_summary_page
     @last_page = PaymentSummaryPage.new
   end
@@ -46,10 +50,6 @@ class RenewalsApp
 
   def renewal_complete_page
     @last_page = RenewalCompletePage.new
-  end
-
-  def start_page
-    @last_page = StartPage.new
   end
 
   def unrenewable_page

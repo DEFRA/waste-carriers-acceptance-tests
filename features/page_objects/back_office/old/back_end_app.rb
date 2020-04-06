@@ -117,6 +117,10 @@ class BackEndApp
     @last_page = OfflinePaymentPage.new
   end
 
+  def old_start_page
+    @last_page = OldStartPage.new
+  end
+
   def other_businesses_question_page
     @last_page = OtherBusinessesQuestionPage.new
   end
@@ -179,10 +183,6 @@ class BackEndApp
 
   def renewal_start_page
     @last_page = RenewalStartPage.new
-  end
-
-  def start_page
-    @last_page = StartPage.new
   end
 
   def service_provided_question_page

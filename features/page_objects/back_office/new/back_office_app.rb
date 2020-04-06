@@ -110,6 +110,10 @@ class BackOfficeApp
     @last_page = MigratePage.new
   end
 
+  def old_start_page
+    @last_page = OldStartPage.new
+  end
+
   def payments_page
     @last_page = PaymentsPage.new
   end
@@ -136,10 +140,6 @@ class BackOfficeApp
 
   def renewal_complete_page
     @last_page = RenewalCompletePage.new
-  end
-
-  def start_page
-    @last_page = StartPage.new
   end
 
   def sign_in_page

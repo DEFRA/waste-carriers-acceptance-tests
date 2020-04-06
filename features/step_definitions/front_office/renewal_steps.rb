@@ -1,8 +1,8 @@
 Given(/^I renew my registration using my previous registration number "([^"]*)"$/) do |reg|
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @renewals_app.start_page.load
-  @renewals_app.start_page.submit(renewal: true)
+  @renewals_app.old_start_page.load
+  @renewals_app.old_start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: reg)
   # save registration number for checks later on
   @reg_number = reg
@@ -11,8 +11,8 @@ end
 Given(/^I renew my last registration$/) do
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @renewals_app.start_page.load
-  @renewals_app.start_page.submit(renewal: true)
+  @renewals_app.old_start_page.load
+  @renewals_app.old_start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
 end
 
@@ -36,8 +36,8 @@ Given(/^I choose to renew my registration$/) do
   Capybara.reset_session!
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @renewals_app.start_page.load
-  @renewals_app.start_page.submit(renewal: true)
+  @renewals_app.old_start_page.load
+  @renewals_app.old_start_page.submit(renewal: true)
   @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
 end
 

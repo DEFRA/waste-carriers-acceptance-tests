@@ -81,6 +81,10 @@ class FrontOfficeApp
     @last_page = OfflinePaymentPage.new
   end
 
+  def old_start_page
+    @last_page = OldStartPage.new
+  end
+
   def order_page
     @last_page = OrderPage.new
   end
@@ -115,10 +119,6 @@ class FrontOfficeApp
 
   def relevant_people_page
     @last_page = RelevantPeoplePage.new
-  end
-
-  def start_page
-    @last_page = StartPage.new
   end
 
   def service_provided_question_page
