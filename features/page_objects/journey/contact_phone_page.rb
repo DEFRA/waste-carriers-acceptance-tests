@@ -11,5 +11,4 @@ class ContactPhonePage < SitePrism::Page
 
     submit_button.click
   end
-
 end

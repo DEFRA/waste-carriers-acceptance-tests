@@ -13,6 +13,10 @@ class JourneyApp
     @last_page = AddressManualPage.new
   end
 
+  def business_type_page
+    @last_page = BusinessTypePage.new
+  end
+
   def cards_confirmation_page
     @last_page = CardsConfirmationPage.new
   end
@@ -31,6 +35,10 @@ class JourneyApp
 
   def check_your_answers_page
     @last_page = CheckYourAnswersPage.new
+  end
+
+  def check_your_tier_page
+    @last_page = CheckYourTierPage.new
   end
 
   def company_name_page
@@ -77,12 +85,20 @@ class JourneyApp
     @last_page = LastEmailPage.new
   end
 
+  def location_page
+    @last_page = LocationPage.new
+  end
+
   def registration_cards_page
     @last_page = RegistrationCardsPage.new
   end
 
   def standard_page
     @last_page = StandardPage.new
+  end
+
+  def start_page
+    @last_page = StartPage.new
   end
 
   def tier_check_page

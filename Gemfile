@@ -11,6 +11,10 @@ gem "rake"
 # Create random names
 gem "faker"
 gem "pry"
+
+# Add some useful ruby functions https://github.com/rubyworks/facets
+gem "facets"
+
 # Gem used by the Defra ruby services team to ensure a consistent style across
 # our code base
 gem "defra_ruby_style"
