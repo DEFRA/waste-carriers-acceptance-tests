@@ -12,19 +12,19 @@ class LocationPage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    case args[:choice]
-    when :england
+    case args[:choice].to_s.snakecase
+    when "england"
       england.click
-    when :wales
+    when "wales"
       wales.click
-    when :scotland
+    when "scotland"
       scotland.click
-    when :northern_ireland
+    when "northern_ireland"
       northern_ireland.click
-    when :overseas
+    when "overseas"
       overseas.click
     end
+
     submit_button.click
   end
-
 end

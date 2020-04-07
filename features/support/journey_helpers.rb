@@ -60,6 +60,23 @@ def select_random_upper_tier_options(carrier)
   @journey.carrier_type_page.submit(choice: carrier.to_sym)
 end
 
+def select_random_lower_tier_options
+  # Randomise between 3 ways to achieve an lower tier registration:
+  i = rand(1..3)
+  if i == 1
+    @journey.tier_other_businesses_page.submit(choice: :no)
+    @journey.tier_construction_waste_page.submit(choice: :no)
+  elsif i == 2
+    @journey.tier_other_businesses_page.submit(choice: :yes)
+    @journey.tier_service_provided_page.submit(choice: :main_service)
+    @journey.tier_farm_only_page.submit(choice: :yes)
+  else
+    @journey.tier_other_businesses_page.submit(choice: :yes)
+    @journey.tier_service_provided_page.submit(choice: :not_main_service)
+    @journey.tier_construction_waste_page.submit(choice: :no)
+  end
+end
+
 def old_submit_business_details(business_name, tier)
   if @back_app.business_details_page.heading.has_text? "Business details"
     # then it's a limited company:
