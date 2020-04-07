@@ -3,7 +3,7 @@ Given(/^I have an application paid by credit card$/) do
   step "an Environment Agency user has signed in to the backend"
 
   @back_app.registrations_page.new_registration.click
-  @back_app.start_page.submit
+  @back_app.old_start_page.submit
   expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
   @back_app.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
