@@ -24,23 +24,23 @@ When("I complete my registration") do
   if @organisation_type != "charity"
     @journey.check_your_tier_page.submit(option: :unknown)
 
-    if @tier == :lower
+    if @tier == "lower"
       select_random_lower_tier_options
     else
       select_random_upper_tier_options("existing")
     end
   end
 
-  if @organisation_type == "charity" || @tier == :lower
+  if @organisation_type == "charity" || @tier == "lower"
     expect(@journey.standard_page.heading).to have_text("You need to register as a lower tier waste carrier")
   else
-    expect(page).to have_content("You need to register as an upper tier waste carrier")
+    expect(@journey.standard_page.heading).to have_text("You need to register as an upper tier waste carrier")
   end
 
   @journey.standard_page.submit
 
   @business_name = "Lower tier #{@organisation_type} new registration"
-  @journey.company_name_page.submit(company_name: business_name)
+  @journey.company_name_page.submit(company_name: @business_name)
 
   @journey.address_lookup_page.submit_valid_address
 
@@ -52,8 +52,8 @@ When("I complete my registration") do
 
   @journey.contact_phone_page.submit(phone_number: "0117 4960000")
 
-  email = generate_email
-  @journey.contact_email_page.submit(email: email, confirm_email: email)
+  @email_address = generate_email
+  @journey.contact_email_page.submit(email: @email_address, confirm_email: @email_address)
 
   @journey.address_lookup_page.submit_valid_address
 

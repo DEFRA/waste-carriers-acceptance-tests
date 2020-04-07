@@ -17,5 +17,4 @@ class OldStartPage < SitePrism::Page
 
     submit_button.click
   end
-
 end
