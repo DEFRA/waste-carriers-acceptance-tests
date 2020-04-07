@@ -9,7 +9,7 @@ class StandardPage < SitePrism::Page
   element(:heading, ".heading-large")
   element(:content, "#content")
   element(:button, ".button")
-  element(:submit_button, "input[type='submit'")
+  element(:submit_button, "input[type='submit']")
 
   def submit(_args = {})
     submit_button.click

@@ -6,7 +6,7 @@
 Given("I want to register as a lower tier carrier") do
   load_all_apps
 
-  @tier = :lower
+  @tier = "lower"
 end
 
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
@@ -32,14 +32,14 @@ When("I complete my registration") do
   end
 
   if @organisation_type == "charity" || @tier == :lower
-    expect(page).to have_content("You need to register as a lower tier waste carrier")
+    expect(@journey.standard_page.heading).to have_text("You need to register as a lower tier waste carrier")
   else
     expect(page).to have_content("You need to register as an upper tier waste carrier")
   end
 
   @journey.standard_page.submit
 
-  business_name = "Lower Tier #{@organisation_type} business new registration"
+  @business_name = "Lower tier #{@organisation_type} new registration"
   @journey.company_name_page.submit(company_name: business_name)
 
   @journey.address_lookup_page.submit_valid_address
@@ -50,7 +50,7 @@ When("I complete my registration") do
   }
   @journey.contact_name_page.submit(names)
 
-  @journey.contact_phone_page.submit(phone_number: "01234567890")
+  @journey.contact_phone_page.submit(phone_number: "0117 4960000")
 
   email = generate_email
   @journey.contact_email_page.submit(email: email, confirm_email: email)
