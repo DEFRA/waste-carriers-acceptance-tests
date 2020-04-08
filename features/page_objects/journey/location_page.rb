@@ -1,13 +1,15 @@
 class LocationPage < SitePrism::Page
 
+  # This page object is currently shared between old and new apps, as the elements are similar.
+  # Update once the old registration journey is no longer live.
+
   # Where is your principal place of business?
-  element(:heading, "#groupLabel")
   elements(:location, "input[name='location_form[location]']", visible: false)
-  element(:england, "#location_form_location_england", visible: false)
-  element(:wales, "#location_form_location_wales", visible: false)
-  element(:scotland, "#location_form_location_scotland", visible: false)
-  element(:northern_ireland, "#location_form_location_northern_ireland", visible: false)
-  element(:overseas, "#location_form_location_overseas", visible: false)
+  element(:england, "input[value='england']", visible: false)
+  element(:wales, "input[value='wales']", visible: false)
+  element(:scotland, "input[value='scotland']", visible: false)
+  element(:northern_ireland, "input[value='northern_ireland']", visible: false)
+  element(:overseas, "input[value='overseas']", visible: false)
   element(:heading, :xpath, "//h1[contains(text(), 'Where is your principal place of business')]")
   element(:submit_button, "input[type='submit']")
 

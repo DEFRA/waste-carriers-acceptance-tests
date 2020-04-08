@@ -3,8 +3,8 @@
 def old_start_internal_registration
   @back_app.registrations_page.new_registration.click
   @back_app.old_start_page.submit
-  expect(@back_app.location_page.heading).to have_text("Where is your principal place of business?")
-  @back_app.location_page.submit(choice: :england)
+  expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
+  @journey.location_page.submit(choice: :england)
 end
 
 def old_submit_carrier_details(business, tier, carrier)

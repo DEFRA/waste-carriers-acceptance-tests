@@ -101,10 +101,6 @@ class BackEndApp
     @last_page = KeyPeoplePage.new
   end
 
-  def location_page
-    @last_page = LocationPage.new
-  end
-
   def manual_address_page
     @last_page = ManualAddressPage.new
   end

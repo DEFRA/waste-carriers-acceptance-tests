@@ -43,7 +43,7 @@ end
 
 When(/^I change my organisation type to a limited company$/) do
   @front_app.check_details_page.edit_smart_answers.click
-  @front_app.location_page.submit(choice: :england)
+  @journey.location_page.submit(choice: :england)
   @front_app.business_type_page.submit(org_type: "limitedCompany")
   @front_app.other_businesses_question_page.submit(choice: :yes)
   @front_app.service_provided_question_page.submit(choice: :not_main_service)
@@ -63,7 +63,7 @@ end
 
 When(/^its companies house number changes to "([^"]*)"$/) do |ch_no|
   @front_app.check_details_page.edit_smart_answers.click
-  @front_app.location_page.submit(choice: :england)
+  @journey.location_page.submit(choice: :england)
   @front_app.business_type_page.submit
   @front_app.other_businesses_question_page.submit
   @front_app.construction_waste_question_page.submit
