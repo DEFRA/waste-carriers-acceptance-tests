@@ -7,7 +7,7 @@ Given(/^I start a new registration$/) do
   # Redirects to "Where is your principal place of business?"
   expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
   # Select England as the principal place of business:
-  @journey.location_page.submit(choice: :england_old)
+  @journey.location_page.submit(choice: :england)
 end
 
 When(/^I pay for my application by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|

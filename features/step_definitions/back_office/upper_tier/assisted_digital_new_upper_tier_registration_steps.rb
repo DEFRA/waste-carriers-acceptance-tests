@@ -109,7 +109,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
   @back_app.registrations_page.new_registration.click
   @back_app.old_start_page.submit
   expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
-  @journey.location_page.submit(choice: :england_old)
+  @journey.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
   old_select_upper_tier_options("carrier_broker_dealer")
 
@@ -150,7 +150,7 @@ Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carr
   @back_app.registrations_page.new_registration.click
   @back_app.old_start_page.submit
   expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
-  @journey.location_page.submit(choice: :england_old)
+  @journey.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "limitedCompany")
   old_select_upper_tier_options("carrier_broker_dealer")
   @back_app.business_details_page.submit(
@@ -191,7 +191,7 @@ Given(/a key person with a conviction registers as a sole trader upper tier wast
   @back_app.registrations_page.new_registration.click
   @back_app.old_start_page.submit
   expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
-  @journey.location_page.submit(choice: :england_old)
+  @journey.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "soleTrader")
   old_select_upper_tier_options("carrier_broker_dealer")
   @back_app.business_details_page.submit(
@@ -226,7 +226,7 @@ Given(/^a conviction is declared when registering their partnership for an upper
   @back_app.registrations_page.new_registration.click
   @back_app.old_start_page.submit
   expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
-  @journey.location_page.submit(choice: :england_old)
+  @journey.location_page.submit(choice: :england)
   @back_app.business_type_page.submit(org_type: "partnership")
   old_select_upper_tier_options("carrier_broker_dealer")
   @back_app.business_details_page.submit(

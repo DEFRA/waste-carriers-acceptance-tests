@@ -46,7 +46,7 @@ Given(/^I request assistance with a new registration$/) do
   @back_app.registrations_page.new_registration.click
   @back_app.old_start_page.submit
   expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
-  @journey.location_page.submit(choice: :england_old)
+  @journey.location_page.submit(choice: :england)
 end
 
 Then(/^I will have an upper tier registration$/) do
