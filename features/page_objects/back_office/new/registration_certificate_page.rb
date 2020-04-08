@@ -5,13 +5,13 @@ class RegistrationCertificatePage < SitePrism::Page
   element(:content, ".grid-2-3")
   element(:heading, ".heading-small")
 
-  def certificate_dates_are_correct(tier, is_renewal)
+  def certificate_dates_are_correct(tier, resource_object)
     time = Time.new
     # The date in the certificate appears as a day (with no number padding) plus a month name, e.g. 1 April
     # See https://apidock.com/ruby/DateTime/strftime for syntax
     day_and_month = time.strftime("%-d") + " " + time.strftime("%B")
     start_date_text = day_and_month + " " + time.year.to_s
-    expected_expiry_year = get_expected_expiry_year(time, is_renewal)
+    expected_expiry_year = get_expected_expiry_year(time, resource_object)
     expiry_date_text = day_and_month + " " + expected_expiry_year.to_s
 
     if tier == "upper"
@@ -23,8 +23,8 @@ class RegistrationCertificatePage < SitePrism::Page
     false
   end
 
-  def get_expected_expiry_year(time, is_renewal)
-    if is_renewal
+  def get_expected_expiry_year(time, resource_object)
+    if resource_object == :renewal
       time.year + 6
     else
       time.year + 3

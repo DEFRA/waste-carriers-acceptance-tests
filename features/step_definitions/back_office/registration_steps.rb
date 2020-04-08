@@ -10,8 +10,7 @@ Given(/^NCCC partially registers an upper tier "([^"]*)" "([^"]*)" with "([^"]*)
   carrier_without_underscore = carrier.clone.gsub!(/[^0-9A-Za-z]/, "")
   @business_name = "Registered " + carrier_without_underscore + " " + business + " with " + convictions
   @convictions = convictions
-  @is_renewal = false
-  @is_transient_renewal = false
+  @resource_object = :registration
 
   old_start_internal_registration
   old_submit_carrier_details(business, "upper", @carrier)
@@ -33,8 +32,7 @@ Given(/^NCCC registers a lower tier "([^"]*)"$/) do |business|
   @carrier = "-"
   @business = business
   @business_name = "Registered lower tier " + business
-  @is_renewal = false
-  @is_transient_renewal = false
+  @resource_object = :registration
 
   old_start_internal_registration
   old_submit_carrier_details(@business, @tier, @carrier)

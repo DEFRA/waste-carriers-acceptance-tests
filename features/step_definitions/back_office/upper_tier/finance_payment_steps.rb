@@ -63,7 +63,7 @@ end
 
 Given(/^registration "([^"]*)" has an unsubmitted renewal$/) do |reg|
   @reg_number = reg
-  @is_transient_renewal = true
+  @resource_object = :renewal
   @business_name = "Renewal via bank transfer"
 
   @back_app.registrations_page.search(search_input: reg.to_sym)
@@ -133,6 +133,6 @@ And(/^the applicant pays by bank card$/) do
     @bo.payment_summary_page.submit(choice: :card_payment)
   end
   submit_valid_card_payment
-  @is_transient_renewal = false unless @convictions == "convictions"
+  @resource_object = :registration unless @convictions == "convictions"
   @reg_balance = 0
 end

@@ -9,8 +9,7 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   @tier = "upper"
   @convictions = convictions
   @business_name = "AD Renewal with " + @convictions
-  @is_renewal = true
-  @is_transient_renewal = true
+  @resource_object = :renewal
 
   # Search for registration to renew:
   sign_in_to_back_office("agency-user")
@@ -218,7 +217,7 @@ end
 When(/^I mark the renewal payment as received$/) do
   @bo.registration_details_page.process_payment_button.click
   pay_by_cash(105)
-  @is_transient_renewal = false
+  @resource_object = :registration
 end
 
 Then(/^the expiry date should be three years from the previous expiry date$/) do
