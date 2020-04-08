@@ -102,10 +102,6 @@ class BackOfficeApp
     @last_page = FinishAssistedPage.new
   end
 
-  def location_page
-    @last_page = LocationPage.new
-  end
-
   def migrate_page
     @last_page = MigratePage.new
   end

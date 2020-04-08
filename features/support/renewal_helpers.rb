@@ -9,5 +9,5 @@ end
 # Reused across several steps
 def agree_to_renew_in_england
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :england_new)
+  @journey.location_page.submit(choice: :england)
 end

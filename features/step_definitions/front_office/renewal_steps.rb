@@ -145,7 +145,7 @@ end
 
 Given(/^I change my place of business location to "([^"]*)"$/) do |location|
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: location.to_sym)
+  @journey.location_page.submit(choice: location.to_sym)
 end
 
 Then(/^I will be able to continue my renewal$/) do
@@ -297,7 +297,7 @@ end
 
 When(/^I complete my overseas company renewal steps$/) do
   @renewals_app.renewal_start_page.submit
-  @renewals_app.location_page.submit(choice: :overseas)
+  @journey.location_page.submit(choice: :overseas)
   @journey.tier_check_page.submit(choice: :check_tier)
   select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit

@@ -1,8 +1,13 @@
 class LocationPage < SitePrism::Page
 
+  # This page object is currently shared between old and new apps, as the elements are similar.
+  # Update once the old registration journey is no longer live.
+
   # Where is your principal place of business?
-  element(:heading, "#groupLabel")
   elements(:location, "input[name='location_form[location]']", visible: false)
+  # The following applies to old (grey background) radio buttons. Delete when we remove old app:
+  element(:england_old, "#registration_location_england", visible: false)
+  # New app elements:
   element(:england, "#location_form_location_england", visible: false)
   element(:wales, "#location_form_location_wales", visible: false)
   element(:scotland, "#location_form_location_scotland", visible: false)
