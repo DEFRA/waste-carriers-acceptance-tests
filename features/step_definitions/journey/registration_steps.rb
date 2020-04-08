@@ -6,6 +6,7 @@
 Given("I want to register as a lower tier carrier") do
   load_all_apps
 
+  @resource_object = :new_registration
   @tier = "lower"
 end
 
@@ -21,23 +22,15 @@ When("I start a new registration journey in {string} as a {string}") do |locatio
 end
 
 When("I complete my registration") do
-  if @organisation_type != "charity"
-    @journey.check_your_tier_page.submit(option: :unknown)
-
+  if @organisation_type == "charity"
+    @journey.standard_page.submit
+  else
     if @tier == "lower"
       select_random_lower_tier_options
     else
       select_random_upper_tier_options("existing")
     end
   end
-
-  if @organisation_type == "charity" || @tier == "lower"
-    expect(@journey.standard_page.heading).to have_text("You need to register as a lower tier waste carrier")
-  else
-    expect(@journey.standard_page.heading).to have_text("You need to register as an upper tier waste carrier")
-  end
-
-  @journey.standard_page.submit
 
   @business_name = "Lower tier #{@organisation_type} new registration"
   @journey.company_name_page.submit(company_name: @business_name)
