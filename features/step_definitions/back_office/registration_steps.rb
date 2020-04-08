@@ -68,7 +68,7 @@ Then(/^the back office pages show the correct registration details$/) do
     expect(info_panel).to have_text("Carrier, broker and dealer")
   elsif @carrier == "broker_dealer"
     expect(info_panel).to have_text("Broker and dealer")
-  else
+  elsif @carrier == "carrier_dealer"
     expect(info_panel).to have_text("Carrier and dealer")
   end
 
