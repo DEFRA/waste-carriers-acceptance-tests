@@ -43,7 +43,7 @@ def go_to_payments_page(reg)
   return if heading_text.include?("Payment details")
 
   find_link("Registrations search").click
-  if @is_transient_renewal == true
+  if @resource_object == :renewal
     @bo.dashboard_page.view_transient_reg_details(search_term: reg)
   else
     @bo.dashboard_page.view_reg_details(search_term: reg)
