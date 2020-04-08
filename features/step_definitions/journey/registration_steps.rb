@@ -23,6 +23,7 @@ end
 
 When("I complete my registration") do
   if @organisation_type == "charity"
+    # then all tier routing questions are skipped and user is told "you need to register as a lower tier waste carrier"
     @journey.standard_page.submit
   else
     if @tier == "lower"

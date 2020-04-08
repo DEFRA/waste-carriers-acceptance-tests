@@ -48,6 +48,8 @@ def select_random_upper_tier_options(carrier)
     @journey.check_your_tier_page.submit(option: :unknown)
 
     answer_random_upper_tier_questions(carrier)
+    # Proceed from "You need to register as an upper tier waste carrier":
+    @journey.standard_page.submit
   else
     @journey.check_your_tier_page.submit(option: :upper)
   end
@@ -82,6 +84,7 @@ def select_random_lower_tier_options
 
     answer_random_lower_tier_questions
 
+    # Proceed from "You need to register as a lower tier waste carrier":
     @journey.standard_page.submit
   else
     @journey.check_your_tier_page.submit(option: :lower)
