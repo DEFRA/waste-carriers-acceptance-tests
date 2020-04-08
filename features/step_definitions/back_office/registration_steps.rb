@@ -85,7 +85,7 @@ Then(/^the certificate shows the correct details$/) do
   page_content = @bo.registration_certificate_page.content
   expect(page_content).to have_text(@business_name)
   expect(page_content).to have_text(@reg_number)
-  expect(@bo.registration_certificate_page.certificate_dates_are_correct(@tier, @is_renewal)).to be true
+  expect(@bo.registration_certificate_page.certificate_dates_are_correct(@tier, @resource_object)).to be true
   if @tier == "upper"
     expect(page_content).to have_text("Your registration will last 3 years")
   else
