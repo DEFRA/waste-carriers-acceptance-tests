@@ -38,7 +38,10 @@ When("I complete my registration") do
     select_random_upper_tier_options("existing")
   end
 
-  @journey.carrier_type_page.submit(choice: :carrier_broker_dealer) if @tier == "upper"
+  if @tier == "upper"
+    @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
+    @carrier = "carrier_broker_dealer"
+  end
 
   @business_name = "#{@tier} tier #{@organisation_type} new registration"
   @journey.company_name_page.submit(company_name: @business_name)
