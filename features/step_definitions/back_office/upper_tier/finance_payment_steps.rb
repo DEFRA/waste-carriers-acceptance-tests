@@ -133,6 +133,6 @@ And(/^the applicant pays by bank card$/) do
     @bo.payment_summary_page.submit(choice: :card_payment)
   end
   submit_valid_card_payment
-  @resource_object = :registration unless @convictions == "convictions"
+
   @reg_balance = 0
 end

@@ -44,7 +44,7 @@ def select_random_upper_tier_options(carrier)
   return answer_random_upper_tier_questions(carrier) unless @resource_object == :new_registration
 
   i = rand(2)
-  if i == 0
+  if i.zero?
     @journey.check_your_tier_page.submit(option: :unknown)
 
     answer_random_upper_tier_questions(carrier)
@@ -58,7 +58,7 @@ end
 def answer_random_upper_tier_questions(carrier)
   # Randomise between 3 ways to achieve an upper tier registration:
   i = rand(3)
-  if i == 0
+  if i.zero?
     @journey.tier_other_businesses_page.submit(choice: :yes)
     @journey.tier_service_provided_page.submit(choice: :not_main_service)
     @journey.tier_construction_waste_page.submit(choice: :yes)
@@ -79,7 +79,7 @@ def select_random_lower_tier_options
   return answer_random_lower_tier_questions unless @resource_object == :new_registration
 
   i = rand(2)
-  if i == 0
+  if i.zero?
     @journey.check_your_tier_page.submit(option: :unknown)
 
     answer_random_lower_tier_questions
@@ -94,7 +94,7 @@ end
 def answer_random_lower_tier_questions
   # Randomise between 3 ways to achieve an lower tier registration:
   i = rand(3)
-  if i == 0
+  if i.zero?
     @journey.tier_other_businesses_page.submit(choice: :no)
     @journey.tier_construction_waste_page.submit(choice: :no)
   elsif i == 1

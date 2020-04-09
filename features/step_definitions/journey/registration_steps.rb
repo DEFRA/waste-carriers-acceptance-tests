@@ -25,12 +25,10 @@ When("I complete my registration") do
   if @organisation_type == "charity"
     # then all tier routing questions are skipped and user is told "you need to register as a lower tier waste carrier"
     @journey.standard_page.submit
+  elsif @tier == "lower"
+    select_random_lower_tier_options
   else
-    if @tier == "lower"
-      select_random_lower_tier_options
-    else
-      select_random_upper_tier_options("existing")
-    end
+    select_random_upper_tier_options("existing")
   end
 
   @business_name = "Lower tier #{@organisation_type} new registration"
