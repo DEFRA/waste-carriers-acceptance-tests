@@ -10,6 +10,13 @@ Given("I want to register as a lower tier carrier") do
   @tier = "lower"
 end
 
+Given("I want to register as an upper tier carrier") do
+  load_all_apps
+
+  @resource_object = :new_registration
+  @tier = "upper"
+end
+
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
   @organisation_type = organisation_type
 
@@ -31,10 +38,22 @@ When("I complete my registration") do
     select_random_upper_tier_options("existing")
   end
 
-  @business_name = "Lower tier #{@organisation_type} new registration"
+  if @tier == "upper"
+    @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
+    @carrier = "carrier_broker_dealer"
+  end
+
+  @business_name = "#{@tier} tier #{@organisation_type} new registration"
   @journey.company_name_page.submit(company_name: @business_name)
 
   @journey.address_lookup_page.submit_valid_address
+
+  if @tier == "upper"
+    people = @journey.company_people_page.main_people
+    @journey.company_people_page.submit_main_person(person: people[0])
+
+    @journey.conviction_declare_page.submit(choice: :no)
+  end
 
   names = {
     first_name: Faker::Name.first_name,
@@ -53,6 +72,9 @@ When("I complete my registration") do
   @journey.standard_page.submit
 
   @journey.declaration_page.submit
+
+  # Copy cards - Just submit, order no copy cards
+  @journey.standard_page.submit if @tier == "upper"
 end
 
 Then("I am notified that my registration has been successful") do
