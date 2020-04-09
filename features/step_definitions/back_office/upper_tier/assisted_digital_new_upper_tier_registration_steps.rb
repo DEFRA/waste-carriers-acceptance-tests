@@ -100,51 +100,6 @@ When(/^I have my public body upper tier waste carrier application completed for 
   @back_app.check_details_page.submit
 end
 
-Given(/^a limited company with companies house number "([^"]*)" is registered as an upper tier waste carrier$/) do |ch_no|
-
-  # Store company name and number for later tests:
-  @business_name = "AD UT Company convictions check ltd"
-  @companies_house_number = ch_no
-
-  @back_app.registrations_page.new_registration.click
-  @back_app.old_start_page.submit
-  expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
-  @journey.location_page.submit(choice: :england)
-  @back_app.business_type_page.submit(org_type: "limitedCompany")
-  old_select_upper_tier_options("carrier_broker_dealer")
-
-  @back_app.business_details_page.submit(
-    companies_house_number: @companies_house_number,
-    company_name: @business_name,
-    postcode: "BS1 5AH",
-    result: "HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH"
-  )
-
-  @back_app.contact_details_page.submit(
-    first_name: "Bob",
-    last_name: "Carolgees",
-    phone_number: "0117 4960000"
-  )
-  @back_app.postal_address_page.submit
-
-  people = @back_app.key_people_page.key_people
-  @back_app.key_people_page.add_key_person(person: people[0])
-  @back_app.key_people_page.add_key_person(person: people[1])
-  @back_app.key_people_page.submit_key_person(person: people[2])
-
-  @back_app.relevant_convictions_page.submit(choice: :no)
-  @back_app.check_details_page.submit
-  @back_app.order_page.submit(
-    copy_card_number: 2,
-    choice: :card_payment
-  )
-
-  submit_valid_card_payment
-
-  @reg_number = @back_app.finish_assisted_page.registration_number.text
-  puts "Registration " + @reg_number + " completed with conviction match on company number"
-end
-
 Given(/^(?:a|my) limited company "([^"]*)" registers as an upper tier waste carrier$/) do |co_name|
   @business_name = co_name
   @back_app.registrations_page.new_registration.click
