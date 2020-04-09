@@ -1,5 +1,7 @@
 When(/^the conviction check is immediately approved by an NCCC user$/) do
   approve_conviction_immediately_for_reg(@reg_number, @business_name)
+
+  @resource_object = :registration if @resource_object == :renewal
 end
 
 When(/^the conviction check is flagged by an NCCC user$/) do

@@ -41,13 +41,28 @@ def old_select_lower_tier_options
 end
 
 def select_random_upper_tier_options(carrier)
+  return answer_random_upper_tier_questions(carrier) unless @resource_object == :new_registration
+
+  i = rand(2)
+  if i.zero?
+    @journey.check_your_tier_page.submit(option: :unknown)
+
+    answer_random_upper_tier_questions(carrier)
+    # Proceed from "You need to register as an upper tier waste carrier":
+    @journey.standard_page.submit
+  else
+    @journey.check_your_tier_page.submit(option: :upper)
+  end
+end
+
+def answer_random_upper_tier_questions(carrier)
   # Randomise between 3 ways to achieve an upper tier registration:
-  i = rand(1..3)
-  if i == 1
+  i = rand(3)
+  if i.zero?
     @journey.tier_other_businesses_page.submit(choice: :yes)
     @journey.tier_service_provided_page.submit(choice: :not_main_service)
     @journey.tier_construction_waste_page.submit(choice: :yes)
-  elsif i == 2
+  elsif i == 1
     @journey.tier_other_businesses_page.submit(choice: :yes)
     @journey.tier_service_provided_page.submit(choice: :main_service)
     @journey.tier_farm_only_page.submit(choice: :no)
@@ -61,12 +76,28 @@ def select_random_upper_tier_options(carrier)
 end
 
 def select_random_lower_tier_options
+  return answer_random_lower_tier_questions unless @resource_object == :new_registration
+
+  i = rand(2)
+  if i.zero?
+    @journey.check_your_tier_page.submit(option: :unknown)
+
+    answer_random_lower_tier_questions
+
+    # Proceed from "You need to register as a lower tier waste carrier":
+    @journey.standard_page.submit
+  else
+    @journey.check_your_tier_page.submit(option: :lower)
+  end
+end
+
+def answer_random_lower_tier_questions
   # Randomise between 3 ways to achieve an lower tier registration:
-  i = rand(1..3)
-  if i == 1
+  i = rand(3)
+  if i.zero?
     @journey.tier_other_businesses_page.submit(choice: :no)
     @journey.tier_construction_waste_page.submit(choice: :no)
-  elsif i == 2
+  elsif i == 1
     @journey.tier_other_businesses_page.submit(choice: :yes)
     @journey.tier_service_provided_page.submit(choice: :main_service)
     @journey.tier_farm_only_page.submit(choice: :yes)
