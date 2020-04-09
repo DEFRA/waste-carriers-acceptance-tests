@@ -19,7 +19,7 @@ app_host: 'http://localhost:3000'
 driver: chrome
 
 # Runs either Chrome or Firefox driver headlessly if set to true
-headless: false
+headless: true
 
 parallel: false
 
