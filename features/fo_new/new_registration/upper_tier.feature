@@ -4,7 +4,7 @@ Feature: A new user registers as an upper tier waste carrier
   I want to register for an upper tier licence
   So I can be compliant with the law
 
-  Scenario: A sole trader registers as a lower tier waste carrier and pay via worldpay
+  Scenario: A sole trader registers as a lower tier waste carrier and pays via Worldpay
     Given I want to register as an upper tier carrier
     When I start a new registration journey in "England" as a "soleTrader"
       And I complete my registration
