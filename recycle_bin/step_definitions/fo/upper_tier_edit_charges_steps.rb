@@ -94,8 +94,8 @@ Then(/^the charge "([^"]*)" has been paid$/) do |charge|
     choice: :card_payment
   )
   submit_valid_card_payment
-  expect(@front_app.confirmation_page.confirmation_message).to have_text("Registration complete")
-  @new_registration_number = @front_app.confirmation_page.registration_number.text
+  expect(@front_app.old_confirmation_page.confirmation_message).to have_text("Registration complete")
+  @new_registration_number = @front_app.old_confirmation_page.registration_number.text
 end
 
 Then(/^its previous registration will be "([^"]*)"$/) do |status|

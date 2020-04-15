@@ -57,6 +57,10 @@ class JourneyApp
     @last_page = ConfirmBusinessTypePage.new
   end
 
+  def confirmation_page
+    @last_page = ConfirmationPage.new
+  end
+
   def contact_email_page
     @last_page = ContactEmailPage.new
   end

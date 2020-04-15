@@ -1,6 +1,7 @@
 require_relative "sections/govuk_banner.rb"
 
 class DashboardPage < SitePrism::Page
+  set_url(Quke::Quke.config.custom["urls"]["back_office_renewals"])
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
   element(:heading, ".heading-large")
@@ -36,5 +37,4 @@ class DashboardPage < SitePrism::Page
     submit(search_term: args[:search_term])
     transient_reg_details_links[0].click
   end
-
 end
