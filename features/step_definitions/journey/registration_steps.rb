@@ -102,6 +102,19 @@ Then("I am notified that my registration has been successful") do
   # TODO: Check email received
 end
 
+Given("a registration with no convictions has been submitted by paying via card") do
+  # Store variables for later steps:
+  @reg_balance = 154
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'soleTrader'")
+  step("I complete my registration")
+  step("I pay by card")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " completed"
+end
+
 Given("a registration with outstanding balance and {int} copy cards has been submitted") do |copy_cards|
   # Store variables for later steps:
   @copy_cards = copy_cards
