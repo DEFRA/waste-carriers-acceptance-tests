@@ -115,7 +115,7 @@ Given("a registration with no convictions has been submitted by paying via card"
   puts "Registration " + @reg_number + " completed"
 end
 
-Given("a registration with outstanding balance and {int} copy cards has been submitted") do |copy_cards|
+Given(/a registration with outstanding balance and (\d+) copy cards? has been submitted$/) do |copy_cards|
   # Store variables for later steps:
   @copy_cards = copy_cards
   @reg_balance = 154 + 5 * copy_cards
