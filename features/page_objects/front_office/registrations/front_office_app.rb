@@ -49,8 +49,8 @@ class FrontOfficeApp
     @last_page = ContactDetailsPage.new
   end
 
-  def confirmation_page
-    @last_page = ConfirmationPage.new
+  def old_confirmation_page
+    @last_page = OldConfirmationPage.new
   end
 
   def construction_waste_question_page

@@ -69,15 +69,18 @@ Then(/^I will have a lower tier registration$/) do
 end
 
 Then(/^the registration has a status of "([^"]*)"$/) do |status|
-  sign_in_to_back_office("agency-refund-payment-user")
-  @bo.dashboard_page.govuk_banner.home_page.click
+  sign_in_to_back_office("agency-refund-payment-user", false)
+
+  @bo.dashboard_page.load
   @bo.dashboard_page.submit(search_term: @reg_number)
+
   expect(@bo.dashboard_page.results_table).to have_text(status)
 end
 
 Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
-  sign_in_to_back_office("agency-refund-payment-user")
-  @bo.dashboard_page.govuk_banner.home_page.click
+  sign_in_to_back_office("agency-refund-payment-user", false)
+
+  @bo.dashboard_page.load
   @bo.dashboard_page.submit(search_term: @reg_number)
   expect(@bo.dashboard_page.results_table).to have_no_text(status)
 end
