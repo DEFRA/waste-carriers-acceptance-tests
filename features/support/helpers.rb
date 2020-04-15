@@ -35,6 +35,8 @@ def sign_in_to_front_end_if_necessary(email)
 end
 
 def sign_in_to_back_office(user, force = true)
+  # If force == true then this forces signout regardless of the user's type.
+
   # Check whether user is already logged in by visiting root page:
   visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
 

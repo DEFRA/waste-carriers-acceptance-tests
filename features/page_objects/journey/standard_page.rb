@@ -10,7 +10,6 @@ class StandardPage < SitePrism::Page
   element(:content, "#content")
   element(:button, ".button")
   element(:submit_button, "input[type='submit']")
-  element(:registration_number, "#reg_identifier")
 
   def submit(_args = {})
     submit_button.click

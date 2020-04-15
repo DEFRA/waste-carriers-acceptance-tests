@@ -114,9 +114,9 @@ Given(/^(?:my|a) limited company with companies house number "([^"]*)" registers
 
   submit_valid_card_payment
 
-  expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
-  expect(@front_app.confirmation_page).to have_text @email_address
+  expect(@front_app.old_confirmation_page.registration_number).to have_text("CBDU")
+  expect(@front_app.old_confirmation_page).to have_text @email_address
   # Stores registration number for later use
-  @reg_number = @front_app.confirmation_page.registration_number.text
+  @reg_number = @front_app.old_confirmation_page.registration_number.text
   puts "Upper tier registration " + @reg_number + " completed by a limited company"
 end

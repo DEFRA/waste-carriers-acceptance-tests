@@ -27,7 +27,7 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
   step("I complete my registration")
   step("I pay by card")
 
-  @reg_number = @journey.standard_page.registration_number.text
+  @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration " + @reg_number + " completed with conviction match on company number"
 end
 
@@ -57,7 +57,7 @@ When("I complete my registration") do
     @carrier = "carrier_broker_dealer"
 
     if @organisation_type == "limitedCompany"
-      @companies_house_number ||= "00000000"
+      @companies_house_number ||= "00445790"
       @journey.company_number_page.submit(companies_house_number: @companies_house_number)
     end
   end
@@ -99,7 +99,7 @@ end
 Then("I am notified that my registration has been successful") do
   expect(page).to have_content("Registration complete")
 
-  @reg_number = @journey.standard_page.registration_number.text
+  @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration #{@reg_number} created successfully"
 
   # TODO: Check email received

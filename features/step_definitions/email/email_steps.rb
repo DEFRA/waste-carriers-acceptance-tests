@@ -9,7 +9,7 @@ Then(/^I have received an registration complete email/) do
     @email_app.mailinator_page.submit(inbox: @email_address)
     @email_app.mailinator_inbox_page.registration_complete_email.click
     @email_app.mailinator_inbox_page.email_details do |_frame|
-      expect(@front_app.confirmation_page).to have_text "You are now registered"
+      expect(@front_app.old_confirmation_page).to have_text "You are now registered"
     end
   end
 end

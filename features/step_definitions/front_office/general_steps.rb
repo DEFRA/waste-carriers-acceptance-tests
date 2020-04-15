@@ -26,26 +26,26 @@ Then(/^I will be asked to confirm my email address$/) do
 end
 
 Then(/^I will be registered as an upper tier waste carrier$/) do
-  expect(@front_app.confirmation_page.registration_number).to have_text("CBDU")
-  expect(@front_app.confirmation_page).to have_text @email_address
+  expect(@front_app.old_confirmation_page.registration_number).to have_text("CBDU")
+  expect(@front_app.old_confirmation_page).to have_text @email_address
   # Stores registration number for later use
-  @reg_number = @front_app.confirmation_page.registration_number.text
+  @reg_number = @front_app.old_confirmation_page.registration_number.text
   puts "Upper tier registration " + @reg_number + " completed"
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
   if @email_app.local?
-    expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
-    expect(@front_app.confirmation_page).to have_text @email_address
+    expect(@front_app.old_confirmation_page.registration_number).to have_text("CBDL")
+    expect(@front_app.old_confirmation_page).to have_text @email_address
     # Stores registration number for later use
-    @reg_number = @front_app.confirmation_page.registration_number.text
+    @reg_number = @front_app.old_confirmation_page.registration_number.text
   else
     within_window @new_window do
-      @front_app.confirmation_page.wait_until_registration_number_visible
-      expect(@front_app.confirmation_page.registration_number).to have_text("CBDL")
-      expect(@front_app.confirmation_page).to have_text @email
+      @front_app.old_confirmation_page.wait_until_registration_number_visible
+      expect(@front_app.old_confirmation_page.registration_number).to have_text("CBDL")
+      expect(@front_app.old_confirmation_page).to have_text @email
       # Stores registration number for later use
-      @reg_number = @front_app.confirmation_page.registration_number.text
+      @reg_number = @front_app.old_confirmation_page.registration_number.text
     end
   end
   puts "Lower tier registration " + @reg_number + " completed"
@@ -68,10 +68,10 @@ When(/^I choose to pay for my application by bank transfer ordering (\d+) copy (
 end
 
 Then(/^I will be informed my registration is pending payment$/) do
-  expect(@front_app.confirmation_page).to have_text "Application received"
-  expect(@front_app.confirmation_page).to have_text @email_address
+  expect(@front_app.old_confirmation_page).to have_text "Application received"
+  expect(@front_app.old_confirmation_page).to have_text @email_address
   # Stores registration number for later use
-  @reg_number = @front_app.confirmation_page.registration_number.text
+  @reg_number = @front_app.old_confirmation_page.registration_number.text
 end
 
 When(/^I have signed into my account$/) do
