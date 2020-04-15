@@ -45,7 +45,6 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
   puts "Registration " + @reg_number + " completed with conviction match on relevant person"
 end
 
-
 Given("a conviction is declared when registering their partnership for an upper tier waste carrier") do
   # Store variables for later steps:
   @business_name = "AD Upper Tier Partnership"
