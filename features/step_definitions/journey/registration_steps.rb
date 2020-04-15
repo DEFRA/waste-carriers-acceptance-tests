@@ -175,7 +175,7 @@ Given("a registration with declared convictions is submitted with outstanding pa
   # Store variables for later steps:
   @business_name = "AD Upper Tier Need Payment"
   @declared_convictions = :yes
-  @reg_balance = "154"
+  @reg_balance = 154
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
