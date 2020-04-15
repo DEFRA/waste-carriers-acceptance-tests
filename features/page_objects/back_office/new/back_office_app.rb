@@ -134,10 +134,6 @@ class BackOfficeApp
     @last_page = RenewalReceivedPage.new
   end
 
-  def renewal_complete_page
-    @last_page = RenewalCompletePage.new
-  end
-
   def sign_in_page
     @last_page = SignInPage.new
   end

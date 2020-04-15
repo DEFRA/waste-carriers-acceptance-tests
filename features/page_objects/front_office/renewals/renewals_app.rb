@@ -44,10 +44,6 @@ class RenewalsApp
     @last_page = RenewalReceivedPage.new
   end
 
-  def renewal_complete_page
-    @last_page = RenewalCompletePage.new
-  end
-
   def unrenewable_page
     @last_page = UnrenewablePage.new
   end

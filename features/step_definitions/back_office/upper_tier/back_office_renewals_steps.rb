@@ -54,11 +54,11 @@ Given(/^NCCC goes back to the in progress renewal$/) do
 end
 
 Then(/^the renewal is complete$/) do
-  expect(@renewals_app.renewal_complete_page.heading).to have_text("Renewal complete")
-  expect(@renewals_app.renewal_complete_page.confirmation_box).to have_text("Your registration number is still\n" + @reg_number)
+  expect(@journey.confirmation_page.heading).to have_text("Renewal complete")
+  expect(@journey.confirmation_page.confirmation_box).to have_text("Your registration number is still\n" + @reg_number)
   puts "Renewal " + @reg_number + " complete"
 
-  @renewals_app.renewal_complete_page.finished_button.click
+  @journey.confirmation_page.finished_button.click
   expect(@bo.registration_details_page.heading).to have_text("Registration " + @reg_number)
 end
 
