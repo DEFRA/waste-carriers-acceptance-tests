@@ -8,7 +8,7 @@ When(/^the registration's balance is (-?\d+)$/) do |balance|
   # Once confirmed, set the balance variable to that value for future steps
   @reg_balance = balance
 
-  if balance == 0 && @convictions == "no convictions"
+  if balance.zero? && @convictions == "no convictions"
     @resource_object = :registration
   end
 end
