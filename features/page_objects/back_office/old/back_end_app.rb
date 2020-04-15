@@ -173,10 +173,6 @@ class BackEndApp
     @last_page = RenewalReceivedPage.new
   end
 
-  def renewal_complete_page
-    @last_page = RenewalCompletePage.new
-  end
-
   def renewal_start_page
     @last_page = RenewalStartPage.new
   end
