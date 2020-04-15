@@ -6,9 +6,7 @@ Feature: [RUBY-826] Pay for registrations
   So that their registration can be activated
 
   Background:
-      Given an Environment Agency user has signed in to the backend
-        And NCCC partially registers an upper tier "broker_dealer" "soleTrader" with "no convictions"
-        And the applicant chooses to pay for the registration by bank transfer ordering 1 copy card
+      Given a registration with outstanding balance and 1 copy cards has been submitted
         And I sign into the back office as "agency-user"
         And the registration's balance is 159
 
