@@ -17,7 +17,7 @@ Given("I want to register as an upper tier carrier") do
   @tier = "upper"
 end
 
-Given(/^a limited company with companies house number "([^"]*)" is registered as an upper tier waste carrier$/) do |ch_no|
+Given("a limited company with companies house number {string} is registered as an upper tier waste carrier") do |ch_no|
   # Store variables for later steps:
   @business_name = "AD UT Company convictions check ltd"
   @companies_house_number = ch_no
@@ -29,6 +29,63 @@ Given(/^a limited company with companies house number "([^"]*)" is registered as
 
   @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration " + @reg_number + " completed with conviction match on company number"
+end
+
+Given("a key person with a conviction registers as a sole trader upper tier waste carrier") do
+  # Store variables for later steps:
+  @business_name = "AD UT Sole Trader"
+  @people = @back_app.key_people_page.dodgy_people
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'soleTrader'")
+  step("I complete my registration")
+  step("I pay by card")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " completed with conviction match on relevant person"
+end
+
+
+Given("a conviction is declared when registering their partnership for an upper tier waste carrier") do
+  # Store variables for later steps:
+  @business_name = "AD Upper Tier Partnership"
+  @declared_convictions = :yes
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'partnership'")
+  step("I complete my registration")
+  step("I pay by card")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " completed with declared convictions"
+end
+
+Given("a registration with declared convictions is submitted with outstanding payment") do
+  # Store variables for later steps:
+  @business_name = "AD Upper Tier Need Payment"
+  @declared_convictions = :yes
+  @reg_balance = "154"
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'soleTrader'")
+  step("I complete my registration")
+  step("I pay by bank transfer")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " submitted with declared convictions and outstanding payment"
+end
+
+Given("a limited company {string} registers as an upper tier waste carrier") do |business_name|
+  # Store variables for later steps:
+  @business_name = business_name
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'limitedCompany'")
+  step("I complete my registration")
+  step("I pay by card")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " completed with conviction match on company name"
 end
 
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
@@ -68,10 +125,19 @@ When("I complete my registration") do
   @journey.address_lookup_page.submit_valid_address
 
   if @tier == "upper"
-    people = @journey.company_people_page.main_people
-    @journey.company_people_page.submit_main_person(person: people[0])
+    @people ||= @journey.company_people_page.main_people
 
-    @journey.conviction_declare_page.submit(choice: :no)
+    if @organisation_type == "partnership"
+      @journey.company_people_page.add_main_person(person: @people[0])
+      @journey.company_people_page.submit_main_person(person: @people[1])
+    else
+      @journey.company_people_page.submit_main_person(person: @people[0])
+    end
+
+    @declared_convictions ||= :no
+    @journey.conviction_declare_page.submit(choice: @declared_convictions)
+    @relevant_people = @back_app.relevant_people_page.relevant_people
+    @journey.conviction_details_page.submit(person: @relevant_people[0]) if @declared_convictions == :yes
   end
 
   names = {
