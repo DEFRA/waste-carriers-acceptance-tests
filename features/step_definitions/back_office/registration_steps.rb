@@ -48,7 +48,6 @@ Then(/^the back office pages show the correct registration details$/) do
   info_panel = @bo.registration_details_page.info_panel
   page_content = @bo.registration_details_page.content
   expect(@bo.registration_details_page.business_name).to have_text(@business_name)
-  expect(@bo.registration_details_page.content).to have_text("Bob Carolgees")
 
   if @tier == "upper"
     expect(info_panel).to have_text("Upper tier")
@@ -69,7 +68,6 @@ Then(/^the back office pages show the correct registration details$/) do
   elsif @carrier == "carrier_dealer"
     expect(info_panel).to have_text("Carrier and dealer")
   end
-
 end
 
 Then(/^the certificate shows the correct details$/) do

@@ -17,76 +17,6 @@ Given("I want to register as an upper tier carrier") do
   @tier = "upper"
 end
 
-Given("a limited company with companies house number {string} is registered as an upper tier waste carrier") do |ch_no|
-  # Store variables for later steps:
-  @business_name = "AD UT Company convictions check ltd"
-  @companies_house_number = ch_no
-
-  step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'limitedCompany'")
-  step("I complete my registration")
-  step("I pay by card")
-
-  @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " completed with conviction match on company number"
-end
-
-Given("a key person with a conviction registers as a sole trader upper tier waste carrier") do
-  # Store variables for later steps:
-  @business_name = "AD UT Sole Trader"
-  @people = @back_app.key_people_page.dodgy_people
-
-  step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration")
-  step("I pay by card")
-
-  @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " completed with conviction match on relevant person"
-end
-
-Given("a conviction is declared when registering their partnership for an upper tier waste carrier") do
-  # Store variables for later steps:
-  @business_name = "AD Upper Tier Partnership"
-  @declared_convictions = :yes
-
-  step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'partnership'")
-  step("I complete my registration")
-  step("I pay by card")
-
-  @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " completed with declared convictions"
-end
-
-Given("a registration with declared convictions is submitted with outstanding payment") do
-  # Store variables for later steps:
-  @business_name = "AD Upper Tier Need Payment"
-  @declared_convictions = :yes
-  @reg_balance = "154"
-
-  step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration")
-  step("I pay by bank transfer")
-
-  @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " submitted with declared convictions and outstanding payment"
-end
-
-Given("a limited company {string} registers as an upper tier waste carrier") do |business_name|
-  # Store variables for later steps:
-  @business_name = business_name
-
-  step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'limitedCompany'")
-  step("I complete my registration")
-  step("I pay by card")
-
-  @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " completed with conviction match on company name"
-end
-
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
   @organisation_type = organisation_type
 
@@ -98,6 +28,8 @@ When("I start a new registration journey in {string} as a {string}") do |locatio
   @journey.business_type_page.submit(org_type: organisation_type)
 end
 
+# Main step for generating a new registration.
+# It depends on instance variables to decide what to register.
 When("I complete my registration") do
   if @organisation_type == "charity"
     # then all tier routing questions are skipped and user is told "you need to register as a lower tier waste carrier"
@@ -157,8 +89,8 @@ When("I complete my registration") do
 
   @journey.declaration_page.submit
 
-  # Copy cards - Just submit, order no copy cards
-  @journey.standard_page.submit if @tier == "upper"
+  @copy_cards ||= 0
+  @journey.registration_cards_page.submit(cards: @copy_cards) if @tier == "upper"
 end
 
 Then("I am notified that my registration has been successful") do
@@ -168,4 +100,101 @@ Then("I am notified that my registration has been successful") do
   puts "Registration #{@reg_number} created successfully"
 
   # TODO: Check email received
+end
+
+Given("a registration with no convictions has been submitted by paying via card") do
+  # Store variables for later steps:
+  @reg_balance = 154
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'soleTrader'")
+  step("I complete my registration")
+  step("I pay by card")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " completed"
+end
+
+Given(/a registration with outstanding balance and (\d+) copy cards? has been submitted$/) do |copy_cards|
+  # Store variables for later steps:
+  @copy_cards = copy_cards
+  @reg_balance = 154 + 5 * copy_cards
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'soleTrader'")
+  step("I complete my registration")
+  step("I pay by bank transfer")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " submitted with #{copy_cards} copy cards and outstanding balance"
+end
+
+Given("a limited company with companies house number {string} is registered as an upper tier waste carrier") do |ch_no|
+  # Store variables for later steps:
+  @business_name = "AD UT Company convictions check ltd"
+  @companies_house_number = ch_no
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'limitedCompany'")
+  step("I complete my registration")
+  step("I pay by card")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " completed with conviction match on company number"
+end
+
+Given("a key person with a conviction registers as a sole trader upper tier waste carrier") do
+  # Store variables for later steps:
+  @business_name = "AD UT Sole Trader"
+  @people = @back_app.key_people_page.dodgy_people
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'soleTrader'")
+  step("I complete my registration")
+  step("I pay by card")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " completed with conviction match on relevant person"
+end
+
+Given("a conviction is declared when registering their partnership for an upper tier waste carrier") do
+  # Store variables for later steps:
+  @business_name = "AD Upper Tier Partnership"
+  @declared_convictions = :yes
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'partnership'")
+  step("I complete my registration")
+  step("I pay by card")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " completed with declared convictions"
+end
+
+Given("a registration with declared convictions is submitted with outstanding payment") do
+  # Store variables for later steps:
+  @business_name = "AD Upper Tier Need Payment"
+  @declared_convictions = :yes
+  @reg_balance = 154
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'soleTrader'")
+  step("I complete my registration")
+  step("I pay by bank transfer")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " submitted with declared convictions and outstanding payment"
+end
+
+Given("a limited company {string} registers as an upper tier waste carrier") do |business_name|
+  # Store variables for later steps:
+  @business_name = business_name
+
+  step("I want to register as an upper tier carrier")
+  step("I start a new registration journey in 'England' as a 'limitedCompany'")
+  step("I complete my registration")
+  step("I pay by card")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration " + @reg_number + " completed with conviction match on company name"
 end

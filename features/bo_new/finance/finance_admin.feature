@@ -10,12 +10,10 @@ Feature: Finance admin
 
   Background:
       Given an Environment Agency user has signed in to the backend
-        And NCCC partially registers an upper tier "broker_dealer" "soleTrader" with "no convictions"
 
 @smoke
   Scenario: [RUBY-811] Refund WorldPay payments on registration and renewal
-      Given the applicant pays by bank card
-        And NCCC finishes the registration
+      Given a registration with no convictions has been submitted by paying via card
 
       Given the registration's balance is 0
         And NCCC makes a payment of 42 by "cheque"
@@ -34,7 +32,7 @@ Feature: Finance admin
 
 @smoke
   Scenario: [RUBY-870] Adjust charges on registration and renewal
-      Given the applicant chooses to pay for the registration by bank transfer ordering 1 copy card
+      Given a registration with outstanding balance and 1 copy card has been submitted
         And NCCC makes a payment of 154 by "cash"
         And the registration has a status of "IN PROGRESS"
 
@@ -59,7 +57,7 @@ Feature: Finance admin
 
 @smoke
   Scenario: [RUBY-809 & 810] Reverse and write off
-      Given the applicant chooses to pay for the registration by bank transfer ordering 1 copy card
+      Given a registration with outstanding balance and 1 copy card has been submitted
         And NCCC makes a payment of 154 by "cash"
         And NCCC makes a payment of 3 by "cheque"
 
