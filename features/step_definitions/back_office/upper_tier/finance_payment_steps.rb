@@ -134,5 +134,6 @@ And(/^the applicant pays by bank card$/) do
   end
   submit_valid_card_payment
 
+  @resource_object = :registration
   @reg_balance = 0
 end
