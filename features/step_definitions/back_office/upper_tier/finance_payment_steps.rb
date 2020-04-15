@@ -8,9 +8,7 @@ When(/^the registration's balance is (-?\d+)$/) do |balance|
   # Once confirmed, set the balance variable to that value for future steps
   @reg_balance = balance
 
-  if balance.zero? && @convictions == "no convictions"
-    @resource_object = :registration
-  end
+  @resource_object = :registration if balance.zero? && @convictions == "no convictions"
 end
 
 When(/^the applicant chooses to pay for the registration by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
