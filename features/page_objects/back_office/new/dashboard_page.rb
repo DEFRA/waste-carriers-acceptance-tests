@@ -1,7 +1,7 @@
 require_relative "sections/govuk_banner.rb"
 
 class DashboardPage < SitePrism::Page
-  set_url(Quke::Quke.config.custom["urls"]["back_office_renewals"])
+  set_url(Quke::Quke.config.custom["urls"]["back_office"])
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
   element(:heading, ".heading-large")

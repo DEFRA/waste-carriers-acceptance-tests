@@ -86,7 +86,7 @@ Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
 end
 
 Then(/^the registration status in the registration export is set to "([^"]*)"$/) do |status|
-  visit(Quke::Quke.config.custom["urls"]["back_end_dashboard"])
+  visit(Quke::Quke.config.custom["urls"]["old_back_end_dashboard"])
 
   # finds today's date and saves them for use in export from and to date
   time = Time.new

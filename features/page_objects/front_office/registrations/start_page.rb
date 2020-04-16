@@ -1,5 +1,5 @@
 class StartPage < SitePrism::Page
-  set_url("#{Quke::Quke.config.custom['urls']['front_office_renewals']}/fo/start")
+  set_url("#{Quke::Quke.config.custom['urls']['front_office']}/start")
 
   element(:new_registration, "input[value='new']", visible: false)
   element(:renew_registration, "input[value='renew']", visible: false)
