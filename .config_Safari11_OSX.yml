@@ -56,7 +56,7 @@ javascript_errors: false
 #
 # Quke::Quke.config.custom["default_org_name"] # = "Testy Ltd"
 # Quke::Quke.config.custom["accounts"]["account2"]["username"] # = "john.doe@example.gov.uk"
-# Quke::Quke.config.custom["urls"]["front_office"] # = "http://myservice.service.gov.uk"
+# Quke::Quke.config.custom["urls"]["front_end"] # = "http://myservice.service.gov.uk"
 #
 # As long as what you add is valid YAML (check with a tool like
 # http://www.yamllint.com/) Quke will be able to pick it up and make it
@@ -75,19 +75,19 @@ custom:
       username: user@example.com
   urls:
     # Local
-    front_office: "http://localhost:3000/registrations/start"
-    front_office_sign_in: "http://localhost:3000/users/sign_in"
-    front_office_renewals: "http://localhost:3002"
-    front_office_renewals_sign_in: "http://localhost:3002/users/sign_in"
-    back_office: "http:/localhost:3000/agency_users/sign_in"
-    back_office_admin: "http:/localhost:3000/admins/sign_in"
+    front_end: "http://localhost:3000/registrations/start"
+    front_end_sign_in: "http://localhost:3000/users/sign_in"
+    front_office: "http://localhost:3002"
+    front_office_sign_in: "http://localhost:3002/users/sign_in"
+    back_end: "http:/localhost:3000/agency_users/sign_in"
+    back_end_admin: "http:/localhost:3000/admins/sign_in"
     # Sandbox
-    # front_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/registrations/start"
-    # front_office_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
-    # back_office: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
-    # back_office_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
-    # front_office_renewals: "http://localhost:3002"
-    # front_office_renewals_sign_in: "http://localhost:3002/fo/users/sign_in"
+    # front_end: "https://www.sandbox.wastecarriersregistration.service.gov.uk/registrations/start"
+    # front_end_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
+    # back_end: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
+    # back_end_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
+    # front_office: "http://localhost:3002"
+    # front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
     
 
 # If you are running Quke behind a proxy you can configure the proxy details

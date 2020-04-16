@@ -1,5 +1,5 @@
 class SignInPage < SitePrism::Page
-  set_url(Quke::Quke.config.custom["urls"]["back_office_renewals_sign_in"])
+  set_url(Quke::Quke.config.custom["urls"]["back_office_sign_in"])
 
   element(:email, "#user_email")
   element(:password, "#user_password")

@@ -58,7 +58,7 @@ custom:
     front_office: "http://domainundertest.gov.uk/registrations/start"
     front_office_sign_in: "http://domainundertest.gov.uk/users/sign_in?locale=en"
     back_office: "http://domainundertest.gov.uk/agency_users/sign_in"
-    back_office_admin: "http://domainundertest.gov.uk/admins/sign_in"
+    back_office_sign_in: "http://domainundertest.gov.uk/admins/sign_in"
 
 ```
 

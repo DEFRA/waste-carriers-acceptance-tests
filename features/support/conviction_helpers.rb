@@ -56,9 +56,9 @@ end
 def go_to_conviction_for_reg(reg)
   if @resource_object == :renewal
     # Because it is difficult to find a unique link to the registration's conviction checks, visit the URL directly:
-    visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/transient-registrations/" + reg + "/convictions")
+    visit((Quke::Quke.config.custom["urls"]["back_office"]) + "/transient-registrations/" + reg + "/convictions")
   else # it's a registration
-    visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo/registrations/" + reg + "/convictions")
+    visit((Quke::Quke.config.custom["urls"]["back_office"]) + "/registrations/" + reg + "/convictions")
   end
   expect(@bo.convictions_bo_details_page.heading).to have_text("Conviction information for " + reg)
 

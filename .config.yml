@@ -9,10 +9,10 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: 'http://localhost:3000'
+# app_host: 'http://localhost:3000'
 # app_host: 'https://waste-carriers-dev.aws.defra.cloud'
 # app_host: 'https://waste-carriers-tst.aws.defra.cloud'
-# app_host: 'https://waste-carriers-pre.aws.defra.cloud'
+app_host: 'https://waste-carriers-pre.aws.defra.cloud'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome
 # browserstack and phantomjs, with the default being phantomjs
@@ -72,7 +72,7 @@ print_progress: false
 #
 # Quke::Quke.config.custom["default_org_name"] # = "Testy Ltd"
 # Quke::Quke.config.custom["accounts"]["account2"]["username"] # = "john.doe@example.gov.uk"
-# Quke::Quke.config.custom["urls"]["front_office"] # = "http://myservice.service.gov.uk"
+# Quke::Quke.config.custom["urls"]["front_end"] # = "http://myservice.service.gov.uk"
 #
 # As long as what you add is valid YAML (check with a tool like
 # http://www.yamllint.com/) Quke will be able to pick it up and make it
@@ -97,33 +97,33 @@ custom:
     waste_carrier2:
       username: another-user@example.com
 # Hide or unhide the relevant URLs for the environment you want to test:
-# Local setup
-  urls:
-    front_office: "http://localhost:3000/registrations/start"
-    front_office_sign_in: "http://localhost:3000/users/sign_in"
-    front_office_renewals: "http://localhost:3002"
-    front_office_renewals_sign_in: "http://localhost:3002/fo/users/sign_in"
-    back_end_dashboard: "http://localhost:3000/registrations?locale=en"
-    back_office: "http://localhost:3000/agency_users/sign_in"
-    back_office_renewals: "http://localhost:8001"
-    back_office_renewals_sign_in: "http://localhost:8001/bo/users/sign_in"
-    backend_admin: "http://localhost:3000/admins/sign_in"
-    mail_client: "http://localhost:1080"
-    last_email_fe: "http://localhost:3000/email/last-email"
-    last_email_fo: "http://localhost:3002/fo/email/last-email"
-    last_email_bo: "http://localhost:8001/bo/email/last-email"
+# # Local setup
+#   urls:
+#     front_end: "http://localhost:3000/registrations/start"
+#     front_end_sign_in: "http://localhost:3000/users/sign_in"
+#     front_office: "http://localhost:3002/fo"
+#     front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
+#     back_end_dashboard: "http://localhost:3000/registrations?locale=en"
+#     back_end: "http://localhost:3000/agency_users/sign_in"
+#     back_end_admin: "http://localhost:3000/admins/sign_in"
+#     back_office: "http://localhost:8001/bo"
+#     back_office_sign_in: "http://localhost:8001/bo/users/sign_in"
+#     mail_client: "http://localhost:1080"
+#     last_email_fe: "http://localhost:3000/email/last-email"
+#     last_email_fo: "http://localhost:3002/fo/email/last-email"
+#     last_email_bo: "http://localhost:8001/bo/email/last-email"
 
   # # Dev setup
   # urls:
-  #   front_office: "https://waste-carriers-dev.aws.defra.cloud"
-  #   front_office_sign_in: "https://waste-carriers-dev.aws.defra.cloud/users/sign_in"
-  #   front_office_renewals: "https://waste-carriers-dev.aws.defra.cloud"
-  #   front_office_renewals_sign_in: "https://waste-carriers-dev.aws.defra.cloud/fo/users/sign_in"
+  #   front_end: "https://waste-carriers-dev.aws.defra.cloud"
+  #   front_end_sign_in: "https://waste-carriers-dev.aws.defra.cloud/users/sign_in"
+  #   front_office: "https://waste-carriers-dev.aws.defra.cloud/fo"
+  #   front_office_sign_in: "https://waste-carriers-dev.aws.defra.cloud/fo/users/sign_in"
   #   back_end_dashboard: "https://admin-waste-carriers-dev.aws.defra.cloud/registrations?locale=en"
-  #   back_office: "https://admin-waste-carriers-dev.aws.defra.cloud"
-  #   back_office_admin: "https://admin-waste-carriers-dev.aws.defra.cloud/agency_users/sign_in"
-  #   back_office_renewals: "https://admin-waste-carriers-dev.aws.defra.cloud/"
-  #   back_office_renewals_sign_in: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/users/sign_in"
+  #   back_end: "https://admin-waste-carriers-dev.aws.defra.cloud"
+  #   back_end_admin: "https://admin-waste-carriers-dev.aws.defra.cloud/agency_users/sign_in"
+  #   back_office: "https://admin-waste-carriers-dev.aws.defra.cloud/bo"
+  #   back_office_sign_in: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/users/sign_in"
   #   mail_client: "https://www.mailinator.com"
   #   last_email_fe: "https://waste-carriers-dev.aws.defra.cloud/email/last-email"
   #   last_email_fo: "https://waste-carriers-dev.aws.defra.cloud/fo/email/last-email"
@@ -131,35 +131,35 @@ custom:
 
   # # Test setup
   # urls:
-  #   front_office: "https://waste-carriers-tst.aws.defra.cloud"
-  #   front_office_sign_in: "https://waste-carriers-tst.aws.defra.cloud/users/sign_in"
-  #   front_office_renewals: "https://waste-carriers-tst.aws.defra.cloud"
-  #   front_office_renewals_sign_in: "https://waste-carriers-tst.aws.defra.cloud/fo/users/sign_in"
+  #   front_end: "https://waste-carriers-tst.aws.defra.cloud"
+  #   front_end_sign_in: "https://waste-carriers-tst.aws.defra.cloud/users/sign_in"
+  #   front_office: "https://waste-carriers-tst.aws.defra.cloud/fo"
+  #   front_office_sign_in: "https://waste-carriers-tst.aws.defra.cloud/fo/users/sign_in"
   #   back_end_dashboard: "https://admin-waste-carriers-tst.aws.defra.cloud/registrations?locale=en"
-  #   back_office: "https://admin-waste-carriers-tst.aws.defra.cloud"
-  #   back_office_admin: "https://admin-waste-carriers-tst.aws.defra.cloud/agency_users/sign_in"
-  #   back_office_renewals: "https://admin-waste-carriers-tst.aws.defra.cloud/"
-  #   back_office_renewals_sign_in: "https://admin-waste-carriers-tst.aws.defra.cloud/bo/users/sign_in"
+  #   back_end: "https://admin-waste-carriers-tst.aws.defra.cloud"
+  #   back_end_admin: "https://admin-waste-carriers-tst.aws.defra.cloud/agency_users/sign_in"
+  #   back_office: "https://admin-waste-carriers-tst.aws.defra.cloud/bo"
+  #   back_office_sign_in: "https://admin-waste-carriers-tst.aws.defra.cloud/bo/users/sign_in"
   #   mail_client: "https://www.mailinator.com"
   #   last_email_fe: "https://waste-carriers-tst.aws.defra.cloud/email/last-email"
   #   last_email_fo: "https://waste-carriers-tst.aws.defra.cloud/fo/email/last-email"
   #   last_email_bo: "https://admin-waste-carriers-tst.aws.defra.cloud/bo/email/last-email"
 
-  # # Preprod / staging setup
-  # urls:
-  #   front_office: "https://waste-carriers-pre.aws.defra.cloud"
-  #   front_office_sign_in: "https://waste-carriers-pre.aws.defra.cloud/users/sign_in"
-  #   front_office_renewals: "https://waste-carriers-pre.aws.defra.cloud"
-  #   front_office_renewals_sign_in: "https://waste-carriers-pre.aws.defra.cloud/fo/users/sign_in"
-  #   back_end_dashboard: "https://admin-waste-carriers-pre.aws.defra.cloud/registrations?locale=en"
-  #   back_office: "https://admin-waste-carriers-pre.aws.defra.cloud"
-  #   back_office_admin: "https://admin-waste-carriers-pre.aws.defra.cloud/agency_users/sign_in"
-  #   back_office_renewals: "https://admin-waste-carriers-pre.aws.defra.cloud/"
-  #   back_office_renewals_sign_in: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/users/sign_in"
-  #   mail_client: "https://www.mailinator.com"
-  #   last_email_fe: "https://waste-carriers-pre.aws.defra.cloud/email/last-email"
-  #   last_email_fo: "https://waste-carriers-pre.aws.defra.cloud/fo/email/last-email"
-  #   last_email_bo: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/email/last-email"
+  # Preprod / staging setup
+  urls:
+    front_end: "https://waste-carriers-pre.aws.defra.cloud"
+    front_end_sign_in: "https://waste-carriers-pre.aws.defra.cloud/users/sign_in"
+    front_office: "https://waste-carriers-pre.aws.defra.cloud/fo"
+    front_office_sign_in: "https://waste-carriers-pre.aws.defra.cloud/fo/users/sign_in"
+    back_end_dashboard: "https://admin-waste-carriers-pre.aws.defra.cloud/registrations?locale=en"
+    back_end: "https://admin-waste-carriers-pre.aws.defra.cloud"
+    back_end_admin: "https://admin-waste-carriers-pre.aws.defra.cloud/agency_users/sign_in"
+    back_office: "https://admin-waste-carriers-pre.aws.defra.cloud/bo"
+    back_office_sign_in: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/users/sign_in"
+    mail_client: "https://www.mailinator.com"
+    last_email_fe: "https://waste-carriers-pre.aws.defra.cloud/email/last-email"
+    last_email_fo: "https://waste-carriers-pre.aws.defra.cloud/fo/email/last-email"
+    last_email_bo: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/email/last-email"
 
 # If you are running Quke behind a proxy you can configure the proxy details
 # here. You'll need either the hostname or IP of the proxy server (don't include

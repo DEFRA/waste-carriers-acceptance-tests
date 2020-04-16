@@ -2,7 +2,7 @@ class WasteCarrierSignInPage < SitePrism::Page
 
   # Sign in
 
-  set_url(Quke::Quke.config.custom["urls"]["front_office_sign_in"])
+  set_url(Quke::Quke.config.custom["urls"]["front_end_sign_in"])
 
   # Cannot simply use the CSS # id selector because there are 2 elements on the
   # page with this id; one a div the other an input

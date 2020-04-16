@@ -12,11 +12,11 @@ def load_all_apps
 end
 
 def visit_registration_details_page(reg_identifier)
-  visit("#{Quke::Quke.config.custom['urls']['back_office_renewals']}/bo/registrations/#{reg_identifier}")
+  visit("#{Quke::Quke.config.custom['urls']['back_office']}/registrations/#{reg_identifier}")
 end
 
 def visit_renewal_details_page(reg_identifier)
-  visit("#{Quke::Quke.config.custom['urls']['back_office_renewals']}/bo/renewing-registrations/#{reg_identifier}")
+  visit("#{Quke::Quke.config.custom['urls']['back_office']}/renewing-registrations/#{reg_identifier}")
 end
 
 def sign_in_to_front_end_if_necessary(email)
@@ -38,7 +38,7 @@ def sign_in_to_back_office(user, force = true)
   # If force == true then this forces signout regardless of the user's type.
 
   # Check whether user is already logged in by visiting root page:
-  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
+  visit(Quke::Quke.config.custom["urls"]["back_office"])
 
   # Return if already logged in as that user.
   # This relies on the user property name in .config.yml being the same as the start of the user's email address:
@@ -59,7 +59,7 @@ end
 
 def sign_out_of_back_office
   # Check not already signed out
-  visit((Quke::Quke.config.custom["urls"]["back_office_renewals"]) + "/bo")
+  visit(Quke::Quke.config.custom["urls"]["back_office"])
   heading = @journey.standard_page.heading.text
 
   # Bypass if already logged out:

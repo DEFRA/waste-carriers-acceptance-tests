@@ -1,6 +1,6 @@
 class OldStartPage < SitePrism::Page
 
-  set_url(Quke::Quke.config.custom["urls"]["front_office"])
+  set_url(Quke::Quke.config.custom["urls"]["front_end"])
 
   # Have you already started an application?
   element(:new_registration, "input[value='new']", visible: false)
