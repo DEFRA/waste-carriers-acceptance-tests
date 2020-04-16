@@ -224,7 +224,7 @@ Then(/^the expiry date should be three years from the previous expiry date$/) do
   # Adds three years to expiry date and then checks expiry date reported in registration details.
   # Need to convert this step to new app!
   @expected_expiry_date = @expiry_date_year_first.next_year(3)
-  visit(Quke::Quke.config.custom["urls"]["old_back_end"])
+  visit(Quke::Quke.config.custom["urls"]["back_end"])
   @back_app.registrations_page.search(search_input: @reg_number)
   actual_expiry_date = Date.parse(@back_app.registrations_page.search_results[0].expiry_date.text)
   expect(@expected_expiry_date).to eq(actual_expiry_date)
