@@ -11,7 +11,7 @@ Feature: New lower tier registrations
      And I have received an registration complete email
      And the registration status will be "Registered"
 
-@smoke
+@smoke @minismoke
  Scenario: Lower tier waste carrier does not confirm their email address
   Given I complete my application of my limited company "Unconfirmed company ltd" as a lower tier waste carrier
     But I do not confirm my email address

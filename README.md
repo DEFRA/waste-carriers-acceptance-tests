@@ -26,6 +26,7 @@ git clone https://github.com/DEFRA/waste-carriers-acceptance-tests.git && cd was
 Next download and install the dependencies
 
 ```bash
+gem install bundler
 bundle install
 ```
 
@@ -93,7 +94,7 @@ bundle exec quke
 As the test suite is quite large, tests are split into four main categories:
 
 * @fo_new - front office (external) dashboard and renewals
-* @bo_new - back office (internal) renewals
+* @bo_new - back office (internal) dashboard, finance, edits, renewals and more
 * @fo_old - front office registrations
 * @bo_old - back office dashboard and registrations
 
@@ -116,7 +117,7 @@ QUKE_CONFIG='chrome.config.yml' bundle exec quke
 These can be added to a [feature](https://github.com/cucumber/cucumber/wiki/Feature-Introduction) or individual **scenarios**.
 
 ```gherkin
-@functional
+@smoke
 Feature: Validations within the digital service
 ```
 
@@ -129,7 +130,7 @@ When applied you then have the ability to filter which tests will be used during
 
 ```bash
 bundle exec quke --tags @fo_old # Run only things tagged with this
-bundle exec quke --tags @fo_old,@happypath # Run all things with these tags
+bundle exec quke --tags @fo_old,@smoke # Run all things with these tags
 bundle exec quke --tags ~@fo_old # Don't run anything with this tag (run everything else)
 ```
 
@@ -143,13 +144,12 @@ To have consistency across the project the following tags are defined and should
 |@fo_new|Front office functionality in the newer parts of the service|
 |@bo_old|Back office functionality in the older parts of the service|
 |@bo_new|Back office functionality in the newer parts of the service|
-|@happypath|A scenario which details a complete registration with no errors|
-|@functional|Any feature or scenario which is testing just a specific function of the service e.g. validation errors|
 |@email|Indicates when an email is sent out during the scenario. Useful for testing emails or for omitting email tests when testing within corporate network|
 |@broken|A scenario which is known to be broken due to the service not meeting expected behaviour|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
 |@convictions| Tests the convictions service|
-|@smoke| Specifically for testing on an environment where test data is created during the test so no reliance on any data or test payment environment to run the tests. Gives a confirmation that environment is setup correctly |
+|@smoke| Tests where test data is created during the test, so no reliance on any data to run the tests. Useful for testing in hosted environments where we don't have a full set of seeded data|
+|@minismoke| A light smoke test to quickly verify that all apps are working|
 |Back office tags| @bo_renew, @bo_dashboard, @bo_finance, @bo_reg |
 |Front office tags| @fo_renew, @fo_dashboard, @fo_reg |
 
@@ -159,9 +159,11 @@ It's also common practice to use a custom tag whilst working on a new feature or
 
 This repository is being updated on the following principles:
 
-* Share helper functions across steps to reduce repetition
-* Share page objects in the @journey app as much as possible, where there is duplication between old/new apps, and front/back office
-* Reduce the number of files and apps where possible
+* Keep feature files small - the steps should make it clear what the feature is actually testing. However, in some cases, smaller steps make sense to allow re-use.
+* Put the detailed functionality in a step, making use of helper functions to avoid duplication.
+* Put shared page objects in the @journey app, where there is duplication between old/new apps, and front/back office.
+* Use unique names for step and page files.
+* Reduce the number of files and apps where possible, unless it makes the tests hard to understand.
 
 ## Tips
 
@@ -179,7 +181,7 @@ If you have an idea you'd like to contribute please log an issue.
 
 All contributions should be submitted via a pull request.
 
-## License
+## Licence
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:
 
@@ -187,9 +189,9 @@ http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3
 
 The following attribution statement MUST be cited in your products and applications when using this information.
 
-> Contains public sector information licensed under the Open Government license v3
+> Contains public sector information licensed under the Open Government licence v3
 
-### About the license
+### About the licence
 
 The Open Government Licence (OGL) was developed by the Controller of Her Majesty's Stationery Office (HMSO) to enable information providers in the public sector to license the use and re-use of their information under a common open licence.
 
