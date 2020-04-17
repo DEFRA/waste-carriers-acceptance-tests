@@ -1,4 +1,4 @@
-@bo_new @upper_tier @bo_dashboard @smoke
+@bo_new @upper_tier @bo_dashboard @smoke @minismoke
 Feature: NCCC agent views registrations from back office
   As an NCCC agent
   I want to view registration and renewal details on one service

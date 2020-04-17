@@ -14,7 +14,7 @@ Feature: Assisted digital registration of an upper tier Limited company
    	Then I will have an upper tier registration
      And the registration status will be "Registered"
 
-@smoke
+@smoke @minismoke
   Scenario: NCCC successfully registers a limited company for a upper tier waste carriers licence choosing to pay by bank transfer
     When the applicant chooses to pay for the registration by bank transfer ordering 4 copy cards
     Then the registration status will be "Awaiting payment"
