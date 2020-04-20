@@ -99,11 +99,8 @@ Then("I am notified that my registration has been successful") do
   @reg_number = @journey.confirmation_page.registration_number.text
   find_text = [@reg_number]
 
-  if @tier == "lower"
-    find_text << "You are now registered as a lower tier"
-  else
-    find_text << "You are now registered as an upper tier"
-  end
+  find_text << "You are now registered as a lower tier" if @tier == "lower"
+  find_text << "You are now registered as an upper tier" if @tier == "upper"
 
   visit Quke::Quke.config.custom["urls"]["last_email_fo"]
   email_found = @journey.last_email_page.check_email_for_text(find_text)
