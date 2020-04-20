@@ -97,9 +97,19 @@ Then("I am notified that my registration has been successful") do
   expect(page).to have_content("Registration complete")
 
   @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration #{@reg_number} created successfully"
+  find_text = [@reg_number]
 
-  # TODO: Check email received
+  if @tier == "lower"
+    find_text << "You are now registered as a lower tier"
+  else
+    find_text << "You are now registered as an upper tier"
+  end
+
+  visit Quke::Quke.config.custom["urls"]["last_email_fo"]
+  email_found = @journey.last_email_page.check_email_for_text(find_text)
+  expect(email_found).to eq(true)
+
+  puts "Registration #{@reg_number} created successfully"
 end
 
 Given("a registration with no convictions has been submitted by paying via card") do
