@@ -26,8 +26,6 @@ def pay_by_cash(amount_in_pounds)
 end
 
 def check_balance(expected_balance)
-  @bo.registration_details_page.payment_details_link.click
-
   # Get the balance from the payment details page, assuming it is the last text on the page.
 
   # The regex searches for: any number of digits . two more digits newline Open Government Licence
@@ -57,7 +55,7 @@ def enter_payment(amount, method)
   # Amount can be a string or number.
   # List of method options is in finance_payment_method_page.rb
 
-  @bo.finance_payment_details_page.enter_payment_button.click
+  visit_registration_enter_payment_page(@reg_number)
   @bo.finance_payment_method_page.submit(choice: method.to_sym)
   expect(@bo.finance_payment_input_page).to have_amount
   expect(@bo.finance_payment_input_page.heading).to have_text("payment for " + @reg_number)
