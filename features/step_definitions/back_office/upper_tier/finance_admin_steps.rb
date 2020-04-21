@@ -1,9 +1,7 @@
 Given(/^an agency-refund-payment-user refunds the WorldPay payment$/) do
-
   sign_in_to_back_office("agency-refund-payment-user")
-  go_to_payments_page(@reg_number)
 
-  @bo.finance_payment_details_page.refund_button.click
+  visit_registration_refund_page(@reg_number)
   expect(@bo.finance_refund_select_page.heading).to have_text("Which payment do you want to refund?")
 
   # Use hidden text to identify correct refund link.
