@@ -1,25 +1,25 @@
 def visit_registration_finance_details_page(reg_number)
   id = registration_id_for(reg_number)
 
-  visit "#{Quke::Quke.config.custom["urls"]["back_office"]}/resources/#{id}/finance-details"
+  visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/finance-details"
 end
 
 def visit_renewal_finance_details_page(reg_number)
   id = renewal_id_for(reg_number)
 
-  visit "#{Quke::Quke.config.custom["urls"]["back_office"]}/resources/#{id}/finance-details"
+  visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/finance-details"
 end
 
 def visit_registration_enter_payment_page(reg_number)
   id = renewal_id_for(reg_number)
 
-  visit "#{Quke::Quke.config.custom["urls"]["back_office"]}/resources/#{id}/payments"
+  visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/payments"
 end
 
 def visit_registration_refund_page(reg_number)
   id = renewal_id_for(reg_number)
 
-  visit "#{Quke::Quke.config.custom["urls"]["back_office"]}/resources/#{id}/refunds"
+  visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/refunds"
 end
 
 def visit_registration_details_page(reg_identifier)
