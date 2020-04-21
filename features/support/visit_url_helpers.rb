@@ -1,23 +1,29 @@
-def visit_registration_finance_details_page(reg_number)
-  id = registration_id_for(reg_number)
+def visit_charge_adjust_page(reg_number)
+  id = @resource_object == :renewal ? renewal_id_for(reg_number) : registration_id_for(reg_number)
+
+  visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/payments/charge-adjusts"
+end
+
+def visit_reverse_payment_page(reg_number)
+  id = @resource_object == :renewal ? renewal_id_for(reg_number) : registration_id_for(reg_number)
+
+  visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/reversals"
+end
+
+def visit_finance_details_page(reg_number)
+  id = @resource_object == :renewal ? renewal_id_for(reg_number) : registration_id_for(reg_number)
 
   visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/finance-details"
 end
 
-def visit_renewal_finance_details_page(reg_number)
-  id = renewal_id_for(reg_number)
-
-  visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/finance-details"
-end
-
-def visit_registration_enter_payment_page(reg_number)
-  id = renewal_id_for(reg_number)
+def visit_enter_payment_page(reg_number)
+  id = @resource_object == :renewal ? renewal_id_for(reg_number) : registration_id_for(reg_number)
 
   visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/payments"
 end
 
-def visit_registration_refund_page(reg_number)
-  id = renewal_id_for(reg_number)
+def visit_refund_page(reg_number)
+  id = @resource_object == :renewal ? renewal_id_for(reg_number) : registration_id_for(reg_number)
 
   visit "#{Quke::Quke.config.custom['urls']['back_office']}/resources/#{id}/refunds"
 end

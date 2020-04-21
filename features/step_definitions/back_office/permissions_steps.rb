@@ -39,7 +39,6 @@ Then(/^I have the correct permissions for an agency refund payment user$/) do
 
   # Check agency-refund-payment-user cannot write off more than 5 pounds:
   sign_in_to_back_office("finance-admin-user")
-  go_to_payments_page(@reg_number)
   adjust_charge(1, 999) # adjust charge by +1 pound, passing a dummy number for second argument
 
   # Check that write off button is no longer available:
@@ -49,7 +48,6 @@ Then(/^I have the correct permissions for an agency refund payment user$/) do
 
   # Set the balance back to 5 pounds for remaining tests
   sign_in_to_back_office("finance-admin-user")
-  go_to_payments_page(@reg_number)
   adjust_charge(-1, 999) # adjust charge by -1 pound, passing a dummy number for second argument
 end
 

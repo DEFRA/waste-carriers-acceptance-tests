@@ -1,7 +1,7 @@
 Given(/^an agency-refund-payment-user refunds the WorldPay payment$/) do
   sign_in_to_back_office("agency-refund-payment-user")
 
-  visit_registration_refund_page(@reg_number)
+  visit_refund_page(@reg_number)
   expect(@bo.finance_refund_select_page.heading).to have_text("Which payment do you want to refund?")
 
   # Use hidden text to identify correct refund link.
@@ -28,7 +28,6 @@ end
 Given(/^a finance admin user adjusts the charge by (-?\d+)$/) do |amount|
   # input is a positive or negative integer amount
   sign_in_to_back_office("finance-admin-user")
-  go_to_payments_page(@reg_number)
   random_number = rand(0..999_999) # to help identify transaction later
   amount = amount.to_i
   adjust_charge(amount, random_number)
@@ -41,7 +40,6 @@ end
 
 Given(/^(?:a|an) "([^"]*)" reverses the previous payment$/) do |user|
   sign_in_to_back_office(user)
-  go_to_payments_page(@reg_number)
   reverse_last_transaction
 
   expect(@bo.finance_payment_details_page.flash_message).to have_text("reversed successfully")
