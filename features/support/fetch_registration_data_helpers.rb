@@ -1,5 +1,3 @@
-# Used for caching
-
 def registration_id_for(reg_identifier)
   fetch_registration_data_for(reg_identifier) unless reg_identifier == @fetch_reg_identifier_cache
 
