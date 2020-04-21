@@ -52,6 +52,7 @@ Feature: Finance admin
         And NCCC makes a payment of 105 by "cash"
         And the transient renewal's balance is 10
        When a finance admin user adjusts the charge by -15
+        And the renewal is completed
        Then the registration's balance is -5
         And the registration has a status of "ACTIVE"
 
