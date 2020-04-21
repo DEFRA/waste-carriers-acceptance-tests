@@ -1,13 +1,7 @@
 def registration_id_for(reg_identifier)
-  fetch_registration_data_for(reg_identifier) unless reg_identifier == @fetch_reg_identifier_cache
+  fetch_registration_data_for(reg_identifier) unless reg_identifier == @fetch_registration_identifier_cache
 
-  @fetch_data_cache["_id"]
-end
-
-def renewal_id_for(reg_identifier)
-  fetch_renewal_data_for(reg_identifier) unless reg_identifier == @fetch_reg_identifier_cache
-
-  @fetch_data_cache["_id"]
+  @fetch_registration_data_cache["_id"]
 end
 
 def fetch_registration_data_for(reg_identifier)
@@ -16,8 +10,14 @@ def fetch_registration_data_for(reg_identifier)
 
   visit "#{Quke::Quke.config.custom['urls']['back_office']}/api/registrations/#{reg_identifier}"
 
-  @fetch_data_cache = ApiResultPage.new.extract_data
-  @fetch_reg_identifier_cache = reg_identifier
+  @fetch_registration_data_cache = ApiResultPage.new.extract_data
+  @fetch_registration_identifier_cache = reg_identifier
+end
+
+def renewal_id_for(reg_identifier)
+  fetch_renewal_data_for(reg_identifier) unless reg_identifier == @fetch_renewal_identifier_cache
+
+  @fetch_renewal_data_cache["_id"]
 end
 
 def fetch_renewal_data_for(reg_identifier)
@@ -26,6 +26,6 @@ def fetch_renewal_data_for(reg_identifier)
 
   visit "#{Quke::Quke.config.custom['urls']['back_office']}/api/renewals/#{reg_identifier}"
 
-  @fetch_data_cache = ApiResultPage.new.extract_data
-  @fetch_reg_identifier_cache = reg_identifier
+  @fetch_renewal_data_cache = ApiResultPage.new.extract_data
+  @fetch_renewal_identifier_cache = reg_identifier
 end

@@ -2,13 +2,17 @@ When(/^the registration's balance is (-?\d+)$/) do |balance|
   sign_in_to_back_office("agency-refund-payment-user")
 
   # Firstly, check the balance for that registration:
-  visit_registration_finance_details_page(@reg_number)
+  visit_finance_details_page(@reg_number)
   check_balance(balance)
 
   # Once confirmed, set the balance variable to that value for future steps
   @reg_balance = balance
 
   @resource_object = :registration if balance.zero? && @convictions == "no convictions"
+end
+
+When("the renewal is completed") do
+  @resource_object = :registration
 end
 
 When(/^the applicant chooses to pay for the registration by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
@@ -40,7 +44,7 @@ When(/^the transient renewal's balance is (-?\d+)$/) do |balance|
   # This step assumes that any back office user is already logged in
   # and the payment status is viewable for that renewal (it's been submitted)
 
-  visit_renewal_finance_details_page(@reg_number)
+  visit_finance_details_page(@reg_number)
   check_balance(balance)
 
   # Once checked, set the balance variable to that value for future steps
