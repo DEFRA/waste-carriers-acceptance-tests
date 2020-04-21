@@ -76,7 +76,7 @@ def check_payment_confirmation_message(amount)
 end
 
 def adjust_charge(amount, random_number)
-  # Start from payments page and add a positive or negative charge
+  # Start from any logged in screen with the appropriate user, and add a positive or negative charge
   visit_charge_adjust_page(@reg_number)
   expect(@bo.finance_charge_adjust_select_page.heading).to have_text("Make a charge adjustment for " + @reg_number)
   submit_option = amount >= 0 ? :positive : :negative
