@@ -2,11 +2,11 @@
 # Usage: SeedData.seed("complete_active_registration.json")
 # It will return a reg_number newly generated to use in the test suite.
 
-require 'net/http'
+require "net/http"
 
 class SeedData
   def self.seed(file_name)
-    self.new(file_name).seed
+    new(file_name).seed
   end
 
   def seed
