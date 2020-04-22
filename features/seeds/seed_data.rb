@@ -27,7 +27,7 @@ class SeedData
 
   def uri
     address = "#{Quke::Quke.config.custom['urls']['back_office']}/api/registrations"
-    escaped_address = URI.escape(address)
+    escaped_address = CGI.escape(address)
     URI.parse(escaped_address)
   end
 
