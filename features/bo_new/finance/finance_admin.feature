@@ -23,6 +23,7 @@ Feature: Finance admin
 
       Given NCCC partially renews an existing registration with "no convictions"
         And the applicant pays by bank card
+        And the renewal is completed
         And the registration's balance is 0
 
       Given NCCC makes a payment of 99 by "cheque"
