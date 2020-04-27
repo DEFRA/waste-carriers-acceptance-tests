@@ -1,12 +1,15 @@
 # This will seed data using files in the `fixtures` subfolder.
 # Usage: SeedData.seed("complete_active_registration.json")
 # It will return a reg_number newly generated to use in the test suite.
+# Check REDME.md for more info
 
 require "net/http"
 
 class SeedData
   def self.seed(file_name)
-    new(file_name).seed
+    response = new(file_name).seed
+
+    JSON.parse(response.body)["reg_identifier"]
   end
 
   def seed
@@ -27,8 +30,8 @@ class SeedData
 
   def uri
     address = "#{Quke::Quke.config.custom['urls']['back_office']}/api/registrations"
-    escaped_address = CGI.escape(address)
-    URI.parse(escaped_address)
+
+    URI.parse(address)
   end
 
   def data

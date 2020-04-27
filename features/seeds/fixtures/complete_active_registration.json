@@ -7,7 +7,7 @@
     "companyName" : "UT Company limited",
     "firstName" : "Bob",
     "lastName" : "Carolgees",
-    "phoneNumber" : "012345678",
+    "phoneNumber" : "0117 4960000",
     "contactEmail" : "user@example.com",
     "accountEmail" : "user@example.com",
     "declaredConvictions" : "no",
@@ -147,7 +147,6 @@
         }
     ],
     "copy_cards" : "2",
-    "expires_on" : "2021-05-14T10:38:22.692Z",
     "conviction_search_result" : {
         "match_result" : "NO",
         "searched_at" : "2018-05-14T10:37:50.372Z",
