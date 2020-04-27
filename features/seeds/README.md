@@ -1,10 +1,10 @@
 # Registration Data Seeding
 
-This folder contains the required code that allow the acceptance tests suite to seed registrations using an ad-hoc API which is active in the back office.
+This folder contains the required code that allows the acceptance tests suite to seed registrations using an ad-hoc API which is active in the back office.
 
 The API endpoint accepts a JSON request format that contains a document object to load in the `registrations` collection inside mongoDB.
 
-The API endpoint will care for:
+The API endpoint will cover:
 - Generating and assigning a new `reg_identifier` number. The number will start with `CBDU` if the value of the `tier` is `upper`, or `CBDL` otherwise.
 - Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow.
 

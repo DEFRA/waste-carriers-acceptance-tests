@@ -1,7 +1,7 @@
 # This will seed data using files in the `fixtures` subfolder.
 # Usage: SeedData.seed("complete_active_registration.json")
 # It will return a reg_number newly generated to use in the test suite.
-# Check REDME.md for more info
+# Check README.md for more info
 
 require "net/http"
 
