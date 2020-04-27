@@ -15,7 +15,8 @@ class SeedData
   def seed
     request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
     request.body = data
-    response = Net::HTTP.start(uri.hostname, uri.port) do |http|
+
+    Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(request)
     end
   end
