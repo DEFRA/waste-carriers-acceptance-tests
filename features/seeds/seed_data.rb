@@ -54,15 +54,15 @@ class SeedData
   end
 
   def inflate_copy_cards_order(data)
-    return unless options.has_key?(:copy_cards)
+    return unless options.key?(:copy_cards)
 
     order_item = {
-                    "amount" => 500 * options[:copy_cards].to_i,
-                    "currency" => "GBP",
-                    "description" => "Copy cards",
-                    "reference" => "",
-                    "type" => "COPY_CARDS"
-                  }
+      "amount" => 500 * options[:copy_cards].to_i,
+      "currency" => "GBP",
+      "description" => "Copy cards",
+      "reference" => "",
+      "type" => "COPY_CARDS"
+    }
 
     order = data["financeDetails"]["orders"].first
 
