@@ -115,6 +115,20 @@ Given("a registration with no convictions has been submitted by paying via card"
   puts "Registration " + @reg_number + " seeded"
 end
 
+Given("I create a new registration as {string}") do |account_email|
+  @reg_number = SeedData.seed("complete_active_registration.json", "accountEmail" => account_email)
+
+  puts "Registration " + @reg_number + " seeded"
+end
+
+Given("I have an active registration") do
+  account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
+
+  @reg_number = SeedData.seed("complete_active_registration.json", "accountEmail" => account_email)
+
+  puts "Registration " + @reg_number + " seeded"
+end
+
 Given(/a registration with outstanding balance and (\d+) copy cards? has been submitted$/) do |copy_cards|
   # Store variables for later steps:
   @copy_cards = copy_cards

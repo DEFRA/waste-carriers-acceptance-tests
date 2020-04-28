@@ -1,4 +1,4 @@
-@fo_new @fo_renewal @renewal
+@fo_new @fo_renewal @renewal @wip
 Feature: Registered waste carrier chooses to renew their registration from registration search
   As a carrier of commercial waste
   I want to renew my waste carriers licence with the Environment Agency
@@ -6,47 +6,54 @@ Feature: Registered waste carrier chooses to renew their registration from regis
 
   @email
   Scenario: Sole trader renews upper tier registration from renewals page
-    Given I renew my registration using my previous registration number "CBDU225"
+    Given I create a new registration as "wcr-user@mailinator.com"
+      And I renew my last registration
       And I have signed in to renew my registration as "wcr-user@mailinator.com"
      When I complete my sole trader renewal steps
      Then I will be notified my renewal is complete
-      And I will receive an email informing me "Your registration as an upper tier waste carrier, broker and dealer has been renewed"
+      And I will receive an email informing me "Your registration as an upper tier waste carrier and dealer has been renewed"
 
   @smoke
   Scenario: Limited liability partnership renews upper tier registration from renewals page
-    Given I renew my registration using my previous registration number "CBDU227"
+    Given I create a new registration as "user@example.com"
+      And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
      When I complete my limited liability partnership renewal steps
      Then I will be notified my renewal is complete
 
-  Scenario: Charity renews upper tier registration from renewals page and is notified to register as lower tier
-    Given I renew my registration using my previous registration number "CBDU228"
-      And I have signed in to renew my registration as "user@example.com"
-     When I confirm my business type
-     Then I will be notified "You can register as a lower tier waste carrier"
+  # Scenario: Charity renews upper tier registration from renewals page and is notified to register as lower tier
+  #   Given I create a new registration as "user@example.com"
+  #     And I renew my last registration
+  #     And I have signed in to renew my registration as "user@example.com"
+  #    When I confirm my business type
+  #    Then I will be notified "You can register as a lower tier waste carrier"
 
   Scenario: Partnership renews upper tier registration from renewals page
-    Given I renew my registration using my previous registration number "CBDU200"
+    Given I create a new registration as "user@example.com"
+      And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
      When I complete my partnership renewal steps
      Then I will be notified my renewal is complete
 
   Scenario: Overseas company renews upper tier registration from renewals page
-    Given I renew my registration using my previous registration number "CBDU201"
+    Given I create a new registration as "user@example.com"
+      And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
      When I complete my overseas company renewal steps
      Then I will be notified my renewal is complete
 
 # Combine this with partner scenario above
   Scenario: Partnership renews upper tier registration but requires more than one partner to renew
-    Given I renew my registration using my previous registration number "CBDU204"
+    Given I create a new registration as "user@example.com"
+      And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
      When I add two partners to my renewal
       But remove one partner and attempt to continue with my renewal
      Then I will be asked to add another partner
 
   Scenario: Limited liability partnership renews upper tier registration from renewals page
-    Given I renew my registration using my previous registration number "CBDU214"
+    Given I create a new registration as "user@example.com"
+      And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
      When I complete my limited liability partnership renewal steps choosing to pay by bank transfer
      Then I will be notified my renewal is pending payment

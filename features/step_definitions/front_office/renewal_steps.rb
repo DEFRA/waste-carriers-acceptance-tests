@@ -1,12 +1,12 @@
-Given(/^I renew my registration using my previous registration number "([^"]*)"$/) do |reg|
-  @renewals_app = RenewalsApp.new
-  @journey = JourneyApp.new
-  @renewals_app.old_start_page.load
-  @renewals_app.old_start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: reg)
-  # save registration number for checks later on
-  @reg_number = reg
-end
+# Given(/^I renew my registration using my previous registration number "([^"]*)"$/) do |reg|
+#   @renewals_app = RenewalsApp.new
+#   @journey = JourneyApp.new
+#   @renewals_app.old_start_page.load
+#   @renewals_app.old_start_page.submit(renewal: true)
+#   @renewals_app.existing_registration_page.submit(reg_no: reg)
+#   # save registration number for checks later on
+#   @reg_number = reg
+# end
 
 Given(/^I renew my last registration$/) do
   @renewals_app = RenewalsApp.new
@@ -103,10 +103,9 @@ Given(/^I have signed in to view my registrations as "([^"]*)"$/) do |username|
   )
 end
 
-Given(/^I choose registration "([^"]*)" for renewal$/) do |reg_no|
+Given(/^I choose registration to renew my last registration$/) do
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @reg_number = reg_no
 
   @front_app.waste_carrier_registrations_page.find_registration(@reg_number)
   @front_app.waste_carrier_registrations_page.renew(@reg_number)
@@ -409,8 +408,7 @@ When(/^view my registration on the dashboard$/) do
   @journey.confirmation_page.finished_button.click
 end
 
-Then(/^I will see my registration "([^"]*)" has been renewed$/) do |reg|
-  @reg_number = reg
+Then(/^I will see my last registration has been renewed$/) do
   @renewals_app.waste_carrier_registrations_page.find_registration(@reg_number)
 
   status = @renewals_app.waste_carrier_registrations_page.check_status(@reg_number)

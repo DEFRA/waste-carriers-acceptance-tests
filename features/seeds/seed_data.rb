@@ -50,6 +50,10 @@ class SeedData
     inflate_copy_cards_order(data)
     recalculate_balances(data)
 
+    options.each do |key, value|
+      data[key] = value if data.key?(key)
+    end
+
     data.to_json
   end
 
