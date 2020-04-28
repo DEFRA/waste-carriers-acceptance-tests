@@ -6,8 +6,8 @@
 require "net/http"
 
 class SeedData
-  def self.seed(file_name)
-    response = new(file_name).seed
+  def self.seed(file_name, options = {})
+    response = new(file_name, options).seed
 
     JSON.parse(response.body)["reg_identifier"]
   end
@@ -23,10 +23,11 @@ class SeedData
 
   private
 
-  attr_reader :file_name
+  attr_reader :file_name, :options
 
-  def initialize(file_name)
+  def initialize(file_name, options)
     @file_name = file_name
+    @options = options
   end
 
   def uri
@@ -38,6 +39,44 @@ class SeedData
   def data
     path_to_data_file = File.join(__dir__, "fixtures", file_name)
 
-    File.read(path_to_data_file)
+    data_content = File.read(path_to_data_file)
+
+    inflate_content(data_content)
+  end
+
+  def inflate_content(data)
+    data = JSON.parse(data)
+
+    inflate_copy_cards_order(data)
+    recalculate_balances(data)
+
+    data.to_json
+  end
+
+  def inflate_copy_cards_order(data)
+    return unless options.has_key?(:copy_cards)
+
+    order_item = {
+                    "amount" => 500 * options[:copy_cards].to_i,
+                    "currency" => "GBP",
+                    "description" => "Copy cards",
+                    "reference" => "",
+                    "type" => "COPY_CARDS"
+                  }
+
+    order = data["financeDetails"]["orders"].first
+
+    order["orderItems"] << order_item
+  end
+
+  def recalculate_balances(data)
+    data["financeDetails"]["orders"].each do |order|
+      order["totalAmount"] = order["orderItems"].sum { |item| item["amount"] }
+    end
+
+    total_all_orders = data["financeDetails"]["orders"].sum { |order| order["totalAmount"] }
+    total_all_payments = data["financeDetails"]["payments"].sum { |order| order["amount"] }
+
+    data["financeDetails"]["balance"] = total_all_orders - total_all_payments
   end
 end

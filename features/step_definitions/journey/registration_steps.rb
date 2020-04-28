@@ -120,13 +120,9 @@ Given(/a registration with outstanding balance and (\d+) copy cards? has been su
   @copy_cards = copy_cards
   @reg_balance = 154 + 5 * copy_cards
 
-  step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration")
-  step("I pay by bank transfer")
+  @reg_number = SeedData.seed("outstanding_balance_and_cards.json", copy_cards: copy_cards)
 
-  @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " submitted with #{copy_cards} copy cards and outstanding balance"
+  puts "Registration " + @reg_number + " seeded with #{copy_cards} copy cards and outstanding balance"
 end
 
 Given("a limited company with companies house number {string} is registered as an upper tier waste carrier") do |ch_no|
