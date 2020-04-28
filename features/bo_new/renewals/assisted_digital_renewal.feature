@@ -1,4 +1,4 @@
-@bo_new @upper_tier @bo_renew @renewal
+@bo_new @bo_renew @renewal
 
 Feature: Assisted digital renewal of an upper tier public body
   As a carrier of commercial waste

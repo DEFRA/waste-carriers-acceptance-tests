@@ -104,7 +104,9 @@ We are gradually moving functionality from "old" code to "new" code. For example
 bundle exec quke --tags @fo_new
 ```
 
-You can create [multiple config files](https://github.com/DEFRA/quke#multiple-configs), for example you may wish to have one setup for running against **Chrome**, and another to run against a different environment. You can tell **Quke** which config file to use by adding an environment variable argument to the command.
+To switch environments, update or comment out the relevant set of URLs from the current config file.
+
+You can also create [multiple config files](https://github.com/DEFRA/quke#multiple-configs), for example you may wish to have one setup for running against **Chrome**, and another to run against a different environment. You can tell **Quke** which config file to use by adding an environment variable argument to the command.
 
 ```bash
 QUKE_CONFIG='chrome.config.yml' bundle exec quke

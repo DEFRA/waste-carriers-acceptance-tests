@@ -1,4 +1,4 @@
-@fo_old @upper_tier @fo_reg
+@fo_old @fo_reg
 Feature: Limited company applies for new upper tier registration
   As a carrier of commercial waste
   I want to register my company with the Environment Agency
