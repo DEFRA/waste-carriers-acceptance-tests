@@ -1,4 +1,4 @@
-@bo_old @lower_tier @ad @smoke @bo_reg
+@bo_old @smoke @bo_reg
 Feature: Assisted digital lower tier registrations
   As a carrier of domestic waste
   I want assistance with my waste carrier registration from the Environment Agency

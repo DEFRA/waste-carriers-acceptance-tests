@@ -1,4 +1,4 @@
-@bo_new @upper_tier @bo_dashboard
+@bo_new @bo_dashboard
 Feature: [RUBY-767] NCCC agent orders registration cards from back office
   As an NCCC agent
   I want to order registration cards

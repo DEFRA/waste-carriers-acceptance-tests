@@ -1,4 +1,4 @@
-@fo_old @upper_tier
+@fo_old
 Feature: Public body applies for new upper tier registration
   As a carrier of commercial waste
   I want to register my public body with the Environment Agency

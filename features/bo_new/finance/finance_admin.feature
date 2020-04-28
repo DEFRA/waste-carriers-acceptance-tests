@@ -1,4 +1,4 @@
-@bo_new @upper_tier @finance
+@bo_new @finance
 
 Feature: Finance admin
   As a user with finance privilieges

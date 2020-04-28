@@ -1,4 +1,4 @@
-@bo_new @upper_tier @bo_dashboard @smoke
+@bo_new @bo_dashboard @smoke
 Feature: Check back office permissions
   As a system administrator
   I want to ensure users can only access what they need to
