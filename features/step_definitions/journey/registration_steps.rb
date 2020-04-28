@@ -126,6 +126,10 @@ Given(/a registration with outstanding balance and (\d+) copy cards? has been su
 end
 
 Given("a limited company with companies house number {string} is registered as an upper tier waste carrier") do |ch_no|
+  # We don't want to use seeds here, as we are testing the ability of the journey
+  # to flag a registration for convictions
+  # Hence, make sure we use this scenario only once and use seeds instead
+
   # Store variables for later steps:
   @business_name = "AD UT Company convictions check ltd"
   @companies_house_number = ch_no
@@ -140,6 +144,10 @@ Given("a limited company with companies house number {string} is registered as a
 end
 
 Given("a key person with a conviction registers as a sole trader upper tier waste carrier") do
+  # We don't want to use seeds here, as we are testing the ability of the journey
+  # to flag a registration for convictions
+  # Hence, make sure we use this scenario only once and use seeds instead
+
   # Store variables for later steps:
   @business_name = "AD UT Sole Trader"
   @people = @back_app.key_people_page.dodgy_people
@@ -154,6 +162,10 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
 end
 
 Given("a conviction is declared when registering their partnership for an upper tier waste carrier") do
+  # We don't want to use seeds here, as we are testing the ability of the journey
+  # to flag a registration for convictions
+  # Hence, make sure we use this scenario only once and use seeds instead
+
   # Store variables for later steps:
   @business_name = "AD Upper Tier Partnership"
   @declared_convictions = :yes
@@ -168,6 +180,10 @@ Given("a conviction is declared when registering their partnership for an upper 
 end
 
 Given("a registration with declared convictions is submitted with outstanding payment") do
+  # We don't want to use seeds here, as we are testing the ability of the journey
+  # to flag a registration for convictions
+  # Hence, make sure we use this scenario only once and use seeds instead
+
   # Store variables for later steps:
   @business_name = "AD Upper Tier Need Payment"
   @declared_convictions = :yes
@@ -183,6 +199,10 @@ Given("a registration with declared convictions is submitted with outstanding pa
 end
 
 Given("a limited company {string} registers as an upper tier waste carrier") do |business_name|
+  # We don't want to use seeds here, as we are testing the ability of the journey
+  # to flag a registration for convictions
+  # Hence, make sure we use this scenario only once and use seeds instead
+
   # Store variables for later steps:
   @business_name = business_name
 
