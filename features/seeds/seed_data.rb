@@ -41,6 +41,8 @@ class SeedData
 
     data_content = File.read(path_to_data_file)
 
+    # Manipulate the JSON from the json file using the options provided.
+    # This allow for more flexibility and less JSON files to deal with.
     inflate_content(data_content)
   end
 

@@ -120,15 +120,15 @@ Given(/a registration with outstanding balance and (\d+) copy cards? has been su
   @copy_cards = copy_cards
   @reg_balance = 154 + 5 * copy_cards
 
-  @reg_number = SeedData.seed("outstanding_balance_and_cards.json", copy_cards: copy_cards)
+  @reg_number = SeedData.seed("outstanding_balance_pending_registration.json", copy_cards: copy_cards)
 
   puts "Registration " + @reg_number + " seeded with #{copy_cards} copy cards and outstanding balance"
 end
 
 Given("a limited company with companies house number {string} is registered as an upper tier waste carrier") do |ch_no|
-  # We don't want to use seeds here, as we are testing the ability of the journey
-  # to flag a registration for convictions
-  # Hence, make sure we use this scenario only once and use seeds instead
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
 
   # Store variables for later steps:
   @business_name = "AD UT Company convictions check ltd"
@@ -144,9 +144,9 @@ Given("a limited company with companies house number {string} is registered as a
 end
 
 Given("a key person with a conviction registers as a sole trader upper tier waste carrier") do
-  # We don't want to use seeds here, as we are testing the ability of the journey
-  # to flag a registration for convictions
-  # Hence, make sure we use this scenario only once and use seeds instead
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
 
   # Store variables for later steps:
   @business_name = "AD UT Sole Trader"
@@ -162,9 +162,9 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
 end
 
 Given("a conviction is declared when registering their partnership for an upper tier waste carrier") do
-  # We don't want to use seeds here, as we are testing the ability of the journey
-  # to flag a registration for convictions
-  # Hence, make sure we use this scenario only once and use seeds instead
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
 
   # Store variables for later steps:
   @business_name = "AD Upper Tier Partnership"
@@ -180,9 +180,9 @@ Given("a conviction is declared when registering their partnership for an upper 
 end
 
 Given("a registration with declared convictions is submitted with outstanding payment") do
-  # We don't want to use seeds here, as we are testing the ability of the journey
-  # to flag a registration for convictions
-  # Hence, make sure we use this scenario only once and use seeds instead
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
 
   # Store variables for later steps:
   @business_name = "AD Upper Tier Need Payment"
@@ -199,9 +199,9 @@ Given("a registration with declared convictions is submitted with outstanding pa
 end
 
 Given("a limited company {string} registers as an upper tier waste carrier") do |business_name|
-  # We don't want to use seeds here, as we are testing the ability of the journey
-  # to flag a registration for convictions
-  # Hence, make sure we use this scenario only once and use seeds instead
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
 
   # Store variables for later steps:
   @business_name = business_name
