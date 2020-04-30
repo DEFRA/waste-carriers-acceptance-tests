@@ -37,11 +37,6 @@ Given(/^I am signed in as an Environment Agency user with refunds$/) do
   )
 end
 
-Given(/^I have a registration "([^"]*)"$/) do |reg|
-  # stores registration number for later use
-  @reg_number = reg
-end
-
 Given(/^I request assistance with a new registration$/) do
   @back_app.registrations_page.new_registration.click
   @back_app.old_start_page.submit

@@ -131,9 +131,7 @@ When(/^I renew the limited company registration$/) do
 
 end
 
-Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
-  # save registration number for checks later on
-  @reg_number = reg
+Given(/^the registration has been partially renewed by the account holder$/) do
   @front_app = FrontOfficeApp.new
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
@@ -149,9 +147,9 @@ Given(/^"([^"]*)" has been partially renewed by the account holder$/) do |reg|
   Capybara.reset_session!
 end
 
-When(/^I complete the renewal "([^"]*)" for the account holder$/) do |reg|
+When(/^I complete the renewal for the account holder$/) do
   @business_name = "Assisted digital resumed renewal"
-  @bo.dashboard_page.view_transient_reg_details(search_term: reg)
+  @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
   @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit
   @journey.confirm_business_type_page.submit
@@ -207,11 +205,9 @@ Then(/^the user has been added to the back office$/) do
   expect(@bo.migrate_page).to have_text(@user)
 end
 
-When(/^I search for "([^"]*)" pending payment$/) do |reg|
+When(/^I search for the renewal pending payment$/) do
   @bo.dashboard_page.govuk_banner.home_page.click
-  @bo.dashboard_page.view_transient_reg_details(search_term: reg)
-  # saves registration for later use
-  @reg_number = reg
+  @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
 end
 
 When(/^I mark the renewal payment as received$/) do
