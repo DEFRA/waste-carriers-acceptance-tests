@@ -137,7 +137,6 @@ Given("I create a new registration as {string} with a company name of {string}")
   puts "Registration " + @reg_number + " seeded with name #{company_name}"
 end
 
-
 Given("I have an active registration") do
   account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
 
