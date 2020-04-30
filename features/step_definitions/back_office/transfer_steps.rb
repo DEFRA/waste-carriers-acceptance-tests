@@ -1,6 +1,5 @@
-Given(/^I choose to transfer ownership of "([^"]*)" to another user$/) do |reg|
-  @reg_number = reg
-  @bo.dashboard_page.view_reg_details(search_term: reg)
+Given(/^I choose to transfer ownership of the registration to another user$/) do
+  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.transfer_link.click
 end
 

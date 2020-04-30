@@ -9,14 +9,16 @@ Background:
 
 @smoke
 Scenario: NCCC user orders one card by bank card
-  When an agency user orders "1" registration card for "CBDU208"
+  Given I have an active registration
+  When an agency user orders "1" registration card
    And the agency user pays for the card by bank card
   Then the card order is confirmed with cleared payment
    And the registration's balance is 0
    And the carrier receives an email saying their card order is being printed
 
 Scenario: NCCC user orders 3 cards by bank transfer
-  When an agency user orders "3" registration cards for "CBDU208"
+  Given I have an active registration
+  When an agency user orders "3" registration cards
    And the agency user chooses to pay for the card by bank transfer
   Then the card order is confirmed awaiting payment
    And the registration has a status of "PAYMENT NEEDED"

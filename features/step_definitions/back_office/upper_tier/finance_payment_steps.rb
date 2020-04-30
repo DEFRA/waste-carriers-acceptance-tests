@@ -65,12 +65,11 @@ When(/^NCCC pays the remaining balance by "([^"]*)"$/) do |method|
   @reg_balance = 0
 end
 
-Given(/^registration "([^"]*)" has an unsubmitted renewal$/) do |reg|
-  @reg_number = reg
+Given(/^the registration has an unsubmitted renewal$/) do
   @resource_object = :renewal
   @business_name = "Renewal via bank transfer"
 
-  @back_app.registrations_page.search(search_input: reg.to_sym)
+  @back_app.registrations_page.search(search_input: @reg_number.to_sym)
   @expiry_date = @back_app.registrations_page.search_results[0].expiry_date.text
   # Turns the text expiry date into a date
   @expiry_date_year_first = Date.parse(@expiry_date)
@@ -107,7 +106,6 @@ Given(/^registration "([^"]*)" has an unsubmitted renewal$/) do |reg|
   check_your_answers
   @journey.registration_cards_page.submit
   @bo.payment_summary_page.submit(choice: :bank_transfer_payment)
-
 end
 
 Then(/^I cannot access payments until the bank transfer option is selected$/) do
