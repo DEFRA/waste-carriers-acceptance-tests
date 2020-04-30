@@ -40,7 +40,7 @@ This option will allow the generation of a registration containing an order with
 
 The option will add a new copy cards order item to the first order of the finance details in the registration json
 from the given document.
-Balances will be authomatically re-calculated for the order and finance_details based on the number of copy cards
+Balances will be automatically re-calculated for the order and finance_details based on the number of copy cards
 and then the registration will be seeded as normal.
 
 NOTE: This will always create a registration with a balance different from 0, as the option *will not* generate a payment
