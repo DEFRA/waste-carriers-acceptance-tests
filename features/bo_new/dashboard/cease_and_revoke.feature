@@ -1,5 +1,4 @@
 @bo_new @bo_dashboard
-# WARNING: This will only work once, locally, between database resets and vagrant reloads
 
 Feature: Cease and revoke registered waste carriers
 As an agency user
@@ -10,14 +9,11 @@ Background:
 	Given I sign into the back office as "agency-refund-payment-user"
 
   Scenario: Agency user can cease upper tier waste carrier licence
-    Given I have a registration "CBDU106"
-     When the registration is ceased
- 		 Then the registration has a status of "INACTIVE"
+    Given I have an active registration
+    When the registration is ceased
+    Then the registration has a status of "INACTIVE"
 
   Scenario: Agency user can revoke upper tier waste carrier licence
-    Given I have a registration "CBDU111"
-     When the registration is revoked
-		 Then the registration has a status of "REVOKED"
-
-		Given an Environment Agency user has signed in to the backend
-		 Then the registration status in the registration export is set to "REVOKED"
+    Given I have an active registration
+    When the registration is revoked
+    Then the registration has a status of "REVOKED"

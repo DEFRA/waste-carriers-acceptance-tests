@@ -1,13 +1,9 @@
-When(/^an agency user orders "([^"]*)" registration (?:card|cards) for "([^"]*)"$/) do |cards, reg|
-  @reg_number = reg
+When(/^an agency user orders "([^"]*)" registration (?:card|cards)$/) do |cards|
   @number_of_cards = cards.to_i
 
-  @bo.dashboard_page.view_reg_details(search_term: reg)
+  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.order_cards_link.click
-  expect(@journey.cards_order_page.heading).to have_text("Order registration cards for " + reg)
-
-  # Look for the correct contact address for the seeded data:
-  expect(@journey.cards_order_page.contact_address).to have_text("Richard Fairclough House")
+  expect(@journey.cards_order_page.heading).to have_text("Order registration cards for " + @reg_number)
 
   # Error validation check:
   @journey.cards_order_page.submit(number_of_cards: "0")

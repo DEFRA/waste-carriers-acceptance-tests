@@ -1,11 +1,11 @@
 {
   "tier": "UPPER",
   "registrationType": "carrier_broker_dealer",
-  "businessType": "soleTrader",
+  "businessType": "localAuthority",
   "otherBusinesses": "yes",
   "isMainService": "yes",
   "onlyAMF": "no",
-  "companyName": "Sole Trader Seed",
+  "companyName": "LocalAuthority Seed",
   "firstName": "Test",
   "lastName": "User",
   "phoneNumber": "01234 567890",
@@ -51,6 +51,7 @@
   "declaration": 1,
   "metaData": {
     "dateRegistered" : "2018-05-14T10:38:17.311Z",
+    "anotherString" : "userDetailAddedAtRegistration",
     "lastModified" : "2018-05-14T10:38:22.692Z",
     "dateActivated" : "2018-05-14T10:38:22.692Z",
     "status": "ACTIVE",

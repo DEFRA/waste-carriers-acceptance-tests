@@ -127,6 +127,12 @@ Given("I create a new registration for my {string} business as {string}") do |bu
   puts "#{business_type} registration " + @reg_number + " seeded"
 end
 
+Given("I have a new registration for a {string} business") do |business_type|
+  @reg_number = SeedData.seed("#{business_type}_complete_active_registration.json")
+
+  puts "#{business_type} registration " + @reg_number + " seeded"
+end
+
 Given("I create a new registration as {string} with a company name of {string}") do |account_email, company_name|
   @reg_number = SeedData.seed(
     "limitedCompany_complete_active_registration.json",
@@ -140,9 +146,25 @@ end
 Given("I have an active registration") do
   account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
 
-  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
+  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json")
 
   puts "Registration " + @reg_number + " seeded"
+end
+
+Given("I have an active registration with a company number of {string}") do |company_no|
+  account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
+
+  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "company_no" => company_no)
+
+  puts "Registration " + @reg_number + " seeded with company number of #{company_no}"
+end
+
+Given("I have an active registration with a company name of {string}") do |company_name|
+  account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
+
+  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "companyName" => company_name)
+
+  puts "Registration " + @reg_number + " seeded with company name of #{company_name}"
 end
 
 Given(/a registration with outstanding balance and (\d+) copy cards? has been submitted$/) do |copy_cards|
