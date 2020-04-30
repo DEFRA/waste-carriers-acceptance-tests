@@ -1,8 +1,4 @@
-Given(/^I have registration "([^"]*)"$/) do |arg1|
-  # Nothing to do to replicate step
-end
-
-When(/^I choose to view my certificate for "([^"]*)"$/) do |reg_no|
+When(/^I choose to view my certificate$/) do
   Capybara.reset_session!
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
@@ -11,7 +7,6 @@ When(/^I choose to view my certificate for "([^"]*)"$/) do |reg_no|
     email: Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @reg_number = reg_no
   @front_app.waste_carrier_registrations_page.find_registration(@reg_number)
 end
 

@@ -1,0 +1,114 @@
+{
+  "tier": "UPPER",
+  "registrationType": "carrier_broker_dealer",
+  "businessType": "soleTrader",
+  "otherBusinesses": "yes",
+  "isMainService": "yes",
+  "onlyAMF": "no",
+  "companyName": "Sole Trader Seed",
+  "firstName": "Test",
+  "lastName": "User",
+  "phoneNumber": "01234 567890",
+  "contactEmail": "user@example.com",
+  "addresses": [{
+      "addressType": "REGISTERED",
+      "addressMode": "manual-uk",
+      "houseNumber": "Unit 5",
+      "addressLine1": "Horizon House",
+      "addressLine2": "Deanery Road",
+      "townCity": "Bristol",
+      "postcode": "BS1 5AH",
+      "location": {
+        "lat": 0,
+        "lon": 0
+      }
+    },
+    {
+      "addressType": "POSTAL",
+      "houseNumber": "Richard Fairclough House",
+      "addressLine1": "Knutsford Road",
+      "addressLine2": "Latchford",
+      "addressLine3": "",
+      "addressLine4": "",
+      "townCity": "Warrington",
+      "postcode": "WA4 1HT",
+      "country": ""
+    }
+  ],
+  "key_people": [{
+    "first_name": "Test",
+    "last_name": "Employee",
+    "dob": "1978-01-01",
+    "position": "Director",
+    "person_type": "KEY",
+    "conviction_search_result": {
+      "match_result": "NO",
+      "confirmed": "no"
+    }
+  }],
+  "accountEmail": "user@example.com",
+  "declaredConvictions": "no",
+  "declaration": 1,
+  "regIdentifier": "CBDU217",
+  "metaData": {
+    "dateRegistered" : "2018-05-14T10:38:17.311Z",
+    "lastModified" : "2018-05-14T10:38:22.692Z",
+    "dateActivated" : "2018-05-14T10:38:22.692Z",
+    "status": "ACTIVE",
+    "route": "DIGITAL",
+    "distance": "n/a"
+  },
+  "conviction_search_result": {
+    "match_result": "NO",
+    "confirmed": "no"
+  },
+  "financeDetails" : {
+    "orders" : [
+      {
+        "orderId" : "1577969411",
+        "orderItems" : [
+          {
+            "amount" : 15400,
+            "currency" : "GBP",
+            "description" : "Initial Registration",
+            "reference" : "",
+            "type" : "NEW"
+          },
+          {
+              "amount" : 3000,
+              "currency" : "GBP",
+              "description" : "6x Copy cards",
+              "reference" : "",
+              "type" : "COPY_CARDS"
+          }
+        ],
+        "orderCode" : "1577969411",
+        "paymentMethod" : "ONLINE",
+        "merchantId" : "EASERRSIMECOM",
+        "totalAmount" : 18400,
+        "currency" : "GBP",
+        "dateCreated" : "2020-01-02T12:50:20.000Z",
+        "worldPayStatus" : "AUTHORISED",
+        "dateLastUpdated" : "2020-01-02T12:50:35.818Z",
+        "updatedByUser" : "user@example.com",
+        "description" : "New Waste Carrier Registration: CBDU2 for higoigui, Plus 6 copy cards"
+      }
+    ],
+    "payments" : [
+      {
+        "orderKey" : "1577969411",
+        "amount" : 18400,
+        "currency" : "GBP",
+        "mac_code" : "ca9c7461804761065489d0a32fe9ae87",
+        "dateReceived" : "2020-01-02T12:50:35.651Z",
+        "dateEntered" : "2020-01-02T12:50:35.659Z",
+        "registrationReference" : "Worldpay",
+        "worldPayPaymentStatus" : "AUTHORISED",
+        "updatedByUser" : "user@example.com",
+        "comment" : "Paid via Worldpay",
+        "paymentType" : "WORLDPAY"
+      }
+    ],
+    "balance" : 0
+  }
+}

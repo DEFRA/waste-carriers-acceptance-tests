@@ -1,5 +1,5 @@
 # This will seed data using files in the `fixtures` subfolder.
-# Usage: SeedData.seed("complete_active_registration.json")
+# Usage: SeedData.seed("limitedCompany_complete_active_registration.json")
 # It will return a reg_number newly generated to use in the test suite.
 # Check README.md for more info
 
@@ -50,6 +50,11 @@ class SeedData
     data = JSON.parse(data)
 
     inflate_copy_cards_order(data)
+
+    options.each do |key, value|
+      data[key] = value if data.key?(key)
+    end
+
     recalculate_balances(data)
 
     data.to_json

@@ -13,8 +13,8 @@ The API will respond with a JSON format which contains the `reg_identifier` of t
 ## Usage
 An helper class called `SeedData` is part of the suite. It can be used in any step or helper method definition.
 
-```
-@reg_number = SeedData.seed("complete_active_registration.json")
+```ruby
+@reg_number = SeedData.seed("limitedCompany_complete_active_registration.json")
 ```
 
 The content of the seeded entity is saved in a JSON file stored in `features/seeds/fixtures/`.
@@ -26,13 +26,58 @@ To create a new entity to seed, for example an entity without payments, and henc
 The `SeedData.seed` method will accept options parameters after the file name.
 Each possible option is documented below
 
+### Setting any top level attribute
+
+The options can be used to do small twicks to the data in the registration we want to seed.
+
+For example, if we want to have control over the company name of a registration we are seeding, we can
+pass a new business name to the seeding via options. This is demonstrated below.
+
+The content of the `limitedCompany_complete_active_registration.json` file looks like:
+
+```json
+{
+    "tier" : "UPPER",
+    "registrationType" : "carrier_dealer",
+    "businessType" : "limitedCompany",
+    "otherBusinesses" : "no",
+    "constructionWaste" : "yes",
+    "companyName" : "UT Company limited", // this is the company name we want to change
+    "firstName" : "Bob",
+    "lastName" : "Carolgees",
+    "phoneNumber" : "0117 4960000",
+    "contactEmail" : "user@example.com",
+    "accountEmail" : "user@example.com",
+    "declaredConvictions" : "no",
+    "declaration" : "1",
+
+    // ..... all  other data
+}
+```
+
+Given  that we want to create a registration using those data but with a custom business name, we can use the options
+like this:
+
+```ruby
+@reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "companyName" => "My new company name")
+```
+
+This will work for any attribute at the top level of the json document *as long as* the keys value matches
+(in the example above, "companyName" matches the key value from the json content). It is case-sensitive.
+
+** Warning **
+
+This currently might give unwanted results if used with keys that have nested informations. For example, if you want to change
+something in the "metaData" of a document, which has a nested piece of json, you can't use this option. Twicks are possible
+to make it work depending on what the necessities are. Just contact a developer :)
+
 ### Copy cards
 
 This option will allow the generation of a registration containing an order with a dynamic number of copy cards.
 
 #### Usage:
 
-```
+```ruby
   SeedData.seed("outstanding_balance_pending_registration.json", copy_cards: 2)
 ```
 
