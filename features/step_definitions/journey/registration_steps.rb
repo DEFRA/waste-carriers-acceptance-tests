@@ -110,7 +110,37 @@ Then("I am notified that my registration has been successful") do
 end
 
 Given("a registration with no convictions has been submitted by paying via card") do
-  @reg_number = SeedData.seed("complete_active_registration.json")
+  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json")
+
+  puts "Registration " + @reg_number + " seeded"
+end
+
+Given("I create a new registration as {string}") do |account_email|
+  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
+
+  puts "Registration " + @reg_number + " seeded"
+end
+
+Given("I create a new registration for my {string} business as {string}") do |business_type, account_email|
+  @reg_number = SeedData.seed("#{business_type}_complete_active_registration.json", "accountEmail" => account_email)
+
+  puts "#{business_type} registration " + @reg_number + " seeded"
+end
+
+Given("I create a new registration as {string} with a company name of {string}") do |account_email, company_name|
+  @reg_number = SeedData.seed(
+    "limitedCompany_complete_active_registration.json",
+    "accountEmail" => account_email,
+    "companyName" => company_name
+  )
+
+  puts "Registration " + @reg_number + " seeded with name #{company_name}"
+end
+
+Given("I have an active registration") do
+  account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
+
+  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
 
   puts "Registration " + @reg_number + " seeded"
 end
