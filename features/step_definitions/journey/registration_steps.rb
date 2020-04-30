@@ -146,22 +146,18 @@ end
 Given("I have an active registration") do
   account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
 
-  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json")
+  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
 
   puts "Registration " + @reg_number + " seeded"
 end
 
 Given("I have an active registration with a company number of {string}") do |company_no|
-  account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
-
   @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "company_no" => company_no)
 
   puts "Registration " + @reg_number + " seeded with company number of #{company_no}"
 end
 
 Given("I have an active registration with a company name of {string}") do |company_name|
-  account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
-
   @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "companyName" => company_name)
 
   puts "Registration " + @reg_number + " seeded with company name of #{company_name}"
