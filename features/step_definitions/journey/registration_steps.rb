@@ -120,16 +120,16 @@ Given(/a registration with outstanding balance and (\d+) copy cards? has been su
   @copy_cards = copy_cards
   @reg_balance = 154 + 5 * copy_cards
 
-  step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration")
-  step("I pay by bank transfer")
+  @reg_number = SeedData.seed("outstanding_balance_pending_registration.json", copy_cards: copy_cards)
 
-  @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " submitted with #{copy_cards} copy cards and outstanding balance"
+  puts "Registration " + @reg_number + " seeded with #{copy_cards} copy cards and outstanding balance"
 end
 
 Given("a limited company with companies house number {string} is registered as an upper tier waste carrier") do |ch_no|
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
+
   # Store variables for later steps:
   @business_name = "AD UT Company convictions check ltd"
   @companies_house_number = ch_no
@@ -144,6 +144,10 @@ Given("a limited company with companies house number {string} is registered as a
 end
 
 Given("a key person with a conviction registers as a sole trader upper tier waste carrier") do
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
+
   # Store variables for later steps:
   @business_name = "AD UT Sole Trader"
   @people = @back_app.key_people_page.dodgy_people
@@ -158,6 +162,10 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
 end
 
 Given("a conviction is declared when registering their partnership for an upper tier waste carrier") do
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
+
   # Store variables for later steps:
   @business_name = "AD Upper Tier Partnership"
   @declared_convictions = :yes
@@ -172,6 +180,10 @@ Given("a conviction is declared when registering their partnership for an upper 
 end
 
 Given("a registration with declared convictions is submitted with outstanding payment") do
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
+
   # Store variables for later steps:
   @business_name = "AD Upper Tier Need Payment"
   @declared_convictions = :yes
@@ -187,6 +199,10 @@ Given("a registration with declared convictions is submitted with outstanding pa
 end
 
 Given("a limited company {string} registers as an upper tier waste carrier") do |business_name|
+  # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
+  # which will slow down tests.
+  # If you need registration data then use the seed functionality instead, as described in the README.
+
   # Store variables for later steps:
   @business_name = business_name
 

@@ -21,6 +21,33 @@ The content of the seeded entity is saved in a JSON file stored in `features/see
 
 To create a new entity to seed, for example an entity without payments, and hence still in progress, you can create a new file under `features/seeds/fixtures/` and use that file name as a parameter to `SeedData.seed`.
 
+## Options
+
+The `SeedData.seed` method will accept options parameters after the file name.
+Each possible option is documented below
+
+### Copy cards
+
+This option will allow the generation of a registration containing an order with a dynamic number of copy cards.
+
+#### Usage:
+
+```
+  SeedData.seed("outstanding_balance_pending_registration.json", copy_cards: 2)
+```
+
+#### What it does
+
+The option will add a new copy cards order item to the first order of the finance details in the registration json
+from the given document.
+Balances will be automatically re-calculated for the order and finance_details based on the number of copy cards
+and then the registration will be seeded as normal.
+
+NOTE: This will always create a registration with a balance different from 0, as the option *will not* generate a payment
+for the extra copy cards item added to the order. There is the possibility to change this behaviour so that we can create
+a payment for the copy cards order too, in case this become necessary / useful, contact a developer to implement it.
+
+
 ## Limitations
 
 The seeding API only works for `registrations`, no `transient_registrations` support is available yet.
