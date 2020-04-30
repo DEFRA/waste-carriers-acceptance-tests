@@ -28,7 +28,7 @@ Each possible option is documented below
 
 ### Setting any top level attribute
 
-The options can be used to do small twicks to the data in the registration we want to seed.
+The options can be used to do small tweaks to the data in the registration we want to seed.
 
 For example, if we want to have control over the company name of a registration we are seeding, we can
 pass a new business name to the seeding via options. This is demonstrated below.
@@ -55,7 +55,7 @@ The content of the `limitedCompany_complete_active_registration.json` file looks
 }
 ```
 
-Given  that we want to create a registration using those data but with a custom business name, we can use the options
+Given that we want to create a registration using the above data but with a custom business name, we can use the options
 like this:
 
 ```ruby
@@ -68,7 +68,7 @@ This will work for any attribute at the top level of the json document *as long 
 ** Warning **
 
 This currently might give unwanted results if used with keys that have nested informations. For example, if you want to change
-something in the "metaData" of a document, which has a nested piece of json, you can't use this option. Twicks are possible
+something in the "metaData" of a document, which has a nested piece of json, you can't use this option. Tweaks are possible
 to make it work depending on what the necessities are. Just contact a developer :)
 
 ### Copy cards

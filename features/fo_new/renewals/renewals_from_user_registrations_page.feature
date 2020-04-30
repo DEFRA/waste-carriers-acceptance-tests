@@ -8,7 +8,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   Scenario: Limited company renews upper tier registration from registrations list
       Given I create a new registration for my "limitedCompany" business as "another-user@example.com"
         And I have signed in to view my registrations as "another-user@example.com"
-  	    And I choose registration to renew my last registration
+  	    And I choose to renew my last registration from the dashboard
       When I complete my limited company renewal steps
         And view my registration on the dashboard
       Then I will see my last registration has been renewed

@@ -93,7 +93,7 @@ Given(/^I have signed in to view my registrations as "([^"]*)"$/) do |username|
   )
 end
 
-Given(/^I choose registration to renew my last registration$/) do
+Given(/^I choose to renew my last registration from the dashboard$/) do
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
 
