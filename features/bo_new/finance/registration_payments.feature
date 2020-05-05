@@ -1,4 +1,4 @@
-@bo_new @finance
+@bo_new @finance @wip
 
 Feature: [RUBY-826] Pay for registrations
   As a user with finance privilieges
@@ -20,7 +20,7 @@ Feature: [RUBY-826] Pay for registrations
        When NCCC pays the remaining balance by "cheque"
        Then the registration has a status of "ACTIVE"
         And the registration does not have a status of "PAYMENT NEEDED"
-        And the back office pages show the correct registration details
+        And I check the registration details are correct on the back office
         And the registration's balance is 0
 
   Scenario: Pay for registration, partly by bank transfer, complete by Worldpay
@@ -32,5 +32,5 @@ Feature: [RUBY-826] Pay for registrations
        When NCCC pays the remaining balance by "missed_worldpay"
        Then the registration has a status of "ACTIVE"
         And the registration does not have a status of "PAYMENT NEEDED"
-        And the back office pages show the correct registration details
+        And I check the registration details are correct on the back office
         And the registration's balance is 0

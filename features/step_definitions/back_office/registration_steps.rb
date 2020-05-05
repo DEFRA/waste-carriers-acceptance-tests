@@ -42,7 +42,7 @@ Given(/^NCCC registers a lower tier "([^"]*)"$/) do |business|
   @reg_number = old_complete_registration_from_bo(@business, @tier, @carrier)
 end
 
-Then(/^the back office pages show the correct registration details$/) do
+Then(/^I check the registration details are correct on the back office$/) do
   sign_in_to_back_office("agency-user")
   check_registration_details(@reg_number)
   info_panel = @bo.registration_details_page.info_panel

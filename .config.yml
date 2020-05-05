@@ -99,7 +99,7 @@ custom:
 # Hide or unhide the relevant URLs for the environment you want to test:
   # Local setup
   urls:
-    front_end: "http://localhost:3000/registrations/start"
+    front_end: "http://localhost:3000/registrations/start?do_not_redirect=1"
     front_end_sign_in: "http://localhost:3000/users/sign_in"
     front_office: "http://localhost:3002/fo"
     front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
@@ -115,7 +115,7 @@ custom:
 
   # # Dev setup
   # urls:
-  #   front_end: "https://waste-carriers-dev.aws.defra.cloud"
+  #   front_end: "https://waste-carriers-dev.aws.defra.cloud/registrations/start?do_not_redirect=1"
   #   front_end_sign_in: "https://waste-carriers-dev.aws.defra.cloud/users/sign_in"
   #   front_office: "https://waste-carriers-dev.aws.defra.cloud/fo"
   #   front_office_sign_in: "https://waste-carriers-dev.aws.defra.cloud/fo/users/sign_in"
@@ -131,7 +131,7 @@ custom:
 
   # # Test setup
   # urls:
-  #   front_end: "https://waste-carriers-tst.aws.defra.cloud"
+  #   front_end: "https://waste-carriers-tst.aws.defra.cloud/registrations/start?do_not_redirect=1"
   #   front_end_sign_in: "https://waste-carriers-tst.aws.defra.cloud/users/sign_in"
   #   front_office: "https://waste-carriers-tst.aws.defra.cloud/fo"
   #   front_office_sign_in: "https://waste-carriers-tst.aws.defra.cloud/fo/users/sign_in"
@@ -147,7 +147,7 @@ custom:
 
   # # Preprod / staging setup
   # urls:
-  #   front_end: "https://waste-carriers-pre.aws.defra.cloud"
+  #   front_end: "https://waste-carriers-pre.aws.defra.cloud/registrations/start?do_not_redirect=1"
   #   front_end_sign_in: "https://waste-carriers-pre.aws.defra.cloud/users/sign_in"
   #   front_office: "https://waste-carriers-pre.aws.defra.cloud/fo"
   #   front_office_sign_in: "https://waste-carriers-pre.aws.defra.cloud/fo/users/sign_in"
@@ -210,7 +210,7 @@ browserstack:
     # Keep track of all your automated tests using the build and project
     # capabilities. Group your tests into builds, and builds further into
     # projects
-    project: 'Waste carriers renewals'
+    project: 'Waste carriers'
     build: 'User dashboard'
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in

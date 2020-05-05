@@ -5,10 +5,7 @@ Feature: Check back office permissions
   So that no mistakes are made
 
 Background:
-  Given an Environment Agency user has signed in to the backend
-   When NCCC partially registers an upper tier "carrier_broker_dealer" "limitedCompany" with "no convictions"
-    And the applicant pays by bank card
-    And NCCC finishes the registration
+  Given I have an active registration
     And NCCC makes a payment of 5 by "cash"
     And I sign out of back office
 

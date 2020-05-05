@@ -31,7 +31,7 @@ Feature: Finance admin
        Then the WorldPay payment is shown as refunded
         And the registration's balance is 0
 
-@smoke
+@smoke @wip
   Scenario: [RUBY-870] Adjust charges on registration and renewal
       Given a registration with outstanding balance and 1 copy card has been submitted
         And NCCC makes a payment of 154 by "cash"

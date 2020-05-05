@@ -5,12 +5,9 @@ Feature: NCCC agent views registrations from back office
   So that I can quickly answer user queries
 
 Scenario: NCCC user creates registration and renewal, and checks status
-  Given an Environment Agency user has signed in to the backend
-   When NCCC partially registers an upper tier "carrier_broker_dealer" "limitedCompany" with "no convictions"
-    And the applicant pays by bank card
-    And NCCC finishes the registration
-   Then the back office pages show the correct registration details
-    And the certificate shows the correct details
+  Given I have an active registration with a company name of "View details test"
+   When I check the registration details are correct on the back office
+   Then the certificate shows the correct details
 
   Given there is an existing registration
    When NCCC partially renews an existing registration with "no convictions"
@@ -19,11 +16,10 @@ Scenario: NCCC user creates registration and renewal, and checks status
   Given NCCC goes back to the in progress renewal
    When the applicant pays by bank card
    Then the renewal is complete
-    And the back office pages show the correct registration details
+    And I check the registration details are correct on the back office
     And the certificate shows the correct details
 
 Scenario: NCCC user creates lower tier registration and checks certificate
-  Given an Environment Agency user has signed in to the backend
-   When NCCC registers a lower tier "publicBody"
-   Then the back office pages show the correct registration details
-    And the certificate shows the correct details
+  Given I have a new lower tier registration for a "publicBody" business
+   When I check the registration details are correct on the back office
+   Then the certificate shows the correct details
