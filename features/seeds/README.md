@@ -6,7 +6,7 @@ The API endpoint accepts a JSON request format that contains a document object t
 
 The API endpoint will cover:
 - Generating and assigning a new `reg_identifier` number. The number will start with `CBDU` if the value of the `tier` is `upper`, or `CBDL` otherwise.
-- Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow, 3 years ahead by default.
+- Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow, equal to the value of the `WCRS_REGISTRATION_EXPIRES_AFTER`.
 
 The API will respond with a JSON format which contains the `reg_identifier` of the seeded entity so that it can be used in the test suite to perform operations on the seeded registration.
 
