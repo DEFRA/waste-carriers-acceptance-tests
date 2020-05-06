@@ -1,15 +1,40 @@
 # This will seed data using files in the `fixtures` subfolder.
-# Usage: SeedData.seed("limitedCompany_complete_active_registration.json")
+# Usage: SeedData.new("limitedCompany_complete_active_registration.json")
 # It will return a reg_number newly generated to use in the test suite.
 # Check README.md for more info
 
 require "net/http"
 
 class SeedData
-  def self.seed(file_name, options = {})
-    response = new(file_name, options).seed
+  def initialize(file_name, options = {})
+    @file_name = file_name
+    @options = options
+  end
 
-    JSON.parse(response.body)["reg_identifier"]
+  def reg_number
+    @_reg_number ||= JSON.parse(response.body)["reg_identifier"]
+  end
+
+  def seeded_data
+    @_seeded_data ||= JSON.parse(data)
+  end
+
+  private
+
+  attr_reader :file_name, :options
+
+  def uri
+    address = "#{Quke::Quke.config.custom['urls']['back_office']}/api/registrations"
+
+    URI.parse(address)
+  end
+
+  def response
+    @_response  ||= seed
+  end
+
+  def data
+    @_data ||= generate_data
   end
 
   def seed
@@ -21,22 +46,7 @@ class SeedData
     end
   end
 
-  private
-
-  attr_reader :file_name, :options
-
-  def initialize(file_name, options)
-    @file_name = file_name
-    @options = options
-  end
-
-  def uri
-    address = "#{Quke::Quke.config.custom['urls']['back_office']}/api/registrations"
-
-    URI.parse(address)
-  end
-
-  def data
+  def generate_data
     path_to_data_file = File.join(__dir__, "fixtures", file_name)
 
     data_content = File.read(path_to_data_file)

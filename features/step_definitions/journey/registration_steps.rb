@@ -110,28 +110,36 @@ Then("I am notified that my registration has been successful") do
 end
 
 Given("a registration with no convictions has been submitted by paying via card") do
-  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json")
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
 
   puts "Registration " + @reg_number + " seeded"
 end
 
 Given("I create a new registration as {string}") do |account_email|
   @tier = "upper"
-  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
 
   puts "Registration " + @reg_number + " seeded"
 end
 
 Given("I create a new registration for my {string} business as {string}") do |business_type, account_email|
   @tier = "upper"
-  @reg_number = SeedData.seed("#{business_type}_complete_active_registration.json", "accountEmail" => account_email)
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "accountEmail" => account_email)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
 
   puts "#{business_type} registration " + @reg_number + " seeded"
 end
 
 Given("I have a new registration for a {string} business") do |business_type|
   @tier = "upper"
-  @reg_number = SeedData.seed("#{business_type}_complete_active_registration.json")
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json")
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
 
   puts "#{business_type} registration " + @reg_number + " seeded"
 end
@@ -140,17 +148,21 @@ Given("I have a new lower tier registration for a {string} business") do |busine
   load_all_apps
   @tier = "lower"
   @business_name = "Lower tier public body seed"
-  @reg_number = SeedData.seed("lower_#{business_type}_complete_active_registration.json", "companyName" => @business_name)
+  seed_data = SeedData.new("lower_#{business_type}_complete_active_registration.json", "companyName" => @business_name)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
 
   puts "#{business_type} lower tier registration " + @reg_number + " seeded"
 end
 
 Given("I create a new registration as {string} with a company name of {string}") do |account_email, company_name|
-  @reg_number = SeedData.seed(
+  seed_data = SeedData.new(
     "limitedCompany_complete_active_registration.json",
     "accountEmail" => account_email,
     "companyName" => company_name
   )
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
 
   puts "Registration " + @reg_number + " seeded with name #{company_name}"
 end
@@ -159,7 +171,9 @@ Given("I have an active registration") do
   load_all_apps
   account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
 
-  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
   @reg_balance = 0
 
   puts "Registration " + @reg_number + " seeded"
@@ -167,14 +181,18 @@ end
 
 Given("I have an active registration with a company number of {string}") do |company_no|
   load_all_apps
-  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "company_no" => company_no)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "company_no" => company_no)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
 
   puts "Registration " + @reg_number + " seeded with company number of #{company_no}"
 end
 
 Given("I have an active registration with a company name of {string}") do |company_name|
   load_all_apps
-  @reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "companyName" => company_name)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "companyName" => company_name)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
   @business_name = company_name
   @tier = "upper"
   @resource_object = :registration
@@ -188,7 +206,9 @@ Given(/a registration with outstanding balance and (\d+) copy cards? has been su
   @reg_balance = 154 + 5 * copy_cards
   @business_name = "Outstanding Balance Limited"
 
-  @reg_number = SeedData.seed("outstanding_balance_pending_registration.json", copy_cards: copy_cards)
+  seed_data = SeedData.new("outstanding_balance_pending_registration.json", copy_cards: copy_cards)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
 
   puts "Registration " + @reg_number + " seeded with #{copy_cards} copy cards and outstanding balance"
 end
