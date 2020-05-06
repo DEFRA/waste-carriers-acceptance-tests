@@ -78,11 +78,14 @@ class SeedData
 
   def recalculate_balances(data)
     data["financeDetails"]["orders"].each do |order|
-      order["totalAmount"] = order["orderItems"].sum { |item| item["amount"] }
+      # The next line calculates totalAmount, handling lower tier where there are no orderItems.
+      # The & ensures it only does it if the orderItems exist.
+      # The || 0 sets it to 0 if order["orderItems"] is nil.
+      order["totalAmount"] = order["orderItems"]&.sum { |item| item["amount"] } || 0
     end
 
     total_all_orders = data["financeDetails"]["orders"].sum { |order| order["totalAmount"] }
-    total_all_payments = data["financeDetails"]["payments"].sum { |order| order["amount"] }
+    total_all_payments = data["financeDetails"]["payments"]&.sum { |order| order["amount"] } || 0
 
     data["financeDetails"]["balance"] = total_all_orders - total_all_payments
   end

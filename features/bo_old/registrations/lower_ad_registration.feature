@@ -4,6 +4,8 @@ Feature: Assisted digital lower tier registrations
   I want assistance with my waste carrier registration from the Environment Agency
   So I can complete my regisration and I am compliant with the law
 
+  Some scenarios have been commented out to reflect the fact that we are focussing testing on the back office.
+
    Background:
    Given an Environment Agency user has signed in to the backend
 
@@ -13,12 +15,11 @@ Feature: Assisted digital lower tier registrations
    	Then I will have a lower tier registration
      And the registration status will be "Registered"
 
-# Candidate for removal
- Scenario: NCCC successfully registers a local authority with a lower tier waste carriers licence
-   Given I request assistance with a new registration
-    When I have my registration of my local authority as a lower tier waste carrier completed for me
-    Then I will have a lower tier registration
-     And the registration status will be "Registered"
+ # Scenario: NCCC successfully registers a local authority with a lower tier waste carriers licence
+ #   Given I request assistance with a new registration
+ #    When I have my registration of my local authority as a lower tier waste carrier completed for me
+ #    Then I will have a lower tier registration
+ #     And the registration status will be "Registered"
 
  Scenario: NCCC successfully registers a limited company with a lower tier waste carriers licence
    Given I request assistance with a new registration
@@ -32,15 +33,14 @@ Feature: Assisted digital lower tier registrations
     Then I will have a lower tier registration
      And the registration status will be "Registered"
 
-# Candidate for removal
- Scenario: NCCC successfully registers a public body with a lower tier waste carriers licence
-   Given I request assistance with a new registration
-    When I have my registration of my public body as a lower tier waste carrier completed for me
-    Then I will have a lower tier registration
-     And the registration status will be "Registered"
+ # Scenario: NCCC successfully registers a public body with a lower tier waste carriers licence
+ #   Given I request assistance with a new registration
+ #    When I have my registration of my public body as a lower tier waste carrier completed for me
+ #    Then I will have a lower tier registration
+ #     And the registration status will be "Registered"
 
- Scenario: NCCC successfully registers a sole trader with a lower tier waste carriers licence
-   Given I request assistance with a new registration
-    When I have my sole trader business lower tier waste carrier registration completed for me
-    Then I will have a lower tier registration
-     And the registration status will be "Registered"
+ # Scenario: NCCC successfully registers a sole trader with a lower tier waste carriers licence
+ #   Given I request assistance with a new registration
+ #    When I have my sole trader business lower tier waste carrier registration completed for me
+ #    Then I will have a lower tier registration
+ #     And the registration status will be "Registered"

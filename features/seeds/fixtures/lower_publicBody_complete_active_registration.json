@@ -1,0 +1,70 @@
+{
+    "location" : "england",
+    "businessType" : "publicBody",
+    "tier" : "LOWER",
+    "companyName" : "lower tier publicBody new registration",
+    "firstName" : "Mike",
+    "lastName" : "Ehrmantraut",
+    "phoneNumber" : "0117 4960000",
+    "contactEmail" : "user@example.com",
+    "declaration" : 1,
+    "addresses" : [
+        {
+            "uprn" : 340116,
+            "addressMode" : "address-results",
+            "dependentLocality" : "",
+            "administrativeArea" : "BRISTOL",
+            "townCity" : "BRISTOL",
+            "postcode" : "BS1 5AH",
+            "country" : "",
+            "localAuthorityUpdateDate" : "",
+            "easting" : 358205,
+            "northing" : 172708,
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "DEANERY ROAD",
+            "addressType" : "REGISTERED"
+        },
+        {
+            "uprn" : 340116,
+            "addressMode" : "address-results",
+            "dependentLocality" : "",
+            "administrativeArea" : "BRISTOL",
+            "townCity" : "BRISTOL",
+            "postcode" : "BS1 5AH",
+            "country" : "",
+            "localAuthorityUpdateDate" : "",
+            "easting" : 358205,
+            "northing" : 172708,
+            "houseNumber" : "ENVIRONMENT AGENCY",
+            "addressLine1" : "DEANERY ROAD",
+            "addressType" : "POSTAL"
+        }
+    ],
+    "financeDetails" : {
+        "balance" : 0,
+        "orders" : [
+            {
+                "orderId" : "1588675627",
+                "orderCode" : "1588675627",
+                "currency" : "GBP",
+                "dateCreated" : "2020-05-05T10:47:07.355Z",
+                "dateLastUpdated" : "2020-05-05T10:47:07.355Z",
+                "updatedByUser" : "9685578@example.com",
+                "description" : null,
+                "totalAmount" : 0,
+                "paymentMethod" : "ONLINE",
+                "worldPayStatus" : "IN_PROGRESS",
+                "merchantId" : "EASERRSIMECOM"
+            }
+        ]
+    },
+    "metaData" : {
+        "status" : "ACTIVE",
+        "lastModified" : "2020-05-05T10:47:07.376Z",
+        "route" : "DIGITAL",
+        "dateRegistered" : "2020-05-05T10:47:07.372Z",
+        "dateActivated" : "2020-05-05T10:47:07.411Z"
+    },
+    "locked_at" : null,
+    "locking_name" : null
+}

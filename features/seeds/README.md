@@ -6,7 +6,7 @@ The API endpoint accepts a JSON request format that contains a document object t
 
 The API endpoint will cover:
 - Generating and assigning a new `reg_identifier` number. The number will start with `CBDU` if the value of the `tier` is `upper`, or `CBDL` otherwise.
-- Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow.
+- Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow, equal to the value of the `WCRS_REGISTRATION_EXPIRES_AFTER`.
 
 The API will respond with a JSON format which contains the `reg_identifier` of the seeded entity so that it can be used in the test suite to perform operations on the seeded registration.
 
@@ -20,6 +20,12 @@ An helper class called `SeedData` is part of the suite. It can be used in any st
 The content of the seeded entity is saved in a JSON file stored in `features/seeds/fixtures/`.
 
 To create a new entity to seed, for example an entity without payments, and hence still in progress, you can create a new file under `features/seeds/fixtures/` and use that file name as a parameter to `SeedData.seed`.
+
+When creating a new file, the data will be the same format as in the local database, except you need to do the following:
+
+* remove any `_id` fields
+* remove the `regIdentifier`
+* remove `ISODate(` and `)` from any dates
 
 ## Options
 
