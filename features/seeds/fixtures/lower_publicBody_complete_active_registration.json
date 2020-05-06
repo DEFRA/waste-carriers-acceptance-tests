@@ -1,6 +1,6 @@
 {
     "location" : "england",
-    "businessType" : "soleTrader",
+    "businessType" : "publicBody",
     "tier" : "LOWER",
     "companyName" : "lower tier publicBody new registration",
     "firstName" : "Mike",
