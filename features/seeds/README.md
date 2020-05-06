@@ -14,12 +14,14 @@ The API will respond with a JSON format which contains the `reg_identifier` of t
 An helper class called `SeedData` is part of the suite. It can be used in any step or helper method definition.
 
 ```ruby
-@reg_number = SeedData.seed("limitedCompany_complete_active_registration.json")
+seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
+@reg_number = seed_data.reg_number
+@seeded_data = seed_data.seeded_data
 ```
 
 The content of the seeded entity is saved in a JSON file stored in `features/seeds/fixtures/`.
 
-To create a new entity to seed, for example an entity without payments, and hence still in progress, you can create a new file under `features/seeds/fixtures/` and use that file name as a parameter to `SeedData.seed`.
+To create a new entity to seed, for example an entity without payments, and hence still in progress, you can create a new file under `features/seeds/fixtures/` and use that file name as a parameter to `SeedData.new`.
 
 When creating a new file, the data will be the same format as in the local database, except you need to do the following:
 
@@ -29,7 +31,7 @@ When creating a new file, the data will be the same format as in the local datab
 
 ## Options
 
-The `SeedData.seed` method will accept options parameters after the file name.
+The `SeedData.new` method will accept options parameters after the file name.
 Each possible option is documented below
 
 ### Setting any top level attribute
@@ -65,7 +67,7 @@ Given that we want to create a registration using the above data but with a cust
 like this:
 
 ```ruby
-@reg_number = SeedData.seed("limitedCompany_complete_active_registration.json", "companyName" => "My new company name")
+seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "companyName" => "My new company name")
 ```
 
 This will work for any attribute at the top level of the json document *as long as* the keys value matches
@@ -84,7 +86,7 @@ This option will allow the generation of a registration containing an order with
 #### Usage:
 
 ```ruby
-  SeedData.seed("outstanding_balance_pending_registration.json", copy_cards: 2)
+  SeedData.new("outstanding_balance_pending_registration.json", copy_cards: 2)
 ```
 
 #### What it does
