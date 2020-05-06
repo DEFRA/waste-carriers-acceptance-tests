@@ -30,7 +30,7 @@ class SeedData
   end
 
   def response
-    @_response  ||= seed
+    @_response ||= seed
   end
 
   def data
