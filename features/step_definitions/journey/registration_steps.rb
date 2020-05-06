@@ -186,6 +186,7 @@ Given(/a registration with outstanding balance and (\d+) copy cards? has been su
   # Store variables for later steps:
   @copy_cards = copy_cards
   @reg_balance = 154 + 5 * copy_cards
+  @business_name = "Outstanding Balance Limited"
 
   @reg_number = SeedData.seed("outstanding_balance_pending_registration.json", copy_cards: copy_cards)
 

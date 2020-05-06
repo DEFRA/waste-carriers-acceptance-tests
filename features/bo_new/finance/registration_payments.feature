@@ -1,4 +1,4 @@
-@bo_new @finance @wip
+@bo_new @finance
 
 Feature: [RUBY-826] Pay for registrations
   As a user with finance privilieges
