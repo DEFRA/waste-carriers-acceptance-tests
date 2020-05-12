@@ -19,6 +19,7 @@ When(/^I pay for my application by maestro ordering (\d+) copy (?:card|cards)$/)
   submit_valid_card_payment
 
   @reg_number = find("#registrationNumber").text
+  puts "Registration " + @reg_number + " completed by card"
 end
 
 Then(/^I will be asked to confirm my email address$/) do
