@@ -1,13 +1,12 @@
 require "pry"
 
-When(/^I renew my last registration"$/) do
+When("I start renewing my last registration from the frontend") do
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
   @renewals_app.old_start_page.load
   @renewals_app.old_start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: reg)
-  # save registration number for checks later on
-  @reg_number = reg
+  @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
+  expect(page).to have_text("You are about to renew registration " + @reg_number)
 end
 
 When("I revert the last renewal to payment summary") do

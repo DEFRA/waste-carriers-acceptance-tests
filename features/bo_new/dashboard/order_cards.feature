@@ -1,8 +1,10 @@
-@bo_new @bo_dashboard
+@bo_new @bo_dashboard @broken
 Feature: [RUBY-767] NCCC agent orders registration cards from back office
   As an NCCC agent
   I want to order registration cards
   So that I can help a waste carrier prove they are registered
+
+  Functionality is currently broken in mock mode!
 
 Background:
 	Given I sign into the back office as "agency-user"
