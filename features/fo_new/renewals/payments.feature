@@ -1,4 +1,4 @@
-@fo_new @fo_renewalNO @renewal
+@fo_new @fo_renewal @renewal
 Feature: Registered waste carrier pays for their renewal
   As a carrier of commercial waste
   I want to be able to pay the relevant charge for my renewal
