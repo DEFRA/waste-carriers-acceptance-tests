@@ -12,7 +12,6 @@ end
 When("I revert the last renewal to payment summary") do
   visit_renewal_details_page(@reg_number)
 
-  puts page.text
   @bo.registration_details_page.revert_to_payment_summary_link.click
 end
 

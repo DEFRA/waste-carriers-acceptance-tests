@@ -1,8 +1,10 @@
-@bo_new @convictions @smoke @bo_reg
+@bo_new @convictions @smoke @bo_dashboard
 Feature: Conviction checks during upper tier waste carrier registrations
   As a waste carrier administrator
   I want to check whether any known companies or individuals have any previous waste convictions
   So that I can decide whether they are allowed to hold a waste carriers licence
+
+  (Registrations are completed on the new app for this feature.)
 
   Background:
    Given an Environment Agency user has signed in to the backend
