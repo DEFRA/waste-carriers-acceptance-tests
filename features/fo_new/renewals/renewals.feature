@@ -6,7 +6,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
 
   @email
   Scenario: Sole trader renews upper tier registration from renewals page
-    Given I create a new registration for my "soleTrader" business as "wcr-user@mailinator.com"
+    Given I create an upper tier registration for my "soleTrader" business as "wcr-user@mailinator.com"
       And I renew my last registration
       And I have signed in to renew my registration as "wcr-user@mailinator.com"
      When I complete my sole trader renewal steps
@@ -15,21 +15,19 @@ Feature: Registered waste carrier chooses to renew their registration from regis
 
   @smoke
   Scenario: Limited liability partnership renews upper tier registration from renewals page
-    Given I create a new registration for my "limitedLiabilityPartnership" business as "user@example.com"
+    Given I create an upper tier registration for my "limitedLiabilityPartnership" business as "user@example.com"
       And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
      When I complete my limited liability partnership renewal steps
      Then I will be notified my renewal is complete
 
-    Scenario: Charity renews upper tier registration from renewals page and is notified to register as lower tier
-      Given I create a new registration for my "charity" business as "user@example.com"
+    Scenario: Charity renews registration from renewals page and is notified to register as lower tier
+      Given I create a lower tier registration for my "charity" business as "user@example.com"
         And I renew my last registration
-        And I have signed in to renew my registration as "user@example.com"
-       When I confirm my business type
-       Then I will be notified "You can register as a lower tier waste carrier"
+       Then I am told that my registration does not expire
 
   Scenario: Partnership renews upper tier registration from renewals page
-    Given I create a new registration for my "partnership" business as "user@example.com"
+    Given I create an upper tier registration for my "partnership" business as "user@example.com"
       And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
      When I complete my partnership renewal steps
@@ -45,7 +43,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
 
 # Combine this with partner scenario above
   Scenario: Partnership renews upper tier registration but requires more than one partner to renew
-    Given I create a new registration for my "partnership" business as "user@example.com"
+    Given I create an upper tier registration for my "partnership" business as "user@example.com"
       And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
      When I add two partners to my renewal
@@ -53,7 +51,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
      Then I will be asked to add another partner
 
   Scenario: Limited liability partnership renews upper tier registration from renewals page
-    Given I create a new registration for my "limitedLiabilityPartnership" business as "user@example.com"
+    Given I create an upper tier registration for my "limitedLiabilityPartnership" business as "user@example.com"
       And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
      When I complete my limited liability partnership renewal steps choosing to pay by bank transfer

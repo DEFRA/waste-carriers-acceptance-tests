@@ -126,13 +126,22 @@ Given("I create a new registration as {string}") do |account_email|
   puts "Registration " + @reg_number + " seeded"
 end
 
-Given("I create a new registration for my {string} business as {string}") do |business_type, account_email|
+Given("I create an upper tier registration for my {string} business as {string}") do |business_type, account_email|
   @tier = "upper"
   seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "accountEmail" => account_email)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
 
-  puts "#{business_type} registration " + @reg_number + " seeded"
+  puts "#{business_type} upper tier registration " + @reg_number + " seeded"
+end
+
+Given("I create a lower tier registration for my {string} business as {string}") do |business_type, account_email|
+  @tier = "lower"
+  seed_data = SeedData.new("lower_#{business_type}_complete_active_registration.json", "accountEmail" => account_email)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
+
+  puts "#{business_type} lower tier registration " + @reg_number + " seeded"
 end
 
 Given("I have a new registration for a {string} business") do |business_type|
