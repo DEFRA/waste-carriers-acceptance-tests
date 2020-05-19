@@ -39,6 +39,10 @@ Then(/^I'm informed "([^"]*)"$/) do |error_message|
   expect(@renewals_app.existing_registration_page.error_message.text).to eq(error_message)
 end
 
+Given("I am told that my registration does not expire") do
+  expect(page).to have_text("This is a lower tier registration so never expires. Call our helpline on 03708 506506 if you think this is incorrect.")
+end
+
 When(/^the organisation type is changed to sole trader$/) do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit(org_type: "soleTrader")
