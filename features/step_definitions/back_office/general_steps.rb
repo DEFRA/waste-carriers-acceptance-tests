@@ -38,7 +38,7 @@ Given(/^I am signed in as an Environment Agency user with refunds$/) do
 end
 
 Given(/^I request assistance with a new registration$/) do
-  @back_app.registrations_page.new_registration.click
+  visit(Quke::Quke.config.custom["urls"]["back_end_registrations"])
   @back_app.old_start_page.submit
   expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
   @journey.location_page.submit(choice: :england)

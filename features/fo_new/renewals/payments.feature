@@ -1,4 +1,4 @@
-@fo_new @fo_renewal @renewal
+@fo_new @fo_renewal @renewal @broken
 Feature: Registered waste carrier pays for their renewal
   As a carrier of commercial waste
   I want to be able to pay the relevant charge for my renewal
@@ -28,7 +28,6 @@ Feature: Registered waste carrier pays for their renewal
         And I will receive a renewal appliction received email
 
 # This test can't work if the mock is in place, as there's no cancel option
-@no_mock
     Scenario: Cancelled worldpay payment can be paid for by retrying card payment
       Given I create a new registration as "user@example.com"
         And I renew my last registration
