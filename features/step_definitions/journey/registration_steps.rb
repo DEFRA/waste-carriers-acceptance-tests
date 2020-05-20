@@ -222,6 +222,14 @@ Given(/a registration with outstanding balance and (\d+) copy cards? has been su
   puts "Registration " + @reg_number + " seeded with #{copy_cards} copy cards and outstanding balance"
 end
 
+Given("a registration with outstanding convictions checks has been submitted") do
+  seed_data = SeedData.new("outstanding_convictions_checks_registration.json")
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
+
+  puts "Registration " + @reg_number + " seeded with outstanding conviction checks"
+end
+
 Given("a limited company with companies house number {string} is registered as an upper tier waste carrier") do |ch_no|
   # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
   # which will slow down tests.
