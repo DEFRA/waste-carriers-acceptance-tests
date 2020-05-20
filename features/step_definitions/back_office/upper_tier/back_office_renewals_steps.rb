@@ -182,18 +182,18 @@ Given(/^an Agency super user has signed in to the admin area$/) do
   )
 end
 
-Given(/^has created an agency user for "([^"]*)"$/) do |user|
+Given(/^has created an agency user$/) do
+  @user = generate_email
   @back_app.agency_users_page.add_user.click
   @back_app.agency_users_page.submit(
-    email: user,
+    email: @user,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @user = user
   expect(@back_app.agency_users_page).to have_text("Agency user was successfully created.")
   @back_app.agency_users_page.sign_out.click
 end
 
-When(/^migrates the backend users to the back office$/) do
+When(/^I migrate the backend users to the back office$/) do
   @bo.dashboard_page.govuk_banner.manage_users_link.click
   expect(@bo.users_page).to_not have_text(@user)
   @bo.users_page.migrate_users.click
