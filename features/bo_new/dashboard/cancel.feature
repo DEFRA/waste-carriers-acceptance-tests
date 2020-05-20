@@ -4,7 +4,6 @@ Feature: NCCC agent cancel in progress registration from back office
   I want to cancel an in-progress registration
   So that we can correctly regulate the waste activity
 
-
 Background:
   Given I sign into the back office as "agency-refund-payment-user"
 
