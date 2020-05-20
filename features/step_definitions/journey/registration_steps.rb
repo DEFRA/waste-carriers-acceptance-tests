@@ -303,6 +303,13 @@ Given("a registration with declared convictions is submitted with outstanding pa
   puts "Registration " + @reg_number + " submitted with declared convictions and outstanding payment"
 end
 
+Given("I have a pending registration") do
+  seed_data = SeedData.new("outstanding_balance_pending_registration.json")
+  @pending_reg_number = seed_data.reg_number
+
+  puts "Pending registration " + @pending_reg_number + " seeded"
+end
+
 Given("a limited company {string} registers as an upper tier waste carrier") do |business_name|
   # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
   # which will slow down tests.

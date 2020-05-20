@@ -8,6 +8,7 @@ Background:
   Given I have an active registration
     And NCCC makes a payment of 5 by "cash"
     And I sign out of back office
+    And I have a pending registration
 
 Scenario: Permissions
    When I sign into the back office as "agency-user"

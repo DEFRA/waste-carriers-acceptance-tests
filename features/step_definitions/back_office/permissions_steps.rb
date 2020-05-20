@@ -1,5 +1,5 @@
 Then(/^I have the correct permissions for an agency user$/) do
-  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
+  visit_registration_details_page(@reg_number)
   expect(@bo.registration_details_page).to have_renew_link
   expect(@bo.registration_details_page).to have_transfer_link
   expect(@bo.registration_details_page).to have_edit_link
@@ -16,10 +16,14 @@ Then(/^I have the correct permissions for an agency user$/) do
   expect(@bo.finance_payment_details_page).to have_no_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_no_refund_button
   expect(@bo.finance_payment_details_page).to have_no_write_off_button
+
+  # Permissions on pending registration
+  visit_registration_details_page(@pending_reg_number)
+  expect(@bo.registration_details_page).to have_no_cancel_link
 end
 
 Then(/^I have the correct permissions for an agency refund payment user$/) do
-  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
+  visit_registration_details_page(@reg_number)
   expect(@bo.registration_details_page).to have_renew_link
   expect(@bo.registration_details_page).to have_transfer_link
   expect(@bo.registration_details_page).to have_edit_link
@@ -36,6 +40,10 @@ Then(/^I have the correct permissions for an agency refund payment user$/) do
   expect(@bo.finance_payment_details_page).to have_no_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_refund_button
   expect(@bo.finance_payment_details_page).to have_write_off_button
+
+  # Permissions on pending registration
+  visit_registration_details_page(@pending_reg_number)
+  expect(@bo.registration_details_page).to have_cancel_link
 
   # Check agency-refund-payment-user cannot write off more than 5 pounds:
   sign_in_to_back_office("finance-admin-user")
@@ -52,7 +60,7 @@ Then(/^I have the correct permissions for an agency refund payment user$/) do
 end
 
 Then(/^I have the correct permissions for an agency super user$/) do
-  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
+  visit_registration_details_page(@reg_number)
   expect(@bo.registration_details_page).to have_renew_link
   expect(@bo.registration_details_page).to have_transfer_link
   expect(@bo.registration_details_page).to have_edit_link
@@ -69,10 +77,14 @@ Then(/^I have the correct permissions for an agency super user$/) do
   expect(@bo.finance_payment_details_page).to have_no_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_refund_button
   expect(@bo.finance_payment_details_page).to have_write_off_button
+
+  # Permissions on pending registration
+  visit_registration_details_page(@pending_reg_number)
+  expect(@bo.registration_details_page).to have_cancel_link
 end
 
 Then(/^I have the correct permissions for a finance user$/) do
-  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
+  visit_registration_details_page(@reg_number)
   expect(@bo.registration_details_page).to have_no_renew_link
   expect(@bo.registration_details_page).to have_no_transfer_link
   expect(@bo.registration_details_page).to have_no_edit_link
@@ -89,10 +101,14 @@ Then(/^I have the correct permissions for a finance user$/) do
   expect(@bo.finance_payment_details_page).to have_no_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_no_refund_button
   expect(@bo.finance_payment_details_page).to have_no_write_off_button
+
+  # Permissions on pending registration
+  visit_registration_details_page(@pending_reg_number)
+  expect(@bo.registration_details_page).to have_no_cancel_link
 end
 
 Then(/^I have the correct permissions for a finance admin user$/) do
-  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
+  visit_registration_details_page(@reg_number)
   expect(@bo.registration_details_page).to have_no_renew_link
   expect(@bo.registration_details_page).to have_no_transfer_link
   expect(@bo.registration_details_page).to have_no_edit_link
@@ -109,10 +125,14 @@ Then(/^I have the correct permissions for a finance admin user$/) do
   expect(@bo.finance_payment_details_page).to have_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_no_refund_button
   expect(@bo.finance_payment_details_page).to have_write_off_button
+
+  # Permissions on pending registration
+  visit_registration_details_page(@pending_reg_number)
+  expect(@bo.registration_details_page).to have_no_cancel_link
 end
 
 Then(/^I have the correct permissions for a finance super user$/) do
-  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
+  visit_registration_details_page(@reg_number)
   expect(@bo.registration_details_page).to have_no_renew_link
   expect(@bo.registration_details_page).to have_no_transfer_link
   expect(@bo.registration_details_page).to have_no_edit_link
@@ -129,4 +149,8 @@ Then(/^I have the correct permissions for a finance super user$/) do
   expect(@bo.finance_payment_details_page).to have_charge_adjust_button
   expect(@bo.finance_payment_details_page).to have_no_refund_button
   expect(@bo.finance_payment_details_page).to have_write_off_button
+
+  # Permissions on pending registration
+  visit_registration_details_page(@pending_reg_number)
+  expect(@bo.registration_details_page).to have_no_cancel_link
 end
