@@ -255,7 +255,7 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
 
   # Store variables for later steps:
   @business_name = "AD UT Sole Trader"
-  @people = @back_app.key_people_page.dodgy_people
+  @people = dodgy_people
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")

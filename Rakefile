@@ -129,18 +129,6 @@ task :Google_Pixel do
   sh %( QUKE_CONFIG=.config_Google_Pixel.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
-desc "Run all renewal tests"
-task :renewals do
-  reset_dbs
-  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags @renewal --tags ~@todo --tags ~@broken --tags ~@email)
-end
-
-desc "Run all registration tests"
-task :registrations do
-  reset_dbs
-  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags ~@renewal --tags ~@todo --tags ~@broken --tags ~@email)
-end
-
 task :all_tests do
   reset_dbs
   sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags --tags ~@todo --tags ~@broken --tags ~@email)
