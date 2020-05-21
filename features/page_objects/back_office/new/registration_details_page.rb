@@ -22,6 +22,7 @@ class RegistrationDetailsPage < SitePrism::Page
   element(:order_cards_link, "a[href*='/order-copy-cards']")
   element(:payment_details_link, "a[href*='/finance-details']")
   element(:cease_or_revoke_link, "a[href*='/cease-or-revoke']")
+  element(:cancel_link, "a[href*='/cancels']")
 
   element(:revert_to_payment_summary_link, "a[href$='revert-to-payment-summary']")
   # Sample text on this page:
