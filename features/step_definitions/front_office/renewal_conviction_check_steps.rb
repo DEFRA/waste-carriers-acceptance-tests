@@ -31,7 +31,7 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
   select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details(@business_name)
-  people = @journey.company_people_page.dodgy_people
+  people = dodgy_people
   @journey.company_people_page.add_main_person(person: people[0])
   @journey.company_people_page.add_main_person(person: people[1])
   @journey.company_people_page.submit_main_person(person: people[2])

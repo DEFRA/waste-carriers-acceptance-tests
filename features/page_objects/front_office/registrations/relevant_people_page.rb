@@ -62,13 +62,5 @@ class RelevantPeoplePage < SitePrism::Page
       { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, dob_day: 1, dob_month: 5, dob_year: 1984, position: "Head honcho" }
     ]
   end
-
-  def dodgy_people
-    [
-      { first_name: "Jane", last_name: "Blogs", dob_day: 1, dob_month: 5, dob_year: 1984, position: "Head honcho" },
-      { first_name: "Fred", last_name: "Blogs", dob_day: 1, dob_month: 5, dob_year: 1984, position: "Head honcho" },
-      { first_name: "Alex", last_name: "Smith-Brown", dob_day: 1, dob_month: 5, dob_year: 1984, position: "Head honcho" }
-    ]
-  end
   # rubocop:enable Layout/LineLength
 end

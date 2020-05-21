@@ -4,10 +4,7 @@ Feature: Conviction checks during upper tier waste carrier registrations
   I want to check whether any known companies or individuals have any previous waste convictions
   So that I can decide whether they are allowed to hold a waste carriers licence
 
-  (Registrations are completed on the new app for this feature.)
-
-  Background:
-   Given an Environment Agency user has signed in to the backend
+  (Registrations are completed on the front office for this feature.)
 
   Scenario: Limited company with an undeclared conviction match by company number is marked for a conviction check
   	Given a limited company with companies house number "01649776" is registered as an upper tier waste carrier

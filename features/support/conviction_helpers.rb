@@ -105,3 +105,11 @@ def reject_conviction(reg)
   @bo.convictions_decision_page.submit(conviction_reason: "Test conviction rejected")
   puts reg + " rejected due to convictions"
 end
+
+def dodgy_people
+  [
+    { first_name: "Jane", last_name: "Blogs", dob_day: 1, dob_month: 5, dob_year: 1984, position: "Smooth criminal" },
+    { first_name: "Fred", last_name: "Blogs", dob_day: 1, dob_month: 5, dob_year: 1984, position: "Naughty person" },
+    { first_name: "Alex", last_name: "Smith-Brown", dob_day: 1, dob_month: 5, dob_year: 1984, position: "The Don" }
+  ]
+end
