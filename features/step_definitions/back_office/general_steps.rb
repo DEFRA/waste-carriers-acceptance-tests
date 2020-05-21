@@ -50,11 +50,11 @@ end
 
 Then(/^I will have an upper tier registration$/) do
   expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDU")
-
   expect(@back_app.finish_assisted_page).to have_view_certificate
 
   # Stores registration number and access code for later use
   @reg_number = @back_app.finish_assisted_page.registration_number.text
+  puts @reg_number + " upper tier registration completed on old app"
 
 end
 

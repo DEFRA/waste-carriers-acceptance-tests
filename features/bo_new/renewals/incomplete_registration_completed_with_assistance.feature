@@ -1,4 +1,4 @@
-@bo_new @bo_renew @renewal
+@bo_new @bo_renew
 
 Feature: Incomplete renewal of an upper tier public body completed by NCCC
   As a carrier of commerical waste
