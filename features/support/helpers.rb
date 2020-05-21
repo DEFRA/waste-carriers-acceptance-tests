@@ -11,6 +11,22 @@ def load_all_apps
   @renewals_app = RenewalsApp.new
 end
 
+def mocking_enabled?
+  # Simple helper to check if mocking is currently enabled.
+  # It is based on the fact that the mock gem uses URL constraints,
+  # hence when we hit a mocking valid URL, if we receive a 404 response back,
+  # we can assume that mocking is disabled
+  uri = URI.parse(Quke::Quke.config.custom["urls"]["mock_enabled"])
+
+  # using an instance variable so that we make the request to the mocking
+  # endpoint only once
+  @_mocking_enabled_response ||= Net::HTTP.get_response(uri)
+
+  return false if @_mocking_enabled_response == "404"
+
+  true
+end
+
 def sign_in_to_front_end_if_necessary(email)
   @renewals_app = RenewalsApp.new
 

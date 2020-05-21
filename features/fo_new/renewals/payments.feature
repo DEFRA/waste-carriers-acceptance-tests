@@ -8,7 +8,8 @@ Feature: Registered waste carrier pays for their renewal
 # a payment can be rejected by submitting business details with 'reject' in the name
 
     Scenario: Rejected worldpay payment can be paid for on another credit card
-      Given I create a new registration as "user@example.com"
+      Given mocking is disabled
+        And I create a new registration as "user@example.com"
         And I renew my last registration
         And I have signed in to renew my registration as "user@example.com"
         And I am on the payment page
@@ -25,11 +26,12 @@ Feature: Registered waste carrier pays for their renewal
         But I have my credit card payment rejected
        When I can pay by bank transfer
        Then I will be notified my renewal is pending payment
-        And I will receive a renewal appliction received email
+        And I will receive an email informing me "You need to pay for your waste carriers registration"
 
 # This test can't work if the mock is in place, as there's no cancel option
     Scenario: Cancelled worldpay payment can be paid for by retrying card payment
-      Given I create a new registration as "user@example.com"
+      Given mocking is disabled
+        And I create a new registration as "user@example.com"
         And I renew my last registration
         And I have signed in to renew my registration as "user@example.com"
         And I am on the payment page

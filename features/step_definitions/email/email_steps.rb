@@ -56,7 +56,7 @@ Then(/^I will receive an email informing me "([^"]*)"$/) do |text|
   end
 end
 
-Then(/^I will receive a renewal appliction received email$/) do
+Then(/^I will receive a renewal application received email$/) do
   if @email_app.local?
     @email_app.mailcatcher_main_page.open_email(1)
     expect(@email_app.mailcatcher_messages_page).to have_text("Your application to renew")

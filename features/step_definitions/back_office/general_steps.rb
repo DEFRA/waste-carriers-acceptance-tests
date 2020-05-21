@@ -8,6 +8,10 @@ Given(/^an Environment Agency user has signed in to the backend$/) do
   )
 end
 
+Given("mocking is disabled") do
+  pending "It makes no sense to test this feature when mocking is enabled" if mocking_enabled?
+end
+
 Given(/^I sign into the back office as "([^"]*)"$/) do |user|
   # Use this step to sign in to the back office as any of the following users:
   # agency-user
