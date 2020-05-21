@@ -11,7 +11,7 @@ Feature: Registered waste carrier declares conviction during renewal
   	  And I have signed in to renew my registration as "wcr-user@mailinator.com"
     When I complete my limited company renewal steps declaring a conviction
   	Then I will be notified my renewal is pending checks
-      And I will receive a renewal appliction received email
+      And I will receive a renewal application received email
 
   Scenario: Limited company renews upper tier registration from renewals page not declaring conviction
   	Given I create a new registration as "user@example.com"
