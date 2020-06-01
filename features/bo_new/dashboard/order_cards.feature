@@ -1,17 +1,15 @@
-@bo_new @bo_dashboard @broken
+@bo_new @bo_dashboard
 Feature: [RUBY-767] NCCC agent orders registration cards from back office
   As an NCCC agent
   I want to order registration cards
   So that I can help a waste carrier prove they are registered
-
-  Functionality is currently broken in mock mode!
 
 Background:
 	Given I sign into the back office as "agency-user"
 
 @smoke
 Scenario: NCCC user orders one card by bank card
-  Given I have an active registration
+ Given I have an active registration
   When an agency user orders "1" registration card
    And the agency user pays for the card by bank card
   Then the card order is confirmed with cleared payment
@@ -19,7 +17,7 @@ Scenario: NCCC user orders one card by bank card
    And the carrier receives an email saying their card order is being printed
 
 Scenario: NCCC user orders 3 cards by bank transfer
-  Given I have an active registration
+ Given I have an active registration
   When an agency user orders "3" registration cards
    And the agency user chooses to pay for the card by bank transfer
   Then the card order is confirmed awaiting payment
@@ -38,3 +36,9 @@ Scenario: NCCC user orders 3 cards by bank transfer
   When NCCC pays the remaining balance by "missed_worldpay"
   Then the registration does not have a status of "PAYMENT NEEDED"
    And the registration's balance is 0
+
+Scenario: NCCC orders card but payment is rejected
+ Given I have an active registration with a company name of "Copy card - reject payment"
+  When an agency user orders "1" registration card
+   And I have my credit card payment rejected
+  Then the payment is shown as rejected
