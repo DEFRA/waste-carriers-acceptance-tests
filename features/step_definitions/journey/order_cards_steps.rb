@@ -82,3 +82,7 @@ Then(/^the carrier receives an email saying they need to pay for their card orde
   visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
   expect(@journey.last_email_page.check_email_for_text(text_to_check)).to be true
 end
+
+Then("the payment is shown as rejected") do
+  expect(@journey.cards_payment_page.error_summary).to have_text("Your payment has been refused")
+end

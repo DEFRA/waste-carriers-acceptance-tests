@@ -19,19 +19,13 @@ Given(/^I am on the payment page$/) do
 end
 
 When(/^I have my credit card payment rejected$/) do
-  # This step will not work when WorldPay mocking is in place
-  unless mocking_enabled?
-    @renewals_app.payment_summary_page.submit(choice: :card_payment)
-    submit_invalid_card_payment
-  end
+  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  submit_invalid_card_payment unless mocking_enabled?
 end
 
 When(/^I cancel my credit card payment$/) do
-  # This step will not work when WorldPay mocking is in place
-  unless mocking_enabled?
-    @renewals_app.payment_summary_page.submit(choice: :card_payment)
-    @journey.worldpay_payment_page.cancel_payment
-  end
+  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.worldpay_payment_page.cancel_payment unless mocking_enabled?
 end
 
 Then(/^(?:I can pay with another card|I try my credit card payment again)$/) do
