@@ -93,6 +93,10 @@ class JourneyApp
     @last_page = LocationPage.new
   end
 
+  def payment_summary_page
+    @last_page = PaymentSummaryPage.new
+  end
+
   def registration_cards_page
     @last_page = RegistrationCardsPage.new
   end

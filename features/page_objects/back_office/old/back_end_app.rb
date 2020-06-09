@@ -129,10 +129,6 @@ class BackEndApp
     @last_page = OrderPage.new
   end
 
-  def payment_summary_page
-    @last_page = PaymentSummaryPage.new
-  end
-
   def postal_address_page
     @last_page = PostalAddressPage.new
   end

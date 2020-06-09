@@ -9,31 +9,28 @@ Given(/^I am on the payment page$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_existing_contact_details
   check_your_answers
   @journey.registration_cards_page.submit
-  expect(@renewals_app.payment_summary_page.current_url).to include "/payment-summary"
+  expect(@journey.payment_summary_page.current_url).to include "/payment-summary"
 end
 
 When(/^I have my credit card payment rejected$/) do
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(choice: :card_payment)
   submit_invalid_card_payment unless mocking_enabled?
 end
 
 When(/^I cancel my credit card payment$/) do
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(choice: :card_payment)
   @journey.worldpay_payment_page.cancel_payment unless mocking_enabled?
 end
 
 Then(/^(?:I can pay with another card|I try my credit card payment again)$/) do
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
 When(/^I can pay by bank transfer$/) do
-  @renewals_app.payment_summary_page.submit(choice: :bank_transfer_payment)
+  @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
   @renewals_app.bank_transfer_page.submit
 end

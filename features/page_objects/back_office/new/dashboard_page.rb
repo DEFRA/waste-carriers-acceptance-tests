@@ -15,6 +15,7 @@ class DashboardPage < SitePrism::Page
 
   element(:results_table, "table")
   elements(:reg_details_links, "a[href*='/registrations/CBD']")
+  elements(:new_reg_details_links, "a[href*='/new-registrations/")
   elements(:transient_reg_details_links, "a[href*='/renewing-registrations/CBD']")
 
   sections :results, "table tbody tr" do
@@ -31,6 +32,11 @@ class DashboardPage < SitePrism::Page
   def view_reg_details(args = {})
     submit(search_term: args[:search_term])
     reg_details_links[0].click
+  end
+
+  def view_new_reg_details(args = {})
+    submit(search_term: args[:search_term])
+    new_reg_details_links[0].click
   end
 
   def view_transient_reg_details(args = {})

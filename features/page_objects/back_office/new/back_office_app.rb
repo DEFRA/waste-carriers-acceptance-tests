@@ -114,10 +114,6 @@ class BackOfficeApp
     @last_page = PaymentsPage.new
   end
 
-  def payment_summary_page
-    @last_page = PaymentSummaryPage.new
-  end
-
   def registration_certificate_page
     @last_page = RegistrationCertificatePage.new
   end
