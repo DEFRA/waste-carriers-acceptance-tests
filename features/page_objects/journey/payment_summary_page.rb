@@ -1,8 +1,9 @@
 class PaymentSummaryPage < SitePrism::Page
 
   # Payment summary
+
   element(:back_link, "a[href*='back']")
-  element(:heading, :xpath, "//h1[contains(text(), 'Payment summary')]")
+  element(:heading, ".heading-large")
 
   element(:card_payment, "input[value='card']", visible: false)
   element(:bank_transfer_payment, "input[value='bank_transfer']", visible: false)

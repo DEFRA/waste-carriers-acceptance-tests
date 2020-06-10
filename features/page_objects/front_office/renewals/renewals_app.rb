@@ -28,10 +28,6 @@ class RenewalsApp
     @last_page = OldStartPage.new
   end
 
-  def payment_summary_page
-    @last_page = PaymentSummaryPage.new
-  end
-
   def renewal_information_page
     @last_page = RenewalInformationPage.new
   end

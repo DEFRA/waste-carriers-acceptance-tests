@@ -84,6 +84,8 @@ Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
 end
 
 Given(/^I have signed in the front office using my email$/) do
+  # Make email address match seeded data, if not already defined:
+  @email_address ||= "user@example.com"
   sign_in_to_front_end_if_necessary(@email_address)
 end
 
@@ -115,19 +117,10 @@ When(/^I complete my limited company renewal steps$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit
-  @journey.address_lookup_page.submit_invalid_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_existing_contact_details
   check_your_answers
   @journey.registration_cards_page.submit
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
@@ -158,16 +151,10 @@ When(/^I complete my sole trader renewal steps$/) do
   people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: people[0])
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit(
-    email: "test@example.com",
-    confirm_email: "test@example.com"
-  )
-  @journey.address_lookup_page.submit_valid_address
+  submit_existing_contact_details
   check_your_answers
   @journey.registration_cards_page.submit
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
@@ -181,13 +168,10 @@ When(/^I complete my local authority renewal steps$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_existing_contact_details
   check_your_answers
   @journey.registration_cards_page.submit
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
@@ -201,33 +185,11 @@ When(/^I complete my limited liability partnership renewal steps$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_existing_contact_details
   check_your_answers
   @journey.registration_cards_page.submit
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
-end
-
-When(/^I complete my limited liability partnership renewal steps and get stuck$/) do
-  @business_name = "LLP renewal"
-  agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
-  @renewals_app.renewal_information_page.submit
-  submit_business_details(@business_name)
-  submit_company_people
-  submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit
-  @journey.address_lookup_page.submit_valid_address
-  check_your_answers
-  @journey.registration_cards_page.submit
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
 end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
@@ -240,13 +202,10 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_existing_contact_details
   check_your_answers
   @journey.registration_cards_page.submit
-  @renewals_app.payment_summary_page.submit(choice: :bank_transfer_payment)
+  @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
   @renewals_app.bank_transfer_page.submit
 end
 
@@ -260,13 +219,10 @@ When(/^I complete my partnership renewal steps$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit
-  @journey.address_lookup_page.submit_valid_address
+  submit_existing_contact_details
   check_your_answers
   @journey.registration_cards_page.submit
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 
@@ -320,7 +276,7 @@ When(/^I complete my overseas company renewal steps$/) do
   )
   check_your_answers
   @journey.registration_cards_page.submit
-  @renewals_app.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
 

@@ -6,8 +6,14 @@ def start_internal_renewal
   agree_to_renew_in_england
 end
 
-# Reused across several steps
 def agree_to_renew_in_england
   @renewals_app.renewal_start_page.submit
   @journey.location_page.submit(choice: :england)
+end
+
+def submit_existing_contact_details
+  @journey.contact_name_page.submit
+  @journey.contact_phone_page.submit
+  @journey.contact_email_page.submit
+  complete_address_with_random_method
 end

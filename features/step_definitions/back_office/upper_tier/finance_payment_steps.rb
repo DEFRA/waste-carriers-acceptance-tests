@@ -105,7 +105,7 @@ Given(/^the registration has an unsubmitted renewal$/) do
   )
   check_your_answers
   @journey.registration_cards_page.submit
-  @bo.payment_summary_page.submit(choice: :bank_transfer_payment)
+  @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
 end
 
 Then(/^I cannot access payments until the bank transfer option is selected$/) do
@@ -122,7 +122,7 @@ end
 
 When(/^the applicant chooses to pay for the renewal by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
   order_cards_during_journey(copy_card_number)
-  @bo.payment_summary_page.submit(choice: :bank_transfer_payment)
+  @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
   @bo.bank_transfer_page.submit
 end
 
@@ -132,7 +132,7 @@ And(/^the applicant pays by bank card$/) do
     old_order_cards_during_journey(3)
   else
     order_cards_during_journey(1)
-    @bo.payment_summary_page.submit(choice: :card_payment)
+    @journey.payment_summary_page.submit(choice: :card_payment)
   end
   submit_valid_card_payment
 
