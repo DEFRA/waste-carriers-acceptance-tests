@@ -61,6 +61,10 @@ class FrontOfficeApp
     @last_page = ExistingRegistrationPage.new
   end
 
+  def govuk_start_page
+    @last_page = GovukStartPage.new
+  end
+
   def key_people_page
     @last_page = KeyPeoplePage.new
   end

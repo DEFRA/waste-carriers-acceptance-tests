@@ -105,3 +105,43 @@ end
 Then(/^I will be told "([^"]*)"$/) do |message|
   expect(@front_app.existing_registration_page).to have_text(message)
 end
+
+Given("I have reached the GOV.UK start page") do
+  @fo = FrontOfficeApp.new
+  visit("https://www.gov.uk/waste-carrier-or-broker-registration")
+  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier, broker or dealer (England)")
+end
+
+When("I access the links on the page") do
+  # Select Wales
+  find_link("Register or renew as a waste carrier, broker or dealer (Wales)").click
+  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier, broker or dealer (Wales)")
+  find_link("Register or renew as a waste carrier, broker or dealer (England)").click
+
+  # Select Scotland
+  find_link("Register or renew as a waste carrier or broker (Scotland)").click
+  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier or broker (Scotland)")
+  page.evaluate_script("window.history.back()")
+
+  # Select Northern Ireland
+  find_link("Register or renew as a waste carrier or broker (Northern Ireland)").click
+  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier or broker (Northern Ireland)")
+  find_link("England").click
+
+  # Select public register
+  find_link("public register of waste carriers, brokers and dealers").click
+  expect(page).to have_text("Choose a register to search")
+  page.evaluate_script("window.history.back()")
+
+  # Select "renew your registration"
+  find_link("renew your registration").click
+  expect(page).to have_text("Is this a new registration?")
+  page.evaluate_script("window.history.back()")
+
+  # Select "Start now"
+  @fo.govuk_start_page.start_now_button.click
+end
+
+Then("I can start my registration") do
+  expect(@fo.old_start_page.heading).to have_text("Is this a new registration?")
+end

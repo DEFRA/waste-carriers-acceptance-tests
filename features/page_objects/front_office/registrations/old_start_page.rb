@@ -3,6 +3,7 @@ class OldStartPage < SitePrism::Page
   set_url(Quke::Quke.config.custom["urls"]["front_end"])
 
   # Have you already started an application?
+  element(:heading, "#groupLabel")
   element(:new_registration, "input[value='new']", visible: false)
   element(:renew_registration, "input[value='renew']", visible: false)
 
