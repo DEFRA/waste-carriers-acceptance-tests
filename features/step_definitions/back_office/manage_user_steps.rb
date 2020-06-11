@@ -30,6 +30,7 @@ Then(/^the new user has the correct back office permissions$/) do
 end
 
 Then("the new user accepts their invitation and sets up a password") do
+  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
   invitation_email_text = retrieve_email_containing(["Confirm a waste carriers back office account", @new_user_email])
 
   @confirm_waste_carriers_email_link = invitation_email_text.match(/.*href\=\\\"(.*)\\\".*/)[1]
