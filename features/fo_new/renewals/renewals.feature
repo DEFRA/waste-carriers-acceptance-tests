@@ -4,15 +4,6 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   I want to renew my waste carriers licence with the Environment Agency
   So I continue to be compliant with the law
 
-  @email
-  Scenario: Sole trader renews upper tier registration from renewals page
-    Given I create an upper tier registration for my "soleTrader" business as "wcr-user@mailinator.com"
-      And I renew my last registration
-      And I have signed in to renew my registration as "wcr-user@mailinator.com"
-     When I complete my sole trader renewal steps
-     Then I will be notified my renewal is complete
-      And I will receive an email informing me "Your registration as an upper tier waste carrier, broker and dealer has been renewed"
-
   @smoke
   Scenario: Limited liability partnership renews upper tier registration from renewals page
     Given I create an upper tier registration for my "limitedLiabilityPartnership" business as "user@example.com"

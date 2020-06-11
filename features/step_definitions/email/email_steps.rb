@@ -46,14 +46,8 @@ Given(/^I do not confirm my email address$/) do
 end
 
 Then(/^I will receive an email informing me "([^"]*)"$/) do |text|
-  if @email_app.local?
-    @email_app.mailcatcher_main_page.open_email(1)
-    expect(@email_app.mailcatcher_messages_page).to have_text(text)
-  else
-    @email_app.mailinator_page.load
-    @email_app.mailinator_page.submit(inbox: @email_address)
-    expect(@email_app.mailinator_inbox_page).to have_text(text)
-  end
+  visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
+  expect(retrieve_email_containing([text])).to have_text(text)
 end
 
 Then(/^I will receive a renewal application received email$/) do
