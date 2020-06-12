@@ -29,7 +29,7 @@ When("I incorrectly paste its renewal link") do
   visit(renewal_magic_link_for(@reg_number)[0...-1])
 end
 
-Given("I have a registration which expired #{integer} days ago") do |days_ago|
+Given("I have a registration which expired #{Integer} days ago") do |days_ago|
   # Requires seeded data with a custom expiry date
 end
 
