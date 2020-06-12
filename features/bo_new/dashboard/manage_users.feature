@@ -11,7 +11,7 @@ Scenario: Agency super user adds an agency user then upgrades them
   When the new user accepts their invitation and sets up a password
   Then the new user is logged in
   When I sign into the back office as "agency-super"
-    And I update the new user role to an "agency with refund"
+  And I update the new user role to an "agency with refund"
   Then the new user has the correct back office permissions
 
 Scenario: Agency super user adds and removes an agency user

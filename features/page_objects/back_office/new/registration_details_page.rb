@@ -5,6 +5,7 @@ class RegistrationDetailsPage < SitePrism::Page
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
   element(:back_link, ".link-back")
+  element(:flash_message, ".flash-success")
   element(:heading, ".heading-large")
 
   element(:content, ".column-full")
@@ -16,6 +17,7 @@ class RegistrationDetailsPage < SitePrism::Page
 
   element(:actions_box, ".wcr-actions--push-down")
   element(:renew_link, "a[href*='/ad-privacy-policy?reg_identifier=CBD']")
+  element(:resend_renewal_email_link, "a[href*='/resend-renewal-email']")
   element(:transfer_link, "a[href*='/transfer']")
   element(:edit_link, "a[href*='/edit']")
   element(:view_certificate_link, "a[href*='/certificate']")
@@ -25,6 +27,7 @@ class RegistrationDetailsPage < SitePrism::Page
   element(:cancel_link, "a[href*='/cancels']")
 
   element(:revert_to_payment_summary_link, "a[href$='revert-to-payment-summary']")
+
   # Sample text on this page:
   #
   # Conviction check required

@@ -30,12 +30,10 @@ Then(/^the new user has the correct back office permissions$/) do
 end
 
 Then("the new user accepts their invitation and sets up a password") do
-  last_email_page = LastEmailPage.new
-  last_email_page.load
+  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
+  invitation_email_text = retrieve_email_containing(["Confirm a waste carriers back office account", @new_user_email])
 
-  found_email = last_email_page.check_email_for_text(["Confirm a waste carriers back office account", @new_user_email])
-  expect(found_email).to be(true)
-  @confirm_waste_carriers_email_link = last_email_page.text.match(/.*href\=\\\"(.*)\\\".*/)[1]
+  @confirm_waste_carriers_email_link = invitation_email_text.match(/.*href\=\\\"(.*)\\\".*/)[1]
 
   Capybara.reset_session!
   visit(@confirm_waste_carriers_email_link)

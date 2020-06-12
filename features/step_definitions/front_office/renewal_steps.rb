@@ -6,6 +6,26 @@ Given(/^I renew my last registration$/) do
   @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
 end
 
+Given("I receive an email inviting me to renew") do
+  sign_in_to_back_office("agency-user")
+  visit_registration_details_page(@reg_number)
+  @bo.registration_details_page.resend_renewal_email_link.click
+  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to " + @email_address)
+
+  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
+  renewal_email_text = retrieve_email_containing(["Renew waste carrier registration " + @reg_number])
+  @renew_from_email_link = renewal_email_text.match(/.*few minutes at: <a href\=(.*)>http.*/)[1]
+  puts "Link to renew " + @reg_number + " is: " + @renew_from_email_link
+end
+
+When("I renew from the email") do
+  visit(@renew_from_email_link)
+  expect(@renewals_app.renewal_start_page.heading).to have_text("You are about to renew registration " + @reg_number)
+
+  step("I complete my sole trader renewal steps")
+
+end
+
 Then(/^I will be shown the renewal information page$/) do
   expect(@renewals_app.renewal_start_page).to have_text(@reg_number)
   expect(@renewals_app.renewal_start_page.current_url).to include "/renewal-information"
@@ -300,8 +320,6 @@ Then(/^I will be notified my renewal is complete$/) do
   expect(@journey.confirmation_page.heading.text).to eq("Renewal complete")
   expect(@journey.confirmation_page).to have_text(@reg_number)
 
-  @journey.confirmation_page.finished_button.click
-  expect(@renewals_app.waste_carrier_registrations_page.heading).to have_text("Your waste carrier registrations")
   Capybara.reset_session!
 end
 
