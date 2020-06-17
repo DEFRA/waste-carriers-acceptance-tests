@@ -7,124 +7,167 @@ task :run do
   sh %( bundle exec quke )
 end
 
-# rubocop:disable Layout/LineLength
-desc "Run all browserstack tests"
-task browserstack: %i[Edge16_W10 Edge15_W10 Firefox58_W8_1 Galaxy_Note_8 Google_Pixel ie11_W10 Chrome63_OSX Chrome63_W7 Chrome64_OSX ie8_W7 iPhone7 iPhone_X Safari11_OSX]
-# Firefox59_OSX Firefox59_W10
-desc "Run all Safari browser tests"
-task safari_browserstack: %i[iPhone7 iPhone_X Safari9_1_OSX Safari10_1_OSX Safari11_OSX]
-# rubocop:enable Layout/LineLength
-
-desc "Run Chrome 64 OS X test"
-task :Chrome64_OSX  do
-  reset_dbs
-  sh %( QUKE_CONFIG=.config_Chrome64_OSX.yml bundle exec quke --tags @dashboard --tags ~@broken)
+desc "Run all tests on local"
+task :loc do
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke)
 end
 
-desc "Run Chrome 63 OS X test"
-task :Chrome63_OSX  do
+desc "Run all tests on dev"
+task :dev do
+  sh %( QUKE_CONFIG=config/dev.config.yml bundle exec quke)
+end
+
+desc "Run all tests on test"
+task :tst do
+  sh %( QUKE_CONFIG=config/tst.config.yml bundle exec quke)
+end
+
+desc "Run all tests on pre-production"
+task :pre do
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke")
+end
+
+desc "Run all tests on local excluding todo, broken, and email"
+task :all_tests do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_Chrome63_OSX.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/loc.config.yml bundle exec quke --tags ~@todo --tags ~@broken --tags ~@email)
+end
+
+desc "Run all browserstack tests"
+task browserstack: %i[
+  chrome63_osx
+  chrome63_w7
+  chrome64_osx
+  edge15_w10
+  edge16_w10
+  firefox58_osx
+  firefox58_w8_1
+  firefox59_osx
+  firefox59_w10
+  galaxy_note_8
+  google_pixel
+  ie11_w10
+  iphone7
+  iphone_x
+  safari9_1_osx
+  safari10_1_osx
+  safari11_osx
+]
+
+desc "Run all Safari browser tests"
+task safari_browserstack: %i[
+  iphone7
+  iphone_x
+  safari9_1_osx
+  safari10_1_osx
+  safari11_osx
+]
+
+desc "Run Chrome 63 OS X test"
+task :chrome63_osx  do
+  reset_dbs
+  sh %( QUKE_CONFIG=config/browserstack/Chrome63_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Chrome 63 Windows 7 test"
-task :Chrome63_W7 do
+task :chrome63_w7 do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_Chrome63_W7.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Chrome63_W7.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
-desc "Run Edge 16 Windows 10 test"
-task :Edge16_W10  do
+desc "Run Chrome 64 OS X test"
+task :chrome64_osx  do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_Edge16_W10.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Chrome64_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Edge 15 Windows 10 test"
-task :Edge15_W10 do
+task :edge15_w10 do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_Edge15_W10.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Edge15_W10.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
-desc "Run Internet explorer 11.0 Windows 10 test"
-task :ie11_W10 do
+desc "Run Edge 16 Windows 10 test"
+task :edge16_w10  do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_ie11_W10.yml bundle exec quke --tags @dashboard --tags ~@broken)
-end
-
-desc "Run Safari 11 OS X test"
-task :Safari11_OSX  do
-  reset_dbs
-  sh %( QUKE_CONFIG=.config_Safari11_OSX.yml bundle exec quke --tags @dashboard --tags ~@broken)
-end
-
-desc "Run Safari 10.1 OS X test"
-task :Safari10_1_OSX  do
-  reset_dbs
-  sh %( QUKE_CONFIG=.config_Safari10_1_OSX.yml bundle exec quke --tags @dashboard --tags ~@broken)
-end
-
-desc "Run Safari 9.1 OS X test"
-task :Safari9_1_OSX  do
-  reset_dbs
-  sh %( QUKE_CONFIG=.config_Safari9_1_OSX.yml bundle exec quke --tags @dashboard --tags ~@broken)
-end
-
-desc "Run Firefox 59 OS X test"
-task :Firefox59_OSX  do
-  reset_dbs
-  sh %( QUKE_CONFIG=.config_Firefox59_OSX.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Edge16_W10.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Firefox 58 OS X test"
-task :Firefox58_OSX  do
+task :firefox58_osx  do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_Firefox58_OSX.yml bundle exec quke --tags @dashboard --tags ~@broken)
-end
-
-desc "Run Firefox 59 W10 test"
-task :Firefox59_W10  do
-  reset_dbs
-  sh %( QUKE_CONFIG=.config_Firefox59_W10.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Firefox58_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Firefox 58 W8.1"
-task :Firefox58_W8_1 do
+task :firefox58_w8_1 do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_Firefox58_W8_1.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Firefox58_W8_1.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
-desc "Run iPhone X test"
-task :iPhone_X do
+desc "Run Firefox 59 OS X test"
+task :firefox59_osx  do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_iPhone_X.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Firefox59_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
-desc "Run iPhone 7 test"
-task :iPhone7 do
+desc "Run Firefox 59 W10 test"
+task :firefox59_w10  do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_iPhone7.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Firefox59_W10.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Samsung Galaxy Note 8 test"
-task :Galaxy_Note_8 do
+task :galaxy_note_8 do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_Galaxy_Note_8.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Galaxy_Note_8.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Google Pixel test"
-task :Google_Pixel do
+task :google_pixel do
   reset_dbs
-  sh %( QUKE_CONFIG=.config_Google_Pixel.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/Google_Pixel.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
-task :all_tests do
+desc "Run Internet explorer 11.0 Windows 10 test"
+task :ie11_w10 do
   reset_dbs
-  sh %( QUKE_CONFIG=.config.yml bundle exec quke --tags --tags ~@todo --tags ~@broken --tags ~@email)
+  sh %( QUKE_CONFIG=config/browserstack/ie11_W10.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
+end
+
+desc "Run iPhone 7 test"
+task :iphone7 do
+  reset_dbs
+  sh %( QUKE_CONFIG=config/browserstack/iPhone7.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
+end
+
+desc "Run iPhone X test"
+task :iphone_x do
+  reset_dbs
+  sh %( QUKE_CONFIG=config/browserstack/iPhone_X.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
+end
+
+desc "Run Safari 9.1 OS X test"
+task :safari9_1_osx  do
+  reset_dbs
+  sh %( QUKE_CONFIG=config/browserstack/Safari9_1_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
+end
+
+desc "Run Safari 10.1 OS X test"
+task :safari10_1_osx  do
+  reset_dbs
+  sh %( QUKE_CONFIG=config/browserstack/Safari10_1_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
+end
+
+desc "Run Safari 11 OS X test"
+task :safari11_osx  do
+  reset_dbs
+  sh %( QUKE_CONFIG=config/browserstack/Safari11_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Runs the tests used by continuous integration to check the project"
 task :ci do
-  sh %( QUKE_CONFIG=.config-ci.yml bundle exec quke --tags @ci )
+  sh %( QUKE_CONFIG=config/ci.config.yml bundle exec quke --tags @ci )
 end
 
 desc "reset the frontend and renewals database in the vagrant environment"
@@ -133,7 +176,6 @@ task :reset_dbs do
 end
 
 # rubocop:disable Layout/LineLength
-
 def reset_dbs
   vagrant_loc = ENV["VAGRANT_KEY_LOCATION"]
   raise ArgumentError, "Environment variable VAGRANT_KEY_LOCATION not set" if vagrant_loc.nil? || vagrant_loc.empty?
