@@ -1,9 +1,3 @@
-# The standard place to add your features and step_definitions is in a folder
-# named 'features' at the root of the project. However if you'd like to name
-# this folder something else, you can tell Quke what the new name is here.
-# The default is features
-# features_folder: 'cukes'
-
 # Normally Capybara expects to be testing an in-process Rack application, but
 # we're using it to talk to a remote host. Users of Quke can set what this
 # will be by simply setting `app_host`. You can then use it directly using
@@ -11,8 +5,8 @@
 # the full url each time
 app_host: 'http://localhost:3000'
 
-# Tells Quke which browser to use for testing. Choices are firefox, chrome
-# browserstack and phantomjs, with the default being phantomjs
+# Tells Quke which browser to use for testing. Choices are firefox, chrome, and
+# browserstack, with the default being chrome
 driver: browserstack
 
 # Add a pause (in seconds) between steps so you can visually track how the
@@ -22,31 +16,15 @@ pause: 0
 
 # Specify whether Quke should stop all tests once an error occurs. Useful in
 # Continuous Integration (CI) environments where a quick Yes/No is preferable to
-# a detailed response.
-stop_on_error: 1
+# a detailed response. By default Quke sets this to false if not set in the
+# config.
+stop_on_error: true
 
 # Capybara will attempt to find an element for a period of time, rather than
 # immediately failing because the element cannot be found. This defaults to 2
 # seconds. However if the site you are working with is slow or features
 # elements that take some time to load you can increase this default.
 max_wait_time: 5
-
-# Tell the driver Quke is using to send a different user-agent value to the site
-# under test. Useful if you want the underlying driver to spoof what kind of
-# browser the request is coming from. For example you may want to pretend to be
-# a mobile browser so you can check what you get back versus the desktop
-# version. Or you want to pretend to be another kind of browser, because the one
-# you have is not supported by the site.
-# user_agent: "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)"
-
-# Currently only supported when using the phantomjs driver (ignored by the
-# others). In phantomjs if a site has a javascript error we can configure it
-# to throw an error which will cause the test to fail. Quke by default sets this
-# to true, however you can override it by setting this flag to false.
-# For example you may be dealing with a legacy site and JavaScript errors
-# are out of your scope. You still want to test other aspects of the site
-# but not let these errors prevent you from using phantomjs.
-javascript_errors: false
 
 # Anything you place under the 'custom' node in the `.config.yml` file will be
 # available within your steps and page objects by calling
@@ -73,21 +51,12 @@ custom:
     waste_carrier:
       username: user@example.com
   urls:
-    # Local
     front_end: "http://localhost:3000/registrations/start"
     front_end_sign_in: "http:/localhost:3000/users/sign_in"
     front_office: "http://localhost:3002"
     front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
     back_end: "http:/localhost:3000/agency_users/sign_in"
     back_end_admin: "http:/localhost:3000/admins/sign_in"
-    # Sandbox
-    # front_end: "https://www.sandbox.wastecarriersregistration.service.gov.uk/registrations/start"
-    # front_end_sign_in: "https://www.sandbox.wastecarriersregistration.service.gov.uk/users/sign_in"
-    # back_end: "https://www.sandbox.wastecarriersregistration.service.gov.uk/agency_users/sign_in"
-    # back_end_admin: "https://www.sandbox.wastecarriersregistration.service.gov.uk/admins/sign_in"
-    # front_office: "http://localhost:3002"
-    # front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
-    
 
 # If you are running Quke behind a proxy you can configure the proxy details
 # here. You'll need either the hostname or IP of the proxy server (don't include
@@ -116,8 +85,8 @@ browserstack:
   # If you don't want to put these credentials in the config file (because you
   # want to commit it to source control), Quke will also check for the existance
   # of the environment variables BROWSERSTACK_USERNAME and BROWSERSTACK_AUTH_KEY
-  # username: 
-  # auth_key: 
+  # username:
+  # auth_key:
 
   # If you want to use local testing you must provide a key. You can find this
   # in Browserstack once logged in under settings. Its typically the same value
@@ -125,7 +94,7 @@ browserstack:
   # If you don't want to put this credential in the config file (because you
   # want to commit it to source control), Quke will also check for the existance
   # of the environment variable BROWSERSTACK_LOCAL_KEY
-  # local_key: 
+  # local_key:
 
   # Anything set under capabilities will be passed directly by Quke to
   # browserstack as means of configuring the test.
