@@ -40,3 +40,8 @@ output.html
 
 # Dotenv config files
 .env
+
+browserstack_local_log.txt
+
+# Ignore your project specific .config.yml config file
+.config.yml
