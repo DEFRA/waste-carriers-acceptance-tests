@@ -11,7 +11,7 @@ The API endpoint will cover:
 The API will respond with a JSON format which contains the `reg_identifier` of the seeded entity so that it can be used in the test suite to perform operations on the seeded registration.
 
 ## Usage
-An helper class called `SeedData` is part of the suite. It can be used in any step or helper method definition.
+A helper class called `SeedData` is part of the suite. It can be used in any step or helper method definition.
 
 ```ruby
 seed_data = SeedData.new("limitedCompany_complete_active_registration.json")

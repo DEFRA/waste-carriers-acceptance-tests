@@ -6,15 +6,15 @@ Given(/^I renew my last registration$/) do
   @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
 end
 
-Given("I receive an email inviting me to renew") do
-  sign_in_to_back_office("agency-user")
-  visit_registration_details_page(@reg_number)
-  @bo.registration_details_page.resend_renewal_email_link.click
+Given("I receive an email from NCCC inviting me to renew") do
+  send_renewal_email(@reg_number)
   expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to " + @email_address)
 
   visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
   renewal_email_text = retrieve_email_containing(["Renew waste carrier registration " + @reg_number])
+  # rubocop:disable Style/RedundantRegexpEscape
   @renew_from_email_link = renewal_email_text.match(/.*few minutes at: <a href\=(.*)>http.*/)[1]
+  # rubocop:enable Style/RedundantRegexpEscape
   puts "Link to renew " + @reg_number + " is: " + @renew_from_email_link
 end
 
@@ -24,6 +24,34 @@ When("I renew from the email") do
 
   step("I complete my sole trader renewal steps")
 
+end
+
+When("I incorrectly paste its renewal link") do
+  # Omit the final character from the renewal link
+  visit(renewal_magic_link_for(@reg_number)[0...-1])
+end
+
+Given("I have a registration which expired #{Integer} days ago") do |days_ago|
+  # Requires seeded data with a custom expiry date
+end
+
+When("I call NCCC to renew it") do
+  # Don't need any code here
+end
+
+Then("NCCC are unable to generate a renewal email") do
+  # visit registration details for reg
+  # check there's no resend renewal email link
+end
+
+Then("I cannot renew again with the same link") do
+  visit(@renew_from_email_link)
+  expect(@renewals_app.renewal_start_page.heading).to have_text("That registration has already been renewed")
+  expect(@renewals_app.renewal_start_page.content).to have_text("Our records show that registration " + @reg_number + " has already been renewed.")
+end
+
+Then("I am told the renewal cannot be found") do
+  expect(@renewals_app.renewal_start_page.heading).to have_text("We cannot find that renewal")
 end
 
 Then(/^I will be shown the renewal information page$/) do

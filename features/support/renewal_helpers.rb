@@ -1,5 +1,11 @@
 # Steps specific to renewals
 
+def send_renewal_email(reg_identifier)
+  sign_in_to_back_office("agency-user", false)
+  visit_registration_details_page(reg_identifier)
+  @bo.registration_details_page.resend_renewal_email_link.click
+end
+
 def start_internal_renewal
   @bo.ad_privacy_policy_page.submit
   expect(@renewals_app.renewal_start_page.heading).to have_text("You are about to renew")

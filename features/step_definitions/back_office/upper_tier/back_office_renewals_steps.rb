@@ -59,7 +59,7 @@ Then(/^the renewal is complete$/) do
   puts "Renewal " + @reg_number + " complete"
 
   @journey.confirmation_page.finished_button.click
-  expect(@bo.registration_details_page.heading).to have_text("Registration " + @reg_number)
+  expect(@bo.registration_details_page.heading).to have_text("Waste carriers registrations")
 end
 
 Given(/^I choose to renew "([^"]*)"$/) do |reg|

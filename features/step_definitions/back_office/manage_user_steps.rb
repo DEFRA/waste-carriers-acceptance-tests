@@ -33,7 +33,9 @@ Then("the new user accepts their invitation and sets up a password") do
   visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
   invitation_email_text = retrieve_email_containing(["Confirm a waste carriers back office account", @new_user_email])
 
+  # rubocop:disable Style/RedundantRegexpEscape
   @confirm_waste_carriers_email_link = invitation_email_text.match(/.*href\=\\\"(.*)\\\".*/)[1]
+  # rubocop:enable Style/RedundantRegexpEscape
 
   Capybara.reset_session!
   visit(@confirm_waste_carriers_email_link)
