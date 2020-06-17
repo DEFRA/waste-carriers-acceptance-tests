@@ -12,7 +12,9 @@ Given("I receive an email from NCCC inviting me to renew") do
 
   visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
   renewal_email_text = retrieve_email_containing(["Renew waste carrier registration " + @reg_number])
+  # rubocop:disable Style/RedundantRegexpEscape
   @renew_from_email_link = renewal_email_text.match(/.*few minutes at: <a href\=(.*)>http.*/)[1]
+  # rubocop:enable Style/RedundantRegexpEscape
   puts "Link to renew " + @reg_number + " is: " + @renew_from_email_link
 end
 
