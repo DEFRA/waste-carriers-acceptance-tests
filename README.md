@@ -1,7 +1,7 @@
 # Waste carriers acceptance tests
 
-[![Build Status](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests.svg?branch=master)](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests)
-[![security](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master.svg)](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/master)
+[![Build Status](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests.svg?branch=main)](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests)
+[![security](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/main.svg)](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/main)
 
 If your business carries waste then it could require a waste carriers licence.
 
@@ -32,38 +32,37 @@ bundle install
 
 ## Configuration
 
-You can figure how the project runs using [Quke config files](https://github.com/DEFRA/quke#configuration). Before executing this project for the first time you'll need to create an initial `.config.yml` file.
+You can figure how the project runs using [Quke config files](https://github.com/DEFRA/quke#configuration).
+
+Quke relies on yaml files to configure how the tests are run, the default being `.config.yml`.
+
+You'll need to set the environment variable `WCRS_DEFAULT_PASSWORD` to the appropriate password to enable authentication into the apps.
+
+If left as that by default when Quke is executed it will run against your selected environment using Chrome.
+
+## Execution
+
+Simply call
 
 ```bash
-touch .config.yml
+bundle exec quke
 ```
 
-Into that file you'll need to add as a minimum this
+You can create [multiple config files](https://github.com/DEFRA/quke#multiple-configs), for example you may wish to have one setup for running against **Chrome**, and another to run against a different environment. You can tell **Quke** which config file to use by adding an environment variable argument to the command.
 
-```yaml
-# Capybara will attempt to find an element for a period of time, rather than
-# immediately failing because the element cannot be found.
-max_wait_time: 2
-
-custom:
-  accounts:
-    agency-user:
-      username: agency-user@example.gov.uk
-    finance-admin-user:
-      username: finance-admin-user@example.gov.uk
-    finance-user:
-      username: finance-user@example.gov.uk
-    agency-refund-payment-user:
-      username: agency-refund-payment-user@example.gov.uk
-  urls:
-    front_office: "http://domainundertest.gov.uk/registrations/start"
-    front_office_sign_in: "http://domainundertest.gov.uk/users/sign_in?locale=en"
-    back_office: "http://domainundertest.gov.uk/agency_users/sign_in"
-    back_office_sign_in: "http://domainundertest.gov.uk/admins/sign_in"
-
+```bash
+QUKE_CONFIG='chrome.config.yml' bundle exec quke
 ```
 
-If left as that by default when **Quke** is executed it will run against your selected environment using the headless browser **PhantomJS**. You can however override this and other values using the standard [Quke configuration options](https://github.com/DEFRA/quke#configuration).
+### Rake tasks
+
+Within this project a series of [Rake](https://github.com/ruby/rake) tasks have been added. Each rake task is configured to run one of the configuration files already setup. To see the list of available commands run
+
+```bash
+bundle exec rake -T
+```
+
+You can then run your chosen configuration e.g. `bundle exec rake chrome64_osx`
 
 ### WCRS_DEFAULT_PASSWORD
 
@@ -84,34 +83,6 @@ pwd
 
 The final command should output a value like `/Users/myusername/wcr-vagrant/.vagrant/machines/default/virtualbox`. Add it to your `~/.bash_profile` (open the file and add the line `export VAGRANT_KEY_LOCATION="/Users/myusername/wcr-vagrant/.vagrant/machines/default/virtualbox"`). You'll only have to do this once and then it'll be available always.
 
-## Execution
-
-To run all tests call
-
-```bash
-bundle exec quke
-```
-As the test suite is quite large, tests are split into four main categories:
-
-* @fo_new - front office (external) dashboard and renewals
-* @bo_new - back office (internal) dashboard, finance, edits, renewals and more
-* @fo_old - front office registrations
-* @bo_old - back office dashboard and registrations
-
-We are gradually moving functionality from "old" code to "new" code. For example, to test new front office functionality, call:
-
-```bash
-bundle exec quke --tags @fo_new
-```
-
-To switch environments, update or comment out the relevant set of URLs from the current config file.
-
-You can also create [multiple config files](https://github.com/DEFRA/quke#multiple-configs), for example you may wish to have one setup for running against **Chrome**, and another to run against a different environment. You can tell **Quke** which config file to use by adding an environment variable argument to the command.
-
-```bash
-QUKE_CONFIG='chrome.config.yml' bundle exec quke
-```
-
 ## Use of tags
 
 [Cucumber](https://cucumber.io/) has an inbuilt feature called [tags](https://github.com/cucumber/cucumber/wiki/Tags).
@@ -129,6 +100,17 @@ Scenario: Registration by an individual
 ```
 
 When applied you then have the ability to filter which tests will be used during any given run
+
+As the test suite is quite large, tests are split into four main categories:
+
+- `@fo_new` front office (external) dashboard and renewals
+- `@bo_new` back office (internal) dashboard, finance, edits, renewals and more
+- `@fo_old` front office registrations
+- `@bo_old` back office dashboard and registrations
+
+We are gradually moving functionality from "old" code to "new" code.
+
+Using amix of tags you can both include and exclude tests to run
 
 ```bash
 bundle exec quke --tags @fo_old # Run only things tagged with this
@@ -161,11 +143,11 @@ It's also common practice to use a custom tag whilst working on a new feature or
 
 This repository is being updated on the following principles:
 
-* Keep feature files small - the steps should make it clear what the feature is actually testing. However, in some cases, smaller steps make sense to allow re-use.
-* Put the detailed functionality in a step, making use of helper functions to avoid duplication.
-* Put shared page objects in the @journey app, where there is duplication between old/new apps, and front/back office.
-* Use unique names for step and page files.
-* Reduce the number of files and apps where possible, unless it makes the tests hard to understand.
+- Keep feature files small. The steps should make it clear what the feature is actually testing. However, in some cases, smaller steps make sense to allow re-use.
+- Put the detailed functionality in a step, making use of helper functions to avoid duplication.
+- Put shared page objects in the @journey app, where there is duplication between old/new apps, and front/back office.
+- Use unique names for step and page files.
+- Reduce the number of files and apps where possible, unless it makes the tests hard to understand.
 
 ## Tips
 
@@ -175,7 +157,7 @@ A tool we have found useful is a Chrome addin called [SelectorGadget](http://sel
 
 You can also test them using the Chrome developer tools. Open them up, select the elements tab and then `ctrl/cmd+f`. You should get an input field into which you can enter your selector and confirm/test its working. See <https://developers.google.com/web/updates/2015/05/search-dom-tree-by-css-selector>
 
-Capybara has a known issue with links that don't have a valid href, as seen in MS dynamics. Work around is to find the element by ID and then call `click()` on it e.g. `page.find("#example-thing-id").click`. Issue details can be found here: https://github.com/teamcapybara/capybara/issues/379
+Capybara has a known issue with links that don't have a valid href, as seen in MS dynamics. Work around is to find the element by ID and then call `click()` on it e.g. `page.find("#example-thing-id").click`. Issue details can be found here: <https://github.com/teamcapybara/capybara/issues/379>
 
 ## Contributing to this project
 
@@ -187,7 +169,7 @@ All contributions should be submitted via a pull request.
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:
 
-http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3
+<http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3>
 
 The following attribution statement MUST be cited in your products and applications when using this information.
 

@@ -17,7 +17,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
     When I incorrectly paste its renewal link
     Then I am told the renewal cannot be found
 
-# @wip
+# BLOCKED DUE TO https://github.com/DEFRA/waste-carriers-acceptance-tests/issues/317
 #   Scenario: Cannot renew registration outside grace window
 #     Given I have a registration which expired 90 days ago
 #     When I call NCCC to renew it
