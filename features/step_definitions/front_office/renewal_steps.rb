@@ -400,22 +400,6 @@ When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |re
   visit(renewal_url)
 end
 
-When(/^view my registration on the dashboard$/) do
-  @journey.confirmation_page.finished_button.click
-end
-
-Then(/^I will see my last registration has been renewed$/) do
-  @renewals_app.waste_carrier_registrations_page.find_registration(@reg_number)
-
-  status = @renewals_app.waste_carrier_registrations_page.check_status(@reg_number)
-  expect(status).to have_text("Active")
-
-  # This variable gets all page text, including visually-hidden text, which isn't captured by default.
-  # See https://blog.tomoyukikashiro.me/post/feature-test-tips-using-capybara/#can-not-find-text
-  all_page_text = @renewals_app.waste_carrier_registrations_page.content.text(:all)
-  expect(all_page_text).not_to include "Renew registration for Ltd Company renewal"
-end
-
 Then(/^I will be prompted to sign in to complete the renewal$/) do
   @renewals_app.waste_carriers_renewals_sign_in_page.wait_until_email_address_visible
   expect(@renewals_app.waste_carriers_renewals_sign_in_page.current_url).to include "/users/sign_in"
