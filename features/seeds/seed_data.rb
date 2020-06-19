@@ -41,7 +41,7 @@ class SeedData
     request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
     request.body = data
 
-    Net::HTTP.start(uri.hostname, uri.port) do |http|
+    Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
       http.request(request)
     end
   end
