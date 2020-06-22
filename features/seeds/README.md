@@ -6,7 +6,7 @@ The API endpoint accepts a JSON request format that contains a document object t
 
 The API endpoint will cover:
 - Generating and assigning a new `reg_identifier` number. The number will start with `CBDU` if the value of the `tier` is `upper`, or `CBDL` otherwise.
-- Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow, equal to the value of the `WCRS_REGISTRATION_EXPIRES_AFTER`.
+- Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow, equal to the value of the `WCRS_REGISTRATION_EXPIRES_AFTER`. This unless [custom_expire](custom_expire) is set.
 
 The API will respond with a JSON format which contains the `reg_identifier` of the seeded entity so that it can be used in the test suite to perform operations on the seeded registration.
 
@@ -78,6 +78,21 @@ This will work for any attribute at the top level of the json document *as long 
 This currently might give unwanted results if used with keys that have nested informations. For example, if you want to change
 something in the "metaData" of a document, which has a nested piece of json, you can't use this option. Tweaks are possible
 to make it work depending on what the necessities are. Just contact a developer :)
+
+### Custom Expiring date
+
+Registrations are authomatically set an `expires_on` by the application that receive the request.
+This date is set to simulate a registration created when the request has been made and is based on specifing settings that are per-environment.
+
+In order to override this setting, and hence set a custom expire date, you will need to send a document setting custom_expire to some value.
+
+An example of that, by using options, would be:
+
+```ruby
+seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "custom_expire" => 1, "expires_on" => "2021-05-14T10:38:22.692Z")
+```
+
+Alternatively, a json document can be used which has a `expires_on` and `custom_expire` already set.
 
 ### Copy cards
 
