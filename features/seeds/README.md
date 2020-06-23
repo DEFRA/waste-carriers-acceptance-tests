@@ -6,7 +6,7 @@ The API endpoint accepts a JSON request format that contains a document object t
 
 The API endpoint will cover:
 - Generating and assigning a new `reg_identifier` number. The number will start with `CBDU` if the value of the `tier` is `upper`, or `CBDL` otherwise.
-- Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow, equal to the value of the `WCRS_REGISTRATION_EXPIRES_AFTER`. This unless [custom_expire](custom_expire) is set.
+- Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow, equal to the value of the `WCRS_REGISTRATION_EXPIRES_AFTER`. This is unless [custom_expire](custom_expire) is set.
 
 The API will respond with a JSON format which contains the `reg_identifier` of the seeded entity so that it can be used in the test suite to perform operations on the seeded registration.
 
@@ -81,7 +81,7 @@ to make it work depending on what the necessities are. Just contact a developer 
 
 ### Custom Expiring date
 
-Registrations are authomatically set an `expires_on` by the application that receive the request.
+Registrations are automatically set an `expires_on` value by the application that receives the request.
 This date is set to simulate a registration created when the request has been made and is based on specifing settings that are per-environment.
 
 In order to override this setting, and hence set a custom expire date, you will need to send a document setting custom_expire to some value.
