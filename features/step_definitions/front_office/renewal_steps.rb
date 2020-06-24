@@ -35,9 +35,8 @@ Given("I have a registration which expired {int} days ago") do |days_ago|
   load_all_apps
   @tier = "upper"
   new_expiry_date = (DateTime.now - days_ago).to_s
-  puts "New expiry date = " + new_expiry_date
 
-  seed_data = SeedData.new("limitedCompany_expired_registration.json", "custom_expire" => 1, "expires_on" => new_expiry_date)
+  seed_data = SeedData.new("limitedCompany_expired_registration.json", "expires_on" => new_expiry_date)
 
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
