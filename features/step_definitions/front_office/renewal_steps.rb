@@ -41,6 +41,8 @@ Given("I have a registration which expired {int} days ago") do |days_ago|
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
 
+  @email_address = @seeded_data["contactEmail"]
+
   puts "limitedCompany upper tier expired registration " + @reg_number + " seeded"
 end
 
