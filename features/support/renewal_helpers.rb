@@ -3,6 +3,7 @@
 def send_renewal_email(reg_identifier)
   sign_in_to_back_office("agency-user", false)
   visit_registration_details_page(reg_identifier)
+  sleep 5
   @bo.registration_details_page.resend_renewal_email_link.click
 end
 
