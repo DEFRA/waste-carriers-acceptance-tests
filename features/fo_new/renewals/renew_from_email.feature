@@ -17,7 +17,6 @@ Feature: Registered waste carrier chooses to renew their registration by email
     When I incorrectly paste its renewal link
     Then I am told the renewal cannot be found
 
-@wip
   Scenario: Renew expired registration just inside grace window
     Given I have a registration which expired 89 days ago
     And I receive an email from NCCC inviting me to renew
