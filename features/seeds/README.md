@@ -79,20 +79,26 @@ This currently might give unwanted results if used with keys that have nested in
 something in the "metaData" of a document, which has a nested piece of json, you can't use this option. Tweaks are possible
 to make it work depending on what the necessities are. Just contact a developer :)
 
-### Custom Expiring date
+### Custom expires_on date
 
-Registrations are automatically set an `expires_on` value by the application that receives the request.
-This date is set to simulate a registration created when the request has been made and is based on specifing settings that are per-environment.
+Registrations are automatically set an `expires_on` date by the back-office seed API if one is not already set in the data it receives.
 
-In order to override this setting, and hence set a custom expire date, you will need to send a document setting custom_expire to some value.
+This is based on the current date plus the config used in its environment. With a standard config this would be the current date plus 3 years.
 
-An example of that, by using options, would be:
+To set the `expire_on` date ensure your `features/seeds/fixtures/my_seed.json` file contains an `expires_on` entry. For example
 
-```ruby
-seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "custom_expire" => 1, "expires_on" => "2021-05-14T10:38:22.692Z")
+```json
+    "declaration" : "1",
+    "expires_on" : "2020-05-14T10:38:17.311Z",
 ```
 
-Alternatively, a json document can be used which has a `expires_on` and `custom_expire` already set.
+That's it! If you wish to use a dynamic date for your `expires_on` (which is advised to avoid 'brittle tests') you can make use of the [Setting any top level attribute](#setting-any-top-level-attribute) to override the one set in the fixture.
+
+```ruby
+  days_ago = 30
+  expiry_date = (DateTime.now - days_ago)
+  seed_data = SeedData.new("limitedCompany_expired_registration.json", "expires_on" => expiry_date.to_s)
+```
 
 ### Copy cards
 

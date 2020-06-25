@@ -31,8 +31,19 @@ When("I incorrectly paste its renewal link") do
   visit(renewal_magic_link_for(@reg_number)[0...-1])
 end
 
-Given("I have a registration which expired #{Integer} days ago") do |days_ago|
-  # Requires seeded data with a custom expiry date
+Given("I have a registration which expired {int} days ago") do |days_ago|
+  load_all_apps
+  @tier = "upper"
+  new_expiry_date = (DateTime.now - days_ago).to_s
+
+  seed_data = SeedData.new("limitedCompany_expired_registration.json", "expires_on" => new_expiry_date)
+
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
+
+  @email_address = @seeded_data["contactEmail"]
+
+  puts "limitedCompany upper tier expired registration " + @reg_number + " seeded"
 end
 
 When("I call NCCC to renew it") do
