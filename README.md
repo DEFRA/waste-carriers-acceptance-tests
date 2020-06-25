@@ -3,15 +3,13 @@
 [![Build Status](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests.svg?branch=main)](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests)
 [![security](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/main.svg)](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/main)
 
-If your business carries waste then it could require a waste carriers licence.
+If your business carries waste in England then you need to register the activity with the Environment Agency.
 
-This project contains the acceptance tests for the Waste carriers digital service. It is built around [Quke](https://github.com/DEFRA/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
+This project contains the acceptance tests for the Waste Carriers digital service. It is built around [Quke](https://github.com/DEFRA/quke), a Ruby gem that simplifies the process of writing and running Cucumber acceptance tests.
 
 ## Pre-requisites
 
-This project is setup to run against version 2.4.2 of Ruby.
-
-The rest of the pre-requisites are the same as those for [Quke](https://github.com/DEFRA/quke#pre-requisites).
+This project is setup to run against version 2.7.1 of Ruby. The rest of the pre-requisites are the same as those for [Quke](https://github.com/DEFRA/quke#pre-requisites).
 
 Also some of the [rake](https://github.com/ruby/rake) tasks (to see the available list call `bundle exec rake -T`) and `config.yml` files assume you have the Waste Carriers [Vagrant](https://www.vagrantup.com/) environment running locally. Contact [Alan Cruikshanks](https://github.com/Cruikshanks) for details if unsure.
 
@@ -32,9 +30,9 @@ bundle install
 
 ## Configuration
 
-You can figure how the project runs using [Quke config files](https://github.com/DEFRA/quke#configuration).
+You can configure how the project runs using [Quke config files](https://github.com/DEFRA/quke#configuration).
 
-Quke relies on yaml files to configure how the tests are run, the default being `.config.yml`.
+Quke relies on .yaml files to configure how the tests are run in each environment.
 
 You'll need to set the environment variable `WCRS_DEFAULT_PASSWORD` to the appropriate password to enable authentication into the apps.
 
@@ -42,17 +40,27 @@ If left as that by default when Quke is executed it will run against your select
 
 ## Execution
 
-Simply call
+To make it easy to switch between test environments, this repository has a config file for each environment in the `config` folder. You need to specify which config file to use when running a test.
+
+To run a test in the `tst` environment, include an environment variable when calling Quke:
 
 ```bash
-bundle exec quke
+QUKE_CONFIG='config/tst.config.yml' bundle exec quke
 ```
 
-You can create [multiple config files](https://github.com/DEFRA/quke#multiple-configs), for example you may wish to have one setup for running against **Chrome**, and another to run against a different environment. You can tell **Quke** which config file to use by adding an environment variable argument to the command.
+To avoid having to type this out you can create an alias. For example, if you use `zsh` in Terminal on Mac, you can set this in your `.zshrc` file (a hidden file in your home directory) and restart Terminal for it to take effect:
 
 ```bash
-QUKE_CONFIG='chrome.config.yml' bundle exec quke
+alias tst="QUKE_CONFIG='config/tst.config.yml' bundle exec quke"
+
+# then run full test suite with
+
+tst
 ```
+
+[More information on creating aliases](https://blog.lftechnology.com/command-line-productivity-with-zsh-aliases-28b7cebfdff9)
+
+You can create [more config files](https://github.com/DEFRA/quke#multiple-configs), if needed, for example you may wish to have one setup for running against **Chrome**, and another to run against a different environment.
 
 ### Rake tasks
 
@@ -66,9 +74,9 @@ You can then run your chosen configuration e.g. `bundle exec rake chrome64_osx`
 
 ### WCRS_DEFAULT_PASSWORD
 
-You will also need to set the environment variable `WCRS_DEFAULT_PASSWORD` before running any tests. Its best practise not to include credentials within source code, so we have not included them in the `.config.yml` files attached to this project. However a number of the scenarios depend on being logged in, and therefore need to be able to access the password. Setting this environment variable is how they access it.
+You will also need to set the environment variable `WCRS_DEFAULT_PASSWORD` before running any tests. It is best practice not to include credentials within source code, so we have not included them in the `.config.yml` files attached to this project. However a number of the scenarios depend on being logged in, and therefore need to be able to access the password. Setting this environment variable is how they access it.
 
-Add it to your `~/.bash_profile` (open the file and add the line `export WCRS_DEFAULT_PASSWORD="mySuperStr0ngPassword"`). You'll only have to do this once and then it'll be available always.
+Add it to your `.zshrc` (open the file and add the line `export WCRS_DEFAULT_PASSWORD="mySuperStr0ngPassword"`). Then restart Terminal. You'll only have to do this once and then it'll be available always.
 
 ### VAGRANT_KEY_LOCATION
 
@@ -81,7 +89,7 @@ cd .vagrant/machines/default/virtualbox/
 pwd
 ```
 
-The final command should output a value like `/Users/myusername/wcr-vagrant/.vagrant/machines/default/virtualbox`. Add it to your `~/.bash_profile` (open the file and add the line `export VAGRANT_KEY_LOCATION="/Users/myusername/wcr-vagrant/.vagrant/machines/default/virtualbox"`). You'll only have to do this once and then it'll be available always.
+The final command should output a value like `/Users/myusername/wcr-vagrant/.vagrant/machines/default/virtualbox`. Add it to your `.zshrc` (open the file and add the line `export VAGRANT_KEY_LOCATION="/Users/myusername/wcr-vagrant/.vagrant/machines/default/virtualbox"`). You'll only have to do this once and then it'll be available always.
 
 ## Use of tags
 
@@ -103,19 +111,19 @@ When applied you then have the ability to filter which tests will be used during
 
 As the test suite is quite large, tests are split into four main categories:
 
-- `@fo_new` front office (external) dashboard and renewals
+- `@fo_new` front office (external) dashboard, registrations and renewals
 - `@bo_new` back office (internal) dashboard, finance, edits, renewals and more
 - `@fo_old` front office registrations
 - `@bo_old` back office dashboard and registrations
 
-We are gradually moving functionality from "old" code to "new" code.
+We are gradually moving functionality from "old" code to "new" code and the old functionality is gradually being deprecated.
 
-Using amix of tags you can both include and exclude tests to run
+Using a mix of tags you can both include and exclude tests to run:
 
 ```bash
-bundle exec quke --tags @fo_old # Run only things tagged with this
-bundle exec quke --tags @fo_old,@smoke # Run all things with these tags
-bundle exec quke --tags ~@fo_old # Don't run anything with this tag (run everything else)
+tst --tags @fo_old # Run only things tagged with this
+tst --tags @fo_old,@smoke # Run all things with these tags
+tst --tags ~@fo_old # Don't run anything with this tag (run everything else)
 ```
 
 ### In this project
@@ -131,7 +139,6 @@ To have consistency across the project the following tags are defined and should
 |@email|Indicates when an email is sent out during the scenario. Useful for testing emails or for omitting email tests when testing within corporate network|
 |@broken|A scenario which is known to be broken due to the service not meeting expected behaviour|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
-|@convictions| Tests the convictions service|
 |@smoke| Tests where test data is created during the test, so no reliance on any data to run the tests. Useful for testing in hosted environments where we don't have a full set of seeded data|
 |@minismoke| A light smoke test to quickly verify that all apps are working|
 |Back office tags| @bo_renew, @bo_dashboard, @bo_finance, @bo_reg |
@@ -139,14 +146,16 @@ To have consistency across the project the following tags are defined and should
 
 It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
 
+## Seeding data
+
+Most Waste Carriers tests rely on data being created just before execution to provide the starting conditions ("Given") needed for a particular scenario. [More information on seeding](/features/seeds/README.md)
+
 ## Principles
 
-This repository is being updated on the following principles:
-
-- Keep feature files small. The steps should make it clear what the feature is actually testing. However, in some cases, smaller steps make sense to allow re-use.
+- Keep feature files small, keeping it as close to "Given, When, Then" as reasonably possible. The steps should make it clear what the feature is actually testing. However, in some cases, smaller, repeatable steps make sense to allow re-use.
 - Put the detailed functionality in a step, making use of helper functions to avoid duplication.
 - Put shared page objects in the @journey app, where there is duplication between old/new apps, and front/back office.
-- Use unique names for step and page files.
+- Use unique names for step and page files, even if they're in a different app.
 - Reduce the number of files and apps where possible, unless it makes the tests hard to understand.
 
 ## Tips
