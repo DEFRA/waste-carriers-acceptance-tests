@@ -1,66 +1,27 @@
-Then(/^I have received an registration complete email/) do
-  if @email_app.local?
-    # Opens the second email as the confirmation email will always be first
-    @email_app.mailcatcher_main_page.open_email(2)
-    expect(@email_app.mailcatcher_main_page).to have_text "You are now registered"
-  else
-    # Waits for email to be sent otherwise it could find the email confirmation email for some scenarios
-    @email_app.mailinator_page.load
-    @email_app.mailinator_page.submit(inbox: @email_address)
-    @email_app.mailinator_inbox_page.registration_complete_email.click
-    @email_app.mailinator_inbox_page.email_details do |_frame|
-      expect(@front_app.old_confirmation_page).to have_text "You are now registered"
-    end
-  end
-end
-
-Then(/^I have received an application received email/) do
-  if @email_app.local?
-    @email_app.mailcatcher_main_page.load
-  else
-    # Waits for email to be sent otherwise it could find the email confirmation email for some scenarios
-    @email_app.mailinator_page.load
-    @email_app.mailinator_page.submit(inbox: @email_address)
-  end
-  expect(@email_app.mailcatcher_main_page).to have_text "has been received"
+Then(/^I receive a frontend email with text "([^"]*)"$/) do |text|
+  # Same as 'I will receive an email with text' but on frontend.
+  # Delete this step when we get rid of frontend!
+  visit(Quke::Quke.config.custom["urls"]["last_email_fe"])
+  expect(retrieve_email_containing([text])).to have_text(text)
 end
 
 When(/^I confirm (?:my|the) email address$/) do
-  if @email_app.local?
-    @email_app.mailcatcher_main_page.open_email(1)
-    @email_app.mailcatcher_messages_page.confirmation_link.click
-  else
-    @email_app.mailinator_page.load
-    @email_app.mailinator_page.submit(inbox: @email_address)
-    @email_app.mailinator_inbox_page.wait_for_email
-    @email_app.mailinator_inbox_page.confirmation_email.click
-    @email_app.mailinator_inbox_page.email_details do |frame|
-      @new_window = window_opened_by { frame.confirm_email.click }
-    end
-  end
+  visit(Quke::Quke.config.custom["urls"]["last_email_fe"])
+  confirmation_email_text = retrieve_email_containing([@email_address]).to_s
+  expect(confirmation_email_text).to have_text("The next step is for you to confirm your email address")
 
+  # Get the confirmation email link from the email text:
+  # rubocop:disable Style/RedundantRegexpEscape
+  confirmation_email_link = confirmation_email_text.match(/.*href\=\\"(.*)\\">http.*/)[1].to_s
+  # rubocop:enable Style/RedundantRegexpEscape
+  visit(confirmation_email_link)
 end
 
 Given(/^I do not confirm my email address$/) do
   # Nothing to do to replicate step
 end
 
-Then(/^I will receive an email informing me "([^"]*)"$/) do |text|
+Then(/^I will receive an email with text "([^"]*)"$/) do |text|
   visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
   expect(retrieve_email_containing([text])).to have_text(text)
-end
-
-Then(/^I will receive a renewal application received email$/) do
-  if @email_app.local?
-    @email_app.mailcatcher_main_page.open_email(1)
-    expect(@email_app.mailcatcher_messages_page).to have_text("Your application to renew")
-  else
-    @email_app.mailinator_page
-    @email_app.mailinator_page.load
-    @email_app.mailinator_page.submit(inbox: @email_address)
-    expect(@email_app.mailinator_inbox_page).to have_text("Your application to renew")
-    @email_app.mailinator_inbox_page.application_received.click
-    @email_app.mailcatcher_messages_page.wait_until_trash_visible
-    @email_app.mailcatcher_messages_page.trash.click
-  end
 end
