@@ -143,12 +143,6 @@ Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   @email_address = username
 end
 
-Given(/^I have signed in the front office using my email$/) do
-  # Make email address match seeded data, if not already defined:
-  @email_address ||= "user@example.com"
-  sign_in_to_front_end_if_necessary(@email_address)
-end
-
 Given(/^I have signed in to view my registrations as "([^"]*)"$/) do |username|
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new

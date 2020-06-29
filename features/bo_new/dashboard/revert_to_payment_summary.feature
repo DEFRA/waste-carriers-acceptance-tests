@@ -11,9 +11,9 @@ Feature: NCCC agent unblocks a registration from back office
     Then I can submit the stuck user's application by bank transfer
 
   Scenario: NCCC unblocks a stuck renewal
-    Given I have an active registration with a company name of "Stuck renewal test"
-    And I have signed in the front office using my email
-    And I start renewing my last registration from the frontend
+    Given I create a new registration as "user@example.com" with a company name of "Stuck renewal test"
+    And I receive an email from NCCC inviting me to renew
+    And I start renewing my last registration from the email
     And I complete the renewal steps and get stuck at the payment stage
 
     When I sign into the back office as "agency-user"

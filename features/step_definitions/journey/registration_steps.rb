@@ -168,15 +168,21 @@ Given("I have a new lower tier registration for a {string} business") do |busine
 end
 
 Given("I create a new registration as {string} with a company name of {string}") do |account_email, company_name|
+  load_all_apps
+  @email_address = account_email
+  @business_name = company_name
   seed_data = SeedData.new(
     "limitedCompany_complete_active_registration.json",
-    "accountEmail" => account_email,
-    "companyName" => company_name
+    "accountEmail" => @email_address,
+    "contactEmail" => @email_address,
+    "companyName" => @business_name
   )
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
+  @tier = "upper"
+  @resource_object = :registration
 
-  puts "Registration " + @reg_number + " seeded with name #{company_name}"
+  puts "Registration " + @reg_number + " seeded with name #{@business_name} for " + @email_address
 end
 
 Given("I have an active registration") do
@@ -188,7 +194,7 @@ Given("I have an active registration") do
   @seeded_data = seed_data.seeded_data
   @reg_balance = 0
 
-  puts "Registration " + @reg_number + " seeded"
+  puts "Registration " + @reg_number + " seeded for " + account_email
 end
 
 Given("I have an active registration with a company number of {string}") do |company_no|
@@ -203,6 +209,7 @@ end
 Given("I have an active registration with a company name of {string}") do |company_name|
   load_all_apps
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "companyName" => company_name)
+  @email_address = "user@example.com"
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @business_name = company_name
