@@ -49,6 +49,7 @@ Given(/^I request assistance with a new registration$/) do
 end
 
 Then(/^I will have an upper tier registration$/) do
+  binding.pry
   expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDU")
   expect(@back_app.finish_assisted_page).to have_view_certificate
 

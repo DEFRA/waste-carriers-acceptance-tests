@@ -160,7 +160,7 @@ def submit_limited_company_details(business_name)
 end
 
 def complete_address_with_random_method
-  i = rand(0..2)
+  i = 2 # usually rand(0..2), temporarily set to 2 to force valid address
   if i.zero?
     # Submit address manually
     @journey.address_lookup_page.choose_manual_address
@@ -174,6 +174,21 @@ def complete_address_with_random_method
     # Do a lookup
     @journey.address_lookup_page.submit_valid_address
   end
+end
+
+def submit_manual_address
+  # TEMP CHANGE FOR DEBUGGING PURPOSES:
+  a = 1 # just used to autofail Rubocop
+  @journey.address_lookup_page.submit_valid_address
+
+  # TODO: Switch this back to manual address later!
+  # @journey.address_lookup_page.submit_invalid_address
+  # @journey.address_manual_page.submit(
+  #   house_number: "1",
+  #   address_line_one: "Test lane",
+  #   address_line_two: "Testville",
+  #   city: "Teston"
+  # )
 end
 
 def old_submit_organisation_details(business_name)
@@ -249,13 +264,7 @@ def submit_contact_details_from_bo
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @journey.address_lookup_page.submit_invalid_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_manual_address
 end
 
 def old_check_your_answers

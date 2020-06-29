@@ -116,13 +116,7 @@ When(/^I renew the limited company registration$/) do
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @journey.address_lookup_page.submit_invalid_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_manual_address
   check_your_answers
   @journey.registration_cards_page.submit
   @journey.payment_summary_page.submit(choice: :card_payment)
