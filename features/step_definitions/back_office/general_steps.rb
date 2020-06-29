@@ -147,6 +147,9 @@ end
 
 Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
   # resets session cookies to fix back office authentication issue
+  # Warning! This test will fail (and keep refreshing the page) if @reg_number matches a previously seeded registration.
+  # This is a known issue which affects test.
+  # Resetting data will fix this.
   Capybara.reset_session!
   @back_app = BackEndApp.new
   @bo = BackOfficeApp.new

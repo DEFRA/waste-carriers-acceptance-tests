@@ -88,7 +88,6 @@ custom:
     back_end_admin: "http://localhost:3000/admins/sign_in"
     back_office: "http://localhost:8001/bo"
     back_office_sign_in: "http://localhost:8001/bo/users/sign_in"
-    mail_client: "http://localhost:1080"
     last_email_fe: "http://localhost:3000/email/last-email"
     last_email_fo: "http://localhost:3002/fo/email/last-email"
     last_email_bo: "http://localhost:8001/bo/email/last-email"

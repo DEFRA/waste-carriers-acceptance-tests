@@ -88,7 +88,6 @@ custom:
     back_end_admin: "https://admin-waste-carriers-pre.aws.defra.cloud/agency_users/sign_in"
     back_office: "https://admin-waste-carriers-pre.aws.defra.cloud/bo"
     back_office_sign_in: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/users/sign_in"
-    mail_client: "https://www.mailinator.com"
     last_email_fe: "https://waste-carriers-pre.aws.defra.cloud/email/last-email"
     last_email_fo: "https://waste-carriers-pre.aws.defra.cloud/fo/email/last-email"
     last_email_bo: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/email/last-email"

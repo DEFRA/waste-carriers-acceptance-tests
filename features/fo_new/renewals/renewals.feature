@@ -47,19 +47,3 @@ Feature: Registered waste carrier chooses to renew their registration from regis
       And I have signed in to renew my registration as "user@example.com"
      When I complete my limited liability partnership renewal steps choosing to pay by bank transfer
      Then I will be notified my renewal is pending payment
-
-    # The following scenario fails locally, because the environment variables are set to always allow renewals.
-    # Test this on a web environment instead.
-    # @expiry @broken
-    # Scenario: Registration can not be renewed over one month before its expiry date
-    # Given I renew my registration using my previous registration number "CBDU202"
-    #   But the renewal date is over one month before it is due to expire
-    #  Then I will be notified "This registration is not eligible for renewal"
-
-    # The following is currently failing locally.
-    # This is raised as bug RUBY-473.
-    # @expiry @broken
-    # Scenario: Registration can be renewed in expiry grace renewal window
-    #   Given I renew my registration using my previous registration number "CBDU203"
-    #     But the registration is within the expiry grace renewal window
-    #    Then I will be prompted to sign in to complete the renewal

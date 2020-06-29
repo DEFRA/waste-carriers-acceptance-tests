@@ -150,6 +150,18 @@ It's also common practice to use a custom tag whilst working on a new feature or
 
 Most Waste Carriers tests rely on data being created just before execution to provide the starting conditions ("Given") needed for a particular scenario. [More information on seeding](/features/seeds/README.md)
 
+## Resetting data
+
+In the local environment, data can be reset and re-seeded by running
+
+```bash
+bundle exec rake reset_dbs
+```
+
+In other environments, this can be done via the RESET_AND_SEED job in Jenkins.
+
+While not needed for every test run, tests can sometimes fail due to clashing data in the environment. Data is automatically seeded from CBDU100 upwards (locally) and CBDU200 upwards (in all environments). However, if registration CBDU99 has been created by running tests, a second instance of CBDU100 will be created in the following test. This causes some tests to fail.
+
 ## Principles
 
 - Keep feature files small, keeping it as close to "Given, When, Then" as reasonably possible. The steps should make it clear what the feature is actually testing. However, in some cases, smaller, repeatable steps make sense to allow re-use.
