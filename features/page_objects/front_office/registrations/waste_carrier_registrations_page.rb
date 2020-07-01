@@ -13,7 +13,6 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
 
   sections(:registration_controls, ".registration-list") do
     element(:reg_no, ".column-one-quarter:nth-child(2) li:nth-child(1)")
-    element(:view_certificate, "li:nth-child(1) a")
     element(:edit_registration, "li:nth-child(2) a")
     element(:renew_registration, "li:nth-child(3) a")
   end
@@ -26,11 +25,6 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
 
   element(:next_page, "a[aria-label='Next page']")
   element(:last_page, "a[aria-label='Last page']")
-
-  def view_certificate(registration_number)
-    element = "#" + registration_number.to_s + " li:nth-child(1) a"
-    find(:css, element).click
-  end
 
   def renew(registration_number)
     element = "#" + registration_number.to_s + " li:nth-child(2) a"

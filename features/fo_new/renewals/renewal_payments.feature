@@ -18,9 +18,9 @@ Feature: Registered waste carrier pays for their renewal
 
 @email
     Scenario: Rejected worldpay payment can be paid for by bank transfer
-      Given I create a new registration as "wcr-user@example.com"
+      Given I create a new registration as "another-user@example.com"
         And I renew my last registration
-        And I have signed in to renew my registration as "wcr-user@example.com"
+        And I have signed in to renew my registration as "another-user@example.com"
         And I am on the payment page
         But I have my credit card payment rejected
        When I can pay by bank transfer
