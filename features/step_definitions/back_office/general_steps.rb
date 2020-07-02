@@ -9,7 +9,15 @@ Given(/^an Environment Agency user has signed in to the backend$/) do
 end
 
 Given("mocking is disabled") do
+  # Some tests rely on being able to perform actions on the Worldpay payment screen.
+  # This step skips those tests when mocking is disabled.
   pending "It makes no sense to test this feature when mocking is enabled" if mocking_enabled?
+end
+
+Given("mocking is enabled") do
+  # Tests which simulate a "pending WorldPay" status can only be run in automated tests if mocking is enabled.
+  # See RUBY-1013 for details on how to test this manually.
+  pending "It makes no sense to test this feature when mocking is disabled" unless mocking_enabled?
 end
 
 Given(/^I sign into the back office as "([^"]*)"$/) do |user|
@@ -49,7 +57,6 @@ Given(/^I request assistance with a new registration$/) do
 end
 
 Then(/^I will have an upper tier registration$/) do
-  binding.pry
   expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDU")
   expect(@back_app.finish_assisted_page).to have_view_certificate
 

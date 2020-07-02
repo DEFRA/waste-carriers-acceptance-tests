@@ -6,7 +6,7 @@ When("I register and get stuck at the payment stage") do
 
   # Generate random business name containing the word "Stuck", to make it searchable later
   @business_name = "Stuck registration " + rand(1..999_999).to_s
-  step("I complete my registration")
+  step("I complete my registration for my business #{@business_name}")
   @journey.payment_summary_page.submit(choice: :card_payment)
 end
 

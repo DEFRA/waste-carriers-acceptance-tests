@@ -161,6 +161,7 @@ end
 
 def complete_address_with_random_method
   i = 2 # usually rand(0..2), temporarily set to 2 to force valid address
+  a = 1 # Used to autofail Rubocop, as a reminder to change this method back when RUBY-1138 is fixed.
   if i.zero?
     # Submit address manually
     @journey.address_lookup_page.choose_manual_address
@@ -178,7 +179,7 @@ end
 
 def submit_manual_address
   # TEMP CHANGE FOR DEBUGGING PURPOSES:
-  a = 1 # just used to autofail Rubocop
+  a = 1 # Used to autofail Rubocop, as a reminder to change this method back when RUBY-1138 is fixed.
   @journey.address_lookup_page.submit_valid_address
 
   # TODO: Switch this back to manual address later!

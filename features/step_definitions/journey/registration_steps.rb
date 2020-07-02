@@ -30,7 +30,8 @@ end
 
 # Main step for generating a new registration.
 # It depends on instance variables to decide what to register.
-When("I complete my registration") do
+
+When("I complete my registration for my business {string}") do |business_name|
   if @organisation_type == "charity"
     # then all tier routing questions are skipped and user is told "you need to register as a lower tier waste carrier"
     @journey.standard_page.submit
@@ -50,7 +51,7 @@ When("I complete my registration") do
     end
   end
 
-  @business_name ||= "#{@tier} tier #{@organisation_type} new registration"
+  @business_name = business_name
   @journey.company_name_page.submit(company_name: @business_name)
 
   @journey.address_lookup_page.submit_valid_address
@@ -76,9 +77,7 @@ When("I complete my registration") do
     last_name: Faker::Name.last_name
   }
   @journey.contact_name_page.submit(names)
-
   @journey.contact_phone_page.submit(phone_number: "0117 4960000")
-
   @email_address = generate_email
   @journey.contact_email_page.submit(email: @email_address, confirm_email: @email_address)
 
@@ -107,6 +106,22 @@ Then("I am notified that my registration has been successful") do
   expect(email_found).to eq(true)
 
   puts "Registration #{@reg_number} created successfully"
+end
+
+Then("I am notified that my payment is being processed") do
+  expect(page).to have_content("We’re processing your payment")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  find_text = [@reg_number]
+
+  find_text << "We’re processing your waste carrier registration"
+  find_text << "We’re currently processing your payment"
+
+  visit Quke::Quke.config.custom["urls"]["last_email_fo"]
+  email_found = @journey.last_email_page.check_email_for_text(find_text)
+  expect(email_found).to eq(true)
+
+  puts "Registration #{@reg_number} submitted and pending WorldPay"
 end
 
 Given("a registration with no convictions has been submitted by paying via card") do
@@ -251,7 +266,7 @@ Given("a limited company with companies house number {string} is registered as a
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'limitedCompany'")
-  step("I complete my registration")
+  step("I complete my registration for my business #{@business_name}")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -269,7 +284,7 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration")
+  step("I complete my registration for my business #{@business_name}")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -287,7 +302,7 @@ Given("a conviction is declared when registering their partnership for an upper 
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'partnership'")
-  step("I complete my registration")
+  step("I complete my registration for my business #{@business_name}")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -306,7 +321,7 @@ Given("a registration with declared convictions is submitted with outstanding pa
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration")
+  step("I complete my registration for my business #{@business_name}")
   step("I pay by bank transfer")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -330,7 +345,7 @@ Given("a limited company {string} registers as an upper tier waste carrier") do 
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'limitedCompany'")
-  step("I complete my registration")
+  step("I complete my registration for my business #{@business_name}")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
