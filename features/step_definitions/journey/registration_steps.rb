@@ -266,7 +266,7 @@ Given("a limited company with companies house number {string} is registered as a
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'limitedCompany'")
-  step("I complete my registration for my business #{@business_name}")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -284,7 +284,7 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration for my business #{@business_name}")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -302,7 +302,7 @@ Given("a conviction is declared when registering their partnership for an upper 
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'partnership'")
-  step("I complete my registration for my business #{@business_name}")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -321,7 +321,7 @@ Given("a registration with declared convictions is submitted with outstanding pa
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration for my business #{@business_name}")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by bank transfer")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -345,7 +345,7 @@ Given("a limited company {string} registers as an upper tier waste carrier") do 
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'limitedCompany'")
-  step("I complete my registration for my business #{@business_name}")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
