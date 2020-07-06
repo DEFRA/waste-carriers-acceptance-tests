@@ -22,7 +22,7 @@ def mocking_enabled?
   # endpoint only once
   @_mocking_enabled_response ||= Net::HTTP.get_response(uri)
 
-  return false if @_mocking_enabled_response == "404"
+  return false if @_mocking_enabled_response.to_s.include?("HTTPNotFound")
 
   true
 end

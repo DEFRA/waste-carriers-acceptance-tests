@@ -3,6 +3,7 @@ class PaymentSummaryPage < SitePrism::Page
   # Payment summary
 
   element(:back_link, "a[href*='back']")
+  element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")
 
   element(:card_payment, "input[value='card']", visible: false)

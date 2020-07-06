@@ -18,4 +18,4 @@ Feature: A new user registers as an upper tier waste carrier
     When I start a new registration journey in "England" as a "soleTrader"
     And I complete my registration for my business "UT Registration Pending WorldPay"
     And I pay by card
-    Then I am notified that my payment is being processed
+    Then I am notified that my registration payment is being processed

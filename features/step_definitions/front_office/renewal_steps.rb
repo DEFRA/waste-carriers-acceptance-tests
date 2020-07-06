@@ -18,11 +18,11 @@ Given("I receive an email from NCCC inviting me to renew") do
   puts "Link to renew " + @reg_number + " is: " + @renew_from_email_link
 end
 
-When("I renew from the email") do
+When("I renew from the email as a {string}") do |business_type|
   visit(@renew_from_email_link)
   expect(@renewals_app.renewal_start_page.heading).to have_text("You are about to renew registration " + @reg_number)
 
-  step("I complete my sole trader renewal steps")
+  step("I complete my '#{business_type}' renewal steps")
 
 end
 
@@ -161,23 +161,6 @@ Given(/^I choose to renew my last registration from the dashboard$/) do
   @front_app.waste_carrier_registrations_page.renew(@reg_number)
 end
 
-When(/^I complete my limited company renewal steps$/) do
-  @business_name = "Ltd Company renewal"
-  agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
-  @renewals_app.renewal_information_page.submit
-  submit_business_details(@business_name)
-  submit_company_people
-  submit_convictions("no convictions")
-  submit_existing_contact_details
-  check_your_answers
-  @journey.registration_cards_page.submit
-  @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
-end
-
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit(org_type: org_type)
@@ -194,43 +177,9 @@ Then(/^I will be able to continue my renewal$/) do
   Capybara.reset_session!
 end
 
-When(/^I complete my sole trader renewal steps$/) do
-  @business_name = "Sole trader renewal"
-  agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
-  @renewals_app.renewal_information_page.submit
-  submit_business_details(@business_name)
-  people = @journey.company_people_page.main_people
-  @journey.company_people_page.submit_main_person(person: people[0])
-  submit_convictions("no convictions")
-  submit_existing_contact_details
-  check_your_answers
-  @journey.registration_cards_page.submit
-  @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
-end
-
-When(/^I complete my local authority renewal steps$/) do
-  @business_name = "Local authority renewal"
-  agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :skip_check)
-  @journey.carrier_type_page.submit
-  @renewals_app.renewal_information_page.submit
-  submit_business_details(@business_name)
-  submit_company_people
-  submit_convictions("no convictions")
-  submit_existing_contact_details
-  check_your_answers
-  @journey.registration_cards_page.submit
-  @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
-end
-
-When(/^I complete my limited liability partnership renewal steps$/) do
-  @business_name = "LLP renewal"
+When("I complete my {string} renewal steps") do |business_type|
+  # business_type must match the options in page_objects/front_office/registrations/business_type_page.rb
+  @business_name ||= business_type + " renewal"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
@@ -261,23 +210,6 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @journey.registration_cards_page.submit
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
   @renewals_app.bank_transfer_page.submit
-end
-
-When(/^I complete my partnership renewal steps$/) do
-  @business_name = "Partnership renewal"
-  agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
-  @renewals_app.renewal_information_page.submit
-  submit_business_details(@business_name)
-  submit_company_people
-  submit_convictions("no convictions")
-  submit_existing_contact_details
-  check_your_answers
-  @journey.registration_cards_page.submit
-  @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
 end
 
 When(/^I add two partners to my renewal$/) do
@@ -355,6 +287,23 @@ Then(/^I will be notified my renewal is complete$/) do
   expect(@journey.confirmation_page).to have_text(@reg_number)
 
   Capybara.reset_session!
+end
+
+Then("I am notified that my renewal payment is being processed") do
+  expect(page).to have_content("Application received")
+  expect(page).to have_content("We are currently processing your payment")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  find_text = [@reg_number]
+
+  find_text << "Your application to renew waste carriers registration " + @reg_number + " has been received"
+  find_text << "We are currently processing your payment"
+
+  visit Quke::Quke.config.custom["urls"]["last_email_fo"]
+  email_found = @journey.last_email_page.check_email_for_text(find_text)
+  expect(email_found).to eq(true)
+
+  puts "Renewal #{@reg_number} submitted and pending WorldPay"
 end
 
 Then(/^I will be advised "([^"]*)"$/) do |message|

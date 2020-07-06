@@ -9,7 +9,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
     Given I create an upper tier registration for my "limitedLiabilityPartnership" business as "user@example.com"
       And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
-     When I complete my limited liability partnership renewal steps
+     When I complete my "limitedLiabilityPartnership" renewal steps
      Then I will be notified my renewal is complete
 
     Scenario: Charity renews registration from renewals page and is notified to register as lower tier
@@ -21,7 +21,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
     Given I create an upper tier registration for my "partnership" business as "user@example.com"
       And I renew my last registration
       And I have signed in to renew my registration as "user@example.com"
-     When I complete my partnership renewal steps
+     When I complete my "partnership" renewal steps
      Then I will be notified my renewal is complete
 
   # TODO: This is using a CBDU201 which is actually a partnership.

@@ -11,6 +11,7 @@ class BusinessTypePage < SitePrism::Page
     # limitedCompany
     # soleTrader
     # partnership
+    # limitedLiabilityPartnership
     # publicBody
     # charity
     # authority

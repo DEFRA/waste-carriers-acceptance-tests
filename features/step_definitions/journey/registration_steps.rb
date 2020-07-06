@@ -108,7 +108,7 @@ Then("I am notified that my registration has been successful") do
   puts "Registration #{@reg_number} created successfully"
 end
 
-Then("I am notified that my payment is being processed") do
+Then("I am notified that my registration payment is being processed") do
   expect(page).to have_content("We’re processing your payment")
 
   @reg_number = @journey.confirmation_page.registration_number.text
