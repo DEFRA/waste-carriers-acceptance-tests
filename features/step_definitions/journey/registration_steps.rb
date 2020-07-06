@@ -133,10 +133,12 @@ Given("a registration with no convictions has been submitted by paying via card"
 end
 
 Given("I create a new registration as {string}") do |account_email|
+  load_all_apps
   @tier = "upper"
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
+  @email_address = account_email
 
   puts "Registration " + @reg_number + " seeded"
 end

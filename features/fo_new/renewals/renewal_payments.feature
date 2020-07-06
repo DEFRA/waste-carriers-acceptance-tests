@@ -1,4 +1,4 @@
-@fo_new @fo_renew @email @wip
+@fo_new @fo_renew @email
 Feature: Registered waste carrier pays for their renewal
   As a carrier of commercial waste
   I want to be able to pay the relevant charge for my renewal
@@ -30,5 +30,3 @@ Feature: Registered waste carrier pays for their renewal
     And I receive an email from NCCC inviting me to renew
     When I renew from the email as a "limitedCompany"
     Then I am notified that my renewal payment is being processed
-
-    # And an NCCC finance admin can complete the payment

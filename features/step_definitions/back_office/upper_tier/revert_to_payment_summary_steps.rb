@@ -19,6 +19,7 @@ When("I start renewing my last registration from the email") do
 end
 
 When("I complete the renewal steps and get stuck at the payment stage") do
+  @business_name ||= "Stuck renewal " + rand(1..999_999).to_s
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
