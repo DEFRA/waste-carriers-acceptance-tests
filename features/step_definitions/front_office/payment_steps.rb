@@ -11,7 +11,7 @@ Given(/^I complete my renewal up to the payment page$/) do
   submit_convictions("no convictions")
   submit_existing_contact_details
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   expect(@journey.payment_summary_page.current_url).to include "/payment-summary"
 end
 

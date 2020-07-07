@@ -30,7 +30,7 @@ When("I complete the renewal steps and get stuck at the payment stage") do
   submit_convictions("no convictions")
   submit_existing_contact_details
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
   # If mocking is turned on and @business_name contains "stuck", user will see a "stuck" page.
   # If mocking is off, user will see a Worldpay payment screen.

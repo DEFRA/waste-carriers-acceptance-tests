@@ -190,7 +190,7 @@ When("I complete my {string} renewal steps") do |business_type|
   submit_convictions("no convictions")
   submit_existing_contact_details
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end
@@ -207,7 +207,7 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   submit_convictions("no convictions")
   submit_existing_contact_details
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
   @renewals_app.bank_transfer_page.submit
 end
@@ -248,7 +248,7 @@ When(/^I complete my overseas company renewal steps$/) do
   people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: people[0])
   submit_convictions("no convictions")
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.contact_name_page.submit
   @journey.contact_phone_page.submit
   @journey.contact_email_page.submit
@@ -261,7 +261,7 @@ When(/^I complete my overseas company renewal steps$/) do
     country: "Italy"
   )
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end

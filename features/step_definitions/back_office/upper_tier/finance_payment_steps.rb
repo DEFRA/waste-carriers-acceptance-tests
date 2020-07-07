@@ -98,7 +98,7 @@ Given(/^the registration has an unsubmitted renewal$/) do
   )
   submit_manual_address
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
 end
 

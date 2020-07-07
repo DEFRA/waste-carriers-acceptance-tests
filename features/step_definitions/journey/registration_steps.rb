@@ -89,7 +89,7 @@ When("I complete my registration for my business {string}") do |business_name|
   @journey.declaration_page.submit
 
   @copy_cards ||= 0
-  @journey.registration_cards_page.submit(cards: @copy_cards) if @tier == "upper"
+  order_cards_during_journey(@copy_cards) if @tier == "upper"
 end
 
 Then("I am notified that my registration has been successful") do
