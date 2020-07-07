@@ -9,7 +9,6 @@ Feature: Assisted digital registration of an upper tier Limited company
      And I request assistance with a new registration
     When I have my limited company as a upper tier waste carrier application completed for me
 
-@wip
   Scenario: NCCC successfully registers a limited company for a upper tier waste carriers licence paying by credit card
     When I pay for my application over the phone by maestro ordering 2 copy cards
    	Then I will have an upper tier registration
