@@ -160,8 +160,7 @@ def submit_limited_company_details(business_name)
 end
 
 def complete_address_with_random_method
-  i = 2 # usually rand(0..2), temporarily set to 2 to force valid address
-  a = 1 # Used to autofail Rubocop, as a reminder to change this method back when RUBY-1138 is fixed.
+  i = rand(0..2)
   if i.zero?
     # Submit address manually
     @journey.address_lookup_page.choose_manual_address
@@ -178,18 +177,13 @@ def complete_address_with_random_method
 end
 
 def submit_manual_address
-  # TEMP CHANGE FOR DEBUGGING PURPOSES:
-  a = 1 # Used to autofail Rubocop, as a reminder to change this method back when RUBY-1138 is fixed.
-  @journey.address_lookup_page.submit_valid_address
-
-  # TODO: Switch this back to manual address later!
-  # @journey.address_lookup_page.submit_invalid_address
-  # @journey.address_manual_page.submit(
-  #   house_number: "1",
-  #   address_line_one: "Test lane",
-  #   address_line_two: "Testville",
-  #   city: "Teston"
-  # )
+  @journey.address_lookup_page.submit_invalid_address
+  @journey.address_manual_page.submit(
+    house_number: "1",
+    address_line_one: "Test lane",
+    address_line_two: "Testville",
+    city: "Teston"
+  )
 end
 
 def old_submit_organisation_details(business_name)
