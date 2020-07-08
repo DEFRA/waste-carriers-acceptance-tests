@@ -7,7 +7,5 @@ Feature: Waste carrier views certificate from user registrations dashboard
   Background:
     Given I have an active registration
     When I choose to view my certificate
-
-  Scenario: Limited company changing its carrier type incurs a charge
     Then I can view my certificate of registration
     And I can access the footer links
