@@ -16,7 +16,7 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
   )
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
 
   submit_valid_card_payment
@@ -44,7 +44,7 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
   )
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
 
   submit_valid_card_payment
@@ -69,7 +69,7 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   )
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end

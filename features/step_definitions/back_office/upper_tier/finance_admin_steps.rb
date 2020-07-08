@@ -57,3 +57,27 @@ Given(/^(?:a|an) "([^"]*)" writes off the outstanding balance$/) do |user|
   expect(@bo.finance_payment_details_page.flash_message).to have_text("write off completed successfully")
   expect(@bo.finance_payment_details_page.content).to have_text("this is a writeoff")
 end
+
+Given("I add a missed Worldpay payment at the payment stage") do
+  if @resource_object == :new_registration
+    # Search for registration by name as it doesn't have a CBD number yet:
+    @bo.dashboard_page.view_new_reg_details(search_term: @business_name)
+  else # it's a renewal
+    @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
+  end
+  @bo.registration_details_page.add_missed_worldpay_button.click
+
+  # At this point the registration number is generated. Get this and the balance from the screen:
+  @reg_number = @bo.finance_payment_input_page.content.text.match(/.*Add a missed WorldPay payment for (.*)\n*/)[1]
+  @reg_balance = @bo.finance_payment_input_page.content.text.match(/.*The current balance is £(\d+)*/)[1].to_i
+  @bo.finance_payment_input_page.submit(
+    amount: @reg_balance.to_s,
+    day: "01",
+    month: "07",
+    year: "2020",
+    reference: "0101010",
+    comment: "missed worldpay at payment stage"
+  )
+  expect(@bo.finance_payment_details_page.flash_message).to have_text(@reg_balance.to_s + " payment entered successfully")
+  @resource_object = :registration
+end

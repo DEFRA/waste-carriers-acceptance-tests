@@ -6,21 +6,20 @@ When("I register and get stuck at the payment stage") do
 
   # Generate random business name containing the word "Stuck", to make it searchable later
   @business_name = "Stuck registration " + rand(1..999_999).to_s
-  step("I complete my registration")
+  step("I complete my registration for my business '#{@business_name}'")
   @journey.payment_summary_page.submit(choice: :card_payment)
 end
 
-When("I start renewing my last registration from the frontend") do
+When("I start renewing my last registration from the email") do
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
   @resource_object = :renewal
-  @renewals_app.old_start_page.load
-  @renewals_app.old_start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
+  visit(@renew_from_email_link)
   expect(page).to have_text("You are about to renew registration " + @reg_number)
 end
 
 When("I complete the renewal steps and get stuck at the payment stage") do
+  @business_name ||= "Stuck renewal " + rand(1..999_999).to_s
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
@@ -31,7 +30,7 @@ When("I complete the renewal steps and get stuck at the payment stage") do
   submit_convictions("no convictions")
   submit_existing_contact_details
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
   # If mocking is turned on and @business_name contains "stuck", user will see a "stuck" page.
   # If mocking is off, user will see a Worldpay payment screen.

@@ -30,7 +30,8 @@ end
 
 # Main step for generating a new registration.
 # It depends on instance variables to decide what to register.
-When("I complete my registration") do
+
+When("I complete my registration for my business {string}") do |business_name|
   if @organisation_type == "charity"
     # then all tier routing questions are skipped and user is told "you need to register as a lower tier waste carrier"
     @journey.standard_page.submit
@@ -50,7 +51,7 @@ When("I complete my registration") do
     end
   end
 
-  @business_name ||= "#{@tier} tier #{@organisation_type} new registration"
+  @business_name = business_name
   @journey.company_name_page.submit(company_name: @business_name)
 
   @journey.address_lookup_page.submit_valid_address
@@ -76,9 +77,7 @@ When("I complete my registration") do
     last_name: Faker::Name.last_name
   }
   @journey.contact_name_page.submit(names)
-
   @journey.contact_phone_page.submit(phone_number: "0117 4960000")
-
   @email_address = generate_email
   @journey.contact_email_page.submit(email: @email_address, confirm_email: @email_address)
 
@@ -90,7 +89,7 @@ When("I complete my registration") do
   @journey.declaration_page.submit
 
   @copy_cards ||= 0
-  @journey.registration_cards_page.submit(cards: @copy_cards) if @tier == "upper"
+  order_cards_during_journey(@copy_cards) if @tier == "upper"
 end
 
 Then("I am notified that my registration has been successful") do
@@ -109,6 +108,22 @@ Then("I am notified that my registration has been successful") do
   puts "Registration #{@reg_number} created successfully"
 end
 
+Then("I am notified that my registration payment is being processed") do
+  expect(page).to have_content("We’re processing your payment")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  find_text = [@reg_number]
+
+  find_text << "We’re processing your waste carrier registration"
+  find_text << "We’re currently processing your payment"
+
+  visit Quke::Quke.config.custom["urls"]["last_email_fo"]
+  email_found = @journey.last_email_page.check_email_for_text(find_text)
+  expect(email_found).to eq(true)
+
+  puts "Registration #{@reg_number} submitted and pending WorldPay"
+end
+
 Given("a registration with no convictions has been submitted by paying via card") do
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
   @reg_number = seed_data.reg_number
@@ -118,10 +133,12 @@ Given("a registration with no convictions has been submitted by paying via card"
 end
 
 Given("I create a new registration as {string}") do |account_email|
+  load_all_apps
   @tier = "upper"
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
+  @email_address = account_email
 
   puts "Registration " + @reg_number + " seeded"
 end
@@ -168,15 +185,21 @@ Given("I have a new lower tier registration for a {string} business") do |busine
 end
 
 Given("I create a new registration as {string} with a company name of {string}") do |account_email, company_name|
+  load_all_apps
+  @email_address = account_email
+  @business_name = company_name
   seed_data = SeedData.new(
     "limitedCompany_complete_active_registration.json",
-    "accountEmail" => account_email,
-    "companyName" => company_name
+    "accountEmail" => @email_address,
+    "contactEmail" => @email_address,
+    "companyName" => @business_name
   )
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
+  @tier = "upper"
+  @resource_object = :registration
 
-  puts "Registration " + @reg_number + " seeded with name #{company_name}"
+  puts "Registration " + @reg_number + " seeded with name #{@business_name} for " + @email_address
 end
 
 Given("I have an active registration") do
@@ -188,7 +211,7 @@ Given("I have an active registration") do
   @seeded_data = seed_data.seeded_data
   @reg_balance = 0
 
-  puts "Registration " + @reg_number + " seeded"
+  puts "Registration " + @reg_number + " seeded for " + account_email
 end
 
 Given("I have an active registration with a company number of {string}") do |company_no|
@@ -203,6 +226,7 @@ end
 Given("I have an active registration with a company name of {string}") do |company_name|
   load_all_apps
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "companyName" => company_name)
+  @email_address = "user@example.com"
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @business_name = company_name
@@ -244,7 +268,7 @@ Given("a limited company with companies house number {string} is registered as a
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'limitedCompany'")
-  step("I complete my registration")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -262,7 +286,7 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -280,7 +304,7 @@ Given("a conviction is declared when registering their partnership for an upper 
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'partnership'")
-  step("I complete my registration")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -299,7 +323,7 @@ Given("a registration with declared convictions is submitted with outstanding pa
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
-  step("I complete my registration")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by bank transfer")
 
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -323,7 +347,7 @@ Given("a limited company {string} registers as an upper tier waste carrier") do 
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'limitedCompany'")
-  step("I complete my registration")
+  step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text

@@ -1,6 +1,7 @@
 # Represents all shared pages across front and back office, or registrations and renewals.
 # Aim to move as many pages as poss to journey, to avoid repetition and increase maintainability.
 
+# rubocop:disable Metrics/ClassLength
 class JourneyApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
@@ -93,6 +94,10 @@ class JourneyApp
     @last_page = LocationPage.new
   end
 
+  def payment_receipt_page
+    @last_page = PaymentReceiptPage.new
+  end
+
   def payment_summary_page
     @last_page = PaymentSummaryPage.new
   end
@@ -134,3 +139,4 @@ class JourneyApp
   end
 
 end
+# rubocop:enable Metrics/ClassLength

@@ -91,7 +91,7 @@ When(/^I renew the local authority registration$/) do
   )
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
 
   submit_valid_card_payment
@@ -116,15 +116,9 @@ When(/^I renew the limited company registration$/) do
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @journey.address_lookup_page.submit_invalid_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_manual_address
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
 
   submit_valid_card_payment
@@ -161,7 +155,7 @@ When(/^I complete the renewal for the account holder$/) do
   submit_convictions("no convictions")
   submit_existing_contact_details
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
 
   submit_valid_card_payment
@@ -243,7 +237,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   )
   @journey.address_lookup_page.submit_valid_address
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
   @bo.bank_transfer_page.submit
   @bo.dashboard_page.govuk_banner.home_page.click

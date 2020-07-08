@@ -11,12 +11,9 @@ When(/^I choose to view my certificate$/) do
 end
 
 Then(/^I can view my certificate of registration$/) do
-  # Using https://stackoverflow.com/a/25438826
-  @front_app.waste_carrier_registrations_page.view_certificate(@reg_number)
-  new_window = windows.last
-  page.within_window new_window do |_frame|
-    expect(@front_app.view_certificate_page).to have_text("Certificate of Registration")
-    expect(@front_app.view_certificate_page).to have_text(@reg_number)
-  end
-
+  # We need to bypass the PDF link by going directly to the HTML version of the certificate.
+  visit("#{Quke::Quke.config.custom['urls']['front_office']}/registrations/#{@reg_number}/certificate?show_as_html=true")
+  expect(page).to have_text("Certificate of Registration")
+  expect(page).to have_text(@reg_number)
+  page.evaluate_script("window.history.back()")
 end

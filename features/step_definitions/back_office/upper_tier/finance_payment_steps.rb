@@ -96,15 +96,9 @@ Given(/^the registration has an unsubmitted renewal$/) do
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @journey.address_lookup_page.submit_invalid_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_manual_address
   check_your_answers
-  @journey.registration_cards_page.submit
+  order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
 end
 

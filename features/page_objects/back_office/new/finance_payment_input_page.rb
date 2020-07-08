@@ -4,6 +4,7 @@ class FinancePaymentInputPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
   element(:heading, ".heading-large")
+  element(:content, "#content")
 
   # Add a payment. Inputs change ID based on payment method.
   element(:amount, "input[id*='_payment_form_amount']")

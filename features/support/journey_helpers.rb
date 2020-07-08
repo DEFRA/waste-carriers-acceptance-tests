@@ -176,6 +176,16 @@ def complete_address_with_random_method
   end
 end
 
+def submit_manual_address
+  @journey.address_lookup_page.submit_invalid_address
+  @journey.address_manual_page.submit(
+    house_number: "1",
+    address_line_one: "Test lane",
+    address_line_two: "Testville",
+    city: "Teston"
+  )
+end
+
 def old_submit_organisation_details(business_name)
   # Remove this function once tech debt is complete for registrations
   @back_app.business_details_page.submit(
@@ -249,13 +259,7 @@ def submit_contact_details_from_bo
     email: "bo-user@example.com",
     confirm_email: "bo-user@example.com"
   )
-  @journey.address_lookup_page.submit_invalid_address
-  @journey.address_manual_page.submit(
-    house_number: "1",
-    address_line_one: "Test lane",
-    address_line_two: "Testville",
-    city: "Teston"
-  )
+  submit_manual_address
 end
 
 def old_check_your_answers
@@ -275,8 +279,13 @@ def old_order_cards_during_journey(number_of_cards)
 end
 
 def order_cards_during_journey(number_of_cards)
-  # This covers ordering copy cards during a registration or renewal, from the new app
-  @journey.registration_cards_page.submit(cards: number_of_cards)
+  if number_of_cards.zero?
+    @journey.registration_cards_page.submit
+  else
+    @journey.registration_cards_page.submit(cards: number_of_cards)
+  end
+  # Also select which email to send receipts to. Longer term, this should be a separate method:
+  @journey.payment_receipt_page.submit
 end
 
 def old_complete_registration_from_bo(business, tier, carrier)
