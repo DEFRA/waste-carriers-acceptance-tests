@@ -1,7 +1,10 @@
 class TierFarmOnlyPage < SitePrism::Page
 
-  # Do you ever deal with: Farm or agricultural waste ...?
+  # Do you only deal with: Farm or agricultural waste ...?
+
+  element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")
+
   element(:only_these_types, "#waste_types_form_only_amf_yes", visible: false)
   element(:other_types, "#waste_types_form_only_amf_no", visible: false)
   element(:submit_button, ".button")

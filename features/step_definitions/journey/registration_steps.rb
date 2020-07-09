@@ -20,7 +20,7 @@ end
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
   @organisation_type = organisation_type
   @journey.start_page.load
-  @journey.start_page.submit
+  @journey.start_page.submit(choice: @resource_object)
   @journey.location_page.submit(choice: location)
   @journey.business_type_page.submit(org_type: organisation_type)
 end

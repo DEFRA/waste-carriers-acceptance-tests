@@ -2,6 +2,7 @@ require "faker"
 
 class CompanyPeoplePage < SitePrism::Page
 
+  element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")
 
   element(:first_name, "#main_people_form_first_name")
@@ -41,11 +42,11 @@ class CompanyPeoplePage < SitePrism::Page
   end
 
   def submit(args = {})
-    first_name.set(args[:first_name]) if args.main?(:first_name)
-    last_name.set(args[:last_name]) if args.main?(:last_name)
-    dob_day.set(args[:dob_day]) if args.main?(:dob_day)
-    dob_month.set(args[:dob_month]) if args.main?(:dob_month)
-    dob_year.set(args[:dob_year]) if args.main?(:dob_year)
+    first_name.set(args[:first_name]) if args.key?(:first_name)
+    last_name.set(args[:last_name]) if args.key?(:last_name)
+    dob_day.set(args[:dob_day]) if args.key?(:dob_day)
+    dob_month.set(args[:dob_month]) if args.key?(:dob_month)
+    dob_year.set(args[:dob_year]) if args.key?(:dob_year)
 
     submit_button.click
   end

@@ -2,7 +2,9 @@ class ContactEmailPage < SitePrism::Page
 
   # What's the contact email address?
 
+  element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")
+
   element(:email, "#contact_email_form_contact_email")
   element(:confirm_email, "#contact_email_form_confirmed_email")
   element(:submit_button, ".button")

@@ -4,6 +4,8 @@ class LocationPage < SitePrism::Page
   # Update once the old registration journey is no longer live.
 
   # Where is your principal place of business?
+  element(:error_summary, ".error-summary")
+
   elements(:location, "input[name='location_form[location]']", visible: false)
   element(:england, "input[value='england']", visible: false)
   element(:wales, "input[value='wales']", visible: false)

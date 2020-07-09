@@ -2,11 +2,10 @@ class ContactNamePage < SitePrism::Page
 
   # Who should we contact about this registration?
 
+  element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")
-  element(:contact_name, "#registration_companyName")
 
-  # The next two page objects are only relevant if the contact is a named person.
-  # These objects not yet called because renewals use existing data, but should be included in future tests.
+  element(:contact_name, "#registration_companyName")
   element(:first_name, "#contact_name_form_first_name")
   element(:last_name, "#contact_name_form_last_name")
   element(:submit_button, ".button")

@@ -19,3 +19,7 @@ Feature: A new user registers as an upper tier waste carrier
     And I complete my registration for my business "UT Registration Pending WorldPay"
     And I pay by card
     Then I am notified that my registration payment is being processed
+
+  Scenario: Test error validation for registrations
+    When I generate errors throughout the journey
+    Then I am notified that my application has been received

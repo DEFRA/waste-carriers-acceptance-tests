@@ -304,3 +304,37 @@ def check_registration_details(reg)
   @bo.dashboard_page.view_reg_details(search_term: reg)
   expect(@bo.registration_details_page.heading).to have_text("Registration " + reg)
 end
+
+def test_address_validations
+  # Cycle through possible error messages on shared address pages
+  test_lookup_address_validations
+  test_manual_address_validations
+end
+
+def test_lookup_address_validations
+  test_invalid_postcodes
+  @journey.address_lookup_page.enter_postcode("BS1 5AH")
+  @journey.address_lookup_page.submit_button.click
+  expect(@journey.address_lookup_page.error_summary).to have_text("You must select an address")
+end
+
+def test_invalid_postcodes
+  @journey.address_lookup_page.enter_postcode("")
+  expect(@journey.address_lookup_page.error_summary).to have_text("Enter a postcode")
+  @journey.address_lookup_page.enter_postcode("cheese")
+  expect(@journey.address_lookup_page.error_summary).to have_text("Enter a valid UK postcode")
+  @journey.address_lookup_page.enter_postcode("BS1 9XX")
+  expect(@journey.address_lookup_page.error_summary).to have_text("We cannot find any addresses for that postcode. Check the postcode or enter the address manually.")
+end
+
+def test_manual_address_validations
+  @journey.address_lookup_page.manual_address.click
+  @journey.address_manual_page.submit
+  expect(@journey.address_manual_page.error_summary).to have_text("Enter the building name or number\nEnter an address line 1\nEnter a town or city")
+  @journey.address_manual_page.submit(
+    house_number: "1",
+    address_line_one: "Elm lane",
+    address_line_two: "Snnnnnnn",
+    city: "Wilson"
+  )
+end
