@@ -19,17 +19,14 @@ end
 
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
   @organisation_type = organisation_type
-
   @journey.start_page.load
   @journey.start_page.submit
-
   @journey.location_page.submit(choice: location)
-
   @journey.business_type_page.submit(org_type: organisation_type)
 end
 
 # Main step for generating a new registration.
-# It depends on instance variables to decide what to register.
+# It depends on instance variables to decide what to register:
 
 When("I complete my registration for my business {string}") do |business_name|
   if @organisation_type == "charity"
@@ -45,7 +42,7 @@ When("I complete my registration for my business {string}") do |business_name|
     @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
     @carrier = "carrier_broker_dealer"
 
-    if @organisation_type == "limitedCompany"
+    if @organisation_type == "limitedCompany" || @organisation_type == "limitedLiabilityPartnership"
       @companies_house_number ||= "00445790"
       @journey.company_number_page.submit(companies_house_number: @companies_house_number)
     end
@@ -352,4 +349,45 @@ Given("a limited company {string} registers as an upper tier waste carrier") do 
 
   @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration " + @reg_number + " completed with conviction match on company name"
+end
+
+Given("I get part way through a front office registration") do
+  step("I start a new registration journey in 'England' as a 'limitedLiabilityPartnership'")
+
+  @business_name = "Resume registration " + rand(1..999_999).to_s
+  select_random_upper_tier_options("existing")
+  @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
+  @carrier = "carrier_broker_dealer"
+  @companies_house_number ||= "00445790"
+  @journey.company_number_page.submit(companies_house_number: @companies_house_number)
+  @journey.company_name_page.submit(company_name: @business_name)
+  @journey.address_lookup_page.submit_valid_address
+  @people = @journey.company_people_page.main_people
+  @journey.company_people_page.submit_main_person(person: @people[0])
+  @journey.conviction_declare_page.submit(choice: :no)
+  @journey.contact_name_page.submit(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name
+  )
+  @journey.contact_phone_page.submit(phone_number: "0117 4960000")
+end
+
+Given("I resume the registration as assisted digital") do
+  @bo.dashboard_page.view_new_reg_details(search_term: @business_name)
+  @bo.registration_details_page.continue_as_ad_button.click
+  @bo.ad_privacy_policy_page.submit_button.click
+
+  # Continue the journey where the previous user left off
+  expect(@journey.contact_email_page.heading).to have_text("contact email address?")
+  @email_address = generate_email
+  @journey.contact_email_page.submit(email: @email_address, confirm_email: @email_address)
+  @journey.address_lookup_page.submit_valid_address
+  expect(page).to have_content("Check your answers")
+  @journey.standard_page.submit
+  @journey.declaration_page.submit
+  order_cards_during_journey(3)
+  @journey.payment_summary_page.submit(choice: :card_payment)
+  submit_valid_card_payment
+  expect(@journey.confirmation_page.heading).to have_text("Registration complete")
+  @reg_number = @journey.confirmation_page.registration_number.text
 end
