@@ -1,4 +1,4 @@
-class ExistingRegistrationPage < SitePrism::Page
+class OldExistingRegistrationPage < SitePrism::Page
 
   # What is your waste carrier registration number?
   element(:reg_no, "#registration_originalRegistrationNumber")

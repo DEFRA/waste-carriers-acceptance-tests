@@ -105,6 +105,23 @@ Then("I am notified that my registration has been successful") do
   puts "Registration #{@reg_number} created successfully"
 end
 
+Then("I am notified that I need to pay by bank transfer") do
+  expect(page).to have_content("You must now pay by bank transfer")
+  expect(page).to have_content("We’ve sent an email to " + @email_address + " with the payment details and instructions.")
+
+  @reg_number = @journey.confirmation_page.registration_number.text
+  find_text = [@reg_number]
+
+  find_text << "You need to pay for your waste carriers registration and then email us to confirm payment"
+  find_text << "Email us your registration " + @reg_number + " to confirm you’ve paid"
+
+  visit Quke::Quke.config.custom["urls"]["last_email_fo"]
+  email_found = @journey.last_email_page.check_email_for_text(find_text)
+  expect(email_found).to eq(true)
+
+  puts "Registration #{@reg_number} submitted pending bank transfer"
+end
+
 Then("I am notified that my registration payment is being processed") do
   expect(page).to have_content("We’re processing your payment")
 
@@ -372,8 +389,14 @@ Given("I get part way through a front office registration") do
   @journey.contact_phone_page.submit(phone_number: "0117 4960000")
 end
 
-Given("I resume the registration as assisted digital") do
+Given("the in-progress registration details are correct") do
   @bo.dashboard_page.view_new_reg_details(search_term: @business_name)
+  expect(@bo.registration_details_page.heading).to have_text("New registration for " + @business_name)
+  expect(@bo.registration_details_page.info_panel).to have_text("Carrier, broker and dealer")
+  expect(@bo.registration_details_page.content).to have_text(@people[0][:first_name] + " " + @people[0][:last_name])
+end
+
+Given("I resume the registration as assisted digital") do
   @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit_button.click
 

@@ -131,7 +131,7 @@ Given(/^the registration has been partially renewed by the account holder$/) do
   @journey = JourneyApp.new
   @front_app.old_start_page.load
   @front_app.old_start_page.submit(renewal: true)
-  @front_app.existing_registration_page.submit(reg_no: @reg_number)
+  @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
   @front_app.waste_carrier_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
@@ -239,7 +239,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
-  @bo.bank_transfer_page.submit
+  @journey.payment_bank_transfer_page.submit
   @bo.dashboard_page.govuk_banner.home_page.click
 end
 

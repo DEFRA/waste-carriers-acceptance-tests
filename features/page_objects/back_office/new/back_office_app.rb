@@ -18,10 +18,6 @@ class BackOfficeApp
     @last_page = AgencySignInPage.new
   end
 
-  def bank_transfer_page
-    @last_page = BankTransferPage.new
-  end
-
   def cease_or_revoke_page
     @last_page = CeaseOrRevokePage.new
   end
@@ -56,10 +52,6 @@ class BackOfficeApp
 
   def edit_page
     @last_page = EditPage.new
-  end
-
-  def existing_registration_page
-    @last_page = ExistingRegistrationPage.new
   end
 
   def finance_charge_adjust_input_page

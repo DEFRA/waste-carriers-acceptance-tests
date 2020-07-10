@@ -1,9 +1,20 @@
 Given(/^I renew my last registration$/) do
+  # randomise between old and new app
+  @front_app = FrontOfficeApp.new
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @renewals_app.old_start_page.load
-  @renewals_app.old_start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
+  @resource_object = :renewal
+  # Randomise between old and new app, until we get rid of old app:
+  i = rand(2)
+  if i.zero?
+    @front_app.old_start_page.load
+    @front_app.old_start_page.submit(renewal: true)
+    @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
+  else
+    @journey.start_page.load
+    @journey.start_page.submit(choice: @resource_object)
+    @journey.existing_registration_page.submit(reg_no: @reg_number)
+  end
 end
 
 Given("I receive an email from NCCC inviting me to renew") do
@@ -86,17 +97,17 @@ Given(/^I choose to renew my registration$/) do
   Capybara.reset_session!
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @renewals_app.old_start_page.load
-  @renewals_app.old_start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit(renewal: true)
+  @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
 end
 
 When(/^I enter my lower tier registration number "([^"]*)"$/) do |reg_no|
-  @renewals_app.existing_registration_page.submit(reg_no: reg_no)
+  @front_app.old_existing_registration_page.submit(reg_no: reg_no)
 end
 
 Then(/^I'm informed "([^"]*)"$/) do |error_message|
-  expect(@renewals_app.existing_registration_page.error_message.text).to eq(error_message)
+  expect(@front_app.old_existing_registration_page.error_message.text).to eq(error_message)
 end
 
 Given("I am told that my registration does not expire") do
@@ -186,7 +197,11 @@ When("I complete my {string} renewal steps") do |business_type|
   select_random_upper_tier_options("existing")
   @renewals_app.renewal_information_page.submit
   submit_business_details(@business_name)
-  submit_company_people
+  if business_type == "partnership"
+    test_partnership_people
+  else
+    submit_company_people
+  end
   submit_convictions("no convictions")
   submit_existing_contact_details
   check_your_answers
@@ -208,26 +223,7 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   submit_existing_contact_details
   check_your_answers
   order_cards_during_journey(0)
-  @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
-  @renewals_app.bank_transfer_page.submit
-end
-
-When(/^I add two partners to my renewal$/) do
-  @business_name = "Partnership renewal"
-  agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
-  @renewals_app.renewal_information_page.submit
-  submit_business_details(@business_name)
-  people = @journey.company_people_page.main_people
-  @journey.company_people_page.add_main_person(person: people[0])
-  @journey.company_people_page.add_main_person(person: people[1])
-end
-
-When(/^remove one partner and attempt to continue with my renewal$/) do
-  @journey.company_people_page.remove_person[0].click
-  @journey.company_people_page.submit_button.click
+  step("I pay by bank transfer")
 end
 
 When(/^I complete my overseas company renewal steps$/) do
@@ -273,11 +269,6 @@ end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
   expect(@renewals_app.waste_carrier_sign_in_page).to have_text(message)
-  Capybara.reset_session!
-end
-
-Then(/^I will be asked to add another partner$/) do
-  expect(@journey.company_people_page).to have_text("You must add the details of at least 2 people")
   Capybara.reset_session!
 end
 

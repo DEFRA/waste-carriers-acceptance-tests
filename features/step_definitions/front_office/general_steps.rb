@@ -90,11 +90,11 @@ Given(/^I choose to renew my registration using my previous registration number$
   @journey = JourneyApp.new
   @front_app.old_start_page.load
   @front_app.old_start_page.submit(renewal: true)
-  @front_app.existing_registration_page.submit(reg_no: @reg_number)
+  @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
 end
 
 Then(/^I will be told "([^"]*)"$/) do |message|
-  expect(@front_app.existing_registration_page).to have_text(message)
+  expect(@front_app.old_existing_registration_page).to have_text(message)
 end
 
 Given("I have reached the GOV.UK start page") do

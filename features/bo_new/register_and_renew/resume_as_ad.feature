@@ -9,6 +9,7 @@ Scenario: NCCC resumes registration for an LLP
   Given I want to register as an upper tier carrier
   And I get part way through a front office registration
   And I sign into the back office as "agency-user"
+  And the in-progress registration details are correct
   When I resume the registration as assisted digital
   Then the registration has a status of "ACTIVE"
 

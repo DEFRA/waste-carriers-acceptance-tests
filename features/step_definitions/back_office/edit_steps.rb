@@ -48,17 +48,6 @@ When("I edit the most recent registration type to {string}") do |carrier_type|
   @journey.carrier_type_page.submit(choice: carrier_type)
 end
 
-When("I pay by card") do
-  @journey.payment_summary_page.submit(choice: :card_payment)
-
-  submit_valid_card_payment
-end
-
-When("I pay by bank transfer") do
-  @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
-  @bo.bank_transfer_page.submit
-end
-
 When("I cancel the edit") do
   @bo.edit_page.cancel_changes.click
 

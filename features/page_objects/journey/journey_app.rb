@@ -86,12 +86,20 @@ class JourneyApp
     @last_page = DeclarationPage.new
   end
 
+  def existing_registration_page
+    @last_page = ExistingRegistrationPage.new
+  end
+
   def last_email_page
     @last_page = LastEmailPage.new
   end
 
   def location_page
     @last_page = LocationPage.new
+  end
+
+  def payment_bank_transfer_page
+    @last_page = PaymentBankTransferPage.new
   end
 
   def payment_receipt_page

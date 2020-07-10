@@ -10,7 +10,7 @@ Feature: Registered waste carrier pays for their renewal
     And I start renewing my last registration from the email
     And I complete my renewal up to the payment page
     And I have my credit card payment rejected
-    When I choose to pay by bank transfer
+    When I pay by bank transfer
     Then I will be notified my renewal is pending payment
     And I will receive an email with text "You need to pay for your waste carriers registration"
 
@@ -20,7 +20,7 @@ Feature: Registered waste carrier pays for their renewal
     And I start renewing my last registration from the email
     And I complete my renewal up to the payment page
     And I cancel my credit card payment
-    When I choose to pay by bank transfer
+    When I pay by bank transfer
     Then I will be notified my renewal is pending payment
     And I will receive an email with text "You need to pay for your waste carriers registration"
 

@@ -32,7 +32,12 @@ Then(/^(?:I can pay with another card|I try my credit card payment again)$/) do
   submit_valid_card_payment
 end
 
-When(/^I choose to pay by bank transfer$/) do
+When("I pay by card") do
+  @journey.payment_summary_page.submit(choice: :card_payment)
+  submit_valid_card_payment
+end
+
+When("I pay by bank transfer") do
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
-  @renewals_app.bank_transfer_page.submit
+  @journey.payment_bank_transfer_page.submit
 end
