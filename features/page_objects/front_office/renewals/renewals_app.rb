@@ -8,10 +8,6 @@ class RenewalsApp
   # RENEWAL SPECIFIC PAGES
   # /
 
-  def bank_transfer_page
-    @last_page = BankTransferPage.new
-  end
-
   def cannot_renew_lower_tier_page
     @last_page = CannotRenewLowerTierPage.new
   end

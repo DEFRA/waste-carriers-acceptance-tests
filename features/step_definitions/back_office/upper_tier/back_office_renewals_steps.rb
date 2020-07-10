@@ -239,7 +239,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
-  @bo.bank_transfer_page.submit
+  @journey.payment_bank_transfer_page.submit
   @bo.dashboard_page.govuk_banner.home_page.click
 end
 

@@ -111,13 +111,13 @@ Then(/^I cannot access payments until the bank transfer option is selected$/) do
   # Then submit the renewal:
   @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit
-  @bo.bank_transfer_page.submit
+  @journey.payment_bank_transfer_page.submit
 end
 
 When(/^the applicant chooses to pay for the renewal by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
   order_cards_during_journey(copy_card_number)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
-  @bo.bank_transfer_page.submit
+  @journey.payment_bank_transfer_page.submit
 end
 
 And(/^the applicant pays by bank card$/) do

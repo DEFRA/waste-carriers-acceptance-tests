@@ -220,6 +220,17 @@ def submit_company_people
   @journey.company_people_page.submit_main_person(person: people[2])
 end
 
+def test_partnership_people
+  # Check that removing a partner means you can't continue with a registration.
+  people = @journey.company_people_page.main_people
+  @journey.company_people_page.add_main_person(person: people[0])
+  @journey.company_people_page.add_main_person(person: people[1])
+  @journey.company_people_page.remove_person[0].click
+  @journey.company_people_page.submit_button.click
+  expect(@journey.company_people_page).to have_text("You must add the details of at least 2 people")
+  @journey.company_people_page.submit_main_person(person: people[2])
+end
+
 def old_submit_convictions(convictions)
   if convictions == "no convictions"
     @back_app.relevant_convictions_page.submit(choice: :no)

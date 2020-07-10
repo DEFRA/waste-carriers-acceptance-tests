@@ -13,9 +13,15 @@ Feature: A new user registers as an upper tier waste carrier
     And I pay by card
     Then I am notified that my registration has been successful
 
+  Scenario: An LLP registers as an upper tier waste carrier and pays via bank transfer
+    When I start a new registration journey in "England" as a "limitedLiabilityPartnership"
+    And I complete my registration for my business "UT registration by bank transfer"
+    And I pay by bank transfer
+    Then I am notified that I need to pay by bank transfer
+
   Scenario: A partnership registers as an upper tier waste carrier with pending Worldpay payment
     Given mocking is enabled
-    When I start a new registration journey in "England" as a "soleTrader"
+    When I start a new registration journey in "England" as a "partnership"
     And I complete my registration for my business "UT Registration Pending WorldPay"
     And I pay by card
     Then I am notified that my registration payment is being processed
