@@ -1,7 +1,10 @@
 class TierServiceProvidedPage < SitePrism::Page
 
-  # Who produces the waste that you deal with?
+  # Who creates the waste that you deal with?
+
+  element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")
+
   element(:yes_main_service, "#service_provided_form_is_main_service_yes", visible: false)
   element(:not_main_service, "#service_provided_form_is_main_service_no", visible: false)
   element(:submit_button, ".button")

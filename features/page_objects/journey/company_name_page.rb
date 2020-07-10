@@ -1,6 +1,7 @@
 class CompanyNamePage < SitePrism::Page
 
   # whats the name of the company?
+  element(:error_summary, ".error-summary")
   element(:company_name, "#company_name_form_company_name")
   element(:heading, ".heading-large")
   element(:submit_button, ".button")

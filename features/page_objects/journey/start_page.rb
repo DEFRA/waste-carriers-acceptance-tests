@@ -1,15 +1,17 @@
 class StartPage < SitePrism::Page
   set_url("#{Quke::Quke.config.custom['urls']['front_office']}/start")
 
+  element(:error_summary, ".error-summary")
+
   element(:new_registration, "input[value='new']", visible: false)
   element(:renew_registration, "input[value='renew']", visible: false)
 
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    if args[:renewal]
+    if args[:choice] == :renewal
       renew_registration.click
-    else
+    elsif args[:choice] == :new_registration
       new_registration.click
     end
 

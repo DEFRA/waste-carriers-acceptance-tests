@@ -2,6 +2,7 @@ class AddressManualPage < SitePrism::Page
 
   # Use this for all manual addresses for renewals
 
+  element(:error_summary, ".error-summary")
   element(:change_postcode, "a[href*='address-manual/back']")
   element(:house_number, "input[id*='address_house_number']")
   element(:address_line_one, "input[id*='address_line_1']")

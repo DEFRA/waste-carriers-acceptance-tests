@@ -1,9 +1,9 @@
 class AddressLookupPage < SitePrism::Page
 
-  # Use this for all RENEWAL functionality, for company and contact addresses.
-  # Don't use for registrations until tech debt is complete.
+  # Use this for all company and contact addresses on front/back office.
 
   element(:back_link, ".link-back")
+  element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")
 
   # Initial postcode selection:

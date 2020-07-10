@@ -2,7 +2,9 @@ class DeclarationPage < SitePrism::Page
 
   # Declaration
 
+  element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")
+
   element(:declaration, "#declaration_form_declaration", visible: false)
   element(:submit_button, "input[type='submit']")
 

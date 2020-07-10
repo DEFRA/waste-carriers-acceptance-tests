@@ -1,6 +1,7 @@
 class BusinessTypePage < SitePrism::Page
 
   # What type of business or organisation are you?
+  element(:error_summary, ".error-summary")
   elements(:org_types, "input[type='radio']", visible: false)
 
   element(:submit_button, "input[type='Submit']", visible: false)
