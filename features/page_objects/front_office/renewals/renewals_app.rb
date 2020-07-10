@@ -20,14 +20,6 @@ class RenewalsApp
     @last_page = CannotRenewTypeChangePage.new
   end
 
-  def existing_registration_page
-    @last_page = ExistingRegistrationPage.new
-  end
-
-  def old_start_page
-    @last_page = OldStartPage.new
-  end
-
   def renewal_information_page
     @last_page = RenewalInformationPage.new
   end

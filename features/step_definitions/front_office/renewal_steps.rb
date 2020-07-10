@@ -1,9 +1,20 @@
 Given(/^I renew my last registration$/) do
+  # randomise between old and new app
+  @front_app = FrontOfficeApp.new
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @renewals_app.old_start_page.load
-  @renewals_app.old_start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
+  @resource_object = :renewal
+  # Randomise between old and new app, until we get rid of old app:
+  i = rand(2)
+  if i.zero?
+    @front_app.old_start_page.load
+    @front_app.old_start_page.submit(renewal: true)
+    @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
+  else
+    @journey.start_page.load
+    @journey.start_page.submit(choice: @resource_object)
+    @journey.existing_registration_page.submit(reg_no: @reg_number)
+  end
 end
 
 Given("I receive an email from NCCC inviting me to renew") do
@@ -86,17 +97,17 @@ Given(/^I choose to renew my registration$/) do
   Capybara.reset_session!
   @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
-  @renewals_app.old_start_page.load
-  @renewals_app.old_start_page.submit(renewal: true)
-  @renewals_app.existing_registration_page.submit(reg_no: @reg_number)
+  @front_app.old_start_page.load
+  @front_app.old_start_page.submit(renewal: true)
+  @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
 end
 
 When(/^I enter my lower tier registration number "([^"]*)"$/) do |reg_no|
-  @renewals_app.existing_registration_page.submit(reg_no: reg_no)
+  @front_app.old_existing_registration_page.submit(reg_no: reg_no)
 end
 
 Then(/^I'm informed "([^"]*)"$/) do |error_message|
-  expect(@renewals_app.existing_registration_page.error_message.text).to eq(error_message)
+  expect(@front_app.old_existing_registration_page.error_message.text).to eq(error_message)
 end
 
 Given("I am told that my registration does not expire") do

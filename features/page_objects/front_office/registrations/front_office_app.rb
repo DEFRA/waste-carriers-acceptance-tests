@@ -57,10 +57,6 @@ class FrontOfficeApp
     @last_page = ConfirmAccountPage.new
   end
 
-  def existing_registration_page
-    @last_page = ExistingRegistrationPage.new
-  end
-
   def govuk_start_page
     @last_page = GovukStartPage.new
   end
@@ -79,6 +75,10 @@ class FrontOfficeApp
 
   def old_confirmation_page
     @last_page = OldConfirmationPage.new
+  end
+
+  def old_existing_registration_page
+    @last_page = OldExistingRegistrationPage.new
   end
 
   def old_start_page

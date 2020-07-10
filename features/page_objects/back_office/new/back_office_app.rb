@@ -58,10 +58,6 @@ class BackOfficeApp
     @last_page = EditPage.new
   end
 
-  def existing_registration_page
-    @last_page = ExistingRegistrationPage.new
-  end
-
   def finance_charge_adjust_input_page
     @last_page = FinanceChargeAdjustInputPage.new
   end
