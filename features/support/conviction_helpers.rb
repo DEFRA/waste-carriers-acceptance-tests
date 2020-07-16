@@ -1,7 +1,5 @@
 def approve_conviction_immediately_for_reg(reg, company_name)
-  go_to_conviction_dashboard
-  expect(@bo.convictions_dashboard_page.content).to have_text(company_name)
-
+  check_conviction_matches_for(company_name)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration may have matching or declared convictions and requires an initial review"
@@ -11,9 +9,7 @@ def approve_conviction_immediately_for_reg(reg, company_name)
 end
 
 def flag_conviction_for_reg(reg, company_name)
-  go_to_conviction_dashboard
-  expect(@bo.convictions_dashboard_page.content).to have_text(company_name)
-
+  check_conviction_matches_for(company_name)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration may have matching or declared convictions and requires an initial review"
@@ -23,10 +19,7 @@ def flag_conviction_for_reg(reg, company_name)
 end
 
 def approve_flagged_conviction_for_reg(reg, company_name)
-  go_to_conviction_dashboard
-  @bo.convictions_dashboard_page.in_progress_tab.click
-  expect(@bo.convictions_dashboard_page.content).to have_text(company_name)
-
+  check_in_progress_convictions_for(company_name)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration has been reviewed and flagged as having relevant convictions."
@@ -36,10 +29,7 @@ def approve_flagged_conviction_for_reg(reg, company_name)
 end
 
 def reject_flagged_conviction_for_reg(reg, company_name)
-  go_to_conviction_dashboard
-  @bo.convictions_dashboard_page.in_progress_tab.click
-  expect(@bo.convictions_dashboard_page.content).to have_text(company_name)
-
+  check_in_progress_convictions_for(company_name)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration has been reviewed and flagged as having relevant convictions."
@@ -48,9 +38,19 @@ def reject_flagged_conviction_for_reg(reg, company_name)
   reject_conviction(reg)
 end
 
-def go_to_conviction_dashboard
-  sign_in_to_back_office("agency-refund-payment-user")
+def check_conviction_matches_for(text)
+  sign_in_to_back_office("agency-refund-payment-user", false)
   @bo.dashboard_page.govuk_banner.conviction_checks_link.click
+  @bo.convictions_dashboard_page.look_for_text(text)
+  expect(@bo.convictions_dashboard_page.content).to have_text(text)
+end
+
+def check_in_progress_convictions_for(text)
+  sign_in_to_back_office("agency-refund-payment-user", false)
+  @bo.dashboard_page.govuk_banner.conviction_checks_link.click
+  @bo.convictions_dashboard_page.in_progress_tab.click
+  @bo.convictions_dashboard_page.look_for_text(text)
+  expect(@bo.convictions_dashboard_page.content).to have_text(text)
 end
 
 def go_to_conviction_for_reg(reg)

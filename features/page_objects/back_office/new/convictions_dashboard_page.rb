@@ -12,4 +12,13 @@ class ConvictionsDashboardPage < SitePrism::Page
   element(:approved_tab, "a[href*='/convictions/approved']")
   element(:rejected_tab, "a[href*='/convictions/rejected']")
 
+  def look_for_text(text)
+    # Look for the relevant text on page. If it's not there, click Next and look again.
+    30.times do
+      break if content.has_text?(text)
+
+      find_link("Next ›").click
+    end
+  end
+
 end

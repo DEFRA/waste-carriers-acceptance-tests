@@ -100,24 +100,27 @@ end
 Given("I have reached the GOV.UK start page") do
   @fo = FrontOfficeApp.new
   visit("https://www.gov.uk/waste-carrier-or-broker-registration")
-  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier, broker or dealer (England)")
+  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier, broker or dealer")
 end
 
 When("I access the links on the page") do
   # Select Wales
-  find_link("Register or renew as a waste carrier, broker or dealer (Wales)").click
-  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier, broker or dealer (Wales)")
-  find_link("Register or renew as a waste carrier, broker or dealer (England)").click
+  find_link("Wales").click
+  expect(page).to have_text("Register or renew as a waste carrier, broker or dealer")
+  expect(page).to have_text("If your business is based in Wales, you must register with us")
+  page.evaluate_script("window.history.back()")
 
   # Select Scotland
-  find_link("Register or renew as a waste carrier or broker (Scotland)").click
-  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier or broker (Scotland)")
+  find_link("Scotland").click
+  expect(page).to have_text("Waste carriers and brokers")
+  expect(page).to have_text("Waste Management Licensing (Scotland) Regulations 2011")
   page.evaluate_script("window.history.back()")
 
   # Select Northern Ireland
-  find_link("Register or renew as a waste carrier or broker (Northern Ireland)").click
-  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier or broker (Northern Ireland)")
-  find_link("England").click
+  find_link("Northern Ireland").click
+  expect(page).to have_text("Registration of carriers and brokers")
+  expect(page).to have_text("Information on how to register as a carrier or broker of waste with the Northern Ireland Environment Agency")
+  page.evaluate_script("window.history.back()")
 
   # Select public register
   find_link("public register of waste carriers, brokers and dealers").click

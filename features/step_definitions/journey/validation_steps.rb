@@ -108,8 +108,6 @@ Given("I generate errors throughout the journey") do
   expect(@journey.registration_cards_page.error_summary).to have_text("Enter 0 or a number between 1 and 999")
   @journey.registration_cards_page.submit(cards: 3)
 
-  @journey.payment_receipt_page.submit # no validation needed here as we're removing this page soon
-
   @journey.payment_summary_page.submit
   expect(@journey.payment_summary_page.error_summary).to have_text("You must select a payment method")
   @journey.payment_summary_page.submit(choice: :card_payment)

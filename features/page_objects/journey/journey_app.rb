@@ -102,10 +102,6 @@ class JourneyApp
     @last_page = PaymentBankTransferPage.new
   end
 
-  def payment_receipt_page
-    @last_page = PaymentReceiptPage.new
-  end
-
   def payment_summary_page
     @last_page = PaymentSummaryPage.new
   end
