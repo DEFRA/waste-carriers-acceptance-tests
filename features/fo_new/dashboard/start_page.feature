@@ -1,4 +1,4 @@
-@fo_new @fo_dashboard @wip
+@fo_new @fo_dashboard
 Feature: Waste carrier navigates start page
   As a carrier of commercial waste
   I want to register in the appropriate country
