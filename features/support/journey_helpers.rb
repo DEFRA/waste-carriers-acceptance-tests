@@ -295,8 +295,6 @@ def order_cards_during_journey(number_of_cards)
   else
     @journey.registration_cards_page.submit(cards: number_of_cards)
   end
-  # Also select which email to send receipts to. Longer term, this should be a separate method:
-  @journey.payment_receipt_page.submit
 end
 
 def old_complete_registration_from_bo(business, tier, carrier)

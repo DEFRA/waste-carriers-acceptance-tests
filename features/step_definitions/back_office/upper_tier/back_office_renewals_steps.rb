@@ -12,7 +12,7 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   @resource_object = :renewal
 
   # Search for registration to renew:
-  sign_in_to_back_office("agency-user")
+  sign_in_to_back_office("agency-refund-payment-user")
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.renew_link.click
   start_internal_renewal
