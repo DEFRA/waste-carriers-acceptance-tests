@@ -7,7 +7,7 @@ class PaymentSummaryPage < SitePrism::Page
   element(:heading, ".heading-large")
 
   element(:card_payment, "input[value='card']", visible: false)
-  element(:receipt_email_field, "#receipt_email_form_receipt_email")
+  element(:receipt_email_field, "#payment_summary_form_card_confirmation_email")
   element(:bank_transfer_payment, "input[value='bank_transfer']", visible: false)
 
   element(:charge, "#registration_registration_fee")

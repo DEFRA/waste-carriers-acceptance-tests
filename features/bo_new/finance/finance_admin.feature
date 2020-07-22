@@ -23,7 +23,7 @@ Feature: Finance admin
 
       Given NCCC partially renews an existing registration with "no convictions"
         And the applicant pays by bank card
-        And the renewal is completed
+        And the renewal has been completed
         And the registration's balance is 0
 
       Given NCCC makes a payment of 99 by "cheque"
@@ -53,7 +53,7 @@ Feature: Finance admin
         And NCCC makes a payment of 105 by "cash"
         And the transient renewal's balance is 10
        When a finance admin user adjusts the charge by -15
-        And the renewal is completed
+        And the renewal has been completed
        Then the registration's balance is -5
         And the registration has a status of "ACTIVE"
 

@@ -18,4 +18,4 @@ Scenario: NCCC resumes renewal for a public body
   And the registration has been partially renewed by the account holder
   And I sign into the back office as "agency-user"
   When I complete the renewal for the account holder
-  Then the renewal is complete
+  Then the AD renewal is complete

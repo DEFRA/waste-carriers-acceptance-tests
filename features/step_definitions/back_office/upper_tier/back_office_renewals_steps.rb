@@ -53,7 +53,7 @@ Given(/^NCCC goes back to the in progress renewal$/) do
   @bo.ad_privacy_policy_page.submit
 end
 
-Then(/^the renewal is complete$/) do
+Then(/^the AD renewal is complete$/) do
   expect(@journey.confirmation_page.heading).to have_text("Renewal complete")
   expect(@journey.confirmation_page.confirmation_box).to have_text("Your registration number is still\n" + @reg_number)
   puts "Renewal " + @reg_number + " complete"

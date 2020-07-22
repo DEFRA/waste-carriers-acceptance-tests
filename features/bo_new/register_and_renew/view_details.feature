@@ -17,7 +17,7 @@ Scenario: NCCC user creates registration and renewal, and checks status
 
   Given NCCC goes back to the in progress renewal
    When the applicant pays by bank card
-   Then the renewal is complete
+   Then the AD renewal is complete
     And I check the registration details are correct on the back office
     And the certificate shows the correct details
 
