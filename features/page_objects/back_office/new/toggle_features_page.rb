@@ -51,7 +51,7 @@ class ToggleFeaturesPage < SitePrism::Page
   end
 
   def enable_feature(name)
-    # Assuming that the toggle has been added, this enables the feature if not already disabled.
+    # Assuming that the toggle has been added, this enables the feature if not already enabled.
     table_row = find("tr", text: name)
     return if table_row.text.include?("ENABLED")
 
