@@ -67,6 +67,8 @@ custom:
       username: agency-refund-payment-user@wcr.gov.uk
     agency-super:
       username: agency-super@wcr.gov.uk
+    developer:
+      username: developer@wcr.gov.uk
     finance-admin-user:
       username: finance-admin-user@wcr.gov.uk
     finance-user:

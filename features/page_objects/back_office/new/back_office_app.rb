@@ -126,6 +126,10 @@ class BackOfficeApp
     @last_page = SignInPage.new
   end
 
+  def toggle_features_page
+    @last_page = ToggleFeaturesPage.new
+  end
+
   def transfer_registration_page
     @last_page = TransferRegistrationPage.new
   end

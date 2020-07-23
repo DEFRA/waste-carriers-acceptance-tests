@@ -11,7 +11,7 @@ When(/^the registration's balance is (-?\d+)$/) do |balance|
   @resource_object = :registration if balance.zero? && @convictions == "no convictions"
 end
 
-When("the renewal is completed") do
+When("the renewal has been completed") do
   @resource_object = :registration
 end
 

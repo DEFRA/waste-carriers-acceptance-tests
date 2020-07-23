@@ -11,7 +11,6 @@
     "contactEmail" : "user@example.com",
     "accountEmail" : "user@example.com",
     "declaration" : 1,
-    "receipt_email" : "",
     "expires_on" : "2023-07-10T13:42:14.110Z",
     "addresses" : [
         {

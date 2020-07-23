@@ -409,7 +409,10 @@ Given("I resume the registration as assisted digital") do
   @journey.standard_page.submit
   @journey.declaration_page.submit
   order_cards_during_journey(3)
-  @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(
+    choice: :card_payment,
+    email: @email_address
+  )
   submit_valid_card_payment
   expect(@journey.confirmation_page.heading).to have_text("Registration complete")
   @reg_number = @journey.confirmation_page.registration_number.text
