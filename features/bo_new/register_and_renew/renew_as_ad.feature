@@ -4,14 +4,14 @@ Feature: Assisted digital renewal of an upper tier public body
   I want assistance with my waste carrier renewal from the Environment Agency
   So I can complete my regisration and I am compliant with the law
 
-Scenario: Public body has their upper tier registration renewed by NCCC
-  Given I have a new registration for a "localAuthority" business
+  Scenario: Public body has their upper tier registration renewed by NCCC
+    Given I have a new registration for a "localAuthority" business
     And I sign into the back office as "agency-user"
-   When I renew the local authority registration
-   Then the AD renewal is complete
+    When I renew the local authority registration
+    Then the AD renewal is complete
 
-Scenario: Limited company has their upper tier registration renewed by NCCC
-  Given I have a new registration for a "limitedCompany" business
+  Scenario: Limited company has their upper tier registration renewed by NCCC
+    Given I have a new registration for a "limitedCompany" business
     And I sign into the back office as "agency-user"
-   When I renew the limited company registration
-   Then the AD renewal is complete
+    When I renew the limited company registration
+    Then the AD renewal is complete

@@ -23,7 +23,6 @@ Feature: NCCC agent unblocks a stuck registration from back office
     And I receive an email from NCCC inviting me to renew
     And I start renewing my last registration from the email
     And I complete the renewal steps and get stuck at the payment stage
-
     When I sign into the back office as "agency-user"
     And I revert the current renewal to payment summary
     Then I can submit the stuck user's application by bank transfer
@@ -34,7 +33,6 @@ Feature: NCCC agent unblocks a stuck registration from back office
     And I start renewing my last registration from the email
     And I complete the renewal steps and get stuck at the payment stage
     And I sign into the back office as "finance-admin-user"
-
     When I add a missed Worldpay payment at the payment stage
     Then the registration has a status of "ACTIVE"
     And the registration does not have a status of "PAYMENT NEEDED"

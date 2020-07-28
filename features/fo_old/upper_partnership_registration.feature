@@ -6,17 +6,17 @@ Feature: Partnership applies for new upper tier registration
 
   Background:
     Given I start a new registration
-   	When I complete my application of my partnership as a upper tier waste carrier
+    When I complete my application of my partnership as a upper tier waste carrier
 
   @email
   Scenario: Partnership successfully registers for a upper tier waste carriers licence paying by credit card
     When I pay for my application by maestro ordering 2 copy cards
-   	Then I will be registered as an upper tier waste carrier
+    Then I will be registered as an upper tier waste carrier
     And I receive a frontend email with text "we have registered you as an an upper tier"
     And the registration status will be "Registered"
 
-   @smoke
-   Scenario: Partnership successfully applies for an upper tier waste carriers licence choosing to pay by bank transfer
+  @smoke
+  Scenario: Partnership successfully applies for an upper tier waste carriers licence choosing to pay by bank transfer
     When I choose to pay for my application by bank transfer ordering 0 copy cards
     Then I will be informed my registration is pending payment
     And my registration status will be "Awaiting payment"
