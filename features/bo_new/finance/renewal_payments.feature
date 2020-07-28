@@ -10,7 +10,6 @@ Feature: Recording of a non worldpay renewal payment and negative conviction che
     And the registration has an unsubmitted renewal
     And I cannot access payments until the bank transfer option is selected
     And the transient renewal's balance is 105
-
     When I search for the renewal pending payment
     And I mark the renewal payment as received
     Then the expiry date should be three years from the previous expiry date
@@ -22,7 +21,6 @@ Feature: Recording of a non worldpay renewal payment and negative conviction che
     And the registration has an unsubmitted renewal
     And I cannot access payments until the bank transfer option is selected
     And the transient renewal's balance is 105
-
     When I search for the renewal pending payment
     And I mark the renewal payment as received
     Then the registration has a status of "CONVICTIONS"

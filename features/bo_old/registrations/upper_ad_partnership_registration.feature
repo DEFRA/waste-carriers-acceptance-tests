@@ -4,17 +4,17 @@ Feature: Assisted digital registration of an upper tier partnership
   I want assistance with my waste carrier registration from the Environment Agency
   So I can complete my regisration and I am compliant with the law
 
-   Background:
-   Given an Environment Agency user has signed in to the backend
-     And I request assistance with a new registration
+  Background:
+    Given an Environment Agency user has signed in to the backend
+    And I request assistance with a new registration
     When I have my partnership upper tier waste carrier application completed for me
 
   Scenario: NCCC successfully registers a partnership for a upper tier waste carriers licence paying by credit card
     When I pay for my application over the phone by maestro ordering 2 copy cards
-   	Then I will have an upper tier registration
-     And the registration status will be "Registered"
+    Then I will have an upper tier registration
+    And the registration status will be "Registered"
 
-@smoke
+  @smoke
   Scenario: NCCC successfully registers a partnership for a upper tier waste carriers licence choosing to pay by bank transfer
     When the applicant chooses to pay for the registration by bank transfer ordering 1 copy card
-   	Then the registration status will be "Awaiting payment"
+    Then the registration status will be "Awaiting payment"
