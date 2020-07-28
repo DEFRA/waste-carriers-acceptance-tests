@@ -27,8 +27,7 @@ class ToggleFeaturesPage < SitePrism::Page
   def add_all_toggles
     add_new_toggle("new_registration")
     add_new_toggle("api")
-    add_new_toggle("email_reminders")
-    add_new_toggle("renew_via_magic_link")
+    add_new_toggle("renewal_reminders")
     add_new_toggle("use_extended_grace_window")
   end
 
@@ -45,8 +44,7 @@ class ToggleFeaturesPage < SitePrism::Page
   def disable_all_features
     disable_feature("new_registration")
     disable_feature("api")
-    disable_feature("email_reminders")
-    disable_feature("renew_via_magic_link")
+    disable_feature("renewal_reminders")
     disable_feature("use_extended_grace_window")
   end
 
@@ -63,8 +61,7 @@ class ToggleFeaturesPage < SitePrism::Page
   def enable_all_features
     enable_feature("new_registration")
     enable_feature("api")
-    enable_feature("email_reminders")
-    enable_feature("renew_via_magic_link")
+    enable_feature("renewal_reminders")
     enable_feature("use_extended_grace_window")
   end
 

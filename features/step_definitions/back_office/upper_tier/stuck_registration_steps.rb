@@ -28,7 +28,7 @@ When("I complete the renewal steps and get stuck at the payment stage") do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  submit_existing_contact_details
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)

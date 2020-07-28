@@ -203,7 +203,7 @@ When("I complete my {string} renewal steps") do |business_type|
     submit_company_people
   end
   submit_convictions("no convictions")
-  submit_existing_contact_details
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
@@ -220,7 +220,7 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  submit_existing_contact_details
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   step("I pay by bank transfer")
@@ -245,9 +245,15 @@ When(/^I complete my overseas company renewal steps$/) do
   @journey.company_people_page.submit_main_person(person: people[0])
   submit_convictions("no convictions")
   order_cards_during_journey(0)
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit
+  @journey.contact_name_page.submit(
+    first_name: "Peter",
+    last_name: "O'Hanrahahanrahan"
+  )
+  @journey.contact_phone_page.submit(phone_number: "0117 4960000")
+  @journey.contact_email_page.submit(
+    email: "overseas-renewal@example.com",
+    confirm_email: "overseas-renewal@example.com"
+  )
   @journey.address_manual_page.submit(
     house_number: "1",
     address_line_one: "Via poerio",
