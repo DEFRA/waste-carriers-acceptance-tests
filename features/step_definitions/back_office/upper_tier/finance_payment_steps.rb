@@ -90,13 +90,7 @@ Given(/^the registration has an unsubmitted renewal$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit(
-    email: "bo-user@example.com",
-    confirm_email: "bo-user@example.com"
-  )
-  submit_manual_address
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)

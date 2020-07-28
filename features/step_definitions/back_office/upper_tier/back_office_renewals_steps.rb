@@ -25,7 +25,7 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions(convictions)
-  submit_contact_details_from_bo
+  submit_contact_details_for_renewal
   check_your_answers
   # User has submitted the declaration and is on the "certificate and registration cards" page
 end
@@ -38,7 +38,7 @@ Given(/^the back office pages show the correct transient renewal details$/) do
   expect(@bo.registration_details_page).to have_text "Application in progress"
   expect(@bo.registration_details_page).to have_continue_as_ad_button
   expect(@bo.registration_details_page.info_panel).to have_text(@business_name)
-  expect(@bo.registration_details_page.content).to have_text("Bob Carolgees")
+  expect(@bo.registration_details_page.content).to have_text("Peek Freans")
   expect(@bo.registration_details_page.content).to have_text("Application still in progress. No finance data yet.")
   expect(@bo.registration_details_page).to have_no_view_certificate_link
 
@@ -83,13 +83,7 @@ When(/^I renew the local authority registration$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit(
-    email: "bo-user@example.com",
-    confirm_email: "bo-user@example.com"
-  )
-  @journey.address_lookup_page.submit_valid_address
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
@@ -110,13 +104,7 @@ When(/^I renew the limited company registration$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit(
-    email: "bo-user@example.com",
-    confirm_email: "bo-user@example.com"
-  )
-  submit_manual_address
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
@@ -153,7 +141,7 @@ When(/^I complete the renewal for the account holder$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
-  submit_existing_contact_details
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
@@ -229,13 +217,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit(
-    email: "bo-user@example.com",
-    confirm_email: "bo-user@example.com"
-  )
-  @journey.address_lookup_page.submit_valid_address
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)

@@ -1,6 +1,6 @@
-@bo_new @bo_dashboard
+@bo_new @bo_dashboard @toggle
 
-Feature: Toggle features
+Feature: [RUBY-1118] Toggle features
 As an developer
 I want to turn features off and on
 So that I can help our contact centre manage demand

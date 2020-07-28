@@ -8,13 +8,7 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit(
-    email: "test@example.com",
-    confirm_email: "test@example.com"
-  )
-  @journey.address_lookup_page.submit_valid_address
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
@@ -36,13 +30,7 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
   @journey.company_people_page.add_main_person(person: people[1])
   @journey.company_people_page.submit_main_person(person: people[2])
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit(
-    email: "test@example.com",
-    confirm_email: "test@example.com"
-  )
-  @journey.address_lookup_page.submit_valid_address
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
@@ -61,13 +49,7 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   submit_limited_company_details("existing")
   submit_company_people
   submit_convictions("no convictions")
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit(
-    email: "test@example.com",
-    confirm_email: "test@example.com"
-  )
-  @journey.address_lookup_page.submit_valid_address
+  submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)

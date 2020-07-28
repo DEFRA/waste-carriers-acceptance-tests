@@ -261,16 +261,27 @@ def old_submit_contact_details_from_bo
   # Back office doesn't have the ability to add a contact address for assisted digital renewals
 end
 
-def submit_contact_details_from_bo
-  # For a renewal, all tests currently select existing contact details.
-  # When registrations have moved to the new app, this function will also need to enter new details.
-  @journey.contact_name_page.submit
-  @journey.contact_phone_page.submit
-  @journey.contact_email_page.submit(
-    email: "bo-user@example.com",
-    confirm_email: "bo-user@example.com"
+def submit_contact_details_for_renewal
+  # Contact details are not replayed as per RUBY-1171.
+  last_name_value = @journey.contact_name_page.last_name.value
+  expect(last_name_value).to eq("")
+  @journey.contact_name_page.submit(
+    first_name: "Peek",
+    last_name: "Freans"
   )
-  submit_manual_address
+
+  phone_value = @journey.contact_phone_page.phone_number.value
+  expect(phone_value).to eq("")
+  @journey.contact_phone_page.submit(phone_number: "0117 4960001")
+
+  email_value = @journey.contact_email_page.email.value
+  expect(email_value).to eq("")
+  @journey.contact_email_page.submit(
+    email: "bo-renewal@example.com",
+    confirm_email: "bo-renewal@example.com"
+  )
+
+  complete_address_with_random_method
 end
 
 def old_check_your_answers

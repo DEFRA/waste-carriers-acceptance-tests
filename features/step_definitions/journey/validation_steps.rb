@@ -110,7 +110,15 @@ Given("I generate errors throughout the journey") do
 
   @journey.payment_summary_page.submit
   expect(@journey.payment_summary_page.error_summary).to have_text("You must select a payment method")
-  @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.payment_summary_page.submit(
+    choice: :card_payment,
+    email: ""
+  )
+  expect(@journey.payment_summary_page.error_summary).to have_text("Enter an email address")
+  @journey.payment_summary_page.submit(
+    choice: :card_payment,
+    email: "receipt-email@example.com"
+  )
 
   submit_valid_card_payment
 end
@@ -118,4 +126,7 @@ end
 Then("I am notified that my application has been received") do
   expect(@journey.confirmation_page.heading).to have_text("Application received")
   expect(@journey.confirmation_page.content).to have_text("check your details and let you know whether your application has been successful")
+  expect(@journey.confirmation_page.content).to have_text("receipt-email@example.com")
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts @reg_number + " submitted and pending convictions"
 end

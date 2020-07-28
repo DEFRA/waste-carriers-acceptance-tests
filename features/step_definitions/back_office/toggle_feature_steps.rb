@@ -7,9 +7,10 @@ When("I turn all features off") do
 end
 
 Then("the features are no longer available") do
-  # Look for resend renewal email link:
+  # Look for resend renewal email link and magic link at bottom:
   visit_registration_details_page(@reg_number)
   expect(@bo.registration_details_page).to have_no_resend_renewal_email_link
+  expect(@bo.registration_details_page).to have_no_text("Renewal link")
 
   # Go to new registration start page on frontend:
   visit(Quke::Quke.config.custom["urls"]["front_office"] + "/start")
@@ -26,9 +27,10 @@ When("I turn all features on") do
 end
 
 Then("the features are available") do
-  # Look for resend renewal email link:
+  # Look for resend renewal email link and magic link at bottom:
   visit_registration_details_page(@reg_number)
   expect(@bo.registration_details_page).to have_resend_renewal_email_link
+  expect(@bo.registration_details_page).to have_text("Renewal link")
 
   # Go to new registration start page on frontend:
   visit(Quke::Quke.config.custom["urls"]["front_office"] + "/start")
