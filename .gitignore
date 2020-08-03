@@ -22,6 +22,11 @@ vendor/overcommit_bundle
 ___*
 chromedriver.log
 
+# Ignore all files which may contain customer data
+*.csv
+*.pdf
+*.zip
+
 # Ignore all logfiles and tempfiles.
 *.log
 /log/*
