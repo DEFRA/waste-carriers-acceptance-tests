@@ -25,9 +25,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
     When I renew from the email as a "soleTrader"
     Then I will be notified my renewal is complete
 
-  # Currently broken due to RUBY-1175.
-  @broken
   Scenario: Cannot renew registration outside grace window
     Given I have a registration which expired 180 days ago
-    # When I call NCCC to renew it
-    # Then NCCC are unable to generate a renewal email
+    When I call NCCC to renew it
+    Then NCCC are unable to generate a renewal email

@@ -1,4 +1,4 @@
-@bo_new @bo_dashboard
+@bo_new @bo_reg
 Feature: NCCC agent unblocks a stuck registration from back office
   As an NCCC agent
   I want to unblock a registration using a back office function
