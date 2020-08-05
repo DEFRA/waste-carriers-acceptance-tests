@@ -162,18 +162,6 @@ class BackEndApp
     @last_page = RelevantConvictionsPage.new
   end
 
-  def renewal_information_page
-    @last_page = RenewalInformationPage.new
-  end
-
-  def renewal_received_page
-    @last_page = RenewalReceivedPage.new
-  end
-
-  def renewal_start_page
-    @last_page = RenewalStartPage.new
-  end
-
   def service_provided_question_page
     @last_page = ServiceProvidedQuestionPage.new
   end

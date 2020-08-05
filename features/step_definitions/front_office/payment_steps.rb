@@ -5,7 +5,7 @@ Given(/^I complete my renewal up to the payment page$/) do
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   select_random_upper_tier_options("existing")
-  @renewals_app.renewal_information_page.submit
+  @journey.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")

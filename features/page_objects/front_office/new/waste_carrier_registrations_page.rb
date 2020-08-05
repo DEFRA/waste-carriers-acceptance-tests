@@ -21,7 +21,7 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
   elements(:renewals, "[href*='/renew']")
   elements(:deletes, "[href*='/confirm_delete']")
 
-  element(:sign_out, "#signout_button")
+  element(:sign_out, "a[href*='/fo/users/sign_out']")
 
   element(:next_page, "a[aria-label='Next page']")
   element(:last_page, "a[aria-label='Last page']")

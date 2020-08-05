@@ -19,8 +19,8 @@ Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |con
 
   # Submit carrier details for the business, tier and carrier:
   submit_carrier_details("existing", "existing", "existing")
-  expect(@bo.renewal_information_page).to have_text("you still need an upper tier registration")
-  @bo.renewal_information_page.submit
+  expect(@journey.renewal_information_page).to have_text("you still need an upper tier registration")
+  @journey.renewal_information_page.submit
 
   submit_business_details(@business_name)
   submit_company_people
@@ -79,7 +79,7 @@ When(/^I renew the local authority registration$/) do
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
   @journey.carrier_type_page.submit
-  @bo.renewal_information_page.submit
+  @journey.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
@@ -100,7 +100,7 @@ When(/^I renew the limited company registration$/) do
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   select_random_upper_tier_options("existing")
-  @bo.renewal_information_page.submit
+  @journey.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
@@ -115,7 +115,6 @@ end
 
 Given(/^the registration has been partially renewed by the account holder$/) do
   @front_app = FrontOfficeApp.new
-  @renewals_app = RenewalsApp.new
   @journey = JourneyApp.new
   @front_app.old_start_page.load
   @front_app.old_start_page.submit(renewal: true)
@@ -137,7 +136,7 @@ When(/^I complete the renewal for the account holder$/) do
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
   @journey.carrier_type_page.submit
-  @bo.renewal_information_page.submit
+  @journey.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
@@ -213,7 +212,7 @@ Given(/^I renew the limited company registration declaring a conviction and payi
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   select_random_upper_tier_options("existing")
-  @bo.renewal_information_page.submit
+  @journey.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("convictions")

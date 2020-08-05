@@ -48,7 +48,7 @@ When(/^I select that I don't know what business type to enter$/) do
 end
 
 Then(/^I will be informed to contact the Environment Agency$/) do
-  expect(@front_app.no_registration_page).to have_text "Contact the Environment Agency"
+  expect(page).to have_text "Contact the Environment Agency"
 end
 
 When(/^I choose to pay for my application by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
@@ -67,8 +67,8 @@ Then(/^I will be informed my registration is pending payment$/) do
 end
 
 When(/^I have signed into my account$/) do
-  @front_app.waste_carrier_sign_in_page.load
-  @front_app.waste_carrier_sign_in_page.submit(
+  @fo.waste_carrier_sign_in_page.load
+  @fo.waste_carrier_sign_in_page.submit(
     email: @email_address,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -77,8 +77,8 @@ end
 Given(/^I have signed in as "([^"]*)"$/) do |username|
   @front_app = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @front_app.waste_carrier_sign_in_page.load
-  @front_app.waste_carrier_sign_in_page.submit(
+  @fo.waste_carrier_sign_in_page.load
+  @fo.waste_carrier_sign_in_page.submit(
     email: username,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )

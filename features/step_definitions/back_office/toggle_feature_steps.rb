@@ -17,15 +17,15 @@ Then("the features are no longer available") do
 
   # Go to new registration start page on frontend:
   visit(Quke::Quke.config.custom["urls"]["front_office"] + "/start")
-  expect(page).to have_text("Page not found")
+  expect(page).to have_text("Page not found").or have_text("No route matches")
 
   # Go to API page for registration:
   visit "#{Quke::Quke.config.custom['urls']['back_office']}/api/registrations/#{@reg_number}"
-  expect(page).to have_text("Page not found")
+  expect(page).to have_text("Page not found").or have_text("No route matches")
 end
 
 When("I turn all features on") do
-  find_link("Toggle features").click
+  visit(Quke::Quke.config.custom["urls"]["back_office"] + "/features/feature-toggles")
   @bo.toggle_features_page.enable_all_features
 end
 
