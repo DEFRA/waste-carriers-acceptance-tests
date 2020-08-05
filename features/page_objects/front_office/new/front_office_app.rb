@@ -6,7 +6,7 @@ class FrontOfficeApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page
 
-  # FRONT OFFICE SPECIFIC PAGES
+  # FRONT OFFICE *AND* FRONTEND SPECIFIC PAGES
   # /
 
   def agency_users_sign_in_page
@@ -57,16 +57,16 @@ class FrontOfficeApp
     @last_page = ConfirmAccountPage.new
   end
 
+  def front_office_sign_in_page
+    @last_page = FrontOfficeSignInPage.new
+  end
+
   def govuk_start_page
     @last_page = GovukStartPage.new
   end
 
   def key_people_page
     @last_page = KeyPeoplePage.new
-  end
-
-  def no_registration_page
-    @last_page = NoRegistrationPage.new
   end
 
   def offline_payment_page
@@ -119,6 +119,10 @@ class FrontOfficeApp
 
   def relevant_people_page
     @last_page = RelevantPeoplePage.new
+  end
+
+  def reset_password_page
+    @last_page = ResetPasswordPage.new
   end
 
   def service_provided_question_page

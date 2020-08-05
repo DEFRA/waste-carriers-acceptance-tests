@@ -218,14 +218,14 @@ end
 
 Given("I have an active registration") do
   load_all_apps
-  account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
+  @account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
 
-  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => @account_email)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @reg_balance = 0
 
-  puts "Registration " + @reg_number + " seeded for " + account_email
+  puts "Registration " + @reg_number + " seeded for " + @account_email
 end
 
 Given("I have an active registration with a company number of {string}") do |company_no|

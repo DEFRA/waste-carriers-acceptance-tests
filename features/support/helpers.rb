@@ -6,9 +6,10 @@ require "pry"
 
 def load_all_apps
   @back_app = BackEndApp.new
+  @front_app = FrontOfficeApp.new
   @bo = BackOfficeApp.new
+  @fo = FrontOfficeApp.new
   @journey = JourneyApp.new
-  @renewals_app = RenewalsApp.new
 end
 
 def mocking_enabled?
@@ -28,15 +29,11 @@ def mocking_enabled?
 end
 
 def sign_in_to_front_end_if_necessary(email)
-  @renewals_app = RenewalsApp.new
-
-  unless @renewals_app.waste_carriers_renewals_sign_in_page.displayed?
-    @renewals_app.waste_carriers_renewals_sign_in_page.load
-  end
+  @fo.waste_carriers_renewals_sign_in_page.load unless @fo.waste_carriers_renewals_sign_in_page.displayed?
 
   return if page.has_text?("Signed in as")
 
-  @renewals_app.waste_carriers_renewals_sign_in_page.submit(
+  @fo.waste_carriers_renewals_sign_in_page.submit(
     email: email,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -134,4 +131,25 @@ def retrieve_email_containing(search_terms)
   return @journey.last_email_page.text if email_was_found
 
   "Email not found"
+end
+
+def reset_fo_password(account_email, new_password)
+  @fo.front_office_sign_in_page.forgotten_link.click
+  @fo.front_office_sign_in_page.reset_password_link.click
+  @fo.reset_password_page.submit(email: account_email)
+
+  visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
+  reset_email_text = retrieve_email_containing([account_email]).to_s
+  expect(reset_email_text).to have_text("Someone has requested a link to change your password")
+
+  # Get the password reset link from the email text:
+  # rubocop:disable Style/RedundantRegexpEscape
+  reset_password_link = reset_email_text.match(/.*href\=\\"(.*)\\">Change.*/)[1].to_s
+  puts "Link to reset password is: " + reset_password_link
+  # rubocop:enable Style/RedundantRegexpEscape
+  visit(reset_password_link)
+
+  @fo.reset_password_page.submit(
+    password: new_password
+  )
 end

@@ -86,7 +86,7 @@ Given(/^the registration has an unsubmitted renewal$/) do
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :skip_check)
   @journey.carrier_type_page.submit
-  @bo.renewal_information_page.submit
+  @journey.renewal_information_page.submit
   submit_business_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
