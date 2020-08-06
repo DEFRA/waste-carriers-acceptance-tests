@@ -17,8 +17,8 @@ class FrontOfficeApp
     @last_page = ResetPasswordPage.new
   end
 
-  def waste_carrier_registrations_page
-    @last_page = WasteCarrierRegistrationsPage.new
+  def front_office_dashboard
+    @last_page = FrontOfficeDashboard.new
   end
 
 end

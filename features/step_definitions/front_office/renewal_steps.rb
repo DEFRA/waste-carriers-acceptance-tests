@@ -88,8 +88,8 @@ Then(/^I will be shown the renewal start page$/) do
 end
 
 When(/^I choose to renew my registration from my registrations list$/) do
-  @fo.waste_carrier_registrations_page.wait_until_sign_out_visible
-  @fo.waste_carrier_registrations_page.registrations[0].renew_registration.click
+  @fo.front_office_dashboard.wait_until_sign_out_visible
+  @fo.front_office_dashboard.registrations[0].renew_registration.click
 end
 
 Given(/^I choose to renew my registration$/) do
@@ -160,8 +160,8 @@ end
 Given(/^I choose to renew my last registration from the dashboard$/) do
   @journey = JourneyApp.new
 
-  @fo.waste_carrier_registrations_page.find_registration(@reg_number)
-  @fo.waste_carrier_registrations_page.renew(@reg_number)
+  @fo.front_office_dashboard.find_registration(@reg_number)
+  @fo.front_office_dashboard.renew(@reg_number)
 end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|

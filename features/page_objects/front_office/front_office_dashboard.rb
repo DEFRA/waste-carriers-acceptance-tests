@@ -1,7 +1,10 @@
-class WasteCarrierRegistrationsPage < SitePrism::Page
+class FrontOfficeDashboard < SitePrism::Page
 
   element(:heading, ".heading-large")
   element(:content, "#content")
+
+  element(:change_password_link, "a[href*='fo/users/edit-password']")
+  element(:sign_out, "a[href*='/fo/users/sign_out']")
 
   sections(:registration_info, "table tbody tr:nth-child(odd)") do
     element(:name, "td:nth-child(1)")
@@ -13,15 +16,10 @@ class WasteCarrierRegistrationsPage < SitePrism::Page
 
   sections(:registration_controls, ".registration-list") do
     element(:reg_no, ".column-one-quarter:nth-child(2) li:nth-child(1)")
-    element(:edit_registration, "li:nth-child(2) a")
     element(:renew_registration, "li:nth-child(3) a")
   end
 
-  elements(:edits, "[href*='/edit']")
   elements(:renewals, "[href*='/renew']")
-  elements(:deletes, "[href*='/confirm_delete']")
-
-  element(:sign_out, "a[href*='/fo/users/sign_out']")
 
   element(:next_page, "a[aria-label='Next page']")
   element(:last_page, "a[aria-label='Last page']")

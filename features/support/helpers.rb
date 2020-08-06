@@ -27,10 +27,9 @@ def mocking_enabled?
   true
 end
 
-def sign_in_to_front_end_if_necessary(email)
-  @fo.waste_carriers_renewals_sign_in_page.load unless @fo.waste_carriers_renewals_sign_in_page.displayed?
-
-  return if page.has_text?("Signed in as")
+def sign_in_to_front_office(email)
+  visit(Quke::Quke.config.custom["urls"]["front_office_sign_in"])
+  return if page.has_text?("Signed in as " + email)
 
   @fo.waste_carriers_renewals_sign_in_page.submit(
     email: email,
@@ -132,11 +131,8 @@ def retrieve_email_containing(search_terms)
   "Email not found"
 end
 
-def reset_fo_password(account_email, new_password)
-  @fo.front_office_sign_in_page.forgotten_link.click
-  @fo.front_office_sign_in_page.reset_password_link.click
-  @fo.reset_password_page.submit(email: account_email)
-
+def password_reset_link(account_email)
+  # Get password reset email:
   visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
   reset_email_text = retrieve_email_containing([account_email]).to_s
   expect(reset_email_text).to have_text("Someone has requested a link to change your password")
@@ -144,11 +140,8 @@ def reset_fo_password(account_email, new_password)
   # Get the password reset link from the email text:
   # rubocop:disable Style/RedundantRegexpEscape
   reset_password_link = reset_email_text.match(/.*href\=\\"(.*)\\">Change.*/)[1].to_s
-  puts "Link to reset password is: " + reset_password_link
   # rubocop:enable Style/RedundantRegexpEscape
-  visit(reset_password_link)
+  puts "Link to reset password is: " + reset_password_link
 
-  @fo.reset_password_page.submit(
-    password: new_password
-  )
+  reset_password_link
 end
