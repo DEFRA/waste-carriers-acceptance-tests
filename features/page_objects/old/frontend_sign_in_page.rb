@@ -1,4 +1,4 @@
-class WasteCarrierSignInPage < SitePrism::Page
+class FrontendSignInPage < SitePrism::Page
 
   # Sign in
 

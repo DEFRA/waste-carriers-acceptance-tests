@@ -1,9 +1,9 @@
 Given(/^I start a new registration$/) do
   # This step coversa registration from the old app.
-  @front_app = FrontOfficeApp.new
+  @old = OldApp.new
   @journey = JourneyApp.new
-  @front_app.old_start_page.load
-  @front_app.old_start_page.submit
+  @old.old_start_page.load
+  @old.old_start_page.submit
   # Redirects to "Where is your principal place of business?"
   expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
   # Select England as the principal place of business:
@@ -11,7 +11,7 @@ Given(/^I start a new registration$/) do
 end
 
 When(/^I pay for my application by maestro ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
-  @front_app.order_page.submit(
+  @old.old_order_page.submit(
     copy_card_number: copy_card_number,
     choice: :card_payment
   )
@@ -23,28 +23,28 @@ When(/^I pay for my application by maestro ordering (\d+) copy (?:card|cards)$/)
 end
 
 Then(/^I will be asked to confirm my email address$/) do
-  expect(@front_app.confirm_account_page.has_content?("Confirm your email address")).to be(true)
+  expect(@old.confirm_account_page.has_content?("Confirm your email address")).to be(true)
 end
 
 Then(/^I will be registered as an upper tier waste carrier$/) do
-  expect(@front_app.old_confirmation_page.registration_number).to have_text("CBDU")
-  expect(@front_app.old_confirmation_page).to have_text @email_address
+  expect(@old.old_confirmation_page.registration_number).to have_text("CBDU")
+  expect(@old.old_confirmation_page).to have_text @email_address
   # Stores registration number for later use
-  @reg_number = @front_app.old_confirmation_page.registration_number.text
+  @reg_number = @old.old_confirmation_page.registration_number.text
   puts "Upper tier registration " + @reg_number + " completed"
 end
 
 Then(/^I will be registered as a lower tier waste carrier$/) do
-  expect(@front_app.old_confirmation_page.registration_number).to have_text("CBDL")
-  expect(@front_app.old_confirmation_page).to have_text @email_address
+  expect(@old.old_confirmation_page.registration_number).to have_text("CBDL")
+  expect(@old.old_confirmation_page).to have_text @email_address
   # Stores registration number for later use
-  @reg_number = @front_app.old_confirmation_page.registration_number.text
+  @reg_number = @old.old_confirmation_page.registration_number.text
 
   puts "Lower tier registration " + @reg_number + " completed"
 end
 
 When(/^I select that I don't know what business type to enter$/) do
-  @front_app.business_type_page.submit(org_type: "other")
+  @old.old_business_type_page.submit(org_type: "other")
 end
 
 Then(/^I will be informed to contact the Environment Agency$/) do
@@ -52,33 +52,33 @@ Then(/^I will be informed to contact the Environment Agency$/) do
 end
 
 When(/^I choose to pay for my application by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
-  @front_app.order_page.submit(
+  @old.old_order_page.submit(
     copy_card_number: copy_card_number,
     choice: :bank_transfer_payment
   )
-  @front_app.offline_payment_page.submit
+  @old.offline_payment_page.submit
 end
 
 Then(/^I will be informed my registration is pending payment$/) do
-  expect(@front_app.old_confirmation_page).to have_text "Application received"
-  expect(@front_app.old_confirmation_page).to have_text @email_address
+  expect(@old.old_confirmation_page).to have_text "Application received"
+  expect(@old.old_confirmation_page).to have_text @email_address
   # Stores registration number for later use
-  @reg_number = @front_app.old_confirmation_page.registration_number.text
+  @reg_number = @old.old_confirmation_page.registration_number.text
 end
 
 When(/^I have signed into my account$/) do
-  @fo.waste_carrier_sign_in_page.load
-  @fo.waste_carrier_sign_in_page.submit(
+  @old.frontend_sign_in_page.load
+  @old.frontend_sign_in_page.submit(
     email: @email_address,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
 end
 
 Given(/^I have signed in as "([^"]*)"$/) do |username|
-  @front_app = FrontOfficeApp.new
+  @old = OldApp.new
   @journey = JourneyApp.new
-  @fo.waste_carrier_sign_in_page.load
-  @fo.waste_carrier_sign_in_page.submit(
+  @old.frontend_sign_in_page.load
+  @old.frontend_sign_in_page.submit(
     email: username,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -86,21 +86,22 @@ end
 
 Given(/^I choose to renew my registration using my previous registration number$/) do
   Capybara.reset_session!
-  @front_app = FrontOfficeApp.new
+  @old = OldApp.new
   @journey = JourneyApp.new
-  @front_app.old_start_page.load
-  @front_app.old_start_page.submit(renewal: true)
-  @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
+  @old.old_start_page.load
+  @old.old_start_page.submit(renewal: true)
+  @old.old_existing_registration_page.submit(reg_no: @reg_number)
 end
 
 Then(/^I will be told "([^"]*)"$/) do |message|
-  expect(@front_app.old_existing_registration_page).to have_text(message)
+  expect(@old.old_existing_registration_page).to have_text(message)
 end
 
 Given("I have reached the GOV.UK start page") do
-  @fo = FrontOfficeApp.new
+  @old = OldApp.new
+  @journey = JourneyApp.new
   visit("https://www.gov.uk/waste-carrier-or-broker-registration")
-  expect(@fo.govuk_start_page.heading).to have_text("Register or renew as a waste carrier, broker or dealer")
+  expect(@journey.govuk_start_page.heading).to have_text("Register or renew as a waste carrier, broker or dealer")
 end
 
 When("I access the links on the page") do
@@ -133,9 +134,9 @@ When("I access the links on the page") do
   page.evaluate_script("window.history.back()")
 
   # Select "Start now"
-  @fo.govuk_start_page.start_now_button.click
+  @journey.govuk_start_page.start_now_button.click
 end
 
 Then("I can start my registration") do
-  expect(@fo.old_start_page.heading).to have_text("Is this a new registration?")
+  expect(@old.old_start_page.heading).to have_text("Is this a new registration?")
 end

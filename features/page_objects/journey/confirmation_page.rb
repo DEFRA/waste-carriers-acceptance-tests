@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ConfirmationPage < SitePrism::Page
+
+  # Covers all "registration/renewal complete" scenarios
+
   element(:confirmation_box, ".govuk-box-highlight")
   element(:heading, ".heading-xlarge")
   element(:content, "#content")

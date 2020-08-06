@@ -5,8 +5,7 @@ require "facets"
 require "pry"
 
 def load_all_apps
-  @back_app = BackEndApp.new
-  @front_app = FrontOfficeApp.new
+  @old = OldApp.new
   @bo = BackOfficeApp.new
   @fo = FrontOfficeApp.new
   @journey = JourneyApp.new

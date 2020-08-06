@@ -22,7 +22,7 @@ When("I start a new registration journey in {string} as a {string}") do |locatio
   @journey.start_page.load
   @journey.start_page.submit(choice: @resource_object)
   @journey.location_page.submit(choice: location)
-  @journey.business_type_page.submit(org_type: organisation_type)
+  @journey.confirm_business_type_page.submit(org_type: organisation_type)
 end
 
 # Main step for generating a new registration.
@@ -65,7 +65,7 @@ When("I complete my registration for my business {string}") do |business_name|
 
     @declared_convictions ||= :no
     @journey.conviction_declare_page.submit(choice: @declared_convictions)
-    @relevant_people = @back_app.relevant_people_page.relevant_people
+    @relevant_people = @old.relevant_people_page.relevant_people
     @journey.conviction_details_page.submit(person: @relevant_people[0]) if @declared_convictions == :yes
   end
 

@@ -1,4 +1,4 @@
-class RegistrationsPage < SitePrism::Page
+class BackendRegistrationsPage < SitePrism::Page
 
   # Registration search on old app
   element(:new_registration, "#new_registration")
