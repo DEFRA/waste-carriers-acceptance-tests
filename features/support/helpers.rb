@@ -6,7 +6,6 @@ require "pry"
 
 def load_all_apps
   @old = OldApp.new
-  @old = OldApp.new
   @bo = BackOfficeApp.new
   @fo = FrontOfficeApp.new
   @journey = JourneyApp.new
