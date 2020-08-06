@@ -9,8 +9,8 @@ Given(/I choose to delete my registration "([^"]*)"$/) do |reg_no|
   )
   @reg_number = reg_no
   # Looks for registration on each page of the registrations dashboard
-  @fo.waste_carrier_registrations_page.find_registration(@reg_number)
-  @fo.waste_carrier_registrations_page.delete(@reg_number)
+  @fo.front_office_dashboard.find_registration(@reg_number)
+  @fo.front_office_dashboard.delete(@reg_number)
 
 end
 
@@ -19,5 +19,5 @@ When(/^I delete my registration$/) do
 end
 
 Then(/^I will not see registration "([^"]*)" in my registrations list$/) do |reg_no|
-  expect(@fo.waste_carrier_registrations_page).not_to have_text(reg_no)
+  expect(@fo.front_office_dashboard).not_to have_text(reg_no)
 end

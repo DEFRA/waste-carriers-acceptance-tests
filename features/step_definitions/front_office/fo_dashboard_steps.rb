@@ -1,13 +1,10 @@
 When(/^I choose to view my certificate$/) do
-  Capybara.reset_session!
-  @old = OldApp.new
-  @journey = JourneyApp.new
-  @old.frontend_sign_in_page.load
-  @old.frontend_sign_in_page.submit(
+  @fo.front_office_sign_in_page.load
+  @fo.front_office_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @fo.waste_carrier_registrations_page.find_registration(@reg_number)
+  @fo.front_office_dashboard.find_registration(@reg_number)
 end
 
 Then(/^I can view my certificate of registration$/) do
@@ -19,6 +16,7 @@ Then(/^I can view my certificate of registration$/) do
 end
 
 When("I forget my front office password and reset it") do
+  # Submit incorrect password:
   visit(Quke::Quke.config.custom["urls"]["front_office_sign_in"])
   @account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
   @fo.front_office_sign_in_page.submit(
@@ -27,16 +25,40 @@ When("I forget my front office password and reset it") do
   )
   expect(@fo.front_office_sign_in_page.error_summary).to have_text("Invalid Email or password.")
 
-  reset_fo_password(@account_email, "Ch33s3m0nger")
+  # Request a password reset:
+  @fo.front_office_sign_in_page.forgotten_link.click
+  @fo.front_office_sign_in_page.reset_password_link.click
+  @fo.reset_password_page.submit(email: @account_email)
+
+  # Set the new password
+  @password = "B1rthdayP1e"
+
+  # Because the email is stored on one of two servers, there's a possibility that
+  # the test picks up an old reset link with the same email address.
+  # The following check retries the process if the link is invalid.
+  10.times do
+    visit(password_reset_link(@account_email))
+    @fo.reset_password_page.submit(password: @password)
+    break if page.text.not.include? "is invalid"
+  end
 end
 
-Then("I can log in with the new password") do
-  expect(@fo.waste_carrier_registrations_page.heading).to have_text("Your waste carrier registrations")
-  expect(@fo.waste_carrier_registrations_page.content).to have_text(@account_email)
-  @fo.waste_carrier_registrations_page.sign_out.click
+Then("I can log in with the updated password") do
+  @fo.front_office_dashboard.sign_out.click
+  @fo.front_office_sign_in_page.submit(
+    email: @account_email,
+    password: @password
+  )
+  expect(@fo.front_office_dashboard.heading).to have_text("Your waste carrier registrations")
+  expect(@fo.front_office_dashboard.content).to have_text(@account_email)
 end
 
-Then("I can reset it to its original value") do
-  visit(Quke::Quke.config.custom["urls"]["front_office_sign_in"])
-  reset_fo_password(@account_email, ENV["WCRS_DEFAULT_PASSWORD"])
+Then("I change the password back to its original value") do
+  @fo.front_office_dashboard.change_password_link.click
+  @fo.reset_password_page.submit(
+    current_password: @password,
+    password: ENV["WCRS_DEFAULT_PASSWORD"]
+  )
+  @password = ENV["WCRS_DEFAULT_PASSWORD"]
+  expect(@fo.front_office_dashboard.heading).to have_text("Your waste carrier registrations")
 end

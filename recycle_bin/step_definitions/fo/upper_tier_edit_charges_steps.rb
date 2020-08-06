@@ -9,8 +9,8 @@ Given(/I choose to edit my registration "([^"]*)"$/) do |reg_no|
   )
   @reg_number = reg_no
 
-  @fo.waste_carrier_registrations_page.find_registration(@reg_number)
-  @fo.waste_carrier_registrations_page.edit(@reg_number)
+  @fo.front_office_dashboard.find_registration(@reg_number)
+  @fo.front_office_dashboard.edit(@reg_number)
 end
 
 When(/^I change my registration type to "([^"]*)"$/) do |registration_type|
@@ -37,8 +37,8 @@ When(/^I remove a partner from my registration$/) do
 end
 
 Then(/^I will not be charged for my change$/) do
-  expect(@fo.waste_carrier_registrations_page.heading).to have_text("Your waste carrier registrations")
-  expect(@fo.waste_carrier_registrations_page.current_url).to include "/fo"
+  expect(@fo.front_office_dashboard.heading).to have_text("Your waste carrier registrations")
+  expect(@fo.front_office_dashboard.current_url).to include "/fo"
 end
 
 When(/^I change my organisation type to a limited company$/) do
