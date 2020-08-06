@@ -1,9 +1,9 @@
 Given(/I choose to delete my registration "([^"]*)"$/) do |reg_no|
   Capybara.reset_session!
-  @front_app = FrontOfficeApp.new
+  @old = OldApp.new
   @journey = JourneyApp.new
-  @fo.waste_carrier_sign_in_page.load
-  @fo.waste_carrier_sign_in_page.submit(
+  @old.frontend_sign_in_page.load
+  @old.frontend_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -15,7 +15,7 @@ Given(/I choose to delete my registration "([^"]*)"$/) do |reg_no|
 end
 
 When(/^I delete my registration$/) do
-  @front_app.confirm_delete_page.delete.click
+  @old.confirm_delete_page.delete.click
 end
 
 Then(/^I will not see registration "([^"]*)" in my registrations list$/) do |reg_no|

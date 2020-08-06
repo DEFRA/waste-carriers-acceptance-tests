@@ -1,8 +1,8 @@
 Given(/^an Environment Agency user has signed in to the backend$/) do
   Capybara.reset_session!
   load_all_apps
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
+  @old.agency_sign_in_page.load
+  @old.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -40,10 +40,10 @@ end
 
 Given(/^I am signed in as an Environment Agency user with refunds$/) do
   Capybara.reset_session!
-  @back_app = BackEndApp.new
+  @old = OldApp.new
   @bo = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
+  @old.agency_sign_in_page.load
+  @old.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency-refund-payment-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -51,27 +51,27 @@ end
 
 Given(/^I request assistance with a new registration$/) do
   visit(Quke::Quke.config.custom["urls"]["back_end_registrations"])
-  @back_app.old_start_page.submit
+  @old.old_start_page.submit
   expect(@journey.location_page.heading).to have_text("Where is your principal place of business?")
   @journey.location_page.submit(choice: :england)
 end
 
 Then(/^I will have an upper tier registration$/) do
-  expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDU")
-  expect(@back_app.finish_assisted_page).to have_view_certificate
+  expect(@old.finish_assisted_page.registration_number).to have_text("CBDU")
+  expect(@old.finish_assisted_page).to have_view_certificate
 
   # Stores registration number and access code for later use
-  @reg_number = @back_app.finish_assisted_page.registration_number.text
+  @reg_number = @old.finish_assisted_page.registration_number.text
   puts @reg_number + " upper tier registration completed on old app"
 
 end
 
 Then(/^I will have a lower tier registration$/) do
-  expect(@back_app.finish_assisted_page.registration_number).to have_text("CBDL")
-  expect(@back_app.finish_assisted_page).to have_view_certificate
+  expect(@old.finish_assisted_page.registration_number).to have_text("CBDL")
+  expect(@old.finish_assisted_page).to have_view_certificate
 
   # Stores registration number and access code for later use
-  @reg_number = @back_app.finish_assisted_page.registration_number.text
+  @reg_number = @old.finish_assisted_page.registration_number.text
 
 end
 
@@ -104,17 +104,17 @@ Then(/^the registration status in the registration export is set to "([^"]*)"$/)
 
   @today = @day.to_s + "-" + @month.to_s + "-" + @year.to_s
 
-  @back_app.registrations_page.registration_export.click
+  @old.backend_registrations_page.registration_export.click
 
-  @back_app.registration_export_page.submit(
+  @old.registration_export_page.submit(
     report_from_date: "30-05-2018",
     report_to_date: @today
   )
 
-  result = @back_app.registration_search_results_page.registration(@reg_number)
+  result = @old.registration_search_results_page.registration(@reg_number)
   expect(result.status.text).to eq(status)
-  @back_app.registration_search_results_page.back_link.click
-  @back_app.registration_export_page.back_link.click
+  @old.registration_search_results_page.back_link.click
+  @old.registration_export_page.back_link.click
 end
 
 When(/^the registration is revoked$/) do
@@ -142,15 +142,15 @@ When(/^the registration is ceased$/) do
 end
 
 Then(/^my registration status for "([^"]*)" will be "([^"]*)"$/) do |search_item, status|
-  @back_app = BackEndApp.new
+  @old = OldApp.new
   @bo = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
+  @old.agency_sign_in_page.load
+  @old.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @back_app.registrations_page.search(search_input: search_item)
-  expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
+  @old.backend_registrations_page.search(search_input: search_item)
+  expect(@old.backend_registrations_page.search_results[0].status.text).to eq(status)
 end
 
 Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
@@ -159,14 +159,14 @@ Then(/^(?:the|my) registration status will be "([^"]*)"$/) do |status|
   # This is a known issue which affects test.
   # Resetting data will fix this.
   Capybara.reset_session!
-  @back_app = BackEndApp.new
+  @old = OldApp.new
   @bo = BackOfficeApp.new
-  @back_app.agency_sign_in_page.load
-  @back_app.agency_sign_in_page.submit(
+  @old.agency_sign_in_page.load
+  @old.agency_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency-user"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  @back_app.registrations_page.search(search_input: @reg_number)
-  @back_app.registrations_page.wait_for_status(status)
-  expect(@back_app.registrations_page.search_results[0].status.text).to eq(status)
+  @old.backend_registrations_page.search(search_input: @reg_number)
+  @old.backend_registrations_page.wait_for_status(status)
+  expect(@old.backend_registrations_page.search_results[0].status.text).to eq(status)
 end

@@ -1,4 +1,4 @@
-class BusinessTypePage < SitePrism::Page
+class OldBusinessTypePage < SitePrism::Page
 
   # What type of business or organisation are you?
   element(:error_summary, ".error-summary")

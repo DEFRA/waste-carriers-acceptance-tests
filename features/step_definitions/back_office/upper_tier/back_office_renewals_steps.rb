@@ -65,8 +65,8 @@ end
 Given(/^I choose to renew "([^"]*)"$/) do |reg|
   @reg_number = reg
 
-  @back_app.registrations_page.search(search_input: @reg_number)
-  @expiry_date = @back_app.registrations_page.search_results[0].expiry_date.text
+  @old.backend_registrations_page.search(search_input: @reg_number)
+  @expiry_date = @old.backend_registrations_page.search_results[0].expiry_date.text
   # Turns the text expiry date into a date
   @expiry_date_year_first = Date.parse(@expiry_date)
 end
@@ -114,12 +114,12 @@ When(/^I renew the limited company registration$/) do
 end
 
 Given(/^the registration has been partially renewed by the account holder$/) do
-  @front_app = FrontOfficeApp.new
+  @old = OldApp.new
   @journey = JourneyApp.new
-  @front_app.old_start_page.load
-  @front_app.old_start_page.submit(renewal: true)
-  @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
-  @front_app.waste_carrier_sign_in_page.submit(
+  @old.old_start_page.load
+  @old.old_start_page.submit(renewal: true)
+  @old.old_existing_registration_page.submit(reg_no: @reg_number)
+  @old.frontend_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -150,11 +150,11 @@ When(/^I complete the renewal for the account holder$/) do
 end
 
 Given(/^an Agency super user has signed in to the admin area$/) do
-  @back_app = BackEndApp.new
+  @old = OldApp.new
   @bo = BackOfficeApp.new
   @journey = JourneyApp.new
-  @back_app.admin_sign_in_page.load
-  @back_app.admin_sign_in_page.submit(
+  @old.admin_sign_in_page.load
+  @old.admin_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["agency-super"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -162,25 +162,25 @@ end
 
 Given(/^has created an agency user$/) do
   @user = generate_email
-  @back_app.agency_users_page.add_user.click
-  @back_app.agency_users_page.submit(
+  @old.agency_users_page.add_user.click
+  @old.agency_users_page.submit(
     email: @user,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
-  expect(@back_app.agency_users_page).to have_text("Agency user was successfully created.")
-  @back_app.agency_users_page.sign_out.click
+  expect(@old.agency_users_page).to have_text("Agency user was successfully created.")
+  @old.agency_users_page.sign_out.click
 end
 
 When(/^I migrate the backend users to the back office$/) do
   @bo.dashboard_page.govuk_banner.manage_users_link.click
   expect(@bo.users_page).to_not have_text(@user)
   @bo.users_page.migrate_users.click
-  @bo.migrate_page.migrate_users.click
-  expect(@bo.migrate_page).to have_text(@user)
+  @bo.user_migrate_page.migrate_users.click
+  expect(@bo.user_migrate_page).to have_text(@user)
 end
 
 Then(/^the user has been added to the back office$/) do
-  expect(@bo.migrate_page).to have_text(@user)
+  expect(@bo.user_migrate_page).to have_text(@user)
 end
 
 When(/^I search for the renewal pending payment$/) do
@@ -199,8 +199,8 @@ Then(/^the expiry date should be three years from the previous expiry date$/) do
   # Need to convert this step to new app!
   @expected_expiry_date = @expiry_date_year_first.next_year(3)
   visit(Quke::Quke.config.custom["urls"]["back_end"])
-  @back_app.registrations_page.search(search_input: @reg_number)
-  actual_expiry_date = Date.parse(@back_app.registrations_page.search_results[0].expiry_date.text)
+  @old.backend_registrations_page.search(search_input: @reg_number)
+  actual_expiry_date = Date.parse(@old.backend_registrations_page.search_results[0].expiry_date.text)
   expect(@expected_expiry_date).to eq(actual_expiry_date)
 end
 

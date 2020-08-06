@@ -1,14 +1,14 @@
 Given(/^I renew my last registration$/) do
   # randomise between old and new app
-  @front_app = FrontOfficeApp.new
+  @old = OldApp.new
   @journey = JourneyApp.new
   @resource_object = :renewal
   # Randomise between old and new app, until we get rid of old app:
   i = rand(2)
   if i.zero?
-    @front_app.old_start_page.load
-    @front_app.old_start_page.submit(renewal: true)
-    @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
+    @old.old_start_page.load
+    @old.old_start_page.submit(renewal: true)
+    @old.old_existing_registration_page.submit(reg_no: @reg_number)
   else
     @journey.start_page.load
     @journey.start_page.submit(choice: @resource_object)
@@ -95,17 +95,17 @@ end
 Given(/^I choose to renew my registration$/) do
   Capybara.reset_session!
   @journey = JourneyApp.new
-  @front_app.old_start_page.load
-  @front_app.old_start_page.submit(renewal: true)
-  @front_app.old_existing_registration_page.submit(reg_no: @reg_number)
+  @old.old_start_page.load
+  @old.old_start_page.submit(renewal: true)
+  @old.old_existing_registration_page.submit(reg_no: @reg_number)
 end
 
 When(/^I enter my lower tier registration number "([^"]*)"$/) do |reg_no|
-  @front_app.old_existing_registration_page.submit(reg_no: reg_no)
+  @old.old_existing_registration_page.submit(reg_no: reg_no)
 end
 
 Then(/^I'm informed "([^"]*)"$/) do |error_message|
-  expect(@front_app.old_existing_registration_page.error_message.text).to eq(error_message)
+  expect(@old.old_existing_registration_page.error_message.text).to eq(error_message)
 end
 
 Given("I am told that my registration does not expire") do
@@ -118,8 +118,8 @@ When(/^the organisation type is changed to sole trader$/) do
 end
 
 Then(/^I will be informed my renewal is received$/) do
-  expect(@journey.renewal_received_page).to have_text("Renewal received")
-  expect(@journey.renewal_received_page).to have_text(@reg_number)
+  expect(@journey.confirmation_page).to have_text("Renewal received")
+  expect(@journey.confirmation_page).to have_text(@reg_number)
 end
 
 When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_type|
@@ -140,7 +140,7 @@ end
 
 Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   @journey = JourneyApp.new
-  @fo.waste_carrier_sign_in_page.submit(
+  @old.frontend_sign_in_page.submit(
     email: username,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -148,10 +148,10 @@ Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
 end
 
 Given(/^I have signed in to view my registrations as "([^"]*)"$/) do |username|
-  @front_app = FrontOfficeApp.new
+  @old = OldApp.new
   @journey = JourneyApp.new
-  @fo.waste_carrier_sign_in_page.load
-  @fo.waste_carrier_sign_in_page.submit(
+  @old.frontend_sign_in_page.load
+  @old.frontend_sign_in_page.submit(
     email: username,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -266,7 +266,7 @@ When(/^I confirm my business type$/) do
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
-  expect(@fo.waste_carrier_sign_in_page).to have_text(message)
+  expect(@old.frontend_sign_in_page).to have_text(message)
   Capybara.reset_session!
 end
 
@@ -322,17 +322,17 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
 end
 
 Then(/^I will be notified my renewal is pending checks$/) do
-  @journey.renewal_received_page.wait_until_heading_visible
-  expect(@journey.renewal_received_page.heading.text).to eq("Application received")
-  expect(@journey.renewal_received_page).to have_text(@reg_number)
+  @journey.confirmation_page.wait_until_heading_visible
+  expect(@journey.confirmation_page.heading.text).to eq("Application received")
+  expect(@journey.confirmation_page).to have_text(@reg_number)
   Capybara.reset_session!
 end
 
 Then(/^I will be notified my renewal is pending payment$/) do
-  @journey.renewal_received_page.wait_until_heading_visible
-  expect(@journey.renewal_received_page.heading.text).to eq("Application received")
-  expect(@journey.renewal_received_page).to have_text("pay the renewal charge")
-  expect(@journey.renewal_received_page).to have_text(@reg_number)
+  @journey.confirmation_page.wait_until_heading_visible
+  expect(@journey.confirmation_page.heading.text).to eq("Application received")
+  expect(@journey.confirmation_page).to have_text("pay the renewal charge")
+  expect(@journey.confirmation_page).to have_text(@reg_number)
   Capybara.reset_session!
 end
 

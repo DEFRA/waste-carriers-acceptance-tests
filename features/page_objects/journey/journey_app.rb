@@ -14,10 +14,6 @@ class JourneyApp
     @last_page = AddressManualPage.new
   end
 
-  def business_type_page
-    @last_page = BusinessTypePage.new
-  end
-
   def cards_confirmation_page
     @last_page = CardsConfirmationPage.new
   end
@@ -90,6 +86,10 @@ class JourneyApp
     @last_page = ExistingRegistrationPage.new
   end
 
+  def govuk_start_page
+    @last_page = GovukStartPage.new
+  end
+
   def last_email_page
     @last_page = LastEmailPage.new
   end
@@ -112,10 +112,6 @@ class JourneyApp
 
   def renewal_information_page
     @last_page = RenewalInformationPage.new
-  end
-
-  def renewal_received_page
-    @last_page = RenewalReceivedPage.new
   end
 
   def renewal_start_page

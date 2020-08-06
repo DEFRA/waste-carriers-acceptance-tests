@@ -13,10 +13,6 @@ class BackOfficeApp
     @last_page = AdPrivacyPolicyPage.new
   end
 
-  def agency_sign_in_page
-    @last_page = AgencySignInPage.new
-  end
-
   def cease_or_revoke_page
     @last_page = CeaseOrRevokePage.new
   end
@@ -81,22 +77,6 @@ class BackOfficeApp
     @last_page = FinanceWriteoffPage.new
   end
 
-  def finish_assisted_page
-    @last_page = FinishAssistedPage.new
-  end
-
-  def migrate_page
-    @last_page = MigratePage.new
-  end
-
-  def old_start_page
-    @last_page = OldStartPage.new
-  end
-
-  def payments_page
-    @last_page = PaymentsPage.new
-  end
-
   def registration_certificate_page
     @last_page = RegistrationCertificatePage.new
   end
@@ -121,16 +101,12 @@ class BackOfficeApp
     @last_page = UserInvitePage.new
   end
 
+  def user_migrate_page
+    @last_page = UserMigratePage.new
+  end
+
   def users_page
     @last_page = UsersPage.new
-  end
-
-  def waste_types_page
-    @last_page = WasteTypesPage.new
-  end
-
-  def waste_carrier_registrations_page
-    @last_page = WasteCarrierRegistrationsPage.new
   end
 
 end

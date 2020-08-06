@@ -1,9 +1,9 @@
 When(/^I choose to view my certificate$/) do
   Capybara.reset_session!
-  @front_app = FrontOfficeApp.new
+  @old = OldApp.new
   @journey = JourneyApp.new
-  @fo.waste_carrier_sign_in_page.load
-  @fo.waste_carrier_sign_in_page.submit(
+  @old.frontend_sign_in_page.load
+  @old.frontend_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
