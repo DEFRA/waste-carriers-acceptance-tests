@@ -1,6 +1,8 @@
 class CheckYourTierPage < SitePrism::Page
 
   # What type of tier are you?
+  # Applies only to registrations
+
   element(:error_summary, ".error-summary")
   elements(:check_your_tier_options, "input[type='radio']", visible: false)
 

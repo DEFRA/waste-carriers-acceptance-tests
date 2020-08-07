@@ -19,43 +19,57 @@ end
 def submit_carrier_details(business, tier, carrier)
   # Select the org type, or just click submit if the business is "existing"
   @journey.confirm_business_type_page.submit(org_type: business)
-  # Allow option: if any details are "existing" then use what came before - eg "I know I need an upper tier reg"
-  if tier == "existing"
+
+  # Covers tier and carrier type (if applicable) for registrations and renewals
+  # Select the org type, or just click submit if the business is "existing"
+  case tier
+  when "lower"
+    select_random_lower_tier_options if business != "charity" # if so, questions are skipped
+    # "You need to register as a lower tier waste carrier"
+    @journey.standard_page.submit
+  when "existing"
+    # this only applies to renewals:
     @journey.tier_check_page.submit(choice: :skip_check)
     @journey.carrier_type_page.submit(choice: carrier.to_sym)
   else
-    @journey.tier_check_page.submit(choice: :check_tier)
-    select_random_upper_tier_options(carrier)
+    # Assume it's an upper tier new registration.
+    # This method does not cover renewals with changed tier.
+    select_tier_for_registration(carrier)
   end
 end
 
-def old_select_upper_tier_options(carrier)
-  @old.other_businesses_question_page.submit(choice: :no)
-  @old.construction_waste_question_page.submit(choice: :yes)
-  @old.registration_type_page.submit(choice: carrier.to_sym)
+def select_tier_for_registration(carrier)
+  select_random_upper_tier_route
+  @journey.carrier_type_page.submit(choice: carrier.to_sym)
 end
 
-def old_select_lower_tier_options
-  @old.other_businesses_question_page.submit(choice: :no)
-  @old.construction_waste_question_page.submit(choice: :no)
+def select_tier_for_renewal(carrier)
+  @journey.tier_check_page.submit(choice: :check_tier)
+  answer_random_upper_tier_questions
+  # Carrier options (same for old and new apps):
+  # carrier_broker_dealer, broker_dealer, carrier_dealer, existing
+  @journey.carrier_type_page.submit(choice: carrier.to_sym)
+  # "Confirmation of your renewal so far":
+  @journey.standard_page.submit
 end
 
-def select_random_upper_tier_options(carrier)
-  return answer_random_upper_tier_questions(carrier) unless @resource_object == :new_registration
+def select_random_upper_tier_route
+  # Only applies to registrations.
 
   i = rand(2)
   if i.zero?
+    # go through routing questions to check your tier.
     @journey.check_your_tier_page.submit(option: :unknown)
-
-    answer_random_upper_tier_questions(carrier)
-    # Proceed from "You need to register as an upper tier waste carrier":
+    answer_random_upper_tier_questions
+    # "You need to register as an upper tier waste carrier":
     @journey.standard_page.submit
   else
+    # select "I know I need an upper tier registration":
     @journey.check_your_tier_page.submit(option: :upper)
   end
 end
 
-def answer_random_upper_tier_questions(carrier)
+def answer_random_upper_tier_questions
   # Randomise between 3 ways to achieve an upper tier registration:
   i = rand(3)
   if i.zero?
@@ -70,14 +84,9 @@ def answer_random_upper_tier_questions(carrier)
     @journey.tier_other_businesses_page.submit(choice: :no)
     @journey.tier_construction_waste_page.submit(choice: :yes)
   end
-  # Carrier options (same for old and new apps):
-  # carrier_broker_dealer, broker_dealer, carrier_dealer, existing
-  @journey.carrier_type_page.submit(choice: carrier.to_sym)
 end
 
 def select_random_lower_tier_options
-  return answer_random_lower_tier_questions unless @resource_object == :new_registration
-
   i = rand(2)
   if i.zero?
     @journey.check_your_tier_page.submit(option: :unknown)
@@ -108,6 +117,17 @@ def answer_random_lower_tier_questions
   end
 end
 
+def old_select_upper_tier_options(carrier)
+  @old.other_businesses_question_page.submit(choice: :no)
+  @old.construction_waste_question_page.submit(choice: :yes)
+  @old.registration_type_page.submit(choice: carrier.to_sym)
+end
+
+def old_select_lower_tier_options
+  @old.other_businesses_question_page.submit(choice: :no)
+  @old.construction_waste_question_page.submit(choice: :no)
+end
+
 def old_submit_business_details(business_name, tier)
   if @old.business_details_page.heading.has_text? "Business details"
     # then it's a limited company:
@@ -117,10 +137,11 @@ def old_submit_business_details(business_name, tier)
   end
 end
 
-def submit_business_details(business_name)
+def submit_business_details(business_name, tier)
+  # submits company number, name and address
   if @journey.company_number_page.heading.has_text? "What's the registration number"
     # then it's a limited company or LLP:
-    submit_limited_company_details(business_name)
+    submit_limited_company_details(business_name, tier)
   else
     # it'll be the company name page, which will have a heading like "What's the name of the business?"
     submit_organisation_details(business_name)
@@ -146,9 +167,12 @@ def old_submit_limited_company_details(business_name, tier)
   end
 end
 
-def submit_limited_company_details(business_name)
-  # Submit existing company number:
-  @journey.company_number_page.submit
+def submit_limited_company_details(business_name, tier)
+  # Submit company number:
+  if tier == "upper"
+    @companies_house_number ||= "00445790"
+    @journey.company_number_page.submit(companies_house_number: @companies_house_number)
+  end
 
   if business_name == "existing"
     @journey.company_name_page.submit
@@ -207,17 +231,19 @@ def old_submit_company_people(business)
 end
 
 def submit_company_people
-  people = @journey.company_people_page.main_people
+  # Submits an appropriate number of people based on business type
+  # and returns the people. Use ||= in case @people has been previously defined to be people with convictions.
+  @people ||= @journey.company_people_page.main_people
 
   # If they are a sole trader then only one person can be added here.
   heading = @journey.company_people_page.heading.text
   if heading != "Business owner details"
     # then they're not a sole trader, so add more people:
-    @journey.company_people_page.add_main_person(person: people[0])
-    @journey.company_people_page.add_main_person(person: people[1])
+    @journey.company_people_page.add_main_person(person: @people[0])
+    @journey.company_people_page.add_main_person(person: @people[1])
   end
 
-  @journey.company_people_page.submit_main_person(person: people[2])
+  @journey.company_people_page.submit_main_person(person: @people[2])
 end
 
 def test_partnership_people
@@ -281,6 +307,17 @@ def submit_contact_details_for_renewal
     confirm_email: "bo-renewal@example.com"
   )
 
+  complete_address_with_random_method
+end
+
+def submit_contact_details_for_registration(email_address)
+  names = {
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name
+  }
+  @journey.contact_name_page.submit(names)
+  @journey.contact_phone_page.submit(phone_number: "0117 4960000")
+  @journey.contact_email_page.submit(email: email_address, confirm_email: email_address)
   complete_address_with_random_method
 end
 

@@ -22,67 +22,29 @@ When("I start a new registration journey in {string} as a {string}") do |locatio
   @journey.start_page.load
   @journey.start_page.submit(choice: @resource_object)
   @journey.location_page.submit(choice: location)
-  @journey.confirm_business_type_page.submit(org_type: organisation_type)
 end
 
 # Main step for generating a new registration.
 # It depends on instance variables to decide what to register:
 
 When("I complete my registration for my business {string}") do |business_name|
-  if @organisation_type == "charity"
-    # then all tier routing questions are skipped and user is told "you need to register as a lower tier waste carrier"
-    @journey.standard_page.submit
-  elsif @tier == "lower"
-    select_random_lower_tier_options
-  else
-    select_random_upper_tier_options("existing")
-  end
-
-  if @tier == "upper"
-    @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
-    @carrier = "carrier_broker_dealer"
-
-    if @organisation_type == "limitedCompany" || @organisation_type == "limitedLiabilityPartnership"
-      @companies_house_number ||= "00445790"
-      @journey.company_number_page.submit(companies_house_number: @companies_house_number)
-    end
-  end
-
   @business_name = business_name
-  @journey.company_name_page.submit(company_name: @business_name)
+  @carrier = "carrier_broker_dealer"
 
-  @journey.address_lookup_page.submit_valid_address
+  submit_carrier_details(@organisation_type, @tier, @carrier)
+  submit_business_details(@business_name, @tier)
 
   if @tier == "upper"
-    @people ||= @journey.company_people_page.main_people
-
-    if @organisation_type == "partnership"
-      @journey.company_people_page.add_main_person(person: @people[0])
-      @journey.company_people_page.submit_main_person(person: @people[1])
-    else
-      @journey.company_people_page.submit_main_person(person: @people[0])
-    end
-
-    @declared_convictions ||= :no
-    @journey.conviction_declare_page.submit(choice: @declared_convictions)
-    @relevant_people = @old.relevant_people_page.relevant_people
-    @journey.conviction_details_page.submit(person: @relevant_people[0]) if @declared_convictions == :yes
+    submit_company_people
+    @convictions ||= "no convictions"
+    submit_convictions(@convictions)
   end
 
-  names = {
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name
-  }
-  @journey.contact_name_page.submit(names)
-  @journey.contact_phone_page.submit(phone_number: "0117 4960000")
   @email_address = generate_email
-  @journey.contact_email_page.submit(email: @email_address, confirm_email: @email_address)
-
-  @journey.address_lookup_page.submit_valid_address
+  submit_contact_details_for_registration(@email_address)
 
   expect(page).to have_content("Check your answers")
   @journey.standard_page.submit
-
   @journey.declaration_page.submit
 
   @copy_cards ||= 0
@@ -219,6 +181,7 @@ end
 Given("I have an active registration") do
   load_all_apps
   @account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
+  @tier = "upper"
 
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => @account_email)
   @reg_number = seed_data.reg_number
@@ -230,21 +193,23 @@ end
 
 Given("I have an active registration with a company number of {string}") do |company_no|
   load_all_apps
+  @tier = "upper"
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "company_no" => company_no)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
+  @companies_house_number = company_no
 
   puts "Registration " + @reg_number + " seeded with company number of #{company_no}"
 end
 
 Given("I have an active registration with a company name of {string}") do |company_name|
   load_all_apps
+  @tier = "upper"
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "companyName" => company_name)
   @email_address = "user@example.com"
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @business_name = company_name
-  @tier = "upper"
   @resource_object = :registration
 
   puts "Registration " + @reg_number + " seeded with company name of #{company_name}"
@@ -297,6 +262,7 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
   # Store variables for later steps:
   @business_name = "AD UT Sole Trader"
   @people = dodgy_people
+  @convictions = "convictions"
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
@@ -314,7 +280,7 @@ Given("a conviction is declared when registering their partnership for an upper 
 
   # Store variables for later steps:
   @business_name = "AD Upper Tier Partnership"
-  @declared_convictions = :yes
+  @convictions = "convictions"
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'partnership'")
@@ -332,7 +298,7 @@ Given("a registration with declared convictions is submitted with outstanding pa
 
   # Store variables for later steps:
   @business_name = "AD Upper Tier Need Payment"
-  @declared_convictions = :yes
+  @convictions = "convictions"
   @reg_balance = 154
 
   step("I want to register as an upper tier carrier")
@@ -372,7 +338,7 @@ Given("I get part way through a front office registration") do
   step("I start a new registration journey in 'England' as a 'limitedLiabilityPartnership'")
 
   @business_name = "Resume registration " + rand(1..999_999).to_s
-  select_random_upper_tier_options("existing")
+  select_random_upper_tier_route
   @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
   @carrier = "carrier_broker_dealer"
   @companies_house_number ||= "00445790"
