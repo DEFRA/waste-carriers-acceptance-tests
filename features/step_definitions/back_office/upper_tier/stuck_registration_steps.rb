@@ -21,10 +21,9 @@ When("I complete the renewal steps and get stuck at the payment stage") do
   @business_name ||= "Stuck renewal " + rand(1..999_999).to_s
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
+  select_tier_for_renewal("existing")
   @journey.renewal_information_page.submit
-  submit_business_details(@business_name)
+  submit_business_details(@business_name, @tier)
   submit_company_people
   submit_convictions("no convictions")
   submit_contact_details_for_renewal

@@ -2,10 +2,9 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
   @business_name = "Ltd Company renewal declaring a conviction"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
+  select_tier_for_renewal("existing")
   @journey.renewal_information_page.submit
-  submit_business_details(@business_name)
+  submit_business_details(@business_name, @tier)
   submit_company_people
   submit_convictions("convictions")
   submit_contact_details_for_renewal
@@ -21,10 +20,9 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
   @business_name = "Ltd Company renewal with matching conviction"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
+  select_tier_for_renewal("existing")
   @journey.renewal_information_page.submit
-  submit_business_details(@business_name)
+  submit_business_details(@business_name, @tier)
   people = dodgy_people
   @journey.company_people_page.add_main_person(person: people[0])
   @journey.company_people_page.add_main_person(person: people[1])
@@ -42,11 +40,10 @@ end
 When(/^I complete my limited company renewal steps not declaring a company conviction$/) do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
+  select_tier_for_renewal("existing")
   @journey.renewal_information_page.submit
   # Submit the existing company name, as it has a conviction against it:
-  submit_limited_company_details("existing")
+  submit_limited_company_details("existing", @tier)
   submit_company_people
   submit_convictions("no convictions")
   submit_contact_details_for_renewal

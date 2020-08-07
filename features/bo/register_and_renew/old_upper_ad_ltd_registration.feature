@@ -7,7 +7,7 @@ Feature: Assisted digital registration of an upper tier Limited company
   Background:
     Given an Environment Agency user has signed in to the backend
     And I request assistance with a new registration
-    When I have my limited company as a upper tier waste carrier application completed for me
+    When I have my limited company upper tier registration completed for me on backend
 
   # Currently broken in mock mode on local, raised as RUBY-1140
   @smoke @minismoke

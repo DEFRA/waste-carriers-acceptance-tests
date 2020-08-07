@@ -35,7 +35,7 @@ display_failures: true
 # immediately failing because the element cannot be found. This defaults to 2
 # seconds. However if the site you are working with is slow or features
 # elements that take some time to load you can increase this default.
-max_wait_time: 10
+max_wait_time: 5
 
 # If set Quke will tell Cucumber to output to the console using its
 # 'progress' formatter (simply displays a . for each passing scenario and F for

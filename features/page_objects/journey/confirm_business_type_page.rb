@@ -1,7 +1,6 @@
 class ConfirmBusinessTypePage < SitePrism::Page
 
   # What type of business or organisation are you? - front office
-  # TODO This page is mixed up with business_type_page. Sometimes the new app calls the old page.
 
   element(:error_summary, ".error-summary")
 

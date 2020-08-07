@@ -1,5 +1,5 @@
 Given(/^I start a new registration$/) do
-  # This step coversa registration from the old app.
+  # This step covers a registration from the old app.
   @old = OldApp.new
   @journey = JourneyApp.new
   @old.old_start_page.load
