@@ -13,7 +13,6 @@ Feature: Sole trader applies for new upper tier registration
     Then I will be registered as an upper tier waste carrier
     And the registration status will be "Registered"
 
-  @smoke
   Scenario: Sole trader successfully applies for an upper tier waste carriers licence choosing to pay by bank transfer
     When I choose to pay for my application by bank transfer ordering 3 copy cards
     Then I will be informed my registration is pending payment
