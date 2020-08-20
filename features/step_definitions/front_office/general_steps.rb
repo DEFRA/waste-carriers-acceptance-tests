@@ -138,5 +138,5 @@ When("I access the links on the page") do
 end
 
 Then("I can start my registration") do
-  expect(@old.old_start_page.heading).to have_text("Is this a new registration?")
+  expect(@journey.start_page.heading).to have_text("Is this a new registration?")
 end
