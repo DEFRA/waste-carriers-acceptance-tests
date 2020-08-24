@@ -1,4 +1,3 @@
-@bo_old @bo_reg
 Feature: Assisted digital registration of an upper tier public body
   As a carrier of commerical waste
   I want assistance with my waste carrier registration from the Environment Agency
@@ -7,7 +6,7 @@ Feature: Assisted digital registration of an upper tier public body
   Background:
     Given an Environment Agency user has signed in to the backend
     And I request assistance with a new registration
-    When I have my public body upper tier waste carrier application completed for me
+    When I have my public body upper tier registration completed for me on backend
 
   Scenario: NCCC successfully registers a public body for a upper tier waste carriers licence paying by credit card
     When I pay for my application over the phone by maestro ordering 0 copy cards

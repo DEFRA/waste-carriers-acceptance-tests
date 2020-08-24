@@ -1,8 +1,10 @@
-@fo_old @fo_reg
+@fo @fo_reg
 Feature: Limited company applies for new upper tier registration
   As a carrier of commercial waste
   I want to register my company with the Environment Agency
   So I am compliant with the law
+
+  This feature is carried out on the old frontend. Remove when we remove the app.
 
   Background:
     Given I start a new registration

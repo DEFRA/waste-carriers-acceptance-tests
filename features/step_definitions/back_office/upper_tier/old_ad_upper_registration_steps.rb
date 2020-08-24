@@ -1,4 +1,4 @@
-When(/^I have my limited company as a upper tier waste carrier application completed for me$/) do
+When(/^I have my limited company upper tier registration completed for me on backend$/) do
   @old.old_business_type_page.submit(org_type: "limitedCompany")
   @old.other_businesses_question_page.submit(choice: :no)
   @old.construction_waste_question_page.submit(choice: :yes)
@@ -26,7 +26,7 @@ When(/^I have my limited company as a upper tier waste carrier application compl
   @old.check_details_page.submit
 end
 
-When(/^I have my partnership upper tier waste carrier application completed for me$/) do
+When(/^I have my partnership upper tier regstration completed for me on backend$/) do
   @old.old_business_type_page.submit(org_type: "partnership")
   @old.other_businesses_question_page.submit(choice: :yes)
   @old.service_provided_question_page.submit(choice: :main_service)
@@ -54,7 +54,7 @@ When(/^I have my partnership upper tier waste carrier application completed for 
   @old.check_details_page.submit
 end
 
-When(/^I have my public body upper tier waste carrier application completed for me$/) do
+When(/^I have my public body upper tier registration completed for me on backend$/) do
   @old.old_business_type_page.submit(org_type: "publicBody")
   @old.other_businesses_question_page.submit(choice: :no)
   @old.construction_waste_question_page.submit(choice: :yes)

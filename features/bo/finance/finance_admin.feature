@@ -1,4 +1,4 @@
-@bo_new @finance
+@bo @finance
 Feature: Finance admin
   As a user with finance privilieges
   I want to administer finances for a registration

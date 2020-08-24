@@ -126,7 +126,8 @@ When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_t
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options(registration_type.to_sym)
+  answer_random_upper_tier_questions
+  @journey.carrier_type_page.submit(choice: registration_type.to_sym)
 end
 
 When(/^I answer questions indicating I should be a lower tier waste carrier$/) do
@@ -185,10 +186,8 @@ When("I complete my {string} renewal steps") do |business_type|
   @business_name ||= business_type + " renewal"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
-  @journey.renewal_information_page.submit
-  submit_business_details(@business_name)
+  select_tier_for_renewal("existing")
+  submit_business_details(@business_name, @tier)
   if business_type == "partnership"
     test_partnership_people
   else
@@ -206,10 +205,9 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @business_name = "LLP renewal via bank transfer"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
+  select_tier_for_renewal("existing")
   @journey.renewal_information_page.submit
-  submit_business_details(@business_name)
+  submit_business_details(@business_name, @tier)
   submit_company_people
   submit_convictions("no convictions")
   submit_contact_details_for_renewal
@@ -221,8 +219,7 @@ end
 When(/^I complete my overseas company renewal steps$/) do
   @journey.renewal_start_page.submit
   @journey.location_page.submit(choice: :overseas)
-  @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
+  select_tier_for_renewal("existing")
   @journey.renewal_information_page.submit
   @journey.company_name_page.submit
   @journey.address_manual_page.submit(
@@ -316,7 +313,8 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
-  select_random_upper_tier_options("existing")
+  answer_random_upper_tier_questions
+  @journey.carrier_type_page.submit # submit existing carrier type
   @journey.renewal_information_page.submit
   @journey.company_number_page.submit(companies_house_number: number.to_sym)
 end

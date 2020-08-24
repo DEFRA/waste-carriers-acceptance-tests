@@ -1,4 +1,4 @@
-@bo_new @bo_reg
+@bo @bo_reg
 Feature: Incomplete registrations and renewals completed by NCCC
   As a carrier of commercial waste
   I want assistance with my waste carrier registration from the Environment Agency

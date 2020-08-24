@@ -1,3 +1,5 @@
+# This file looks like it overlaps old_upper_tier_registration_steps. Merge together.
+
 When(/^I complete my application of my limited company as an upper tier waste carrier$/) do
   @old.old_business_type_page.submit(org_type: "limitedCompany")
   @old.other_businesses_question_page.submit(choice: :no)

@@ -1,4 +1,4 @@
-@fo_new @fo_dashboard
+@fo @fo_dashboard
 Feature: Waste carrier accesses their front office dashboard
   As a carrier of commercial waste
   I want to be able to view my registrations online

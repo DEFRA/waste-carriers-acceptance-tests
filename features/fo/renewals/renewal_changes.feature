@@ -1,4 +1,4 @@
-@fo_new @fo_renew
+@fo @fo_renew
 Feature: Registered waste carrier chooses to renew their registration from start page
   As a carrier of commercial waste
   I want to change my registration details when I renew my waste carriers licence with the Environment Agency

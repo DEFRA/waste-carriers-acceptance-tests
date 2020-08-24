@@ -1,4 +1,4 @@
-@bo_new @finance
+@bo @finance
 Feature: [RUBY-826] Pay for registrations
   As a user with finance privilieges
   I want to help a user pay for a registration

@@ -1,6 +1,7 @@
 class TierCheckPage < SitePrism::Page
 
   # What tier do you need?
+  # Applies only to renewals
 
   element(:error_summary, ".error-summary")
   element(:heading, ".heading-large")

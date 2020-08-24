@@ -1,4 +1,4 @@
-@bo_new @bo_dashboard
+@bo @bo_dashboard
 Feature: [RUBY-1118] Toggle features
   As an developer
   I want to turn features off and on

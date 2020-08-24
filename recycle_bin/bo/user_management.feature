@@ -1,4 +1,3 @@
-@bo_old
 Feature: User management feature
   As a super user
   I need to copy the users I have created in the backend into the back office

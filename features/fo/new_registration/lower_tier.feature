@@ -1,4 +1,4 @@
-@fo_new @fo_reg @smoke
+@fo @fo_reg @smoke
 Feature: A new user registers as a lower tier waste carrier
   As a carrier of commercial waste
   I want to register for a lower tier licence
