@@ -111,8 +111,8 @@ When applied you then have the ability to filter which tests will be used during
 
 As the test suite is quite large, tests are split into four main categories:
 
-- `@fo_new` front office (external) dashboard, registrations and renewals
-- `@bo_new` back office (internal) dashboard, finance, edits, renewals and more
+- `@fo` front office (external) dashboard, registrations and renewals
+- `@bo` back office (internal) dashboard, finance, edits, renewals and more
 - `@fo_old` front office registrations
 - `@bo_old` back office dashboard and registrations
 
@@ -133,9 +133,9 @@ To have consistency across the project the following tags are defined and should
 |Tag|Description|
 |---|---|
 |@fo_old|Front office functionality in the older parts of the service|
-|@fo_new|Front office functionality in the newer parts of the service|
+|@fo|Front office functionality in the newer parts of the service|
 |@bo_old|Back office functionality in the older parts of the service|
-|@bo_new|Back office functionality in the newer parts of the service|
+|@bo|Back office functionality in the newer parts of the service|
 |@email|Indicates when an email is sent out during the scenario. Useful for testing emails or for omitting email tests when testing within corporate network|
 |@broken|A scenario which is known to be broken due to the service not meeting expected behaviour|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|

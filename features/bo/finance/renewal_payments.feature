@@ -1,4 +1,4 @@
-@bo_new @finance
+@bo @finance
 Feature: Recording of a non worldpay renewal payment and negative conviction check marks the registration renewal as completed.
   As an administrator of the Waste Carriers service
   I need to be able to record payments and conviction check results

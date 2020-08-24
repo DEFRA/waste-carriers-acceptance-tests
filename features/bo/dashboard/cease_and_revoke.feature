@@ -1,4 +1,4 @@
-@bo_new @bo_dashboard
+@bo @bo_dashboard
 Feature: Cease and revoke registered waste carriers
   As an agency user
   I need to be able to deregister a registered waste carrier

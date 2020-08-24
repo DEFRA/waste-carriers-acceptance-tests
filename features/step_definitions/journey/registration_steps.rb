@@ -243,10 +243,13 @@ Given("a limited company with companies house number {string} is registered as a
 
   # Store variables for later steps:
   @business_name = "AD UT Company convictions check ltd"
+  @organisation_type = "limitedCompany"
   @companies_house_number = ch_no
 
   step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'limitedCompany'")
+  @journey.start_page.load
+  @journey.start_page.submit(choice: @resource_object)
+  @journey.location_page.submit(choice: "england")
   step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
@@ -338,6 +341,7 @@ Given("I get part way through a front office registration") do
   step("I start a new registration journey in 'England' as a 'limitedLiabilityPartnership'")
 
   @business_name = "Resume registration " + rand(1..999_999).to_s
+  @journey.confirm_business_type_page.submit(org_type: "limitedLiabilityPartnership")
   select_random_upper_tier_route
   @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
   @carrier = "carrier_broker_dealer"

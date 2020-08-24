@@ -1,4 +1,3 @@
-@fo_new @fo_dashboard
 Feature: Upper tier registration edit charges
   As a carrier of commercial waste
   I want to be able to change my registration details

@@ -1,4 +1,4 @@
-@fo_new @fo_renew
+@fo @fo_renew
 Feature: Registered waste carrier declares conviction during renewal
   As a member of the waste carriers team in NCCC
   I want to be informed of any potential matches with the Environment Agency's convictions database

@@ -41,7 +41,6 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   select_tier_for_renewal("existing")
-  @journey.renewal_information_page.submit
   # Submit the existing company name, as it has a conviction against it:
   submit_limited_company_details("existing", @tier)
   submit_company_people

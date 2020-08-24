@@ -6,7 +6,6 @@ As a finance administrator
 I want to be able to reverse payments made in error
 So that payments made in error can be reversed.
 
-@test
  Scenario: Reversal of application charge from credit card payment
  Given I have an application paid by credit card
    And I am signed in as a finance admin

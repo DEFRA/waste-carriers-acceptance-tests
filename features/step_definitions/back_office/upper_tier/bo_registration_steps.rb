@@ -10,5 +10,5 @@ Given("I register an upper tier {string} from the back office") do |organisation
   @journey.location_page.submit(choice: :england)
   @journey.confirm_business_type_page.submit(org_type: @organisation_type)
 
-  # todo continue this once the helper functions are correct
+  # to continue this once the helper functions are corrected
 end
