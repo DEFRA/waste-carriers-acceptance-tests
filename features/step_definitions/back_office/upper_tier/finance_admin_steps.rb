@@ -59,7 +59,7 @@ Given(/^(?:a|an) "([^"]*)" writes off the outstanding balance$/) do |user|
 end
 
 Given("I add a missed Worldpay payment at the payment stage") do
-  if @resource_object == :new_registration
+  if @reg_type == :new_registration
     # Search for registration by name as it doesn't have a CBD number yet:
     @bo.dashboard_page.view_new_reg_details(search_term: @business_name)
   else # it's a renewal
@@ -79,5 +79,5 @@ Given("I add a missed Worldpay payment at the payment stage") do
     comment: "missed worldpay at payment stage"
   )
   expect(@bo.finance_payment_details_page.flash_message).to have_text(@reg_balance.to_s + " payment entered successfully")
-  @resource_object = :registration
+  @reg_type = :registration
 end

@@ -1,7 +1,7 @@
 Given("I register an upper tier {string} from the back office") do |organisation_type|
   @organisation_type = organisation_type
   @app = "bo"
-  @resource_object = :new_registration
+  @reg_type = :new_registration
   @tier = "upper"
   @carrier = "carrier_broker_dealer"
   @business_name = "BO upper tier " + organisation_type.to_s

@@ -8,11 +8,11 @@ When(/^the registration's balance is (-?\d+)$/) do |balance|
   # Once confirmed, set the balance variable to that value for future steps
   @reg_balance = balance
 
-  @resource_object = :registration if balance.zero? && @convictions == "no convictions"
+  @reg_type = :registration if balance.zero? && @convictions == "no convictions"
 end
 
 When("the renewal has been completed") do
-  @resource_object = :registration
+  @reg_type = :registration
 end
 
 When(/^the applicant chooses to pay for the registration by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
@@ -66,13 +66,9 @@ When(/^NCCC pays the remaining balance by "([^"]*)"$/) do |method|
 end
 
 Given(/^the registration has an unsubmitted renewal$/) do
-  @resource_object = :renewal
+  @reg_type = :renewal
   @business_name = "Renewal via bank transfer"
-
-  @old.backend_registrations_page.search(search_input: @reg_number.to_sym)
-  @expiry_date = @old.backend_registrations_page.search_results[0].expiry_date.text
-  # Turns the text expiry date into a date
-  @expiry_date_year_first = Date.parse(@expiry_date)
+  @convictions = "no convictions"
 
   @bo.sign_in_page.load
   @bo.sign_in_page.submit(
@@ -80,18 +76,13 @@ Given(/^the registration has an unsubmitted renewal$/) do
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
+  @expiry_date_year_first = expiry_date_from_reg_details
+
   @bo.registration_details_page.renew_link.click
 
   start_internal_renewal
-  @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :skip_check)
-  @journey.carrier_type_page.submit
-  @journey.renewal_information_page.submit
-  submit_business_details(@business_name, @tier)
-  submit_company_people
-  submit_convictions("no convictions")
-  submit_contact_details_for_renewal
-  check_your_answers
+  submit_existing_renewal_details
+
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
 end

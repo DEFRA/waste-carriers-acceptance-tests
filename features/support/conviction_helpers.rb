@@ -54,7 +54,7 @@ def check_in_progress_convictions_for(text)
 end
 
 def go_to_conviction_for_reg(reg)
-  if @resource_object == :renewal
+  if @reg_type == :renewal
     # Because it is difficult to find a unique link to the registration's conviction checks, visit the URL directly:
     visit((Quke::Quke.config.custom["urls"]["back_office"]) + "/transient-registrations/" + reg + "/convictions")
   else # it's a registration
@@ -75,7 +75,7 @@ end
 
 def approve_conviction(reg)
   @bo.convictions_bo_details_page.approve_button.click
-  expected_heading = if @resource_object == :renewal
+  expected_heading = if @reg_type == :renewal
                        "Approve a renewal with possible convictions: " + reg
                      else
                        "Approve a registration with possible convictions: " + reg
@@ -96,7 +96,7 @@ end
 
 def reject_conviction(reg)
   @bo.convictions_bo_details_page.reject_button.click
-  expected_heading = if @resource_object == :renewal
+  expected_heading = if @reg_type == :renewal
                        "Reject a renewal with possible convictions: " + reg
                      else
                        "Reject a registration with possible convictions: " + reg

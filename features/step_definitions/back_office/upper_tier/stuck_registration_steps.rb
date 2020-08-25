@@ -12,7 +12,7 @@ end
 
 When("I start renewing my last registration from the email") do
   @journey = JourneyApp.new
-  @resource_object = :renewal
+  @reg_type = :renewal
   visit(@renew_from_email_link)
   expect(page).to have_text("You are about to renew registration " + @reg_number)
 end
@@ -54,7 +54,7 @@ Then("I can submit the stuck user's application by bank transfer") do
 
   @reg_number = @journey.confirmation_page.registration_number.text
   puts @reg_number + " submitted with outstanding payment"
-  if @resource_object == :renewal
+  if @reg_type == :renewal
     expect(@journey.confirmation_page).to have_content("Application received")
   else
     expect(@journey.confirmation_page).to have_content("You must now pay by bank transfer")

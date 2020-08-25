@@ -194,12 +194,12 @@ def test_partnership_people
 end
 
 def submit_convictions(convictions)
-  if convictions == "no convictions"
-    @journey.conviction_declare_page.submit(choice: :no)
-  else
+  if convictions == "convictions"
     @journey.conviction_declare_page.submit(choice: :yes)
     people = @journey.conviction_details_page.main_people
     @journey.conviction_details_page.submit(person: people[0])
+  else
+    @journey.conviction_declare_page.submit(choice: :no)
   end
 end
 
