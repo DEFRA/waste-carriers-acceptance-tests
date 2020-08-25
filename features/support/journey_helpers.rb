@@ -1,3 +1,10 @@
+def start_reg_from_back_office
+  @bo.dashboard_page.new_reg_link.click
+  @bo.ad_privacy_policy_page.submit
+  @journey.start_page.submit(choice: :new_registration)
+  @journey.location_page.submit(choice: :england)
+end
+
 def submit_carrier_details(business, tier, carrier)
   # Select the org type, or just click submit if the business is "existing"
   @journey.confirm_business_type_page.submit(org_type: business)

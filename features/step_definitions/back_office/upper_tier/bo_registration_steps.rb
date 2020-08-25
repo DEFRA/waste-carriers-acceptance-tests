@@ -1,14 +1,13 @@
 Given("I register an upper tier {string} from the back office") do |organisation_type|
+  @organisation_type = organisation_type
+  @app = "bo"
   @resource_object = :new_registration
   @tier = "upper"
-  @organisation_type = organisation_type
+  @carrier = "carrier_broker_dealer"
+  @business_name = "BO upper tier " + organisation_type.to_s
+  @copy_cards = rand(3)
 
-  @bo.dashboard_page.new_reg_link.click
-  @bo.ad_privacy_policy_page.submit
+  start_reg_from_back_office
+  step("I complete my registration for my business '#{@business_name}'")
 
-  @journey.start_page.submit(choice: @resource_object)
-  @journey.location_page.submit(choice: :england)
-  @journey.confirm_business_type_page.submit(org_type: @organisation_type)
-
-  # to continue this once the helper functions are corrected
 end

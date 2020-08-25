@@ -5,7 +5,7 @@ end
 Given(/^NCCC partially renews an existing registration with "([^"]*)"$/) do |convictions|
 
   # Set variables that can be reused across steps.
-  @app = "new"
+  @app = "bo"
   @tier = "upper"
   @convictions = convictions
   @business_name = "AD Renewal with " + @convictions
@@ -129,6 +129,7 @@ end
 
 When(/^I complete the renewal for the account holder$/) do
   @business_name = "Assisted digital resumed renewal"
+  @app = "bo"
   @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
   @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit

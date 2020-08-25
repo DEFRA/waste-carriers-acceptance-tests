@@ -8,17 +8,20 @@ Given("I want to register as a lower tier carrier") do
 
   @resource_object = :new_registration
   @tier = "lower"
+  @app = "fo"
 end
 
 Given("I want to register as an upper tier carrier") do
   load_all_apps
 
   @resource_object = :new_registration
+  @app = "fo"
   @tier = "upper"
 end
 
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
   @organisation_type = organisation_type
+  @app = "fo"
   @journey.start_page.load
   @journey.start_page.submit(choice: @resource_object)
   @journey.location_page.submit(choice: location)
@@ -29,7 +32,7 @@ end
 
 When("I complete my registration for my business {string}") do |business_name|
   @business_name = business_name
-  @carrier = "carrier_broker_dealer"
+  @carrier ||= "carrier_broker_dealer"
 
   submit_carrier_details(@organisation_type, @tier, @carrier)
   submit_business_details(@business_name, @tier)
@@ -60,7 +63,7 @@ Then("I am notified that my registration has been successful") do
   find_text << "You are now registered as a lower tier" if @tier == "lower"
   find_text << "You are now registered as an upper tier" if @tier == "upper"
 
-  visit Quke::Quke.config.custom["urls"]["last_email_fo"]
+  visit_last_email_page_for(@app)
   email_found = @journey.last_email_page.check_email_for_text(find_text)
   expect(email_found).to eq(true)
 
@@ -77,7 +80,7 @@ Then("I am notified that I need to pay by bank transfer") do
   find_text << "You need to pay for your waste carriers registration and then email us to confirm payment"
   find_text << "Email us your registration " + @reg_number + " to confirm you’ve paid"
 
-  visit Quke::Quke.config.custom["urls"]["last_email_fo"]
+  visit_last_email_page_for(@app)
   email_found = @journey.last_email_page.check_email_for_text(find_text)
   expect(email_found).to eq(true)
 
@@ -369,6 +372,7 @@ end
 Given("I resume the registration as assisted digital") do
   @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit_button.click
+  @app = "bo"
 
   # Continue the journey where the previous user left off
   expect(@journey.contact_email_page.heading).to have_text("contact email address?")
