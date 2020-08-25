@@ -131,6 +131,15 @@ def retrieve_email_containing(search_terms)
   "Email not found"
 end
 
+def visit_last_email_page_for(app)
+  last_email_address = if app == "bo"
+                         "last_email_bo"
+                       else
+                         "last_email_fo"
+                       end
+  visit Quke::Quke.config.custom["urls"][last_email_address]
+end
+
 def password_reset_link(account_email)
   # Get password reset email:
   visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
