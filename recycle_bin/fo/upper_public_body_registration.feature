@@ -4,7 +4,7 @@ Feature: Public body applies for new upper tier registration
   So I am compliant with the law
 
   Background:
-    Given I start a new registration
+    Given I start a new registration on the frontend
     When I complete my application of my public body as an upper tier waste carrier
 
   Scenario: Public body successfully registers for a upper tier waste carriers licence paying by credit card

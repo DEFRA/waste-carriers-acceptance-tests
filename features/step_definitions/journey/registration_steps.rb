@@ -1,8 +1,3 @@
-# Group pieces together when they are always consecutive (renewal - new lower tier - new upper tier)
-# Helpers vs Step to group things together - Choose helpers, avoid steps.
-# Helpers vs Step - repeat helpers, not steps.
-# Use `Given` to set up instance variables for the rest of the journey decisions
-
 Given("I want to register as a lower tier carrier") do
   load_all_apps
 

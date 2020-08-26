@@ -7,7 +7,7 @@ Feature: Limited company applies for new upper tier registration
   This feature is carried out on the old frontend. Remove when we remove the app.
 
   Background:
-    Given I start a new registration
+    Given I start a new registration on the frontend
     When I complete my application of my limited company as an upper tier waste carrier
 
   @smoke @minismoke

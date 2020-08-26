@@ -1,4 +1,4 @@
-When(/^I complete my limited company renewal steps declaring a conviction$/) do
+When("I complete my limited company renewal steps declaring a conviction") do
   @business_name = "Ltd Company renewal declaring a conviction"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
@@ -11,12 +11,10 @@ When(/^I complete my limited company renewal steps declaring a conviction$/) do
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
-
   submit_valid_card_payment
-
 end
 
-When(/^I complete my limited company renewal steps not declaring a conviction$/) do
+When("I complete my limited company renewal steps not declaring a personal conviction") do
   @business_name = "Ltd Company renewal with matching conviction"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
@@ -30,11 +28,9 @@ When(/^I complete my limited company renewal steps not declaring a conviction$/)
   submit_convictions("no convictions")
   submit_contact_details_for_renewal
   check_your_answers
-  order_cards_during_journey(0)
+  order_cards_during_journey(5)
   @journey.payment_summary_page.submit(choice: :card_payment)
-
   submit_valid_card_payment
-
 end
 
 When(/^I complete my limited company renewal steps not declaring a company conviction$/) do
@@ -47,7 +43,7 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   submit_convictions("no convictions")
   submit_contact_details_for_renewal
   check_your_answers
-  order_cards_during_journey(0)
+  order_cards_during_journey(3)
   @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
 end

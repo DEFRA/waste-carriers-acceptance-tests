@@ -57,7 +57,7 @@ Then(/^the card order is confirmed awaiting payment$/) do
   expect(@bo.registration_details_page.content).to have_text("Payment required")
 end
 
-Then(/^the carrier receives an email saying their card order is being printed$/) do
+Then("the carrier receives an email saying their card order is being printed") do
   text_to_check = [
     "We’re printing your waste carriers registration card",
     @reg_number,
@@ -70,7 +70,7 @@ Then(/^the carrier receives an email saying their card order is being printed$/)
   expect(@journey.last_email_page.check_email_for_text(text_to_check)).to be true
 end
 
-Then(/^the carrier receives an email saying they need to pay for their card order$/) do
+Then("the carrier receives an email saying they need to pay for their card order") do
   text_to_check = [
     "You need to pay for your waste carriers registration card",
     @reg_number,
