@@ -1,19 +1,9 @@
-Given(/^I renew my last registration$/) do
-  # randomise between old and new app
-  @old = OldApp.new
+Given("I start renewing this registration from the start page") do
   @journey = JourneyApp.new
   @reg_type = :renewal
-  # Randomise between old and new app, until we get rid of old app:
-  i = rand(2)
-  if i.zero?
-    @old.old_start_page.load
-    @old.old_start_page.submit(renewal: true)
-    @old.old_existing_registration_page.submit(reg_no: @reg_number)
-  else
-    @journey.start_page.load
-    @journey.start_page.submit(choice: @reg_type)
-    @journey.existing_registration_page.submit(reg_no: @reg_number)
-  end
+  @journey.start_page.load
+  @journey.start_page.submit(choice: @reg_type)
+  @journey.existing_registration_page.submit(reg_no: @reg_number)
 end
 
 Given("I receive an email from NCCC inviting me to renew") do
@@ -33,7 +23,6 @@ When("I renew from the email as a {string}") do |business_type|
   expect(@journey.renewal_start_page.heading).to have_text("You are about to renew registration " + @reg_number)
 
   step("I complete my '#{business_type}' renewal steps")
-
 end
 
 When("I incorrectly paste its renewal link") do
@@ -47,10 +36,8 @@ Given("I have a registration which expired {int} days ago") do |days_ago|
   new_expiry_date = (DateTime.now - days_ago).to_s
 
   seed_data = SeedData.new("limitedCompany_expired_registration.json", "expires_on" => new_expiry_date)
-
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
-
   @email_address = @seeded_data["contactEmail"]
 
   puts "limitedCompany upper tier expired registration " + @reg_number + " seeded"
@@ -76,50 +63,8 @@ Then("I am told the renewal cannot be found") do
   expect(@journey.renewal_start_page.heading).to have_text("We cannot find that renewal")
 end
 
-Then(/^I will be shown the renewal information page$/) do
-  expect(@journey.renewal_start_page).to have_text(@reg_number)
-  expect(@journey.renewal_start_page.current_url).to include "/renewal-information"
-end
-
-Then(/^I will be shown the renewal start page$/) do
-  @journey.renewal_start_page.wait_until_heading_visible
-  expect(@journey.renewal_start_page).to have_text(@reg_number)
-  expect(@journey.renewal_start_page.current_url).to include "/renew/CBDU"
-end
-
-When(/^I choose to renew my registration from my registrations list$/) do
-  @fo.front_office_dashboard.wait_until_sign_out_visible
-  @fo.front_office_dashboard.registrations[0].renew_registration.click
-end
-
-Given(/^I choose to renew my registration$/) do
-  Capybara.reset_session!
-  @journey = JourneyApp.new
-  @old.old_start_page.load
-  @old.old_start_page.submit(renewal: true)
-  @old.old_existing_registration_page.submit(reg_no: @reg_number)
-end
-
-When(/^I enter my lower tier registration number "([^"]*)"$/) do |reg_no|
-  @old.old_existing_registration_page.submit(reg_no: reg_no)
-end
-
-Then(/^I'm informed "([^"]*)"$/) do |error_message|
-  expect(@old.old_existing_registration_page.error_message.text).to eq(error_message)
-end
-
 Given("I am told that my registration does not expire") do
   expect(page).to have_text("This is a lower tier registration so never expires. Call our helpline on 03708 506506 if you think this is incorrect.")
-end
-
-When(/^the organisation type is changed to sole trader$/) do
-  agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit(org_type: "soleTrader")
-end
-
-Then(/^I will be informed my renewal is received$/) do
-  expect(@journey.confirmation_page).to have_text("Renewal received")
-  expect(@journey.confirmation_page).to have_text(@reg_number)
 end
 
 When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_type|
@@ -130,7 +75,7 @@ When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_t
   @journey.carrier_type_page.submit(choice: registration_type.to_sym)
 end
 
-When(/^I answer questions indicating I should be a lower tier waste carrier$/) do
+When("I answer questions indicating I should be a lower tier waste carrier") do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
@@ -145,19 +90,7 @@ Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   sign_in_to_front_office(@email_address)
 end
 
-Given(/^I have signed in to view my registrations as "([^"]*)"$/) do |username|
-  @old = OldApp.new
-  @journey = JourneyApp.new
-  @old.frontend_sign_in_page.load
-  @old.frontend_sign_in_page.submit(
-    email: username,
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
-end
-
-Given(/^I choose to renew my last registration from the dashboard$/) do
-  @journey = JourneyApp.new
-
+Given("I choose to renew my last registration from the dashboard") do
   @fo.front_office_dashboard.find_registration(@reg_number)
   @fo.front_office_dashboard.renew(@reg_number)
 end
@@ -172,7 +105,7 @@ Given(/^I change my place of business location to "([^"]*)"$/) do |location|
   @journey.location_page.submit(choice: location.to_sym)
 end
 
-Then(/^I will be able to continue my renewal$/) do
+Then("I will be able to continue my renewal") do
   @journey.tier_check_page.wait_until_check_tier_visible
   expect(@journey.tier_check_page.current_url).to include "/tier-check"
   Capybara.reset_session!
@@ -213,7 +146,7 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   step("I pay by bank transfer")
 end
 
-When(/^I complete my overseas company renewal steps$/) do
+When("I complete my overseas company renewal steps") do
   @journey.renewal_start_page.submit
   @journey.location_page.submit(choice: :overseas)
   select_tier_for_renewal("existing")
@@ -254,13 +187,8 @@ When(/^I complete my overseas company renewal steps$/) do
   submit_valid_card_payment
 end
 
-When(/^I confirm my business type$/) do
-  agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit
-end
-
 Then(/^I will be notified "([^"]*)"$/) do |message|
-  expect(@old.frontend_sign_in_page).to have_text(message)
+  expect(page).to have_text(message)
   Capybara.reset_session!
 end
 
@@ -289,23 +217,6 @@ Then("I am notified that my renewal payment is being processed") do
   puts "Renewal #{@reg_number} submitted and pending WorldPay"
 end
 
-Then(/^I will be advised "([^"]*)"$/) do |message|
-  expect(@journey.renewal_information_page).to have_text(message)
-  Capybara.reset_session!
-end
-
-Then(/^I will be told my registration can not be renewed$/) do
-  expect(page).to have_text("This registration cannot be renewed")
-end
-
-When(/^the renewal date is over one month before it is due to expire$/) do
-  # No code to write here, step added so the test reads better
-end
-
-When(/^the registration is within the expiry grace renewal window$/) do
-  # No code to write here, step added so the test reads better
-end
-
 Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
@@ -316,29 +227,17 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
   @journey.company_number_page.submit(companies_house_number: number.to_sym)
 end
 
-Then(/^I will be notified my renewal is pending checks$/) do
+Then("I will be notified my renewal is pending checks") do
   @journey.confirmation_page.wait_until_heading_visible
   expect(@journey.confirmation_page.heading.text).to eq("Application received")
   expect(@journey.confirmation_page).to have_text(@reg_number)
   Capybara.reset_session!
 end
 
-Then(/^I will be notified my renewal is pending payment$/) do
+Then("I will be notified my renewal is pending payment") do
   @journey.confirmation_page.wait_until_heading_visible
   expect(@journey.confirmation_page.heading.text).to eq("Application received")
   expect(@journey.confirmation_page).to have_text("pay the renewal charge")
   expect(@journey.confirmation_page).to have_text(@reg_number)
   Capybara.reset_session!
-end
-
-When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |reg_no|
-  @journey = JourneyApp.new
-  renewal_url = Quke::Quke.config.custom["urls"]["front_office"] + "/#{reg_no}/renew"
-
-  visit(renewal_url)
-end
-
-Then(/^I will be prompted to sign in to complete the renewal$/) do
-  @fo.front_office_sign_in_page.wait_until_email_address_visible
-  expect(@fo.front_office_sign_in_page.current_url).to include "/users/sign_in"
 end

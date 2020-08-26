@@ -1,4 +1,4 @@
-When(/^I choose to view my certificate$/) do
+When("I choose to view my certificate") do
   @fo.front_office_sign_in_page.load
   @fo.front_office_sign_in_page.submit(
     email: Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
@@ -7,7 +7,7 @@ When(/^I choose to view my certificate$/) do
   @fo.front_office_dashboard.find_registration(@reg_number)
 end
 
-Then(/^I can view my certificate of registration$/) do
+Then("I can view my certificate of registration") do
   # We need to bypass the PDF link by going directly to the HTML version of the certificate.
   visit("#{Quke::Quke.config.custom['urls']['front_office']}/registrations/#{@reg_number}/certificate?show_as_html=true")
   expect(page).to have_text("Certificate of Registration")
@@ -61,4 +61,65 @@ Then("I change the password back to its original value") do
   )
   @password = ENV["WCRS_DEFAULT_PASSWORD"]
   expect(@fo.front_office_dashboard.heading).to have_text("Your waste carrier registrations")
+end
+
+Given("I have reached the GOV.UK start page") do
+  @journey = JourneyApp.new
+  visit("https://www.gov.uk/waste-carrier-or-broker-registration")
+  expect(@journey.govuk_start_page.heading).to have_text("Register or renew as a waste carrier, broker or dealer")
+end
+
+When("I access the links on the page") do
+  # Select Wales
+  find_link("Wales").click
+  expect(page).to have_text("Register or renew as a waste carrier, broker or dealer")
+  expect(page).to have_text("If your business is based in Wales, you must register with us")
+  page.evaluate_script("window.history.back()")
+
+  # Select Scotland
+  find_link("Scotland").click
+  expect(page).to have_text("Waste carriers and brokers")
+  expect(page).to have_text("Waste Management Licensing (Scotland) Regulations 2011")
+  page.evaluate_script("window.history.back()")
+
+  # Select Northern Ireland
+  find_link("Northern Ireland").click
+  expect(page).to have_text("Registration of carriers and brokers")
+  expect(page).to have_text("Information on how to register as a carrier or broker of waste with the Northern Ireland Environment Agency")
+  page.evaluate_script("window.history.back()")
+
+  # Select public register
+  find_link("public register of waste carriers, brokers and dealers").click
+  expect(page).to have_text("Choose a register to search")
+  page.evaluate_script("window.history.back()")
+
+  # Select "renew your registration"
+  find_link("renew your registration").click
+  expect(page).to have_text("Is this a new registration?")
+  page.evaluate_script("window.history.back()")
+
+  # Select "Start now"
+  @journey.govuk_start_page.start_now_button.click
+end
+
+Then("I can start my registration") do
+  expect(@journey.start_page.heading).to have_text("Is this a new registration?")
+end
+
+Then("I can access the footer links") do
+  new_window = window_opened_by { find_link("Privacy").click }
+  within_window new_window do
+    expect(@journey.standard_page.heading).to have_text("Waste carriers, brokers and dealers privacy policy")
+    expect(@journey.standard_page.content).to have_text("Lower-tier registrations are non-expiring")
+    new_window = window_opened_by { find_link("Cookies").click }
+    within_window new_window do
+      expect(@journey.standard_page.heading).to have_text("Cookies")
+      expect(@journey.standard_page.content).to have_text("After 20 minutes of inactivity")
+      new_window = window_opened_by { find_link("Accessibility").click }
+      within_window new_window do
+        expect(@journey.standard_page.heading).to have_text("Accessibility statement")
+        expect(@journey.standard_page.content).to have_text("beta banner has insufficient contrast")
+      end
+    end
+  end
 end
