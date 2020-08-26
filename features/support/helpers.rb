@@ -2,8 +2,6 @@
 # @param element [Capybara::Node::Element, SitePrism::Section]
 
 require "facets"
-require "pry"
-
 def load_all_apps
   @old = OldApp.new
   @bo = BackOfficeApp.new

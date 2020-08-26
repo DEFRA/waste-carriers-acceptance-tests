@@ -104,6 +104,7 @@ Then("I am notified that my registration payment is being processed") do
 end
 
 Given("a registration with no convictions has been submitted by paying via card") do
+  load_all_apps
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
@@ -221,6 +222,7 @@ Given("I have an active registration with a company name of {string}") do |compa
 end
 
 Given(/a registration with outstanding balance and (\d+) copy cards? has been submitted$/) do |copy_cards|
+  load_all_apps
   # Store variables for later steps:
   @copy_cards = copy_cards
   @reg_balance = 154 + 5 * copy_cards
@@ -308,6 +310,7 @@ Given("a registration with declared convictions is submitted with outstanding pa
   @business_name = "AD Upper Tier Need Payment"
   @convictions = "convictions"
   @reg_balance = 154
+  load_all_apps
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")

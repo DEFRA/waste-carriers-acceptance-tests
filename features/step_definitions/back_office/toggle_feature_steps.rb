@@ -1,5 +1,3 @@
-require "pry"
-
 When("I turn all features off") do
   find_link("Toggle features").click
   @bo.toggle_features_page.add_all_toggles

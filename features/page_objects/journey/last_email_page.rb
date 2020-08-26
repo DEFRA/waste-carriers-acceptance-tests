@@ -11,9 +11,6 @@ class LastEmailPage < SitePrism::Page
 
   element(:email_content, "pre")
 
-  # Copy additional functions from WEX tests as needed:
-  # https://github.com/DEFRA/waste-exemptions-acceptance-tests/blob/master/features/page_objects/email/last_email_api_page.rb
-
   def check_email_for_text(expected_text)
     # Look for an email containing all the strings in the given array
     # and returns true if all the expected text is present.
