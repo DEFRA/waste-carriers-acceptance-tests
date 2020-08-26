@@ -6,7 +6,7 @@ Given("I generate errors throughout the journey") do
   @journey.start_page.load
   @journey.start_page.submit
   expect(@journey.start_page.error_summary).to have_text("You must answer this question")
-  @journey.start_page.submit(choice: @resource_object)
+  @journey.start_page.submit(choice: @reg_type)
 
   @journey.location_page.submit
   expect(@journey.location_page.error_summary).to have_text("Select your principal place of business")

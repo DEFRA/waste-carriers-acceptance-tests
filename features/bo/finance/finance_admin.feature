@@ -7,9 +7,6 @@ Feature: Finance admin
   This feature covers all main finance admin operations: refunds and charge adjustments (frequent)
   plus reversals and writeoffs (less frequent).
 
-  Background:
-    Given an Environment Agency user has signed in to the backend
-
   @smoke
   Scenario: [RUBY-811] Refund WorldPay payments on registration and renewal
     Given a registration with no convictions has been submitted by paying via card

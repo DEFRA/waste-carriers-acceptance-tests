@@ -1,10 +1,9 @@
-require "pry"
-
 When("I register and get stuck at the payment stage") do
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
 
-  # Generate random business name containing the word "Stuck", to make it searchable later
+  # Generate random business name containing the word "Stuck", to
+  # simulate a stuck payment in mock mode, and make it searchable later
   @business_name = "Stuck registration " + rand(1..999_999).to_s
   step("I complete my registration for my business '#{@business_name}'")
   @journey.payment_summary_page.submit(choice: :card_payment)
@@ -12,7 +11,7 @@ end
 
 When("I start renewing my last registration from the email") do
   @journey = JourneyApp.new
-  @resource_object = :renewal
+  @reg_type = :renewal
   visit(@renew_from_email_link)
   expect(page).to have_text("You are about to renew registration " + @reg_number)
 end
@@ -20,14 +19,8 @@ end
 When("I complete the renewal steps and get stuck at the payment stage") do
   @business_name ||= "Stuck renewal " + rand(1..999_999).to_s
   agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit
-  select_tier_for_renewal("existing")
-  @journey.renewal_information_page.submit
-  submit_business_details(@business_name, @tier)
-  submit_company_people
-  submit_convictions("no convictions")
-  submit_contact_details_for_renewal
-  check_your_answers
+  submit_existing_renewal_details
+
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
   # If mocking is turned on and @business_name contains "stuck", user will see a "stuck" page.
@@ -54,7 +47,7 @@ Then("I can submit the stuck user's application by bank transfer") do
 
   @reg_number = @journey.confirmation_page.registration_number.text
   puts @reg_number + " submitted with outstanding payment"
-  if @resource_object == :renewal
+  if @reg_type == :renewal
     expect(@journey.confirmation_page).to have_content("Application received")
   else
     expect(@journey.confirmation_page).to have_content("You must now pay by bank transfer")

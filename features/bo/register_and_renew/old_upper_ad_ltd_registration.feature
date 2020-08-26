@@ -1,6 +1,6 @@
-@bo_old @bo_reg
+@bo @bo_reg @old
 Feature: Assisted digital registration of an upper tier Limited company
-  As a carrier of commerical waste
+  As a carrier of commercial waste
   I want assistance with my waste carrier registration from the Environment Agency
   So I can complete my regisration and I am compliant with the law
 

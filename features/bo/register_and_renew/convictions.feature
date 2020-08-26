@@ -53,8 +53,7 @@ Feature: Conviction checks during upper tier waste carrier registrations
     And the registration has a status of "CONVICTIONS"
 
   Scenario: Registration is not completed if there is an outstanding conviction
-    Given an Environment Agency user has signed in to the backend
-    And a registration with declared convictions is submitted with outstanding payment
+    Given a registration with declared convictions is submitted with outstanding payment
     When NCCC pays the remaining balance by "cash"
     Then the registration has a status of "IN PROGRESS"
     And the registration has a status of "CONVICTIONS"

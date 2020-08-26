@@ -1,48 +1,51 @@
-Given(/^NCCC partially registers an upper tier "([^"]*)" "([^"]*)" with "([^"]*)"$/) do |carrier, business, convictions|
-
-  # Set variables that can be reused across steps
-  @app = "old"
-  @tier = "upper"
-  @carrier = carrier
-  @business = business
-  # Generate the business name, stripping out any illegal characters such as _.
-  # As gsub amends the original value of carrier, plus any references to it, work from a clone instead:
-  carrier_without_underscore = carrier.clone.gsub!(/[^0-9A-Za-z]/, "")
-  @business_name = "Registered " + carrier_without_underscore + " " + business + " with " + convictions
-  @convictions = convictions
-  @resource_object = :registration
-
-  old_start_internal_registration
-  old_submit_carrier_details(business, "upper", @carrier)
-  old_submit_business_details(@business_name, @tier)
-  old_submit_contact_details_from_bo
-  old_submit_company_people(business)
-  old_submit_convictions(convictions)
-  old_check_your_answers
-
+Given(/^I sign into the back office as "([^"]*)"$/) do |user|
+  # Use this step to sign in to the back office as any of the following users:
+  # agency-user
+  # agency-refund-payment-user
+  # agency-super
+  # finance-user
+  # finance-admin-user
+  # finance-super
+  # waste_carrier
+  # waste_carrier2
+  load_all_apps
+  sign_in_to_back_office(user)
 end
 
-And(/^NCCC finishes the registration$/) do
-  @reg_number = old_complete_registration_from_bo(@business, @tier, @carrier)
+Given("I sign out of back office") do
+  sign_out_of_back_office
 end
 
-Given(/^NCCC registers a lower tier "([^"]*)"$/) do |business|
-  @app = "old"
-  @tier = "lower"
-  @carrier = "-"
-  @business = business
-  @business_name = "Registered lower tier " + business
-  @resource_object = :registration
-
-  old_start_internal_registration
-  old_submit_carrier_details(@business, @tier, @carrier)
-  old_submit_business_details(@business_name, @tier)
-  old_submit_contact_details_from_bo
-  old_check_your_answers
-  @reg_number = old_complete_registration_from_bo(@business, @tier, @carrier)
+Given("mocking is disabled") do
+  # Some tests rely on being able to perform actions on the Worldpay payment screen.
+  # This step skips those tests when mocking is disabled.
+  pending "It makes no sense to test this feature when mocking is enabled" if mocking_enabled?
 end
 
-Then(/^I check the registration details are correct on the back office$/) do
+Given("mocking is enabled") do
+  # Tests which simulate a "pending WorldPay" status can only be run in automated tests if mocking is enabled.
+  # See RUBY-1013 for details on how to test this manually.
+  pending "It makes no sense to test this feature when mocking is disabled" unless mocking_enabled?
+end
+
+Then(/^the registration has a status of "([^"]*)"$/) do |status|
+  sign_in_to_back_office("agency-refund-payment-user", false)
+
+  @bo.dashboard_page.load
+  @bo.dashboard_page.submit(search_term: @reg_number)
+
+  expect(@bo.dashboard_page.results_table).to have_text(status)
+end
+
+Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
+  sign_in_to_back_office("agency-refund-payment-user", false)
+
+  @bo.dashboard_page.load
+  @bo.dashboard_page.submit(search_term: @reg_number)
+  expect(@bo.dashboard_page.results_table).to have_no_text(status)
+end
+
+Then("I check the registration details are correct on the back office") do
   sign_in_to_back_office("agency-user")
   check_registration_details(@reg_number)
   info_panel = @bo.registration_details_page.info_panel
@@ -72,7 +75,7 @@ Then(/^I check the registration details are correct on the back office$/) do
   end
 end
 
-Then(/^the certificate shows the correct details$/) do
+Then("the certificate shows the correct details") do
   # Assume user is already at the "registration details" page here.
   # As we cannot directly read PDFs through web test automation, use a dedicated URL to view the content as HTML.
   # Also, when testing headlessly, the direct link to the certificate PDF doesn't work.
@@ -85,7 +88,7 @@ Then(/^the certificate shows the correct details$/) do
   page_content = @bo.registration_certificate_page.content
   expect(page_content).to have_text(@business_name)
   expect(page_content).to have_text(@reg_number)
-  expect(@bo.registration_certificate_page.certificate_dates_are_correct(@tier, @resource_object)).to be true
+  expect(@bo.registration_certificate_page.certificate_dates_are_correct(@tier, @reg_type)).to be true
   if @tier == "upper"
     expect(page_content).to have_text("Your registration will last 3 years")
   else

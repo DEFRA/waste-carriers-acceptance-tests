@@ -2,8 +2,6 @@
 # @param element [Capybara::Node::Element, SitePrism::Section]
 
 require "facets"
-require "pry"
-
 def load_all_apps
   @old = OldApp.new
   @bo = BackOfficeApp.new
@@ -28,10 +26,11 @@ def mocking_enabled?
 end
 
 def sign_in_to_front_office(email)
-  visit(Quke::Quke.config.custom["urls"]["front_office_sign_in"])
+  url = URI.parse(current_url).to_s
+  visit(Quke::Quke.config.custom["urls"]["front_office_sign_in"]) if url.not.include? "fo/users/sign_in"
   return if page.has_text?("Signed in as " + email)
 
-  @fo.waste_carriers_renewals_sign_in_page.submit(
+  @fo.front_office_sign_in_page.submit(
     email: email,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )

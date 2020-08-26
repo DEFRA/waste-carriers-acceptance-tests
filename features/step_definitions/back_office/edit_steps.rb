@@ -1,12 +1,9 @@
-require "pry"
-
 When("I edit the most recent registration") do
   @edited_info = {
     contact_email: generate_email
   }
 
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
-
   @bo.registration_details_page.edit_link.click
   @bo.edit_page.change_contact_email.click
 
@@ -41,7 +38,6 @@ When("I edit the most recent registration type to {string}") do |carrier_type|
   }
 
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
-
   @bo.registration_details_page.edit_link.click
   @bo.edit_page.change_registration_type.click
 
@@ -50,7 +46,6 @@ end
 
 When("I cancel the edit") do
   @bo.edit_page.cancel_changes.click
-
   @bo.edit_confirm_cancel_page.confirm_cancel.click
 end
 

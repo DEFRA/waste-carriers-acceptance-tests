@@ -6,7 +6,7 @@
 Given("I want to register as a lower tier carrier") do
   load_all_apps
 
-  @resource_object = :new_registration
+  @reg_type = :new_registration
   @tier = "lower"
   @app = "fo"
 end
@@ -14,7 +14,7 @@ end
 Given("I want to register as an upper tier carrier") do
   load_all_apps
 
-  @resource_object = :new_registration
+  @reg_type = :new_registration
   @app = "fo"
   @tier = "upper"
 end
@@ -23,7 +23,7 @@ When("I start a new registration journey in {string} as a {string}") do |locatio
   @organisation_type = organisation_type
   @app = "fo"
   @journey.start_page.load
-  @journey.start_page.submit(choice: @resource_object)
+  @journey.start_page.submit(choice: @reg_type)
   @journey.location_page.submit(choice: location)
 end
 
@@ -104,6 +104,7 @@ Then("I am notified that my registration payment is being processed") do
 end
 
 Given("a registration with no convictions has been submitted by paying via card") do
+  load_all_apps
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
@@ -144,10 +145,12 @@ Given("I create a lower tier registration for my {string} business as {string}")
 end
 
 Given("I have a new registration for a {string} business") do |business_type|
+  load_all_apps
   @tier = "upper"
   seed_data = SeedData.new("#{business_type}_complete_active_registration.json")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
+  @organisation_type = business_type
 
   puts "#{business_type} registration " + @reg_number + " seeded"
 end
@@ -176,7 +179,7 @@ Given("I create a new registration as {string} with a company name of {string}")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @tier = "upper"
-  @resource_object = :registration
+  @reg_type = :registration
 
   puts "Registration " + @reg_number + " seeded with name #{@business_name} for " + @email_address
 end
@@ -213,12 +216,13 @@ Given("I have an active registration with a company name of {string}") do |compa
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @business_name = company_name
-  @resource_object = :registration
+  @reg_type = :registration
 
   puts "Registration " + @reg_number + " seeded with company name of #{company_name}"
 end
 
 Given(/a registration with outstanding balance and (\d+) copy cards? has been submitted$/) do |copy_cards|
+  load_all_apps
   # Store variables for later steps:
   @copy_cards = copy_cards
   @reg_balance = 154 + 5 * copy_cards
@@ -251,7 +255,7 @@ Given("a limited company with companies house number {string} is registered as a
 
   step("I want to register as an upper tier carrier")
   @journey.start_page.load
-  @journey.start_page.submit(choice: @resource_object)
+  @journey.start_page.submit(choice: @reg_type)
   @journey.location_page.submit(choice: "england")
   step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
@@ -306,6 +310,7 @@ Given("a registration with declared convictions is submitted with outstanding pa
   @business_name = "AD Upper Tier Need Payment"
   @convictions = "convictions"
   @reg_balance = 154
+  load_all_apps
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")

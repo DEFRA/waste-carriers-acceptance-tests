@@ -2,7 +2,7 @@ Given(/^I renew my last registration$/) do
   # randomise between old and new app
   @old = OldApp.new
   @journey = JourneyApp.new
-  @resource_object = :renewal
+  @reg_type = :renewal
   # Randomise between old and new app, until we get rid of old app:
   i = rand(2)
   if i.zero?
@@ -11,7 +11,7 @@ Given(/^I renew my last registration$/) do
     @old.old_existing_registration_page.submit(reg_no: @reg_number)
   else
     @journey.start_page.load
-    @journey.start_page.submit(choice: @resource_object)
+    @journey.start_page.submit(choice: @reg_type)
     @journey.existing_registration_page.submit(reg_no: @reg_number)
   end
 end
@@ -141,11 +141,8 @@ end
 
 Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   @journey = JourneyApp.new
-  @old.frontend_sign_in_page.submit(
-    email: username,
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
-  )
   @email_address = username
+  sign_in_to_front_office(@email_address)
 end
 
 Given(/^I have signed in to view my registrations as "([^"]*)"$/) do |username|
@@ -342,6 +339,6 @@ When(/^I try to renew anyway by guessing the renewal url for "([^"]*)"$/) do |re
 end
 
 Then(/^I will be prompted to sign in to complete the renewal$/) do
-  @fo.waste_carriers_renewals_sign_in_page.wait_until_email_address_visible
-  expect(@fo.waste_carriers_renewals_sign_in_page.current_url).to include "/users/sign_in"
+  @fo.front_office_sign_in_page.wait_until_email_address_visible
+  expect(@fo.front_office_sign_in_page.current_url).to include "/users/sign_in"
 end

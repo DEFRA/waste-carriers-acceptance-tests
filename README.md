@@ -121,9 +121,9 @@ We are gradually moving functionality from "old" code to "new" code and the old 
 Using a mix of tags you can both include and exclude tests to run:
 
 ```bash
-tst --tags @fo_old # Run only things tagged with this
-tst --tags @fo_old,@smoke # Run all things with these tags
-tst --tags ~@fo_old # Don't run anything with this tag (run everything else)
+tst --tags @fo # Run only things tagged with this
+tst --tags @fo,@smoke # Run all things with these tags
+tst --tags ~@old # Don't run anything with this tag (run everything else)
 ```
 
 ### In this project
@@ -132,10 +132,9 @@ To have consistency across the project the following tags are defined and should
 
 |Tag|Description|
 |---|---|
-|@fo_old|Front office functionality in the older parts of the service|
-|@fo|Front office functionality in the newer parts of the service|
-|@bo_old|Back office functionality in the older parts of the service|
-|@bo|Back office functionality in the newer parts of the service|
+|@fo|Front office (external) functionality|
+|@bo|Back office (internal) functionality|
+|@old|Any functionality in the old version of the service|
 |@email|Indicates when an email is sent out during the scenario. Useful for testing emails or for omitting email tests when testing within corporate network|
 |@broken|A scenario which is known to be broken due to the service not meeting expected behaviour|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
@@ -148,7 +147,12 @@ It's also common practice to use a custom tag whilst working on a new feature or
 
 ## Seeding data
 
-Most Waste Carriers tests rely on data being created just before execution to provide the starting conditions ("Given") needed for a particular scenario. [More information on seeding](/features/seeds/README.md)
+The test suite allows for data to be seeded while running tests at the start of a scenario. [More information on seeding](/features/seeds/README.md)
+
+The advantages of this are that:
+
+* The tests do not rely on hard-coded data seeds which need to be reset in each test run.
+* The tests run much more quickly, as they do not repeat the steps to create registrations through the user interface.
 
 ## Resetting data
 
@@ -161,6 +165,38 @@ bundle exec rake reset_dbs
 In other environments, this can be done via the RESET_AND_SEED job in Jenkins.
 
 While not needed for every test run, tests can sometimes fail due to clashing data in the environment. Data is automatically seeded from CBDU100 upwards (locally) and CBDU200 upwards (in all environments). However, if registration CBDU99 has been created by running tests, a second instance of CBDU100 will be created in the following test. This causes some tests to fail.
+
+## Test suite features
+
+This test suite uses several features added by our developers to make testing much easier.
+
+### Helper methods
+
+In [features/support](/features/support), there are several helper methods which are used to prevent code being repeated between steps. They can be called from any test regardless of which file they're in.
+
+Use these wherever more than 2-3 lines of code are repeated, and give them a name which concisely describes what it does. Rubocop will flag if a method is too long or complex, so a large helper function may itself need to be split into smaller helper functions.
+
+By keeping these methods short and descriptive, this makes code easier to read and maintain.
+
+### Last email
+
+In all non-production environments, each app (front office and back office) has an address ending `/email/last-email` where the last email sent from the app can be extracted in JSON format. The address is stored in the config file for each environment. This allows you to write tests which rely on an email being received or clicked.
+
+The email may be sent from one of two servers at random, meaning that one of two emails will be shown on accessing the page. So the [last_email_page](/features/page_objects/journey/last_email_page.rb) contains a method to reload the page 10 times until the email with the required text is found.
+
+The "last email" functionality is toggled on and off by an environment variable in each test environment.
+
+### Get URL for a registration
+
+To speed tests up, they do not always involve the steps to navigate to each page. Some registration URLs contain a token rather than the registration number.
+
+To access these tokens in non-production environments, there is an `api` function which retrieves these tokens for a registration or renewal. The token is called in [fetch_registration_data_helpers.rb](/features/support/fetch_registration_data_helpers.rb) and used in [visit_url_helpers.rb](/features/support/visit_url_helpers.rb).
+
+This functionality is governed by a feature toggle available in the test environments.
+
+### Journey folder
+
+The Waste Carriers service relies on a core user "journey" to register or renew on the front or back office. Most of the journey is similar, so page objects and step definitions which are shared are covered in the "journey" folders.
 
 ## Principles
 
@@ -178,7 +214,28 @@ A tool we have found useful is a Chrome addin called [SelectorGadget](http://sel
 
 You can also test them using the Chrome developer tools. Open them up, select the elements tab and then `ctrl/cmd+f`. You should get an input field into which you can enter your selector and confirm/test its working. See <https://developers.google.com/web/updates/2015/05/search-dom-tree-by-css-selector>
 
-Capybara has a known issue with links that don't have a valid href, as seen in MS dynamics. Work around is to find the element by ID and then call `click()` on it e.g. `page.find("#example-thing-id").click`. Issue details can be found here: <https://github.com/teamcapybara/capybara/issues/379>
+### Get text from an email or screen
+
+Some tests in this suite (such as tests which require you to get a URL from an email) extract information from the screen using a regular expression (regex). To make it easier to understand and write such tests, it's worth reading this [advice on regular expressions in Ruby](https://www.rubyguides.com/2015/06/ruby-regex/). For example, the following line in the tests:
+
+```ruby
+@renew_from_email_link = renewal_email_text.match(/.*few minutes at: <a href\=(.*)>http.*/)[1]
+```
+extracts the first renewal link from this email text, as it appears on the 'last email' screen:
+```HTML
+<h1>\r\n              Renew your waste carrier registration by 18 August 2023.\r\n            </h1>\r\n\r\n            <p style=\"font-size: 19px; line-height: 1.315789474; margin: 15px 0 15px 0;\">\r\n              It costs £105 and lasts for 3 years.\r\n            </p>\r\n\r\n            <p style=\"font-size: 19px; line-height: 1.315789474; margin: 15px 0 15px 0; font-weight: bold\">\r\n              You can renew online in a few minutes at: <a href=https://waste-carriers-tst.aws.defra.cloud/fo/renew/token0123456789abcdef>https://waste-carriers-tst.aws.defra.cloud/fo/renew/token0123456789abcdef</a>\r\n
+```
+
+Breaking this down:
+
+* `.match(/` `/)` represents the start and end of the thing that needs to be matched.
+* `.*` represents 'any number of any characters'. So it represents the majority of the email outside of the bit you're interested in.
+* `few minutes at: <a href \=` represents the text immediately before what needs to be captured. As the `=` sign is used in programming, it is preceded with the escape character `\` to avoid it being interpreted as code.
+* `(.*)` represents the part of the email that you will capture - any number of any characters. In this case it will be a whole URL.
+* `>http` represents the text immediately after what you want to capture. (In this case, the URL is contained in an `<a>` tag and then repeated in the email body.)
+* `[1]` represents the first item that matches (in case there's more than one).
+
+Other common things inside a regex include `\n` to represent a new line in the text, `\d+` representing one or more digits, `\"` for a double quote, and `\\` meaning that the text contains a backslash, but this needs to be preceded by another backslash to prevent it being interpreted as code.
 
 ## Contributing to this project
 

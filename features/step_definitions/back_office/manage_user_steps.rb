@@ -1,5 +1,3 @@
-require "pry"
-
 When(/^I invite a new "([^"]*)" user$/) do |user_type|
   @bo.dashboard_page.govuk_banner.manage_users_link.click
   expect(@bo.users_page).to be_displayed
