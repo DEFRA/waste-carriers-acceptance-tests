@@ -1,3 +1,5 @@
+# All these steps can be archived when we have removed the old apps in production
+
 Given(/^I start a new registration on the frontend$/) do
   # This step covers a registration from the old app.
   @old = OldApp.new

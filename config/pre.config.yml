@@ -84,6 +84,7 @@ custom:
     front_end_sign_in: "https://waste-carriers-pre.aws.defra.cloud/users/sign_in"
     front_office: "https://waste-carriers-pre.aws.defra.cloud/fo"
     front_office_sign_in: "https://waste-carriers-pre.aws.defra.cloud/fo/users/sign_in"
+    back_end_root: "https://admin-waste-carriers-pre.aws.defra.cloud/"
     back_end_dashboard: "https://admin-waste-carriers-pre.aws.defra.cloud/registrations?locale=en"
     back_end_registrations: "https://admin-waste-carriers-pre.aws.defra.cloud/registrations/start?do_not_redirect=1"
     back_end: "https://admin-waste-carriers-pre.aws.defra.cloud/agency_users/sign_in"

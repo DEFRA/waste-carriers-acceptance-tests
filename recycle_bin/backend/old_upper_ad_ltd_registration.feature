@@ -2,7 +2,7 @@
 Feature: Assisted digital registration of an upper tier Limited company
   As a carrier of commercial waste
   I want assistance with my waste carrier registration from the Environment Agency
-  So I can complete my regisration and I am compliant with the law
+  So I can complete my registration and I am compliant with the law
 
   This feature is carried out on the old backend. Remove when we remove the app.
 

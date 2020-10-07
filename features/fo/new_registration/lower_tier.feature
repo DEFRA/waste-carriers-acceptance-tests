@@ -10,6 +10,7 @@ Feature: A new user registers as a lower tier waste carrier
     And I complete my registration for my business "Happy path LT Charity Registration"
     Then I am notified that my registration has been successful
 
+@grace
   Scenario: A sole trader registers as a lower tier waste carrier
     Given I want to register as a lower tier carrier
     When I start a new registration journey in "England" as a "soleTrader"
