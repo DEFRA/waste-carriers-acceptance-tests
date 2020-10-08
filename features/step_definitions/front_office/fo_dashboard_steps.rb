@@ -103,7 +103,7 @@ When("I access the links on the page") do
 end
 
 Then("I can start my registration") do
-  expect(@journey.start_page.heading).to have_text("Is this a new registration?")
+  expect(on_fo_start_page?)
 end
 
 Then("I can access the footer links") do

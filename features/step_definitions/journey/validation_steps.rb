@@ -72,7 +72,7 @@ Given("I generate errors throughout the journey") do
 
   @journey.conviction_details_page.submit_button.click
   expect(@journey.conviction_details_page.error_summary).to have_text("You must add the details of at least one person")
-  @relevant_people = @old.relevant_people_page.relevant_people
+  @relevant_people = @journey.conviction_details_page.main_people
   @journey.conviction_details_page.submit(person: @relevant_people[0])
 
   @journey.contact_name_page.submit

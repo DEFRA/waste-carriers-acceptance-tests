@@ -189,7 +189,11 @@ end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
   expect(page).to have_text(message)
-  Capybara.reset_session!
+end
+
+And("the button allows me to start a new registration") do
+  @journey.standard_page.button.click
+  expect(on_fo_start_page?)
 end
 
 Then(/^I will be notified my renewal is complete$/) do

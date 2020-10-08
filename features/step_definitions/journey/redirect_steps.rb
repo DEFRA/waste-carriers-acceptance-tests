@@ -35,8 +35,7 @@ Given("an external user tries to access the old app") do
   expect(url).to include("/fo/users/sign_in")
 
   visit("/") # this is the frontend root
-  expect(page).to have_text("Is this a new registration?")
-  # The URL does not actually contain /fo at this stage.
+  expect(on_fo_start_page?)
 end
 
 Then("the external user is redirected to the new app") do

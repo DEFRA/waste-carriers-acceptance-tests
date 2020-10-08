@@ -4,7 +4,6 @@
 require "facets"
 
 def load_all_apps
-  @old = OldApp.new
   @bo = BackOfficeApp.new
   @fo = FrontOfficeApp.new
   @journey = JourneyApp.new
