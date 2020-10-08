@@ -12,7 +12,7 @@ Feature: Assisted digital registration of an upper tier Limited company
     When I have my limited company upper tier registration completed for me on backend
 
   # Currently broken in mock mode on local, raised as RUBY-1140
-  @smoke @minismoke
+  @smoke
   Scenario: NCCC successfully registers a limited company for a upper tier waste carriers licence paying by credit card
     When I pay for my application over the phone by maestro ordering 2 copy cards
     Then I will have an upper tier registration

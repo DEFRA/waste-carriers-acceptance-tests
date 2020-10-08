@@ -1,4 +1,4 @@
-@fo @fo_dashboard
+@fo @fo_dashboard @smoke @minismoke
 Feature: Old app redirects to new
   As a carrier of waste
   I want to access the service from a bookmark I have previously saved

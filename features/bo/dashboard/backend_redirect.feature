@@ -1,4 +1,4 @@
-@bo @bo_dashboard
+@bo @bo_dashboard @smoke @minismoke
 Feature: Old app redirects to new
   As an Environment Agency user
   I want to access the service from a bookmark I have previously saved

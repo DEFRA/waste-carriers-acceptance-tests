@@ -139,7 +139,7 @@ To have consistency across the project the following tags are defined and should
 |@broken|A scenario which is known to be broken due to the service not meeting expected behaviour|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
 |@smoke| Tests where test data is created during the test, so no reliance on any data to run the tests. Useful for testing in hosted environments where we don't have a full set of seeded data|
-|@minismoke| A light smoke test to quickly verify that all apps are working|
+|@minismoke| A light smoke test to register and quickly verify that all apps are working|
 |Back office tags| @bo_renew, @bo_dashboard, @bo_finance, @bo_reg |
 |Front office tags| @fo_renew, @fo_dashboard, @fo_reg |
 
