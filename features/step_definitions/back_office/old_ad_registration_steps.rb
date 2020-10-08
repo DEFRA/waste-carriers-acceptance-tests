@@ -1,3 +1,5 @@
+# All these steps can be archived when we have removed the old apps in production
+
 Given(/^an Environment Agency user has signed in to the backend$/) do
   Capybara.reset_session!
   load_all_apps

@@ -84,6 +84,7 @@ custom:
     front_end_sign_in: "http://localhost:3000/users/sign_in"
     front_office: "http://localhost:3002/fo"
     front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
+    back_end_root: "http://localhost:3000/agency_users/sign_in" # this is different from other environments as vagrant shares root url with frontend
     back_end_dashboard: "http://localhost:3000/registrations?locale=en"
     back_end_registrations: "http://localhost:3000/registrations/start?do_not_redirect=1"
     back_end: "http://localhost:3000/agency_users/sign_in"

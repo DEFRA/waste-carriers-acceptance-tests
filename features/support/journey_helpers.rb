@@ -289,3 +289,10 @@ def test_manual_address_validations
     city: "Wilson"
   )
 end
+
+def on_bo_sign_in_page?
+  url = URI.parse(current_url).to_s
+  expect(page).to have_text("Sign in")
+  expect(url).to include("/bo/users/sign_in")
+  true
+end
