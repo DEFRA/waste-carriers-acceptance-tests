@@ -118,7 +118,9 @@ When(/^I have my sole trader business lower tier waste carrier registration comp
   @old.check_details_page.submit
 end
 
+# rubocop:disable Layout/LineLength
 When(/^the applicant chooses to pay for the registration by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
+  # rubocop:enable Layout/LineLength
   @old.old_order_page.submit(
     copy_card_number: copy_card_number,
     choice: :bank_transfer_payment

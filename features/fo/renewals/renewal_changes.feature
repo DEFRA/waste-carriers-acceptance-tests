@@ -10,6 +10,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
     And I have signed in to renew my registration as "user@example.com"
     But I change the business type to "localAuthority"
     Then I will be notified "You need a new registration"
+    And the button allows me to start a new registration
 
   Scenario: Sole trader changes place of business location to outside the UK
     Given I create an upper tier registration for my "soleTrader" business as "user@example.com"
@@ -38,6 +39,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
     And I have signed in to renew my registration as "user@example.com"
     When I answer questions indicating I should be a lower tier waste carrier
     Then I will be notified "You can register as a lower tier waste carrier"
+    And the button allows me to start a new registration
 
   Scenario: Partnership changes business type to Limited Liability Partnership
     Given I create an upper tier registration for my "partnership" business as "user@example.com"

@@ -296,3 +296,10 @@ def on_bo_sign_in_page?
   expect(url).to include("/bo/users/sign_in")
   true
 end
+
+def on_fo_start_page?
+  expect(@journey.start_page.heading).to have_text("Is this a new registration?")
+  # The URL may or may not contain /fo/ at this stage, so we can't validate the URL here.
+  # Instead, check that CSS specific to the h1 on the old app no longer exists:
+  expect(page).to have_no_css("#groupLabel")
+end
