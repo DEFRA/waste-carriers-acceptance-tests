@@ -123,3 +123,45 @@ Then("I can access the footer links") do
     end
   end
 end
+
+Given("I am based outside England but in the UK") do
+  load_all_apps
+  @reg_type = :new_registration
+  @journey.start_page.load
+  @journey.start_page.submit(choice: @reg_type)
+end
+
+When("I look at the links for each country") do
+  # Select Wales
+  @journey.location_page.submit(choice: :wales)
+  expect(@journey.standard_page.heading).to have_text("You can register in Wales")
+  find_link("Register or renew as a waste carrier, broker or dealer (Wales)").click
+  #  expect(page).to have_text("Cyfoeth Naturiol Cymru - Dewis Iaith / Natural Resources Wales - Language Select")
+  find_link("Cymraeg").click
+  expect(page).to have_text("Cofrestru neu adnewyddu fel cludydd, brocer neu ddeliwr gwastraff") # Register as a waste carrier, broker or dealer
+  page.evaluate_script("window.history.back()")
+  page.evaluate_script("window.history.back()")
+  find_link("Back").click
+
+  # Select Scotland
+  @journey.location_page.submit(choice: :scotland)
+  expect(@journey.standard_page.heading).to have_text("You can register in Scotland")
+  find_link("Register or renew as a waste carrier or broker (Scotland)").click
+  expect(page).to have_text("regulated by the Waste Management Licensing (Scotland) Regulations 2011")
+  page.evaluate_script("window.history.back()")
+  find_link("Back").click
+
+  # Select Northern Ireland
+  @journey.location_page.submit(choice: :northern_ireland)
+  expect(@journey.standard_page.heading).to have_text("You can register in Northern Ireland")
+  find_link("Register or renew as a waste carrier, broker or dealer (Northern Ireland)").click
+  expect(page).to have_text("Registration of carriers and brokers")
+  expect(page).to have_text("Information on how to register as a carrier or broker of waste with the Northern Ireland Environment Agency")
+  page.evaluate_script("window.history.back()")
+end
+
+Then("I can still decide to register in England") do
+  expect(@journey.standard_page.heading).to have_text("You can register in Northern Ireland")
+  @journey.standard_page.button.click
+  expect(@journey.confirm_business_type_page.heading).to have_text("What type of business or organisation are you?")
+end

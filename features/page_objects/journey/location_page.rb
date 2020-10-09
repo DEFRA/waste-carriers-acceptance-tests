@@ -7,12 +7,12 @@ class LocationPage < SitePrism::Page
   element(:error_summary, ".error-summary")
 
   elements(:location, "input[name='location_form[location]']", visible: false)
+  element(:heading, ".heading-large")
   element(:england, "input[value='england']", visible: false)
   element(:wales, "input[value='wales']", visible: false)
   element(:scotland, "input[value='scotland']", visible: false)
   element(:northern_ireland, "input[value='northern_ireland']", visible: false)
   element(:overseas, "input[value='overseas']", visible: false)
-  element(:heading, :xpath, "//h1[contains(text(), 'Where is your principal place of business')]")
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
