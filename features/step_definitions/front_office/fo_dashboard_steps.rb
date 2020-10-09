@@ -136,7 +136,6 @@ When("I look at the links for each country") do
   @journey.location_page.submit(choice: :wales)
   expect(@journey.standard_page.heading).to have_text("You can register in Wales")
   find_link("Register or renew as a waste carrier, broker or dealer (Wales)").click
-  #  expect(page).to have_text("Cyfoeth Naturiol Cymru - Dewis Iaith / Natural Resources Wales - Language Select")
   find_link("Cymraeg").click
   expect(page).to have_text("Cofrestru neu adnewyddu fel cludydd, brocer neu ddeliwr gwastraff") # Register as a waste carrier, broker or dealer
   page.evaluate_script("window.history.back()")
