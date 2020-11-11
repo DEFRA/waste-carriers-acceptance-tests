@@ -1,6 +1,6 @@
 # Waste carriers acceptance tests
 
-[![Build Status](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests.svg?branch=main)](https://travis-ci.com/DEFRA/waste-carriers-acceptance-tests)
+![Build Status](https://github.com/DEFRA/waste-carriers-acceptance-tests/workflows/CI/badge.svg?branch=main)
 [![security](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/main.svg)](https://hakiri.io/github/DEFRA/waste-carriers-acceptance-tests/main)
 
 If your business carries waste in England then you need to register the activity with the Environment Agency.
