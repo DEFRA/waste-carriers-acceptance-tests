@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/defra/quke
-  revision: 5bb3c95aa2d9c9bdf80c45deb7676f5e670431d8
+  revision: 5f8ca23c1176918b37a0869fb05e90800a346970
   branch: main
   specs:
     quke (0.10.0)
@@ -81,10 +81,10 @@ GEM
     rake (13.0.1)
     regexp_parser (1.8.2)
     rexml (3.2.4)
-    rspec-expectations (3.9.2)
+    rspec-expectations (3.10.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.9.0)
-    rspec-support (3.9.3)
+      rspec-support (~> 3.10.0)
+    rspec-support (3.10.0)
     rubocop (0.85.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
