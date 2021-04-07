@@ -103,7 +103,7 @@ Feature: Validations within the digital service
 ```
 
 ```gherkin
-@fo_old @happypath
+@fo @happypath
 Scenario: Registration by an individual
 ```
 
@@ -113,17 +113,12 @@ As the test suite is quite large, tests are split into four main categories:
 
 - `@fo` front office (external) dashboard, registrations and renewals
 - `@bo` back office (internal) dashboard, finance, edits, renewals and more
-- `@fo_old` front office registrations
-- `@bo_old` back office dashboard and registrations
-
-We are gradually moving functionality from "old" code to "new" code and the old functionality is gradually being deprecated.
 
 Using a mix of tags you can both include and exclude tests to run:
 
 ```bash
 tst --tags @fo # Run only things tagged with this
 tst --tags @fo,@smoke # Run all things with these tags
-tst --tags ~@old # Don't run anything with this tag (run everything else)
 ```
 
 ### In this project
@@ -134,7 +129,6 @@ To have consistency across the project the following tags are defined and should
 |---|---|
 |@fo|Front office (external) functionality|
 |@bo|Back office (internal) functionality|
-|@old|Any functionality in the old version of the service|
 |@email|Indicates when an email is sent out during the scenario. Useful for testing emails or for omitting email tests when testing within corporate network|
 |@broken|A scenario which is known to be broken due to the service not meeting expected behaviour|
 |@ci|A feature that is intended to be run only on our continuous integration service (you should never need to use this tag).|
@@ -202,7 +196,7 @@ The Waste Carriers service relies on a core user "journey" to register or renew 
 
 - Keep feature files small, keeping it as close to "Given, When, Then" as reasonably possible. The steps should make it clear what the feature is actually testing. However, in some cases, smaller, repeatable steps make sense to allow re-use.
 - Put the detailed functionality in a step, making use of helper functions to avoid duplication.
-- Put shared page objects in the @journey app, where there is duplication between old/new apps, and front/back office.
+- Put shared page objects in the @journey app, where there is duplication front and back office.
 - Use unique names for step and page files, even if they're in a different app.
 - Reduce the number of files and apps where possible, unless it makes the tests hard to understand.
 

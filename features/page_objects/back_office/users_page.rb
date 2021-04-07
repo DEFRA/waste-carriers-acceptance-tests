@@ -1,4 +1,4 @@
-require_relative "sections/govuk_banner.rb"
+require_relative "sections/govuk_banner"
 
 class UsersPage < SitePrism::Page
   set_url "#{Quke::Quke.config.custom['urls']['back_office']}/users"

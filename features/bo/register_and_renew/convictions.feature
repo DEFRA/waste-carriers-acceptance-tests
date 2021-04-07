@@ -1,4 +1,4 @@
-@bo @smoke @bo_reg
+@bo @smoke @bo_reg @convictions
 Feature: Conviction checks during upper tier waste carrier registrations
   As a waste carrier administrator
   I want to check whether any known companies or individuals have any previous waste convictions

@@ -99,4 +99,5 @@ class SeedData
 
     data["financeDetails"]["balance"] = total_all_orders - total_all_payments
   end
+
 end

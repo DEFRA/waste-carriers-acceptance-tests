@@ -13,5 +13,5 @@ custom:
       username: account2@example.com
       password: please123
   urls:
-    front_end: "https://example.com"
-    back_end: "https://example.com"
+    front_office: "https://example.com"
+    back_office: "https://example.com"

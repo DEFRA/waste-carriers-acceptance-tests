@@ -10,9 +10,10 @@ class StartPage < SitePrism::Page
   element(:submit_button, "input[type='submit']")
 
   def submit(args = {})
-    if args[:choice] == :renewal
+    case args[:choice]
+    when :renewal
       renew_registration.click
-    elsif args[:choice] == :new_registration
+    when :new_registration
       new_registration.click
     end
 

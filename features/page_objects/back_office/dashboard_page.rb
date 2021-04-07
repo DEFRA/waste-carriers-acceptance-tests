@@ -1,4 +1,4 @@
-require_relative "sections/govuk_banner.rb"
+require_relative "sections/govuk_banner"
 
 class DashboardPage < SitePrism::Page
   set_url(Quke::Quke.config.custom["urls"]["back_office"])
@@ -32,11 +32,23 @@ class DashboardPage < SitePrism::Page
 
   def view_reg_details(args = {})
     submit(search_term: args[:search_term])
+    i = 0
+    while i < 5 && reg_details_links.nil?
+      sleep(1)
+      i += 1
+      puts i
+    end
     reg_details_links[0].click
   end
 
   def view_new_reg_details(args = {})
     submit(search_term: args[:search_term])
+    i = 0
+    while i < 5 && new_reg_details_links.nil?
+      sleep(1)
+      i += 1
+      puts i
+    end
     new_reg_details_links[0].click
   end
 

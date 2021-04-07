@@ -33,7 +33,7 @@ max_wait_time: 5
 #
 # Quke::Quke.config.custom["default_org_name"] # = "Testy Ltd"
 # Quke::Quke.config.custom["accounts"]["account2"]["username"] # = "john.doe@example.gov.uk"
-# Quke::Quke.config.custom["urls"]["front_end"] # = "http://myservice.service.gov.uk"
+# Quke::Quke.config.custom["urls"]["front_office"] # = "http://myservice.service.gov.uk"
 #
 # As long as what you add is valid YAML (check with a tool like
 # http://www.yamllint.com/) Quke will be able to pick it up and make it
@@ -51,12 +51,9 @@ custom:
     waste_carrier:
       username: user@example.com
   urls:
-    front_end: "http://localhost:3000/registrations/start"
-    front_end_sign_in: "http:/localhost:3000/users/sign_in"
     front_office: "http://localhost:3002"
     front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
-    back_end: "http:/localhost:3000/agency_users/sign_in"
-    back_end_admin: "http:/localhost:3000/admins/sign_in"
+    back_office: "http:/localhost:3000/agency_users/sign_in"
 
 # If you select the browserstack driver, there are a number of options you
 # can pass through to setup your browserstack tests, username and auth_key
