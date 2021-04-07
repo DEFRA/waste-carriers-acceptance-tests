@@ -1,4 +1,4 @@
-require_relative "sections/govuk_banner.rb"
+require_relative "sections/govuk_banner"
 
 class FinancePaymentMethodPage < SitePrism::Page
 

@@ -9,7 +9,7 @@ class LastEmailPage < SitePrism::Page
   # The page will be loaded up to 10 times until the email shows
   # (a 1 in 1024 chance of the email not showing).
 
-  element(:email_content, "pre")
+  element(:email_content, "body")
 
   def check_email_for_text(expected_text)
     # Look for an email containing all the strings in the given array

@@ -35,7 +35,6 @@ end
 def select_tier_for_renewal(carrier)
   @journey.tier_check_page.submit(choice: :check_tier)
   answer_random_upper_tier_questions
-  # Carrier options (same for old and new apps):
   # carrier_broker_dealer, broker_dealer, carrier_dealer, existing
   @journey.carrier_type_page.submit(choice: carrier.to_sym)
   # "Confirmation of your renewal so far":
@@ -300,6 +299,6 @@ end
 def on_fo_start_page?
   expect(@journey.start_page.heading).to have_text("Is this a new registration?")
   # The URL may or may not contain /fo/ at this stage, so we can't validate the URL here.
-  # Instead, check that CSS specific to the h1 on the old app no longer exists:
+  # TODO update this
   expect(page).to have_no_css("#groupLabel")
 end

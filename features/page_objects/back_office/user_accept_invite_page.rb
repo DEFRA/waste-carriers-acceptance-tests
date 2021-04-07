@@ -1,4 +1,4 @@
-require_relative "sections/govuk_banner.rb"
+require_relative "sections/govuk_banner"
 
 class UserAcceptInvitePage < SitePrism::Page
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
