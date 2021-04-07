@@ -13,7 +13,8 @@ Feature: Recording of a non worldpay renewal payment and negative conviction che
     And I mark the renewal payment as received
     Then the expiry date should be three years from the previous expiry date
     And the registration's balance is 0
-
+    
+@convictions
   Scenario: Renewal paid for by bank transfer but with a conviction flag is still pending conviction check sign off
     Given I have an active registration with a company number of "01649776"
     And the registration has an unsubmitted renewal

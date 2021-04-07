@@ -53,7 +53,7 @@ print_progress: false
 #
 # Quke::Quke.config.custom["default_org_name"] # = "Testy Ltd"
 # Quke::Quke.config.custom["accounts"]["account2"]["username"] # = "john.doe@example.gov.uk"
-# Quke::Quke.config.custom["urls"]["front_end"] # = "http://myservice.service.gov.uk"
+# Quke::Quke.config.custom["urls"]["front_office"] # = "http://myservice.service.gov.uk"
 #
 # As long as what you add is valid YAML (check with a tool like
 # http://www.yamllint.com/) Quke will be able to pick it up and make it
@@ -80,18 +80,10 @@ custom:
     waste_carrier2:
       username: another-user@example.com
   urls:
-    front_end: "http://localhost:3000/registrations/start?do_not_redirect=1"
-    front_end_sign_in: "http://localhost:3000/users/sign_in"
     front_office: "http://localhost:3002/fo"
     front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
-    back_end_root: "http://localhost:3000/agency_users/sign_in" # this is different from other environments as vagrant shares root url with frontend
-    back_end_dashboard: "http://localhost:3000/registrations?locale=en"
-    back_end_registrations: "http://localhost:3000/registrations/start?do_not_redirect=1"
-    back_end: "http://localhost:3000/agency_users/sign_in"
-    back_end_admin: "http://localhost:3000/admins/sign_in"
     back_office: "http://localhost:8001/bo"
     back_office_sign_in: "http://localhost:8001/bo/users/sign_in"
-    last_email_fe: "http://localhost:3000/email/last-email"
     last_email_fo: "http://localhost:3002/fo/email/last-email"
     last_email_bo: "http://localhost:8001/bo/email/last-email"
     mock_enabled: "http://localhost:3002/fo/mocks/company/00445790"

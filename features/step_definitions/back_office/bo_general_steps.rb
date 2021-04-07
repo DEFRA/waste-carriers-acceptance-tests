@@ -66,11 +66,12 @@ Then("I check the registration details are correct on the back office") do
 
   @carrier = @seeded_data["registrationType"] if @carrier.blank? && @seeded_data.present?
 
-  if @carrier == "carrier_broker_dealer"
+  case @carrier
+  when "carrier_broker_dealer"
     expect(info_panel).to have_text("Carrier, broker and dealer")
-  elsif @carrier == "broker_dealer"
+  when "broker_dealer"
     expect(info_panel).to have_text("Broker and dealer")
-  elsif @carrier == "carrier_dealer"
+  when "carrier_dealer"
     expect(info_panel).to have_text("Carrier and dealer")
   end
 end
