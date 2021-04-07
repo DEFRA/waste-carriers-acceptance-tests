@@ -86,7 +86,6 @@ class SeedData
     order["orderItems"] << order_item
   end
 
-  # rubocop:disable Metrics/CyclomaticComplexity
   def recalculate_balances(data)
     data["financeDetails"]["orders"].each do |order|
       # The next line calculates totalAmount, handling lower tier where there are no orderItems.
@@ -100,5 +99,5 @@ class SeedData
 
     data["financeDetails"]["balance"] = total_all_orders - total_all_payments
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
+
 end
