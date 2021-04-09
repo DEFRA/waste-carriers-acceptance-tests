@@ -9,7 +9,6 @@ Feature: [RUBY-826] Pay for registrations
     And I sign into the back office as "agency-user"
     And the registration's balance is 159
 
-  @smoke
   Scenario: Pay for registration, partly by cash, complete by cheque
     When NCCC makes a payment of 100 by "cash"
     Then the registration has a status of "IN PROGRESS"

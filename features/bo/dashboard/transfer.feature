@@ -1,4 +1,4 @@
-@bo @bo_dashboard @smoke
+@bo @bo_dashboard
 Feature: Change the account email for registrations
   As an agency user
   I need to be able to change the account linked to a registration
