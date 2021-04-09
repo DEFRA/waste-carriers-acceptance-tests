@@ -42,6 +42,8 @@ class SeedData
     request.body = data
 
     Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
+      http.open_timeout = 3
+      http.read_timeout = 3
       http.request(request)
     end
   end
