@@ -12,7 +12,6 @@ Feature: Incomplete registrations and renewals completed by NCCC
     When I resume the registration as assisted digital
     Then the registration has a status of "ACTIVE"
 
-  @smoke @minismoke
   Scenario: NCCC resumes renewal for a public body
     Given I have a new registration for a "localAuthority" business
     And the registration has been partially renewed by the account holder

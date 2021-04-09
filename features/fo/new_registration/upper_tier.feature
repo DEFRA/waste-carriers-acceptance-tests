@@ -1,4 +1,4 @@
-@fo @fo_reg @smoke
+@fo @fo_reg
 Feature: A new user registers as an upper tier waste carrier
   As a carrier of commercial waste
   I want to register for an upper tier licence
@@ -7,7 +7,7 @@ Feature: A new user registers as an upper tier waste carrier
   Background:
     Given I want to register as an upper tier carrier
 
-  @minismoke
+  @smoke
   Scenario: A sole trader registers as an upper tier waste carrier and pays via Worldpay
     When I start a new registration journey in "England" as a "soleTrader"
     And I complete my registration for my business "Happy Path UT Registration"

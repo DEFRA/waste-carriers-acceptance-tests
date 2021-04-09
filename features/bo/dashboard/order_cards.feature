@@ -7,7 +7,7 @@ Feature: [RUBY-767] NCCC agent orders registration cards from back office
   Background:
     Given I sign into the back office as "agency-user"
 
-  @smoke @email
+  @email
   Scenario: NCCC user orders one card by bank card
     Given I have an active registration
     When an agency user orders "1" registration card

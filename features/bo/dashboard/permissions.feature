@@ -1,4 +1,4 @@
-@bo @bo_dashboard @smoke
+@bo @bo_dashboard
 Feature: Check back office permissions
   As a system administrator
   I want to ensure users can only access what they need to
