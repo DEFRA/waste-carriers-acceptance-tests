@@ -42,15 +42,13 @@ class SeedData
     request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
 
     request.body = data
-    if (!Quke::Quke.config.custom["proxy"]["host"]).blank? {}
+    if (Quke::Quke.config.custom["proxy"]["host"]).nil? {}
+      http = Net::HTTP.new(uri.hostname, uri.port)
+    else
       proxy_uri = URI.parse("#{Quke::Quke.config.custom['proxy']['host']}:#{Quke::Quke.config.custom['proxy']['port']}")
       http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
-    else http = Net::HTTP.new(uri.hostname, uri.port)
     end
-    http.set_debug_output($stdout)
     http.use_ssl = true
-    puts proxy_uri.host
-    puts proxy_uri.port
     http.request(request)
   end
   # rubocop:enable Metrics/AbcSize
