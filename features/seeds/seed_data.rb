@@ -37,16 +37,22 @@ class SeedData
     @_data ||= generate_data
   end
 
+  # rubocop:disable Metrics/AbcSize
   def seed
     request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
+
     request.body = data
-
-    proxy_uri = URI.parse("#{Quke::Quke.config.custom['proxy']['host']}:#{Quke::Quke.config.custom['proxy']['port']}")
-
-    Net::HTTP.start(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port, use_ssl: uri.scheme == "https") do |http|
-      http.request(request)
+    if (!Quke::Quke.config.custom["proxy"]["host"]).blank? {}
+      proxy_uri = URI.parse("#{Quke::Quke.config.custom['proxy']['host']}:#{Quke::Quke.config.custom['proxy']['port']}")
+      http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
+    else http = Net::HTTP.new(uri.hostname, uri.port)
     end
+
+    http.use_ssl = true
+
+    http.request(request)
   end
+  # rubocop:enable Metrics/AbcSize
 
   def generate_data
     path_to_data_file = File.join(__dir__, "fixtures", file_name)
