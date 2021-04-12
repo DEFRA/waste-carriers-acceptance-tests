@@ -49,7 +49,8 @@ class SeedData
     end
     http.set_debug_output($stdout)
     http.use_ssl = true
-
+    puts proxy_uri.host
+    puts proxy_uri.port
     http.request(request)
   end
   # rubocop:enable Metrics/AbcSize
