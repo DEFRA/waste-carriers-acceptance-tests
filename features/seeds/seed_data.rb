@@ -54,11 +54,13 @@ class SeedData
     request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
     request.body = data
 
-    proxy_uri = URI.parse("#{Quke::Quke.config.custom['proxy']['host']}:#{Quke::Quke.config.custom['proxy']['port']}")
+    proxy_uri = URI.parse('http://apsldnprxelb001.aws-int.defra.cloud:3128')
 
-    Net::HTTP.start(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port, use_ssl: uri.scheme == "https") do |http|
-      http.request(request)
-    end
+    http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
+    http.use_ssl = true
+    http.set_debug_output($stdout)
+
+    http.request(request)
   end
 
   def generate_data
