@@ -39,13 +39,22 @@ class SeedData
 
   def seed
     request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
+    
     request.body = data
 
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
-      http.open_timeout = 3
-      http.read_timeout = 3
-      http.request(request)
-    end
+    # Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
+    #   puts "Open timeout is #{http.open_timeout}"
+    #   puts "Read timeout is #{http.read_timeout}"
+    #   http.set_debug_output($stdout)
+    #   http.request(request)
+    # end
+    http = Net::HTTP.new(uri.hostname, uri.port)
+    http.use_ssl = true
+    http.set_debug_output($stdout)
+    
+
+    http.request(request)
+
   end
 
   def generate_data
