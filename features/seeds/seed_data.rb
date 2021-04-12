@@ -47,7 +47,7 @@ class SeedData
       http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     else http = Net::HTTP.new(uri.hostname, uri.port)
     end
-
+    http.set_debug_output($stdout)
     http.use_ssl = true
 
     http.request(request)
