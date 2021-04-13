@@ -37,6 +37,8 @@ class SeedData
     @_data ||= generate_data
   end
 
+
+
   def seed
     request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
     request.body = data
@@ -47,13 +49,28 @@ class SeedData
     else
       puts "using proxy"
       proxy_uri = URI.parse(ENV["WCRS_PROXY"])
+      puts proxy_uri.host
+      puts proxy_uri.port
       http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     end
-    http.use_ssl = true
     http.set_debug_output($stdout)
-
     http.request(request)
   end
+
+  # def seed
+  #   request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
+  #   request.body = data
+
+  #   proxy_uri = URI.parse("http://apsldnprxelb001.aws-int.defra.cloud:3128")
+
+  #   http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
+  #   http.use_ssl = true
+  #   puts proxy_uri.host
+  #   puts proxy_uri.port
+  #   http.set_debug_output($stdout)
+
+  #   http.request(request)
+  # end
 
   def generate_data
     path_to_data_file = File.join(__dir__, "fixtures", file_name)
