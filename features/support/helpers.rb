@@ -16,9 +16,17 @@ def mocking_enabled?
   # we can assume that mocking is disabled
   uri = URI.parse(Quke::Quke.config.custom["urls"]["mock_enabled"])
 
-  # using an instance variable so that we make the request to the mocking
-  # endpoint only once
-  @_mocking_enabled_response ||= Net::HTTP.get_response(uri)
+  if ENV["WCRS_PROXY"].nil?
+    # using an instance variable so that we make the request to the mocking
+    # endpoint only once
+    @_mocking_enabled_response ||= Net::HTTP.get_response(uri)
+  else
+    # Adding proxy for http request
+    proxy_uri = URI.parse(ENV["WCRS_PROXY"])
+    http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    @_mocking_enabled_response ||= http.request(request)
+  end
 
   return false if @_mocking_enabled_response.to_s.include?("HTTPNotFound")
 

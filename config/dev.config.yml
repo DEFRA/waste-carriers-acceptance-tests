@@ -87,6 +87,3 @@ custom:
     last_email_fo: "https://waste-carriers-dev.aws.defra.cloud/fo/email/last-email"
     last_email_bo: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/email/last-email"
     mock_enabled: "https://waste-carriers-dev.aws.defra.cloud/fo/mocks/company/00445790"
-  proxy:
-    host: 
-    port: 

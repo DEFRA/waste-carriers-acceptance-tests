@@ -125,3 +125,8 @@ a payment for the copy cards order too, in case this become necessary / useful, 
 ## Limitations
 
 The seeding API only works for `registrations`, no `transient_registrations` support is available yet.
+
+## Running on CI environments
+
+As seeding of data is run outside of the quke test runner it doesn't pick up the proxy used in the quke configuration,
+to get around this the environment variable `WCRS_PROXY` is used to control whether to use a proxy to seed data.
