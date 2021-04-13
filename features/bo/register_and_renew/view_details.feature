@@ -1,4 +1,4 @@
-@bo @bo_reg @smoke
+@bo @bo_reg
 Feature: NCCC agent views registrations from back office
   As an NCCC agent
   I want to view registration and renewal details on one service

@@ -1,4 +1,4 @@
-@bo @bo_reg @smoke
+@bo @bo_reg
 Feature: NCCC agent cancels in progress registration from back office
   As an NCCC agent
   I want to cancel an in-progress registration

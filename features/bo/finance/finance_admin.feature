@@ -7,7 +7,6 @@ Feature: Finance admin
   This feature covers all main finance admin operations: refunds and charge adjustments (frequent)
   plus reversals and writeoffs (less frequent).
 
-  @smoke
   Scenario: [RUBY-811] Refund WorldPay payments on registration and renewal
     Given a registration with no convictions has been submitted by paying via card
     Given the registration's balance is 0
@@ -25,7 +24,6 @@ Feature: Finance admin
     Then the WorldPay payment is shown as refunded
     And the registration's balance is 0
 
-  @smoke
   Scenario: [RUBY-870] Adjust charges on registration and renewal
     Given a registration with outstanding balance and 1 copy card has been submitted
     And NCCC makes a payment of 154 by "cash"
@@ -50,7 +48,6 @@ Feature: Finance admin
     Then the registration's balance is -5
     And the registration has a status of "ACTIVE"
 
-  @smoke
   Scenario: [RUBY-809 & 810] Reverse and write off
     Given a registration with outstanding balance and 1 copy card has been submitted
     And NCCC makes a payment of 154 by "cash"

@@ -40,10 +40,14 @@ class SeedData
   def seed
     request = Net::HTTP::Post.new(uri, "Content-Type" => "application/json")
     request.body = data
-
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
-      http.request(request)
+    if ENV["WCRS_PROXY"].nil?
+      http = Net::HTTP.new(uri.hostname, uri.port)
+    else
+      proxy_uri = URI.parse(ENV["WCRS_PROXY"])
+      http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     end
+    http.use_ssl = true
+    http.request(request)
   end
 
   def generate_data

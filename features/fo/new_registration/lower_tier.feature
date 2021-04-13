@@ -1,10 +1,10 @@
-@fo @fo_reg @smoke
+@fo @fo_reg 
 Feature: A new user registers as a lower tier waste carrier
   As a carrier of commercial waste
   I want to register for a lower tier licence
   So I can be compliant with the law
 
-  @minismoke
+  @smoke
   Scenario: A charity registers as a lower tier waste carrier
     Given I want to register as a lower tier carrier
     When I start a new registration journey in "England" as a "charity"
