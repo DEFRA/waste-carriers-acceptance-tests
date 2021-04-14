@@ -126,7 +126,8 @@ end
 
 def next_year
   time = Time.new
-  time.year + 1
+  year = time.strftime "%y"
+  year.to_i + 1
 end
 
 def retrieve_email_containing(search_terms)
