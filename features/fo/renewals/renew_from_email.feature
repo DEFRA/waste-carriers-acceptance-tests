@@ -18,14 +18,17 @@ Feature: Registered waste carrier chooses to renew their registration by email
     When I incorrectly paste its renewal link
     Then I am told the renewal cannot be found
 
-  @email @check
+  # Requires registration expiry to be within WCRS_REGISTRATION_GRACE_WINDOW range
+  @email
   Scenario: Renew expired registration just inside grace window
-    Given I have a registration which expired 179 days ago
+    Given I have a registration which expired 4 days ago
     And I receive an email from NCCC inviting me to renew
     When I renew from the email as a "soleTrader"
     Then I will be notified my renewal is complete
 
-  Scenario: Cannot renew registration outside grace window
-    Given I have a registration which expired 180 days ago
+# Back office renewals use WCRS_REGISTRATION_COVID_GRACE_WINDOW
+  Scenario: Cannot renew registration outside user grace window but inside Covid grace window
+    Given I have a registration which expired 5 days ago
     When I call NCCC to renew it
     Then NCCC are unable to generate a renewal email
+    But there is an option to renew the registration
