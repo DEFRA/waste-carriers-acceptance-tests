@@ -90,8 +90,8 @@ class JourneyApp
     @last_page = GovukStartPage.new
   end
 
-  def last_email_page
-    @last_page = LastEmailPage.new
+  def last_message_page
+    @last_page = LastMessagePage.new
   end
 
   def location_page

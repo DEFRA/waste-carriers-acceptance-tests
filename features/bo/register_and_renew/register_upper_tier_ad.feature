@@ -11,6 +11,7 @@ Feature: Assisted digital upper tier registrations
     And I pay by card
     Then I am notified that my registration has been successful
     And the registration has a status of "ACTIVE"
+    And a registraton confirmation email will be sent
 
   Scenario: Successful LLP registration from back office via bank transfer
     Given I sign into the back office as "agency-user"

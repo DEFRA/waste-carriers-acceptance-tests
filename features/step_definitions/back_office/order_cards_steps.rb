@@ -67,7 +67,7 @@ Then("the carrier receives an email saying their card order is being printed") d
 
   # Check there is an email containing all strings in text_to_check:
   visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
-  expect(@journey.last_email_page.check_email_for_text(text_to_check)).to be true
+  expect(@journey.last_message_page.check_message_for_text(text_to_check)).to be true
 end
 
 Then("the carrier receives an email saying they need to pay for their card order") do
@@ -80,7 +80,7 @@ Then("the carrier receives an email saying they need to pay for their card order
 
   # Check there is an email containing all strings in text_to_check:
   visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
-  expect(@journey.last_email_page.check_email_for_text(text_to_check)).to be true
+  expect(@journey.last_message_page.check_message_for_text(text_to_check)).to be true
 end
 
 Then("the payment is shown as rejected") do

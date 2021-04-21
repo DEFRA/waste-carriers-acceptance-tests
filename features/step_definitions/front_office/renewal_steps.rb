@@ -219,7 +219,7 @@ Then("I am notified that my renewal payment is being processed") do
   find_text << "We are currently processing your payment"
 
   visit Quke::Quke.config.custom["urls"]["last_email_fo"]
-  email_found = @journey.last_email_page.check_email_for_text(find_text)
+  email_found = @journey.last_message_page.check_message_for_text(find_text)
   expect(email_found).to eq(true)
 
   puts "Renewal #{@reg_number} submitted and pending WorldPay"

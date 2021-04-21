@@ -86,4 +86,5 @@ custom:
     back_office_sign_in: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/users/sign_in"
     last_email_fo: "https://waste-carriers-pre.aws.defra.cloud/fo/email/last-email"
     last_email_bo: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/email/last-email"
+    notify_link: "/fo/email/last-notify-message"
     mock_enabled: "https://waste-carriers-pre.aws.defra.cloud/fo/mocks/company/00445790"
