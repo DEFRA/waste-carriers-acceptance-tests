@@ -13,6 +13,7 @@ Feature: A new user registers as an upper tier waste carrier
     And I complete my registration for my business "Happy Path UT Registration"
     And I pay by card
     Then I am notified that my registration has been successful
+    And I will receive a registration confirmation email
 
   Scenario: An LLP registers as an upper tier waste carrier and pays via bank transfer
     When I start a new registration journey in "England" as a "limitedLiabilityPartnership"

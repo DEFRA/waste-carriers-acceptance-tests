@@ -176,7 +176,7 @@ By keeping these methods short and descriptive, this makes code easier to read a
 
 In all non-production environments, each app (front office and back office) has an address ending `/email/last-email` where the last email sent from the app can be extracted in JSON format. The address is stored in the config file for each environment. This allows you to write tests which rely on an email being received or clicked.
 
-The email may be sent from one of two servers at random, meaning that one of two emails will be shown on accessing the page. So the [last_email_page](/features/page_objects/journey/last_email_page.rb) contains a method to reload the page 10 times until the email with the required text is found.
+The email may be sent from one of two servers at random, meaning that one of two emails will be shown on accessing the page. So the [last_message_page](/features/page_objects/journey/last_message_page.rb) contains a method to reload the page 10 times until the email with the required text is found.
 
 The "last email" functionality is toggled on and off by an environment variable in each test environment.
 
