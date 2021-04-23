@@ -66,21 +66,25 @@ Then(/^(?:I will receive a registration confirmation email|a registraton confirm
   expect(email_exists?(expected_text)).to be true
 end
 
+Then("an application confirmation email will be sent") do
+  expected_text = [@reg_number, "Application received"]
+
+  expect(email_exists?(expected_text)).to be true
+end
+
 Then("I am notified that I need to pay by bank transfer") do
   expect(page).to have_content("You must now pay by bank transfer")
   expect(page).to have_content("We’ve sent an email to " + @email_address + " with the payment details and instructions.")
 
   @reg_number = @journey.confirmation_page.registration_number.text
-  find_text = [@reg_number]
-
-  find_text << "You need to pay for your waste carriers registration and then email us to confirm payment"
-  find_text << "Email us your registration " + @reg_number + " to confirm you’ve paid"
-
-  visit_last_message_page_for(@app)
-  email_found = @journey.last_message_page.check_message_for_text(find_text)
-  expect(email_found).to eq(true)
 
   puts "Registration #{@reg_number} submitted pending bank transfer"
+end
+
+Then("I am sent an email advising me how to pay by bank transfer") do
+  expected_text = ["Payment needed for waste carrier registration #{@reg_number}"]
+
+  expect(email_exists?(expected_text)).to be true
 end
 
 Then("I am notified that my registration payment is being processed") do
