@@ -91,16 +91,14 @@ Then("I am notified that my registration payment is being processed") do
   expect(page).to have_content("We’re processing your payment")
 
   @reg_number = @journey.confirmation_page.registration_number.text
-  find_text = [@reg_number]
-
-  find_text << "We’re processing your waste carrier registration"
-  find_text << "We’re currently processing your payment"
-
-  visit Quke::Quke.config.custom["urls"]["last_email_fo"]
-  email_found = @journey.last_message_page.check_message_for_text(find_text)
-  expect(email_found).to eq(true)
 
   puts "Registration #{@reg_number} submitted and pending WorldPay"
+end
+
+Then("I am sent an email advising me my payment is being processed") do
+  expected_text = [@reg_number, "We’re processing your waste carrier registration"]
+
+  expect(email_exists?(expected_text)).to be true
 end
 
 Given("a registration with no convictions has been submitted by paying via card") do

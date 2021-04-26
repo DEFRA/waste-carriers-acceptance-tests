@@ -23,12 +23,14 @@ Feature: A new user registers as an upper tier waste carrier
     Then I am notified that I need to pay by bank transfer
     And I am sent an email advising me how to pay by bank transfer
 
+  # [RUBY-1013]
   Scenario: A partnership registers as an upper tier waste carrier with pending Worldpay payment
     Given mocking is enabled
     When I start a new registration journey in "England" as a "partnership"
     And I complete my registration for my business "UT Registration Pending WorldPay"
     And I pay by card
     Then I am notified that my registration payment is being processed
+    And I am sent an email advising me my payment is being processed
 
   Scenario: Test error validation for registrations
     When I generate errors throughout the journey
