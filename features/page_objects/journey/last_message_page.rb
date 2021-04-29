@@ -47,7 +47,7 @@ class LastMessagePage < SitePrism::Page
     parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 14-24 characters, then /fo/renew/, then any 24 characters
-    parsed_data["last_notify_message"]["body"].match %r/https?:\/\/.{14,24}\/fo\/renew\/.{24}/
+    parsed_data["last_notify_message"]["body"].match %r/https?:\/\/.{14,35}\/fo\/renew\/.{24}/
   end
 
 end
