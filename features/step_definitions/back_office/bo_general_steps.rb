@@ -96,3 +96,16 @@ Then("the certificate shows the correct details") do
     expect(page_content).to have_text("Your registration will last indefinitely")
   end
 end
+
+Given("I view the registration details") do
+  visit_registration_details_page(@reg_number)
+end
+
+When("I resend the confirmation email") do
+  @bo.registration_details_page.resend_renewal_email_link.click
+end
+
+Then("I will see the renewal reminder email has been sent") do
+  puts "Renewal email sent to #{@contact_email}"
+  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@contact_email}")
+end

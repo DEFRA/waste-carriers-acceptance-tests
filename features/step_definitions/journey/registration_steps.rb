@@ -117,6 +117,7 @@ Given("I create a new registration as {string}") do |account_email|
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @email_address = account_email
+  @contact_email = @seeded_data["contactEmail"]
 
   puts "Registration " + @reg_number + " seeded"
 end
@@ -146,11 +147,14 @@ Given("I have a new registration for a {string} business") do |business_type|
   load_all_apps
   @tier = "upper"
   seed_data = SeedData.new("#{business_type}_complete_active_registration.json")
+
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
+  @contact_email = @seeded_data["contactEmail"]
 
   puts "#{business_type} registration " + @reg_number + " seeded"
+
 end
 
 Given("I have a new lower tier registration for a {string} business") do |business_type|
