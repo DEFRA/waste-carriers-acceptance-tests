@@ -19,6 +19,7 @@ class RegistrationDetailsPage < SitePrism::Page
   element(:actions_box, ".wcr-actions--push-down")
   element(:renew_link, "a[href*='/ad-privacy-policy?reg_identifier=CBD']")
   element(:resend_renewal_email_link, "a[href*='/resend-renewal-email']")
+  element(:resend_confirmation_email_link, "a[href*='/resend-confirmation-email']")
   element(:transfer_link, "a[href*='/transfer']")
   element(:edit_link, "a[href*='/edit']")
   element(:view_certificate_link, "a[href*='/certificate']")

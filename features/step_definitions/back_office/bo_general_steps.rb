@@ -101,11 +101,20 @@ Given("I view the registration details") do
   visit_registration_details_page(@reg_number)
 end
 
-When("I resend the confirmation email") do
+When("I resend the renewal reminder email") do
   @bo.registration_details_page.resend_renewal_email_link.click
+end
+
+When("I resend the confirmation email") do
+  @bo.registration_details_page.resend_confirmation_email_link.click
 end
 
 Then("I will see the renewal reminder email has been sent") do
   puts "Renewal email sent to #{@contact_email}"
   expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@contact_email}")
+end
+
+Then("I will see the registration confirmation email has been sent") do
+  puts "Confirmation email sent to #{@contact_email}"
+  expect(@bo.registration_details_page.flash_message).to have_text("Confirmation email sent to #{@contact_email}")
 end
