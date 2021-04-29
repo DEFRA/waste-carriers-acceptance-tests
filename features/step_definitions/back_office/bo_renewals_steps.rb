@@ -155,3 +155,8 @@ When("I approve the conviction check for the renewal") do
   @bo.convictions_bo_details_page.approve_button.click
   @bo.convictions_decision_page.submit(conviction_reason: "ok")
 end
+
+Then("I will receive a registration renewal reminder email") do
+  expected_text = ["Renew waste carrier registration #{@reg_number}"]
+  expect(email_exists?(expected_text)).to be true
+end

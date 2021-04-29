@@ -9,13 +9,10 @@ end
 Given("I receive an email from NCCC inviting me to renew") do
   send_renewal_email(@reg_number)
   expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to " + @email_address)
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
+  @renew_from_email_link = @journey.last_message_page.get_renewal_url(@reg_number)
+  puts "Renewal link for #{@reg_number} is #{@renew_from_email_link}"
 
-  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
-  renewal_email_text = retrieve_email_containing(["Renew waste carrier registration " + @reg_number])
-  # rubocop:disable Style/RedundantRegexpEscape
-  @renew_from_email_link = renewal_email_text.match(/.*few minutes at: <a href\=(.*)>http.*/)[1]
-  # rubocop:enable Style/RedundantRegexpEscape
-  puts "Link to renew " + @reg_number + " is: " + @renew_from_email_link
 end
 
 When("I renew from the email as a {string}") do |business_type|
