@@ -44,4 +44,3 @@ end
 def fail_cardholder
   @journey.worldpay_payment_page.verify(response: "Cardholder failed authentication")
 end
-
