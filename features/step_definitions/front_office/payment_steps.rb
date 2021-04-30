@@ -17,6 +17,8 @@ end
 When("I have my credit card payment rejected") do
   @journey.payment_summary_page.submit(choice: :card_payment)
   submit_invalid_card_payment unless mocking_enabled?
+  @journey.cards_payment_page.wait_until_submit_button_visible
+  puts @journey.cards_payment_page.current_url
   expect(@journey.payment_summary_page.error_summary).to have_text("Your payment has been refused.")
 end
 
