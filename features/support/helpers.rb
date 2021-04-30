@@ -27,8 +27,9 @@ def mocking_enabled?
     request = Net::HTTP::Get.new(uri.request_uri)
     @_mocking_enabled_response ||= http.request(request)
   end
-
-  return false if @_mocking_enabled_response.to_s.include?("HTTPNotFound")
+  if @_mocking_enabled_response.to_s.include?("HTTPNotFound") || @_mocking_enabled_response.to_s.include?("HTTPBadGateway")
+    return false
+  end
 
   true
 end
