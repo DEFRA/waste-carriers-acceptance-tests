@@ -28,7 +28,7 @@ def mocking_enabled?
     @_mocking_enabled_response ||= http.request(request)
     puts @_mocking_enabled_response.to_s 
   end
-  puts @_mocking_enabled_response.to_s.include?("HTTPNotFound"||"HTTPBadGateway")
+  puts @_mocking_enabled_response.to_s.include?("HTTPNotFound") || @_mocking_enabled_response.to_s.include?("HTTPBadGateway")
   return false if @_mocking_enabled_response.to_s.include?("HTTPNotFound"||"HTTPBadGateway")
 
   true
