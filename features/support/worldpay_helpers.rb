@@ -23,6 +23,7 @@ end
 def submit_invalid_card_payment
   sleep(3)
   expect(@journey.worldpay_payment_page.test_mode_text).to have_text("Test Mode - This is not a live transaction")
+  puts "Rejected payment"
   @journey.worldpay_payment_page.submit(
     card_number: "6759649826438453",
     cardholder_name: "3d.refused",
