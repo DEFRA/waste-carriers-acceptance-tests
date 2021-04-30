@@ -85,5 +85,6 @@ end
 
 Then("the payment is shown as rejected") do
   @journey.cards_payment_page.wait_until_submit_button_visible
+  puts @journey.cards_payment_page.current_url
   expect(@journey.cards_payment_page.error_summary).to have_text("Your payment has been refused")
 end
