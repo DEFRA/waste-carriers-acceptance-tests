@@ -34,9 +34,13 @@ def submit_invalid_card_payment
     expiry_year: next_year,
     security_code: "555"
   )
-  verify_cardholder if @journey.worldpay_payment_page.has_verification_heading?
+  fail_cardholder if @journey.worldpay_payment_page.has_verification_heading?
 end
 
 def verify_cardholder
   @journey.worldpay_payment_page.verify(response: "Cardholder authenticated")
+end
+
+def fail_cardholder
+  @journey.worldpay_payment_page.verify(response: "Cardholder failed authentication")
 end
