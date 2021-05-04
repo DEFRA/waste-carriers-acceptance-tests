@@ -58,16 +58,14 @@ Then(/^the card order is confirmed awaiting payment$/) do
 end
 
 Then("the carrier receives an email saying their card order is being printed") do
-  text_to_check = [
+  expected_text = [
     "We’re printing your waste carriers registration card",
     @reg_number,
-    "Order: " + @number_of_cards.to_s + " registration card",
+    "Order: " + @number_of_cards.to_s + "  registration card",
     "Paid: £" + (@number_of_cards.to_i * 5).to_s + " by debit or credit card"
   ]
 
-  # Check there is an email containing all strings in text_to_check:
-  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
-  expect(@journey.last_message_page.check_message_for_text(text_to_check)).to be true
+  expect(email_exists?(expected_text)).to be true
 end
 
 Then("the carrier receives an email saying they need to pay for their card order") do
