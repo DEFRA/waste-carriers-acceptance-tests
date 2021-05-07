@@ -205,19 +205,23 @@ Then(/^I will be notified my renewal is complete$/) do
   Capybara.reset_session!
 end
 
+Then(/^(?:I will receive a registration renewal confirmation email|a registraton renewal confirmation email will be sent)$/) do
+  expected_text = ["Your waste carriers registration #{@reg_number} has been renewed", "https://documents.service.gov.uk"]
+
+  expect(email_exists?(expected_text)).to be true
+end
+
 Then("I am notified that my renewal payment is being processed") do
   expect(page).to have_content("Application received")
   expect(page).to have_content("We are currently processing your payment")
 
   @reg_number = @journey.confirmation_page.registration_number.text
-  find_text = [@reg_number]
+  expected_text = [@reg_number]
 
-  find_text << "Your application to renew waste carriers registration " + @reg_number + " has been received"
-  find_text << "We are currently processing your payment"
+  expected_text << "Your application to renew waste carriers registration " + @reg_number + " has been received"
+  expected_text << "We are currently processing your payment"
 
-  visit Quke::Quke.config.custom["urls"]["last_email_fo"]
-  email_found = @journey.last_message_page.check_message_for_text(find_text)
-  expect(email_found).to eq(true)
+  expect(email_exists?(expected_text)).to be true
 
   puts "Renewal #{@reg_number} submitted and pending WorldPay"
 end
@@ -245,4 +249,22 @@ Then("I will be notified my renewal is pending payment") do
   expect(@journey.confirmation_page).to have_text("pay the renewal charge")
   expect(@journey.confirmation_page).to have_text(@reg_number)
   Capybara.reset_session!
+end
+
+Then(/^(?:I will receive a registration renewal pending payment email|a registraton renewal pending payment email will be sent)$/) do
+  expected_text = ["Payment needed for waste carrier registration #{@reg_number}"]
+
+  expect(email_exists?(expected_text)).to be true
+end
+
+Then(/^(?:I will receive a registration renewal pending checks email|a registraton renewal pending checks email will be sent)$/) do
+  expected_text = ["Your application to renew waste carriers registration #{@reg_number} has been received"]
+
+  expect(email_exists?(expected_text)).to be true
+end
+
+Then(/^(?:I will receive a registration renewal processing payment email|a registraton renewal processing payment email will be sent)$/) do
+  expected_text = ["We are currently processing your payment", @reg_number]
+
+  expect(email_exists?(expected_text)).to be true
 end
