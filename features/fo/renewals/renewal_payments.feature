@@ -12,7 +12,7 @@ Feature: Registered waste carrier pays for their renewal
     And I have my credit card payment rejected
     When I pay by bank transfer
     Then I will be notified my renewal is pending payment
-    And I will receive an email with text "You need to pay for your waste carriers registration"
+    And I will receive a registration renewal pending payment email
 
   Scenario: Cancelled worldpay payment can be paid for by retrying card payment
     Given I create a new registration as "user@example.com" with a company name of "Cancelled payment renewal test"
@@ -22,11 +22,4 @@ Feature: Registered waste carrier pays for their renewal
     And I cancel my credit card payment
     When I pay by bank transfer
     Then I will be notified my renewal is pending payment
-    And I will receive an email with text "You need to pay for your waste carriers registration"
-
-  Scenario: Complete renewal with pending Worldpay payment
-    Given mocking is enabled
-    And I create a new registration as "user@example.com" with a company name of "Pending payment renewal test"
-    And I receive an email from NCCC inviting me to renew
-    When I renew from the email as a "limitedCompany"
-    Then I am notified that my renewal payment is being processed
+    And I will receive a registration renewal pending payment email

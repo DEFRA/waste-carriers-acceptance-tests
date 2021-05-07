@@ -4,13 +4,13 @@ Feature: Registered waste carrier chooses to renew their registration by email
   I want to renew my waste carriers licence with the Environment Agency
   So I continue to be compliant with the law
 
-  @email @smoke
+  @email @smoke 
   Scenario: [RUBY-987] Renew from email via magic link
     Given I create an upper tier registration for my "soleTrader" business as "user@example.com"
     And I receive an email from NCCC inviting me to renew
     When I renew from the email as a "soleTrader"
     Then I will be notified my renewal is complete
-    And I will receive an email with text "Your registration as an upper tier waste carrier, broker and dealer has been renewed"
+    And I will receive a registration renewal confirmation email
     And I cannot renew again with the same link
 
   Scenario: Cannot renew with invalid token
@@ -19,12 +19,13 @@ Feature: Registered waste carrier chooses to renew their registration by email
     Then I am told the renewal cannot be found
 
   # Requires registration expiry to be within WCRS_REGISTRATION_GRACE_WINDOW range
-  @email
+  @email 
   Scenario: Renew expired registration just inside grace window
     Given I have a registration which expired 4 days ago
     And I receive an email from NCCC inviting me to renew
     When I renew from the email as a "soleTrader"
     Then I will be notified my renewal is complete
+    And I will receive a registration renewal confirmation email
 
 # Back office renewals use WCRS_REGISTRATION_COVID_GRACE_WINDOW
   Scenario: Cannot renew registration outside user grace window but inside Covid grace window
