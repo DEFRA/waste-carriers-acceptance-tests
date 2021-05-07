@@ -23,3 +23,13 @@ Feature: Registered waste carrier pays for their renewal
     When I pay by bank transfer
     Then I will be notified my renewal is pending payment
     And I will receive a registration renewal pending payment email
+
+  # Worldpay mock looks for pending as the company name to simuate pending payment
+  # https://github.com/DEFRA/defra-ruby-mocks#pending-payments
+  Scenario: Complete renewal with pending Worldpay payment
+    Given mocking is enabled
+    And I create a new registration as "user@example.com" with a company name of "Pending payment renewal test"
+    And I receive an email from NCCC inviting me to renew
+    When I renew from the email as a "limitedCompany"
+    Then I am notified that my renewal payment is being processed
+    And I will receive a registration renewal processing payment email

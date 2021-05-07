@@ -262,3 +262,9 @@ Then(/^(?:I will receive a registration renewal pending checks email|a registrat
 
   expect(email_exists?(expected_text)).to be true
 end
+
+Then(/^(?:I will receive a registration renewal processing payment email|a registraton renewal processing payment email will be sent)$/) do
+  expected_text = ["We are currently processing your payment", @reg_number]
+
+  expect(email_exists?(expected_text)).to be true
+end
