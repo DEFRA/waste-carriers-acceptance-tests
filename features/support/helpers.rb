@@ -24,7 +24,7 @@ def mocking_enabled?
   else
     # Adding proxy for http request
     # encoded_uri = URI.encode(ENV["WCRS_PROXY"])
-    puts proxy_uri = URI.parse(ENV["WCRS_PROXY"])
+    proxy_uri = URI.parse(ENV["WCRS_PROXY"])
     http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     http.use_ssl = true unless uri.to_s.include?("http://")
