@@ -29,9 +29,7 @@ def mocking_enabled?
     @_mocking_enabled_response ||= http.request(request)
   end
   puts @_mocking_enabled_response
-  if @_mocking_enabled_response.to_s.include?("HTTPNotFound")
-    return false
-  end
+  return false if @_mocking_enabled_response.to_s.include?("HTTPNotFound")
 
   true
 end
