@@ -43,8 +43,7 @@ class SeedData
     if ENV["WCRS_PROXY"].nil?
       http = Net::HTTP.new(uri.hostname, uri.port)
     else
-      proxy_url = URI.parse(ENV["WCRS_PROXY"])
-      encoded_uri = URI.encode(proxy_url)
+      encoded_uri = URI.encode(ENV["WCRS_PROXY"])
       proxy_uri = URI.parse(encoded_uri)
       http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     end
