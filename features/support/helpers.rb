@@ -26,6 +26,7 @@ def mocking_enabled?
     puts proxy_uri = URI.parse(encoded_uri)
     http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
+    http.use_ssl = true unless uri.to_s.include?("http://")
     @_mocking_enabled_response ||= http.request(request)
   end
   puts @_mocking_enabled_response
