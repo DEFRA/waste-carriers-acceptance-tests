@@ -158,5 +158,5 @@ end
 
 Then("I will receive a registration renewal reminder email") do
   expected_text = ["Renew waste carrier registration #{@reg_number}"]
-  expect(email_exists?(expected_text)).to be true
+  expect(message_exists?(expected_text)).to be true
 end

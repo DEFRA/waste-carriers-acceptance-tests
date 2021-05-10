@@ -1,4 +1,4 @@
-@bo @bo_reg @email
+@bo @bo_reg @email 
 Feature: Assisted digital upper tier registrations
   As a carrier of commercial waste
   I want assistance with my waste carrier registration from the Environment Agency
@@ -12,6 +12,14 @@ Feature: Assisted digital upper tier registrations
     Then I am notified that my registration has been successful
     And the registration has a status of "ACTIVE"
     And a registraton confirmation email will be sent
+
+  # Uses environment variable WCRS_ASSISTED_DIGITAL_EMAIL
+  Scenario: Lower tier charity is registered as assisted digital from back office
+    Given I sign into the back office as "agency-user"
+    When I register an assisted digital upper tier "partnership" from the back office
+    And I pay by card
+    Then I am notified that my registration has been successful
+    And a registraton confirmation letter will be sent
 
   Scenario: Successful LLP registration from back office via bank transfer
     Given I sign into the back office as "agency-user"

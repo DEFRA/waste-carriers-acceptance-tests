@@ -38,7 +38,8 @@ When("I complete my registration for my business {string}") do |business_name|
     submit_convictions(@convictions)
   end
 
-  @email_address = generate_email
+  @email_address = generate_email if @email_address.nil?
+
   submit_contact_details_for_registration(@email_address)
 
   expect(page).to have_content("Check your answers")
@@ -63,13 +64,22 @@ Then(/^(?:I will receive a registration confirmation email|a registraton confirm
   expected_text << "You are now registered as a lower tier" if @tier == "lower"
   expected_text << "You are now registered as an upper tier" if @tier == "upper"
 
-  expect(email_exists?(expected_text)).to be true
+  expect(message_exists?(expected_text)).to be true
+end
+
+Then(/^(?:I will receive a registration confirmation letter|a registraton confirmation letter will be sent)$/) do
+  expected_text = [@reg_number, "letter"]
+
+  expected_text << "You are now registered as a lower tier" if @tier == "lower"
+  expected_text << "You are now registered as an upper tier" if @tier == "upper"
+
+  expect(message_exists?(expected_text)).to be true
 end
 
 Then("an application confirmation email will be sent") do
   expected_text = [@reg_number, "Application received"]
 
-  expect(email_exists?(expected_text)).to be true
+  expect(message_exists?(expected_text)).to be true
 end
 
 Then("I am notified that I need to pay by bank transfer") do
@@ -84,7 +94,7 @@ end
 Then("I am sent an email advising me how to pay by bank transfer") do
   expected_text = ["Payment needed for waste carrier registration #{@reg_number}"]
 
-  expect(email_exists?(expected_text)).to be true
+  expect(message_exists?(expected_text)).to be true
 end
 
 Then("I am notified that my registration payment is being processed") do
@@ -98,7 +108,7 @@ end
 Then("I am sent an email advising me my payment is being processed") do
   expected_text = [@reg_number, "We’re processing your waste carrier registration"]
 
-  expect(email_exists?(expected_text)).to be true
+  expect(message_exists?(expected_text)).to be true
 end
 
 Given("a registration with no convictions has been submitted by paying via card") do

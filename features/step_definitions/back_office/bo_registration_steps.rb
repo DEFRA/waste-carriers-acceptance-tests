@@ -12,12 +12,39 @@ Given("I register an upper tier {string} from the back office") do |organisation
 
 end
 
+Given("I register an assisted digital upper tier {string} from the back office") do |organisation_type|
+  @organisation_type = organisation_type
+  @app = "bo"
+  @reg_type = :new_registration
+  @tier = "upper"
+  @carrier = "carrier_broker_dealer"
+  @business_name = "BO upper tier " + organisation_type.to_s
+  @copy_cards = rand(3)
+  @email_address = "assistedDigital@example.com"
+  start_reg_from_back_office
+  step("I complete my registration for my business '#{@business_name}'")
+
+end
+
 Given("I register an lower tier {string} from the back office") do |organisation_type|
   @organisation_type = organisation_type
   @app = "bo"
   @reg_type = :new_registration
   @tier = "lower"
   @business_name = "BO lower tier " + organisation_type.to_s
+
+  start_reg_from_back_office
+  step("I complete my registration for my business '#{@business_name}'")
+
+end
+
+Given("I register an assisted digital lower tier {string} from the back office") do |organisation_type|
+  @organisation_type = organisation_type
+  @app = "bo"
+  @reg_type = :new_registration
+  @tier = "lower"
+  @business_name = "BO lower tier " + organisation_type.to_s
+  @email_address = "assistedDigital@example.com"
 
   start_reg_from_back_office
   step("I complete my registration for my business '#{@business_name}'")
