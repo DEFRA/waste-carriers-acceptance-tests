@@ -4,6 +4,7 @@ Feature: Assisted digital lower tier registrations
   I want assistance with my waste carrier registration from the Environment Agency
   So I can complete my regisration and I am compliant with the law
 
+  @email 
   Scenario: Lower tier charity is registered from back office
     Given I sign into the back office as "agency-user"
     When I register an lower tier "charity" from the back office
@@ -12,6 +13,7 @@ Feature: Assisted digital lower tier registrations
     And a registraton confirmation email will be sent
 
   # Uses environment variable WCRS_ASSISTED_DIGITAL_EMAIL
+  @letter
   Scenario: Lower tier charity is registered as assisted digital from back office
     Given I sign into the back office as "agency-user"
     When I register an assisted digital lower tier "charity" from the back office

@@ -37,7 +37,7 @@ Feature: [RUBY-767] NCCC agent orders registration cards from back office
     When NCCC pays the remaining balance by "missed_worldpay"
     Then the registration does not have a status of "PAYMENT NEEDED"
     And the registration's balance is 0
-@wip
+
   Scenario: NCCC orders card but payment is rejected
     Given I have an active registration with a company name of "Copy card - reject payment"
     When an agency user orders "1" registration card

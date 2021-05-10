@@ -1,10 +1,10 @@
-@bo @bo_reg @email 
+@bo @bo_reg
 Feature: Assisted digital upper tier registrations
   As a carrier of commercial waste
   I want assistance with my waste carrier registration from the Environment Agency
   So I can complete my regisration and I am compliant with the law
 
-  @smoke 
+  @smoke @email 
   Scenario: Successful partnership registration from back office via WorldPay
     Given I sign into the back office as "agency-user"
     When I register an upper tier "partnership" from the back office
@@ -14,6 +14,7 @@ Feature: Assisted digital upper tier registrations
     And a registraton confirmation email will be sent
 
   # Uses environment variable WCRS_ASSISTED_DIGITAL_EMAIL
+  @letter
   Scenario: Lower tier charity is registered as assisted digital from back office
     Given I sign into the back office as "agency-user"
     When I register an assisted digital upper tier "partnership" from the back office
@@ -21,6 +22,7 @@ Feature: Assisted digital upper tier registrations
     Then I am notified that my registration has been successful
     And a registraton confirmation letter will be sent
 
+  @email 
   Scenario: Successful LLP registration from back office via bank transfer
     Given I sign into the back office as "agency-user"
     When I register an upper tier "limitedLiabilityPartnership" from the back office
