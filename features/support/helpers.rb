@@ -22,7 +22,8 @@ def mocking_enabled?
     @_mocking_enabled_response ||= Net::HTTP.get_response(uri)
   else
     # Adding proxy for http request
-    proxy_uri = URI.parse(ENV["WCRS_PROXY"])
+    proxy = URI.parse(ENV["WCRS_PROXY"])
+    proxy_uri = URI.parse(proxy)
     http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
     @_mocking_enabled_response ||= http.request(request)
