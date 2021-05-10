@@ -19,6 +19,7 @@ def mocking_enabled?
   if ENV["WCRS_PROXY"].nil?
     # using an instance variable so that we make the request to the mocking
     # endpoint only once
+
     @_mocking_enabled_response ||= Net::HTTP.get_response(uri)
   else
     # Adding proxy for http request
@@ -29,7 +30,6 @@ def mocking_enabled?
     http.use_ssl = true unless uri.to_s.include?("http://")
     @_mocking_enabled_response ||= http.request(request)
   end
-  puts @_mocking_enabled_response
   return false if @_mocking_enabled_response.to_s.include?("HTTPNotFound")
 
   true
