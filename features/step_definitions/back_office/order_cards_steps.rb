@@ -65,7 +65,7 @@ Then("the carrier receives an email saying their card order is being printed") d
     "Paid: £" + (@number_of_cards.to_i * 5).to_s + " by debit or credit card"
   ]
 
-  expect(email_exists?(expected_text)).to be true
+  expect(message_exists?(expected_text)).to be true
 end
 
 Then("the carrier receives an email saying they need to pay for their card order") do
@@ -76,7 +76,7 @@ Then("the carrier receives an email saying they need to pay for their card order
     "You ordered " + @number_of_cards.to_s + " registration card"
   ]
 
-  expect(email_exists?(expected_text)).to be true
+  expect(message_exists?(expected_text)).to be true
 end
 
 Then("the payment is shown as rejected") do

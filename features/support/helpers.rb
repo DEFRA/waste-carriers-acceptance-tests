@@ -25,11 +25,10 @@ def mocking_enabled?
     proxy_uri = URI.parse(ENV["WCRS_PROXY"])
     http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
+    http.use_ssl = true unless uri.to_s.include?("http://")
     @_mocking_enabled_response ||= http.request(request)
   end
-  if @_mocking_enabled_response.to_s.include?("HTTPNotFound") || @_mocking_enabled_response.to_s.include?("HTTPBadGateway")
-    return false
-  end
+  return false if @_mocking_enabled_response.to_s.include?("HTTPNotFound")
 
   true
 end
