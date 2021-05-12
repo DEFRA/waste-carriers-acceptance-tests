@@ -9,7 +9,6 @@ Given("I register an upper tier {string} from the back office") do |organisation
 
   start_reg_from_back_office
   step("I complete my registration for my business '#{@business_name}'")
-
 end
 
 Given("I register an assisted digital upper tier {string} from the back office") do |organisation_type|
@@ -23,7 +22,6 @@ Given("I register an assisted digital upper tier {string} from the back office")
   @email_address = "assistedDigital@example.com"
   start_reg_from_back_office
   step("I complete my registration for my business '#{@business_name}'")
-
 end
 
 Given("I register an lower tier {string} from the back office") do |organisation_type|

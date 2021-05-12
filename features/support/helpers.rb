@@ -19,11 +19,9 @@ def mocking_enabled?
   if ENV["WCRS_PROXY"].nil?
     # using an instance variable so that we make the request to the mocking
     # endpoint only once
-
     @_mocking_enabled_response ||= Net::HTTP.get_response(uri)
   else
     # Adding proxy for http request
-    # encoded_uri = URI.encode(ENV["WCRS_PROXY"])
     proxy_uri = URI.parse(ENV["WCRS_PROXY"])
     http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
