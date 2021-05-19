@@ -1,4 +1,4 @@
-@bo @bo_dashboard
+@bo @bo_dashboard @email
 Feature: Change the account email for registrations
   As an agency user
   I need to be able to change the account linked to a registration
@@ -10,3 +10,4 @@ Feature: Change the account email for registrations
     And I choose to transfer ownership of the registration to another user
     When I change the account email to "user@example.com"
     Then I see a confirmation the change has been made
+    And an email is sent advising the user the registration has been transferred to them

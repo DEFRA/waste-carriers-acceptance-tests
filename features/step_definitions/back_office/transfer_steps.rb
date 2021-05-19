@@ -15,3 +15,9 @@ end
 Then(/^I see a confirmation the change has been made$/) do
   expect(@bo.transfer_registration_page).to have_text(@email)
 end
+
+Then("an email is sent advising the user the registration has been transferred to them") do
+  expected_text = ["The waste carriers registration #{@reg_number} has been transferred to you"]
+
+  expect(message_exists?(expected_text)).to be true
+end
