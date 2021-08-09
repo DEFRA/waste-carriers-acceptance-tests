@@ -1,7 +1,7 @@
 class FrontOfficeDashboard < SitePrism::Page
 
-  element(:heading, ".heading-large")
-  element(:content, "#content")
+  element(:heading, "h1")
+  element(:content, "#main-content")
 
   element(:change_password_link, "a[href*='fo/users/edit-password']")
   element(:sign_out, "a[href*='/fo/users/sign_out']")

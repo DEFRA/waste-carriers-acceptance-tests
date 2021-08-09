@@ -3,8 +3,8 @@ require_relative "sections/govuk_banner"
 class FinancePaymentInputPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
-  element(:heading, ".heading-large")
-  element(:content, "#content")
+  element(:heading, "h1")
+  element(:content, "#main-content")
 
   # Add a payment. Inputs change ID based on payment method.
   element(:amount, "input[id*='_payment_form_amount']")

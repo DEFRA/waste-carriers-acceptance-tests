@@ -2,10 +2,10 @@ class RegistrationCardsPage < SitePrism::Page
 
   # Certificate and registration cards
 
-  element(:error_summary, ".error-summary")
+  element(:error_summary, ".govuk-error-summary__body")
 
-  element(:cards, "#cards_form_temp_cards", visible: false)
-  element(:submit_button, "input[type='submit']")
+  element(:cards, "input[id^='cards-form-temp-cards-field']", visible: false)
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     cards.set(args[:cards]) if args.key?(:cards)

@@ -2,11 +2,11 @@ class ExistingRegistrationPage < SitePrism::Page
 
   # What's your waste carrier registration number?
 
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
-  element(:reg_no, "#renew_registration_form_temp_lookup_number")
-  element(:submit_button, ".button")
+  element(:reg_no, "#renew-registration-form-temp-lookup-number-field")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     reg_no.set(args[:reg_no]) if args.key?(:reg_no)

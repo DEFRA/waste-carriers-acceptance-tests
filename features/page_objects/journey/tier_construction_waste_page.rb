@@ -2,13 +2,13 @@ class TierConstructionWastePage < SitePrism::Page
 
   # Do you ever deal with building, construction or demolition waste?
 
-  element(:back_link, ".link-back")
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:back_link, ".govuk-back-link")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
-  element(:yes_construction_waste, "#construction_demolition_form_construction_waste_yes", visible: false)
-  element(:no_construction_waste, "#construction_demolition_form_construction_waste_no", visible: false)
-  element(:submit_button, ".button")
+  element(:yes_construction_waste, "#construction-demolition-form-construction-waste-yes-field", visible: false)
+  element(:no_construction_waste, "#construction-demolition-form-construction-waste-no-field", visible: false)
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     case args[:choice]

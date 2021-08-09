@@ -2,6 +2,7 @@ Given("I start renewing this registration from the start page") do
   @journey = JourneyApp.new
   @reg_type = :renewal
   @journey.start_page.load
+  @journey.standard_page.accept_cookies
   @journey.start_page.submit(choice: @reg_type)
   @journey.existing_registration_page.submit(reg_no: @reg_number)
 end
@@ -115,7 +116,9 @@ end
 When("I complete my {string} renewal steps") do |business_type|
   # business_type must match the options in page_objects/front_office/registrations/business_type_page.rb
   @business_name ||= business_type + " renewal"
-  agree_to_renew_in_england
+  @journey.standard_page.accept_cookies
+  @journey.renewal_start_page.submit
+  @journey.location_page.submit(choice: "england")
   @journey.confirm_business_type_page.submit
   select_tier_for_renewal("existing")
   submit_business_details(@business_name, @tier)

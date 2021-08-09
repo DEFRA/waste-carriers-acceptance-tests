@@ -2,11 +2,11 @@ class DeclarationPage < SitePrism::Page
 
   # Declaration
 
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
-  element(:declaration, "#declaration_form_declaration", visible: false)
-  element(:submit_button, "input[type='submit']")
+  element(:declaration, "input[id^='declaration-form-declaration']", visible: false)
+  element(:submit_button, "[type='submit']")
 
   def submit(_args = {})
     declaration.click

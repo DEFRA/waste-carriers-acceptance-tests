@@ -1,13 +1,13 @@
 class TierOtherBusinessesPage < SitePrism::Page
 
   # Do you ever deal with waste from other businesses or households?
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, ".govuk-fieldset__legend--l")
 
-  element(:yes_other_businesses, "#other_businesses_form_other_businesses_yes", visible: false)
-  element(:no_other_businesses, "#other_businesses_form_other_businesses_no", visible: false)
+  element(:yes_other_businesses, "input[value='yes']", visible: false)
+  element(:no_other_businesses, "input[value='no']", visible: false)
 
-  element(:submit_button, "input[type='submit']")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     case args[:choice]

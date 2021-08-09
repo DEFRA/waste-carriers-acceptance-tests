@@ -2,11 +2,11 @@ class ContactPhonePage < SitePrism::Page
 
   # What's the contact telephone number?
 
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
-  element(:phone_number, "#contact_phone_form_phone_number")
-  element(:submit_button, ".button")
+  element(:phone_number, "input[id^='contact-phone-form-phone-number-field']")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     phone_number.set(args[:phone_number]) if args.key?(:phone_number)

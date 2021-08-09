@@ -2,13 +2,13 @@ class CardsPaymentPage < SitePrism::Page
 
   # Payment summary
 
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
   element(:cost_table, "table")
   element(:bank_card_radio, "#copy_cards_payment_form_temp_payment_method_card", visible: false)
   element(:alternative_payment_radio, "#copy_cards_payment_form_temp_payment_method_bank_transfer", visible: false)
-  element(:submit_button, ".button")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     case args[:choice]

@@ -87,6 +87,7 @@ Given("the registration has been partially renewed by the account holder") do
   @reg_type = :renewal
 
   @journey.start_page.load
+  @journey.standard_page.accept_cookies
   @journey.start_page.submit(choice: @reg_type)
   @journey.existing_registration_page.submit(reg_no: @reg_number)
 

@@ -4,14 +4,14 @@ class RegistrationDetailsPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
-  element(:back_link, ".link-back")
-  element(:flash_message, ".flash-success")
-  element(:heading, ".heading-large")
+  element(:back_link, ".govuk-back-link")
+  element(:flash_message, ".govuk-notification-banner__heading")
+  element(:heading, "h1")
 
   element(:content, ".column-full")
-  element(:continue_as_ad_button, ".button", text: "Continue as assisted digital")
-  element(:add_missed_worldpay_button, ".button", text: "Add a missed WorldPay payment")
-  element(:process_payment_button, "a.button[href*='/payments']")
+  element(:continue_as_ad_button, "[type='submit']", text: "Continue as assisted digital")
+  element(:add_missed_worldpay_button, "[type='submit']", text: "Add a missed WorldPay payment")
+  element(:process_payment_button, "a[type='submit'][href*='/payments']")
 
   element(:info_panel, ".wcr-panel-border-all")
   element(:business_name, ".wcr-panel-border-all .heading-medium")

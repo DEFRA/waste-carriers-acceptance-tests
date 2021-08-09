@@ -1,13 +1,13 @@
 class AdPrivacyPolicyPage < SitePrism::Page
 
-  element(:heading, ".heading-large")
+  element(:heading, "h1")
   element(:content, ".column-two-thirds")
 
   element(:policy_text_link, "span", text: "Waste carriers, brokers and dealers privacy policy text")
   element(:dpo_details_link, "span", text: "Contact details for the Data Protection Officer")
   element(:ico_details_link, "span", text: "Contact details for the Information Commissioner's Office")
 
-  element(:submit_button, ".button")
+  element(:submit_button, "[type='submit']")
 
   def submit(_args = {})
     policy_text_link.click

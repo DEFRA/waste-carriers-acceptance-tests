@@ -3,10 +3,10 @@ require_relative "sections/govuk_banner"
 class ToggleFeaturesPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
-  element(:heading, ".heading-large")
-  element(:content, "#content")
+  element(:heading, "h1")
+  element(:content, "#main-content")
 
-  element(:new_toggle_button, "a.button[href*='/feature-toggles/new']")
+  element(:new_toggle_button, "a[type='submit'][href*='/feature-toggles/new']")
   element(:toggle_name, "#feature_toggle_key")
   element(:toggle_active_checkbox, "#feature_toggle_active", visible: false)
   element(:save_button, "input[value='Save']")

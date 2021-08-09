@@ -1,6 +1,6 @@
 require "faker"
 
-class CompanyPeoplePage < SitePrism::Page
+class PartnersPage < SitePrism::Page
 
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
@@ -14,7 +14,7 @@ class CompanyPeoplePage < SitePrism::Page
   elements(:remove_person, "input[value='Delete']")
   element(:submit_button, "button[type='submit']")
 
-  def add_main_person(args = {})
+  def add_partner(args = {})
     person = args[:person]
 
     first_name.set(person[:first_name])
@@ -24,18 +24,6 @@ class CompanyPeoplePage < SitePrism::Page
     dob_year.set(person[:dob_year])
 
     add_person.click
-  end
-
-  def submit_main_person(args = {})
-    person = args[:person]
-
-    first_name.set(person[:first_name])
-    last_name.set(person[:last_name])
-    dob_day.set(person[:dob_day])
-    dob_month.set(person[:dob_month])
-    dob_year.set(person[:dob_year])
-
-    submit_button.click
   end
 
   def submit(args = {})

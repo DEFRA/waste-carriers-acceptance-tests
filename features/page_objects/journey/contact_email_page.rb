@@ -2,12 +2,12 @@ class ContactEmailPage < SitePrism::Page
 
   # What's the contact email address?
 
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
-  element(:email, "#contact_email_form_contact_email")
-  element(:confirm_email, "#contact_email_form_confirmed_email")
-  element(:submit_button, ".button")
+  element(:email, "input[id^='contact-email-form-contact-email-field']")
+  element(:confirm_email, "input[id^='contact-email-form-confirmed-email-field']")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     email.set(args[:email]) if args.key?(:email)

@@ -86,16 +86,16 @@ class JourneyApp
     @last_page = ExistingRegistrationPage.new
   end
 
-  def govuk_start_page
-    @last_page = GovukStartPage.new
-  end
-
   def last_message_page
     @last_page = LastMessagePage.new
   end
 
   def location_page
     @last_page = LocationPage.new
+  end
+
+  def partners_page
+    @last_page = PartnersPage.new
   end
 
   def payment_bank_transfer_page
