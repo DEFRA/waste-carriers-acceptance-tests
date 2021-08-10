@@ -4,7 +4,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
   I want to renew my waste carriers licence with the Environment Agency
   So I continue to be compliant with the law
 
-  @smoke 
+  @smoke
   Scenario: Limited company renews upper tier registration from registrations list
     Given I create an upper tier registration for my "limitedCompany" business as "another-user@example.com"
     And I have signed in to renew my registration as "another-user@example.com"

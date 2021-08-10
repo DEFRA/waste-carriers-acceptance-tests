@@ -18,6 +18,7 @@ end
 When("I forget my front office password and reset it") do
   # Submit incorrect password:
   visit(Quke::Quke.config.custom["urls"]["front_office_sign_in"])
+  @journey.standard_page.accept_cookies
   @account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
   @fo.front_office_sign_in_page.submit(
     email: @account_email,
@@ -28,7 +29,7 @@ When("I forget my front office password and reset it") do
   # Request a password reset:
   @fo.front_office_sign_in_page.forgotten_link.click
   @fo.front_office_sign_in_page.reset_password_link.click
-  @fo.reset_password_page.submit(email: @account_email)
+  @fo.reset_password_page.change_password(email: @account_email)
 
   # Set the new password
   @password = "B1rthdayP1e"
@@ -38,7 +39,7 @@ When("I forget my front office password and reset it") do
   # The following check retries the process if the link is invalid.
   10.times do
     visit(password_reset_link(@account_email))
-    @fo.reset_password_page.submit(password: @password)
+    @fo.reset_password_page.reset_password(password: @password)
     break if page.text.not.include? "is invalid"
   end
 end
@@ -55,7 +56,7 @@ end
 
 Then("I change the password back to its original value") do
   @fo.front_office_dashboard.change_password_link.click
-  @fo.reset_password_page.submit(
+  @fo.reset_password_page.change_password(
     current_password: @password,
     password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
@@ -70,12 +71,10 @@ Then("I can access the footer links") do
     expect(@journey.standard_page.content).to have_text("Lower-tier registrations are non-expiring")
     new_window = window_opened_by { find_link("Cookies").click }
     within_window new_window do
-      expect(@journey.standard_page.heading).to have_text("Cookies")
-      expect(@journey.standard_page.content).to have_text("After 20 minutes of inactivity")
+      expect(@journey.standard_page.heading).to have_text("Cookie settings")
       new_window = window_opened_by { find_link("Accessibility").click }
       within_window new_window do
         expect(@journey.standard_page.heading).to have_text("Accessibility statement")
-        expect(@journey.standard_page.content).to have_text("beta banner has insufficient contrast")
       end
     end
   end
