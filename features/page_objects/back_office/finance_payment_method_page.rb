@@ -3,7 +3,7 @@ require_relative "sections/govuk_banner"
 class FinancePaymentMethodPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
-  element(:heading, ".heading-large")
+  element(:heading, "h1")
 
   # How was this payment made?
   element(:cash, "#payment_form_payment_type_cash", visible: false)
@@ -12,7 +12,7 @@ class FinancePaymentMethodPage < SitePrism::Page
   element(:transfer, "#payment_form_payment_type_bank_transfer", visible: false)
   element(:missed_worldpay, "#payment_form_payment_type_worldpay_missed", visible: false)
 
-  element(:submit_button, "input[type='submit']")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     case args[:choice]

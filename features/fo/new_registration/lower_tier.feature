@@ -4,7 +4,7 @@ Feature: A new user registers as a lower tier waste carrier
   I want to register for a lower tier licence
   So I can be compliant with the law
 
-  @smoke 
+  @smoke
   Scenario: A charity registers as a lower tier waste carrier
     Given I want to register as a lower tier carrier
     When I start a new registration journey in "England" as a "charity"

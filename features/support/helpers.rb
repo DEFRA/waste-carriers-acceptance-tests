@@ -58,7 +58,6 @@ def sign_in_to_back_office(user, force = true)
   # If user is already signed in as a different user, then sign them out:
   heading = @journey.standard_page.heading.text
   sign_out_of_back_office if heading != "Sign in"
-
   # Then sign in as the correct user:
   @bo.sign_in_page.submit(
     # user must match the user headings in .config.yml:

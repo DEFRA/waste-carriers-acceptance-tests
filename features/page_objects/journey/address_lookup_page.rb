@@ -2,19 +2,18 @@ class AddressLookupPage < SitePrism::Page
 
   # Use this for all company and contact addresses on front/back office.
 
-  element(:back_link, ".link-back")
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:back_link, ".govuk-back-link")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
   # Initial postcode selection:
-  element(:postcode, "input[id*='postcode_form_temp']")
-  element(:find_address_button, "input[value='Find address']")
+  element(:postcode, "input[id*='postcode-form-temp']")
 
   # Once result is shown:
   element(:change_postcode, "a[href*='company-address/back']")
   element(:results_dropdown, "select[id*='address_uprn']")
   element(:manual_address, "a[href*='skip_to_manual_address']")
-  element(:submit_button, ".button")
+  element(:submit_button, "[type='submit']")
 
   def submit_valid_address(_args = {})
     enter_postcode("BS1 5AH")
@@ -35,7 +34,7 @@ class AddressLookupPage < SitePrism::Page
 
   def enter_postcode(postcode_entry)
     postcode.set(postcode_entry)
-    find_address_button.click
+    submit_button.click
   end
 
 end

@@ -28,13 +28,13 @@ Given("the back office pages show the correct transient renewal details") do
   expect(@bo.registration_details_page.heading).to have_text("Renewal " + @reg_number)
   expect(@bo.registration_details_page).to have_text "Application in progress"
   expect(@bo.registration_details_page).to have_continue_as_ad_button
-  expect(@bo.registration_details_page.info_panel).to have_text(@business_name)
-  expect(@bo.registration_details_page.content).to have_text("Peek Freans")
-  expect(@bo.registration_details_page.content).to have_text("Application still in progress. No finance data yet.")
+  expect(@bo.registration_details_page).to have_text(@business_name)
+  expect(@bo.registration_details_page).to have_text("Peek Freans")
+  expect(@bo.registration_details_page).to have_text("Application in progress")
   expect(@bo.registration_details_page).to have_no_view_certificate_link
 
   if @convictions == "no convictions"
-    expect(@bo.registration_details_page.content).to have_text("There are no convictions for this registration")
+    expect(@bo.registration_details_page).to have_text("There are no convictions for this registration")
   end
 
 end
@@ -46,7 +46,7 @@ end
 
 Then("the AD renewal is complete") do
   expect(@journey.confirmation_page.heading).to have_text("Renewal complete")
-  expect(@journey.confirmation_page.confirmation_box).to have_text("Your registration number is still\n" + @reg_number)
+  expect(@journey.confirmation_page).to have_text("Your registration number is still\n" + @reg_number)
   puts "Renewal " + @reg_number + " complete"
 
   @journey.confirmation_page.finished_button.click
@@ -87,6 +87,7 @@ Given("the registration has been partially renewed by the account holder") do
   @reg_type = :renewal
 
   @journey.start_page.load
+  @journey.standard_page.accept_cookies
   @journey.start_page.submit(choice: @reg_type)
   @journey.existing_registration_page.submit(reg_no: @reg_number)
 

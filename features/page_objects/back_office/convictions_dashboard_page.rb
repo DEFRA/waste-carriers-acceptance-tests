@@ -4,8 +4,8 @@ class ConvictionsDashboardPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
-  element(:heading, ".heading-large")
-  element(:content, "#content")
+  element(:heading, "h1")
+  element(:content, "#main-content")
 
   element(:possible_matches_tab, "a[href$='/convictions']")
   element(:in_progress_tab, "a[href*='/convictions/in-progress']")

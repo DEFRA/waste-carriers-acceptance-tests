@@ -1,8 +1,8 @@
 class SignInPage < SitePrism::Page
   set_url(Quke::Quke.config.custom["urls"]["back_office_sign_in"])
 
-  element(:email, "#user_email")
-  element(:password, "#user_password")
+  element(:email, "#user-email-field")
+  element(:password, "#user-password-field")
 
   element(:submit_button, "input[name='commit']")
 

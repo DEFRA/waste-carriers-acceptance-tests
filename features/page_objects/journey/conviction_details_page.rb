@@ -4,21 +4,21 @@ class ConvictionDetailsPage < SitePrism::Page
 
   # Details of the person with a conviction
 
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
-  element(:first_name, "#conviction_details_form_first_name")
-  element(:last_name, "#conviction_details_form_last_name")
-  element(:dob_day, "#conviction_details_form_dob_day")
-  element(:dob_month, "#conviction_details_form_dob_month")
-  element(:dob_year, "#conviction_details_form_dob_year")
-  element(:position, "#conviction_details_form_position")
+  element(:first_name, "#conviction-details-form-first-name-field")
+  element(:last_name, "#conviction-details-form-last-name-field")
+  element(:dob_day, "#conviction-details-form-dob-day-field")
+  element(:dob_month, "#conviction-details-form-dob-month-field")
+  element(:dob_year, "#conviction-details-form-dob-year-field")
+  element(:position, "#conviction-details-form-position-field")
 
   element(:add_person, "input[value='Add another person']")
 
   elements(:remove_person, "a[href*='delete']")
 
-  element(:submit_button, "input[value='Continue']")
+  element(:submit_button, "button[type='submit']")
 
   def add_conviction(args = {})
     person = args[:person]

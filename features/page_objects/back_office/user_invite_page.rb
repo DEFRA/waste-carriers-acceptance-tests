@@ -6,7 +6,7 @@ class UserInvitePage < SitePrism::Page
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
   element(:email_field, "input[name='user[email]']")
-  element(:submit_form, "input[type='submit']")
+  element(:submit_form, "[type='submit']")
 
   element(:agency_user_radio, "input[value='agency']", visible: false)
   element(:agency_user_with_refund_radio, "#user_role_agency_with_refund", visible: false)

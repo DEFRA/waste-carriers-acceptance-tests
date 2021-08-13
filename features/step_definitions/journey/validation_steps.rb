@@ -4,8 +4,9 @@ Given("I generate errors throughout the journey") do
   @organisation_type = "limitedCompany"
 
   @journey.start_page.load
+  @journey.standard_page.accept_cookies
   @journey.start_page.submit
-  expect(@journey.start_page.error_summary).to have_text("You must answer this question")
+  expect(@journey.start_page.error_summary).to have_text("Answer this question")
   @journey.start_page.submit(choice: @reg_type)
 
   @journey.location_page.submit
@@ -51,19 +52,19 @@ Given("I generate errors throughout the journey") do
 
   @business_name = "Validation test"
   @journey.company_name_page.submit
-  expect(@journey.company_name_page.error_summary).to have_text("You must enter a trading name")
+  expect(@journey.company_name_page.error_summary).to have_text("Enter a trading name")
   @journey.company_name_page.submit(company_name: @business_name)
 
   test_address_validations
 
   @people = @journey.company_people_page.main_people
   @journey.company_people_page.submit
-  expect(@journey.company_people_page.error_summary).to have_text("You must add the details of at least one person")
+  expect(@journey.company_people_page.error_summary).to have_text("Add the details of at least one person")
   @journey.company_people_page.submit(
     first_name: "Brian",
     last_name: "Butterfield"
   )
-  expect(@journey.company_people_page.error_summary).to have_text("You must enter a valid date")
+  expect(@journey.company_people_page.error_summary).to have_text("Enter a valid date")
   @journey.company_people_page.submit_main_person(person: @people[0])
 
   @journey.conviction_declare_page.submit
@@ -71,12 +72,12 @@ Given("I generate errors throughout the journey") do
   @journey.conviction_declare_page.submit(choice: :yes)
 
   @journey.conviction_details_page.submit_button.click
-  expect(@journey.conviction_details_page.error_summary).to have_text("You must add the details of at least one person")
+  expect(@journey.conviction_details_page.error_summary).to have_text("Add the details of at least one person")
   @relevant_people = @journey.conviction_details_page.main_people
   @journey.conviction_details_page.submit(person: @relevant_people[0])
 
   @journey.contact_name_page.submit
-  expect(@journey.contact_name_page.error_summary).to have_text("You must enter a first name\nYou must enter a last name")
+  expect(@journey.contact_name_page.error_summary).to have_text("Enter a first name\nEnter a last name")
   @journey.contact_name_page.submit(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name
@@ -109,7 +110,7 @@ Given("I generate errors throughout the journey") do
   @journey.registration_cards_page.submit(cards: 3)
 
   @journey.payment_summary_page.submit
-  expect(@journey.payment_summary_page.error_summary).to have_text("You must select a payment method")
+  expect(@journey.payment_summary_page.error_summary).to have_text("Select a payment method")
   @journey.payment_summary_page.submit(
     choice: :card_payment,
     email: ""

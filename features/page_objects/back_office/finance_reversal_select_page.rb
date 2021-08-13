@@ -4,9 +4,9 @@ class FinanceReversalSelectPage < SitePrism::Page
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
-  element(:back_link, ".link-back")
-  element(:heading, ".heading-large")
-  element(:content, "#content")
+  element(:back_link, ".govuk-back-link")
+  element(:heading, "h1")
+  element(:content, "#main-content")
 
   elements(:reverse_links, "a[href*='/reversals/']")
 

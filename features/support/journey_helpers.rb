@@ -13,9 +13,12 @@ def submit_carrier_details(business, tier, carrier)
   # Select the org type, or just click submit if the business is "existing"
   case tier
   when "lower"
-    select_random_lower_tier_options if business != "charity" # if so, questions are skipped
-    # "You need to register as a lower tier waste carrier"
-    @journey.standard_page.submit
+    if business != "charity"
+      select_random_lower_tier_options
+    else # if so, questions are skipped
+      # "You need to register as a lower tier waste carrier"
+      @journey.standard_page.submit
+    end
   when "existing"
     # this only applies to renewals:
     @journey.tier_check_page.submit(choice: :skip_check)
@@ -181,6 +184,18 @@ def submit_company_people
   @journey.company_people_page.submit_main_person(person: @people[2])
 end
 
+def submit_partners
+  # Submits an appropriate number of people based on business type
+  # and returns the people. Use ||= in case @people has been previously defined to be people with convictions.
+  @people ||= @journey.partners_page.main_people
+
+  @journey.partners_page.add_partner(person: @people[0])
+
+  @journey.partners_page.add_partner(person: @people[1])
+
+  @journey.partners_page.submit(person: @people[2])
+end
+
 def test_partnership_people
   # Check that removing a partner means you can't continue with a registration.
   people = @journey.company_people_page.main_people
@@ -188,7 +203,7 @@ def test_partnership_people
   @journey.company_people_page.add_main_person(person: people[1])
   @journey.company_people_page.remove_person[0].click
   @journey.company_people_page.submit_button.click
-  expect(@journey.company_people_page).to have_text("You must add the details of at least 2 people")
+  expect(@journey.company_people_page).to have_text("Add the details of at least 2 people")
   @journey.company_people_page.submit_main_person(person: people[2])
 end
 
@@ -265,7 +280,7 @@ def test_lookup_address_validations
   test_invalid_postcodes
   @journey.address_lookup_page.enter_postcode("BS1 5AH")
   @journey.address_lookup_page.submit_button.click
-  expect(@journey.address_lookup_page.error_summary).to have_text("You must select an address")
+  expect(@journey.address_lookup_page.error_summary).to have_text("Select an address")
 end
 
 def test_invalid_postcodes

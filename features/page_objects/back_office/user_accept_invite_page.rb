@@ -6,5 +6,5 @@ class UserAcceptInvitePage < SitePrism::Page
   element(:password_field, "#user_password")
   element(:confirm_password_field, "#user_password_confirmation")
 
-  element(:submit_field, "input[type='submit']")
+  element(:submit_field, "[type='submit']")
 end

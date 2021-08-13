@@ -18,6 +18,7 @@ When("I start a new registration journey in {string} as a {string}") do |locatio
   @organisation_type = organisation_type
   @app = "fo"
   @journey.start_page.load
+  @journey.standard_page.accept_cookies
   @journey.start_page.submit(choice: @reg_type)
   @journey.location_page.submit(choice: location)
 end
@@ -32,8 +33,14 @@ When("I complete my registration for my business {string}") do |business_name|
   submit_carrier_details(@organisation_type, @tier, @carrier)
   submit_business_details(@business_name, @tier)
 
-  if @tier == "upper"
+  if @tier == "upper" && @organisation_type != "partnership"
     submit_company_people
+    @convictions ||= "no convictions"
+    submit_convictions(@convictions)
+  end
+
+  if @tier == "upper" && @organisation_type == "partnership"
+    submit_partners
     @convictions ||= "no convictions"
     submit_convictions(@convictions)
   end
@@ -267,6 +274,7 @@ Given("a limited company with companies house number {string} is registered as a
 
   step("I want to register as an upper tier carrier")
   @journey.start_page.load
+  @journey.standard_page.accept_cookies
   @journey.start_page.submit(choice: @reg_type)
   @journey.location_page.submit(choice: "england")
   step("I complete my registration for my business '#{@business_name}'")
@@ -383,7 +391,7 @@ Given("the in-progress registration details are correct") do
   @bo.dashboard_page.view_new_reg_details(search_term: @business_name)
   expect(@bo.registration_details_page.heading).to have_text("New registration for " + @business_name)
   expect(@bo.registration_details_page.info_panel).to have_text("Carrier, broker and dealer")
-  expect(@bo.registration_details_page.content).to have_text(@people[0][:first_name] + " " + @people[0][:last_name])
+  expect(@bo.registration_details_page).to have_text(@people[0][:first_name] + " " + @people[0][:last_name])
 end
 
 Given("I resume the registration as assisted digital") do

@@ -17,7 +17,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
     Given I create a lower tier registration for my "charity" business as "user@example.com"
     When I start renewing this registration from the start page
     Then I am told that my registration does not expire
-
+    
   Scenario: Partnership renews upper tier registration from renewals page
     Given I create an upper tier registration for my "partnership" business as "user@example.com"
     And I start renewing this registration from the start page
@@ -26,7 +26,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
     Then I will be notified my renewal is complete
     And I will receive a registration renewal confirmation email
 
-  @email 
+  @email
   Scenario: Overseas renewal
     Given I create an upper tier registration for my "overseas" business as "user@example.com"
     And I start renewing this registration from the start page

@@ -2,18 +2,18 @@ class AddressManualPage < SitePrism::Page
 
   # Use this for all manual addresses for renewals
 
-  element(:error_summary, ".error-summary")
+  element(:error_summary, ".govuk-error-summary__body")
   element(:change_postcode, "a[href*='address-manual/back']")
-  element(:house_number, "input[id*='address_house_number']")
-  element(:address_line_one, "input[id*='address_line_1']")
-  element(:address_line_two, "input[id*='address_line_2']")
-  element(:city, "input[id*='address_town_city']")
+  element(:house_number, "[id$='address-house-number-field']")
+  element(:address_line_one, "[id$='address-address-line-1-field']")
+  element(:address_line_two, "[id$='address-address-line-2-field']")
+  element(:city, "[id$='address-town-city-field']")
 
   # The following only appear in certain journeys such as international renewals:
-  element(:postcode, "input[id*='address_postcode']")
-  element(:country, "input[id*='address_country']")
+  element(:postcode, "input[id$='address-postcode-field")
+  element(:country, "input[id$='address-country-field']")
 
-  element(:submit_button, ".button")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     house_number.set(args[:house_number]) if args.key?(:house_number)

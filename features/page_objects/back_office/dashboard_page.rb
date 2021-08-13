@@ -4,14 +4,14 @@ class DashboardPage < SitePrism::Page
   set_url(Quke::Quke.config.custom["urls"]["back_office"])
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
-  element(:heading, ".heading-large")
+  element(:heading, "h1")
   element(:sign_out_link, "a[href*='/bo/users/sign_out']")
-  element(:content, "#content")
+  element(:content, "#main-content")
 
-  element(:flash_message, ".flash-message")
+  element(:flash_message, ".govuk-notification-banner__heading")
 
   element(:search_term, "#term")
-  element(:submit_button, ".button")
+  element(:submit_button, "[type='submit']")
   element(:new_reg_link, "a[href*='/bo/ad-privacy-policy']")
 
   element(:results_table, "table")

@@ -26,11 +26,8 @@ def pay_by_cash(amount_in_pounds)
 end
 
 def check_balance(expected_balance)
-  # Get the balance from the payment details page, assuming it is the last text on the page.
-
-  # The regex searches for: any number of digits . two more digits newline Open Government Licence
-  # See https://www.rubyguides.com/2015/06/ruby-regex/
-  balance_on_page = page.text[/(-?\d+\.\d+)\nOpen Government Licence/, 1].to_f
+  # Get the balance from the payment details page
+  balance_on_page = @bo.finance_payment_details_page.balance.text.to_f
   expect(balance_on_page).to eq(expected_balance.to_f)
 end
 

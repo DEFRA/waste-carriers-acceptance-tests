@@ -1,7 +1,7 @@
 class FrontOfficeDashboard < SitePrism::Page
 
-  element(:heading, ".heading-large")
-  element(:content, "#content")
+  element(:heading, "h1")
+  element(:content, "#main-content")
 
   element(:change_password_link, "a[href*='fo/users/edit-password']")
   element(:sign_out, "a[href*='/fo/users/sign_out']")
@@ -25,7 +25,7 @@ class FrontOfficeDashboard < SitePrism::Page
   element(:last_page, "a[aria-label='Last page']")
 
   def renew(registration_number)
-    element = "#" + registration_number.to_s + " li:nth-child(2) a"
+    element = "#" + registration_number.to_s + " a[href$='/renew']"
     find(:css, element).click
   end
 

@@ -104,8 +104,8 @@ browserstack:
     # Keep track of all your automated tests using the build and project
     # capabilities. Group your tests into builds, and builds further into
     # projects
-    project: 'Waste carriers renewals'
-    build: 'User dashboard'
+    project: 'Waste carriers'
+    build: 'Design system upgrade'
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
@@ -135,9 +135,7 @@ browserstack:
     browserstack.maskSendKeys: true
 
     # https://www.browserstack.com/automate/capabilities
-    browser: Chrome
+    browser: Edge
     os: 'Windows'
-    # device: 'iPhone X'
-    # realMobile: 'true'
-    browser_version: '63.0'
-    os_version: '7'
+    browser_version: 'latest-1'
+    os_version: '10'

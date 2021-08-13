@@ -3,7 +3,7 @@ class ConvictionsDecisionPage < SitePrism::Page
   # Approve a renewal with possible convictions: CBDU2
   # Reject a renewal with possible convictions: CBDU2
 
-  element(:heading, ".heading-large")
+  element(:heading, "h1")
   element(:conviction_reason, "textarea[id*='form_revoked_reason']")
   element(:submit_button, "input[name='commit']")
 

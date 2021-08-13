@@ -49,7 +49,7 @@ Then("I check the registration details are correct on the back office") do
   sign_in_to_back_office("agency-user")
   check_registration_details(@reg_number)
   info_panel = @bo.registration_details_page.info_panel
-  page_content = @bo.registration_details_page.content
+  page_content = @bo.registration_details_page
   expect(@bo.registration_details_page.business_name).to have_text(@business_name)
 
   if @tier == "upper"

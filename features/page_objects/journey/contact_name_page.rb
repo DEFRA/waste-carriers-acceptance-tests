@@ -2,13 +2,13 @@ class ContactNamePage < SitePrism::Page
 
   # Who should we contact about this registration?
 
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
   element(:contact_name, "#registration_companyName")
-  element(:first_name, "#contact_name_form_first_name")
-  element(:last_name, "#contact_name_form_last_name")
-  element(:submit_button, ".button")
+  element(:first_name, "input[id^='contact-name-form-first-name-field']")
+  element(:last_name, "input[id^='contact-name-form-last-name-field']")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     contact_name.set(args[:contact_name]) if args.key?(:contact_name)

@@ -3,15 +3,14 @@ class PaymentSummaryPage < SitePrism::Page
   # Payment summary
 
   element(:back_link, "a[href*='back']")
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, "h1")
 
   element(:card_payment, "input[value='card']", visible: false)
-  element(:receipt_email_field, "#payment_summary_form_card_confirmation_email")
+  element(:receipt_email_field, "input[id^='payment-summary-form-card-confirmation-email-field']")
   element(:bank_transfer_payment, "input[value='bank_transfer']", visible: false)
-
   element(:charge, "#registration_registration_fee")
-  element(:submit_button, ".button")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     case args[:choice]

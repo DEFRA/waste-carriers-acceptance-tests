@@ -16,7 +16,7 @@ Feature: [RUBY-767] NCCC agent orders registration cards from back office
     And the registration's balance is 0
     And the carrier receives an email saying their card order is being printed
 
-  @email
+  @email 
   Scenario: NCCC user orders 3 cards by bank transfer
     Given I have an active registration
     When an agency user orders "3" registration cards

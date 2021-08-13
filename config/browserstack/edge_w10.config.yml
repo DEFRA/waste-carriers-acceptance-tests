@@ -55,6 +55,23 @@ custom:
     front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"
 
+# If you are running Quke behind a proxy you can configure the proxy details
+# here. You'll need either the hostname or IP of the proxy server (don't include
+# the http:// bit) and the port number (typically 8080). Currently proxy
+# settings will only be applied if you are using the PhantomJS, Chrome or
+# Firefox drivers.
+# proxy:
+#   host: '10.10.2.70'
+#   port: 8080
+  # In some cases you may also need to tell the browser (driver) not to use the
+  # proxy for local or specific connections. For this simply provide a comma
+  # separated list of addresses.
+  #
+  # IMPORTANT NOTE! phantomjs does not currently support this option. If you
+  # have to go via a proxy server for external connections, but not local ones
+  # you will be limited to using either the Chrome or Firefox drivers.
+  # no_proxy: '127.0.0.1,192.168.0.1'
+
 # If you select the browserstack driver, there are a number of options you
 # can pass through to setup your browserstack tests, username and auth_key
 # being the critical ones.
@@ -87,8 +104,8 @@ browserstack:
     # Keep track of all your automated tests using the build and project
     # capabilities. Group your tests into builds, and builds further into
     # projects
-    project: 'Waste carriers renewals'
-    build: 'User dashboard'
+    project: 'Waste carriers'
+    build: 'Design system upgrade'
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
@@ -118,9 +135,7 @@ browserstack:
     browserstack.maskSendKeys: true
 
     # https://www.browserstack.com/automate/capabilities
-    browser: Chrome
-    os: 'OS X'
-    # device: 'iPhone X'
-    # realMobile: 'true'
-    browser_version: '63.0'
-    os_version: 'Sierra'
+    browser: Edge
+    os: 'Windows'
+    browser_version: 'latest'
+    os_version: '10'

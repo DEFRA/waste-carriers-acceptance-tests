@@ -1,13 +1,13 @@
 class StartPage < SitePrism::Page
   set_url("#{Quke::Quke.config.custom['urls']['front_office']}/start")
 
-  element(:error_summary, ".error-summary")
-  element(:heading, ".heading-large")
+  element(:error_summary, ".govuk-error-summary__body")
+  element(:heading, ".govuk-fieldset__legend--l")
 
   element(:new_registration, "input[value='new']", visible: false)
   element(:renew_registration, "input[value='renew']", visible: false)
 
-  element(:submit_button, "input[type='submit']")
+  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     case args[:choice]

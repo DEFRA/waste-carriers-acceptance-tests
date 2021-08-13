@@ -2,7 +2,7 @@ class GovukBanner < SitePrism::Section
 
   # GOV.UK black banner and menu items
 
-  SELECTOR ||= "#global-header".freeze
+  SELECTOR ||= ".govuk-header".freeze
 
   element(:home_page, "#proposition-name")
   element(:conviction_checks_link, "a[href*='/bo/convictions']")
