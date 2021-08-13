@@ -7,17 +7,17 @@ class FinancePaymentDetailsPage < SitePrism::Page
 
   element(:back_link, ".govuk-back-link")
   element(:heading, "h1")
-  element(:flash_message, ".flash-success")
+  element(:flash_message, ".govuk-notification-banner__heading")
 
-  element(:content, "#main-content")
   element(:info_panel, ".wcr-panel-border-all")
   element(:business_name, ".wcr-panel-border-all .heading-medium")
 
-  element(:enter_payment_button, "a[type='submit'][href$='/payments']")
-  element(:reverse_payment_button, "a[type='submit'][href*='/reversals']")
-  element(:write_off_button, "a[type='submit'][href*='/write-off']")
-  element(:charge_adjust_button, "a[type='submit'][href*='/charge-adjusts']")
-  element(:refund_button, "a[type='submit'][href*='/refund']")
+  element(:enter_payment_button, "a[href$='/payments']")
+  element(:reverse_payment_button, "a[href*='/reversals']")
+  element(:write_off_button, "a[href*='/write-off']")
+  element(:charge_adjust_button, "a[href*='/charge-adjusts']")
+  element(:refund_button, "a[href*='/refund']")
+  element(:balance, ".govuk-table__cell--numeric:nth-child(2)")
 
   # Sample text on this page:
   # Payment details for CBDU6

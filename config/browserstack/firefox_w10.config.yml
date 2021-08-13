@@ -54,6 +54,7 @@ custom:
     front_office: "http://localhost:3002"
     front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
     back_office: "http:/localhost:3000/agency_users/sign_in"
+    back_office_admin: "http:/localhost:3000/admins/sign_in"
 
 # If you are running Quke behind a proxy you can configure the proxy details
 # here. You'll need either the hostname or IP of the proxy server (don't include
@@ -135,9 +136,8 @@ browserstack:
     browserstack.maskSendKeys: true
 
     # https://www.browserstack.com/automate/capabilities
-    browser: Edge
+    browser: Firefox
     os: 'Windows'
-    # device: 'iPhone X'
-    # realMobile: 'true'
-    browser_version: '16.0'
+    browser_version: 'latest'
     os_version: '10'
+    # browserstack.selenium_version: "3.5.2"

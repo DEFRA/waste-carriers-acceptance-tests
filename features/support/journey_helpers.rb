@@ -13,7 +13,6 @@ def submit_carrier_details(business, tier, carrier)
   # Select the org type, or just click submit if the business is "existing"
   case tier
   when "lower"
-    puts "Business is #{business}"
     if business != "charity"
       select_random_lower_tier_options
     else # if so, questions are skipped

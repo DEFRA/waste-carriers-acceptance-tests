@@ -7,7 +7,7 @@ class AdPrivacyPolicyPage < SitePrism::Page
   element(:dpo_details_link, "span", text: "Contact details for the Data Protection Officer")
   element(:ico_details_link, "span", text: "Contact details for the Information Commissioner's Office")
 
-  element(:submit_button, "[type='submit']")
+  element(:submit_button, "a[class='govuk-button']")
 
   def submit(_args = {})
     policy_text_link.click

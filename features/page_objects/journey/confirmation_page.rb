@@ -10,5 +10,5 @@ class ConfirmationPage < SitePrism::Page
 
   element(:registration_number, "#reg_identifier")
 
-  element(:finished_button, "[type='submit']")
+  element(:finished_button, "a[class='govuk-button']")
 end

@@ -6,7 +6,7 @@ class ToggleFeaturesPage < SitePrism::Page
   element(:heading, "h1")
   element(:content, "#main-content")
 
-  element(:new_toggle_button, "a[type='submit'][href*='/feature-toggles/new']")
+  element(:new_toggle_button, "a[href*='/feature-toggles/new']")
   element(:toggle_name, "#feature_toggle_key")
   element(:toggle_active_checkbox, "#feature_toggle_active", visible: false)
   element(:save_button, "input[value='Save']")

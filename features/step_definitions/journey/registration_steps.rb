@@ -391,7 +391,7 @@ Given("the in-progress registration details are correct") do
   @bo.dashboard_page.view_new_reg_details(search_term: @business_name)
   expect(@bo.registration_details_page.heading).to have_text("New registration for " + @business_name)
   expect(@bo.registration_details_page.info_panel).to have_text("Carrier, broker and dealer")
-  expect(@bo.registration_details_page.content).to have_text(@people[0][:first_name] + " " + @people[0][:last_name])
+  expect(@bo.registration_details_page).to have_text(@people[0][:first_name] + " " + @people[0][:last_name])
 end
 
 Given("I resume the registration as assisted digital") do

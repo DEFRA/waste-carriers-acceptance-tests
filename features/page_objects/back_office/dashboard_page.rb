@@ -8,7 +8,7 @@ class DashboardPage < SitePrism::Page
   element(:sign_out_link, "a[href*='/bo/users/sign_out']")
   element(:content, "#main-content")
 
-  element(:flash_message, ".flash-message")
+  element(:flash_message, ".govuk-notification-banner__heading")
 
   element(:search_term, "#term")
   element(:submit_button, "[type='submit']")

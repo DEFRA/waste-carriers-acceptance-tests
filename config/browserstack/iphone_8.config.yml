@@ -110,7 +110,7 @@ browserstack:
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
-    # # name: 'Removing key person'
+    # name: 'Removing key person'
 
     # To avoid invalid certificate errors while testing set acceptSslCerts to
     # true. This is not listed on the general capabilities page but is here
@@ -134,10 +134,8 @@ browserstack:
     # logs. General use case is to prevent passwords being exposed, but beware
     # that all input will be masked in the logs if set.
     browserstack.maskSendKeys: true
-
-    # https://www.browserstack.com/automate/capabilities
-    browser: Safari
-    os: 'OS X'
-    browser_version: '9.1'
-    os_version: 'El Capitan'
     javascriptEnabled: true
+    # https://www.browserstack.com/automate/capabilities
+    device: 'iPhone 8'
+    realMobile: 'true'
+    os_version: '13'

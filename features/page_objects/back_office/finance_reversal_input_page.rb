@@ -5,7 +5,7 @@ class FinanceReversalInputPage < SitePrism::Page
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
   element(:heading, "h1")
 
-  element(:reason_form, "#reversal_form_reason")
+  element(:reason_form, "#reversal-form-reason-field")
   element(:submit_button, "[type='submit']")
 
   def submit(args = {})

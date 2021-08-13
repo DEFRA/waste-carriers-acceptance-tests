@@ -15,13 +15,13 @@ Given(/^an agency-refund-payment-user refunds the WorldPay payment$/) do
   @refund = (-@reg_balance).to_s
 
   expect(@journey.standard_page.content).to have_text("Balance that will be refunded £" + @refund + ".00")
-  @journey.standard_page.button.click
+  @journey.standard_page.submit_button.click
   # Takes user back to payment details page with flash message.
 end
 
 Then(/^the WorldPay payment is shown as refunded$/) do
   expect(@bo.finance_payment_details_page.flash_message).to have_text("£" + @refund + ".00 refunded successfully")
-  expect(@bo.finance_payment_details_page.content).to have_text("A refund has been requested for this worldpay payment -" + @refund + ".00")
+  expect(@bo.finance_payment_details_page).to have_text("A refund has been requested for this worldpay payment -" + @refund + ".00")
   puts "£" + @refund + ".00 WorldPay payment refunded"
 end
 
@@ -33,7 +33,7 @@ Given(/^a finance admin user adjusts the charge by (-?\d+)$/) do |amount|
   adjust_charge(amount, random_number)
 
   expect(@bo.finance_payment_details_page.flash_message).to have_text("£" + amount.to_s + ".00 charge adjust completed successfully")
-  expect(@bo.finance_payment_details_page.content).to have_text("charge adjustment " + random_number.to_s)
+  expect(@bo.finance_payment_details_page).to have_text("charge adjustment " + random_number.to_s)
 
   @reg_balance += amount
 end
@@ -43,7 +43,7 @@ Given(/^(?:a|an) "([^"]*)" reverses the previous payment$/) do |user|
   reverse_last_transaction
 
   expect(@bo.finance_payment_details_page.flash_message).to have_text("reversed successfully")
-  expect(@bo.finance_payment_details_page.content).to have_text("ti esrever")
+  expect(@bo.finance_payment_details_page).to have_text("ti esrever")
 end
 
 Given(/^(?:a|an) "([^"]*)" writes off the outstanding balance$/) do |user|
@@ -55,7 +55,7 @@ Given(/^(?:a|an) "([^"]*)" writes off the outstanding balance$/) do |user|
   write_off_outstanding_balance
 
   expect(@bo.finance_payment_details_page.flash_message).to have_text("write off completed successfully")
-  expect(@bo.finance_payment_details_page.content).to have_text("this is a writeoff")
+  expect(@bo.finance_payment_details_page).to have_text("this is a writeoff")
 end
 
 Given("I add a missed Worldpay payment at the payment stage") do

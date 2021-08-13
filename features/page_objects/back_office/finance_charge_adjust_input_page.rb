@@ -12,7 +12,7 @@ class FinanceChargeAdjustInputPage < SitePrism::Page
 
   element(:amount_form, "input[id*='charge_adjust_form_amount']")
   element(:reference_form, "input[id*='charge_adjust_form_reference']")
-  element(:reason_form, "textarea[id*='charge_adjust_form_description']")
+  element(:reason_form, "#with-hint")
 
   element(:submit_button, "[type='submit']")
 

@@ -12,8 +12,8 @@ class ConvictionsBoDetailsPage < SitePrism::Page
   # This registration has been reviewed and flagged as having relevant convictions.
   # This registration was approved after a review of the matching or declared convictions.
 
-  element(:approve_button, "[type='submit']", text: "Approve")
-  element(:flag_button, "[type='submit']-alert", text: "Relevant conviction found")
-  element(:reject_button, "[type='submit']-warning", text: "Reject")
+  element(:approve_button, "[href$='/approve']")
+  element(:flag_button, "[href$='/begin-checks']")
+  element(:reject_button, "[href$='/reject']")
 
 end

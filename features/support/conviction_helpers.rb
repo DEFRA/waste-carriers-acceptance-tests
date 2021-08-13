@@ -3,7 +3,7 @@ def approve_conviction_immediately_for_reg(reg, company_name)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration may have matching or declared convictions and requires an initial review"
-  expect(@bo.convictions_bo_details_page.info_panel).to have_text(expected_info)
+  expect(@bo.convictions_bo_details_page).to have_text(expected_info)
 
   approve_conviction(reg)
 end
@@ -13,7 +13,7 @@ def flag_conviction_for_reg(reg, company_name)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration may have matching or declared convictions and requires an initial review"
-  expect(@bo.convictions_bo_details_page.info_panel).to have_text(expected_info)
+  expect(@bo.convictions_bo_details_page).to have_text(expected_info)
 
   flag_conviction(reg, company_name)
 end
@@ -23,7 +23,7 @@ def approve_flagged_conviction_for_reg(reg, company_name)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration has been reviewed and flagged as having relevant convictions."
-  expect(@bo.convictions_bo_details_page.info_panel).to have_text(expected_info)
+  expect(@bo.convictions_bo_details_page).to have_text(expected_info)
 
   approve_conviction(reg)
 end
@@ -33,7 +33,7 @@ def reject_flagged_conviction_for_reg(reg, company_name)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration has been reviewed and flagged as having relevant convictions."
-  expect(@bo.convictions_bo_details_page.info_panel).to have_text(expected_info)
+  expect(@bo.convictions_bo_details_page).to have_text(expected_info)
 
   reject_conviction(reg)
 end

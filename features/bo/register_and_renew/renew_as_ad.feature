@@ -1,4 +1,4 @@
-@bo @bo_reg
+@bo @bo_reg   
 Feature: Assisted digital renewal of an upper tier public body
   As a carrier of commercial waste
   I want assistance with my waste carrier renewal from the Environment Agency

@@ -12,7 +12,7 @@ class FinancePaymentInputPage < SitePrism::Page
   element(:month, "input[id*='_payment_form_date_received_month']")
   element(:year, "input[id*='_payment_form_date_received_year']")
   element(:reference, "input[id*='_payment_form_registration_reference']")
-  element(:comment, "textarea[id*='_payment_form_comment']")
+  element(:comment, "#with-hint")
 
   element(:submit_button, "input[name='commit']")
 

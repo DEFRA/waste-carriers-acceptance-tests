@@ -7,8 +7,7 @@ When(/^an agency user orders "([^"]*)" registration (?:card|cards)$/) do |cards|
 
   # Error validation check:
   @journey.cards_order_page.submit(number_of_cards: "0")
-  expect(@journey.cards_order_page.error_summary).to have_text("enter a number between 1 and 999")
-
+  expect(@journey.cards_order_page.error_summary).to have_text("Enter a number between 1 and 999")
   @journey.cards_order_page.submit(number_of_cards: cards)
 
   if @number_of_cards == 1
@@ -23,7 +22,7 @@ When(/^the agency user pays for the (?:card|cards) by bank card$/) do
 
   # Error validation check:
   @journey.cards_payment_page.submit
-  expect(@journey.cards_payment_page.error_summary).to have_text("Select card or alternative payment")
+  expect(@journey.cards_payment_page).to have_text("Payment summary")
 
   @journey.cards_payment_page.submit(choice: :bank_card)
   submit_valid_card_payment
@@ -37,13 +36,13 @@ When(/^the agency user chooses to pay for the (?:card|cards) by bank transfer$/)
   expect(@journey.standard_page.heading).to have_text("Details for bank transfer")
   expect(@journey.standard_page.content).to have_text("£" + (@number_of_cards * 5).to_s)
   expect(@journey.standard_page.content).to have_text("Cards will be sent out after the payment has cleared.")
-  @journey.standard_page.button.click
+  @journey.standard_page.submit_button.click
 end
 
 Then(/^the card order is confirmed with cleared payment$/) do
   expect(@journey.cards_confirmation_page.confirmation_message).to have_text("Order completed.\nPayment has cleared.")
-  expect(@journey.cards_confirmation_page.info_table).to have_text("£ " + (@number_of_cards * 5).to_s)
-  expect(@journey.cards_confirmation_page.info_table).to have_text(@reg_number)
+  expect(@journey.cards_confirmation_page).to have_text("£ " + (@number_of_cards * 5).to_s)
+  expect(@journey.cards_confirmation_page).to have_text(@reg_number)
 
   @journey.cards_confirmation_page.go_to_search_button.click
   expect(@bo.dashboard_page.heading).to have_text("Waste carriers registrations")
@@ -54,7 +53,7 @@ Then(/^the card order is confirmed awaiting payment$/) do
 
   @journey.cards_confirmation_page.details_for_reg_button.click
   expect(@bo.registration_details_page.heading).to have_text("Registration " + @reg_number)
-  expect(@bo.registration_details_page.content).to have_text("Payment required")
+  expect(@bo.registration_details_page).to have_text("Payment required")
 end
 
 Then("the carrier receives an email saying their card order is being printed") do
@@ -81,5 +80,5 @@ end
 
 Then("the payment is shown as rejected") do
   @journey.cards_payment_page.wait_until_submit_button_visible
-  expect(@journey.cards_payment_page.error_summary).to have_text("Your payment has been refused")
+  expect(@journey.cards_payment_page).to have_text("Your payment has been refused")
 end
