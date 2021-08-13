@@ -1,4 +1,4 @@
-@foi @fo_reg
+@fo @fo_reg
 Feature: A new user registers as an upper tier waste carrier
   As a carrier of commercial waste
   I want to register for an upper tier licence
