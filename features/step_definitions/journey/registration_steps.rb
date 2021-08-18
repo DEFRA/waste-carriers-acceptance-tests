@@ -19,6 +19,7 @@ When("I start a new registration journey in {string} as a {string}") do |locatio
   @app = "fo"
   @journey.start_page.load
   @journey.standard_page.accept_cookies
+
   @journey.start_page.submit(choice: @reg_type)
   @journey.location_page.submit(choice: location)
 end
@@ -275,6 +276,7 @@ Given("a limited company with companies house number {string} is registered as a
   step("I want to register as an upper tier carrier")
   @journey.start_page.load
   @journey.standard_page.accept_cookies
+
   @journey.start_page.submit(choice: @reg_type)
   @journey.location_page.submit(choice: "england")
   step("I complete my registration for my business '#{@business_name}'")

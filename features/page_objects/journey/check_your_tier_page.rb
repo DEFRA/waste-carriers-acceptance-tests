@@ -5,21 +5,20 @@ class CheckYourTierPage < SitePrism::Page
 
   element(:error_summary, ".govuk-error-summary__body")
   elements(:check_your_tier_options, "input[type='radio']", visible: false)
-
+  element(:not_sure, "[value='unknown']+ .govuk-radios__label")
+  element(:upper_tier, "[value='upper']+ .govuk-radios__label")
+  element(:lower_tier, "[value='lower']+ .govuk-radios__label")
   element(:submit_button, "[type='submit']")
 
   def submit(args = {})
-    if args.key?(:option)
-      check_your_tier_options.find do |option|
-        option.value == args[:option].to_s
-      end.click
+    case args[:option]
+    when :lower
+      lower.click
+    when :upper
+      upper_tier.click
+    when :unknown
+      not_sure.click
     end
-
-    # Options are:
-    # unknown (= I don't know)
-    # lower
-    # upper
-
     submit_button.click
   end
 end

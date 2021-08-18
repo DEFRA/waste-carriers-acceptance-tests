@@ -26,6 +26,7 @@ def submit_carrier_details(business, tier, carrier)
   else
     # Assume it's an upper tier new registration.
     # This method does not cover renewals with changed tier.
+    expect(@journey.tier_check_page).to have_text("What kind of registration do you need?")
     select_tier_for_registration(carrier)
   end
 end
@@ -53,7 +54,7 @@ def select_random_upper_tier_route
     # go through routing questions to check your tier.
     @journey.check_your_tier_page.submit(option: :unknown)
     answer_random_upper_tier_questions
-    # "You need to register as an upper tier waste carrier":
+    expect(@journey.tier_check_page).to have_text("You need to register as an upper tier waste carrier")
     @journey.standard_page.submit
   else
     # select "I know I need an upper tier registration":
@@ -137,6 +138,7 @@ def submit_limited_company_details(business_name, tier)
 end
 
 def complete_address_with_random_method
+  expect(@journey.address_lookup_page).to have_content("address")
   i = rand(0..2)
   if i.zero?
     # Submit address manually
@@ -173,14 +175,15 @@ def submit_company_people
   # and returns the people. Use ||= in case @people has been previously defined to be people with convictions.
   @people ||= @journey.company_people_page.main_people
 
+  # Gives page time to render so the if statement doesn't get executed too soon
+  expect(@journey.company_people_page).to have_text("details")
   # If they are a sole trader then only one person can be added here.
   heading = @journey.company_people_page.heading.text
-  if heading != "Business owner details"
+  unless heading.include?("Business owner details")
     # then they're not a sole trader, so add more people:
     @journey.company_people_page.add_main_person(person: @people[0])
     @journey.company_people_page.add_main_person(person: @people[1])
   end
-
   @journey.company_people_page.submit_main_person(person: @people[2])
 end
 
@@ -208,11 +211,13 @@ def test_partnership_people
 end
 
 def submit_convictions(convictions)
+  expect(@journey.conviction_declare_page).to have_text("Do any of the following have an unspent conviction for a relevant offence?")
   if convictions == "convictions"
     @journey.conviction_declare_page.submit(choice: :yes)
     people = @journey.conviction_details_page.main_people
     @journey.conviction_details_page.submit(person: people[0])
   else
+    puts "entering no convictions"
     @journey.conviction_declare_page.submit(choice: :no)
   end
 end
@@ -257,6 +262,7 @@ def check_your_answers
 end
 
 def order_cards_during_journey(number_of_cards)
+  expect(@journey.registration_cards_page).to have_content("Order registration cards if you need them")
   if number_of_cards.zero?
     @journey.registration_cards_page.submit
   else

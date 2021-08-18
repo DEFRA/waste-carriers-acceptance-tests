@@ -6,10 +6,13 @@ class ConfirmBusinessTypePage < SitePrism::Page
   element(:heading, ".govuk-fieldset__legend--l")
 
   elements(:org_types, "input[name='business_type_form[business_type]']", visible: false)
+  element(:sole_trader, "#business-type-form-business-type-soletrader-field+ .govuk-radios__label")
   element(:submit_button, "[type='submit']", visible: false)
 
   def submit(args = {})
-    if args.key?(:org_type) && args[:org_type] != "existing"
+    if args[:org_type] == "soleTrader" && args[:org_type] != "existing"
+      sole_trader.click
+    elsif args.key?(:org_type) && args[:org_type] != "existing"
       org_types.find { |btn| btn.value == args[:org_type] }.click if args.key?(:org_type)
     end
     submit_button.click

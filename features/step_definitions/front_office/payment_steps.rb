@@ -2,6 +2,7 @@ Given("I complete my renewal up to the payment page") do
   # Adding "reject" in the company name ensures payment will be rejected by the Worldpay mock here, if activated:
   @business_name ||= "Renewal with rejected payment"
   @journey.standard_page.accept_cookies
+
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   select_tier_for_renewal("existing")

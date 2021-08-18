@@ -4,8 +4,8 @@ class TierOtherBusinessesPage < SitePrism::Page
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, ".govuk-fieldset__legend--l")
 
-  element(:yes_other_businesses, "input[value='yes']", visible: false)
-  element(:no_other_businesses, "input[value='no']", visible: false)
+  element(:yes_other_businesses, "[value='yes']+ .govuk-radios__label")
+  element(:no_other_businesses, "[value='no']+ .govuk-radios__label")
 
   element(:submit_button, "[type='submit']")
 

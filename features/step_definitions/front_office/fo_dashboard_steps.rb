@@ -9,7 +9,7 @@ end
 
 Then("I can view my certificate of registration") do
   # We need to bypass the PDF link by going directly to the HTML version of the certificate.
-  visit("#{Quke::Quke.config.custom['urls']['front_office']}/registrations/#{@reg_number}/certificate?show_as_html=true")
+  visit("#{Quke::Quke.config.custom['urls']['front_office']}/fo/registrations/#{@reg_number}/certificate?show_as_html=true")
   expect(page).to have_text("Certificate of Registration")
   expect(page).to have_text(@reg_number)
   page.evaluate_script("window.history.back()")
@@ -19,6 +19,7 @@ When("I forget my front office password and reset it") do
   # Submit incorrect password:
   visit(Quke::Quke.config.custom["urls"]["front_office_sign_in"])
   @journey.standard_page.accept_cookies
+
   @account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
   @fo.front_office_sign_in_page.submit(
     email: @account_email,
@@ -85,6 +86,7 @@ Given("I am based outside England but in the UK") do
   @reg_type = :new_registration
   @journey.start_page.load
   @journey.standard_page.accept_cookies
+
   @journey.start_page.submit(choice: @reg_type)
 end
 

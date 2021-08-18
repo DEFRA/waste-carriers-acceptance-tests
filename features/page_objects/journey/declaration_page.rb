@@ -5,7 +5,7 @@ class DeclarationPage < SitePrism::Page
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
-  element(:declaration, "input[id^='declaration-form-declaration']", visible: false)
+  element(:declaration, "#declaration-form-declaration-1-field , .govuk-checkboxes__label")
   element(:submit_button, "[type='submit']")
 
   def submit(_args = {})

@@ -5,8 +5,8 @@ class ConvictionDeclarePage < SitePrism::Page
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
-  element(:convictions, "input[value='yes']", visible: false)
-  element(:no_convictions, "input[value='no']", visible: false)
+  element(:convictions, "[value='yes']+ .govuk-radios__label")
+  element(:no_convictions, "[value='no']+ .govuk-radios__label")
   element(:submit_button, "[type='submit']")
 
   def submit(args = {})

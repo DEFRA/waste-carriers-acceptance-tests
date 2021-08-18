@@ -5,8 +5,8 @@ class TierServiceProvidedPage < SitePrism::Page
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
-  element(:yes_main_service, "input[value='yes']", visible: false)
-  element(:not_main_service, "input[value='no']", visible: false)
+  element(:yes_main_service, "[value='yes']+ .govuk-radios__label")
+  element(:not_main_service, "[value='no']+ .govuk-radios__label")
   element(:submit_button, "[type='submit']")
 
   def submit(args = {})
