@@ -13,7 +13,7 @@ class CheckYourTierPage < SitePrism::Page
   def submit(args = {})
     case args[:option]
     when :lower
-      lower.click
+      lower_tier.click
     when :upper
       upper_tier.click
     when :unknown
