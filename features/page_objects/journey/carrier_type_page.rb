@@ -3,9 +3,9 @@ class CarrierTypePage < SitePrism::Page
   # Do you carry the waste yourselves, or arrange for others to do it?
 
   element(:error_summary, ".govuk-error-summary__body")
-  element(:carrier_dealer, "input[value='carrier_dealer']", visible: false)
-  element(:broker_dealer, "input[value='broker_dealer']", visible: false)
-  element(:carrier_broker_dealer, "input[value='carrier_broker_dealer']", visible: false)
+  element(:carrier_dealer, "#cbd-type-form-registration-type-carrier-dealer-field+ .govuk-radios__label")
+  element(:broker_dealer, "#cbd-type-form-registration-type-broker-dealer-field+ .govuk-radios__label")
+  element(:carrier_broker_dealer, "#cbd-type-form-registration-type-carrier-broker-dealer-field+ .govuk-radios__label")
 
   element(:submit_button, "[type='submit']")
 

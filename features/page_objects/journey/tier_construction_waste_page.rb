@@ -6,8 +6,8 @@ class TierConstructionWastePage < SitePrism::Page
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
-  element(:yes_construction_waste, "#construction-demolition-form-construction-waste-yes-field", visible: false)
-  element(:no_construction_waste, "#construction-demolition-form-construction-waste-no-field", visible: false)
+  element(:yes_construction_waste, "#construction-demolition-form-construction-waste-yes-field+ .govuk-radios__label")
+  element(:no_construction_waste, "#construction-demolition-form-construction-waste-no-field+ .govuk-radios__label")
   element(:submit_button, "[type='submit']")
 
   def submit(args = {})

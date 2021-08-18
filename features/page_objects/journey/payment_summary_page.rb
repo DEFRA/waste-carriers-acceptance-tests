@@ -6,9 +6,9 @@ class PaymentSummaryPage < SitePrism::Page
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
-  element(:card_payment, "input[value='card']", visible: false)
+  element(:card_payment, "input[value='card']+ .govuk-radios__label")
   element(:receipt_email_field, "input[id^='payment-summary-form-card-confirmation-email-field']")
-  element(:bank_transfer_payment, "input[value='bank_transfer']", visible: false)
+  element(:bank_transfer_payment, "input[value='bank_transfer']+ .govuk-radios__label")
   element(:charge, "#registration_registration_fee")
   element(:submit_button, "[type='submit']")
 

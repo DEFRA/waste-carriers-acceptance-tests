@@ -9,7 +9,7 @@ class StandardPage < SitePrism::Page
   element(:heading, "h1")
   element(:content, "#main-content")
   element(:submit_button, "[type='submit']")
-  element(:button, ".button")
+  element(:button, ".govuk-button")
   element(:accept_analytics_cookies, "input[value='Accept analytics cookies']")
   element(:reject_analytics_cookies, "input[value='Reject analytics cookies']")
 
@@ -24,6 +24,7 @@ class StandardPage < SitePrism::Page
 
     accept_analytics_cookies.click
     hide_cookie_banner.click
+    sleep(2)
   end
 
 end

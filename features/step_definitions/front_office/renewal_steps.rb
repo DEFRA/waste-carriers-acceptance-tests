@@ -3,6 +3,7 @@ Given("I start renewing this registration from the start page") do
   @reg_type = :renewal
   @journey.start_page.load
   @journey.standard_page.accept_cookies
+
   @journey.start_page.submit(choice: @reg_type)
   @journey.existing_registration_page.submit(reg_no: @reg_number)
 end
@@ -117,6 +118,7 @@ When("I complete my {string} renewal steps") do |business_type|
   # business_type must match the options in page_objects/front_office/registrations/business_type_page.rb
   @business_name ||= business_type + " renewal"
   @journey.standard_page.accept_cookies
+
   @journey.renewal_start_page.submit
   @journey.location_page.submit(choice: "england")
   @journey.confirm_business_type_page.submit
@@ -167,7 +169,6 @@ When("I complete my overseas company renewal steps") do
   people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: people[0])
   submit_convictions("no convictions")
-  order_cards_during_journey(0)
   @journey.contact_name_page.submit(
     first_name: "Peter",
     last_name: "O'Hanrahahanrahan"

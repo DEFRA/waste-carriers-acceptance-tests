@@ -5,8 +5,8 @@ class TierFarmOnlyPage < SitePrism::Page
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
-  element(:only_these_types, "#waste-types-form-only-amf-yes-field", visible: false)
-  element(:other_types, "#waste-types-form-only-amf-no-field", visible: false)
+  element(:only_these_types, "#waste-types-form-only-amf-yes-field+ .govuk-radios__label")
+  element(:other_types, "#waste-types-form-only-amf-no-field+ .govuk-radios__label")
   element(:submit_button, "[type='submit']")
 
   def submit(args = {})

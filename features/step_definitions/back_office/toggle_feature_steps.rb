@@ -31,7 +31,7 @@ Then("the features are available") do
   expect(@bo.registration_details_page).to have_text("Renewal link")
 
   # Go to new registration start page on frontend:
-  visit(Quke::Quke.config.custom["urls"]["front_office"] + "/start")
+  visit(Quke::Quke.config.custom["urls"]["front_office"])
   expect(page).to have_text("Is this a new registration?")
 
   # Go to API page for registration:

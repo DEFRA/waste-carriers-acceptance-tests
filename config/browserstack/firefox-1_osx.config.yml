@@ -3,7 +3,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: 'http://localhost:3000'
+app_host: 'https://waste-carriers-dev.aws.defra.cloud'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome, and
 # browserstack, with the default being chrome
@@ -51,9 +51,14 @@ custom:
     waste_carrier:
       username: user@example.com
   urls:
-    front_office: "http://localhost:3002"
-    front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
-    back_office: "http:/localhost:3000/agency_users/sign_in"
+    front_office: "https://waste-carriers-dev.aws.defra.cloud"
+    front_office_sign_in: "https://waste-carriers-dev.aws.defra.cloud/fo/users/sign_in"
+    back_office: "https://admin-waste-carriers-dev.aws.defra.cloud/bo"
+    back_office_sign_in: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/users/sign_in"
+    last_email_fo: "https://waste-carriers-dev.aws.defra.cloud/fo/email/last-email"
+    last_email_bo: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/email/last-email"
+    notify_link: "/fo/email/last-notify-message"
+    mock_enabled: "https://waste-carriers-dev.aws.defra.cloud/fo/mocks/company/00445790"
     
 
 # If you are running Quke behind a proxy you can configure the proxy details
@@ -106,7 +111,7 @@ browserstack:
     # capabilities. Group your tests into builds, and builds further into
     # projects
     project: 'Waste carriers'
-    build: 'Design system upgrade'
+    build: 'Happy path regression testing'
     # Allows you to specify an identifier for the test run.
     # If you intend to repeat a test this might not be that applicable, but in
     # the case of one off tests it might be useful
@@ -138,7 +143,6 @@ browserstack:
     # https://www.browserstack.com/automate/capabilities
     browser: Firefox
     os: 'OS X'
-    # javascriptEnabled: true
     browser_version: 'latest-1'
     os_version: 'Big Sur'
-    # browserstack.selenium_version: "3.5.2"
+

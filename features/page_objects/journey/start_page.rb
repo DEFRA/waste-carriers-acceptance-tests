@@ -1,11 +1,11 @@
 class StartPage < SitePrism::Page
-  set_url("#{Quke::Quke.config.custom['urls']['front_office']}/start")
+  set_url((Quke::Quke.config.custom["urls"]["front_office"]).to_s)
 
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, ".govuk-fieldset__legend--l")
 
-  element(:new_registration, "input[value='new']", visible: false)
-  element(:renew_registration, "input[value='renew']", visible: false)
+  element(:new_registration, "[value='new']+ .govuk-radios__label")
+  element(:renew_registration, "[value='renew']+ .govuk-radios__label")
 
   element(:submit_button, "[type='submit']")
 
