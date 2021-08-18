@@ -80,7 +80,7 @@ custom:
     waste_carrier2:
       username: another-user@example.com
   urls:
-    front_office: "https://waste-carriers-tst.aws.defra.cloud/fo"
+    front_office: "https://waste-carriers-tst.aws.defra.cloud"
     front_office_sign_in: "https://waste-carriers-tst.aws.defra.cloud/fo/users/sign_in"
     back_office: "https://admin-waste-carriers-tst.aws.defra.cloud/bo"
     back_office_sign_in: "https://admin-waste-carriers-tst.aws.defra.cloud/bo/users/sign_in"
