@@ -34,7 +34,7 @@ You can configure how the project runs using [Quke config files](https://github.
 
 Quke relies on .yaml files to configure how the tests are run in each environment.
 
-You'll need to set the environment variable `WCRS_DEFAULT_PASSWORD` to the appropriate password to enable authentication into the apps.
+You'll need to set the environment variable  `WCRS_DEFAULT_PASSWORD` to the appropriate password to enable authentication into the apps.
 
 If left as that by default when Quke is executed it will run against your selected environment using Chrome.
 
