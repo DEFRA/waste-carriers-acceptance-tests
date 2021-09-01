@@ -145,8 +145,9 @@ The test suite allows for data to be seeded while running tests at the start of 
 
 The advantages of this are that:
 
-* The tests do not rely on hard-coded data seeds which need to be reset in each test run.
-* The tests run much more quickly, as they do not repeat the steps to create registrations through the user interface.
+- The tests do not rely on hard-coded data seeds which need to be reset in each test run.
+
+- The tests run much more quickly, as they do not repeat the steps to create registrations through the user interface.
 
 ## Resetting data
 
@@ -215,19 +216,22 @@ Some tests in this suite (such as tests which require you to get a URL from an e
 ```ruby
 @renew_from_email_link = renewal_email_text.match(/.*few minutes at: <a href\=(.*)>http.*/)[1]
 ```
+
 extracts the first renewal link from this email text, as it appears on the 'last email' screen:
+
 ```HTML
 <h1>\r\n              Renew your waste carrier registration by 18 August 2023.\r\n            </h1>\r\n\r\n            <p style=\"font-size: 19px; line-height: 1.315789474; margin: 15px 0 15px 0;\">\r\n              It costs £105 and lasts for 3 years.\r\n            </p>\r\n\r\n            <p style=\"font-size: 19px; line-height: 1.315789474; margin: 15px 0 15px 0; font-weight: bold\">\r\n              You can renew online in a few minutes at: <a href=https://waste-carriers-tst.aws.defra.cloud/fo/renew/token0123456789abcdef>https://waste-carriers-tst.aws.defra.cloud/fo/renew/token0123456789abcdef</a>\r\n
 ```
 
 Breaking this down:
 
-* `.match(/` `/)` represents the start and end of the thing that needs to be matched.
-* `.*` represents 'any number of any characters'. So it represents the majority of the email outside of the bit you're interested in.
-* `few minutes at: <a href \=` represents the text immediately before what needs to be captured. As the `=` sign is used in programming, it is preceded with the escape character `\` to avoid it being interpreted as code.
-* `(.*)` represents the part of the email that you will capture - any number of any characters. In this case it will be a whole URL.
-* `>http` represents the text immediately after what you want to capture. (In this case, the URL is contained in an `<a>` tag and then repeated in the email body.)
-* `[1]` represents the first item that matches (in case there's more than one).
+- `.match(/` `/)` represents the start and end of the thing that needs to be matched.
+- `.*` represents 'any number of any characters'. So it represents the majority of the email outside of the bit you're interested in.
+- `few minutes at: <a href \=` represents the text immediately before what needs to be captured. As the `=` sign is used in programming, it is preceded with the escape character `\` to avoid it being interpreted as code.
+
+- `(.*)` represents the part of the email that you will capture - any number of any characters. In this case it will be a whole URL.
+- `>http` represents the text immediately after what you want to capture. (In this case, the URL is contained in an `<a>` tag and then repeated in the email body.)
+- `[1]` represents the first item that matches (in case there's more than one).
 
 Other common things inside a regex include `\n` to represent a new line in the text, `\d+` representing one or more digits, `\"` for a double quote, and `\\` meaning that the text contains a backslash, but this needs to be preceded by another backslash to prevent it being interpreted as code.
 
