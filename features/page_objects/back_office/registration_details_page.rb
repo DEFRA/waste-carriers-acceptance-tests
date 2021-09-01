@@ -9,7 +9,7 @@ class RegistrationDetailsPage < SitePrism::Page
   element(:heading, "h1")
 
   element(:content, ".column-full")
-  element(:continue_as_ad_button, ".button", text: "Continue as assisted digital")
+  element(:continue_as_ad_button, "a[class*='button'][href^='/bo/ad-privacy-policy']")
   element(:add_missed_worldpay_button, "a[href*='missed']")
   element(:process_payment_button, "a[href*='/payments']")
 
