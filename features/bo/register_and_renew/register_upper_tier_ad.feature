@@ -15,7 +15,7 @@ Feature: Assisted digital upper tier registrations
 
   # Uses environment variable WCRS_ASSISTED_DIGITAL_EMAIL
   @letter
-  Scenario: Lower tier charity is registered as assisted digital from back office
+  Scenario: Partnership is registered as assisted digital from back office
     Given I sign into the back office as "agency-user"
     When I register an assisted digital upper tier "partnership" from the back office
     And I pay by card
