@@ -23,7 +23,7 @@ pause: 0
 # Continuous Integration (CI) environments where a quick Yes/No is preferable to
 # a detailed response. By default Quke sets this to false if not set in the
 # config.
-stop_on_error: false
+stop_on_error: true
 
 # By default Quke will display web pages where a failure has taken place.
 # A copy of the html is saved and Quke will display it in your default browser.
@@ -80,7 +80,7 @@ custom:
     waste_carrier2:
       username: another-user@example.com
   urls:
-    front_office: "http://localhost:3002/fo"
+    front_office: "http://localhost:3002"
     front_office_sign_in: "http://localhost:3002/fo/users/sign_in"
     back_office: "http://localhost:8001/bo"
     back_office_sign_in: "http://localhost:8001/bo/users/sign_in"
