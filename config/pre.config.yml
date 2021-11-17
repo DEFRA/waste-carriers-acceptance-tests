@@ -23,7 +23,7 @@ pause: 0
 # Continuous Integration (CI) environments where a quick Yes/No is preferable to
 # a detailed response. By default Quke sets this to false if not set in the
 # config.
-stop_on_error: false
+stop_on_error: true
 
 # By default Quke will display web pages where a failure has taken place.
 # A copy of the html is saved and Quke will display it in your default browser.
@@ -82,7 +82,7 @@ custom:
   urls:
     front_office: "https://waste-carriers-pre.aws.defra.cloud"
     front_office_sign_in: "https://waste-carriers-pre.aws.defra.cloud/fo/users/sign_in"
-    back_office: "https://admin-waste-carriers-pre.aws.defra.cloud/bo"
+    back_office: "https://admin-waste-carriers-pre.aws.defra.cloud"
     back_office_sign_in: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/users/sign_in"
     last_email_fo: "https://waste-carriers-pre.aws.defra.cloud/fo/email/last-email"
     last_email_bo: "https://admin-waste-carriers-pre.aws.defra.cloud/bo/email/last-email"

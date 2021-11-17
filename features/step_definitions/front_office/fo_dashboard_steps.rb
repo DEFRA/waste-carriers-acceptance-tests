@@ -66,19 +66,12 @@ Then("I change the password back to its original value") do
 end
 
 Then("I can access the footer links") do
-  new_window = window_opened_by { find_link("Privacy").click }
-  within_window new_window do
-    expect(@journey.standard_page.heading).to have_text("Waste carriers, brokers and dealers privacy policy")
-    expect(@journey.standard_page.content).to have_text("Lower-tier registrations are non-expiring")
-    new_window = window_opened_by { find_link("Cookies").click }
-    within_window new_window do
-      expect(@journey.standard_page.heading).to have_text("Cookie settings")
-      new_window = window_opened_by { find_link("Accessibility").click }
-      within_window new_window do
-        expect(@journey.standard_page.heading).to have_text("Accessibility statement")
-      end
-    end
-  end
+  find_link("Privacy").click
+  expect(@journey.standard_page.heading).to have_text("Privacy Notice")
+  find_link("Cookies").click
+  expect(@journey.standard_page.heading).to have_text("Cookies on Register as a waste carrier")
+  find_link("Accessibility").click
+  expect(@journey.standard_page.heading).to have_text("Accessibility statement")
 end
 
 Given("I am based outside England but in the UK") do

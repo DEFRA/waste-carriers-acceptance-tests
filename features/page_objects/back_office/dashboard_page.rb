@@ -12,7 +12,7 @@ class DashboardPage < SitePrism::Page
 
   element(:search_term, "#term")
   element(:submit_button, "[type='submit']")
-  element(:new_reg_link, "a[href*='/bo/ad-privacy-policy']")
+  element(:new_reg_link, "a[href*='/ad-privacy-policy']")
 
   element(:results_table, "table")
   elements(:reg_details_links, "a[href*='/registrations/CBD']")
