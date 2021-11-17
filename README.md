@@ -137,7 +137,7 @@ To have consistency across the project the following tags are defined and should
 |Back office tags| @bo_renew, @bo_dashboard, @bo_finance, @bo_reg |
 |Front office tags| @fo_renew, @fo_dashboard, @fo_reg |
 
-It's also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
+It is also common practice to use a custom tag whilst working on a new feature or scenario e.g. `@focus` or `@wip`. That is perfectly acceptable but please ensure they are removed before your change is merged.
 
 ## Seeding data
 
