@@ -1,4 +1,4 @@
-class CardsConfirmationPage < SitePrism::Page
+class CardsConfirmationPage < BasePage
 
   # Confirmation of order
 

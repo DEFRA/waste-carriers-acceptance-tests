@@ -1,4 +1,4 @@
-class LocationPage < SitePrism::Page
+class LocationPage < BasePage
 
   # This page object is currently shared between old and new apps, as the elements are similar.
   # Update once the old registration journey is no longer live.

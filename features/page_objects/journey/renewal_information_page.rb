@@ -1,4 +1,4 @@
-class RenewalInformationPage < SitePrism::Page
+class RenewalInformationPage < BasePage
 
   # Confirmation of your renewal so far
   element(:heading, :xpath, "//h1[contains(text(), 'Confirmation of your renewal so far')]")

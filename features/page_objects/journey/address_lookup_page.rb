@@ -1,4 +1,4 @@
-class AddressLookupPage < SitePrism::Page
+class AddressLookupPage < BasePage
 
   # Use this for all company and contact addresses on front/back office.
 

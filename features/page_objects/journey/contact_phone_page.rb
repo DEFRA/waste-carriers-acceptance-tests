@@ -1,4 +1,4 @@
-class ContactPhonePage < SitePrism::Page
+class ContactPhonePage < BasePage
 
   # What's the contact telephone number?
 

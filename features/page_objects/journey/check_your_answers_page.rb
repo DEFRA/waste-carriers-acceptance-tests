@@ -1,4 +1,4 @@
-class CheckYourAnswersPage < SitePrism::Page
+class CheckYourAnswersPage < BasePage
 
   # Check your answers before renewing your registration
   element(:heading, ".heading_large")

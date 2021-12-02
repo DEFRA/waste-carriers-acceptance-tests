@@ -1,4 +1,4 @@
-class ConfirmBusinessTypePage < SitePrism::Page
+class ConfirmBusinessTypePage < BasePage
 
   # What type of business or organisation are you? - front office
 

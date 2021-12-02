@@ -1,13 +1,9 @@
-class FinancePaymentDetailsPage < SitePrism::Page
+class FinancePaymentDetailsPage < BasePage
 
   # Payment details for CBDU1
   # Buttons on this page appear based on our user permissions table
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
-
-  element(:back_link, ".govuk-back-link")
-  element(:heading, "h1")
-  element(:flash_message, ".govuk-notification-banner__heading")
 
   element(:info_panel, ".wcr-panel-border-all")
   element(:business_name, ".wcr-panel-border-all .heading-medium")

@@ -1,4 +1,4 @@
-class AddressManualPage < SitePrism::Page
+class AddressManualPage < BasePage
 
   # Use this for all manual addresses for renewals
 

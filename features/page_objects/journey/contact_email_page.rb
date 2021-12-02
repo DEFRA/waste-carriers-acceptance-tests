@@ -1,4 +1,4 @@
-class ContactEmailPage < SitePrism::Page
+class ContactEmailPage < BasePage
 
   # What's the contact email address?
 

@@ -1,4 +1,4 @@
-class RegistrationCardsPage < SitePrism::Page
+class RegistrationCardsPage < BasePage
 
   # Certificate and registration cards
 

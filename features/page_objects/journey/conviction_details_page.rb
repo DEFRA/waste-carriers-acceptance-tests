@@ -1,11 +1,8 @@
 require "faker"
 
-class ConvictionDetailsPage < SitePrism::Page
+class ConvictionDetailsPage < BasePage
 
   # Details of the person with a conviction
-
-  element(:error_summary, ".govuk-error-summary__body")
-  element(:heading, "h1")
 
   element(:first_name, "#conviction-details-form-first-name-field")
   element(:last_name, "#conviction-details-form-last-name-field")
@@ -17,9 +14,7 @@ class ConvictionDetailsPage < SitePrism::Page
   element(:add_person, "input[value='Add another person']")
 
   elements(:remove_person, "a[href*='delete']")
-
   element(:submit_button, "button[type='submit']")
-
   def add_conviction(args = {})
     person = args[:person]
 

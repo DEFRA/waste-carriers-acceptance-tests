@@ -1,4 +1,4 @@
-class TierConstructionWastePage < SitePrism::Page
+class TierConstructionWastePage < BasePage
 
   # Do you ever deal with building, construction or demolition waste?
 

@@ -1,6 +1,6 @@
 require "faker"
 
-class PartnersPage < SitePrism::Page
+class PartnersPage < BasePage
 
   element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")

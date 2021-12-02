@@ -4,7 +4,7 @@
 
 class BackOfficeApp
   # Using an attr_reader automatically gives us a my_app.last_page method
-  attr_reader :last_page
+  attr_reader :last_page, :base_page
 
   # BACK OFFICE SPECIFIC PAGES
   # /

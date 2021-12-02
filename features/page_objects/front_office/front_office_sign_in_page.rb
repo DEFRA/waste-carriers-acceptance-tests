@@ -1,4 +1,4 @@
-class FrontOfficeSignInPage < SitePrism::Page
+class FrontOfficeSignInPage < BasePage
 
   # Sign in for external users on new app.
   # This page will become redundant when we remove accounts.

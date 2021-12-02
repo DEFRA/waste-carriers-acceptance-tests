@@ -1,9 +1,6 @@
-class ConvictionsBoDetailsPage < SitePrism::Page
+class ConvictionsBoDetailsPage < BasePage
 
   # Back office user views conviction details for an existing registration or renewal
-
-  element(:heading, "h1")
-  element(:content, ".column-two-thirds")
 
   # Panel containing summary text on the convictions:
   element(:info_panel, ".panel")

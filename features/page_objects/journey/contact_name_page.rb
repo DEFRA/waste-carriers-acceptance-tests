@@ -1,4 +1,4 @@
-class ContactNamePage < SitePrism::Page
+class ContactNamePage < BasePage
 
   # Who should we contact about this registration?
 

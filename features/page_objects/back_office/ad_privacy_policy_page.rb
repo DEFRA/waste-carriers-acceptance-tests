@@ -1,4 +1,6 @@
-class AdPrivacyPolicyPage < SitePrism::Page
+require_relative "base_page"
+
+class AdPrivacyPolicyPage < BasePage
 
   element(:heading, "h1")
   element(:content, ".column-two-thirds")

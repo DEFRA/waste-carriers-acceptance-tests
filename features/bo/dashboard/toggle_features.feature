@@ -7,7 +7,7 @@ Feature: [RUBY-1118] Toggle features
   Background:
     Given I sign into the back office as "developer"
     And I have a new registration for a "localAuthority" business
-
+    
   Scenario: Turn features off and on again
     When I turn all features off
     Then the features are no longer available

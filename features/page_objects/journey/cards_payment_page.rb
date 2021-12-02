@@ -1,4 +1,4 @@
-class CardsPaymentPage < SitePrism::Page
+class CardsPaymentPage < BasePage
 
   # Payment summary
 

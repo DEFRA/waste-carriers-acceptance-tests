@@ -1,4 +1,4 @@
-class WorldpayPaymentPage < SitePrism::Page
+class WorldpayPaymentPage < BasePage
 
   # As of Nov 2019, this is the new combined WorldPay payment page.
 

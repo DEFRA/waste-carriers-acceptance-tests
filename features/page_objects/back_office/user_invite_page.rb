@@ -1,12 +1,11 @@
 require_relative "sections/govuk_banner"
 
-class UserInvitePage < SitePrism::Page
+class UserInvitePage < BasePage
   set_url "#{Quke::Quke.config.custom['urls']['back_office']}/users/invitation/new"
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
   element(:email_field, "input[name='user[email]']")
-  element(:submit_form, "[type='submit']")
 
   element(:agency_user_radio, "input[value='agency']", visible: false)
   element(:agency_user_with_refund_radio, "#user_role_agency_with_refund", visible: false)

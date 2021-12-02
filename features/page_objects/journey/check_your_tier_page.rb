@@ -1,4 +1,4 @@
-class CheckYourTierPage < SitePrism::Page
+class CheckYourTierPage < BasePage
 
   # What type of tier are you?
   # Applies only to registrations

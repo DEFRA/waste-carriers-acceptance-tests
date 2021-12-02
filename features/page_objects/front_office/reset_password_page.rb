@@ -1,4 +1,4 @@
-class ResetPasswordPage < SitePrism::Page
+class ResetPasswordPage < BasePage
 
   # Reset your password / set your password / change password (shared page object)
   # This page will become redundant when we remove accounts.

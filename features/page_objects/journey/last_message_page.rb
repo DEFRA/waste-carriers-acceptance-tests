@@ -2,7 +2,7 @@
 
 require "json"
 
-class LastMessagePage < SitePrism::Page
+class LastMessagePage < BasePage
   # Page which shows last message (email or letter) sent to any address from the environment.
   # As there are two app servers, there is a 50% chance that the latest email
   # will show each time the page is refreshed.

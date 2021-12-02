@@ -2,7 +2,7 @@
 
 require "json"
 
-class ApiResultPage < SitePrism::Page
+class ApiResultPage < BasePage
   # This is a wrapper page around JSON API results
 
   element(:json_data, "pre")

@@ -137,6 +137,25 @@ def submit_limited_company_details(business_name, tier)
   complete_address_with_random_method
 end
 
+def complete_contact_address_with_random_method
+  @journey.address_reuse_page.submit(choice: :no) unless @reg_type == :renewal
+  expect(@journey.address_lookup_page).to have_content("address")
+  i = rand(0..3)
+  if i.zero?
+    # Submit address manually
+    @journey.address_lookup_page.choose_manual_address
+    @journey.address_manual_page.submit(
+      house_number: "1",
+      address_line_one: "Test lane",
+      address_line_two: "Testville",
+      city: "Teston"
+    )
+  else
+    # Do a lookup
+    @journey.address_lookup_page.submit_valid_address
+  end
+end
+
 def complete_address_with_random_method
   expect(@journey.address_lookup_page).to have_content("address")
   i = rand(0..2)
@@ -152,6 +171,18 @@ def complete_address_with_random_method
   else
     # Do a lookup
     @journey.address_lookup_page.submit_valid_address
+  end
+end
+
+def random_address_reuse
+  # currently renewal doesn't use reuse pattern
+
+  i = rand(0..1)
+  if i.zero?
+    @journey.address_reuse_page.submit(choice: :yes)
+  else
+    @journey.address_reuse_page.submit(choice: :no)
+    complete_contact_address_with_random_method
   end
 end
 
@@ -242,7 +273,7 @@ def submit_contact_details_for_renewal
     confirm_email: "bo-renewal@example.com"
   )
 
-  complete_address_with_random_method
+  complete_contact_address_with_random_method
 end
 
 def submit_contact_details_for_registration(email_address)
@@ -253,7 +284,7 @@ def submit_contact_details_for_registration(email_address)
   @journey.contact_name_page.submit(names)
   @journey.contact_phone_page.submit(phone_number: "0117 4960000")
   @journey.contact_email_page.submit(email: email_address, confirm_email: email_address)
-  complete_address_with_random_method
+  complete_contact_address_with_random_method
 end
 
 def check_your_answers

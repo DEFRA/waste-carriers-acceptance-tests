@@ -1,4 +1,4 @@
-class CompanyNamePage < SitePrism::Page
+class CompanyNamePage < BasePage
 
   # whats the name of the company?
   element(:error_summary, ".govuk-error-summary__body")

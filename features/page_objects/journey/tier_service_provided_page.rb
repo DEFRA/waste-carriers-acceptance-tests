@@ -1,4 +1,4 @@
-class TierServiceProvidedPage < SitePrism::Page
+class TierServiceProvidedPage < BasePage
 
   # Who creates the waste that you deal with?
 

@@ -1,4 +1,4 @@
-class TierCheckPage < SitePrism::Page
+class TierCheckPage < BasePage
 
   # What tier do you need?
   # Applies only to renewals
