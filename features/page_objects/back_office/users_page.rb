@@ -1,6 +1,6 @@
 require_relative "sections/govuk_banner"
 
-class UsersPage < SitePrism::Page
+class UsersPage < BasePage
   set_url "#{Quke::Quke.config.custom['urls']['back_office']}/users"
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)

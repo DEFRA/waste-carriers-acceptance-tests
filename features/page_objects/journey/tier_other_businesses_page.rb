@@ -1,4 +1,4 @@
-class TierOtherBusinessesPage < SitePrism::Page
+class TierOtherBusinessesPage < BasePage
 
   # Do you ever deal with waste from other businesses or households?
   element(:error_summary, ".govuk-error-summary__body")

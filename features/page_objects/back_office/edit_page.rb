@@ -1,4 +1,4 @@
-class EditPage < SitePrism::Page
+class EditPage < BasePage
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
   element(:change_contact_email, "a[href$='contact-email']")

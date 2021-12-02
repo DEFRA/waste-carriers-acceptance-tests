@@ -1,12 +1,10 @@
 require_relative "sections/govuk_banner"
 
-class FinanceWriteoffPage < SitePrism::Page
+class FinanceWriteoffPage < BasePage
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
-  element(:heading, "h1")
 
   element(:reason_form, "#with-hint")
-  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     reason_form.set(args[:reason]) if args.key?(:reason)

@@ -1,4 +1,4 @@
-class CarrierTypePage < SitePrism::Page
+class CarrierTypePage < BasePage
 
   # Do you carry the waste yourselves, or arrange for others to do it?
 

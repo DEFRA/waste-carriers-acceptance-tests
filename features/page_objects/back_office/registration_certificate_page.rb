@@ -1,4 +1,4 @@
-class RegistrationCertificatePage < SitePrism::Page
+class RegistrationCertificatePage < BasePage
 
   # PDF certificate rendered as HTML
 

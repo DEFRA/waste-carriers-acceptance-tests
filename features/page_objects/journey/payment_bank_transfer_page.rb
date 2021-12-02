@@ -1,4 +1,4 @@
-class PaymentBankTransferPage < SitePrism::Page
+class PaymentBankTransferPage < BasePage
 
   # Registration takes longer if you pay by bank transfer
 

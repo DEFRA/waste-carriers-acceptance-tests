@@ -14,7 +14,7 @@ When(/^I invite a new "([^"]*)" user$/) do |user_type|
 
   user_invite_page.email_field.set(@new_user_email)
   user_invite_page.public_send(element).click
-  user_invite_page.submit_form.click
+  user_invite_page.submit
 
   expect(@bo.users_page).to be_displayed
 end
@@ -42,7 +42,7 @@ Then("the new user accepts their invitation and sets up a password") do
 
   user_accept_invite_page.password_field.set(ENV["WCRS_DEFAULT_PASSWORD"])
   user_accept_invite_page.confirm_password_field.set(ENV["WCRS_DEFAULT_PASSWORD"])
-  user_accept_invite_page.submit_field.click
+  user_accept_invite_page.submit
 end
 
 Then("the new user is logged in") do
@@ -62,7 +62,7 @@ When(/^I update the new user role to an "([^"]*)"$/) do |new_role|
   user_amend_page = UserAmendPage.new
   radio_button = "#{new_role.gsub(' ', '_')}_user_radio"
   user_amend_page.public_send(radio_button).click
-  user_amend_page.submit_field.click
+  user_amend_page.submit
 end
 
 When(/^I deactivate the new user$/) do
@@ -75,7 +75,7 @@ When(/^I deactivate the new user$/) do
   end
 
   user_deactivate_page = UserDeactivatePage.new
-  user_deactivate_page.submit_field.click
+  user_deactivate_page.submit
 end
 
 Then(/^the new user cannot log in to the back office$/) do

@@ -1,4 +1,4 @@
-class DeclarationPage < SitePrism::Page
+class DeclarationPage < BasePage
 
   # Declaration
 

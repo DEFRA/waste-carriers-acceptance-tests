@@ -1,4 +1,4 @@
-class CompanyNumberPage < SitePrism::Page
+class CompanyNumberPage < BasePage
 
   # Business details
 

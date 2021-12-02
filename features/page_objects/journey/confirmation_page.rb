@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ConfirmationPage < SitePrism::Page
+class ConfirmationPage < BasePage
 
   # Covers all "registration/renewal complete" scenarios
 

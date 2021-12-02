@@ -1,12 +1,8 @@
-class RegistrationDetailsPage < SitePrism::Page
+class RegistrationDetailsPage < BasePage
 
   # View details for registrations or transient renewals
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
-
-  element(:back_link, ".govuk-back-link")
-  element(:flash_message, ".govuk-notification-banner__heading")
-  element(:heading, "h1")
 
   element(:content, ".column-full")
   element(:continue_as_ad_button, "a[class*='button'][href^='/bo/ad-privacy-policy']")

@@ -6,6 +6,7 @@ Given("I start renewing this registration from the start page") do
 
   @journey.start_page.submit(choice: @reg_type)
   @journey.existing_registration_page.submit(reg_no: @reg_number)
+  @reg_type = :renewal
 end
 
 Given("I receive an email from NCCC inviting me to renew") do
@@ -20,7 +21,7 @@ end
 When("I renew from the email as a {string}") do |business_type|
   visit(@renew_from_email_link)
   expect(@journey.renewal_start_page.heading).to have_text("You are about to renew registration " + @reg_number)
-
+  @reg_type = :renewal
   step("I complete my '#{business_type}' renewal steps")
 end
 
@@ -96,6 +97,7 @@ end
 Given("I choose to renew my last registration from the dashboard") do
   @fo.front_office_dashboard.find_registration(@reg_number)
   @fo.front_office_dashboard.renew(@reg_number)
+  @reg_type = :renewal
 end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|

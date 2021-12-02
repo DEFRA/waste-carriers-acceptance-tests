@@ -1,4 +1,4 @@
-class ExistingRegistrationPage < SitePrism::Page
+class ExistingRegistrationPage < BasePage
 
   # What's your waste carrier registration number?
 

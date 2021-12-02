@@ -1,4 +1,4 @@
-class FrontOfficeDashboard < SitePrism::Page
+class FrontOfficeDashboard < BasePage
 
   element(:heading, "h1")
   element(:content, "#main-content")

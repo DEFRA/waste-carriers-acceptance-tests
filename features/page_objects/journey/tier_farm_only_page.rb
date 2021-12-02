@@ -1,4 +1,4 @@
-class TierFarmOnlyPage < SitePrism::Page
+class TierFarmOnlyPage < BasePage
 
   # Do you only deal with: Farm or agricultural waste ...?
 

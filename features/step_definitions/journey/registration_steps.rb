@@ -405,6 +405,7 @@ Given("I resume the registration as assisted digital") do
   expect(@journey.contact_email_page.heading).to have_text("contact email address?")
   @email_address = generate_email
   @journey.contact_email_page.submit(email: @email_address, confirm_email: @email_address)
+  @journey.address_reuse_page.submit(choice: :no)
   @journey.address_lookup_page.submit_valid_address
   expect(page).to have_content("Check your answers")
   @journey.standard_page.submit

@@ -1,4 +1,4 @@
-class CardsOrderPage < SitePrism::Page
+class CardsOrderPage < BasePage
 
   # Order registration cards for CBDU1
 

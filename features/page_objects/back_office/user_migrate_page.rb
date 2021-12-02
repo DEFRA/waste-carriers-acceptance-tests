@@ -1,6 +1,6 @@
 require_relative "sections/govuk_banner"
 
-class UserMigratePage < SitePrism::Page
+class UserMigratePage < BasePage
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 

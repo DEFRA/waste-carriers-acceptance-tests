@@ -1,17 +1,12 @@
 require_relative "sections/govuk_banner"
 
-class DashboardPage < SitePrism::Page
+class DashboardPage < BasePage
   set_url(Quke::Quke.config.custom["urls"]["back_office"])
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
-  element(:heading, "h1")
   element(:sign_out_link, "a[href*='/bo/users/sign_out']")
-  element(:content, "#main-content")
-
-  element(:flash_message, ".govuk-notification-banner__heading")
 
   element(:search_term, "#term")
-  element(:submit_button, "[type='submit']")
   element(:new_reg_link, "a[href*='/ad-privacy-policy']")
 
   element(:results_table, "table")

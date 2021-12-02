@@ -1,4 +1,4 @@
-class RenewalStartPage < SitePrism::Page
+class RenewalStartPage < BasePage
 
   # You are about to renew
   # That registration has already been renewed

@@ -95,7 +95,7 @@ Given("I generate errors throughout the journey") do
   expect(@journey.contact_email_page.error_summary).to have_text("The email addresses you’ve entered don’t match")
   @email_address = generate_email
   @journey.contact_email_page.submit(email: @email_address, confirm_email: @email_address)
-
+  @journey.address_reuse_page.submit(choice: :no)
   test_address_validations
 
   expect(page).to have_content("Check your answers")

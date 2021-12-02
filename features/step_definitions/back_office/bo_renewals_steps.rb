@@ -58,7 +58,7 @@ When("I renew the local authority registration") do
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.renew_link.click
   @convictions = "no convictions"
-
+  @reg_type = :renewal
   start_internal_renewal
   submit_existing_renewal_details
 
@@ -72,7 +72,7 @@ When("I renew the limited company registration") do
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.renew_link.click
   @convictions = "no convictions"
-
+  @reg_type = :renewal
   start_internal_renewal
   submit_existing_renewal_details
 
@@ -102,7 +102,7 @@ When("I complete the renewal for the account holder") do
   @business_name = "Assisted digital resumed renewal"
   @app = "bo"
   @convictions = "no convictions"
-
+  @reg_type = :renewal
   @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
   @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit

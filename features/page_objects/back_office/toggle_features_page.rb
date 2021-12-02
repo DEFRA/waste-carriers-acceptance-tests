@@ -1,10 +1,8 @@
 require_relative "sections/govuk_banner"
 
-class ToggleFeaturesPage < SitePrism::Page
+class ToggleFeaturesPage < BasePage
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
-  element(:heading, "h1")
-  element(:content, "#main-content")
 
   element(:new_toggle_button, "a[href*='/feature-toggles/new']")
   element(:toggle_name, "#feature_toggle_key")
@@ -16,7 +14,7 @@ class ToggleFeaturesPage < SitePrism::Page
   def add_new_toggle(name)
     # Input toggle name as text. Toggle will be added if it doesn't exist already.
     # List of toggles: https://github.com/DEFRA/waste-carriers-back-office/blob/main/config/feature_toggles.yml
-    return if content.text.include?(name)
+    return if content.has_content?(name)
 
     new_toggle_button.click
     toggle_name.set(name)

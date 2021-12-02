@@ -4,7 +4,7 @@
 # rubocop:disable Metrics/ClassLength
 class JourneyApp
   # Using an attr_reader automatically gives us a my_app.last_page method
-  attr_reader :last_page
+  attr_reader :last_page, :base_page
 
   def address_lookup_page
     @last_page = AddressLookupPage.new
@@ -12,6 +12,10 @@ class JourneyApp
 
   def address_manual_page
     @last_page = AddressManualPage.new
+  end
+
+  def address_reuse_page
+    @last_page = AddressReusePage.new
   end
 
   def cards_confirmation_page
