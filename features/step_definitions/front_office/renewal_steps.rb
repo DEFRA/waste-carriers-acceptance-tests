@@ -204,7 +204,7 @@ And("the button allows me to start a new registration") do
 end
 
 Then(/^I will be notified my renewal is complete$/) do
-  @journey.confirmation_page.wait_until_heading_visible
+  @journey.confirmation_page.wait_until_registration_number_visible
   expect(@journey.confirmation_page.heading.text).to eq("Renewal complete")
   expect(@journey.confirmation_page).to have_text(@reg_number)
 
@@ -243,14 +243,14 @@ Given(/^I change my companies house number to "([^"]*)"$/) do |number|
 end
 
 Then("I will be notified my renewal is pending checks") do
-  @journey.confirmation_page.wait_until_heading_visible
+  @journey.confirmation_page.wait_until_registration_number_visible
   expect(@journey.confirmation_page.heading.text).to eq("Application received")
   expect(@journey.confirmation_page).to have_text(@reg_number)
   Capybara.reset_session!
 end
 
 Then("I will be notified my renewal is pending payment") do
-  @journey.confirmation_page.wait_until_heading_visible
+  @journey.confirmation_page.wait_until_registration_number_visible
   expect(@journey.confirmation_page.heading.text).to eq("Application received")
   expect(@journey.confirmation_page).to have_text("pay the renewal charge")
   expect(@journey.confirmation_page).to have_text(@reg_number)

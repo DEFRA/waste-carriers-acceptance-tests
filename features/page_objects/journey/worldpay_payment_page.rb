@@ -4,7 +4,7 @@ class WorldpayPaymentPage < BasePage
 
   # New payment page
   element(:heading, "#showOrderSummaryDesktop")
-  element(:test_mode_text, ".error-hint")
+  element(:test_mode_text, ".warning-message .error-hint")
   element(:card_number, "#cardNumber")
   element(:cardholder_name, "#cardholderName")
   element(:expiry_month, "#expiryMonth")
