@@ -2,11 +2,7 @@
 
 def submit_valid_card_payment
   sleep(3)
-  # The return clause is called if WorldPay mocking is in place - if so, the payment is skipped and marked as complete.
-  worldpay_page_is_shown = @journey.worldpay_payment_page.has_test_mode_text?
-  return unless worldpay_page_is_shown
-
-  expect(@journey.worldpay_payment_page.test_mode_text).to have_text("Test Mode - This is not a live transaction")
+  return if mocking_enabled?
 
   @journey.worldpay_payment_page.submit(
     card_number: "6759649826438453",
@@ -22,7 +18,6 @@ end
 
 def submit_invalid_card_payment
   sleep(3)
-  expect(@journey.worldpay_payment_page.test_mode_text).to have_text("Test Mode - This is not a live transaction")
   @journey.worldpay_payment_page.submit(
     card_number: "6759649826438453",
     cardholder_name: "3d.refused",
