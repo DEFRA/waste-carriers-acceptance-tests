@@ -28,17 +28,6 @@ When(/^the agency user pays for the (?:card|cards) by bank card$/) do
   submit_valid_card_payment
 end
 
-When(/^the agency user chooses to pay for the (?:card|cards) by bank transfer$/) do
-  # This feature will fail if the registration's balance is not 0 at the start of the test.
-  # Reset database if needed.
-  @journey.cards_payment_page.submit(choice: :alternative_payment)
-
-  expect(@journey.standard_page.heading).to have_text("Details for bank transfer")
-  expect(@journey.standard_page.content).to have_text("£" + (@number_of_cards * 5).to_s)
-  expect(@journey.standard_page.content).to have_text("Cards will be sent out after the payment has cleared.")
-  @journey.standard_page.submit_button.click
-end
-
 Then(/^the card order is confirmed with cleared payment$/) do
   expect(@journey.cards_confirmation_page.confirmation_message).to have_text("Order completed.\nPayment has cleared.")
   expect(@journey.cards_confirmation_page).to have_text("£ " + (@number_of_cards * 5).to_s)
