@@ -5,7 +5,7 @@ Feature: Waste carrier accesses their front office dashboard
   So that I know I'm correctly registered for my waste carrier activities
 
   Background:
-    Given I create an upper tier registration for my "limitedCompany" business as "another-user@example.com"
+    Given I create an upper tier registration for my "limitedCompany" business as "wcr-user@example.com"
 
   Scenario: Reset and change password
     When I forget my front office password and reset it
