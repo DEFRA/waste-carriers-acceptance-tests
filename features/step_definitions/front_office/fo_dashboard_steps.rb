@@ -1,8 +1,7 @@
 When("I choose to view my certificate") do
   @fo.front_office_sign_in_page.load
   @fo.front_office_sign_in_page.submit(
-    email: Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
+    email: @email_address, password: ENV["WCRS_DEFAULT_PASSWORD"]
   )
   @fo.front_office_dashboard.find_registration(@reg_number)
 end
