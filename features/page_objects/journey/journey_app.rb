@@ -42,6 +42,10 @@ class JourneyApp
     @last_page = CheckYourTierPage.new
   end
 
+  def check_registered_company_name_page
+    @last_page = CheckRegisteredCompanyNamePage.new
+  end
+
   def company_name_page
     @last_page = CompanyNamePage.new
   end

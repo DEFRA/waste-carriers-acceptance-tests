@@ -131,6 +131,7 @@ def submit_limited_company_details(business_name, tier)
   if business_name == "existing"
     @journey.company_name_page.submit
   else
+    @journey.check_registered_company_name_page.submit
     @journey.company_name_page.submit(company_name: business_name)
   end
 

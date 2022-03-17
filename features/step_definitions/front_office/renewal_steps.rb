@@ -125,7 +125,7 @@ When("I complete my {string} renewal steps") do |business_type|
   @journey.location_page.submit(choice: "england")
   @journey.confirm_business_type_page.submit
   select_tier_for_renewal("existing")
-  submit_business_details(@business_name, @tier)
+  submit_business_renewal_details(@business_name, @tier)
   if business_type == "partnership"
     test_partnership_people
   else
