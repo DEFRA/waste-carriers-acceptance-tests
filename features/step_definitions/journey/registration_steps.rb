@@ -377,7 +377,7 @@ Given("I get part way through a front office registration") do
   @carrier = "carrier_broker_dealer"
   @companies_house_number ||= "00445790"
   @journey.company_number_page.submit(companies_house_number: @companies_house_number)
-  @journey.check_registered_company_name_page.submit
+  @journey.check_registered_company_name_page.submit(choice: :confirm)
   @journey.company_name_page.submit(company_name: @business_name)
   @journey.address_lookup_page.submit_valid_address
   @people = @journey.company_people_page.main_people
