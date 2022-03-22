@@ -109,6 +109,20 @@ When("I resend the confirmation email") do
   @bo.registration_details_page.resend_confirmation_email_link.click
 end
 
+When("I refresh the company name from companies house") do
+  @bo.registration_details_page.refresh_company_name.click
+end
+
+Then("I can see the company name has been updated") do
+  @business_name = @bo.registration_details_page.business_name.text.downcase
+  if mocking_enabled?
+    expect(@business_name).to have_text("acme industries")
+  else
+    expect(@business_name).to have_text("tesco")
+  end
+  @bo.registration_details_page.business_name.text
+end
+
 Then("I will see the renewal reminder email has been sent") do
   puts "Renewal email sent to #{@contact_email}"
   expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@contact_email}")

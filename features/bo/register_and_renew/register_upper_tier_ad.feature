@@ -22,7 +22,7 @@ Feature: Assisted digital upper tier registrations
     Then I am notified that my registration has been successful
     And a registraton confirmation letter will be sent
 
-  @email 
+  @email
   Scenario: Successful LLP registration from back office via bank transfer
     Given I sign into the back office as "agency-user"
     When I register an upper tier "limitedLiabilityPartnership" from the back office

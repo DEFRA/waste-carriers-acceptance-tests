@@ -19,3 +19,10 @@ Feature: Back office registration actions
         Then I will see the registration confirmation email has been sent
         And I will receive a registration confirmation email
 
+      Scenario: Companies house registred name can be updated for companies from the back office
+        Given I have a new registration for a "limitedCompany" business
+        And I sign into the back office as "agency-user"
+        And I view the registration details
+        When I refresh the company name from companies house
+        Then I can see the company name has been updated
+

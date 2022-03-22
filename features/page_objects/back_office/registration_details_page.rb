@@ -23,20 +23,8 @@ class RegistrationDetailsPage < BasePage
   element(:payment_details_link, "a[href*='/finance-details']")
   element(:cease_or_revoke_link, "a[href*='/cease-or-revoke']")
   element(:cancel_link, "a[href*='/cancels']")
+  element(:refresh_company_name, "a[href$='/companies_house_details']")
 
   element(:revert_to_payment_summary_link, "a[href$='revert-to-payment-summary']")
-
-  # Sample text on this page:
-  #
-  # Conviction check required
-  # A convictions check is required before this registration can be approved.
-  # Convictions
-  # This registration has matching or declared convictions.
-  # Application rejected
-  # This registration was rejected during a convictions check and cannot be completed.
-  # Convictions
-  # This registration was rejected after a review of the matching or declared convictions.
-  # Payment required
-  # 164 to pay
 
 end
