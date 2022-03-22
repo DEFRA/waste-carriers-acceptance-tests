@@ -3,7 +3,7 @@ Feature: Incomplete registrations and renewals completed by NCCC
   As a carrier of commercial waste
   I want assistance with my waste carrier registration from the Environment Agency
   So I am compliant with the law
-
+  
   Scenario: NCCC resumes registration for an LLP
     Given I want to register as an upper tier carrier
     And I get part way through a front office registration

@@ -50,6 +50,7 @@ Given("I generate errors throughout the journey") do
   expect(@journey.company_number_page.error_summary).to have_text("Enter a valid number - it should have 8 digits, or 2 letters followed by 6 digits, or 2 letters followed by 5 digits and another letter. If your number has only 7 digits, enter it with a zero at the start.")
   @journey.company_number_page.submit(companies_house_number: "00445790")
 
+  @journey.check_registered_company_name_page.submit(choice: :confirm)
   @business_name = "Validation test"
   @journey.company_name_page.submit
   expect(@journey.company_name_page.error_summary).to have_text("trading name")
