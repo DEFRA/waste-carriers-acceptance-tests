@@ -53,8 +53,6 @@ Given("I generate errors throughout the journey") do
   @journey.check_registered_company_name_page.submit(choice: :confirm)
   @business_name = "Validation test"
   @journey.company_name_page.submit
-  expect(@journey.company_name_page.error_summary).to have_text("trading name")
-  @journey.company_name_page.submit(company_name: @business_name)
 
   test_address_validations
 
@@ -121,7 +119,6 @@ Given("I generate errors throughout the journey") do
     choice: :card_payment,
     email: "receipt-email@example.com"
   )
-
   submit_valid_card_payment
 end
 
