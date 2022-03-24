@@ -119,7 +119,6 @@ Given("I generate errors throughout the journey") do
     choice: :card_payment,
     email: "receipt-email@example.com"
   )
-
   submit_valid_card_payment
 end
 
