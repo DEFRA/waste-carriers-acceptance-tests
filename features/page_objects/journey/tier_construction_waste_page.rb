@@ -3,7 +3,7 @@ class TierConstructionWastePage < BasePage
   # Do you ever deal with building, construction or demolition waste?
 
   element(:back_link, ".govuk-back-link")
-  element(:error_summary, ".govuk-error-summary__body")
+
   element(:heading, "h1")
 
   element(:yes_construction_waste, "#construction-demolition-form-construction-waste-yes-field+ .govuk-radios__label")

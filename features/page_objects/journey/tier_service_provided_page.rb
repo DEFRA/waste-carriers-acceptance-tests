@@ -2,7 +2,6 @@ class TierServiceProvidedPage < BasePage
 
   # Who creates the waste that you deal with?
 
-  element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
   element(:yes_main_service, "[value='yes']+ .govuk-radios__label")

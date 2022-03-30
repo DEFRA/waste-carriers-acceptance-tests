@@ -3,7 +3,6 @@ class TierCheckPage < BasePage
   # What tier do you need?
   # Applies only to renewals
 
-  element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
   element(:check_tier, "#tier-check-form-temp-tier-check-yes-field", visible: false)

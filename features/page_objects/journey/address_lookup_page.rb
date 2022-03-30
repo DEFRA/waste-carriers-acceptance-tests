@@ -2,10 +2,6 @@ class AddressLookupPage < BasePage
 
   # Use this for all company and contact addresses on front/back office.
 
-  element(:back_link, ".govuk-back-link")
-  element(:error_summary, ".govuk-error-summary__body")
-  element(:heading, "h1")
-
   # Initial postcode selection:
   element(:postcode, "input[id*='postcode-form-temp']")
 

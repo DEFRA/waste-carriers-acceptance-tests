@@ -4,7 +4,6 @@ class LocationPage < BasePage
   # Update once the old registration journey is no longer live.
 
   # Where is your principal place of business?
-  element(:error_summary, ".govuk-error-summary__body")
 
   element(:heading, "h1")
   element(:england, "[value='england']+ .govuk-radios__label")

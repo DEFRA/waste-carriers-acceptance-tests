@@ -35,3 +35,10 @@ Feature: A new user registers as an upper tier waste carrier
   Scenario: Test error validation for registrations
     When I generate errors throughout the journey
     Then I am notified that my application has been received
+
+  Scenario: Upper tier Partnership business name is mandatory
+   Given I start a new registration journey in "England" as a "partnership"
+    And I am on the business name page
+    When I submit the form
+    Then I will be asked to enter a business name
+

@@ -2,7 +2,6 @@ class AddressManualPage < BasePage
 
   # Use this for all manual addresses for renewals
 
-  element(:error_summary, ".govuk-error-summary__body")
   element(:change_postcode, "a[href*='address-manual/back']")
   element(:house_number, "[id$='address-house-number-field']")
   element(:address_line_one, "[id$='address-address-line-1-field']")
@@ -12,8 +11,6 @@ class AddressManualPage < BasePage
   # The following only appear in certain journeys such as international renewals:
   element(:postcode, "input[id$='address-postcode-field")
   element(:country, "input[id$='address-country-field']")
-
-  element(:submit_button, "[type='submit']")
 
   def submit(args = {})
     house_number.set(args[:house_number]) if args.key?(:house_number)

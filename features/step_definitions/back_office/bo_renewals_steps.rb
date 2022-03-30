@@ -3,10 +3,10 @@ Given("there is an existing registration") do
 end
 
 Given("NCCC partially renews an existing registration with {string}") do |convictions|
-
+  puts @reg_number
   # Set variables that can be reused across steps.
   @app = "bo"
-  @tier = "upper"
+  @tier = :upper
   @convictions = convictions
   @business_name = "AD Renewal with " + @convictions
   @reg_type = :renewal

@@ -2,7 +2,6 @@ class ExistingRegistrationPage < BasePage
 
   # What's your waste carrier registration number?
 
-  element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
   element(:reg_no, "#renew-registration-form-temp-lookup-number-field")

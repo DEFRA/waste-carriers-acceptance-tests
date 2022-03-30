@@ -2,7 +2,7 @@ Given("I register an upper tier {string} from the back office") do |organisation
   @organisation_type = organisation_type
   @app = "bo"
   @reg_type = :new_registration
-  @tier = "upper"
+  @tier = :upper
   @carrier = "carrier_broker_dealer"
   @business_name = "BO upper tier " + organisation_type.to_s
   @copy_cards = rand(3)
@@ -15,7 +15,7 @@ Given("I register an assisted digital upper tier {string} from the back office")
   @organisation_type = organisation_type
   @app = "bo"
   @reg_type = :new_registration
-  @tier = "upper"
+  @tier = :upper
   @carrier = "carrier_broker_dealer"
   @business_name = "BO upper tier " + organisation_type.to_s
   @copy_cards = rand(3)
