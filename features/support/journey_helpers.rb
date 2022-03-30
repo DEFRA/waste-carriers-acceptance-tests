@@ -128,12 +128,8 @@ def submit_limited_company_details(business_name, tier)
     @journey.company_number_page.submit(companies_house_number: @companies_house_number)
   end
 
-  if business_name == "existing"
-    @journey.company_name_page.submit
-  else
-    @journey.check_registered_company_name_page.submit(choice: :confirm)
-    @journey.company_name_page.submit(company_name: business_name)
-  end
+  @journey.check_registered_company_name_page.submit(choice: :confirm)
+  @journey.company_name_page.submit(company_name: business_name)
 
   complete_address_with_random_method
 end
