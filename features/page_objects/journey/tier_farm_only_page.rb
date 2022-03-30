@@ -2,7 +2,6 @@ class TierFarmOnlyPage < BasePage
 
   # Do you only deal with: Farm or agricultural waste ...?
 
-  element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
   element(:only_these_types, "#waste-types-form-only-amf-yes-field+ .govuk-radios__label")

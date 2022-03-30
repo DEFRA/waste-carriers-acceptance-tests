@@ -5,7 +5,9 @@ Given("I complete my renewal up to the payment page") do
 
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  select_tier_for_renewal("existing")
+  @journey.tier_check_page.submit(choice: :check_tier)
+  answer_random_upper_tier_questions
+  @journey.carrier_type_page.submit(choice: carrier.to_sym)
   @journey.renewal_information_page.submit
   submit_business_details(@business_name, @tier)
   submit_company_people

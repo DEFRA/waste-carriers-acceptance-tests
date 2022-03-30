@@ -5,6 +5,7 @@ class CheckRegisteredCompanyNamePage < BasePage
   element(:confirm_company_details, "#check-registered-company-name-form-temp-use-registered-company-details-yes-field+ .govuk-radios__label")
   element(:reject_company_details, "#check-registered-company-name-form-temp-use-registered-company-details-no-field+ .govuk-radios__label")
   # rubocop:enable Layout/LineLength
+
   def submit(args = {})
     case args[:choice]
     when :reject

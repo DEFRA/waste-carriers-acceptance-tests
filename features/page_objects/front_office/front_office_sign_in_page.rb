@@ -5,7 +5,6 @@ class FrontOfficeSignInPage < BasePage
 
   set_url(Quke::Quke.config.custom["urls"]["front_office_sign_in"])
 
-  element(:error_summary, ".govuk-error-summary")
   element(:email_address, "#user-email-field")
   element(:password, "#user-password-field")
 

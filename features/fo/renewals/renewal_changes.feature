@@ -48,9 +48,9 @@ Feature: Registered waste carrier chooses to renew their registration from start
     But I change the business type to "limitedLiabilityPartnership"
     Then I will be able to continue my renewal
 
-  Scenario: Limited company changes companies house number and is informed to create a new registration
+  Scenario: Limited company confirms company information is incorrect and is informed to create a new registration
     Given I create an upper tier registration for my "limitedCompany" business as "user@example.com"
     And I start renewing this registration from the start page
     And I have signed in to renew my registration as "user@example.com"
-    But I change my companies house number to "10926928"
-    Then I will be notified "You cannot renew"
+    But I do not confirm my company details are correct
+    Then I will be notified "If you have a new companies house number you need to create a new registration"

@@ -52,7 +52,7 @@ Then("I check the registration details are correct on the back office") do
   page_content = @bo.registration_details_page
   expect(@bo.registration_details_page.business_name).to have_text(@business_name)
 
-  if @tier == "upper"
+  if @tier == :upper
     expect(info_panel).to have_text("Upper tier")
     if @convictions == "no convictions"
       expect(page_content).to have_text("There are no convictions for this registration")
@@ -90,7 +90,7 @@ Then("the certificate shows the correct details") do
   expect(page_content).to have_text(@business_name)
   expect(page_content).to have_text(@reg_number)
   expect(@bo.registration_certificate_page.certificate_dates_are_correct(@tier, @reg_type)).to be true
-  if @tier == "upper"
+  if @tier == :upper
     expect(page_content).to have_text("Your registration will last 3 years")
   else
     expect(page_content).to have_text("Your registration will last indefinitely")

@@ -2,9 +2,6 @@ require "faker"
 
 class CompanyPeoplePage < BasePage
 
-  element(:error_summary, ".govuk-error-summary__body")
-  element(:heading, "h1")
-
   element(:first_name, "#main-people-form-first-name-field")
   element(:last_name, "#main-people-form-last-name-field")
   element(:dob_day, "#main-people-form-dob-day-field")
@@ -13,6 +10,7 @@ class CompanyPeoplePage < BasePage
   element(:add_person, "input[value='Add another person']")
   elements(:remove_person, "input[value='Delete']")
   element(:submit_button, "button[type='submit']")
+
   def add_main_person(args = {})
     person = args[:person]
 

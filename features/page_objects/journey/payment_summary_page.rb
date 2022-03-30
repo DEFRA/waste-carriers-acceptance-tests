@@ -3,7 +3,7 @@ class PaymentSummaryPage < BasePage
   # Payment summary
 
   element(:back_link, "a[href*='back']")
-  element(:error_summary, ".govuk-error-summary__body")
+
   element(:heading, "h1")
 
   element(:card_payment, "input[value='card']+ .govuk-radios__label")

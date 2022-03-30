@@ -32,7 +32,7 @@ end
 
 Given("I have a registration which expired {int} days ago") do |days_ago|
   load_all_apps
-  @tier = "upper"
+  @tier = :upper
   new_expiry_date = (DateTime.now - days_ago).to_s
 
   seed_data = SeedData.new("limitedCompany_expired_registration.json", "expires_on" => new_expiry_date)
@@ -125,7 +125,7 @@ When("I complete my {string} renewal steps") do |business_type|
   @journey.location_page.submit(choice: "england")
   @journey.confirm_business_type_page.submit
   select_tier_for_renewal("existing")
-  submit_business_renewal_details(@business_name, @tier)
+  submit_business_renewal_details(@business_name)
   if business_type == "partnership"
     test_partnership_people
   else
@@ -232,14 +232,14 @@ Then("I am notified that my renewal payment is being processed") do
   puts "Renewal #{@reg_number} submitted and pending WorldPay"
 end
 
-Given(/^I change my companies house number to "([^"]*)"$/) do |number|
+Given("I do not confirm my company details are correct") do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.tier_check_page.submit(choice: :check_tier)
   answer_random_upper_tier_questions
   @journey.carrier_type_page.submit # submit existing carrier type
   @journey.renewal_information_page.submit
-  @journey.company_number_page.submit(companies_house_number: number.to_sym)
+  @journey.check_registered_company_name_page.submit(choice: :reject)
 end
 
 Then("I will be notified my renewal is pending checks") do

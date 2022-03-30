@@ -11,7 +11,7 @@ Given("I want to register as an upper tier carrier") do
 
   @reg_type = :new_registration
   @app = "fo"
-  @tier = "upper"
+  @tier = :upper
 end
 
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
@@ -19,9 +19,18 @@ When("I start a new registration journey in {string} as a {string}") do |locatio
   @app = "fo"
   @journey.start_page.load
   @journey.standard_page.accept_cookies
-
   @journey.start_page.submit(choice: @reg_type)
   @journey.location_page.submit(choice: location)
+end
+
+When("I am on the business name page") do
+  @journey.confirm_business_type_page.submit(org_type: @organisation_type)
+  @journey.check_your_tier_page.submit(option: @tier)
+  @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
+end
+
+Then("I submit the form") do
+  @journey.standard_page.submit
 end
 
 # Main step for generating a new registration.
@@ -30,92 +39,79 @@ end
 When("I complete my registration for my business {string}") do |business_name|
   @business_name = business_name
   @carrier ||= "carrier_broker_dealer"
-
   submit_carrier_details(@organisation_type, @tier, @carrier)
   submit_business_details(@business_name, @tier)
 
-  if @tier == "upper" && @organisation_type != "partnership"
+  if @tier == :upper && @organisation_type != "partnership"
     submit_company_people
     @convictions ||= "no convictions"
     submit_convictions(@convictions)
   end
 
-  if @tier == "upper" && @organisation_type == "partnership"
+  if @tier == :upper && @organisation_type == "partnership"
     submit_partners
     @convictions ||= "no convictions"
     submit_convictions(@convictions)
   end
 
   @email_address = generate_email if @email_address.nil?
-
   submit_contact_details_for_registration(@email_address)
-
   expect(page).to have_content("Check your answers")
   @journey.standard_page.submit
   @journey.declaration_page.submit
-
   @copy_cards ||= 0
-  order_cards_during_journey(@copy_cards) if @tier == "upper"
+  order_cards_during_journey(@copy_cards) if @tier == :upper
 end
 
 Then("I am notified that my registration has been successful") do
   expect(page).to have_content("Registration complete")
-
   @reg_number = @journey.confirmation_page.registration_number.text
-
   puts "Registration #{@reg_number} created successfully"
 end
 
 Then(/^(?:I will receive a registration confirmation email|a registraton confirmation email will be sent)$/) do
   expected_text = [@reg_number, "https://documents.service.gov.uk"]
-
   expected_text << "You are now registered as a lower tier" if @tier == "lower"
-  expected_text << "You are now registered as an upper tier" if @tier == "upper"
-
+  expected_text << "You are now registered as an upper tier" if @tier == :upper
   expect(message_exists?(expected_text)).to be true
 end
 
 Then(/^(?:I will receive a registration confirmation letter|a registraton confirmation letter will be sent)$/) do
   expected_text = [@reg_number, "letter"]
-
   expected_text << "You are now registered as a lower tier" if @tier == "lower"
-  expected_text << "You are now registered as an upper tier" if @tier == "upper"
-
+  expected_text << "You are now registered as an upper tier" if @tier == :upper
   expect(message_exists?(expected_text)).to be true
 end
 
 Then("an application confirmation email will be sent") do
   expected_text = [@reg_number, "Application received"]
-
   expect(message_exists?(expected_text)).to be true
 end
 
 Then("I am notified that I need to pay by bank transfer") do
   expect(page).to have_content("You must now pay by bank transfer")
   expect(page).to have_content("We’ve sent an email to " + @email_address + " with the payment details and instructions.")
-
   @reg_number = @journey.confirmation_page.registration_number.text
-
   puts "Registration #{@reg_number} submitted pending bank transfer"
 end
 
 Then("I am sent an email advising me how to pay by bank transfer") do
   expected_text = ["Payment needed for waste carrier registration #{@reg_number}"]
-
   expect(message_exists?(expected_text)).to be true
+end
+
+Then("I will be asked to enter a business name") do
+  expect(@journey.company_name_page.error_summary).to have_text("Enter a business or trading name")
 end
 
 Then("I am notified that my registration payment is being processed") do
   expect(page).to have_content("We’re processing your payment")
-
   @reg_number = @journey.confirmation_page.registration_number.text
-
   puts "Registration #{@reg_number} submitted and pending WorldPay"
 end
 
 Then("I am sent an email advising me my payment is being processed") do
   expected_text = [@reg_number, "We’re processing your waste carrier registration"]
-
   expect(message_exists?(expected_text)).to be true
 end
 
@@ -124,30 +120,27 @@ Given("a registration with no convictions has been submitted by paying via card"
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
-
   puts "Registration " + @reg_number + " seeded"
 end
 
 Given("I create a new registration as {string}") do |account_email|
   load_all_apps
-  @tier = "upper"
+  @tier = :upper
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @email_address = account_email
   @contact_email = @seeded_data["contactEmail"]
-
   puts "Registration " + @reg_number + " seeded"
 end
 
 Given("I create an upper tier registration for my {string} business as {string}") do |business_type, account_email|
   load_all_apps
-  @tier = "upper"
+  @tier = :upper
   seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "accountEmail" => account_email, "contactEmail" => account_email)
   @reg_number = seed_data.reg_number
   @email_address = account_email
   @seeded_data = seed_data.seeded_data
-
   puts "#{business_type} upper tier registration " + @reg_number + " seeded"
 end
 
@@ -157,22 +150,18 @@ Given("I create a lower tier registration for my {string} business as {string}")
   @reg_number = seed_data.reg_number
   @email_address = account_email
   @seeded_data = seed_data.seeded_data
-
   puts "#{business_type} lower tier registration " + @reg_number + " seeded for " + account_email
 end
 
 Given("I have a new registration for a {string} business") do |business_type|
   load_all_apps
-  @tier = "upper"
+  @tier = :upper
   seed_data = SeedData.new("#{business_type}_complete_active_registration.json")
-
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
   @contact_email = @seeded_data["contactEmail"]
-
   puts "#{business_type} registration " + @reg_number + " seeded"
-
 end
 
 Given("I have a new lower tier registration for a {string} business") do |business_type|
@@ -198,7 +187,7 @@ Given("I create a new registration as {string} with a company name of {string}")
   )
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
-  @tier = "upper"
+  @tier = :upper
   @reg_type = :registration
 
   puts "Registration " + @reg_number + " seeded with name #{@business_name} for " + @email_address
@@ -207,7 +196,7 @@ end
 Given("I have an active registration") do
   load_all_apps
   @account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
-  @tier = "upper"
+  @tier = :upper
 
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => @account_email)
   @reg_number = seed_data.reg_number
@@ -219,7 +208,7 @@ end
 
 Given("I have an active registration with a company number of {string}") do |company_no|
   load_all_apps
-  @tier = "upper"
+  @tier = :upper
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "company_no" => company_no)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
@@ -230,7 +219,7 @@ end
 
 Given("I have an active registration with a company name of {string}") do |company_name|
   load_all_apps
-  @tier = "upper"
+  @tier = :upper
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "companyName" => company_name)
   @email_address = "user@example.com"
   @reg_number = seed_data.reg_number

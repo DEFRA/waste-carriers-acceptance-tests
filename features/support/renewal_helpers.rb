@@ -22,12 +22,11 @@ end
 
 def submit_existing_renewal_details
   # Covers a standard renewal journey after "agree_to_renew_in_england" up to and including "check your answers":
-
   # Submit carrier details for the business, tier and carrier:
   submit_carrier_details("existing", "existing", "existing")
   expect(@journey.renewal_information_page).to have_text("you still need an upper tier registration")
   @journey.renewal_information_page.submit
-  submit_business_renewal_details(@business_name, @tier)
+  submit_business_renewal_details(@business_name)
   submit_company_people
   submit_convictions(@convictions)
   submit_contact_details_for_renewal
@@ -44,29 +43,20 @@ def expiry_date_from_reg_details
   Date.parse(expiry_date)
 end
 
-def submit_business_renewal_details(business_name, tier)
+def submit_business_renewal_details(business_name)
   # submits company number, name and address
-  if @journey.company_number_page.heading.has_text? "What's the registration number"
+  if @journey.check_registered_company_name_page.heading.has_text? "Is this your registered name and address?"
     # then it's a limited company or LLP:
-    submit_limited_company_renewal_details(business_name, tier)
+    @journey.check_registered_company_name_page.submit(choice: :confirm)
+    submit_limited_company_renewal_details(business_name)
   else
     # it'll be the company name page, which will have a heading like "What's the name of the business?"
     submit_organisation_details(business_name)
   end
 end
 
-def submit_limited_company_renewal_details(business_name, tier)
-  # Submit company number:
-  if tier == "upper"
-    @companies_house_number ||= "00445790"
-    @journey.company_number_page.submit(companies_house_number: @companies_house_number)
-  end
-
-  if business_name == "existing"
-    @journey.company_name_page.submit
-  else
-    @journey.company_name_page.submit(company_name: business_name)
-  end
+def submit_limited_company_renewal_details(business_name)
+  @journey.company_name_page.submit(company_name: business_name)
 
   complete_address_with_random_method
 end

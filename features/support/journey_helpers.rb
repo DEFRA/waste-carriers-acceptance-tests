@@ -123,7 +123,7 @@ end
 
 def submit_limited_company_details(business_name, tier)
   # Submit company number:
-  if tier == "upper"
+  if tier == :upper
     @companies_house_number ||= "00445790"
     @journey.company_number_page.submit(companies_house_number: @companies_house_number)
   end

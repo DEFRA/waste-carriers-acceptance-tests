@@ -2,9 +2,6 @@ class CardsConfirmationPage < BasePage
 
   # Confirmation of order
 
-  element(:error_summary, ".govuk-error-summary__body")
-  element(:heading, "h1")
-
   element(:confirmation_message, ".govuk-notification-banner__heading")
   element(:awaiting_payment_message, ".govuk-notification-banner__heading")
   element(:info_table, "table")

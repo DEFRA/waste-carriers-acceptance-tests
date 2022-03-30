@@ -2,7 +2,6 @@ require "faker"
 
 class PartnersPage < BasePage
 
-  element(:error_summary, ".govuk-error-summary__body")
   element(:heading, "h1")
 
   element(:first_name, "#main-people-form-first-name-field")

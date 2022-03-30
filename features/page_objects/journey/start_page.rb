@@ -1,7 +1,6 @@
 class StartPage < BasePage
   set_url((Quke::Quke.config.custom["urls"]["front_office"]).to_s)
 
-  element(:error_summary, ".govuk-error-summary__body")
   element(:heading, ".govuk-fieldset__legend--l")
 
   element(:new_registration, "[value='new']+ .govuk-radios__label")

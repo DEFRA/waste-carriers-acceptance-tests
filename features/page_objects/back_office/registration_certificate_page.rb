@@ -17,7 +17,7 @@ class RegistrationCertificatePage < BasePage
                            end
     expiry_date_text = day_and_month + " " + expected_expiry_year.to_s
 
-    if tier == "upper"
+    if tier == :upper
       return true if content.text.include?(expiry_date_text)
     elsif content.text.include?("indefinitely")
       return true

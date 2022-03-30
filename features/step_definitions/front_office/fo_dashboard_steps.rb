@@ -24,7 +24,7 @@ When("I forget my front office password and reset it") do
     email: @account_email,
     password: "cheese"
   )
-  expect(@fo.front_office_sign_in_page.error_summary).to have_text("Invalid Email or password.")
+  expect(@fo.front_office_sign_in_page).to have_text("Invalid Email or password.")
 
   # Request a password reset:
   @fo.front_office_sign_in_page.forgotten_link.click

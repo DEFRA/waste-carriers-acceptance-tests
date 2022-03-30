@@ -19,7 +19,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
     Then I am told the renewal cannot be found
 
   # Requires registration expiry to be within WCRS_REGISTRATION_GRACE_WINDOW range
-  @email 
+  @email
   Scenario: Renew expired registration just inside grace window
     Given I have a registration which expired 4 days ago
     And I receive an email from NCCC inviting me to renew

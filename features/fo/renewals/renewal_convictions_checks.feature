@@ -3,7 +3,7 @@ Feature: Registered waste carrier declares conviction during renewal
   As a member of the waste carriers team in NCCC
   I want to be informed of any potential matches with the Environment Agency's convictions database
   So that I can then target my investigation of registration suitability to the right people
-  
+
   Scenario: Limited company renews upper tier registration from renewals page declaring conviction
     Given I create an upper tier registration for my "limitedCompany" business as "another-user@example.com"
     And I start renewing this registration from the start page

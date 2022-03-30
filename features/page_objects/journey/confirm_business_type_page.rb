@@ -2,9 +2,6 @@ class ConfirmBusinessTypePage < BasePage
 
   # What type of business or organisation are you? - front office
 
-  element(:error_summary, ".govuk-error-summary__body")
-  element(:heading, ".govuk-fieldset__legend--l")
-
   elements(:org_types, "input[name='business_type_form[business_type]']", visible: false)
   element(:sole_trader, "#business-type-form-business-type-soletrader-field+ .govuk-radios__label")
   element(:submit_button, "[type='submit']", visible: false)
