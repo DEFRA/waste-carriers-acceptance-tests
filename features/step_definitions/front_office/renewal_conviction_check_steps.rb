@@ -36,7 +36,7 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   @journey.confirm_business_type_page.submit
   select_tier_for_renewal("existing")
   # Submit the existing company name, as it has a conviction against it:
-  submit_limited_company_details("existing", @tier)
+  submit_business_renewal_details(@business_name)
   submit_company_people
   submit_convictions("no convictions")
   submit_contact_details_for_renewal

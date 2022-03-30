@@ -144,8 +144,9 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   select_tier_for_renewal("existing")
-  @journey.renewal_information_page.submit
-  submit_business_details(@business_name, @tier)
+  @journey.check_registered_company_name_page.submit(choice: :confirm)
+  @journey.company_name_page.submit(company_name: @business_name)
+  complete_address_with_random_method
   submit_company_people
   submit_convictions("no convictions")
   submit_contact_details_for_renewal
