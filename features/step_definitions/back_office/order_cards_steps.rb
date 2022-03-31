@@ -67,7 +67,3 @@ Then("the carrier receives an email saying they need to pay for their card order
   expect(message_exists?(expected_text)).to be true
 end
 
-Then("the payment is shown as rejected") do
-  @journey.cards_payment_page.wait_until_submit_button_visible
-  expect(@journey.cards_payment_page).to have_text("Your payment has been refused")
-end

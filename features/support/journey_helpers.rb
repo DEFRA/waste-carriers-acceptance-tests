@@ -36,11 +36,11 @@ def select_tier_for_registration(carrier)
   @journey.carrier_type_page.submit(choice: carrier.to_sym)
 end
 
-def select_tier_for_renewal(carrier)
+def select_upper_tier_for_renewal
   @journey.tier_check_page.submit(choice: :check_tier)
   answer_random_upper_tier_questions
   # carrier_broker_dealer, broker_dealer, carrier_dealer, existing
-  @journey.carrier_type_page.submit(choice: carrier.to_sym)
+  @journey.carrier_type_page.submit
   # "Confirmation of your renewal so far":
   @journey.standard_page.submit
 end

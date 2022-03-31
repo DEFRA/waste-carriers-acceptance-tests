@@ -20,15 +20,3 @@ Feature: NCCC agent edits registration from back office
     And I pay by card
     Then I can see the changes on the registration details page
     And the registration's balance is 0
-
-    When I sign into the back office as "agency-user"
-    And I edit the most recent registration type to "carrier_broker_dealer"
-    And I confirm the changes
-    And I pay by bank transfer
-    Then I can see the changes on the registration details page
-    And the registration's balance is 40
-
-    When I sign into the back office as "agency-user"
-    And I edit the most recent registration
-    And I cancel the edit
-    Then I cannot see the changes on the registration details page

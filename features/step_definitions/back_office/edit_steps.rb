@@ -43,16 +43,3 @@ When("I edit the most recent registration type to {string}") do |carrier_type|
 
   @journey.carrier_type_page.submit(choice: carrier_type)
 end
-
-When("I cancel the edit") do
-  @bo.edit_page.cancel_changes.click
-  @bo.edit_confirm_cancel_page.confirm_cancel.click
-end
-
-Then("I cannot see the changes on the registration details page") do
-  find_link("View registration").click
-
-  @edited_info.each_value do |value|
-    expect(page).to_not have_text(value)
-  end
-end

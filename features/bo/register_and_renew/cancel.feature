@@ -16,8 +16,3 @@ Feature: NCCC agent cancels in progress registration from back office
     Given a registration with outstanding convictions checks has been submitted
     When I cancel the registration
     Then the registration has a status of "INACTIVE"
-
-  Scenario: NCCC selects cancel and then decides to keep the registration
-    Given a registration with outstanding balance and 0 copy cards has been submitted
-    When I am about to cancel the registration and change my mind
-    Then the registration does not have a status of "INACTIVE"
