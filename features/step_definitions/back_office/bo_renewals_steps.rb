@@ -5,7 +5,7 @@ end
 Given("NCCC partially renews an existing registration with {string}") do |convictions|
   puts @reg_number
   # Set variables that can be reused across steps.
-  @app = "bo"
+  @app = :bo
   @tier = :upper
   @convictions = convictions
   @business_name = "AD Renewal with " + @convictions
@@ -86,7 +86,7 @@ end
 
 When("I complete the renewal for the account holder") do
   @business_name = "Assisted digital resumed renewal"
-  @app = "bo"
+  @app = :bo
   @convictions = "no convictions"
   @reg_type = :renewal
   @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)

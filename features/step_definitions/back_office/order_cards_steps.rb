@@ -66,4 +66,3 @@ Then("the carrier receives an email saying they need to pay for their card order
 
   expect(message_exists?(expected_text)).to be true
 end
-

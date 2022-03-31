@@ -5,24 +5,24 @@ def start_reg_from_back_office
   @journey.location_page.submit(choice: :england)
 end
 
-def submit_carrier_details(business, tier, carrier)
-  # Select the org type, or just click submit if the business is "existing"
+def submit_carrier_details(business = :existing, tier = :existing, carrier = :existing)
+  # Select the org type, or just click submit if the business is existing
   @journey.confirm_business_type_page.submit(org_type: business)
 
   # Covers tier and carrier type (if applicable) for registrations and renewals
-  # Select the org type, or just click submit if the business is "existing"
+  # Select the org type, or just click submit if the business is existing
   case tier
-  when "lower"
-    if business != "charity"
+  when :lower
+    if business != :charity
       select_random_lower_tier_options
     else # if so, questions are skipped
       # "You need to register as a lower tier waste carrier"
       @journey.standard_page.submit
     end
-  when "existing"
+  when :existing
     # this only applies to renewals:
     @journey.tier_check_page.submit(choice: :skip_check)
-    @journey.carrier_type_page.submit(choice: carrier.to_sym)
+    @journey.carrier_type_page.submit(choice: carrier)
   else
     # Assume it's an upper tier new registration.
     # This method does not cover renewals with changed tier.
@@ -31,9 +31,9 @@ def submit_carrier_details(business, tier, carrier)
   end
 end
 
-def select_tier_for_registration(carrier)
+def select_tier_for_registration(carrier = :existing)
   select_random_upper_tier_route
-  @journey.carrier_type_page.submit(choice: carrier.to_sym)
+  @journey.carrier_type_page.submit(choice: carrier)
 end
 
 def select_upper_tier_for_renewal

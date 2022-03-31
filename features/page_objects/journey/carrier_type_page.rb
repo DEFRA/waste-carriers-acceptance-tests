@@ -7,7 +7,7 @@ class CarrierTypePage < BasePage
   element(:carrier_broker_dealer, "#cbd-type-form-registration-type-carrier-broker-dealer-field+ .govuk-radios__label")
 
   def submit(args = {})
-    case args[:choice]&.to_sym
+    case args[:choice]
     when :carrier_dealer
       carrier_dealer.click
     when :broker_dealer

@@ -2,21 +2,21 @@ Given("I want to register as a lower tier carrier") do
   load_all_apps
 
   @reg_type = :new_registration
-  @tier = "lower"
-  @app = "fo"
+  @tier = :lower
+  @app = :fo
 end
 
 Given("I want to register as an upper tier carrier") do
   load_all_apps
 
   @reg_type = :new_registration
-  @app = "fo"
+  @app = :fo
   @tier = :upper
 end
 
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
-  @organisation_type = organisation_type
-  @app = "fo"
+  @organisation_type = organisation_type.to_sym
+  @app = :fo
   @journey.start_page.load
   @journey.standard_page.accept_cookies
   @journey.start_page.submit(choice: @reg_type)
@@ -38,17 +38,17 @@ end
 
 When("I complete my registration for my business {string}") do |business_name|
   @business_name = business_name
-  @carrier ||= "carrier_broker_dealer"
+  @carrier ||= :carrier_broker_dealer
   submit_carrier_details(@organisation_type, @tier, @carrier)
   submit_business_details(@business_name, @tier)
 
-  if @tier == :upper && @organisation_type != "partnership"
+  if @tier == :upper && @organisation_type != :partnership
     submit_company_people
     @convictions ||= "no convictions"
     submit_convictions(@convictions)
   end
 
-  if @tier == :upper && @organisation_type == "partnership"
+  if @tier == :upper && @organisation_type == :partnership
     submit_partners
     @convictions ||= "no convictions"
     submit_convictions(@convictions)
@@ -71,14 +71,14 @@ end
 
 Then(/^(?:I will receive a registration confirmation email|a registraton confirmation email will be sent)$/) do
   expected_text = [@reg_number, "https://documents.service.gov.uk"]
-  expected_text << "You are now registered as a lower tier" if @tier == "lower"
+  expected_text << "You are now registered as a lower tier" if @tier == :lower
   expected_text << "You are now registered as an upper tier" if @tier == :upper
   expect(message_exists?(expected_text)).to be true
 end
 
 Then(/^(?:I will receive a registration confirmation letter|a registraton confirmation letter will be sent)$/) do
   expected_text = [@reg_number, "letter"]
-  expected_text << "You are now registered as a lower tier" if @tier == "lower"
+  expected_text << "You are now registered as a lower tier" if @tier == :lower
   expected_text << "You are now registered as an upper tier" if @tier == :upper
   expect(message_exists?(expected_text)).to be true
 end
@@ -145,7 +145,7 @@ Given("I create an upper tier registration for my {string} business as {string}"
 end
 
 Given("I create a lower tier registration for my {string} business as {string}") do |business_type, account_email|
-  @tier = "lower"
+  @tier = :lower
   seed_data = SeedData.new("lower_#{business_type}_complete_active_registration.json", "accountEmail" => account_email)
   @reg_number = seed_data.reg_number
   @email_address = account_email
@@ -166,7 +166,7 @@ end
 
 Given("I have a new lower tier registration for a {string} business") do |business_type|
   load_all_apps
-  @tier = "lower"
+  @tier = :lower
   @business_name = "Lower tier public body seed"
   seed_data = SeedData.new("lower_#{business_type}_complete_active_registration.json", "companyName" => @business_name)
   @reg_number = seed_data.reg_number
@@ -389,7 +389,7 @@ end
 Given("I resume the registration as assisted digital") do
   @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit_button.click
-  @app = "bo"
+  @app = :bo
 
   # Continue the journey where the previous user left off
   expect(@journey.contact_email_page.heading).to have_text("contact email address?")

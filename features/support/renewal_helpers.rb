@@ -23,7 +23,7 @@ end
 def submit_existing_renewal_details
   # Covers a standard renewal journey after "agree_to_renew_in_england" up to and including "check your answers":
   # Submit carrier details for the business, tier and carrier:
-  submit_carrier_details("existing", "existing", "existing")
+  submit_carrier_details
   expect(@journey.renewal_information_page).to have_text("you still need an upper tier registration")
   @journey.renewal_information_page.submit
   submit_business_renewal_details(@business_name)

@@ -1,9 +1,10 @@
 Given("I register an upper tier {string} from the back office") do |organisation_type|
-  @organisation_type = organisation_type
-  @app = "bo"
+  @organisation_type = organisation_type.to_sym.to_sym
+
+  @app = :bo
   @reg_type = :new_registration
   @tier = :upper
-  @carrier = "carrier_broker_dealer"
+  @carrier = :carrier_broker_dealer
   @business_name = "BO upper tier " + organisation_type.to_s
   @copy_cards = rand(3)
 
@@ -12,11 +13,11 @@ Given("I register an upper tier {string} from the back office") do |organisation
 end
 
 Given("I register an assisted digital upper tier {string} from the back office") do |organisation_type|
-  @organisation_type = organisation_type
-  @app = "bo"
+  @organisation_type = organisation_type.to_sym.to_sym
+  @app = :bo
   @reg_type = :new_registration
   @tier = :upper
-  @carrier = "carrier_broker_dealer"
+  @carrier = :carrier_broker_dealer
   @business_name = "BO upper tier " + organisation_type.to_s
   @copy_cards = rand(3)
   @email_address = "assistedDigital@example.com"
@@ -25,10 +26,10 @@ Given("I register an assisted digital upper tier {string} from the back office")
 end
 
 Given("I register an lower tier {string} from the back office") do |organisation_type|
-  @organisation_type = organisation_type
-  @app = "bo"
+  @organisation_type = organisation_type.to_sym
+  @app = :bo
   @reg_type = :new_registration
-  @tier = "lower"
+  @tier = :lower
   @business_name = "BO lower tier " + organisation_type.to_s
 
   start_reg_from_back_office
@@ -37,10 +38,10 @@ Given("I register an lower tier {string} from the back office") do |organisation
 end
 
 Given("I register an assisted digital lower tier {string} from the back office") do |organisation_type|
-  @organisation_type = organisation_type
-  @app = "bo"
+  @organisation_type = organisation_type.to_sym
+  @app = :bo
   @reg_type = :new_registration
-  @tier = "lower"
+  @tier = :lower
   @business_name = "BO lower tier " + organisation_type.to_s
   @email_address = "assistedDigital@example.com"
 
