@@ -24,35 +24,9 @@ Then("I can see the changes on the registration details page") do
 end
 
 When("I edit the most recent registration type to {string}") do |carrier_type|
-  edited_text = case carrier_type
-                when "carrier_dealer"
-                  "Carrier and dealer"
-                when "broker_dealer"
-                  "Broker and dealer"
-                else
-                  "Carrier, broker and dealer"
-                end
-
-  @edited_info = {
-    carrier_type: edited_text
-  }
-
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.edit_link.click
   @bo.edit_page.change_registration_type.click
 
-  @journey.carrier_type_page.submit(choice: carrier_type)
-end
-
-When("I cancel the edit") do
-  @bo.edit_page.cancel_changes.click
-  @bo.edit_confirm_cancel_page.confirm_cancel.click
-end
-
-Then("I cannot see the changes on the registration details page") do
-  find_link("View registration").click
-
-  @edited_info.each_value do |value|
-    expect(page).to_not have_text(value)
-  end
+  @journey.carrier_type_page.submit(choice: carrier_type.to_sym)
 end

@@ -7,10 +7,10 @@ class ConfirmBusinessTypePage < BasePage
   element(:submit_button, "[type='submit']", visible: false)
 
   def submit(args = {})
-    if args[:org_type] == "soleTrader" && args[:org_type] != "existing"
+    if args[:org_type] == :soleTrader && args[:org_type] != :existing
       sole_trader.click
-    elsif args.key?(:org_type) && args[:org_type] != "existing"
-      org_types.find { |btn| btn.value == args[:org_type] }.click if args.key?(:org_type)
+    elsif args.key?(:org_type) && args[:org_type] != :existing
+      org_types.find { |btn| btn.value == args[:org_type].to_s }.click if args.key?(:org_type)
     end
     submit_button.click
   end

@@ -5,7 +5,7 @@ end
 Given("NCCC partially renews an existing registration with {string}") do |convictions|
   puts @reg_number
   # Set variables that can be reused across steps.
-  @app = "bo"
+  @app = :bo
   @tier = :upper
   @convictions = convictions
   @business_name = "AD Renewal with " + @convictions
@@ -53,20 +53,6 @@ Then("the AD renewal is complete") do
   expect(@bo.registration_details_page.heading).to have_text("Waste carriers registrations")
 end
 
-When("I renew the local authority registration") do
-  @business_name = "Local authority renewal"
-  @bo.dashboard_page.view_reg_details(search_term: @reg_number)
-  @bo.registration_details_page.renew_link.click
-  @convictions = "no convictions"
-  @reg_type = :renewal
-  start_internal_renewal
-  submit_existing_renewal_details
-
-  order_cards_during_journey(0)
-  @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
-end
-
 When("I renew the limited company registration") do
   @business_name = "Limited company renewal"
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
@@ -100,7 +86,7 @@ end
 
 When("I complete the renewal for the account holder") do
   @business_name = "Assisted digital resumed renewal"
-  @app = "bo"
+  @app = :bo
   @convictions = "no convictions"
   @reg_type = :renewal
   @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)

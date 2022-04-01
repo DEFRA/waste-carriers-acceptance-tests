@@ -139,7 +139,7 @@ def retrieve_email_containing(search_terms)
 end
 
 def visit_last_message_page_for(app)
-  last_email_address = if app == "bo"
+  last_email_address = if app == :bo
                          "last_email_bo"
                        else
                          "last_email_fo"

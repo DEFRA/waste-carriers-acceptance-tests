@@ -59,7 +59,7 @@ Then("I check the registration details are correct on the back office") do
     end
   end
 
-  if @tier == "lower"
+  if @tier == :lower
     expect(info_panel).to have_text("Lower tier")
     expect(page_content).to have_text("Lower tier registration - convictions are not applicable")
   end
