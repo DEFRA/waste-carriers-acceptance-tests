@@ -2,7 +2,8 @@ When("I complete my limited company renewal steps declaring a conviction") do
   @business_name = "Ltd Company renewal declaring a conviction"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  select_upper_tier_for_renewal
+  @journey.carrier_type_page.submit
+  @journey.renewal_information_page.submit
   submit_business_renewal_details(@business_name)
   submit_company_people
   submit_convictions("convictions")
@@ -17,7 +18,8 @@ When("I complete my limited company renewal steps not declaring a personal convi
   @business_name = "Ltd Company renewal with matching conviction"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  select_upper_tier_for_renewal
+  @journey.carrier_type_page.submit
+  @journey.renewal_information_page.submit
   submit_business_renewal_details(@business_name)
   people = dodgy_people
   @journey.company_people_page.add_main_person(person: people[0])
@@ -34,7 +36,8 @@ end
 When(/^I complete my limited company renewal steps not declaring a company conviction$/) do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  select_upper_tier_for_renewal
+  @journey.carrier_type_page.submit
+  @journey.renewal_information_page.submit
   # Submit the existing company name, as it has a conviction against it:
   submit_business_renewal_details(@business_name)
   submit_company_people
