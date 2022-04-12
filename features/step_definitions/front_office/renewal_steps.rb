@@ -74,18 +74,7 @@ end
 When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_type|
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  answer_random_upper_tier_questions
   @journey.carrier_type_page.submit(choice: registration_type.to_sym)
-end
-
-When("I answer questions indicating I should be a lower tier waste carrier") do
-  agree_to_renew_in_england
-  @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  @journey.tier_other_businesses_page.submit(choice: :yes)
-  @journey.tier_service_provided_page.submit(choice: :main_service)
-  @journey.tier_farm_only_page.submit(choice: :yes)
 end
 
 Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
@@ -111,8 +100,8 @@ Given(/^I change my place of business location to "([^"]*)"$/) do |location|
 end
 
 Then("I will be able to continue my renewal") do
-  @journey.tier_check_page.wait_until_check_tier_visible
-  expect(@journey.tier_check_page.current_url).to include "/tier-check"
+  @journey.carrier_type_page.wait_until_carrier_dealer_visible
+  expect(@journey.tier_check_page.current_url).to include "/cbd-type"
   Capybara.reset_session!
 end
 
@@ -124,7 +113,8 @@ When("I complete my {string} renewal steps") do |business_type|
   @journey.renewal_start_page.submit
   @journey.location_page.submit(choice: "england")
   @journey.confirm_business_type_page.submit
-  select_upper_tier_for_renewal
+  @journey.carrier_type_page.submit
+  @journey.renewal_information_page.submit
   submit_business_renewal_details(@business_name)
   if business_type == "partnership"
     test_partnership_people
@@ -143,7 +133,8 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @business_name = "LLP renewal via bank transfer"
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  select_upper_tier_for_renewal
+  @journey.carrier_type_page.submit
+  @journey.renewal_information_page.submit
   @journey.check_registered_company_name_page.submit(choice: :confirm)
   @journey.company_name_page.submit
   complete_address_with_random_method
@@ -158,7 +149,7 @@ end
 When("I complete my overseas company renewal steps") do
   @journey.renewal_start_page.submit
   @journey.location_page.submit(choice: :overseas)
-  select_upper_tier_for_renewal
+  @journey.carrier_type_page.submit
   @journey.renewal_information_page.submit
   @journey.company_name_page.submit
   @journey.address_manual_page.submit(
@@ -199,7 +190,7 @@ Then(/^I will be notified "([^"]*)"$/) do |message|
   expect(page).to have_text(message)
 end
 
-And("the button allows me to start a new registration") do
+And("I have the option to start a new registration") do
   @journey.standard_page.button.click
   expect(on_fo_start_page?)
 end
@@ -236,8 +227,6 @@ end
 Given("I do not confirm my company details are correct") do
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
-  @journey.tier_check_page.submit(choice: :check_tier)
-  answer_random_upper_tier_questions
   @journey.carrier_type_page.submit # submit existing carrier type
   @journey.renewal_information_page.submit
   @journey.check_registered_company_name_page.submit(choice: :reject)

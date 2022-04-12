@@ -21,7 +21,6 @@ def submit_carrier_details(business = :existing, tier = :existing, carrier = :ex
     end
   when :existing
     # this only applies to renewals:
-    @journey.tier_check_page.submit(choice: :skip_check)
     @journey.carrier_type_page.submit(choice: carrier)
   else
     # Assume it's an upper tier new registration.
@@ -34,15 +33,6 @@ end
 def select_tier_for_registration(carrier = :existing)
   select_random_upper_tier_route
   @journey.carrier_type_page.submit(choice: carrier)
-end
-
-def select_upper_tier_for_renewal
-  @journey.tier_check_page.submit(choice: :check_tier)
-  answer_random_upper_tier_questions
-  # carrier_broker_dealer, broker_dealer, carrier_dealer, existing
-  @journey.carrier_type_page.submit
-  # "Confirmation of your renewal so far":
-  @journey.standard_page.submit
 end
 
 def select_random_upper_tier_route
