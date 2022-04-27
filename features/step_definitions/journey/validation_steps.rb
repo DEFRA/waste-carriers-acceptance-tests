@@ -44,6 +44,16 @@ Given("I generate errors throughout the journey") do
   expect(@journey.carrier_type_page.error_summary).to have_text("Select who carries the waste")
   @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
 
+  @people = @journey.company_people_page.main_people
+  @journey.company_people_page.submit
+  expect(@journey.company_people_page.error_summary).to have_text("Add the details of at least one person")
+  @journey.company_people_page.submit(
+    first_name: "Brian",
+    last_name: "Butterfield"
+  )
+  expect(@journey.company_people_page.error_summary).to have_text("Enter a valid date")
+  @journey.company_people_page.submit_main_person(person: @people[0])
+  
   @journey.company_number_page.submit
   expect(@journey.company_number_page.error_summary).to have_text("Enter a company registration number")
   @journey.company_number_page.submit(companies_house_number: "123456789")
@@ -56,15 +66,7 @@ Given("I generate errors throughout the journey") do
 
   test_address_validations
 
-  @people = @journey.company_people_page.main_people
-  @journey.company_people_page.submit
-  expect(@journey.company_people_page.error_summary).to have_text("Add the details of at least one person")
-  @journey.company_people_page.submit(
-    first_name: "Brian",
-    last_name: "Butterfield"
-  )
-  expect(@journey.company_people_page.error_summary).to have_text("Enter a valid date")
-  @journey.company_people_page.submit_main_person(person: @people[0])
+
 
   @journey.conviction_declare_page.submit
   expect(@journey.conviction_declare_page.error_summary).to have_text("Select yes or no")

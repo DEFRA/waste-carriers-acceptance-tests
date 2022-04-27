@@ -4,8 +4,8 @@ When("I complete my limited company renewal steps declaring a conviction") do
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
   @journey.renewal_information_page.submit
-  submit_business_renewal_details(@business_name)
   submit_company_people
+  submit_business_renewal_details(@business_name)
   submit_convictions("convictions")
   submit_contact_details_for_renewal
   check_your_answers
@@ -20,11 +20,11 @@ When("I complete my limited company renewal steps not declaring a personal convi
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
   @journey.renewal_information_page.submit
-  submit_business_renewal_details(@business_name)
   people = dodgy_people
   @journey.company_people_page.add_main_person(person: people[0])
   @journey.company_people_page.add_main_person(person: people[1])
   @journey.company_people_page.submit_main_person(person: people[2])
+  submit_business_renewal_details(@business_name)
   submit_convictions("no convictions")
   submit_contact_details_for_renewal
   check_your_answers

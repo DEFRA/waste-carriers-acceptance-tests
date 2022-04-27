@@ -40,16 +40,17 @@ When("I complete my registration for my business {string}") do |business_name|
   @business_name = business_name
   @carrier ||= :carrier_broker_dealer
   submit_carrier_details(@organisation_type, @tier, @carrier)
-  submit_business_details(@business_name, @tier)
 
   if @tier == :upper && @organisation_type != :partnership
     submit_company_people
+    submit_business_details(@business_name, @tier)
     @convictions ||= "no convictions"
     submit_convictions(@convictions)
   end
 
   if @tier == :upper && @organisation_type == :partnership
     submit_partners
+    submit_business_details(@business_name, @tier)
     @convictions ||= "no convictions"
     submit_convictions(@convictions)
   end
