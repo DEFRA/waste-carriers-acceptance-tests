@@ -118,7 +118,7 @@ When("I complete my {string} renewal steps") do |business_type|
   # submits company number, name and address
   if @journey.check_registered_company_name_page.heading.has_text? "Is this your registered name and address?"
     # then it's a limited company or LLP:
-    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text("Companies House Number - 00445790")
+    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text(/\d{6}/)
     @journey.check_registered_company_name_page.submit(choice: :confirm)
   end
   if business_type == "partnership"
@@ -142,8 +142,9 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
   @journey.renewal_information_page.submit
-  submit_company_people
+  expect(@journey.check_registered_company_name_page.companies_house_number).to have_text(/\d{6}/)
   @journey.check_registered_company_name_page.submit(choice: :confirm)
+  submit_company_people
   @journey.company_name_page.submit
   complete_address_with_random_method
   submit_convictions("no convictions")
@@ -158,6 +159,8 @@ When("I complete my overseas company renewal steps") do
   @journey.location_page.submit(choice: :overseas)
   @journey.carrier_type_page.submit
   @journey.renewal_information_page.submit
+  people = @journey.company_people_page.main_people
+  @journey.company_people_page.submit_main_person(person: people[0])
   @journey.company_name_page.submit
   @journey.address_manual_page.submit(
     house_number: "1",
@@ -167,8 +170,6 @@ When("I complete my overseas company renewal steps") do
     city: "Bratislava",
     country: "Slovakia"
   )
-  people = @journey.company_people_page.main_people
-  @journey.company_people_page.submit_main_person(person: people[0])
   submit_convictions("no convictions")
   @journey.contact_name_page.submit(
     first_name: "Peter",
