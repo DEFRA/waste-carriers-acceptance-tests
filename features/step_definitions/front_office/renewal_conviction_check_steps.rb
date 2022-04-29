@@ -7,7 +7,7 @@ When("I complete my limited company renewal steps declaring a conviction") do
   # Submit the existing company name, as it has a conviction against it:
   if @journey.check_registered_company_name_page.heading.has_text? "Is this your registered name and address?"
     # then it's a limited company or LLP:
-    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text("Companies House Number - 00445790")
+    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text(/\d{6}/)
     @journey.check_registered_company_name_page.submit(choice: :confirm)
   end
   submit_company_people
@@ -29,7 +29,7 @@ When("I complete my limited company renewal steps not declaring a personal convi
   people = dodgy_people
   if @journey.check_registered_company_name_page.heading.has_text? "Is this your registered name and address?"
     # then it's a limited company or LLP:
-    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text("Companies House Number - 00445790")
+    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text(/\d{6}/)
     @journey.check_registered_company_name_page.submit(choice: :confirm)
   end
 
@@ -53,7 +53,7 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   # Submit the existing company name, as it has a conviction against it:
   if @journey.check_registered_company_name_page.heading.has_text? "Is this your registered name and address?"
     # then it's a limited company or LLP:
-    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text("Companies House Number - 00445790")
+    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text(/\d{6}/)
     @journey.check_registered_company_name_page.submit(choice: :confirm)
   end
   submit_company_people
