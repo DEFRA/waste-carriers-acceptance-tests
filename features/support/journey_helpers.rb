@@ -21,7 +21,6 @@ def submit_carrier_details(business = :existing, tier = :existing, carrier = :ex
     end
   when :existing
     # this only applies to renewals:
-    @journey.tier_check_page.submit(choice: :skip_check)
     @journey.carrier_type_page.submit(choice: carrier)
   else
     # Assume it's an upper tier new registration.
@@ -34,15 +33,6 @@ end
 def select_tier_for_registration(carrier = :existing)
   select_random_upper_tier_route
   @journey.carrier_type_page.submit(choice: carrier)
-end
-
-def select_upper_tier_for_renewal
-  @journey.tier_check_page.submit(choice: :check_tier)
-  answer_random_upper_tier_questions
-  # carrier_broker_dealer, broker_dealer, carrier_dealer, existing
-  @journey.carrier_type_page.submit
-  # "Confirmation of your renewal so far":
-  @journey.standard_page.submit
 end
 
 def select_random_upper_tier_route
@@ -108,30 +98,6 @@ def answer_random_lower_tier_questions
     @journey.tier_service_provided_page.submit(choice: :not_main_service)
     @journey.tier_construction_waste_page.submit(choice: :no)
   end
-end
-
-def submit_business_details(business_name, tier)
-  # submits company number, name and address
-  if @journey.company_number_page.heading.has_text? "What's the registration number"
-    # then it's a limited company or LLP:
-    submit_limited_company_details(business_name, tier)
-  else
-    # it'll be the company name page, which will have a heading like "What's the name of the business?"
-    submit_organisation_details(business_name)
-  end
-end
-
-def submit_limited_company_details(business_name, tier)
-  # Submit company number:
-  if tier == :upper
-    @companies_house_number ||= "00445790"
-    @journey.company_number_page.submit(companies_house_number: @companies_house_number)
-  end
-
-  @journey.check_registered_company_name_page.submit(choice: :confirm)
-  @journey.company_name_page.submit(company_name: business_name)
-
-  complete_address_with_random_method
 end
 
 def complete_contact_address_with_random_method
