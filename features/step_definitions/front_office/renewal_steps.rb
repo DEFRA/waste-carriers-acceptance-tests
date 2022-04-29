@@ -115,12 +115,19 @@ When("I complete my {string} renewal steps") do |business_type|
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
   @journey.renewal_information_page.submit
+  # submits company number, name and address
+  if @journey.check_registered_company_name_page.heading.has_text? "Is this your registered name and address?"
+    # then it's a limited company or LLP:
+    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text("Companies House Number - 00445790")
+    @journey.check_registered_company_name_page.submit(choice: :confirm)
+  end
   if business_type == "partnership"
     test_partnership_people
   else
     submit_company_people
   end
-  submit_business_renewal_details(@business_name)
+  submit_organisation_details(@business_name)
+
   submit_convictions("no convictions")
   submit_contact_details_for_renewal
   check_your_answers
