@@ -100,30 +100,6 @@ def answer_random_lower_tier_questions
   end
 end
 
-def submit_business_details(business_name, tier)
-  # submits company number, name and address
-  if @journey.company_number_page.heading.has_text? "What's the registration number"
-    # then it's a limited company or LLP:
-    submit_limited_company_details(business_name, tier)
-  else
-    # it'll be the company name page, which will have a heading like "What's the name of the business?"
-    submit_organisation_details(business_name)
-  end
-end
-
-def submit_limited_company_details(business_name, tier)
-  # Submit company number:
-  if tier == :upper
-    @companies_house_number ||= "00445790"
-    @journey.company_number_page.submit(companies_house_number: @companies_house_number)
-  end
-
-  @journey.check_registered_company_name_page.submit(choice: :confirm)
-  @journey.company_name_page.submit(company_name: business_name)
-
-  complete_address_with_random_method
-end
-
 def complete_contact_address_with_random_method
   @journey.address_reuse_page.submit(choice: :no) unless @reg_type == :renewal
   expect(@journey.address_lookup_page).to have_content("address")

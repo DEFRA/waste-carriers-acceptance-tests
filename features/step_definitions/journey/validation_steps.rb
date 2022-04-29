@@ -43,7 +43,14 @@ Given("I generate errors throughout the journey") do
   @journey.carrier_type_page.submit
   expect(@journey.carrier_type_page.error_summary).to have_text("Select who carries the waste")
   @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
-
+  @journey.company_number_page.submit
+  expect(@journey.company_number_page.error_summary).to have_text("Enter a company registration number")
+  @journey.company_number_page.submit(companies_house_number: "123456789")
+  expect(@journey.company_number_page.error_summary).to have_text("Enter a valid number - it should have 8 digits, or 2 letters followed by 6 digits, or 2 letters followed by 5 digits and another letter. If your number has only 7 digits, enter it with a zero at the start.")
+  @journey.company_number_page.submit(companies_house_number: "00445790")
+  @journey.check_registered_company_name_page.submit
+  expect(@journey.check_registered_company_name_page.error_summary).to have_text("You must select yes or no")
+  @journey.check_registered_company_name_page.submit(choice: :confirm)
   @people = @journey.company_people_page.main_people
   @journey.company_people_page.submit
   expect(@journey.company_people_page.error_summary).to have_text("Add the details of at least one person")
@@ -53,20 +60,10 @@ Given("I generate errors throughout the journey") do
   )
   expect(@journey.company_people_page.error_summary).to have_text("Enter a valid date")
   @journey.company_people_page.submit_main_person(person: @people[0])
-  
-  @journey.company_number_page.submit
-  expect(@journey.company_number_page.error_summary).to have_text("Enter a company registration number")
-  @journey.company_number_page.submit(companies_house_number: "123456789")
-  expect(@journey.company_number_page.error_summary).to have_text("Enter a valid number - it should have 8 digits, or 2 letters followed by 6 digits, or 2 letters followed by 5 digits and another letter. If your number has only 7 digits, enter it with a zero at the start.")
-  @journey.company_number_page.submit(companies_house_number: "00445790")
 
-  @journey.check_registered_company_name_page.submit(choice: :confirm)
-  @business_name = "Validation test"
   @journey.company_name_page.submit
 
   test_address_validations
-
-
 
   @journey.conviction_declare_page.submit
   expect(@journey.conviction_declare_page.error_summary).to have_text("Select yes or no")

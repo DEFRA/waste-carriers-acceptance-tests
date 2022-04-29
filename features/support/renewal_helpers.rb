@@ -25,8 +25,15 @@ def submit_existing_renewal_details
   # Submit carrier details for the business, tier and carrier:
   submit_carrier_details
   @journey.renewal_information_page.submit
+
+  if @journey.check_registered_company_name_page.heading.has_text? "Is this your registered name and address?"
+    # then it's a limited company or LLP:
+    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text(/\d{6}/)
+    @journey.check_registered_company_name_page.submit(choice: :confirm)
+  end
+  # it'll be the company name page, which will have a heading like "What's the name of the business?"
   submit_company_people
-  submit_business_renewal_details(@business_name)
+  submit_organisation_details(@business_name)
   submit_convictions(@convictions)
   submit_contact_details_for_renewal
   check_your_answers
@@ -40,23 +47,4 @@ def expiry_date_from_reg_details
 
   expiry_date = page.text.match(/.*Expires: (.*)\n.*/)[1]
   Date.parse(expiry_date)
-end
-
-def submit_business_renewal_details(business_name)
-  # submits company number, name and address
-  if @journey.check_registered_company_name_page.heading.has_text? "Is this your registered name and address?"
-    # then it's a limited company or LLP:
-    expect(@journey.check_registered_company_name_page.companies_house_number).to have_text("Companies House Number - 00445790")
-    @journey.check_registered_company_name_page.submit(choice: :confirm)
-    submit_limited_company_renewal_details(business_name)
-  else
-    # it'll be the company name page, which will have a heading like "What's the name of the business?"
-    submit_organisation_details(business_name)
-  end
-end
-
-def submit_limited_company_renewal_details(business_name)
-  @journey.company_name_page.submit(company_name: business_name)
-
-  complete_address_with_random_method
 end

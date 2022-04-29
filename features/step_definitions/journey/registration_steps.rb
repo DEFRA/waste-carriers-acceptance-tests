@@ -27,6 +27,11 @@ When("I am on the business name page") do
   @journey.confirm_business_type_page.submit(org_type: @organisation_type)
   @journey.check_your_tier_page.submit(option: @tier)
   @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
+  if @tier == :upper && @organisation_type == :partnership
+    submit_partners
+  else
+    submit_company_people
+  end
 end
 
 Then("I submit the form") do
@@ -42,19 +47,21 @@ When("I complete my registration for my business {string}") do |business_name|
   submit_carrier_details(@organisation_type, @tier, @carrier)
 
   if @tier == :upper && @organisation_type != :partnership
+    if @journey.company_number_page.heading.has_text? "What's the registration number"
+      # then it's a limited company or LLP:
+      @companies_house_number ||= "00445790"
+      @journey.company_number_page.submit(companies_house_number: @companies_house_number)
+      @journey.check_registered_company_name_page.submit(choice: :confirm)
+    end
     submit_company_people
-    submit_business_details(@business_name, @tier)
-    @convictions ||= "no convictions"
-    submit_convictions(@convictions)
+    # it'll be the company name page, which will have a heading like "What's the name of the business?"
+
   end
 
-  if @tier == :upper && @organisation_type == :partnership
-    submit_partners
-    submit_business_details(@business_name, @tier)
-    @convictions ||= "no convictions"
-    submit_convictions(@convictions)
-  end
-
+  submit_partners if @tier == :upper && @organisation_type == :partnership
+  submit_organisation_details(@business_name)
+  @convictions ||= "no convictions"
+  submit_convictions(@convictions) if @tier == :upper
   @email_address = generate_email if @email_address.nil?
   submit_contact_details_for_registration(@email_address)
   expect(page).to have_content("Check your answers")
@@ -368,10 +375,11 @@ Given("I get part way through a front office registration") do
   @companies_house_number ||= "00445790"
   @journey.company_number_page.submit(companies_house_number: @companies_house_number)
   @journey.check_registered_company_name_page.submit(choice: :confirm)
-  @journey.company_name_page.submit(company_name: @business_name)
-  @journey.address_lookup_page.submit_valid_address
   @people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: @people[0])
+  @journey.company_name_page.submit(company_name: @business_name)
+  @journey.address_lookup_page.submit_valid_address
+
   @journey.conviction_declare_page.submit(choice: :no)
   @journey.contact_name_page.submit(
     first_name: Faker::Name.first_name,
