@@ -53,12 +53,13 @@ When("I complete my registration for my business {string}") do |business_name|
       @journey.company_number_page.submit(companies_house_number: @companies_house_number)
       @journey.check_registered_company_name_page.submit(choice: :confirm)
     end
-    submit_company_people
-    # it'll be the company name page, which will have a heading like "What's the name of the business?"
-
   end
 
-  submit_partners if @tier == :upper && @organisation_type == :partnership
+  if @tier == :upper && @organisation_type == :partnership
+    submit_partners
+  elsif @tier == :upper
+    submit_company_people
+  end
   submit_organisation_details(@business_name)
   @convictions ||= "no convictions"
   submit_convictions(@convictions) if @tier == :upper
