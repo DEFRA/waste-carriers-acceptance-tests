@@ -32,10 +32,6 @@ Feature: A new user registers as an upper tier waste carrier
     Then I am notified that my registration payment is being processed
     And I am sent an email advising me my payment is being processed
   
-  Scenario: Test error validation for registrations
-    When I generate errors throughout the journey
-    Then I am notified that my application has been received
-
   Scenario: Upper tier Partnership business name is mandatory
    Given I start a new registration journey in "England" as a "partnership"
     And I am on the business name page
