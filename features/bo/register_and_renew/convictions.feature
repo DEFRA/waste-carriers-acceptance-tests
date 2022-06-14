@@ -14,7 +14,7 @@ Feature: Conviction checks during upper tier waste carrier registrations
     Then the registration has a status of "ACTIVE"
     And the registration does not have a status of "CONVICTIONS"
     And a registraton confirmation email will be sent
-
+@wip
   Scenario: Sole trader with an undeclared conviction match by name is marked for a conviction check
     Given a key person with a conviction registers as a sole trader upper tier waste carrier
     And the registration has a status of "CONVICTIONS"

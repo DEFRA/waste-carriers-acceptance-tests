@@ -161,6 +161,9 @@ end
 
 def submit_organisation_details(business_name)
   # Optional company trading name question
+  puts @tier
+  puts @organisation_type
+  puts ask_trading_name_question?
   random_answer_trading_question if ask_trading_name_question?
   @journey.company_name_page.submit(company_name: business_name) unless @trading_name == false
   complete_address_with_random_method
