@@ -9,6 +9,7 @@ Given("I complete my renewal up to the payment page") do
   @journey.renewal_information_page.submit
   @journey.check_registered_company_name_page.submit(choice: :confirm)
   submit_company_people
+  @journey.trading_name_question_page.submit(option: :yes)
   @journey.company_name_page.submit(company_name: @business_name)
   complete_address_with_random_method
   submit_convictions("no convictions")

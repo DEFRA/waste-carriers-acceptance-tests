@@ -1,6 +1,6 @@
 When("I register and get stuck at the payment stage") do
   step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'soleTrader'")
+  step("I start a new registration journey in 'England' as a 'partnership'")
 
   # Generate random business name containing the word "Stuck", to
   # simulate a stuck payment in mock mode, and make it searchable later
@@ -18,6 +18,8 @@ end
 
 When("I complete the renewal steps and get stuck at the payment stage") do
   @business_name ||= "Stuck renewal " + rand(1..999_999).to_s
+  @organisation_type = :limitedCompany
+  @tier = :upper
   agree_to_renew_in_england
   submit_existing_renewal_details
 

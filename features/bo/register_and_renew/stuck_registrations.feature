@@ -19,7 +19,7 @@ Feature: NCCC agent unblocks a stuck registration from back office
     And the registration's balance is 0
 
   Scenario: NCCC unblocks a stuck renewal
-    Given I create a new registration as "user@example.com"
+    Given I create an upper tier registration for my "soleTrader" business as "user@example.com"
     And I receive an email from NCCC inviting me to renew
     And I start renewing my last registration from the email
     And I complete the renewal steps and get stuck at the payment stage
