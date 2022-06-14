@@ -49,7 +49,7 @@ When("I complete my registration for my business {string}") do |business_name|
   if @tier == :upper && @organisation_type != :partnership
     if @journey.company_number_page.heading.has_text? "What's the registration number"
       # then it's a limited company or LLP:
-      @companies_house_number ||= "00445790"
+      @companies_house_number = "00445790" if @companies_house_number.nil?
       @journey.company_number_page.submit(companies_house_number: @companies_house_number)
       @journey.check_registered_company_name_page.submit(choice: :confirm)
     end
@@ -135,6 +135,7 @@ end
 Given("I create a new registration as {string}") do |account_email|
   load_all_apps
   @tier = :upper
+  @organisation_type = :limitedCompany
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
@@ -150,6 +151,7 @@ Given("I create an upper tier registration for my {string} business as {string}"
   @reg_number = seed_data.reg_number
   @email_address = account_email
   @seeded_data = seed_data.seeded_data
+  @organisation_type = business_type
   puts "#{business_type} upper tier registration " + @reg_number + " seeded"
 end
 
@@ -188,6 +190,7 @@ Given("I create a new registration as {string} with a company name of {string}")
   load_all_apps
   @email_address = account_email
   @business_name = company_name
+  @organisation_type = :limitedCompany
   seed_data = SeedData.new(
     "limitedCompany_complete_active_registration.json",
     "accountEmail" => @email_address,
@@ -208,6 +211,8 @@ Given("I have an active registration") do
   @tier = :upper
 
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => @account_email)
+  @organisation_type = :limitedCompany
+  @tier = :upper
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @reg_balance = 0
@@ -222,6 +227,7 @@ Given("I have an active registration with a company number of {string}") do |com
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @companies_house_number = company_no
+  @organisation_type = :limitedCompany
 
   puts "Registration " + @reg_number + " seeded with company number of #{company_no}"
 end
@@ -235,7 +241,7 @@ Given("I have an active registration with a company name of {string}") do |compa
   @seeded_data = seed_data.seeded_data
   @business_name = company_name
   @reg_type = :registration
-
+  @organisation_type = :limitedCompany
   puts "Registration " + @reg_number + " seeded with company name of #{company_name}"
 end
 
@@ -268,7 +274,7 @@ Given("a limited company with companies house number {string} is registered as a
 
   # Store variables for later steps:
   @business_name = "AD UT Company convictions check ltd"
-  @organisation_type = "limitedCompany"
+  @organisation_type = :limitedCompany
   @companies_house_number = ch_no
 
   step("I want to register as an upper tier carrier")
@@ -293,6 +299,8 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
   @business_name = "AD UT Sole Trader"
   @people = dodgy_people
   @convictions = "convictions"
+  @tier = :upper
+  @organisation_type = :soleTrader
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'soleTrader'")
@@ -348,7 +356,7 @@ Given("I have a pending registration") do
   puts "Pending registration " + @pending_reg_number + " seeded"
 end
 
-Given("a limited company {string} registers as an upper tier waste carrier") do |business_name|
+Given("a partnership {string} registers as an upper tier waste carrier") do |business_name|
   # We recommend you don't reuse this scenario as it relies on creating a fresh registration with convictions,
   # which will slow down tests.
   # If you need registration data then use the seed functionality instead, as described in the README.
@@ -357,7 +365,7 @@ Given("a limited company {string} registers as an upper tier waste carrier") do 
   @business_name = business_name
 
   step("I want to register as an upper tier carrier")
-  step("I start a new registration journey in 'England' as a 'limitedCompany'")
+  step("I start a new registration journey in 'England' as a 'partnership'")
   step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
@@ -378,6 +386,7 @@ Given("I get part way through a front office registration") do
   @journey.check_registered_company_name_page.submit(choice: :confirm)
   @people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: @people[0])
+  @journey.trading_name_question_page.submit(option: :yes)
   @journey.company_name_page.submit(company_name: @business_name)
   @journey.address_lookup_page.submit_valid_address
 

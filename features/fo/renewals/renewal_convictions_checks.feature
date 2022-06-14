@@ -21,7 +21,7 @@ Feature: Registered waste carrier declares conviction during renewal
     And I will receive a registration renewal pending checks email
  
   Scenario: Limited company renews upper tier registration from renewals page not declaring company conviction
-    Given I create a new registration as "user@example.com" with a company name of "Waste Not Want Not, UK"
+    Given I have an active registration with a company number of "01649776"
     And I start renewing this registration from the start page
     And I have signed in to renew my registration as "user@example.com"
     When I complete my limited company renewal steps not declaring a company conviction
