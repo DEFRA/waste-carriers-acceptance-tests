@@ -165,7 +165,12 @@ def submit_organisation_details(business_name)
   puts @organisation_type
   puts ask_trading_name_question?
   random_answer_trading_question if ask_trading_name_question?
-  @journey.company_name_page.submit(company_name: business_name) unless @trading_name == false
+
+  if @trading_name == true
+    expect(@journey.company_name_page.heading).to have_text("Enter your trading name")
+    @journey.company_name_page.submit(company_name: business_name)
+  end
+
   complete_address_with_random_method
 end
 
@@ -336,6 +341,7 @@ def random_answer_trading_question
     @journey.trading_name_question_page.submit(option: :yes)
   else
     @journey.trading_name_question_page.submit(option: :no)
-    @trading_name = false
+    return @trading_name = false
   end
+  @trading_name = true
 end
