@@ -337,7 +337,7 @@ end
 
 def random_answer_trading_question
   i = rand(2)
-  if i.zero?
+  if i.zero? || @trading_name = true
     @journey.trading_name_question_page.submit(option: :yes)
   else
     @journey.trading_name_question_page.submit(option: :no)
