@@ -160,7 +160,9 @@ def submit_manual_address
 end
 
 def submit_organisation_details(business_name)
-  @journey.company_name_page.submit(company_name: business_name)
+  # Optional company trading name question
+  random_answer_trading_question if ask_trading_name_question?
+  @journey.company_name_page.submit(company_name: business_name) unless @trading_name == false
   complete_address_with_random_method
 end
 
@@ -316,4 +318,21 @@ def on_fo_start_page?
   # The URL may or may not contain /fo/ at this stage, so we can't validate the URL here.
   # TODO update this
   expect(page).to have_no_css("#groupLabel")
+end
+
+def ask_trading_name_question?
+  return false unless %w[limitedCompany limitedLiabilityPartnership soleTrader].include? @organisation_type.to_s
+  return false unless @tier == :upper
+
+  true
+end
+
+def random_answer_trading_question
+  i = rand(2)
+  if i.zero?
+    @journey.trading_name_question_page.submit(option: :yes)
+  else
+    @journey.trading_name_question_page.submit(option: :no)
+    @trading_name = false
+  end
 end

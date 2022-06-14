@@ -38,8 +38,8 @@ Feature: Conviction checks during upper tier waste carrier registrations
     Then the registration has a status of "ACTIVE"
     And the registration does not have a status of "CONVICTIONS"
 
-  Scenario: Limited company with an undeclared conviction match by name is marked for a conviction check and rejected
-    Given a limited company "CACI" registers as an upper tier waste carrier
+  Scenario: Partnership with an undeclared conviction match by name is marked for a conviction check and rejected
+    Given a partnership "Test Waste Services Ltd." registers as an upper tier waste carrier
     And the registration has a status of "CONVICTIONS"
     When the conviction check is flagged by an NCCC user
     And the flagged conviction is rejected by an NCCC user

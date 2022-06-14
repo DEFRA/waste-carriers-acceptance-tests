@@ -22,6 +22,8 @@ When("I renew from the email as a {string}") do |business_type|
   visit(@renew_from_email_link)
   expect(@journey.renewal_start_page.heading).to have_text("You are about to renew registration " + @reg_number)
   @reg_type = :renewal
+  @organisation_type = business_type
+  @tier = :upper
   step("I complete my '#{business_type}' renewal steps")
 end
 
@@ -138,6 +140,8 @@ end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
   @business_name = "LLP renewal via bank transfer"
+  @organisation_type = :limitedLiabilityPartnership
+  @tier = :upper
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
@@ -145,7 +149,7 @@ When(/^I complete my limited liability partnership renewal steps choosing to pay
   expect(@journey.check_registered_company_name_page.companies_house_number).to have_text(/\d{6}/)
   @journey.check_registered_company_name_page.submit(choice: :confirm)
   submit_company_people
-  @journey.company_name_page.submit
+  @journey.trading_name_question_page.submit(option: :no)
   complete_address_with_random_method
   submit_convictions("no convictions")
   submit_contact_details_for_renewal

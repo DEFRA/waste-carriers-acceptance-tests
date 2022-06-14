@@ -1,5 +1,5 @@
-def approve_conviction_immediately_for_reg(reg, company_name)
-  check_conviction_matches_for(company_name)
+def approve_conviction_immediately_for_reg(reg)
+  check_conviction_matches_for(reg)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration may have matching or declared convictions and requires an initial review"
@@ -8,18 +8,18 @@ def approve_conviction_immediately_for_reg(reg, company_name)
   approve_conviction(reg)
 end
 
-def flag_conviction_for_reg(reg, company_name)
-  check_conviction_matches_for(company_name)
+def flag_conviction_for_reg(reg)
+  check_conviction_matches_for(reg)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration may have matching or declared convictions and requires an initial review"
   expect(@bo.convictions_bo_details_page).to have_text(expected_info)
 
-  flag_conviction(reg, company_name)
+  flag_conviction(reg)
 end
 
-def approve_flagged_conviction_for_reg(reg, company_name)
-  check_in_progress_convictions_for(company_name)
+def approve_flagged_conviction_for_reg(reg)
+  check_in_progress_convictions_for(reg)
   go_to_conviction_for_reg(reg)
 
   expected_info = "This registration has been reviewed and flagged as having relevant convictions."
@@ -85,13 +85,12 @@ def approve_conviction(reg)
   puts reg + " approved following conviction check"
 end
 
-def flag_conviction(reg, company_name)
+def flag_conviction(reg)
   @bo.convictions_bo_details_page.flag_button.click
   # No confirmation given when flagging a conviction
   @bo.convictions_dashboard_page.in_progress_tab.click
   expect(@bo.convictions_dashboard_page.heading).to have_text("Convictions checks in progress")
   expect(@bo.convictions_dashboard_page.content).to have_text(reg)
-  expect(@bo.convictions_dashboard_page.content).to have_text(company_name)
 end
 
 def reject_conviction(reg)
