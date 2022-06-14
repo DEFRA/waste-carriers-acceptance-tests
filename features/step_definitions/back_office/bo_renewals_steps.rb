@@ -7,6 +7,7 @@ Given("NCCC partially renews an existing registration with {string}") do |convic
   # Set variables that can be reused across steps.
   @app = :bo
   @tier = :upper
+  @organisation_type = :soleTrader
   @convictions = convictions
   @business_name = "AD Renewal with " + @convictions
   @reg_type = :renewal

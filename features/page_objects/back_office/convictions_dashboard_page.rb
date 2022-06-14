@@ -8,13 +8,14 @@ class ConvictionsDashboardPage < BasePage
   element(:in_progress_tab, "a[href*='/convictions/in-progress']")
   element(:approved_tab, "a[href*='/convictions/approved']")
   element(:rejected_tab, "a[href*='/convictions/rejected']")
+  element(:next_link, "a[aria-label='Next page']")
 
   def look_for_text(text)
     # Look for the relevant text on page. If it's not there, click Next and look again.
     30.times do
       break if content.has_text?(text)
 
-      find_link("Next ›").click
+      next_link.click
     end
   end
 

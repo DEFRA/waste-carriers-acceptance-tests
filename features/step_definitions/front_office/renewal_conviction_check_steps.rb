@@ -1,5 +1,7 @@
 When("I complete my limited company renewal steps declaring a conviction") do
   @business_name = "Ltd Company renewal declaring a conviction"
+  @organisation_type = :limitedCompany
+  @tier = :upper
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
@@ -22,6 +24,8 @@ end
 
 When("I complete my limited company renewal steps not declaring a personal conviction") do
   @business_name = "Ltd Company renewal with matching conviction"
+  @organisation_type = :limitedCompany
+  @tier = :upper
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
@@ -46,6 +50,8 @@ When("I complete my limited company renewal steps not declaring a personal convi
 end
 
 When(/^I complete my limited company renewal steps not declaring a company conviction$/) do
+  @organisation_type = :limitedCompany
+  @tier = :upper
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
@@ -57,7 +63,7 @@ When(/^I complete my limited company renewal steps not declaring a company convi
     @journey.check_registered_company_name_page.submit(choice: :confirm)
   end
   submit_company_people
-  submit_organisation_details(@business_name)
+  submit_organisation_details("dumpit and run")
   submit_convictions("no convictions")
   submit_contact_details_for_renewal
   check_your_answers

@@ -154,6 +154,10 @@ class JourneyApp
     @last_page = TierServiceProvidedPage.new
   end
 
+  def trading_name_question_page
+    @last_page = TradingNameQuestionPage.new
+  end
+
   def worldpay_payment_page
     @last_page = WorldpayPaymentPage.new
   end
