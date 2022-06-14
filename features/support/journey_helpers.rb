@@ -166,8 +166,9 @@ def submit_organisation_details(business_name)
   puts ask_trading_name_question?
 
   random_answer_trading_question if ask_trading_name_question?
+
   unless @trading_name == false
-    expect(@journey.company_name_page).to have_content("trading name")
+    expect(@journey.company_name_page).to have_company_name
     @journey.company_name_page.submit(company_name: business_name)  
   end
   complete_address_with_random_method
