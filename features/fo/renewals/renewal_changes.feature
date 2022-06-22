@@ -38,7 +38,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
     And I start renewing this registration from the start page
     And I have signed in to renew my registration as "user@example.com"
     But I change the business type to "limitedLiabilityPartnership"
-    Then I will be able to continue my renewal
+    Then I will be notified "You need a new registration"
 
   Scenario: Limited company confirms company information is incorrect and is informed to create a new registration
     Given I create an upper tier registration for my "limitedCompany" business as "user@example.com"

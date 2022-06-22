@@ -161,3 +161,7 @@ def password_reset_link(account_email)
 
   reset_password_link
 end
+
+def a_company?
+  @organisation_type == (:llp || :ltd)
+end
