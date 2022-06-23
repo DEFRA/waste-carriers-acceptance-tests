@@ -161,7 +161,6 @@ end
 
 def submit_organisation_details(business_name)
   # Optional company trading name question
-
   random_answer_trading_question if ask_trading_name_question?
 
   unless @trading_name == false

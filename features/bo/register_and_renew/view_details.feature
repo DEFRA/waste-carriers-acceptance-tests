@@ -3,9 +3,9 @@ Feature: NCCC agent views registrations from back office
   As an NCCC agent
   I want to view registration and renewal details on one service
   So that I can quickly answer user queries
-
+  
   Scenario: NCCC user creates registration and renewal, and checks status
-    Given I have an active registration with a company name of "View details test"
+    Given I have a new registration for a "partnership" with business name "Howdy pardner"
     When I check the registration details are correct on the back office
     Then the certificate shows the correct details
 

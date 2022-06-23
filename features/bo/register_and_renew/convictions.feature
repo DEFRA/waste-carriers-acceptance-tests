@@ -16,13 +16,8 @@ Feature: Conviction checks during upper tier waste carrier registrations
     And a registraton confirmation email will be sent
   
   Scenario: Sole trader with an undeclared conviction match by name is marked for a conviction check
-    Given a key person with a conviction registers as a sole trader upper tier waste carrier
-    And the registration has a status of "CONVICTIONS"
-    When the conviction check is immediately approved by an NCCC user
-    Then the registration has a status of "ACTIVE"
-    And the registration does not have a status of "CONVICTIONS"
-
-    Given NCCC partially renews an existing registration with "convictions"
+    Given I have a new registration for a "soleTrader" with business name "Undeclared conviction"
+    And NCCC partially renews an existing registration with "convictions"
     And the applicant pays by bank card
     And the registration has a status of "CONVICTIONS"
     When the conviction check is flagged by an NCCC user
