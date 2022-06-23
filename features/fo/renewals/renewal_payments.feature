@@ -28,7 +28,7 @@ Feature: Registered waste carrier pays for their renewal
   # https://github.com/DEFRA/defra-ruby-mocks#pending-payments
   Scenario: Complete renewal with pending Worldpay payment
     Given mocking is enabled
-    And I have a new registration for a "Partnership" with business name "Pending payment renewal test"
+    And I have a new registration for a "partnership" with business name "Pending payment renewal test"
     And I receive an email from NCCC inviting me to renew
     When I renew from the email as a "Partnership"
     Then I am notified that my renewal payment is being processed
