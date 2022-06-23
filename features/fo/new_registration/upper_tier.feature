@@ -8,7 +8,7 @@ Feature: A new user registers as an upper tier waste carrier
     Given I want to register as an upper tier carrier
 
   @smoke @email
-  Scenario: A sole trader registers as an upper tier waste carrier and pays via Worldpay
+  Scenario: A sole trader registers as an upper tier waste carrier and pays via GovPay
     When I start a new registration journey in "England" as a "soleTrader"
     And I complete my registration for my business "Happy Path UT Registration"
     And I pay by card

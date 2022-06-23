@@ -79,7 +79,7 @@ end
 And(/^the applicant pays by bank card$/) do
   order_cards_during_journey(1)
   @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
+  submit_card_payment
 
   @reg_balance = 0
 end

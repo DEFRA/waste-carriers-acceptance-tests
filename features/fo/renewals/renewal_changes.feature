@@ -32,7 +32,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
     And I have signed in to renew my registration as "user@example.com"
     When I change my carrier broker dealer type to "carrier_broker_dealer"
     Then I will be notified "Because your carrier type has changed, there will also be a £40 charge"
-
+@skip
   Scenario: Partnership changes business type to Limited Liability Partnership
     Given I create an upper tier registration for my "partnership" business as "user@example.com"
     And I start renewing this registration from the start page

@@ -158,8 +158,12 @@ class JourneyApp
     @last_page = TradingNameQuestionPage.new
   end
 
-  def worldpay_payment_page
-    @last_page = WorldpayPaymentPage.new
+  def payment_page
+    @last_page = PaymentPage.new
+  end
+
+  def payment_confirmation_page
+    @last_page = PaymentConfirmationPage.new
   end
 
 end

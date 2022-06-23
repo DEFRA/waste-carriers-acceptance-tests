@@ -4,7 +4,7 @@ Feature: Registered waste carrier pays for their renewal
   I want to be able to pay the relevant charge for my renewal
   So that my renewal is completed without any delay
 
-  Scenario: Rejected worldpay payment can be paid for by bank transfer
+  Scenario: Rejected card payment can be paid for by bank transfer
     Given I create a new registration as "user@example.com" with a company name of "Rejected payment renewal test"
     And I receive an email from NCCC inviting me to renew
     And I start renewing my last registration from the email
@@ -14,7 +14,7 @@ Feature: Registered waste carrier pays for their renewal
     Then I will be notified my renewal is pending payment
     And I will receive a registration renewal pending payment email
 
-  Scenario: Cancelled worldpay payment can be paid for by retrying card payment
+  Scenario: Cancelled card payment can be paid for by retrying card payment
     Given I create a new registration as "user@example.com" with a company name of "Cancelled payment renewal test"
     And I receive an email from NCCC inviting me to renew
     And I start renewing my last registration from the email
@@ -26,7 +26,7 @@ Feature: Registered waste carrier pays for their renewal
 
   # Worldpay mock looks for pending as the company name to simuate pending payment
   # https://github.com/DEFRA/defra-ruby-mocks#pending-payments
-  Scenario: Complete renewal with pending Worldpay payment
+  Scenario: Complete renewal with pending card payment
     Given mocking is enabled
     And I have a new registration for a "partnership" with business name "Pending payment renewal test"
     And I receive an email from NCCC inviting me to renew

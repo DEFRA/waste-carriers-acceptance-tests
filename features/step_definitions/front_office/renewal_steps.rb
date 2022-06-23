@@ -135,7 +135,7 @@ When("I complete my {string} renewal steps") do |business_type|
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
+  submit_card_payment
 end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
@@ -195,7 +195,7 @@ When("I complete my overseas company renewal steps") do
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
+  submit_card_payment
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|

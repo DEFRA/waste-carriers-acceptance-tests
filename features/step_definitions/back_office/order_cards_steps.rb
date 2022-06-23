@@ -25,7 +25,7 @@ When(/^the agency user pays for the (?:card|cards) by bank card$/) do
   expect(@journey.cards_payment_page).to have_text("Payment summary")
 
   @journey.cards_payment_page.submit(choice: :bank_card)
-  submit_valid_card_payment
+  submit_card_payment
 end
 
 Then(/^the card order is confirmed with cleared payment$/) do

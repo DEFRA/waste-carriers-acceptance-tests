@@ -6,7 +6,7 @@ Feature: Finance admin
 
   This feature covers all main finance admin operations: refunds and charge adjustments (frequent)
   plus reversals and writeoffs (less frequent).
-
+  @skip
   Scenario: [RUBY-811] Refund WorldPay payments on registration
     Given a registration with no convictions has been submitted by paying via card
     Given the registration's balance is 0

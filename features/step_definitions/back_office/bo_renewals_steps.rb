@@ -64,7 +64,7 @@ When("I renew the limited company registration") do
 
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
+  submit_card_payment
 
 end
 
@@ -97,7 +97,7 @@ When("I complete the renewal for the account holder") do
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
 
-  submit_valid_card_payment
+  submit_card_payment
 end
 
 When("I search for the renewal pending payment") do
