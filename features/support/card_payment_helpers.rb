@@ -10,7 +10,7 @@ def submit_card_payment
     expiry_month: "12",
     expiry_year: next_year,
     security_code: "555",
-    email: "payment@example.com",
+    email: "simulate-delivered@notifications.service.gov.uk",
     address_line_one: "1 payment lane",
     address_line_two: "Teston",
     city: "Testville",
@@ -20,14 +20,13 @@ def submit_card_payment
 end
 
 def submit_invalid_card_payment
-  sleep(3)
   @journey.payment_page.submit(
     card_number: "4000000000000002",
     cardholder_name: "Mr Sad",
     expiry_month: "12",
     expiry_year: next_year,
     security_code: "555",
-    email: "payment@example.com",
+    email: "simulate-delivered@notifications.service.gov.uk",
     address_line_one: "1 payment lane",
     address_line_two: "Teston",
     city: "Testville",
