@@ -21,6 +21,7 @@ When("I complete the renewal steps and get stuck at the payment stage") do
   @organisation_type = :limitedCompany
   @tier = :upper
   agree_to_renew_in_england
+  @trading_name = true
   submit_existing_renewal_details
 
   order_cards_during_journey(0)

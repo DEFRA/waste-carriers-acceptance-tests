@@ -175,6 +175,18 @@ Given("I have a new registration for a {string} business") do |business_type|
   puts "#{business_type} registration " + @reg_number + " seeded"
 end
 
+Given("I have a new registration for a {string} with business name {string}") do |business_type, business_name|
+  load_all_apps
+  @tier = :upper
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "companyName" => business_name)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
+  @organisation_type = business_type
+  @email_address = @seeded_data["contactEmail"]
+  @business_name = business_name
+  puts "#{business_type} registration " + @reg_number + " seeded"
+end
+
 Given("I have a new lower tier registration for a {string} business") do |business_type|
   load_all_apps
   @tier = :lower

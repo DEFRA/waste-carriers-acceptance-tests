@@ -101,7 +101,7 @@ def answer_random_lower_tier_questions
 end
 
 def complete_contact_address_with_random_method
-  @journey.address_reuse_page.submit(choice: :no) unless @reg_type == :renewal
+  @journey.address_reuse_page.submit(choice: :no)
   expect(@journey.address_lookup_page).to have_content("address")
   i = rand(0..3)
   if i.zero?
@@ -137,18 +137,6 @@ def complete_address_with_random_method
   end
 end
 
-def random_address_reuse
-  # currently renewal doesn't use reuse pattern
-
-  i = rand(0..1)
-  if i.zero?
-    @journey.address_reuse_page.submit(choice: :yes)
-  else
-    @journey.address_reuse_page.submit(choice: :no)
-    complete_contact_address_with_random_method
-  end
-end
-
 def submit_manual_address
   @journey.address_lookup_page.submit_invalid_address
   @journey.address_manual_page.submit(
@@ -162,7 +150,11 @@ end
 def submit_organisation_details(business_name)
   # Optional company trading name question
   random_answer_trading_question if ask_trading_name_question?
-  @journey.company_name_page.submit(company_name: business_name) unless @trading_name == false
+
+  unless @trading_name == false
+    expect(@journey.company_name_page).to have_company_name
+    @journey.company_name_page.submit(company_name: business_name)
+  end
   complete_address_with_random_method
 end
 
@@ -329,7 +321,7 @@ end
 
 def random_answer_trading_question
   i = rand(2)
-  if i.zero?
+  if i.zero? || @trading_name == true
     @journey.trading_name_question_page.submit(option: :yes)
   else
     @journey.trading_name_question_page.submit(option: :no)

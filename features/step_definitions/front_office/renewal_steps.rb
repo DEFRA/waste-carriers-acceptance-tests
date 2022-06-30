@@ -109,7 +109,7 @@ end
 
 When("I complete my {string} renewal steps") do |business_type|
   # business_type must match the options in page_objects/front_office/registrations/business_type_page.rb
-  @business_name ||= business_type + " renewal"
+  @business_name ||= business_type + " renewal" if @business_name.nil?
   @journey.standard_page.accept_cookies
 
   @journey.renewal_start_page.submit

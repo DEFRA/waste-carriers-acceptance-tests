@@ -50,7 +50,12 @@ Then("I check the registration details are correct on the back office") do
   check_registration_details(@reg_number)
   info_panel = @bo.registration_details_page.info_panel
   page_content = @bo.registration_details_page
-  expect(@bo.registration_details_page.business_name).to have_text(@business_name)
+  # Upper tier companies now have a registered company name
+  if a_company?
+    expect(@bo.registration_details_page).to have_text(have_text(@business_name))
+  else
+    expect(@bo.registration_details_page.business_name).to have_text(@business_name)
+  end
 
   if @tier == :upper
     expect(info_panel).to have_text("Upper tier")
