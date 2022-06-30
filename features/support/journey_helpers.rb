@@ -101,7 +101,7 @@ def answer_random_lower_tier_questions
 end
 
 def complete_contact_address_with_random_method
-  @journey.address_reuse_page.submit(choice: :no) unless @reg_type == :renewal
+  @journey.address_reuse_page.submit(choice: :no)
   expect(@journey.address_lookup_page).to have_content("address")
   i = rand(0..3)
   if i.zero?
@@ -134,18 +134,6 @@ def complete_address_with_random_method
   else
     # Do a lookup
     @journey.address_lookup_page.submit_valid_address
-  end
-end
-
-def random_address_reuse
-  # currently renewal doesn't use reuse pattern
-
-  i = rand(0..1)
-  if i.zero?
-    @journey.address_reuse_page.submit(choice: :yes)
-  else
-    @journey.address_reuse_page.submit(choice: :no)
-    complete_contact_address_with_random_method
   end
 end
 
