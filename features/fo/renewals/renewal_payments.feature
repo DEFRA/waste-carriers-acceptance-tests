@@ -5,7 +5,8 @@ Feature: Registered waste carrier pays for their renewal
   So that my renewal is completed without any delay
 
   Scenario: Rejected card payment can be paid for by bank transfer
-    Given I create a new registration as "user@example.com" with a company name of "Rejected payment renewal test"
+    Given mocking is "disabled"
+    And I create a new registration as "user@example.com" with a company name of "Rejected payment renewal test"
     And I receive an email from NCCC inviting me to renew
     And I start renewing my last registration from the email
     And I complete my renewal up to the payment page
@@ -15,7 +16,8 @@ Feature: Registered waste carrier pays for their renewal
     And I will receive a registration renewal pending payment email
 
   Scenario: Cancelled card payment can be paid for by retrying card payment
-    Given I create a new registration as "user@example.com" with a company name of "Cancelled payment renewal test"
+    Given mocking is "disabled"
+    And I create a new registration as "user@example.com" with a company name of "Cancelled payment renewal test"
     And I receive an email from NCCC inviting me to renew
     And I start renewing my last registration from the email
     And I complete my renewal up to the payment page
@@ -23,13 +25,3 @@ Feature: Registered waste carrier pays for their renewal
     When I pay by bank transfer
     Then I will be notified my renewal is pending payment
     And I will receive a registration renewal pending payment email
-
-  # Worldpay mock looks for pending as the company name to simuate pending payment
-  # https://github.com/DEFRA/defra-ruby-mocks#pending-payments
-  Scenario: Complete renewal with pending card payment
-    Given mocking is enabled
-    And I have a new registration for a "partnership" with business name "Pending payment renewal test"
-    And I receive an email from NCCC inviting me to renew
-    When I renew from the email as a "Partnership"
-    Then I am notified that my renewal payment is being processed
-    And I will receive a registration renewal processing payment email
