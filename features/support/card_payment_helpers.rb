@@ -3,7 +3,6 @@
 def submit_card_payment
   return if mocking_enabled?
 
-  expect(@journey.payment_page.payment_description).to have_text(@reg_number)
   @journey.payment_page.submit(
     card_number: "4444333322221111",
     cardholder_name: "Mr Happy",
