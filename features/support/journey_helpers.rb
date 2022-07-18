@@ -194,7 +194,7 @@ def test_partnership_people
   @journey.company_people_page.add_main_person(person: people[1])
   @journey.company_people_page.remove_person[0].click
   @journey.company_people_page.submit_button.click
-  expect(@journey.company_people_page).to have_text("Add the details of at least 2 people")
+  expect(@journey.company_people_page).to have_text("Enter a first name")
   @journey.company_people_page.submit_main_person(person: people[2])
 end
 
@@ -224,6 +224,7 @@ def submit_contact_details_for_renewal
   @journey.contact_phone_page.submit(phone_number: "0117 4960001")
 
   email_value = @journey.contact_email_page.email.value
+  expect(@journey.contact_email_page).to have_no_email if @app == :bo
   expect(email_value).to eq("")
   @journey.contact_email_page.submit(
     email: "bo-renewal@example.com",
@@ -240,6 +241,7 @@ def submit_contact_details_for_registration(email_address)
   }
   @journey.contact_name_page.submit(names)
   @journey.contact_phone_page.submit(phone_number: "0117 4960000")
+  expect(@journey.contact_email_page).to have_no_email if @app == :bo
   @journey.contact_email_page.submit(email: email_address, confirm_email: email_address)
   complete_contact_address_with_random_method
 end

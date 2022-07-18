@@ -2,8 +2,8 @@ require "faker"
 
 class CompanyPeoplePage < BasePage
 
-  element(:first_name, "#main-people-form-first-name-field")
-  element(:last_name, "#main-people-form-last-name-field")
+  element(:first_name, "input[id^='main-people-form-first-name-field']")
+  element(:last_name, "input[id^='main-people-form-last-name-field']")
   element(:dob_day, "#main-people-form-dob-day-field")
   element(:dob_month, "#main-people-form-dob-month-field")
   element(:dob_year, "#main-people-form-dob-year-field")
