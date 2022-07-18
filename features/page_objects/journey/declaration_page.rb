@@ -2,7 +2,7 @@ class DeclarationPage < BasePage
 
   # Declaration
 
-  element(:declaration, "#declaration-form-declaration-1-field , .govuk-checkboxes__label")
+  element(:declaration, "#declaration-form-declaration-1-field", visible: false)
 
   def submit(_args = {})
     declaration.click

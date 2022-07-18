@@ -22,7 +22,7 @@ Feature: Recording of a non worldpay renewal payment and negative conviction che
     And the transient renewal's balance is 105
     When I search for the renewal pending payment
     And I mark the renewal payment as received
-    Then the registration has a status of "CONVICTIONS"
+    Then the renewal has a status of "CONVICTIONS"
 
     When I approve the conviction check for the renewal
     Then the registration has a status of "ACTIVE"
