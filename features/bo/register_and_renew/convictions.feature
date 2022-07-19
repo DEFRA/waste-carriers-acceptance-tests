@@ -19,7 +19,7 @@ Feature: Conviction checks during upper tier waste carrier registrations
     Given I have a new registration for a "soleTrader" with business name "Undeclared conviction"
     And NCCC partially renews an existing registration with "convictions"
     And the applicant pays by bank card
-    And the registration has a status of "CONVICTIONS"
+    And the renewal has a status of "CONVICTIONS"
     When the conviction check is flagged by an NCCC user
     And the flagged conviction is approved by an NCCC user
     Then the registration does not have a status of "CONVICTIONS"

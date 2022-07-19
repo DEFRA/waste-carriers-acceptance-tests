@@ -224,7 +224,7 @@ def submit_contact_details_for_renewal
   @journey.contact_phone_page.submit(phone_number: "0117 4960001")
 
   email_value = @journey.contact_email_page.email.value
-  expect(@journey.contact_email_page).to have_no_email if @app == :bo
+  expect(@journey.contact_email_page).to have_no_email_option if @app == :bo
   expect(email_value).to eq("")
   @journey.contact_email_page.submit(
     email: "bo-renewal@example.com",
@@ -241,7 +241,7 @@ def submit_contact_details_for_registration(email_address)
   }
   @journey.contact_name_page.submit(names)
   @journey.contact_phone_page.submit(phone_number: "0117 4960000")
-  expect(@journey.contact_email_page).to have_no_email if @app == :bo
+  expect(@journey.contact_email_page).to have_no_email_option if @app == :bo
   @journey.contact_email_page.submit(email: email_address, confirm_email: email_address)
   complete_contact_address_with_random_method
 end
