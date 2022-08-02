@@ -13,11 +13,10 @@ Feature: Assisted digital upper tier registrations
     And the registration has a status of "ACTIVE"
     And a registraton confirmation email will be sent
 
-  # Uses environment variable WCRS_ASSISTED_DIGITAL_EMAIL
   @letter
-  Scenario: Lower tier charity is registered as assisted digital from back office
+  Scenario: Upper tier partnership with no contact email registered from back office
     Given I sign into the back office as "agency-user"
-    When I register an assisted digital upper tier "partnership" from the back office
+    When I register a "partnership" from the back office with no contact email
     And I pay by card
     Then I am notified that my registration has been successful
     And a registraton confirmation letter will be sent
