@@ -101,7 +101,7 @@ def answer_random_lower_tier_questions
 end
 
 def complete_contact_address_with_random_method
-  @journey.address_reuse_page.submit(choice: :no) unless @reg_type == :renewal
+  @journey.address_reuse_page.submit(choice: :no)
   expect(@journey.address_lookup_page).to have_content("address")
   i = rand(0..3)
   if i.zero?
