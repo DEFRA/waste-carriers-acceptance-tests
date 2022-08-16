@@ -206,7 +206,7 @@ def test_partnership_people
   @journey.company_people_page.add_main_person(person: people[1])
   @journey.company_people_page.remove_person[0].click
   @journey.company_people_page.submit_button.click
-  expect(@journey.company_people_page).to have_text("Add the details of at least 2 people")
+  expect(@journey.company_people_page).to have_text("Enter a first name")
   @journey.company_people_page.submit_main_person(person: people[2])
 end
 
