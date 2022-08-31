@@ -14,19 +14,6 @@ Feature: [RUBY-759] Manage users
     And I update the new user role to an "agency with refund"
     Then the new user has the correct back office permissions
 
-  Scenario: Agency super user adds and removes an agency user
-    Given I sign into the back office as "agency-super"
-    And I invite a new "agency" user
-    And the new user accepts their invitation and sets up a password
-    When I sign into the back office as "agency-super"
-    And I deactivate the new user
-    Then the new user cannot log in to the back office
-
-  Scenario: Finance super adds a finance user
-    Given I sign into the back office as "finance-super"
-    When I invite a new "finance" user
-    Then the new user has the correct back office permissions
-
   Scenario: Agency super users cannot manage finance users
     Given I sign into the back office as "agency-super"
     When I access the user management screen
