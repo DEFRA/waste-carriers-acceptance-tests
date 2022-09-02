@@ -223,14 +223,14 @@ def submit_contact_details_for_renewal
   expect(phone_value).to eq("")
   @journey.contact_phone_page.submit(phone_number: "0117 4960001")
 
-  email_value = @journey.contact_email_page.email.value
-  expect(@journey.contact_email_page).to have_no_email_option if @app == :bo
-  expect(email_value).to eq("")
-  @journey.contact_email_page.submit(
-    email: "bo-renewal@example.com",
-    confirm_email: "bo-renewal@example.com"
-  )
-
+  expect(@journey.contact_email_page.email.value).to eq("")
+  unless @no_contact_email
+    @journey.contact_email_page.submit(
+      email: "bo-renewal@example.com",
+      confirm_email: "bo-renewal@example.com"
+    )
+  end
+  @journey.contact_email_page.submit(no_email_option: true) if @no_contact_email
   complete_contact_address_with_random_method
 end
 
