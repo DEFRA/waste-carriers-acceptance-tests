@@ -44,7 +44,7 @@ Given("NCCC goes back to the in progress renewal") do
   @bo.ad_privacy_policy_page.submit
 end
 
-Then("the AD renewal is complete") do
+Then("the renewal is complete") do
   expect(@journey.confirmation_page.heading).to have_text("Renewal complete")
   expect(@journey.confirmation_page).to have_text("Your registration number is still\n" + @reg_number)
   puts "Renewal " + @reg_number + " complete"
@@ -65,7 +65,10 @@ When("I renew the limited company registration") do
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
   submit_valid_card_payment
+end
 
+But("the user has no contact email address") do
+  @no_contact_email = true
 end
 
 Given("the registration has been partially renewed by the account holder") do
