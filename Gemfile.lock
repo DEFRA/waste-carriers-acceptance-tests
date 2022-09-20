@@ -53,7 +53,7 @@ GEM
       rubocop (~> 0.82)
     diff-lcs (1.4.4)
     facets (3.1.0)
-    faker (2.22.0)
+    faker (2.23.0)
       i18n (>= 1.8.11, < 2)
     gherkin (5.1.0)
     i18n (1.12.0)
