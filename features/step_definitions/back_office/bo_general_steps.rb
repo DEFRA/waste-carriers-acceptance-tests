@@ -10,6 +10,7 @@ Given(/^I sign into the back office as "([^"]*)"$/) do |user|
   # waste_carrier2
   load_all_apps
   sign_in_to_back_office(user)
+  @app = :bo
 end
 
 Given("I sign out of back office") do
