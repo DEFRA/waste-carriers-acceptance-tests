@@ -67,7 +67,6 @@ When("I renew the limited company registration") do
   submit_card_payment
 end
 
-
 But("the user has no contact email address") do
   @no_contact_email = true
 end
