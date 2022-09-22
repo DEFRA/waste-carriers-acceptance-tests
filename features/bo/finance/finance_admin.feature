@@ -13,6 +13,7 @@ Feature: Finance admin
     And I pay by card
     And I am notified that my registration has been successful
     And the registration's balance is 0
+
     And NCCC makes a payment of 42 by "cheque"
     When an agency-refund-payment-user refunds the card payment
     Then the card payment is shown as refunded

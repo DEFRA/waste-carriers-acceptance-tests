@@ -92,6 +92,11 @@ Then(/^(?:I will receive a registration confirmation letter|a registraton confir
   expect(message_exists?(expected_text)).to be true
 end
 
+Then("a renewal confirmation letter is sent") do
+  expected_text = [@reg_number, "letter", "renewed"]
+  expect(message_exists?(expected_text)).to be true
+end
+
 Then("an application confirmation email will be sent") do
   expected_text = [@reg_number, "Application received"]
   expect(message_exists?(expected_text)).to be true

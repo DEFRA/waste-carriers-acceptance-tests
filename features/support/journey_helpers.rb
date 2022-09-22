@@ -137,18 +137,6 @@ def complete_address_with_random_method
   end
 end
 
-def random_address_reuse
-  # currently renewal doesn't use reuse pattern
-
-  i = rand(0..1)
-  if i.zero?
-    @journey.address_reuse_page.submit(choice: :yes)
-  else
-    @journey.address_reuse_page.submit(choice: :no)
-    complete_contact_address_with_random_method
-  end
-end
-
 def submit_manual_address
   @journey.address_lookup_page.submit_invalid_address
   @journey.address_manual_page.submit(
@@ -235,13 +223,14 @@ def submit_contact_details_for_renewal
   expect(phone_value).to eq("")
   @journey.contact_phone_page.submit(phone_number: "0117 4960001")
 
-  email_value = @journey.contact_email_page.email.value
-  expect(email_value).to eq("")
-  @journey.contact_email_page.submit(
-    email: "bo-renewal@example.com",
-    confirm_email: "bo-renewal@example.com"
-  )
-
+  expect(@journey.contact_email_page.email.value).to eq("")
+  unless @no_contact_email
+    @journey.contact_email_page.submit(
+      email: "bo-renewal@example.com",
+      confirm_email: "bo-renewal@example.com"
+    )
+  end
+  @journey.contact_email_page.submit(no_email_option: true) if @no_contact_email
   complete_contact_address_with_random_method
 end
 
@@ -252,7 +241,9 @@ def submit_contact_details_for_registration(email_address)
   }
   @journey.contact_name_page.submit(names)
   @journey.contact_phone_page.submit(phone_number: "0117 4960000")
-  @journey.contact_email_page.submit(email: email_address, confirm_email: email_address)
+  expect(@journey.contact_email_page).to have_no_email_option if @app == :bo
+  @journey.contact_email_page.submit(email: email_address, confirm_email: email_address) unless @no_contact_email
+  @journey.contact_email_page.submit(no_email_option: true) if @no_contact_email
   complete_contact_address_with_random_method
 end
 

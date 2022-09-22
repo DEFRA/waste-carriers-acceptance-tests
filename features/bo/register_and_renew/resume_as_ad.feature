@@ -18,4 +18,4 @@ Feature: Incomplete registrations and renewals completed by NCCC
     And the registration has been partially renewed by the account holder
     And I sign into the back office as "agency-user"
     When I complete the renewal for the account holder
-    Then the AD renewal is complete
+    Then the renewal is complete
