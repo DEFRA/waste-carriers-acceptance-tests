@@ -28,7 +28,6 @@ class PaymentPage < BasePage
     city.set(args[:city]) if args.key?(:city)
     postcode.set(args[:postcode]) if args.key?(:postcode)
     email.set(args[:email]) if args.key?(:email)
-    submit_payment_button.click
   end
   # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
