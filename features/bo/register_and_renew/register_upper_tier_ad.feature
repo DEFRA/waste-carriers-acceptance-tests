@@ -5,7 +5,7 @@ Feature: Assisted digital upper tier registrations
   So I can complete my regisration and I am compliant with the law
 
   @smoke @email 
-  Scenario: Successful partnership registration from back office via WorldPay
+  Scenario: Successful partnership registration from back office via GovPay
     Given I sign into the back office as "agency-user"
     When I register an upper tier "partnership" from the back office
     And I pay by card

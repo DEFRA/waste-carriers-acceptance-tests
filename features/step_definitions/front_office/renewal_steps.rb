@@ -135,7 +135,7 @@ When("I complete my {string} renewal steps") do |business_type|
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
+  submit_card_payment
 end
 
 When(/^I complete my limited liability partnership renewal steps choosing to pay by bank transfer$/) do
@@ -195,7 +195,7 @@ When("I complete my overseas company renewal steps") do
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
+  submit_card_payment
 end
 
 Then(/^I will be notified "([^"]*)"$/) do |message|
@@ -275,4 +275,11 @@ Then(/^(?:I will receive a registration renewal processing payment email|a regis
   expected_text = ["We are currently processing your payment", @reg_number]
 
   expect(message_exists?(expected_text)).to be true
+end
+
+When("I start renewing my last registration from the email") do
+  @journey = JourneyApp.new
+  @reg_type = :renewal
+  visit(@renew_from_email_link)
+  expect(page).to have_text("You are about to renew registration " + @reg_number)
 end

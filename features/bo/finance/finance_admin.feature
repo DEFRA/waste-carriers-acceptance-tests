@@ -6,13 +6,17 @@ Feature: Finance admin
 
   This feature covers all main finance admin operations: refunds and charge adjustments (frequent)
   plus reversals and writeoffs (less frequent).
-  @refund
-  Scenario: [RUBY-811] Refund WorldPay payments on registration
-    Given a registration with no convictions has been submitted by paying via card
-    Given the registration's balance is 0
+
+  Scenario: [RUBY-811] Successful refund of card payment for registration
+    Given I sign into the back office as "agency-user"
+    And I register an upper tier "partnership" from the back office
+    And I pay by card
+    And I am notified that my registration has been successful
+    And the registration's balance is 0
+
     And NCCC makes a payment of 42 by "cheque"
-    When an agency-refund-payment-user refunds the WorldPay payment
-    Then the WorldPay payment is shown as refunded
+    When an agency-refund-payment-user refunds the card payment
+    Then the card payment is shown as refunded
     And the registration's balance is 0
 
   Scenario: [RUBY-870] Adjust charges on registration

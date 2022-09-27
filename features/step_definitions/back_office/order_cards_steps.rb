@@ -5,9 +5,6 @@ When(/^an agency user orders "([^"]*)" registration (?:card|cards)$/) do |cards|
   @bo.registration_details_page.order_cards_link.click
   expect(@journey.cards_order_page.heading).to have_text("Order registration cards for " + @reg_number)
 
-  # Error validation check:
-  @journey.cards_order_page.submit(number_of_cards: "0")
-  expect(@journey.cards_order_page.error_summary).to have_text("Enter a number between 1 and 999")
   @journey.cards_order_page.submit(number_of_cards: cards)
 
   if @number_of_cards == 1
@@ -25,7 +22,7 @@ When(/^the agency user pays for the (?:card|cards) by bank card$/) do
   expect(@journey.cards_payment_page).to have_text("Payment summary")
 
   @journey.cards_payment_page.submit(choice: :bank_card)
-  submit_valid_card_payment
+  submit_card_payment
 end
 
 Then(/^the card order is confirmed with cleared payment$/) do

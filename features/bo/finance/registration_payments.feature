@@ -21,7 +21,7 @@ Feature: [RUBY-826] Pay for registrations
     And I check the registration details are correct on the back office
     And the registration's balance is 0
 
-  Scenario: Pay for registration, partly by bank transfer, complete by Worldpay
+  Scenario: Pay for registration, partly by bank transfer, complete by card payment
     When NCCC makes a payment of 100 by "transfer"
     Then the registration has a status of "IN PROGRESS"
     And the registration has a status of "PAYMENT NEEDED"

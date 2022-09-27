@@ -118,17 +118,6 @@ Then("I will be asked to enter a business name") do
   expect(@journey.company_name_page.error_summary).to have_text("Enter a business or trading name")
 end
 
-Then("I am notified that my registration payment is being processed") do
-  expect(page).to have_content("We’re processing your payment")
-  @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration #{@reg_number} submitted and pending WorldPay"
-end
-
-Then("I am sent an email advising me my payment is being processed") do
-  expected_text = [@reg_number, "We’re processing your waste carrier registration"]
-  expect(message_exists?(expected_text)).to be true
-end
-
 Given("a registration with no convictions has been submitted by paying via card") do
   load_all_apps
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
@@ -438,7 +427,7 @@ Given("I resume the registration as assisted digital") do
   @journey.declaration_page.submit
   order_cards_during_journey(3)
   @journey.payment_summary_page.submit(choice: :card_payment)
-  submit_valid_card_payment
+  submit_card_payment
   expect(@journey.confirmation_page.heading).to have_text("Registration complete")
   @reg_number = @journey.confirmation_page.registration_number.text
   puts @reg_number + " resumed and completed as assisted digital"

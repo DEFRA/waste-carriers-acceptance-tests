@@ -1,4 +1,4 @@
-Given(/^an agency-refund-payment-user refunds the WorldPay payment$/) do
+Given("an agency-refund-payment-user refunds the card payment") do
   sign_in_to_back_office("agency-refund-payment-user")
 
   visit_refund_page(@reg_number)
@@ -19,9 +19,9 @@ Given(/^an agency-refund-payment-user refunds the WorldPay payment$/) do
   # Takes user back to payment details page with flash message.
 end
 
-Then(/^the WorldPay payment is shown as refunded$/) do
+Then("the card payment is shown as refunded") do
   expect(@bo.finance_payment_details_page.flash_message).to have_text("£" + @refund + ".00 refunded successfully")
-  expect(@bo.finance_payment_details_page).to have_text("A refund has been requested for this worldpay payment -" + @refund + ".00")
+  expect(@bo.finance_payment_details_page).to have_text("A refund has been requested for this Govpay payment -" + @refund + ".00")
   puts "£" + @refund + ".00 WorldPay payment refunded"
 end
 

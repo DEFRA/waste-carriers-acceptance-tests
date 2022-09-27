@@ -10,22 +10,20 @@ Given(/^I sign into the back office as "([^"]*)"$/) do |user|
   # waste_carrier2
   load_all_apps
   sign_in_to_back_office(user)
+  @app = :bo
 end
 
 Given("I sign out of back office") do
   sign_out_of_back_office
 end
 
-Given("mocking is disabled") do
-  # Some tests rely on being able to perform actions on the Worldpay payment screen.
-  # This step skips those tests when mocking is disabled.
-  pending "It makes no sense to test this feature when mocking is enabled" if mocking_enabled?
-end
-
-Given("mocking is enabled") do
-  # Tests which simulate a "pending WorldPay" status can only be run in automated tests if mocking is enabled.
-  # See RUBY-1013 for details on how to test this manually.
-  pending "It makes no sense to test this feature when mocking is disabled" unless mocking_enabled?
+Given("mocking is {string}") do |option|
+  case option
+  when "enabled"
+    pending "It makes no sense to test this feature when mocking is disabled" unless mocking_enabled?
+  when "disabled"
+    pending "It makes no sense to test this feature when mocking is enabled" if mocking_enabled?
+  end
 end
 
 Then(/^the registration has a status of "([^"]*)"$/) do |status|
