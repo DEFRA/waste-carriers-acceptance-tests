@@ -104,7 +104,7 @@ end
 
 Then("I am notified that I need to pay by bank transfer") do
   expect(page).to have_content("You must now pay by bank transfer")
-  expect(page).to have_content("We’ve sent an email to " + @email_address + " with the payment details and instructions.")
+  expect(page).to have_content("We've sent an email to " + @email_address + " with the payment details and instructions.")
   @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration #{@reg_number} submitted pending bank transfer"
 end
