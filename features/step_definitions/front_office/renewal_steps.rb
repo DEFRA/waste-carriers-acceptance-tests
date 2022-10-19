@@ -50,7 +50,7 @@ When("I call NCCC to renew it") do
 end
 
 Then("NCCC are unable to generate a renewal email") do
-  sign_in_to_back_office("agency-user", false)
+  sign_in_to_back_office("agency-user")
   visit_registration_details_page(@reg_number)
   expect(@bo.registration_details_page).to have_no_resend_renewal_email_link
 end

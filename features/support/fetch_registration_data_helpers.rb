@@ -1,6 +1,6 @@
 def fetch_registration_data_for(reg_identifier)
   # Sign in to back office unless already signed in
-  sign_in_to_back_office("agency-refund-payment-user", false)
+  sign_in_to_back_office("agency-refund-payment-user")
 
   visit "#{Quke::Quke.config.custom['urls']['back_office']}/api/registrations/#{reg_identifier}"
 
@@ -25,7 +25,7 @@ end
 
 def fetch_renewal_data_for(reg_identifier)
   # Sign in to back office unless already signed in
-  sign_in_to_back_office("agency-refund-payment-user", false)
+  sign_in_to_back_office("agency-refund-payment-user")
 
   visit "#{Quke::Quke.config.custom['urls']['back_office']}/api/renewals/#{reg_identifier}"
 

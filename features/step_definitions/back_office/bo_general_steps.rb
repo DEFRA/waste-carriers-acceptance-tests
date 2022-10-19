@@ -27,7 +27,7 @@ Given("mocking is {string}") do |option|
 end
 
 Then(/^the registration has a status of "([^"]*)"$/) do |status|
-  sign_in_to_back_office("agency-refund-payment-user", false)
+  sign_in_to_back_office("agency-refund-payment-user")
 
   @bo.dashboard_page.load
   @bo.dashboard_page.submit(search_term: @reg_number)
@@ -36,7 +36,7 @@ Then(/^the registration has a status of "([^"]*)"$/) do |status|
 end
 
 Then(/^the renewal has a status of "([^"]*)"$/) do |status|
-  sign_in_to_back_office("agency-refund-payment-user", false)
+  sign_in_to_back_office("agency-refund-payment-user")
 
   @bo.dashboard_page.load
   @bo.dashboard_page.submit(search_term: @reg_number)
@@ -45,7 +45,7 @@ Then(/^the renewal has a status of "([^"]*)"$/) do |status|
 end
 
 Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
-  sign_in_to_back_office("agency-refund-payment-user", false)
+  sign_in_to_back_office("agency-refund-payment-user")
 
   @bo.dashboard_page.load
   @bo.dashboard_page.submit(search_term: @reg_number)
