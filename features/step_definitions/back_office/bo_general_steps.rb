@@ -94,7 +94,7 @@ Then("the certificate shows the correct details") do
   # Also, when testing headlessly, the direct link to the certificate PDF doesn't work.
   # So we need to bypass the PDF link by going directly to the HTML version of the link.
   # Get target URL from certificate link:
-  letter_html_url = @bo.registration_details_page.view_certificate_link[:href].to_s + "?show_as_html=true"
+  letter_html_url = "#{@bo.registration_details_page.view_certificate_link[:href]}?show_as_html=true"
   visit(letter_html_url)
 
   expect(@bo.registration_certificate_page.heading).to have_text("Certificate of Registration")

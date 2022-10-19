@@ -40,8 +40,8 @@ Then("the new user accepts their invitation and sets up a password") do
 
   user_accept_invite_page = UserAcceptInvitePage.new
 
-  user_accept_invite_page.password_field.set(ENV["WCRS_DEFAULT_PASSWORD"])
-  user_accept_invite_page.confirm_password_field.set(ENV["WCRS_DEFAULT_PASSWORD"])
+  user_accept_invite_page.password_field.set(ENV.fetch("WCRS_DEFAULT_PASSWORD", nil))
+  user_accept_invite_page.confirm_password_field.set(ENV.fetch("WCRS_DEFAULT_PASSWORD", nil))
   user_accept_invite_page.submit
 end
 
@@ -85,7 +85,7 @@ Then(/^the new user cannot log in to the back office$/) do
 
   @bo.sign_in_page.submit(
     email: @new_user_email,
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
+    password: ENV.fetch("WCRS_DEFAULT_PASSWORD", nil)
   )
 
   expect(page).to have_text("Your account has been deactivated")

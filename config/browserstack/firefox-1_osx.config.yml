@@ -3,7 +3,7 @@
 # will be by simply setting `app_host`. You can then use it directly using
 # Capybara `visit('/Main_Page')` or `visit('/')` rather than having to repeat
 # the full url each time
-app_host: 'https://waste-carriers-dev.aws.defra.cloud'
+app_host: 'https://wcr-dev.aws.defra.cloud'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome, and
 # browserstack, with the default being chrome
@@ -51,14 +51,14 @@ custom:
     waste_carrier:
       username: user@example.com
   urls:
-    front_office: "https://waste-carriers-dev.aws.defra.cloud"
-    front_office_sign_in: "https://waste-carriers-dev.aws.defra.cloud/fo/users/sign_in"
-    back_office: "https://admin-waste-carriers-dev.aws.defra.cloud/bo"
-    back_office_sign_in: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/users/sign_in"
-    last_email_fo: "https://waste-carriers-dev.aws.defra.cloud/fo/email/last-email"
-    last_email_bo: "https://admin-waste-carriers-dev.aws.defra.cloud/bo/email/last-email"
+    front_office: "https://wcr-dev.aws.defra.cloud"
+    front_office_sign_in: "https://wcr-dev.aws.defra.cloud/fo/users/sign_in"
+    back_office: "https://wcr-admin-dev.aws.defra.cloud/bo"
+    back_office_sign_in: "https://wcr-admin-dev.aws.defra.cloud/bo/users/sign_in"
+    last_email_fo: "https://wcr-dev.aws.defra.cloud/fo/email/last-email"
+    last_email_bo: "https://wcr-admin-dev.aws.defra.cloud/bo/email/last-email"
     notify_link: "/fo/email/last-notify-message"
-    mock_enabled: "https://waste-carriers-dev.aws.defra.cloud/fo/mocks/company/00445790"
+    mock_enabled: "https://wcr-dev.aws.defra.cloud/fo/mocks/company/00445790"
     
 
 # If you are running Quke behind a proxy you can configure the proxy details

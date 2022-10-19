@@ -39,3 +39,6 @@ Style/MixinUsage:
 # modifying every file at this point, so this cop is disabled for now.
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+AllCops:
+  SuggestExtensions: false

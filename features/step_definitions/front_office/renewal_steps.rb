@@ -11,7 +11,7 @@ end
 
 Given("I receive an email from NCCC inviting me to renew") do
   send_renewal_email(@reg_number)
-  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to " + @email_address)
+  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@email_address}")
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
   @renew_from_email_link = @journey.last_message_page.get_renewal_url(@reg_number)
   puts "Renewal link for #{@reg_number} is #{@renew_from_email_link}"
@@ -20,7 +20,7 @@ end
 
 When("I renew from the email as a {string}") do |business_type|
   visit(@renew_from_email_link)
-  expect(@journey.renewal_start_page.heading).to have_text("You are about to renew registration " + @reg_number)
+  expect(@journey.renewal_start_page.heading).to have_text("You are about to renew registration #{@reg_number}")
   @reg_type = :renewal
   @organisation_type = business_type
   @tier = :upper
@@ -42,7 +42,7 @@ Given("I have a registration which expired {int} days ago") do |days_ago|
   @seeded_data = seed_data.seeded_data
   @email_address = @seeded_data["contactEmail"]
 
-  puts "limitedCompany upper tier expired registration " + @reg_number + " seeded"
+  puts "limitedCompany upper tier expired registration #{@reg_number} seeded"
 end
 
 When("I call NCCC to renew it") do
@@ -62,7 +62,7 @@ end
 Then("I cannot renew again with the same link") do
   visit(@renew_from_email_link)
   expect(@journey.renewal_start_page.heading).to have_text("That registration has already been renewed")
-  expect(@journey.renewal_start_page.content).to have_text("Our records show that registration " + @reg_number + " has already been renewed.")
+  expect(@journey.renewal_start_page.content).to have_text("Our records show that registration #{@reg_number} has already been renewed.")
 end
 
 Then("I am told the renewal cannot be found") do
@@ -109,7 +109,7 @@ end
 
 When("I complete my {string} renewal steps") do |business_type|
   # business_type must match the options in page_objects/front_office/registrations/business_type_page.rb
-  @business_name ||= business_type + " renewal" if @business_name.nil?
+  @business_name ||= "#{business_type} renewal" if @business_name.nil?
   @journey.standard_page.accept_cookies
 
   @journey.renewal_start_page.submit
@@ -228,7 +228,7 @@ Then("I am notified that my renewal payment is being processed") do
   @reg_number = @journey.confirmation_page.registration_number.text
   expected_text = [@reg_number]
 
-  expected_text << "Your application to renew waste carriers registration " + @reg_number + " has been received"
+  expected_text << ("Your application to renew waste carriers registration #{@reg_number} has been received")
   expected_text << "We are currently processing your payment"
 
   expect(message_exists?(expected_text)).to be true
@@ -281,5 +281,5 @@ When("I start renewing my last registration from the email") do
   @journey = JourneyApp.new
   @reg_type = :renewal
   visit(@renew_from_email_link)
-  expect(page).to have_text("You are about to renew registration " + @reg_number)
+  expect(page).to have_text("You are about to renew registration #{@reg_number}")
 end

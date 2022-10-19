@@ -8,7 +8,7 @@ Given("NCCC partially renews an existing registration with {string}") do |convic
   @tier = :upper
   @organisation_type = :soleTrader if @organisation_type.nil?
   @convictions = convictions
-  @business_name = "AD Renewal with " + @convictions
+  @business_name = "AD Renewal with #{@convictions}"
   @reg_type = :renewal
 
   # Search for registration to renew:
@@ -25,7 +25,7 @@ Given("the back office pages show the correct transient renewal details") do
   sign_in_to_back_office("agency-user")
   @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
 
-  expect(@bo.registration_details_page.heading).to have_text("Renewal " + @reg_number)
+  expect(@bo.registration_details_page.heading).to have_text("Renewal #{@reg_number}")
   expect(@bo.registration_details_page).to have_text "Application in progress"
   expect(@bo.registration_details_page).to have_continue_as_ad_button
   expect(@bo.registration_details_page).to have_text(@business_name)
@@ -46,8 +46,8 @@ end
 
 Then("the renewal is complete") do
   expect(@journey.confirmation_page.heading).to have_text("Renewal complete")
-  expect(@journey.confirmation_page).to have_text("Your registration number is still\n" + @reg_number)
-  puts "Renewal " + @reg_number + " complete"
+  expect(@journey.confirmation_page).to have_text("Your registration number is still\n#{@reg_number}")
+  puts "Renewal #{@reg_number} complete"
 
   @journey.confirmation_page.finished_button.click
   expect(@bo.registration_details_page.heading).to have_text("Waste carriers registrations")

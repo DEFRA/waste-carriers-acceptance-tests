@@ -36,15 +36,15 @@ end
 def sign_in_to_front_office(email)
   url = URI.parse(current_url).to_s
   visit(Quke::Quke.config.custom["urls"]["front_office_sign_in"]) if url.not.include? "fo/users/sign_in"
-  return if page.has_text?("Signed in as " + email)
+  return if page.has_text?("Signed in as #{email}")
 
   @fo.front_office_sign_in_page.submit(
     email: email,
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
+    password: ENV.fetch("WCRS_DEFAULT_PASSWORD", nil)
   )
 end
 
-def sign_in_to_back_office(user, force = true)
+def sign_in_to_back_office(user, force: true)
   # If force == true then this forces signout regardless of the user's type.
 
   # Check whether user is already logged in by visiting root page:
@@ -62,7 +62,7 @@ def sign_in_to_back_office(user, force = true)
   @bo.sign_in_page.submit(
     # user must match the user headings in .config.yml:
     email: Quke::Quke.config.custom["accounts"][user]["username"],
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
+    password: ENV.fetch("WCRS_DEFAULT_PASSWORD", nil)
   )
 end
 
@@ -157,7 +157,7 @@ def password_reset_link(account_email)
   # rubocop:disable Style/RedundantRegexpEscape
   reset_password_link = reset_email_text.match(/.*href\=\\"(.*)\\">Change.*/)[1].to_s
   # rubocop:enable Style/RedundantRegexpEscape
-  puts "Link to reset password is: " + reset_password_link
+  puts "Link to reset password is: #{reset_password_link}"
 
   reset_password_link
 end

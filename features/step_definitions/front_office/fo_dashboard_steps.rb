@@ -1,7 +1,7 @@
 When("I choose to view my certificate") do
   @fo.front_office_sign_in_page.load
   @fo.front_office_sign_in_page.submit(
-    email: @email_address, password: ENV["WCRS_DEFAULT_PASSWORD"]
+    email: @email_address, password: ENV.fetch("WCRS_DEFAULT_PASSWORD", nil)
   )
   @fo.front_office_dashboard.find_registration(@reg_number)
 end
@@ -58,9 +58,9 @@ Then("I change the password back to its original value") do
   @fo.front_office_dashboard.change_password_link.click
   @fo.reset_password_page.change_password(
     current_password: @password,
-    password: ENV["WCRS_DEFAULT_PASSWORD"]
+    password: ENV.fetch("WCRS_DEFAULT_PASSWORD", nil)
   )
-  @password = ENV["WCRS_DEFAULT_PASSWORD"]
+  @password = ENV.fetch("WCRS_DEFAULT_PASSWORD", nil)
   expect(@fo.front_office_dashboard.heading).to have_text("Your waste carrier registrations")
 end
 
