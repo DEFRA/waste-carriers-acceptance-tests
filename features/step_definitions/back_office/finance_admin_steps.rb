@@ -14,15 +14,15 @@ Given("an agency-refund-payment-user refunds the card payment") do
   # Store amount to be refunded as text, for later steps:
   @refund = (-@reg_balance).to_s
 
-  expect(@journey.standard_page.content).to have_text("Balance that will be refunded £" + @refund + ".00")
+  expect(@journey.standard_page.content).to have_text("Balance that will be refunded £#{@refund}.00")
   @journey.standard_page.submit_button.click
   # Takes user back to payment details page with flash message.
 end
 
 Then("the card payment is shown as refunded") do
-  expect(@bo.finance_payment_details_page.flash_message).to have_text("£" + @refund + ".00 refunded successfully")
-  expect(@bo.finance_payment_details_page).to have_text("A refund has been requested for this Govpay payment -" + @refund + ".00")
-  puts "£" + @refund + ".00 WorldPay payment refunded"
+  expect(@bo.finance_payment_details_page.flash_message).to have_text("£#{@refund}.00 refunded successfully")
+  expect(@bo.finance_payment_details_page).to have_text("A refund has been requested for this Govpay payment -#{@refund}.00")
+  puts "£#{@refund}.00 WorldPay payment refunded"
 end
 
 Given(/^a finance admin user adjusts the charge by (-?\d+)$/) do |amount|
@@ -32,8 +32,8 @@ Given(/^a finance admin user adjusts the charge by (-?\d+)$/) do |amount|
   amount = amount.to_i
   adjust_charge(amount, random_number)
 
-  expect(@bo.finance_payment_details_page.flash_message).to have_text("£" + amount.to_s + ".00 charge adjust completed successfully")
-  expect(@bo.finance_payment_details_page).to have_text("charge adjustment " + random_number.to_s)
+  expect(@bo.finance_payment_details_page.flash_message).to have_text("£#{amount}.00 charge adjust completed successfully")
+  expect(@bo.finance_payment_details_page).to have_text("charge adjustment #{random_number}")
 
   @reg_balance += amount
 end
@@ -78,6 +78,6 @@ Given("I add a missed Worldpay payment at the payment stage") do
     reference: "0101010",
     comment: "missed worldpay at payment stage"
   )
-  expect(@bo.finance_payment_details_page.flash_message).to have_text(@reg_balance.to_s + " payment entered successfully")
+  expect(@bo.finance_payment_details_page.flash_message).to have_text("#{@reg_balance} payment entered successfully")
   @reg_type = :registration
 end

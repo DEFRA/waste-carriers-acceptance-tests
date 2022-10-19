@@ -37,7 +37,7 @@ def visit_renewal_details_page(reg_identifier)
 end
 
 def renewal_magic_link_for(reg_identifier)
-  Quke::Quke.config.custom["urls"]["front_office"] + "/fo/renew/" + renew_token_for(reg_identifier)
+  "#{Quke::Quke.config.custom['urls']['front_office']}/fo/renew/#{renew_token_for(reg_identifier)}"
 end
 
 def visit_renewal_magic_link(reg_identifier)

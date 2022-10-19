@@ -33,7 +33,7 @@ class LastMessagePage < BasePage
       page.evaluate_script "window.location.reload()"
     end
 
-    puts "Couldn't find message containing all text: " + expected_text.to_s
+    puts "Couldn't find message containing all text: #{expected_text}"
     false
   end
 

@@ -13,11 +13,11 @@ def submit_carrier_details(business = :existing, tier = :existing, carrier = :ex
   # Select the org type, or just click submit if the business is existing
   case tier
   when :lower
-    if business != :charity
-      select_random_lower_tier_options
-    else # if so, questions are skipped
+    if business == :charity # if so, questions are skipped
       # "You need to register as a lower tier waste carrier"
       @journey.standard_page.submit
+    else
+      select_random_lower_tier_options
     end
   when :existing
     # this only applies to renewals:
@@ -264,7 +264,7 @@ end
 def check_registration_details(reg)
   find_link("Registrations search").click
   @bo.dashboard_page.view_reg_details(search_term: reg)
-  expect(@bo.registration_details_page.heading).to have_text("Registration " + reg)
+  expect(@bo.registration_details_page.heading).to have_text("Registration #{reg}")
 end
 
 def test_address_validations

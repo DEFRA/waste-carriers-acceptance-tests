@@ -46,13 +46,11 @@ When("I complete my registration for my business {string}") do |business_name|
   @carrier ||= :carrier_broker_dealer
   submit_carrier_details(@organisation_type, @tier, @carrier)
 
-  if @tier == :upper && @organisation_type != :partnership
-    if @journey.company_number_page.heading.has_text? "What's the registration number"
-      # then it's a limited company or LLP:
-      @companies_house_number = "00445790" if @companies_house_number.nil?
-      @journey.company_number_page.submit(companies_house_number: @companies_house_number)
-      @journey.check_registered_company_name_page.submit(choice: :confirm)
-    end
+  if @tier == :upper && @organisation_type != :partnership && (@journey.company_number_page.heading.has_text? "What's the registration number")
+    # then it's a limited company or LLP:
+    @companies_house_number = "00445790" if @companies_house_number.nil?
+    @journey.company_number_page.submit(companies_house_number: @companies_house_number)
+    @journey.check_registered_company_name_page.submit(choice: :confirm)
   end
 
   if @tier == :upper && @organisation_type == :partnership
@@ -104,7 +102,7 @@ end
 
 Then("I am notified that I need to pay by bank transfer") do
   expect(page).to have_content("You must now pay by bank transfer")
-  expect(page).to have_content("We've sent an email to " + @email_address + " with the payment details and instructions.")
+  expect(page).to have_content("We've sent an email to #{@email_address} with the payment details and instructions.")
   @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration #{@reg_number} submitted pending bank transfer"
 end
@@ -123,7 +121,7 @@ Given("a registration with no convictions has been submitted by paying via card"
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
-  puts "Registration " + @reg_number + " seeded"
+  puts "Registration #{@reg_number} seeded"
 end
 
 Given("I create a new registration as {string}") do |account_email|
@@ -135,7 +133,7 @@ Given("I create a new registration as {string}") do |account_email|
   @seeded_data = seed_data.seeded_data
   @email_address = account_email
   @contact_email = @seeded_data["contactEmail"]
-  puts "Registration " + @reg_number + " seeded"
+  puts "Registration #{@reg_number} seeded"
 end
 
 Given("I create an upper tier registration for my {string} business as {string}") do |business_type, account_email|
@@ -146,7 +144,7 @@ Given("I create an upper tier registration for my {string} business as {string}"
   @email_address = account_email
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
-  puts "#{business_type} upper tier registration " + @reg_number + " seeded"
+  puts "#{business_type} upper tier registration #{@reg_number} seeded"
 end
 
 Given("I create a lower tier registration for my {string} business as {string}") do |business_type, account_email|
@@ -155,7 +153,7 @@ Given("I create a lower tier registration for my {string} business as {string}")
   @reg_number = seed_data.reg_number
   @email_address = account_email
   @seeded_data = seed_data.seeded_data
-  puts "#{business_type} lower tier registration " + @reg_number + " seeded for " + account_email
+  puts "#{business_type} lower tier registration #{@reg_number} seeded for #{account_email}"
 end
 
 Given("I have a new registration for a {string} business") do |business_type|
@@ -166,7 +164,7 @@ Given("I have a new registration for a {string} business") do |business_type|
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
   @contact_email = @seeded_data["contactEmail"]
-  puts "#{business_type} registration " + @reg_number + " seeded"
+  puts "#{business_type} registration #{@reg_number} seeded"
 end
 
 Given("I have a new registration for a {string} with business name {string}") do |business_type, business_name|
@@ -178,7 +176,7 @@ Given("I have a new registration for a {string} with business name {string}") do
   @organisation_type = business_type
   @email_address = @seeded_data["contactEmail"]
   @business_name = business_name
-  puts "#{business_type} registration " + @reg_number + " seeded"
+  puts "#{business_type} registration #{@reg_number} seeded"
 end
 
 Given("I have a new lower tier registration for a {string} business") do |business_type|
@@ -189,7 +187,7 @@ Given("I have a new lower tier registration for a {string} business") do |busine
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
 
-  puts "#{business_type} lower tier registration " + @reg_number + " seeded"
+  puts "#{business_type} lower tier registration #{@reg_number} seeded"
 end
 
 Given("I create a new registration as {string} with a company name of {string}") do |account_email, company_name|
@@ -208,7 +206,7 @@ Given("I create a new registration as {string} with a company name of {string}")
   @tier = :upper
   @reg_type = :registration
 
-  puts "Registration " + @reg_number + " seeded with name #{@business_name} for " + @email_address
+  puts "Registration #{@reg_number} seeded with name #{@business_name} for #{@email_address}"
 end
 
 Given("I have an active registration") do
@@ -223,7 +221,7 @@ Given("I have an active registration") do
   @seeded_data = seed_data.seeded_data
   @reg_balance = 0
 
-  puts "Registration " + @reg_number + " seeded for " + @account_email
+  puts "Registration #{@reg_number} seeded for #{@account_email}"
 end
 
 Given("I have an active registration with a company number of {string}") do |company_no|
@@ -235,7 +233,7 @@ Given("I have an active registration with a company number of {string}") do |com
   @companies_house_number = company_no
   @organisation_type = :limitedCompany
 
-  puts "Registration " + @reg_number + " seeded with company number of #{company_no}"
+  puts "Registration #{@reg_number} seeded with company number of #{company_no}"
 end
 
 Given("I have an active registration with a company name of {string}") do |company_name|
@@ -248,21 +246,21 @@ Given("I have an active registration with a company name of {string}") do |compa
   @business_name = company_name
   @reg_type = :registration
   @organisation_type = :limitedCompany
-  puts "Registration " + @reg_number + " seeded with company name of #{company_name}"
+  puts "Registration #{@reg_number} seeded with company name of #{company_name}"
 end
 
 Given(/a registration with outstanding balance and (\d+) copy cards? has been submitted$/) do |copy_cards|
   load_all_apps
   # Store variables for later steps:
   @copy_cards = copy_cards
-  @reg_balance = 154 + 5 * copy_cards
+  @reg_balance = 154 + (5 * copy_cards)
   @business_name = "Outstanding Balance Limited"
 
   seed_data = SeedData.new("outstanding_balance_pending_registration.json", copy_cards: copy_cards)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
 
-  puts "Registration " + @reg_number + " seeded with #{copy_cards} copy cards and outstanding balance"
+  puts "Registration #{@reg_number} seeded with #{copy_cards} copy cards and outstanding balance"
 end
 
 Given("a registration with outstanding convictions checks has been submitted") do
@@ -270,7 +268,7 @@ Given("a registration with outstanding convictions checks has been submitted") d
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
 
-  puts "Registration " + @reg_number + " seeded with outstanding conviction checks"
+  puts "Registration #{@reg_number} seeded with outstanding conviction checks"
 end
 
 Given("a limited company with companies house number {string} is registered as an upper tier waste carrier") do |ch_no|
@@ -293,7 +291,7 @@ Given("a limited company with companies house number {string} is registered as a
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " completed with conviction match on company number"
+  puts "Registration #{@reg_number} completed with conviction match on company number"
 end
 
 Given("a key person with a conviction registers as a sole trader upper tier waste carrier") do
@@ -314,7 +312,7 @@ Given("a key person with a conviction registers as a sole trader upper tier wast
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " completed with conviction match on relevant person"
+  puts "Registration #{@reg_number} completed with conviction match on relevant person"
 end
 
 Given("a conviction is declared when registering their partnership for an upper tier waste carrier") do
@@ -332,7 +330,7 @@ Given("a conviction is declared when registering their partnership for an upper 
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " completed with declared convictions"
+  puts "Registration #{@reg_number} completed with declared convictions"
 end
 
 Given("a registration with declared convictions is submitted with outstanding payment") do
@@ -352,14 +350,14 @@ Given("a registration with declared convictions is submitted with outstanding pa
   step("I pay by bank transfer")
 
   @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " submitted with declared convictions and outstanding payment"
+  puts "Registration #{@reg_number} submitted with declared convictions and outstanding payment"
 end
 
 Given("I have a pending registration") do
   seed_data = SeedData.new("outstanding_balance_pending_registration.json")
   @pending_reg_number = seed_data.reg_number
 
-  puts "Pending registration " + @pending_reg_number + " seeded"
+  puts "Pending registration #{@pending_reg_number} seeded"
 end
 
 Given("a partnership {string} registers as an upper tier waste carrier") do |business_name|
@@ -376,13 +374,13 @@ Given("a partnership {string} registers as an upper tier waste carrier") do |bus
   step("I pay by card")
 
   @reg_number = @journey.confirmation_page.registration_number.text
-  puts "Registration " + @reg_number + " completed with conviction match on company name"
+  puts "Registration #{@reg_number} completed with conviction match on company name"
 end
 
 Given("I get part way through a front office registration") do
   step("I start a new registration journey in 'England' as a 'limitedLiabilityPartnership'")
 
-  @business_name = "Resume registration " + rand(1..999_999).to_s
+  @business_name = "Resume registration #{rand(1..999_999)}"
   @journey.confirm_business_type_page.submit(org_type: "limitedLiabilityPartnership")
   select_random_upper_tier_route
   @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
@@ -406,9 +404,9 @@ end
 
 Given("the in-progress registration details are correct") do
   @bo.dashboard_page.view_new_reg_details(search_term: @business_name)
-  expect(@bo.registration_details_page.heading).to have_text("New registration for " + @business_name)
+  expect(@bo.registration_details_page.heading).to have_text("New registration for #{@business_name}")
   expect(@bo.registration_details_page.info_panel).to have_text("Carrier, broker and dealer")
-  expect(@bo.registration_details_page).to have_text(@people[0][:first_name] + " " + @people[0][:last_name])
+  expect(@bo.registration_details_page).to have_text("#{@people[0][:first_name]} #{@people[0][:last_name]}")
 end
 
 Given("I resume the registration as assisted digital") do
@@ -430,5 +428,5 @@ Given("I resume the registration as assisted digital") do
   submit_card_payment
   expect(@journey.confirmation_page.heading).to have_text("Registration complete")
   @reg_number = @journey.confirmation_page.registration_number.text
-  puts @reg_number + " resumed and completed as assisted digital"
+  puts "#{@reg_number} resumed and completed as assisted digital"
 end

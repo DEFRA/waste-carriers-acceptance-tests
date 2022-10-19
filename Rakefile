@@ -41,10 +41,10 @@ task browserstack: %i[
   edge15_w10
   edge16_w10
   firefox58_osx
-  firefox58_w8_1
+  firefox58_w81
   firefox59_osx
   firefox59_w10
-  galaxy_note_8
+  galaxy_note8
   google_pixel
   ie11_w10
   iphone7
@@ -100,9 +100,9 @@ task :firefox58_osx  do
 end
 
 desc "Run Firefox 58 W8.1"
-task :firefox58_w8_1 do
+task :firefox58_w81 do
   reset_dbs
-  sh %( QUKE_CONFIG=config/browserstack/Firefox58_W8_1.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/firefox58_w81.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Firefox 59 OS X test"
@@ -118,9 +118,9 @@ task :firefox59_w10  do
 end
 
 desc "Run Samsung Galaxy Note 8 test"
-task :galaxy_note_8 do
+task :galaxy_note8 do
   reset_dbs
-  sh %( QUKE_CONFIG=config/browserstack/Galaxy_Note_8.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
+  sh %( QUKE_CONFIG=config/browserstack/galaxy_note8.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Google Pixel test"
@@ -177,7 +177,7 @@ end
 
 # rubocop:disable Layout/LineLength
 def reset_dbs
-  vagrant_loc = ENV["VAGRANT_KEY_LOCATION"]
+  vagrant_loc = ENV.fetch("VAGRANT_KEY_LOCATION", nil)
   raise ArgumentError, "Environment variable VAGRANT_KEY_LOCATION not set" if vagrant_loc.nil? || vagrant_loc.empty?
 
   vagrant_key = File.join(vagrant_loc, "private_key")

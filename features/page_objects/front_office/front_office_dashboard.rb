@@ -25,12 +25,12 @@ class FrontOfficeDashboard < BasePage
   element(:last_page, "a[aria-label='Last page']")
 
   def renew(registration_number)
-    element = "#" + registration_number.to_s + " a[href$='/renew']"
+    element = "##{registration_number} a[href$='/renew']"
     find(:css, element).click
   end
 
   def check_status(registration_number)
-    element = "#" + registration_number.to_s + " .column-one-quarter:nth-child(3) li+ li"
+    element = "##{registration_number} .column-one-quarter:nth-child(3) li+ li"
     find(:css, element).text
   end
 
