@@ -1,7 +1,7 @@
 # Steps specific to renewals
 
 def send_renewal_email(reg_identifier)
-  sign_in_to_back_office("agency-user", false)
+  sign_in_to_back_office("agency-user")
   visit_registration_details_page(reg_identifier)
   @bo.registration_details_page.wait_until_resend_renewal_email_link_visible
   @bo.registration_details_page.resend_renewal_email_link.click

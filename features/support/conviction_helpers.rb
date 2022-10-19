@@ -39,14 +39,14 @@ def reject_flagged_conviction_for_reg(reg, company_name)
 end
 
 def check_conviction_matches_for(text)
-  sign_in_to_back_office("agency-refund-payment-user", false)
+  sign_in_to_back_office("agency-refund-payment-user")
   @bo.dashboard_page.govuk_banner.conviction_checks_link.click
   @bo.convictions_dashboard_page.look_for_text(text)
   expect(@bo.convictions_dashboard_page.content).to have_text(text)
 end
 
 def check_in_progress_convictions_for(text)
-  sign_in_to_back_office("agency-refund-payment-user", false)
+  sign_in_to_back_office("agency-refund-payment-user")
   @bo.dashboard_page.govuk_banner.conviction_checks_link.click
   @bo.convictions_dashboard_page.in_progress_tab.click
   @bo.convictions_dashboard_page.look_for_text(text)
