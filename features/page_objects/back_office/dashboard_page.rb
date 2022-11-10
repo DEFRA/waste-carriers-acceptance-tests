@@ -12,6 +12,7 @@ class DashboardPage < BasePage
   elements(:reg_details_links, "a[href*='/registrations/CBD']")
   elements(:new_reg_details_links, "a[href*='/new-registrations/")
   elements(:transient_reg_details_links, "a[href*='/renewing-registrations/CBD']")
+  element(:search_results_summary, ".govuk-table__caption--m")
 
   sections :results, "table tbody tr" do
     element(:registration_number, "td:nth-child(1)")

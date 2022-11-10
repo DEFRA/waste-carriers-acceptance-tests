@@ -8,6 +8,7 @@ Given(/^I sign into the back office as "([^"]*)"$/) do |user|
   # finance-super
   # waste_carrier
   # waste_carrier2
+  # data user
   load_all_apps
   sign_in_to_back_office(user)
   @app = :bo
@@ -24,6 +25,10 @@ Given("mocking is {string}") do |option|
   when "disabled"
     pending "It makes no sense to test this feature when mocking is enabled" if mocking_enabled?
   end
+end
+
+When("I search for {string}") do |search_term|
+  @bo.dashboard_page.submit(search_term: search_term)
 end
 
 Then(/^the registration has a status of "([^"]*)"$/) do |status|
@@ -143,4 +148,8 @@ end
 Then("I will see the registration confirmation email has been sent") do
   puts "Confirmation email sent to #{@contact_email}"
   expect(@bo.registration_details_page.flash_message).to have_text("Confirmation email sent to #{@contact_email}")
+end
+
+Then("I can see registrations in the search results") do
+  expect(@bo.dashboard_page.search_results_summary).to have_text(/Found \d+ registrations/)
 end
