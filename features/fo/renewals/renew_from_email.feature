@@ -33,3 +33,9 @@ Feature: Registered waste carrier chooses to renew their registration by email
     When I call NCCC to renew it
     Then NCCC are unable to generate a renewal email
     But there is an option to renew the registration
+
+  Scenario: Inactive limited company is unable to renew
+    Given I have a company registration with an inactive companies house numer
+    And I receive an email from NCCC inviting me to renew
+    When I start the renew from the email
+    Then I will be informed my companies house number could not be validated

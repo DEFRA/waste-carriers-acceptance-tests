@@ -136,6 +136,17 @@ Given("I create a new registration as {string}") do |account_email|
   puts "Registration #{@reg_number} seeded"
 end
 
+Given("I have a company registration with an inactive companies house numer") do
+  load_all_apps
+  @tier = :upper
+  @organisation_type = :limitedCompany
+  seed_data = SeedData.new("limitedCompany_complete_inactive_registration.json")
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
+  @contact_email = @seeded_data["contactEmail"]
+  puts "Registration #{@reg_number} seeded"
+end
+
 Given("I create an upper tier registration for my {string} business as {string}") do |business_type, account_email|
   load_all_apps
   @tier = :upper
