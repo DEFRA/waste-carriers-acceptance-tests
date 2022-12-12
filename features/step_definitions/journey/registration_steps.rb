@@ -136,7 +136,7 @@ Given("I create a new registration as {string}") do |account_email|
   puts "Registration #{@reg_number} seeded"
 end
 
-Given("I have a company registration with an inactive companies house numer") do
+Given("I have a company registration with an inactive companies house number") do
   load_all_apps
   @tier = :upper
   @organisation_type = :limitedCompany
