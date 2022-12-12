@@ -283,3 +283,18 @@ When("I start renewing my last registration from the email") do
   visit(@renew_from_email_link)
   expect(page).to have_text("You are about to renew registration #{@reg_number}")
 end
+
+When("I start the renew from the email") do
+  visit(@renew_from_email_link)
+  expect(@journey.renewal_start_page.heading).to have_text("You are about to renew registration #{@reg_number}")
+  @journey.renewal_start_page.accept_cookies
+  @journey.renewal_start_page.submit
+  @journey.location_page.submit(choice: "england")
+  @journey.confirm_business_type_page.submit
+  @journey.carrier_type_page.submit
+  @journey.renewal_information_page.submit
+end
+
+Then("I will be informed my companies house number could not be validated") do
+  expect(@journey.invalid_company_status_page.heading).to have_text("We could not validate your Companies House number")
+end
