@@ -63,9 +63,9 @@ def go_to_conviction_for_reg(reg)
   expect(@bo.convictions_bo_details_page.heading).to have_text("Conviction information for #{reg}")
 
   # Registration sample URL:
-  # https://admin-waste-carriers-tst.aws.defra.cloud/bo/registrations/CBDU8/convictions
+  # https://wcr-admin-tst.aws.defra.cloud/bo/registrations/CBDU8/convictions
   # Renewal sample URL:
-  # https://admin-waste-carriers-tst.aws.defra.cloud/bo/transient-registrations/CBDU2/convictions
+  # https://wcr-admin-tst.aws.defra.cloud/bo/transient-registrations/CBDU2/convictions
 
   # Possible text:
   # This registration may have matching or declared conviction and requires an initial review.

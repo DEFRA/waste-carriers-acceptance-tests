@@ -166,5 +166,9 @@ class JourneyApp
     @last_page = PaymentConfirmationPage.new
   end
 
+  def invalid_company_status_page
+    @last_page = InvalidCompanyStatusPage.new
+  end
+
 end
 # rubocop:enable Metrics/ClassLength
