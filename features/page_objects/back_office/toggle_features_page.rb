@@ -26,7 +26,6 @@ class ToggleFeaturesPage < BasePage
     add_new_toggle("new_registration")
     add_new_toggle("api")
     add_new_toggle("renewal_reminders")
-    add_new_toggle("use_extended_grace_window")
   end
 
   def disable_feature(name)
@@ -43,7 +42,6 @@ class ToggleFeaturesPage < BasePage
     disable_feature("new_registration")
     disable_feature("api")
     disable_feature("renewal_reminders")
-    disable_feature("use_extended_grace_window")
   end
 
   def enable_feature(name)
@@ -60,7 +58,6 @@ class ToggleFeaturesPage < BasePage
     enable_feature("new_registration")
     enable_feature("api")
     enable_feature("renewal_reminders")
-    enable_feature("use_extended_grace_window")
   end
 
 end
