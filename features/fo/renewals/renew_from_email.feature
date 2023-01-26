@@ -27,12 +27,11 @@ Feature: Registered waste carrier chooses to renew their registration by email
     Then I will be notified my renewal is complete
     And I will receive a registration renewal confirmation email
 
-# Back office renewals use WCRS_REGISTRATION_COVID_GRACE_WINDOW
-  Scenario: Cannot renew registration outside user grace window but inside Covid grace window
+  Scenario: Cannot renew registration outside user grace window
     Given I have a registration which expired 5 days ago
     When I call NCCC to renew it
     Then NCCC are unable to generate a renewal email
-    But there is an option to renew the registration
+    And there is no option to renew the registration
 
   Scenario: Inactive limited company is unable to renew
     Given mocking is "disabled"

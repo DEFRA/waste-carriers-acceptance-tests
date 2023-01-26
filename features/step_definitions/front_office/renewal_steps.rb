@@ -55,8 +55,8 @@ Then("NCCC are unable to generate a renewal email") do
   expect(@bo.registration_details_page).to have_no_resend_renewal_email_link
 end
 
-But("there is an option to renew the registration") do
-  expect(@bo.registration_details_page).to have_renew_link
+Then("there is no option to renew the registration") do
+  expect(@bo.registration_details_page).to have_no_renew_link
 end
 
 Then("I cannot renew again with the same link") do
