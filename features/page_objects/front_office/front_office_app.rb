@@ -21,4 +21,12 @@ class FrontOfficeApp
     @last_page = FrontOfficeDashboard.new
   end
 
+  def deregistration_confirmation_page
+    @last_page = DeregistrationConfirmationPage.new
+  end
+
+  def deregistration_complete_page
+    @last_page = DeregistrationCompletePage.new
+  end
+
 end
