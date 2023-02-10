@@ -1,0 +1,3 @@
+class DeregistrationCompletePage < BasePage
+
+end

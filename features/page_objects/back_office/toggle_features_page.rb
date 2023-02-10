@@ -26,6 +26,7 @@ class ToggleFeaturesPage < BasePage
     add_new_toggle("new_registration")
     add_new_toggle("api")
     add_new_toggle("renewal_reminders")
+    add_new_toggle("govpay_payments")
   end
 
   def disable_feature(name)
