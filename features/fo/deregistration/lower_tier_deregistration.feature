@@ -2,7 +2,7 @@ Feature: Lower tier deregistration
 
 As a user 
 I want to be able to deregister my lower tier registration 
-so that I can confirm I not longer need a lower tier registration
+so that I can confirm I no longer need a lower tier registration
 
 Scenario: Lower tier registration can be deregistered by the customer
     Given I create a lower tier registration for my "charity" business as "user@example.com"
