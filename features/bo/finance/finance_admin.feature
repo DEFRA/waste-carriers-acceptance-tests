@@ -8,7 +8,7 @@ Feature: Finance admin
   plus reversals and writeoffs (less frequent).
   
 @refund
-  Scenario: [RUBY-811] Successful refund of card payment for registration
+  Scenario: [RUBY-811] Successful refund of card payment for back office registration
     Given I sign into the back office as "agency-user"
     And I register an upper tier "partnership" from the back office
     And I pay by card
@@ -16,6 +16,15 @@ Feature: Finance admin
     And the registration's balance is 0
 
     And NCCC makes a payment of 42 by "cheque"
+    When an agency-refund-payment-user refunds the card payment
+    Then the card payment is shown as refunded
+    And the registration's balance is 0
+
+  @refund
+  Scenario: Successful refund of card payment for front office registration
+    Given an upper tier "soleTrader" registration is completed in the front office
+    And the registration's balance is 0
+    When a finance admin user adjusts the charge by -5
     When an agency-refund-payment-user refunds the card payment
     Then the card payment is shown as refunded
     And the registration's balance is 0
