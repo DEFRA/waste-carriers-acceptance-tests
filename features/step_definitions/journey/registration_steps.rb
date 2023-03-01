@@ -443,3 +443,45 @@ Given("I resume the registration as assisted digital") do
   @reg_number = @journey.confirmation_page.registration_number.text
   puts "#{@reg_number} resumed and completed as assisted digital"
 end
+
+Given("an upper tier {string} registration is completed in the front office") do |organisation_type|
+  load_all_apps
+  @reg_type = :new_registration
+  @app = :fo
+  @tier = :upper
+  @organisation_type = organisation_type.to_sym
+  @app = :fo
+  @journey.start_page.load
+  @journey.standard_page.accept_cookies
+  @journey.start_page.submit(choice: :new_registration)
+  @journey.location_page.submit(choice: "England")
+  @carrier ||= :carrier_broker_dealer
+  submit_carrier_details(@organisation_type, @tier, @carrier)
+
+  if @tier == :upper && @organisation_type != :partnership && (@journey.company_number_page.heading.has_text? "What's the registration number")
+    # then it's a limited company or LLP:
+    @companies_house_number = "00445790" if @companies_house_number.nil?
+    @journey.company_number_page.submit(companies_house_number: @companies_house_number)
+    @journey.check_registered_company_name_page.submit(choice: :confirm)
+  end
+
+  if @tier == :upper && @organisation_type == :partnership
+    submit_partners
+  elsif @tier == :upper
+    submit_company_people
+  end
+  submit_organisation_details("Upper tier registration")
+  @convictions ||= "no convictions"
+  submit_convictions(@convictions) if @tier == :upper
+  @email_address = generate_email if @email_address.nil?
+  submit_contact_details_for_registration(@email_address)
+  expect(page).to have_content("Check your answers")
+  @journey.standard_page.submit
+  @journey.declaration_page.submit
+  @copy_cards ||= 0
+  order_cards_during_journey(@copy_cards) if @tier == :upper
+  @journey.payment_summary_page.submit(choice: :card_payment)
+  submit_card_payment
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration #{@reg_number} created successfully"
+end
