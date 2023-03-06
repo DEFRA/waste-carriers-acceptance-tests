@@ -6,7 +6,7 @@ class RegistrationDetailsPage < BasePage
 
   element(:content, ".column-full")
   element(:continue_as_ad_button, "a[class*='button'][href^='/bo/ad-privacy-policy']")
-  element(:add_missed_worldpay_button, "a[href*='missed']")
+  element(:add_missed_card_button, "a[href*='missed']")
   element(:process_payment_button, "a[href*='/payments']")
 
   element(:info_panel, ".govuk-heading-m+ .govuk-body:nth-child(4)")

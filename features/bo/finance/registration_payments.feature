@@ -27,7 +27,7 @@ Feature: [RUBY-826] Pay for registrations
     And the registration has a status of "PAYMENT NEEDED"
     And the registration's balance is 59
 
-    When NCCC pays the remaining balance by "missed_worldpay"
+    When NCCC pays the remaining balance by "missed_card"
     Then the registration has a status of "ACTIVE"
     And the registration does not have a status of "PAYMENT NEEDED"
     And I check the registration details are correct on the back office
