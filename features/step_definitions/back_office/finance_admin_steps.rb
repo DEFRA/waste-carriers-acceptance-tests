@@ -5,7 +5,7 @@ Given("an agency-refund-payment-user refunds the card payment") do
   expect(@bo.finance_refund_select_page.heading).to have_text("Which payment do you want to refund?")
 
   # Use hidden text to identify correct refund link.
-  # This only works if there is only one WorldPay payment that can be refunded on page:
+  # This only works if there is only one card payment that can be refunded on page:
   find_link("by Card").click
 
   # The refund itself is a simple page which does not need its own page object:
@@ -22,7 +22,7 @@ end
 Then("the card payment is shown as refunded") do
   expect(@bo.finance_payment_details_page.flash_message).to have_text("£#{@refund}.00 refunded successfully")
   expect(@bo.finance_payment_details_page).to have_text("A refund has been requested for this Govpay payment -#{@refund}.00")
-  puts "£#{@refund}.00 WorldPay payment refunded"
+  puts "£#{@refund}.00 card payment refunded"
 end
 
 Given(/^a finance admin user adjusts the charge by (-?\d+)$/) do |amount|
@@ -56,28 +56,4 @@ Given(/^(?:a|an) "([^"]*)" writes off the outstanding balance$/) do |user|
 
   expect(@bo.finance_payment_details_page.flash_message).to have_text("write off completed successfully")
   expect(@bo.finance_payment_details_page).to have_text("this is a writeoff")
-end
-
-Given("I add a missed Worldpay payment at the payment stage") do
-  if @reg_type == :new_registration
-    # Search for registration by name as it doesn't have a CBD number yet:
-    @bo.dashboard_page.view_new_reg_details(search_term: @business_name)
-  else # it's a renewal
-    @bo.dashboard_page.view_transient_reg_details(search_term: @reg_number)
-  end
-  @bo.registration_details_page.add_missed_worldpay_button.click
-
-  # At this point the registration number is generated. Get this and the balance from the screen:
-  @reg_number = @bo.finance_payment_input_page.content.text.match(/.*Add a missed WorldPay payment for (.*)\n*/)[1]
-  @reg_balance = @bo.finance_payment_input_page.content.text.match(/.*The current balance is £(\d+)*/)[1].to_i
-  @bo.finance_payment_input_page.submit(
-    amount: @reg_balance.to_s,
-    day: "01",
-    month: "07",
-    year: "2020",
-    reference: "0101010",
-    comment: "missed worldpay at payment stage"
-  )
-  expect(@bo.finance_payment_details_page.flash_message).to have_text("#{@reg_balance} payment entered successfully")
-  @reg_type = :registration
 end

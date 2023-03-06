@@ -1,5 +1,4 @@
 Given("I complete my renewal up to the payment page") do
-  # Adding "reject" in the company name ensures payment will be rejected by the Worldpay mock here, if activated:
   @business_name ||= "Renewal with rejected payment"
   @journey.standard_page.accept_cookies
 

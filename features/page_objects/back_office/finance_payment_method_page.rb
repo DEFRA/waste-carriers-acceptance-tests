@@ -9,7 +9,7 @@ class FinancePaymentMethodPage < BasePage
   element(:cheque, "#payment_form_payment_type_cheque", visible: false)
   element(:postal, "#payment_form_payment_type_postal_order", visible: false)
   element(:transfer, "#payment_form_payment_type_bank_transfer", visible: false)
-  element(:missed_worldpay, "#payment_form_payment_type_worldpay_missed", visible: false)
+  element(:missed_card, "#payment_form_payment_type_missed_card", visible: false)
 
   def submit(args = {})
     case args[:choice]
@@ -21,8 +21,8 @@ class FinancePaymentMethodPage < BasePage
       postal.click
     when :transfer
       transfer.click
-    when :missed_worldpay
-      missed_worldpay.click
+    when :missed_card
+      missed_card.click
     end
     submit_button.click
   end
