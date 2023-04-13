@@ -17,6 +17,10 @@ class BackOfficeApp
     @last_page = CeaseOrRevokePage.new
   end
 
+  def restore_page
+    @last_page = RestorePage.new
+  end
+
   def convictions_bo_details_page
     @last_page = ConvictionsBoDetailsPage.new
   end
