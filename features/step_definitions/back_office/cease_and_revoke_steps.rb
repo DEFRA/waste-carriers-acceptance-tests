@@ -61,7 +61,6 @@ end
 
 When("I should not be able to restore the registration") do
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
-  @bo.registration_details_page.restore_link
   expect(@bo.registration_details_page).to have_no_restore_link
 end
 
