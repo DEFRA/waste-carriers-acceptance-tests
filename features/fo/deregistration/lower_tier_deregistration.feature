@@ -1,3 +1,4 @@
+@dereg
 Feature: Lower tier deregistration
 
 As a user 
@@ -9,3 +10,12 @@ Scenario: Lower tier registration can be deregistered by the customer
      When I select the link to deregister my registration
       And I confirm I want to cancel my registration
      Then I will be informed my registration is deregistered
+     
+@email
+Scenario: Lower tier deregisration invite email is resent if link has expired
+  Given I create a lower tier registration with an expired deregistration link
+    And I select the link to deregister my registration
+    And I am sent an new deregisration invite email
+   When I select the link to deregister my registration
+    And I confirm I want to cancel my registration
+   Then I will be informed my registration is deregistered

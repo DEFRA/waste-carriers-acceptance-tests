@@ -170,6 +170,16 @@ Given("I create a lower tier registration for my {string} business as {string}")
   puts "#{business_type} lower tier registration #{@reg_number} seeded for #{account_email}"
 end
 
+Given("I create a lower tier registration with an expired deregistration link") do
+  load_all_apps
+  @tier = :lower
+  @deregistration_token = SecureRandom.alphanumeric(24)
+  seed_data = SeedData.new("lower_tier_active_registration.json", "deregistration_token" => @deregistration_token)
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
+  puts "lower tier registration #{@reg_number} seeded"
+end
+
 Given("I have a new registration for a {string} business") do |business_type|
   load_all_apps
   @tier = :upper
