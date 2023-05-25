@@ -39,9 +39,9 @@ Then("the new user accepts their invitation and sets up a password") do
   visit(@confirm_waste_carriers_email_link)
 
   user_accept_invite_page = UserAcceptInvitePage.new
-
-  user_accept_invite_page.password_field.set(ENV.fetch("WCRS_DEFAULT_PASSWORD", nil))
-  user_accept_invite_page.confirm_password_field.set(ENV.fetch("WCRS_DEFAULT_PASSWORD", nil))
+  @password = SecureRandom.alphanumeric(14)
+  user_accept_invite_page.password_field.set(@password)
+  user_accept_invite_page.confirm_password_field.set(@password)
   user_accept_invite_page.submit
 end
 
