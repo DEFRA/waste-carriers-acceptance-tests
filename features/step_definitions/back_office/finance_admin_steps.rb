@@ -17,12 +17,14 @@ Given("an agency-refund-payment-user refunds the card payment") do
   expect(@journey.standard_page.content).to have_text("Balance that will be refunded £#{@refund}.00")
   @journey.standard_page.submit_button.click
   # Takes user back to payment details page with flash message.
+  # Aligns with GOVPAY_REFUND_SUBMITTED_SUCCESS_LAG
+  sleep(2)
+  @bo.finance_payment_details_page.check_refund_status.click
 end
 
 Then("the card payment is shown as refunded") do
-  expect(@bo.finance_payment_details_page.flash_message).to have_text("£#{@refund}.00 refunded successfully")
-  expect(@bo.finance_payment_details_page).to have_text("A refund has been requested for this Govpay payment -#{@refund}.00")
-  puts "£#{@refund}.00 card payment refunded"
+  expect(@bo.finance_payment_details_page.flash_message).to have_text("The refund status has been updated")
+  puts "A manual refund has been successful"
 end
 
 Given(/^a finance admin user adjusts the charge by (-?\d+)$/) do |amount|
