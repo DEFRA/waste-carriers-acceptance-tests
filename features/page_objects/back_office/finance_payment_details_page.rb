@@ -13,6 +13,7 @@ class FinancePaymentDetailsPage < BasePage
   element(:write_off_button, "a[href*='/write-off']")
   element(:charge_adjust_button, "a[href*='/charge-adjusts']")
   element(:refund_button, "a[href*='/refund']")
+  element(:check_refund_status, "a[href*='/refunds/']")
   element(:balance, ".govuk-table__cell--numeric:nth-child(2)")
 
   # Sample text on this page:
