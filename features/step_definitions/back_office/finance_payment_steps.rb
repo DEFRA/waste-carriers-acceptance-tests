@@ -56,6 +56,7 @@ Given("the registration has an unsubmitted renewal") do
 
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
 end
 
 Then("I cannot access payments until the bank transfer option is selected") do
@@ -68,17 +69,20 @@ Then("I cannot access payments until the bank transfer option is selected") do
   @bo.registration_details_page.continue_as_ad_button.click
   @bo.ad_privacy_policy_page.submit
   @journey.payment_bank_transfer_page.submit
+  # @journey.confirm_payment_method_page.submit(choice: :yes)
 end
 
 When(/^the applicant chooses to pay for the renewal by bank transfer ordering (\d+) copy (?:card|cards)$/) do |copy_card_number|
   order_cards_during_journey(copy_card_number)
   @journey.payment_summary_page.submit(choice: :bank_transfer_payment)
   @journey.payment_bank_transfer_page.submit
+  @journey.confirm_payment_method_page.submit(choice: :yes)
 end
 
 And(/^the applicant pays by bank card$/) do
   order_cards_during_journey(1)
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
 
   @reg_balance = 0

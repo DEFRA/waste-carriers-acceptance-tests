@@ -135,6 +135,7 @@ When("I complete my {string} renewal steps") do |business_type|
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
 end
 
@@ -195,6 +196,7 @@ When("I complete my overseas company renewal steps") do
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
 end
 

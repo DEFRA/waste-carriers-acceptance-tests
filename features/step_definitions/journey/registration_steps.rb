@@ -439,6 +439,7 @@ Given("I resume the registration as assisted digital") do
   @journey.declaration_page.submit
   order_cards_during_journey(3)
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
   expect(@journey.confirmation_page.heading).to have_text("Registration complete")
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -482,6 +483,7 @@ Given("an upper tier {string} registration is completed in the front office") do
   @copy_cards ||= 0
   order_cards_during_journey(@copy_cards) if @tier == :upper
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
   @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration #{@reg_number} created successfully"

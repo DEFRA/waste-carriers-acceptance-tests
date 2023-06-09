@@ -62,6 +62,10 @@ class JourneyApp
     @last_page = ConfirmBusinessTypePage.new
   end
 
+  def confirm_payment_method_page
+    @last_message_page = ConfirmPaymentMethodPage.new
+  end
+
   def confirmation_page
     @last_page = ConfirmationPage.new
   end

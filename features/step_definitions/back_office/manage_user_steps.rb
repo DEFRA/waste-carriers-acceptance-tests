@@ -40,6 +40,7 @@ Then("the new user accepts their invitation and sets up a password") do
 
   user_accept_invite_page = UserAcceptInvitePage.new
   @password = SecureRandom.alphanumeric(14)
+  puts @password
   user_accept_invite_page.password_field.set(@password)
   user_accept_invite_page.confirm_password_field.set(@password)
   user_accept_invite_page.submit
