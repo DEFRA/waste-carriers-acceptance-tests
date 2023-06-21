@@ -25,6 +25,7 @@ When("I have my credit card payment rejected") do
   @journey.payment_confirmation_page.wait_until_return_visible
   expect(@journey.payment_summary_page).to have_text("Your payment has been declined")
   @journey.payment_confirmation_page.return.click
+  @journey.confirm_payment_method_page.submit(choice: :no)
 end
 
 When("I cancel my credit card payment") do
@@ -34,6 +35,7 @@ When("I cancel my credit card payment") do
   @journey.payment_confirmation_page.wait_until_return_visible
   expect(@journey.payment_summary_page).to have_text("Your payment has been cancelled")
   @journey.payment_confirmation_page.return.click
+  @journey.confirm_payment_method_page.submit(choice: :no)
 end
 
 When("I pay by card") do
