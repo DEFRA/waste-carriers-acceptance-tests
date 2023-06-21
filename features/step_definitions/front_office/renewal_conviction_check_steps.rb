@@ -19,6 +19,7 @@ When("I complete my limited company renewal steps declaring a conviction") do
   check_your_answers
   order_cards_during_journey(0)
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
 end
 
@@ -46,6 +47,7 @@ When("I complete my limited company renewal steps not declaring a personal convi
   check_your_answers
   order_cards_during_journey(5)
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
 end
 
@@ -69,5 +71,6 @@ When(/^I complete my limited company renewal steps not declaring a company convi
   check_your_answers
   order_cards_during_journey(3)
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
 end
