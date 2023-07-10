@@ -72,17 +72,17 @@ But("the user has no contact email address") do
   @no_contact_email = true
 end
 
-Given("the registration has been partially renewed by the account holder") do
+Given("the registration has been partially renewed") do
   @journey = JourneyApp.new
   @reg_type = :renewal
-
-  @journey.start_page.load
+  send_renewal_email(@reg_number)
+  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@email_address}")
+  # @journey.start_page.load
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
+  @renew_from_email_link = @journey.last_message_page.get_renewal_url(@reg_number)
+  visit(@renew_from_email_link)
   @journey.standard_page.accept_cookies
 
-  @journey.start_page.submit(choice: @reg_type)
-  @journey.existing_registration_page.submit(reg_no: @reg_number)
-
-  sign_in_to_front_office(Quke::Quke.config.custom["accounts"]["waste_carrier"]["username"])
   agree_to_renew_in_england
 
   Capybara.reset_session!
