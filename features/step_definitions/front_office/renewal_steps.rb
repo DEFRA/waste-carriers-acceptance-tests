@@ -1,11 +1,13 @@
-Given("I start renewing this registration from the start page") do
+Given("I start renewing this registration") do
   @journey = JourneyApp.new
   @reg_type = :renewal
-  @journey.start_page.load
+  send_renewal_email(@reg_number)
+  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@email_address}")
+  # @journey.start_page.load
+  visit(Quke::Quke.config.custom["urls"]["notify_link"])
+  @renew_from_email_link = @journey.last_message_page.get_renewal_url(@reg_number)
+  visit(@renew_from_email_link)
   @journey.standard_page.accept_cookies
-
-  @journey.start_page.submit(choice: @reg_type)
-  @journey.existing_registration_page.submit(reg_no: @reg_number)
   @reg_type = :renewal
 end
 
@@ -15,7 +17,6 @@ Given("I receive an email from NCCC inviting me to renew") do
   visit(Quke::Quke.config.custom["urls"]["notify_link"])
   @renew_from_email_link = @journey.last_message_page.get_renewal_url(@reg_number)
   puts "Renewal link for #{@reg_number} is #{@renew_from_email_link}"
-
 end
 
 When("I renew from the email as a {string}") do |business_type|
@@ -69,10 +70,6 @@ Then("I am told the renewal cannot be found") do
   expect(@journey.renewal_start_page.heading).to have_text("We cannot find that renewal")
 end
 
-Given("I am told that my registration does not expire") do
-  expect(page).to have_text("This is a lower tier registration so never expires. Call our helpline on 03708 506506 if you think this is incorrect.")
-end
-
 When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_type|
   agree_to_renew_in_england
   @journey.confirm_business_type_page.submit
@@ -83,12 +80,6 @@ Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   @journey = JourneyApp.new
   @email_address = username
   sign_in_to_front_office(@email_address)
-end
-
-Given("I choose to renew my last registration from the dashboard") do
-  @fo.front_office_dashboard.find_registration(@reg_number)
-  @fo.front_office_dashboard.renew(@reg_number)
-  @reg_type = :renewal
 end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
