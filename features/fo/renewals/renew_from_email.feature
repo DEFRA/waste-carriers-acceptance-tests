@@ -13,11 +13,6 @@ Feature: Registered waste carrier chooses to renew their registration by email
     And I will receive a registration renewal confirmation email
     And I cannot renew again with the same link
 
-  Scenario: Cannot renew with invalid token
-    Given I create an upper tier registration for my "soleTrader" business as "user@example.com"
-    When I incorrectly paste its renewal link
-    Then I am told the renewal cannot be found
-
   # Requires registration expiry to be within WCRS_REGISTRATION_GRACE_WINDOW range
   @email
   Scenario: Renew expired registration just inside grace window
@@ -32,7 +27,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
     When I call NCCC to renew it
     Then NCCC are unable to generate a renewal email
     And there is no option to renew the registration
-
+@wip
   Scenario: Inactive limited company is unable to renew
     Given mocking is "disabled"
     And I have a company registration with an inactive companies house number

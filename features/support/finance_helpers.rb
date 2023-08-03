@@ -47,13 +47,16 @@ def go_to_payments_page(reg)
   expect(@bo.finance_payment_details_page.heading).to have_text("Payment details for #{reg}")
 end
 
+# rubocop:disable Metrics/AbcSize
 def enter_payment(amount, method)
   # This assumes a user with finance permission is logged in and on the payments page.
   # Amount can be a string or number.
   # List of method options is in finance_payment_method_page.rb
 
-  visit_enter_payment_page(@reg_number)
-
+  visit (Quke::Quke.config.custom["urls"]["back_office"]).to_s
+  @bo.dashboard_page.submit(search_term: @reg_number)
+  @bo.dashboard_page.finance_details_links[0].click
+  @bo.finance_payment_details_page.enter_payment_button.click
   @bo.finance_payment_method_page.submit(choice: method.to_sym)
   expect(@bo.finance_payment_input_page).to have_amount
   expect(@bo.finance_payment_input_page.heading).to have_text("payment for #{@reg_number}")
@@ -68,13 +71,16 @@ def enter_payment(amount, method)
   )
 end
 
+# rubocop:enable Metrics/AbcSize
 def check_payment_confirmation_message(amount)
   expect(@bo.finance_payment_details_page.flash_message).to have_text("£#{amount} payment entered successfully")
 end
 
 def adjust_charge(amount, random_number)
   # Start from any logged in screen with the appropriate user, and add a positive or negative charge
-  visit_charge_adjust_page(@reg_number)
+  @bo.dashboard_page.submit(search_term: @reg_number)
+  @bo.dashboard_page.finance_details_links[0].click
+  @bo.finance_payment_details_page.charge_adjust_button.click
   expect(@bo.finance_charge_adjust_select_page.heading).to have_text("Make a charge adjustment for #{@reg_number}")
   submit_option = amount >= 0 ? :positive : :negative
   @bo.finance_charge_adjust_select_page.submit(choice: submit_option)
@@ -90,7 +96,9 @@ end
 
 def reverse_last_transaction
   # Start from payments page and reverse the last transaction available to that user (according to their permissions)
-  visit_reverse_payment_page(@reg_number)
+  @bo.dashboard_page.submit(search_term: @reg_number)
+  @bo.dashboard_page.finance_details_links[0].click
+  @bo.finance_payment_details_page.reverse_payment_button.click
   expect(@bo.finance_reversal_select_page.heading).to have_text("Which payment do you want to reverse?")
   @bo.finance_reversal_select_page.reverse_links.last.click
   expect(@bo.finance_reversal_input_page.heading).to have_text("Reverse a payment for #{@reg_number}")

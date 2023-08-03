@@ -162,6 +162,13 @@ def password_reset_link(account_email)
   reset_password_link
 end
 
+def user_invite_link
+  visit(Quke::Quke.config.custom["urls"]["last_email_bo"])
+  invitation_email_text = retrieve_email_containing(["Confirm a waste carriers back office account", @new_user_email])
+
+  @confirm_waste_carriers_email_link = invitation_email_text.match %r/https?:\/\/.{14,35}\/bo\/users\/invitation\/accept\?invitation_token=.{20}/
+end
+
 def a_company?
   @organisation_type == (:llp || :ltd)
 end

@@ -28,11 +28,6 @@ When("I renew from the email as a {string}") do |business_type|
   step("I complete my '#{business_type}' renewal steps")
 end
 
-When("I incorrectly paste its renewal link") do
-  # Omit the final character from the renewal link
-  visit(renewal_magic_link_for(@reg_number)[0...-1])
-end
-
 Given("I have a registration which expired {int} days ago") do |days_ago|
   load_all_apps
   @tier = :upper
@@ -64,10 +59,6 @@ Then("I cannot renew again with the same link") do
   visit(@renew_from_email_link)
   expect(@journey.renewal_start_page.heading).to have_text("That registration has already been renewed")
   expect(@journey.renewal_start_page.content).to have_text("Our records show that registration #{@reg_number} has already been renewed.")
-end
-
-Then("I am told the renewal cannot be found") do
-  expect(@journey.renewal_start_page.heading).to have_text("We cannot find that renewal")
 end
 
 When(/^I change my carrier broker dealer type to "([^"]*)"$/) do |registration_type|

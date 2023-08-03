@@ -7,7 +7,7 @@ Feature: Finance admin
   This feature covers all main finance admin operations: refunds and charge adjustments (frequent)
   plus reversals and writeoffs (less frequent).
   
-@refund
+@refund @wipi
   Scenario: [RUBY-811] Successful refund of card payment for back office registration
     Given I sign into the back office as "agency-user"
     And I register an upper tier "partnership" from the back office

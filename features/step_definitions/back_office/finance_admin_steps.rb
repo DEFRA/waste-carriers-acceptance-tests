@@ -1,7 +1,9 @@
 Given("an agency-refund-payment-user refunds the card payment") do
   sign_in_to_back_office("agency-refund-payment-user")
 
-  visit_refund_page(@reg_number)
+  @bo.dashboard_page.submit(search_term: @reg_number)
+  @bo.dashboard_page.finance_details_links[0].click
+  @bo.finance_payment_details_page.refund_button.click
   expect(@bo.finance_refund_select_page.heading).to have_text("Which payment do you want to refund?")
 
   # Use hidden text to identify correct refund link.
@@ -15,10 +17,11 @@ Given("an agency-refund-payment-user refunds the card payment") do
   @refund = (-@reg_balance).to_s
 
   expect(@journey.standard_page.content).to have_text("Balance that will be refunded £#{@refund}.00")
+  sleep(2)
   @journey.standard_page.submit_button.click
   # Takes user back to payment details page with flash message.
   # Aligns with GOVPAY_REFUND_SUBMITTED_SUCCESS_LAG
-  sleep(2)
+  sleep(5)
   @bo.finance_payment_details_page.check_refund_status.click
 end
 

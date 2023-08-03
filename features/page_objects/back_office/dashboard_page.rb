@@ -10,6 +10,7 @@ class DashboardPage < BasePage
   element(:new_reg_link, "a[href*='/ad-privacy-policy']")
   elements(:status, ".govuk-table__cell:nth-child(3)")
   elements(:reg_details_links, "a[href*='/registrations/CBD']")
+  elements(:finance_details_links, "a[href$='/finance-details']")
   elements(:new_reg_details_links, "a[href*='/new-registrations/")
   elements(:transient_reg_details_links, "a[href*='/renewing-registrations/CBD']")
   element(:search_results_summary, ".govuk-table__caption--m")

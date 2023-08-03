@@ -9,7 +9,7 @@ class LastMessagePage < BasePage
   # The page will be loaded up to 10 times until the email shows
   # (a 1 in 1024 chance of the email not showing).
 
-  element(:message_content, "body")
+  element(:message_content, "#content")
 
   def check_message_for_text(expected_text)
     # Look for an email containing all the strings in the given array
@@ -30,6 +30,7 @@ class LastMessagePage < BasePage
 
       return true if message_contains_all_text == true
 
+      sleep(1)
       page.evaluate_script "window.location.reload()"
     end
 
@@ -44,10 +45,10 @@ class LastMessagePage < BasePage
       return "Email not found"
     end
 
-    parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 14-24 characters, then /fo/renew/, then any 24 characters
-    parsed_data["last_notify_message"]["body"].match %r/https?:\/\/.{14,35}\/fo\/renew\/.{24}/
+
+    message_content.text.match %r/https?:\/\/.{14,35}\/fo\/renew\/.{24}/
   end
 
 end
