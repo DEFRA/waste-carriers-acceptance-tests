@@ -27,7 +27,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
     When I call NCCC to renew it
     Then NCCC are unable to generate a renewal email
     And there is no option to renew the registration
-@wip
+
   Scenario: Inactive limited company is unable to renew
     Given mocking is "disabled"
     And I have a company registration with an inactive companies house number
