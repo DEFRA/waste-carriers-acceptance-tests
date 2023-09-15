@@ -150,7 +150,8 @@ end
 Given("I create an upper tier registration for my {string} business as {string}") do |business_type, account_email|
   load_all_apps
   @tier = :upper
-  seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "accountEmail" => account_email, "contactEmail" => account_email)
+  new_expiry_date = (DateTime.now + 30).to_s
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "accountEmail" => account_email, "contactEmail" => account_email, "expires_on" => new_expiry_date)
   @reg_number = seed_data.reg_number
   @email_address = account_email
   @seeded_data = seed_data.seeded_data
@@ -439,6 +440,7 @@ Given("I resume the registration as assisted digital") do
   @journey.declaration_page.submit
   order_cards_during_journey(3)
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
   expect(@journey.confirmation_page.heading).to have_text("Registration complete")
   @reg_number = @journey.confirmation_page.registration_number.text
@@ -482,6 +484,7 @@ Given("an upper tier {string} registration is completed in the front office") do
   @copy_cards ||= 0
   order_cards_during_journey(@copy_cards) if @tier == :upper
   @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_card_payment
   @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration #{@reg_number} created successfully"

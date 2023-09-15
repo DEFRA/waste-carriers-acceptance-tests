@@ -15,7 +15,7 @@ Feature: Incomplete registrations and renewals completed by NCCC
   @bo_renew
   Scenario: NCCC resumes renewal for a public body
     Given I have a new registration for a "localAuthority" business
-    And the registration has been partially renewed by the account holder
+    And the registration has been partially renewed
     And I sign into the back office as "agency-user"
     When I complete the renewal for the account holder
     Then the renewal is complete

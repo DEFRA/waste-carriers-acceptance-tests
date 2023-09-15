@@ -22,6 +22,7 @@ class RegistrationDetailsPage < BasePage
   element(:order_cards_link, "a[href*='/order-copy-cards']")
   element(:payment_details_link, "a[href*='/finance-details']")
   element(:cease_or_revoke_link, "a[href*='/cease-or-revoke']")
+  element(:restore_link, "a[href$='/restore']")
   element(:cancel_link, "a[href*='/cancels']")
   element(:refresh_company_name, "a[href$='/companies_house_details']")
 
