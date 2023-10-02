@@ -18,3 +18,7 @@ gem "facets"
 # Gem used by the Defra ruby services team to ensure a consistent style across
 # our code base
 gem "defra_ruby_style"
+
+# pin gem versions to avoid build issues on Jenkins:
+gem "nokogiri", "~> 1.15.2"
+gem "racc", "~> 1.5"

@@ -123,8 +123,10 @@ DEPENDENCIES
   defra_ruby_style
   facets
   faker
+  nokogiri (~> 1.15.2)
   pry
   quke!
+  racc (~> 1.5)
   rake
 
 BUNDLED WITH
