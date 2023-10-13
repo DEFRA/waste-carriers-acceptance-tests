@@ -4,7 +4,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
   I want to renew my waste carriers licence with the Environment Agency
   So I continue to be compliant with the law
 
-  @email @smoke @wip
+  @email @smoke
   Scenario: [RUBY-987] Renew from email via magic link
     Given I create an upper tier registration for my "soleTrader" business as "user@example.com"
     And I receive an email from NCCC inviting me to renew
