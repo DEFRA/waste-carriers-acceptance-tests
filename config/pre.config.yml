@@ -83,10 +83,8 @@ custom:
       username: another-user@example.com
   urls:
     front_office: "https://wcr-pre.aws.defra.cloud"
-    front_office_sign_in: "https://wcr-pre.aws.defra.cloud/fo/users/sign_in"
     back_office: "https://wcr-admin-pre.aws.defra.cloud/bo"
     back_office_sign_in: "https://wcr-admin-pre.aws.defra.cloud/bo/users/sign_in"
     last_email_fo: "https://wcr-pre.aws.defra.cloud/fo/email/last-email"
     last_email_bo: "https://wcr-admin-pre.aws.defra.cloud/bo/email/last-email"
-    notify_link: "/fo/email/last-notify-message"
     mock_enabled: "https://wcr-pre.aws.defra.cloud/fo/mocks/company/00445790"

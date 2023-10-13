@@ -52,12 +52,10 @@ custom:
       username: user@example.com
   urls:
     front_office: "https://wcr-dev.aws.defra.cloud"
-    front_office_sign_in: "https://wcr-dev.aws.defra.cloud/fo/users/sign_in"
     back_office: "https://wcr-admin-dev.aws.defra.cloud/bo"
     back_office_sign_in: "https://wcr-admin-dev.aws.defra.cloud/bo/users/sign_in"
     last_email_fo: "https://wcr-dev.aws.defra.cloud/fo/email/last-email"
     last_email_bo: "https://wcr-admin-dev.aws.defra.cloud/bo/email/last-email"
-    notify_link: "/fo/email/last-notify-message"
     mock_enabled: "https://wcr-dev.aws.defra.cloud/fo/mocks/company/00445790"
     
 

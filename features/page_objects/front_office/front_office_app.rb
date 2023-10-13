@@ -8,11 +8,6 @@ class FrontOfficeApp
   # FRONT OFFICE SPECIFIC PAGES
   # This app will become redundant when we get rid of accounts
   # /
-
-  def front_office_sign_in_page
-    @last_page = FrontOfficeSignInPage.new
-  end
-
   def reset_password_page
     @last_page = ResetPasswordPage.new
   end
