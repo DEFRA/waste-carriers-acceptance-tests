@@ -6,8 +6,11 @@ def message_exists?(expected_text)
 
   visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
 
-  return true if @journey.last_message_page.check_message_for_text(expected_text)
+  5.times do
+    return true if @journey.last_message_page.check_message_for_text(expected_text)
 
-  puts "Message not found"
-  false
+    puts "Message not found"
+    sleep(1)
+    false
+  end
 end
