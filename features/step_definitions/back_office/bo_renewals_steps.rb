@@ -77,8 +77,7 @@ Given("the registration has been partially renewed") do
   @reg_type = :renewal
   send_renewal_email(@reg_number)
   expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@email_address}")
-  # @journey.start_page.load
-  visit(Quke::Quke.config.custom["urls"]["notify_link"])
+  visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
   @renew_from_email_link = @journey.last_message_page.get_renewal_url(@reg_number)
   visit(@renew_from_email_link)
   @journey.standard_page.accept_cookies

@@ -33,17 +33,6 @@ def mocking_enabled?
   true
 end
 
-def sign_in_to_front_office(email)
-  url = URI.parse(current_url).to_s
-  visit(Quke::Quke.config.custom["urls"]["front_office_sign_in"]) if url.not.include? "fo/users/sign_in"
-  return if page.has_text?("Signed in as #{email}")
-
-  @fo.front_office_sign_in_page.submit(
-    email: email,
-    password: ENV.fetch("WCRS_DEFAULT_PASSWORD", nil)
-  )
-end
-
 def sign_in_to_back_office(user, force: true)
   # If force == true then this forces signout regardless of the user's type.
 
