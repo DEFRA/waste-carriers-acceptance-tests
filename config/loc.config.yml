@@ -85,6 +85,6 @@ custom:
     front_office: "http://localhost:3002"
     back_office: "http://localhost:8001/bo"
     back_office_sign_in: "http://localhost:8001/bo/users/sign_in"
-    last_email_fo: "http://localhost:3002/fo/email/last-email"
-    last_email_bo: "http://localhost:8001/bo/email/last-email"
+    last_email_fo: "http://localhost:3002/fo/email/last-notify-message"
+    last_email_bo: "http://localhost:8001/bo/email/last-notify-message"
     mock_enabled: "http://localhost:3002/fo/mocks/company/00445790"

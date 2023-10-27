@@ -4,6 +4,7 @@ Feature: [RUBY-759] Manage users
   I want to amend EA user privileges
   So that the right people can help our users
 
+  @email
   Scenario: Agency super user adds an agency user then upgrades them
     Given I sign into the back office as "agency-super"
     When I invite a new "agency" user
