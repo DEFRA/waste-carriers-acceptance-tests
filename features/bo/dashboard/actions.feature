@@ -2,7 +2,7 @@
 Feature: Back office registration actions
 
     Actions that can be carried out on a registration in the back office
-
+      @email
       Scenario: Renewal reminder email can be resent from back office
         Given I have a new registration for a "limitedCompany" business
         And I sign into the back office as "agency-user"
@@ -10,7 +10,7 @@ Feature: Back office registration actions
         And I resend the renewal reminder email
         Then I will see the renewal reminder email has been sent
         And I will receive a registration renewal reminder email
-
+      @email
       Scenario: Registration confirmation email can be resent from the back office
         Given I have a new registration for a "limitedCompany" business
         And I sign into the back office as "agency-user"

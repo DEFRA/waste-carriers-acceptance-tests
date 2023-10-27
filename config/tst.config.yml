@@ -85,6 +85,6 @@ custom:
     front_office: "https://wcr-tst.aws.defra.cloud/"
     back_office: "https://wcr-admin-tst.aws.defra.cloud/bo"
     back_office_sign_in: "https://wcr-admin-tst.aws.defra.cloud/bo/users/sign_in"
-    last_email_fo: "https://wcr-tst.aws.defra.cloud//fo/email/last-email"
-    last_email_bo: "https://wcr-admin-tst.aws.defra.cloud/bo/email/last-email"
+    last_email_fo: "https://wcr-tst.aws.defra.cloud//fo/email/last-notify-message"
+    last_email_bo: "https://wcr-admin-tst.aws.defra.cloud/bo/email/last-notify-message"
     mock_enabled: "https://wcr-tst.aws.defra.cloud//fo/mocks/company/00445790"
