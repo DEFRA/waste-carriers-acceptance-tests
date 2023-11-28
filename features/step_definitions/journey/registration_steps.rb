@@ -129,14 +129,7 @@ Given("I create a new registration") do
   @tier = :upper
   @organisation_type = :limitedCompany
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
-                           "expires_on" => (DateTime.now + 30).to_s,
-                           "conviction_search_result" => { "match_result" => "YES" },
-                           "conviction_sign_offs" => [
-                             {
-                               "workflow_state" => "possible_match",
-                               "confirmed" => "no"
-                             }
-                           ])
+                           "expires_on" => (DateTime.now + 30).to_s)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @contact_email = @seeded_data["contactEmail"]

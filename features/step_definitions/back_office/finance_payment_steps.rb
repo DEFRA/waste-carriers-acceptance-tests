@@ -40,10 +40,10 @@ When(/^NCCC pays the remaining balance by "([^"]*)"$/) do |method|
   @reg_balance = 0
 end
 
-Given(/^the registration has an unsubmitted renewal with (.*)$/) do |convictions|
+Given("the registration has an unsubmitted renewal") do
   @reg_type = :renewal
   @business_name = "Renewal via bank transfer"
-  @convictions = convictions || "no convictions"
+  @convictions = "no convictions"
 
   sign_in_to_back_office("agency-refund-payment-user")
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)

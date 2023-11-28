@@ -16,13 +16,13 @@ Feature: Registered waste carrier declares conviction during renewal
     And I start renewing this registration
 
     When I complete my limited company renewal steps not declaring a personal conviction
-    Then I will be notified my renewal is complete
-    And I will receive a registration renewal confirmation email
-@mon3
+    Then I will be notified my renewal is pending checks
+    And I will receive a registration renewal pending checks email
+
   Scenario: Limited company renews upper tier registration from renewals page not declaring company conviction
     Given I have an active registration with a company number of "01649776"
     And I start renewing this registration
     
     When I complete my limited company renewal steps not declaring a company conviction
-    Then I will be notified my renewal is complete
-    And I will receive a registration renewal confirmation email
+    Then I will be notified my renewal is pending checks
+    And I will receive a registration renewal pending checks email
