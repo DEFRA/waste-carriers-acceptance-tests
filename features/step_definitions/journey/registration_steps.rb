@@ -124,14 +124,21 @@ Given("a registration with no convictions has been submitted by paying via card"
   puts "Registration #{@reg_number} seeded"
 end
 
-Given("I create a new registration as {string}") do |account_email|
+Given("I create a new registration") do
   load_all_apps
   @tier = :upper
   @organisation_type = :limitedCompany
-  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => account_email)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
+                           "expires_on" => (DateTime.now + 30).to_s,
+                           "conviction_search_result" => { "match_result" => "YES" },
+                           "conviction_sign_offs" => [
+                            {
+                                "workflow_state" => "possible_match",
+                                "confirmed" => "no"
+                            }
+                           ])
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
-  @email_address = account_email
   @contact_email = @seeded_data["contactEmail"]
   puts "Registration #{@reg_number} seeded"
 end
@@ -147,34 +154,36 @@ Given("I have a company registration with an inactive companies house number") d
   puts "Registration #{@reg_number} seeded"
 end
 
-Given("I create an upper tier registration for my {string} business as {string}") do |business_type, account_email|
+Given("I create an upper tier registration for my {string} business") do |business_type|
   load_all_apps
   @tier = :upper
-  new_expiry_date = (DateTime.now + 30).to_s
-  seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "accountEmail" => account_email, "contactEmail" => account_email, "expires_on" => new_expiry_date)
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json",
+                           "contactEmail" => Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
+                           "expires_on" => (DateTime.now + 30).to_s)
   @reg_number = seed_data.reg_number
-  @email_address = account_email
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
   puts "#{business_type} upper tier registration #{@reg_number} seeded"
 end
 
-Given("I create a lower tier registration for my {string} business as {string}") do |business_type, account_email|
+Given("I create a lower tier registration for my {string} business") do |business_type|
   load_all_apps
   @tier = :lower
   @deregistration_token = SecureRandom.alphanumeric(24)
   @deregistration_token_created_date = DateTime.now.strftime("%Y-%m-%d")
-  seed_data = SeedData.new("lower_#{business_type}_complete_active_registration.json", "accountEmail" => account_email, "deregistration_token" => @deregistration_token, "deregistration_token_created_at" => @deregistration_token_created_date)
+  seed_data = SeedData.new("lower_#{business_type}_complete_active_registration.json",
+                           "deregistration_token" => @deregistration_token,
+                           "deregistration_token_created_at" => @deregistration_token_created_date)
   @reg_number = seed_data.reg_number
-  @email_address = account_email
   @seeded_data = seed_data.seeded_data
-  puts "#{business_type} lower tier registration #{@reg_number} seeded for #{account_email}"
+  puts "#{business_type} lower tier registration #{@reg_number} seeded"
 end
 
 Given("I have a new registration for a {string} business") do |business_type|
   load_all_apps
   @tier = :upper
-  seed_data = SeedData.new("#{business_type}_complete_active_registration.json")
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json",
+                           "expires_on" => (DateTime.now + 30).to_s)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
@@ -185,7 +194,9 @@ end
 Given("I have a new registration for a {string} with business name {string}") do |business_type, business_name|
   load_all_apps
   @tier = :upper
-  seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "companyName" => business_name)
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json",
+                           "companyName" => business_name,
+                           "expires_on" => (DateTime.now + 30).to_s)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
@@ -205,15 +216,13 @@ Given("I have a new lower tier registration for a {string} business") do |busine
   puts "#{business_type} lower tier registration #{@reg_number} seeded"
 end
 
-Given("I create a new registration as {string} with a company name of {string}") do |account_email, company_name|
+Given("I create a new registration with a company name of {string}") do |company_name|
   load_all_apps
-  @email_address = account_email
   @business_name = company_name
   @organisation_type = :limitedCompany
   seed_data = SeedData.new(
     "limitedCompany_complete_active_registration.json",
-    "accountEmail" => @email_address,
-    "contactEmail" => @email_address,
+    "contactEmail" => Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
     "companyName" => @business_name
   )
   @reg_number = seed_data.reg_number
@@ -221,28 +230,30 @@ Given("I create a new registration as {string} with a company name of {string}")
   @tier = :upper
   @reg_type = :registration
 
-  puts "Registration #{@reg_number} seeded with name #{@business_name} for #{@email_address}"
+  puts "Registration #{@reg_number} seeded with name #{@business_name}"
 end
 
 Given("I have an active registration") do
   load_all_apps
-  @account_email = Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"]
   @tier = :upper
 
-  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "accountEmail" => @account_email)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
+                           "expires_on" => (DateTime.now + 30).to_s)
   @organisation_type = :limitedCompany
   @tier = :upper
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @reg_balance = 0
 
-  puts "Registration #{@reg_number} seeded for #{@account_email}"
+  puts "Registration #{@reg_number} seeded"
 end
 
 Given("I have an active registration with a company number of {string}") do |company_no|
   load_all_apps
   @tier = :upper
-  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "company_no" => company_no)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
+                           "company_no" => company_no, 
+                           "expires_on" => (DateTime.now + 30).to_s)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @companies_house_number = company_no
@@ -254,7 +265,9 @@ end
 Given("I have an active registration with a company name of {string}") do |company_name|
   load_all_apps
   @tier = :upper
-  seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "companyName" => company_name)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
+                           "companyName" => company_name,
+                           "expires_on" => (DateTime.now + 30).to_s)
   @email_address = "user@example.com"
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
@@ -295,6 +308,7 @@ Given("a limited company with companies house number {string} is registered as a
   @business_name = "AD UT Company convictions check ltd"
   @organisation_type = :limitedCompany
   @companies_house_number = ch_no
+  @convictions = "convictions"
 
   step("I want to register as an upper tier carrier")
   @journey.start_page.load
@@ -382,6 +396,7 @@ Given("a partnership {string} registers as an upper tier waste carrier") do |bus
 
   # Store variables for later steps:
   @business_name = business_name
+  @convictions = "convictions"
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'partnership'")
