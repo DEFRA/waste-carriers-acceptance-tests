@@ -6,14 +6,14 @@ Feature: Registered waste carrier chooses to renew their registration from regis
 
   @smoke @email
   Scenario: Limited company renews upper tier registration from renewals page
-    Given I create an upper tier registration for my "limitedCompany" business as "user@example.com"
+    Given I create an upper tier registration for my "limitedCompany" business
     And I start renewing this registration
     When I complete my "limitedCompany" renewal steps
     Then I will be notified my renewal is complete
     And I will receive a registration renewal confirmation email
   
   Scenario: Partnership renews upper tier registration from renewals page
-    Given I create an upper tier registration for my "partnership" business as "user@example.com"
+    Given I create an upper tier registration for my "partnership" business
     And I start renewing this registration
     
     When I complete my "partnership" renewal steps
@@ -22,7 +22,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
 
   @email
   Scenario: Overseas renewal
-    Given I create an upper tier registration for my "overseas" business as "user@example.com"
+    Given I create an upper tier registration for my "overseas" business
     And I start renewing this registration
     
     When I complete my overseas company renewal steps
@@ -31,7 +31,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
 
   @email
   Scenario: Limited liability partnership renews upper tier registration by bank transfer
-    Given I create an upper tier registration for my "limitedLiabilityPartnership" business as "user@example.com"
+    Given I create an upper tier registration for my "limitedLiabilityPartnership" business
     And I start renewing this registration
     
     When I complete my limited liability partnership renewal steps choosing to pay by bank transfer

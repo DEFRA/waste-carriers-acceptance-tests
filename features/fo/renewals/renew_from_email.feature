@@ -6,7 +6,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
 
   @email @smoke
   Scenario: [RUBY-987] Renew from email via magic link
-    Given I create an upper tier registration for my "soleTrader" business as "user@example.com"
+    Given I create an upper tier registration for my "soleTrader" business
     And I receive an email from NCCC inviting me to renew
     When I renew from the email as a "soleTrader"
     Then I will be notified my renewal is complete
@@ -14,7 +14,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
     And I cannot renew again with the same link
 
   Scenario: Cannot renew with invalid token
-    Given I create an upper tier registration for my "soleTrader" business as "user@example.com"
+    Given I create an upper tier registration for my "soleTrader" business
     When I incorrectly paste its renewal link
     Then I am told the renewal cannot be found
 
