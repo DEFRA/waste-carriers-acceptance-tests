@@ -11,7 +11,7 @@ Feature: Registered waste carrier chooses to renew their registration from regis
     When I complete my "limitedCompany" renewal steps
     Then I will be notified my renewal is complete
     And I will receive a registration renewal confirmation email
-  
+
   Scenario: Partnership renews upper tier registration from renewals page
     Given I create an upper tier registration for my "partnership" business
     And I start renewing this registration

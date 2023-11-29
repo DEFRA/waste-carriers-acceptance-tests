@@ -128,8 +128,7 @@ Given("I create a new registration") do
   load_all_apps
   @tier = :upper
   @organisation_type = :limitedCompany
-  seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
-                           "expires_on" => (DateTime.now + 30).to_s)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @contact_email = @seeded_data["contactEmail"]
@@ -150,9 +149,8 @@ end
 Given("I create an upper tier registration for my {string} business") do |business_type|
   load_all_apps
   @tier = :upper
-  seed_data = SeedData.new("#{business_type}_complete_active_registration.json",
-                           "contactEmail" => Quke::Quke.config.custom["accounts"]["waste_carrier2"]["username"],
-                           "expires_on" => (DateTime.now + 30).to_s)
+  new_expiry_date = (DateTime.now + 30).to_s
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "expires_on" => new_expiry_date)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
@@ -175,8 +173,7 @@ end
 Given("I have a new registration for a {string} business") do |business_type|
   load_all_apps
   @tier = :upper
-  seed_data = SeedData.new("#{business_type}_complete_active_registration.json",
-                           "expires_on" => (DateTime.now + 30).to_s)
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
@@ -188,8 +185,7 @@ Given("I have a new registration for a {string} with business name {string}") do
   load_all_apps
   @tier = :upper
   seed_data = SeedData.new("#{business_type}_complete_active_registration.json",
-                           "companyName" => business_name,
-                           "expires_on" => (DateTime.now + 30).to_s)
+                           "companyName" => business_name)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
@@ -230,8 +226,7 @@ Given("I have an active registration") do
   load_all_apps
   @tier = :upper
 
-  seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
-                           "expires_on" => (DateTime.now + 30).to_s)
+  seed_data = SeedData.new("limitedCompany_complete_active_registration.json")
   @organisation_type = :limitedCompany
   @tier = :upper
   @reg_number = seed_data.reg_number
@@ -245,8 +240,7 @@ Given("I have an active registration with a company number of {string}") do |com
   load_all_apps
   @tier = :upper
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
-                           "company_no" => company_no,
-                           "expires_on" => (DateTime.now + 30).to_s)
+                           "company_no" => company_no)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @companies_house_number = company_no
@@ -259,8 +253,7 @@ Given("I have an active registration with a company name of {string}") do |compa
   load_all_apps
   @tier = :upper
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
-                           "companyName" => company_name,
-                           "expires_on" => (DateTime.now + 30).to_s)
+                           "companyName" => company_name)
   @email_address = "user@example.com"
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
@@ -301,7 +294,6 @@ Given("a limited company with companies house number {string} is registered as a
   @business_name = "AD UT Company convictions check ltd"
   @organisation_type = :limitedCompany
   @companies_house_number = ch_no
-  @convictions = "convictions"
 
   step("I want to register as an upper tier carrier")
   @journey.start_page.load
@@ -389,7 +381,6 @@ Given("a partnership {string} registers as an upper tier waste carrier") do |bus
 
   # Store variables for later steps:
   @business_name = business_name
-  @convictions = "convictions"
 
   step("I want to register as an upper tier carrier")
   step("I start a new registration journey in 'England' as a 'partnership'")
