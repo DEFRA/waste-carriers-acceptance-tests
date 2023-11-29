@@ -55,7 +55,6 @@ The content of the `limitedCompany_complete_active_registration.json` file looks
     "lastName" : "Carolgees",
     "phoneNumber" : "0117 4960000",
     "contactEmail" : "user@example.com",
-    "accountEmail" : "user@example.com",
     "declaredConvictions" : "no",
     "declaration" : "1",
 

@@ -66,7 +66,7 @@ class SeedData
     inflate_copy_cards_order(data)
 
     options.each do |key, value|
-      data[key] = value if data.key?(key)
+      data[key] = value
     end
 
     recalculate_balances(data)
