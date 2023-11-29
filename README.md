@@ -148,6 +148,10 @@ The advantages of this are that:
 
 - The tests run much more quickly, as they do not repeat the steps to create registrations through the user interface.
 
+## Loading conviction data
+
+In addition to the database seed data, some conviction data needs to be loaded to allow all tests to complete successfully. Log into the back office with an account with suitable privileges and load conviction data from the file `fixtures\entities.csv`.
+
 ## Resetting data
 
 In the local environment, data can be reset and re-seeded by running
