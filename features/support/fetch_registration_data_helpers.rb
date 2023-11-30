@@ -1,9 +1,8 @@
 def fetch_registration_data_for(reg_identifier)
   # Sign in to back office unless already signed in
   sign_in_to_back_office("agency-refund-payment-user")
-
+  puts "#{Quke::Quke.config.custom['urls']['back_office']}/api/registrations/#{reg_identifier}"
   visit "#{Quke::Quke.config.custom['urls']['back_office']}/api/registrations/#{reg_identifier}"
-
   @fetch_registration_data_cache = ApiResultPage.new.extract_data
   @fetch_registration_identifier_cache = reg_identifier
 end

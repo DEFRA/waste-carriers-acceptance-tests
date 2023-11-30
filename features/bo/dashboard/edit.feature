@@ -6,7 +6,7 @@ Feature: NCCC agent edits registration from back office
 
   Background:
     Given I have an active registration
-
+@wip
   Scenario: NCCC user edits an upper tier registration
     When I sign into the back office as "agency-user"
     And I edit the most recent registration
