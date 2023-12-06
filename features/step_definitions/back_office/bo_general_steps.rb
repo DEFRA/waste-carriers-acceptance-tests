@@ -54,7 +54,7 @@ Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
 
   @bo.dashboard_page.load
   @bo.dashboard_page.submit(search_term: @reg_number)
-  expect(@bo.dashboard_page.status).to have_no_text(status.downcase)
+  expect(@bo.dashboard_page.status).not_to have_text(status.downcase)
 end
 
 Then("I check the registration details are correct on the back office") do
