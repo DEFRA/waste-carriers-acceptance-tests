@@ -21,7 +21,7 @@ Feature: Registered waste carrier pays for their renewal
     And I receive an email from NCCC inviting me to renew
     And I start renewing my last registration from the email
     And I complete my renewal up to the payment page
-    And I cancel my credit card payment
-    When I pay by bank transfer
-    Then I will be notified my renewal is pending payment
-    And I will receive a registration renewal pending payment email
+    When I cancel my credit card payment
+    And I pay by card
+    Then I will be notified my renewal is complete
+    And I will receive a registration renewal confirmation email
