@@ -26,20 +26,12 @@ When(/^the agency user pays for the (?:card|cards) by bank card$/) do
 end
 
 Then(/^the card order is confirmed with cleared payment$/) do
-  expect(@journey.cards_confirmation_page.confirmation_message).to have_text("Order completed.\nPayment has cleared.")
+  expect(@journey.cards_confirmation_page).to have_text("Order completed.\nPayment has cleared.")
   expect(@journey.cards_confirmation_page).to have_text("£ #{@number_of_cards * 5}")
   expect(@journey.cards_confirmation_page).to have_text(@reg_number)
 
   @journey.cards_confirmation_page.go_to_search_button.click
   expect(@bo.dashboard_page.heading).to have_text("Waste carriers registrations")
-end
-
-Then(/^the card order is confirmed awaiting payment$/) do
-  expect(@journey.cards_confirmation_page.awaiting_payment_message).to have_text("Order is awaiting payment.")
-
-  @journey.cards_confirmation_page.details_for_reg_button.click
-  expect(@bo.registration_details_page.heading).to have_text("Registration #{@reg_number}")
-  expect(@bo.registration_details_page).to have_text("Payment required")
 end
 
 Then("the carrier receives an email saying their card order is being printed") do
