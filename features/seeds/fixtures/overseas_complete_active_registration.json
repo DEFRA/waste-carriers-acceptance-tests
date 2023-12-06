@@ -9,7 +9,6 @@
     "lastName" : "Bentos",
     "phoneNumber" : "0117 4960000",
     "contactEmail" : "user@example.com",
-    "accountEmail" : "user@example.com",
     "declaration" : 1,
     "expires_on" : "2023-07-10T13:42:14.110Z",
     "addresses" : [

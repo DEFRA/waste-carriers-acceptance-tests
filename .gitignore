@@ -24,6 +24,7 @@ chromedriver.log
 
 # Ignore all files which may contain customer data
 *.csv
+!fixtures/*.csv
 *.pdf
 *.zip
 

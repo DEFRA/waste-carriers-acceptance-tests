@@ -8,7 +8,7 @@ This project contains the acceptance tests for the Waste Carriers digital servic
 
 ## Pre-requisites
 
-This project is setup to run against version 3.1.2 of Ruby. The rest of the pre-requisites are the same as those for [Quke](https://github.com/DEFRA/quke#pre-requisites).
+This project is setup to run against version 3.2.2 of Ruby. The rest of the pre-requisites are the same as those for [Quke](https://github.com/DEFRA/quke#pre-requisites).
 
 Also some of the [rake](https://github.com/ruby/rake) tasks (to see the available list call `bundle exec rake -T`) and `config.yml` files assume you have the Waste Carriers [Vagrant](https://www.vagrantup.com/) environment running locally. Contact [Alan Cruikshanks](https://github.com/Cruikshanks) for details if unsure.
 
@@ -147,6 +147,10 @@ The advantages of this are that:
 - The tests do not rely on hard-coded data seeds which need to be reset in each test run.
 
 - The tests run much more quickly, as they do not repeat the steps to create registrations through the user interface.
+
+## Loading conviction data
+
+In addition to the database seed data, some conviction data needs to be loaded to allow all tests to complete successfully. Log into the back office with an account with suitable privileges and load conviction data from the file `fixtures\entities.csv`.
 
 ## Resetting data
 
