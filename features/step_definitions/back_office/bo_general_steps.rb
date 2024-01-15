@@ -153,3 +153,11 @@ end
 Then("I can see registrations in the search results") do
   expect(@bo.dashboard_page.search_results_summary).to have_text(/Found \d+ registrations/)
 end
+
+Then("I can see the communication logs on the communication history page") do
+  visit_registration_details_page(@reg_number)
+  @bo.registration_details_page.communication_history.click
+  expect(@bo.communication_history_page.heading).to have_text("Communication history")
+  log = @bo.communication_history_page.log_details(@contact_email)
+  expect(log.template_name).to have_text("Upper tier renewal reminder")
+end
