@@ -25,7 +25,7 @@ class RegistrationDetailsPage < BasePage
   element(:restore_link, "a[href$='/restore']")
   element(:cancel_link, "a[href*='/cancels']")
   element(:refresh_company_name, "a[href$='/companies_house_details']")
-
+  element(:communication_history, "a[href$='communication_records']")
   element(:revert_to_payment_summary_link, "a[href$='revert-to-payment-summary']")
 
 end
