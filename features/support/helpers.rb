@@ -96,7 +96,7 @@ def try(number_of_times)
 end
 
 def generate_email
-  @email_address = "#{rand(100_000_000)}@example.com"
+  @contact_email = "#{rand(100_000_000)}@example.com"
 end
 
 def look_into_paginated_content_for(text)

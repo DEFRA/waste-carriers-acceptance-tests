@@ -61,8 +61,8 @@ When("I complete my registration for my business {string}") do |business_name|
   submit_organisation_details(@business_name)
   @convictions ||= "no convictions"
   submit_convictions(@convictions) if @tier == :upper
-  @email_address = generate_email if @email_address.nil?
-  submit_contact_details_for_registration(@email_address)
+  @contact_email = generate_email if @contact_email.nil?
+  submit_contact_details_for_registration(@contact_email)
   expect(page).to have_content("Check your answers")
   @journey.standard_page.submit
   @journey.declaration_page.submit
@@ -77,7 +77,7 @@ Then("I am notified that my registration has been successful") do
 end
 
 Then(/^(?:I will receive a registration confirmation email|a registraton confirmation email will be sent)$/) do
-  expected_text = [@reg_number, "https://documents.service.gov.uk"]
+  expected_text = [@reg_number, "Download your certificate"]
   expected_text << "You are now registered as a lower tier" if @tier == :lower
   expected_text << "You are now registered as an upper tier" if @tier == :upper
   expect(message_exists?(expected_text)).to be true
@@ -100,9 +100,24 @@ Then("an application confirmation email will be sent") do
   expect(message_exists?(expected_text)).to be true
 end
 
+Then("the registration certificate can be viewed from the email") do
+  visit_last_message_page_for(:fo)
+  @certificate_link_from_email_link = @journey.last_message_page.get_certificate_url(@reg_number)
+  puts "Certificate link for #{@reg_number} is #{@certificate_link_from_email_link}"
+  raise("Missing certificate link token") if @certificate_link_from_email_link.nil?
+
+  visit(@certificate_link_from_email_link)
+  @journey.standard_page.accept_cookies
+  @fo.certificate_confirm_email_page.submit(
+    email: @contact_email
+  )
+  expect(page).to have_content("Certificate of Registration under the Waste (England and Wales) Regulations 2011")
+  expect(page).to have_content(@reg_number)
+end
+
 Then("I am notified that I need to pay by bank transfer") do
   expect(page).to have_content("You must now pay by bank transfer")
-  expect(page).to have_content("We've sent an email to #{@email_address} with the payment details and instructions.")
+  expect(page).to have_content("We've sent an email to #{@contact_email} with the payment details and instructions.")
   @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration #{@reg_number} submitted pending bank transfer"
 end
@@ -189,7 +204,7 @@ Given("I have a new registration for a {string} with business name {string}") do
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type
-  @email_address = @seeded_data["contactEmail"]
+  @contact_email = @seeded_data["contactEmail"]
   @business_name = business_name
   puts "#{business_type} registration #{@reg_number} seeded"
 end
@@ -254,7 +269,7 @@ Given("I have an active registration with a company name of {string}") do |compa
   @tier = :upper
   seed_data = SeedData.new("limitedCompany_complete_active_registration.json",
                            "companyName" => company_name)
-  @email_address = "user@example.com"
+  @contact_email = "user@example.com"
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @business_name = company_name
@@ -430,8 +445,8 @@ Given("I resume the registration as assisted digital") do
 
   # Continue the journey where the previous user left off
   expect(@journey.contact_email_page.heading).to have_text("contact email address?")
-  @email_address = generate_email
-  @journey.contact_email_page.submit(email: @email_address, confirm_email: @email_address)
+  @contact_email = generate_email
+  @journey.contact_email_page.submit(email: @contact_email, confirm_email: @contact_email)
   @journey.address_reuse_page.submit(choice: :no)
   @journey.address_lookup_page.submit_valid_address
   expect(page).to have_content("Check your answers")
@@ -475,8 +490,8 @@ Given("an upper tier {string} registration is completed in the front office") do
   submit_organisation_details("Upper tier registration")
   @convictions ||= "no convictions"
   submit_convictions(@convictions) if @tier == :upper
-  @email_address = generate_email if @email_address.nil?
-  submit_contact_details_for_registration(@email_address)
+  @contact_email = generate_email if @contact_email.nil?
+  submit_contact_details_for_registration(@contact_email)
   expect(page).to have_content("Check your answers")
   @journey.standard_page.submit
   @journey.declaration_page.submit
