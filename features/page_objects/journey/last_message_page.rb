@@ -50,4 +50,17 @@ class LastMessagePage < BasePage
     parsed_data["last_notify_message"]["body"].match %r/https?:\/\/.{14,35}\/fo\/renew\/.{24}/
   end
 
+  def get_certificate_url(reg_number)
+    # This email is generated through Notify.
+    if check_message_for_text([reg_number, "Download your certificate at"]) == false
+      puts("Couldn't find regisration email")
+      return "Email not found"
+    end
+
+    parsed_data = JSON.parse(message_content.text)
+    # Find the string that matches:
+    # https://, then any 14-46 characters, then /certificate?, then any 36 characters
+    parsed_data["last_notify_message"]["body"].match %r/https?:\/\/.{14,46}\/certificate\?token=.{36}/
+  end
+
 end

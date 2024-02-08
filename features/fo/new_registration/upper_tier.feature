@@ -14,6 +14,7 @@ Feature: A new user registers as an upper tier waste carrier
     And I pay by card
     Then I am notified that my registration has been successful
     And I will receive a registration confirmation email
+    And the registration certificate can be viewed from the email
     
   @email
   Scenario: An LLP registers as an upper tier waste carrier and pays via bank transfer

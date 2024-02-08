@@ -8,6 +8,10 @@ class FrontOfficeApp
   # FRONT OFFICE SPECIFIC PAGES
   # This app will become redundant when we get rid of accounts
   # /
+  def certificate_confirm_email_page
+    @last_page = CertificateConfirmEmailPage.new
+  end
+
   def reset_password_page
     @last_page = ResetPasswordPage.new
   end

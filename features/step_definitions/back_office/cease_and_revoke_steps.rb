@@ -30,7 +30,7 @@ Given("I have a revoked expired registration") do
   seed_data = SeedData.new("limitedCompany_revoked_expired_registration.json", "expires_on" => new_expiry_date)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
-  @email_address = @seeded_data["contactEmail"]
+  @contact_email = @seeded_data["contactEmail"]
 
   puts "limitedCompany upper tier revoked expired registration #{@reg_number} seeded"
 end
@@ -42,7 +42,7 @@ Given("I have a revoked upper tier registration") do
   seed_data = SeedData.new("limitedCompany_revoked_registration.json")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
-  @email_address = @seeded_data["contactEmail"]
+  @contact_email = @seeded_data["contactEmail"]
 
   puts "limitedCompany upper tier revoked expired registration #{@reg_number} seeded"
 end
@@ -54,7 +54,7 @@ Given("I have a ceased lower tier registration") do
   seed_data = SeedData.new("lower_tier_ceased_registration.json")
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
-  @email_address = @seeded_data["contactEmail"]
+  @contact_email = @seeded_data["contactEmail"]
 
   puts "lower tier ceased registration #{@reg_number} seeded"
 end
