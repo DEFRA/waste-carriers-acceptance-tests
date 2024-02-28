@@ -27,6 +27,11 @@ When("I edit the most recent registration type to {string}") do |carrier_type|
   @bo.dashboard_page.view_reg_details(search_term: @reg_number)
   @bo.registration_details_page.edit_link.click
   @bo.edit_page.change_registration_type.click
-
+  @carrier = "Broker and Dealer" if carrier_type == "broker_dealer"
+  @carrier = "Carrier and Dealer" if carrier_type == "carrier_dealer"
+  @carrier = "Carrier, broker and dealer" if carrier_type == "carrier_broker_dealer"
+  @edited_info = {
+    carrier: @carrier
+  }
   @journey.carrier_type_page.submit(choice: carrier_type.to_sym)
 end
