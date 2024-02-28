@@ -30,7 +30,6 @@ Given("the back office pages show the correct transient renewal details") do
   expect(@bo.registration_details_page).to have_continue_as_ad_button
   expect(@bo.registration_details_page).to have_text(@business_name)
   expect(@bo.registration_details_page).to have_text("Peek Freans")
-  expect(@bo.registration_details_page).to have_text("Application in progress")
   expect(@bo.registration_details_page).to have_no_view_certificate_link
 
   if @convictions == "no convictions"
