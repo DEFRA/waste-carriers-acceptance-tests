@@ -252,19 +252,19 @@ Then("I will be notified my renewal is pending payment") do
 end
 
 Then(/^(?:I will receive a registration renewal pending payment email|a registraton renewal pending payment email will be sent)$/) do
-  expected_text = ["Payment needed for waste carrier registration #{@reg_number}"]
+  expected_text = ["Payment needed for waste carrier registration #{@reg_number}", @renewal_contact_email]
 
   expect(message_exists?(expected_text)).to be true
 end
 
 Then(/^(?:I will receive a registration renewal pending checks email|a registraton renewal pending checks email will be sent)$/) do
-  expected_text = ["Your application to renew waste carriers registration #{@reg_number} has been received"]
+  expected_text = ["Your application to renew waste carriers registration #{@reg_number} has been received", @renewal_contact_email]
 
   expect(message_exists?(expected_text)).to be true
 end
 
 Then(/^(?:I will receive a registration renewal processing payment email|a registraton renewal processing payment email will be sent)$/) do
-  expected_text = ["We are currently processing your payment", @reg_number]
+  expected_text = ["We are currently processing your payment", @reg_number, @renewal_contact_email]
 
   expect(message_exists?(expected_text)).to be true
 end
