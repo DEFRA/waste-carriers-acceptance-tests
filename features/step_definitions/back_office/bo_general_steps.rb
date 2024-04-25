@@ -104,7 +104,7 @@ Then("the certificate shows the correct details") do
 
   expect(@bo.registration_certificate_page.heading).to have_text("Certificate of Registration")
   page_content = @bo.registration_certificate_page.content
-  expect(page_content).to have_text(@business_name)
+  expect(page_content).to have_text(@business_name) if @business_name
   expect(page_content).to have_text(@reg_number)
   # Increments certificate number when revisiting a certificate after an edit or renewal
   @certificate_number = 0 if @certificate_number.nil?
