@@ -2,7 +2,7 @@ Given("I start renewing this registration") do
   @journey = JourneyApp.new
   @reg_type = :renewal
   send_renewal_email(@reg_number)
-  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@email_address}")
+  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@contact_email}")
   visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
   @renew_from_email_link = @journey.last_message_page.get_renewal_url(@reg_number)
   visit(@renew_from_email_link)
@@ -12,7 +12,7 @@ end
 
 Given("I receive an email from NCCC inviting me to renew") do
   send_renewal_email(@reg_number)
-  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@email_address}")
+  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@contact_email}")
   visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
   @renew_from_email_link = @journey.last_message_page.get_renewal_url(@reg_number)
   puts "Renewal link for #{@reg_number} is #{@renew_from_email_link}"
@@ -40,7 +40,7 @@ Given("I have a registration which expired {int} days ago") do |days_ago|
   seed_data = SeedData.new("limitedCompany_expired_registration.json", "expires_on" => new_expiry_date)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
-  @email_address = @seeded_data["contactEmail"]
+  @contact_email = @seeded_data["contactEmail"]
 
   puts "limitedCompany upper tier expired registration #{@reg_number} seeded"
 end
@@ -77,8 +77,8 @@ end
 
 Given(/^I have signed in to renew my registration as "([^"]*)"$/) do |username|
   @journey = JourneyApp.new
-  @email_address = username
-  sign_in_to_front_office(@email_address)
+  @contact_email = username
+  sign_in_to_front_office(@contact_email)
 end
 
 Given(/^I change the business type to "([^"]*)"$/) do |org_type|
@@ -208,7 +208,7 @@ Then(/^I will be notified my renewal is complete$/) do
 end
 
 Then(/^(?:I will receive a registration renewal confirmation email|a registraton renewal confirmation email will be sent)$/) do
-  expected_text = ["Your waste carriers registration #{@reg_number} has been renewed", "https://documents.service.gov.uk"]
+  expected_text = ["Your waste carriers registration #{@reg_number} has been renewed", "Download your certificate"]
 
   expect(message_exists?(expected_text)).to be true
 end
@@ -252,19 +252,19 @@ Then("I will be notified my renewal is pending payment") do
 end
 
 Then(/^(?:I will receive a registration renewal pending payment email|a registraton renewal pending payment email will be sent)$/) do
-  expected_text = ["Payment needed for waste carrier registration #{@reg_number}"]
+  expected_text = ["Payment needed for waste carrier registration #{@reg_number}", @renewal_contact_email]
 
   expect(message_exists?(expected_text)).to be true
 end
 
 Then(/^(?:I will receive a registration renewal pending checks email|a registraton renewal pending checks email will be sent)$/) do
-  expected_text = ["Your application to renew waste carriers registration #{@reg_number} has been received"]
+  expected_text = ["Your application to renew waste carriers registration #{@reg_number} has been received", @renewal_contact_email]
 
   expect(message_exists?(expected_text)).to be true
 end
 
 Then(/^(?:I will receive a registration renewal processing payment email|a registraton renewal processing payment email will be sent)$/) do
-  expected_text = ["We are currently processing your payment", @reg_number]
+  expected_text = ["We are currently processing your payment", @reg_number, @renewal_contact_email]
 
   expect(message_exists?(expected_text)).to be true
 end

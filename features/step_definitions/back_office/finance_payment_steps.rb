@@ -9,6 +9,7 @@ When(/^the registration's balance is (-?\d+)$/) do |balance|
   @reg_balance = balance
 
   @reg_type = :registration if balance.zero? && @convictions == "no convictions"
+  visit_registration_details_page(@reg_number)
 end
 
 When("the renewal has been completed") do

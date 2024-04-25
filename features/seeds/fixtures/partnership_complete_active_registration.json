@@ -61,6 +61,14 @@
   "declaredConvictions": "no",
   "declaration": 1,
   "metaData": {
+    "certificateVersion" : 1,
+    "certificateVersionHistory" : [ 
+        {
+            "version" : 1,
+            "generated_at" : "2024-02-28T12:51:46.033Z",
+            "generated_by" : null
+        }
+    ],
     "dateRegistered" : "2018-05-14T10:38:17.311Z",
     "lastModified" : "2018-05-14T10:38:22.692Z",
     "dateActivated" : "2018-05-14T10:38:22.692Z",

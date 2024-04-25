@@ -13,6 +13,7 @@ class DashboardPage < BasePage
   elements(:new_reg_details_links, "a[href*='/new-registrations/")
   elements(:transient_reg_details_links, "a[href*='/renewing-registrations/CBD']")
   element(:search_results_summary, ".govuk-table__caption--m")
+  element(:registration_search_filter, "#search-reg-identifier-field+ .govuk-checkboxes__label")
 
   sections :results, "table tbody tr" do
     element(:registration_number, "td:nth-child(1)")
@@ -26,6 +27,7 @@ class DashboardPage < BasePage
   end
 
   def view_reg_details(args = {})
+    registration_search_filter.click
     submit(search_term: args[:search_term])
     i = 0
     while i < 5 && reg_details_links.nil?

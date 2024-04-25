@@ -18,7 +18,7 @@ Given("an agency-refund-payment-user refunds the card payment") do
   @journey.standard_page.submit_button.click
   # Takes user back to payment details page with flash message.
   # Aligns with GOVPAY_REFUND_SUBMITTED_SUCCESS_LAG
-  sleep(2)
+  sleep(5)
   @bo.finance_payment_details_page.check_refund_status.click
 end
 

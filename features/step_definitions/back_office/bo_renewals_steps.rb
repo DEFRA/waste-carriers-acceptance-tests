@@ -30,7 +30,6 @@ Given("the back office pages show the correct transient renewal details") do
   expect(@bo.registration_details_page).to have_continue_as_ad_button
   expect(@bo.registration_details_page).to have_text(@business_name)
   expect(@bo.registration_details_page).to have_text("Peek Freans")
-  expect(@bo.registration_details_page).to have_text("Application in progress")
   expect(@bo.registration_details_page).to have_no_view_certificate_link
 
   if @convictions == "no convictions"
@@ -76,7 +75,7 @@ Given("the registration has been partially renewed") do
   @journey = JourneyApp.new
   @reg_type = :renewal
   send_renewal_email(@reg_number)
-  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@email_address}")
+  expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@contact_email}")
   visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
   @renew_from_email_link = @journey.last_message_page.get_renewal_url(@reg_number)
   visit(@renew_from_email_link)

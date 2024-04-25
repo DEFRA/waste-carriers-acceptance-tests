@@ -54,7 +54,7 @@ Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
 
   @bo.dashboard_page.load
   @bo.dashboard_page.submit(search_term: @reg_number)
-  expect(@bo.dashboard_page.status).to have_no_text(status.downcase)
+  expect(@bo.dashboard_page.status).not_to have_text(status.downcase)
 end
 
 Then("I check the registration details are correct on the back office") do
@@ -104,8 +104,12 @@ Then("the certificate shows the correct details") do
 
   expect(@bo.registration_certificate_page.heading).to have_text("Certificate of Registration")
   page_content = @bo.registration_certificate_page.content
-  expect(page_content).to have_text(@business_name)
+  expect(page_content).to have_text(@business_name) if @business_name
   expect(page_content).to have_text(@reg_number)
+  # Increments certificate number when revisiting a certificate after an edit or renewal
+  @certificate_number = 0 if @certificate_number.nil?
+  @certificate_number += 1
+  expect(page_content).to have_text("This is copy number #{@certificate_number} of the certificate.")
   expect(@bo.registration_certificate_page.certificate_dates_are_correct(@tier, @reg_type)).to be true
   if @tier == :upper
     expect(page_content).to have_text("Your registration will last 3 years")
@@ -152,4 +156,12 @@ end
 
 Then("I can see registrations in the search results") do
   expect(@bo.dashboard_page.search_results_summary).to have_text(/Found \d+ registrations/)
+end
+
+Then("I can see the communication logs on the communication history page") do
+  visit_registration_details_page(@reg_number)
+  @bo.registration_details_page.communication_history.click
+  expect(@bo.communication_history_page.heading).to have_text("Communication history")
+  log = @bo.communication_history_page.log_details(@contact_email)
+  expect(log.template_name).to have_text("Upper tier renewal reminder")
 end

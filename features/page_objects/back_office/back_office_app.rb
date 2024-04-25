@@ -33,6 +33,10 @@ class BackOfficeApp
     @last_page = ConvictionsDecisionPage.new
   end
 
+  def communication_history_page
+    @last_page = CommunicationHistoryPage.new
+  end
+
   def dashboard_page
     @last_page = DashboardPage.new
   end

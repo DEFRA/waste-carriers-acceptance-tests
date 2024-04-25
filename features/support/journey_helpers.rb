@@ -225,9 +225,10 @@ def submit_contact_details_for_renewal
 
   expect(@journey.contact_email_page.email.value).to eq("")
   unless @no_contact_email
+    @renewal_contact_email = "bo-renewal@example.com"
     @journey.contact_email_page.submit(
-      email: "bo-renewal@example.com",
-      confirm_email: "bo-renewal@example.com"
+      email: @renewal_contact_email,
+      confirm_email: @renewal_contact_email
     )
   end
   @journey.contact_email_page.submit(no_email_option: true) if @no_contact_email
