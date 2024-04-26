@@ -165,7 +165,8 @@ Given("I create an upper tier registration for my {string} business") do |busine
   load_all_apps
   @tier = :upper
   new_expiry_date = (DateTime.now + 30).to_s
-  seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "expires_on" => new_expiry_date)
+  @contact_email = "user@example.com"
+  seed_data = SeedData.new("#{business_type}_complete_active_registration.json", "expires_on" => new_expiry_date, "contactEmail" => @contact_email)
   @reg_number = seed_data.reg_number
   @seeded_data = seed_data.seeded_data
   @organisation_type = business_type

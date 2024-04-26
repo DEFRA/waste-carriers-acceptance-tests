@@ -130,6 +130,10 @@ When("I resend the confirmation email") do
   @bo.registration_details_page.resend_confirmation_email_link.click
 end
 
+Given("I receive a registration confirmation email") do
+  send_registration_confirmation_email(@reg_number)
+end
+
 When("I refresh the company name from companies house") do
   @bo.registration_details_page.refresh_company_name.click
 end
@@ -164,4 +168,13 @@ Then("I can see the communication logs on the communication history page") do
   expect(@bo.communication_history_page.heading).to have_text("Communication history")
   log = @bo.communication_history_page.log_details(@contact_email)
   expect(log.template_name).to have_text("Upper tier renewal reminder")
+end
+
+Then("the unsubscription is logged in the communications history") do
+  sign_in_to_back_office("agency-refund-payment-user")
+  visit_registration_details_page(@reg_number)
+  @bo.registration_details_page.communication_history.click
+  expect(@bo.communication_history_page.heading).to have_text("Communication history")
+  log = @bo.communication_history_page.log_details(@contact_email)
+  expect(log.template_name).to have_text("User unsubscribed from email communication")
 end

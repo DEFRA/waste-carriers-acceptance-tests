@@ -7,7 +7,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
   @email @smoke
   Scenario: [RUBY-987] Renew from email via magic link
     Given I create an upper tier registration for my "soleTrader" business
-    And I receive an email from NCCC inviting me to renew
+    And I receive an email inviting me to renew
     When I renew from the email as a "soleTrader"
     Then I will be notified my renewal is complete
     And I will receive a registration renewal confirmation email
@@ -22,7 +22,7 @@ Feature: Registered waste carrier chooses to renew their registration by email
   @email
   Scenario: Renew expired registration just inside grace window
     Given I have a registration which expired 4 days ago
-    And I receive an email from NCCC inviting me to renew
+    And I receive an email inviting me to renew
     When I renew from the email as a "soleTrader"
     Then I will be notified my renewal is complete
     And I will receive a registration renewal confirmation email
@@ -36,6 +36,6 @@ Feature: Registered waste carrier chooses to renew their registration by email
   Scenario: Inactive limited company is unable to renew
     Given mocking is "disabled"
     And I have a company registration with an inactive companies house number
-    And I receive an email from NCCC inviting me to renew
+    And I receive an email inviting me to renew
     When I start the renew from the email
     Then I will be informed my companies house number could not be validated
