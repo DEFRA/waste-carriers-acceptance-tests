@@ -1,0 +1,3 @@
+class UnsubscribtionConfirmationPage < BasePage
+
+end

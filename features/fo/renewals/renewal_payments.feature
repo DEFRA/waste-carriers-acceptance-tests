@@ -7,7 +7,7 @@ Feature: Registered waste carrier pays for their renewal
   Scenario: Rejected card payment can be paid for by bank transfer
     Given mocking is "disabled"
     And I create a new registration with a company name of "Rejected payment renewal test"
-    And I receive an email from NCCC inviting me to renew
+    And I receive an email inviting me to renew
     And I start renewing my last registration from the email
     And I complete my renewal up to the payment page
     And I have my credit card payment rejected
@@ -18,7 +18,7 @@ Feature: Registered waste carrier pays for their renewal
   Scenario: Cancelled card payment can be paid for by retrying card payment
     Given mocking is "disabled"
     And I create a new registration with a company name of "Cancelled payment renewal test"
-    And I receive an email from NCCC inviting me to renew
+    And I receive an email inviting me to renew
     And I start renewing my last registration from the email
     And I complete my renewal up to the payment page
     When I cancel my credit card payment

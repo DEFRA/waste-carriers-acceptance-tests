@@ -14,3 +14,9 @@ def message_exists?(expected_text)
     false
   end
 end
+
+def send_registration_confirmation_email(reg_identifier)
+  sign_in_to_back_office("agency-user")
+  visit_registration_details_page(reg_identifier)
+  @bo.registration_details_page.resend_confirmation_email_link.click
+end

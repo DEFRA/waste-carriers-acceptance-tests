@@ -63,4 +63,17 @@ class LastMessagePage < BasePage
     parsed_data["last_notify_message"]["body"].match %r/https?:\/\/.{14,46}\/certificate\?token=.{36}/
   end
 
+  def get_unsubscription_url(reg_number)
+    # This email is generated through Notify.
+    if check_message_for_text([reg_number, "unsubscribe"]) == false
+      puts("Couldn't find renewal email")
+      return "Email not found"
+    end
+
+    parsed_data = JSON.parse(message_content.text)
+    # Find the string that matches:
+    # https://, then any 14-24 characters, then /fo/renew/, then any 24 characters
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/fo\/unsubscribe\/.{24}/
+  end
+
 end

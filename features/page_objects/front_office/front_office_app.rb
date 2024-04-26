@@ -28,4 +28,8 @@ class FrontOfficeApp
     @last_page = DeregistrationCompletePage.new
   end
 
+  def unsubscription_confirmation_page
+    @last_page = UnsubscribtionConfirmationPage.new
+  end
+
 end

@@ -10,7 +10,7 @@ Given("I start renewing this registration") do
   @reg_type = :renewal
 end
 
-Given("I receive an email from NCCC inviting me to renew") do
+Given("I receive an email inviting me to renew") do
   send_renewal_email(@reg_number)
   expect(@bo.registration_details_page.flash_message).to have_text("Renewal email sent to #{@contact_email}")
   visit(Quke::Quke.config.custom["urls"]["last_email_fo"])
