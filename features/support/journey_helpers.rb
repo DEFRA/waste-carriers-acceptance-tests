@@ -2,7 +2,7 @@ def start_reg_from_back_office
   @bo.dashboard_page.new_reg_link.click
   @bo.ad_privacy_policy_page.submit
   @journey.start_page.submit(choice: :new_registration)
-  @journey.location_page.submit(choice: :england)
+  @journey.location_page.submit(choice: :England)
 end
 
 def submit_carrier_details(business = :existing, tier = :existing, carrier = :existing)

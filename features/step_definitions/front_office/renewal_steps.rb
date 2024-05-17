@@ -103,7 +103,7 @@ When("I complete my {string} renewal steps") do |business_type|
   @journey.standard_page.accept_cookies
 
   @journey.renewal_start_page.submit
-  @journey.location_page.submit(choice: "england")
+  @journey.location_page.submit(choice: :England)
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
   @journey.renewal_information_page.submit
@@ -281,7 +281,7 @@ When("I start the renew from the email") do
   expect(@journey.renewal_start_page.heading).to have_text("You are about to renew registration #{@reg_number}")
   @journey.renewal_start_page.accept_cookies
   @journey.renewal_start_page.submit
-  @journey.location_page.submit(choice: "england")
+  @journey.location_page.submit(choice: :England)
   @journey.confirm_business_type_page.submit
   @journey.carrier_type_page.submit
   @journey.renewal_information_page.submit

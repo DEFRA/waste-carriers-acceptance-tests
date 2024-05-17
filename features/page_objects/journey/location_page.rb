@@ -14,14 +14,14 @@ class LocationPage < BasePage
   element(:submit_button, "[type='submit']")
 
   def submit(args = {})
-    case args[:choice].to_s.snakecase
-    when "england"
+    case args[:choice].to_s
+    when "England"
       england.click
-    when "wales"
+    when "Wales"
       wales.click
-    when "scotland"
+    when "Scotland"
       scotland.click
-    when "northern_ireland"
+    when "Northern Ireland"
       northern_ireland.click
     when "overseas"
       overseas.click

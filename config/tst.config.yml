@@ -12,7 +12,7 @@ driver: chrome
 # Let Quke know you want to run the browser in headless mode. Headless mode
 # means the browser still runs but you won't see it displayed. The benefit is
 # that your tests will take less time as it's less resource intensive.
-headless: false
+headless: true
 
 # Add a pause (in seconds) between steps so you can visually track how the
 # browser is responding. Only useful if using a non-headless browser. The
@@ -23,7 +23,7 @@ pause: 0
 # Continuous Integration (CI) environments where a quick Yes/No is preferable to
 # a detailed response. By default Quke sets this to false if not set in the
 # config.
-stop_on_error: false
+stop_on_error: true
 
 # By default Quke will display web pages where a failure has taken place.
 # A copy of the html is saved and Quke will display it in your default browser.

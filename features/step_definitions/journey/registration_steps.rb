@@ -1,9 +1,10 @@
 Given("I want to register as a lower tier carrier") do
   load_all_apps
-
   @reg_type = :new_registration
   @tier = :lower
   @app = :fo
+  @journey.start_page.load
+  @journey.standard_page.accept_cookies
 end
 
 Given("I want to register as an upper tier carrier") do
@@ -12,15 +13,16 @@ Given("I want to register as an upper tier carrier") do
   @reg_type = :new_registration
   @app = :fo
   @tier = :upper
+  @journey.start_page.load
+  @journey.standard_page.accept_cookies
 end
 
 When("I start a new registration journey in {string} as a {string}") do |location, organisation_type|
   @organisation_type = organisation_type.to_sym
-  @app = :fo
-  @journey.start_page.load
-  @journey.standard_page.accept_cookies
   @journey.start_page.submit(choice: @reg_type)
   @journey.location_page.submit(choice: location)
+  @journey.standard_page.submit if location == "Northern Ireland"
+
 end
 
 When("I am on the business name page") do
@@ -316,7 +318,7 @@ Given("a limited company with companies house number {string} is registered as a
   @journey.standard_page.accept_cookies
 
   @journey.start_page.submit(choice: @reg_type)
-  @journey.location_page.submit(choice: "england")
+  @journey.location_page.submit(choice: :England)
   step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
@@ -472,7 +474,7 @@ Given("an upper tier {string} registration is completed in the front office") do
   @journey.start_page.load
   @journey.standard_page.accept_cookies
   @journey.start_page.submit(choice: :new_registration)
-  @journey.location_page.submit(choice: "England")
+  @journey.location_page.submit(choice: :England)
   @carrier ||= :carrier_broker_dealer
   submit_carrier_details(@organisation_type, @tier, @carrier)
 
@@ -503,4 +505,13 @@ Given("an upper tier {string} registration is completed in the front office") do
   submit_card_payment
   @reg_number = @journey.confirmation_page.registration_number.text
   puts "Registration #{@reg_number} created successfully"
+end
+
+Given("my princple place of business is in {string}") do |location|
+  @journey.start_page.submit(choice: @reg_type)
+  @journey.location_page.submit(choice: location)
+end
+
+Then("I will be informed {string}") do |message|
+  expect(@journey.standard_page).to have_text(message)
 end
