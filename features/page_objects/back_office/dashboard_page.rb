@@ -7,6 +7,9 @@ class DashboardPage < BasePage
   element(:sign_out_link, "a[href*='/bo/users/sign_out']")
 
   element(:search_term, "#term")
+  element(:search_full_name, "#search-fullname-field", visible: false)
+  element(:search_email, "#search-email-field", visible: false)
+  element(:search_reg_number, "#search-reg-identifier-field", visible: false)
   element(:new_reg_link, "a[href*='/ad-privacy-policy']")
   elements(:status, ".govuk-table__cell:nth-child(3)")
   elements(:reg_details_links, "a[href*='/registrations/CBD']")
