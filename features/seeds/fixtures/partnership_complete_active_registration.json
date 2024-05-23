@@ -9,7 +9,7 @@
   "firstName": "Test",
   "lastName": "User",
   "phoneNumber": "01234 567890",
-  "contactEmail": "user@example.com",
+  "contactEmail": "partner_contact@example.com",
   "addresses": [{
       "addressType": "REGISTERED",
       "addressMode": "manual-uk",
@@ -47,8 +47,8 @@
       }
     },
     {
-      "first_name": "Another",
-      "last_name": "Employee",
+      "first_name": "Robert",
+      "last_name": "Smith",
       "dob": "1968-01-01",
       "position": "Partner",
       "person_type": "KEY",
