@@ -17,7 +17,7 @@ def agree_to_renew_in_england
   @journey.standard_page.accept_cookies
 
   @journey.renewal_start_page.submit
-  @journey.location_page.submit(choice: :england)
+  @journey.location_page.submit(choice: :England)
 end
 
 def submit_existing_renewal_details
