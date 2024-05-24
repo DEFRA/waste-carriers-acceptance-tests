@@ -22,8 +22,7 @@ Feature: Registered waste carrier chooses to renew their registration from start
   Scenario: Sole trader changes place of business location to Scotland
     Given I create an upper tier registration for my "soleTrader" business
     And I start renewing this registration
-    
-    But I change my place of business location to "scotland"
+    But I change my place of business location to "Scotland"
     Then I will be notified "You can register in Scotland"
 
   Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change
