@@ -1,0 +1,153 @@
+{
+    "email_history" : [],
+    "communications_opted_in" : true,
+    "location" : "england",
+    "businessType" : "soleTrader",
+    "tier" : "UPPER",
+    "registrationType" : "carrier_broker_dealer",
+    "declaredConvictions" : "no",
+    "firstName" : "Quemby",
+    "lastName" : "Vaughn",
+    "phoneNumber" : "07970 557447",
+    "declaration" : 1,
+    "regIdentifier" : "CBDU293",
+    "metaData" : {
+        "certificateVersion" : 1,
+        "certificateVersionHistory" : [ 
+            {
+                "version" : 1,
+                "generated_at" : "2024-07-01T08:23:26.906Z",
+                "generated_by" : null
+            }
+        ],
+        "status" : "ACTIVE",
+        "route" : "ASSISTED_DIGITAL",
+        "lastModified" : "2024-07-01T08:57:01.077Z",
+        "dateRegistered" : "2024-07-01T08:23:26.906Z",
+        "dateActivated" : "2024-07-01T08:57:01.075Z"
+    },
+    "addresses" : [ 
+        {
+            "uprn" : 10091760640,
+            "addressMode" : "address-results",
+            "dependentLocality" : "",
+            "administrativeArea" : "BRISTOL",
+            "townCity" : "BRISTOL",
+            "postcode" : "BS1 5AH",
+            "country" : "",
+            "localAuthorityUpdateDate" : "",
+            "easting" : 358130,
+            "northing" : 172687,
+            "houseNumber" : "HARMSEN GROUP",
+            "addressLine1" : "TRIODOS BANK",
+            "addressLine2" : "DEANERY ROAD",
+            "addressType" : "REGISTERED"
+        }, 
+        {
+            "uprn" : 10091760640,
+            "addressMode" : "address-results",
+            "dependentLocality" : "",
+            "administrativeArea" : "BRISTOL",
+            "townCity" : "BRISTOL",
+            "postcode" : "BS1 5AH",
+            "country" : "",
+            "localAuthorityUpdateDate" : "",
+            "easting" : 358130,
+            "northing" : 172687,
+            "houseNumber" : "HARMSEN GROUP",
+            "addressLine1" : "TRIODOS BANK",
+            "addressLine2" : "DEANERY ROAD",
+            "addressType" : "POSTAL"
+        }
+    ],
+    "financeDetails" : {
+        "orders" : [ 
+            {
+                "orderId" : "1719822205",
+                "orderCode" : "1719822205",
+                "currency" : "GBP",
+                "dateCreated" : "2024-07-01T08:23:25.458Z",
+                "dateLastUpdated" : "2024-07-01T08:23:25.458Z",
+                "updatedByUser" : null,
+                "description" : "Initial registration",
+                "totalAmount" : 15400,
+                "paymentMethod" : "OFFLINE",
+                "orderItems" : [ 
+                    {
+
+                        "currency" : "GBP",
+                        "amount" : 15400,
+                        "description" : "initial registration",
+                        "type" : "NEW",
+                        "quantity" : 1
+                    }
+                ]
+            }, 
+            {
+                "orderId" : "1719824522",
+                "orderCode" : "1719824522",
+                "currency" : "GBP",
+                "dateCreated" : "2024-07-01T09:02:02.385Z",
+                "dateLastUpdated" : "2024-07-01T09:02:02.385Z",
+                "updatedByUser" : "finance-admin-user@wcr.gov.uk",
+                "description" : "Wrong agency",
+                "totalAmount" : -15400,
+                "paymentMethod" : "UNKNOWN",
+                "merchantId" : "n/a",
+                "orderItems" : [ 
+                    {
+                        "currency" : "GBP",
+                        "type" : "CHARGE_ADJUST",
+                        "amount" : -15400,
+                        "description" : "Wrong agency",
+                        "reference" : "Wrong agency"
+                    }
+                ]
+            }
+        ],
+        "balance" : -15400,
+        "payments" : [ 
+            {
+                "currency" : "GBP",
+                "amount" : 15400,
+                "comment" : "BACS payment for registration",
+                "dateReceived" : "2024-07-01T00:00:00.000Z",
+                "dateReceived_day" : 1,
+                "dateReceived_month" : 7,
+                "dateReceived_year" : 2024,
+                "paymentType" : "BANKTRANSFER",
+                "registrationReference" : "CBDU293",
+                "updatedByUser" : "finance-user@wcr.gov.uk",
+                "moto" : false,
+                "dateEntered" : "2024-07-01T00:00:00.000Z",
+                "orderKey" : "2aac8a95194a"
+            }
+        ]
+    },
+    "key_people" : [ 
+        {
+            "first_name" : "Jerome",
+            "last_name" : "Ayala",
+            "dob_day" : 23,
+            "dob_month" : 2,
+            "dob_year" : 1999,
+            "person_type" : "KEY",
+            "dob" : "1999-02-23T00:00:00.000Z",
+            "conviction_search_result" : {
+                "_id" : "66826776417db8880c677a8d",
+                "match_result" : "NO",
+                "searched_at" : "2024-07-01T08:23:18.559Z",
+                "confirmed" : "no"
+            }
+        }
+    ],
+    "conviction_search_result" : {
+        "_id" : "66826776417db8880c677a8c",
+        "match_result" : "NO",
+        "searched_at" : "2024-07-01T08:23:18.535Z",
+        "confirmed" : "no"
+    },
+    "expires_on" : "2027-07-01T08:57:01.076Z",
+    "locked_at" : null,
+    "locking_name" : null
+}

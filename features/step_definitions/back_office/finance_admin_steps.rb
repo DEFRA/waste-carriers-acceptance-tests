@@ -27,6 +27,11 @@ Then("the card payment is shown as refunded") do
   puts "A manual refund has been successful"
 end
 
+Then("the bank transfer payment is shown as refunded") do
+  expect(@bo.finance_payment_details_page.flash_message).to have_text("refund recorded successfully")
+  puts "A bank transfer payment refund has been successful"
+end
+
 Given(/^a finance admin user adjusts the charge by (-?\d+)$/) do |amount|
   # input is a positive or negative integer amount
   sign_in_to_back_office("finance-admin-user")
@@ -58,4 +63,15 @@ Given(/^(?:a|an) "([^"]*)" writes off the outstanding balance$/) do |user|
 
   expect(@bo.finance_payment_details_page.flash_message).to have_text("write off completed successfully")
   expect(@bo.finance_payment_details_page).to have_text("this is a writeoff")
+end
+
+Given("a finance user refunds the bank transfer payment") do
+  sign_in_to_back_office("finance-user")
+  go_to_payments_page(@reg_number)
+  @bo.finance_payment_details_page.refund_bank_transfer.click
+  expect(@bo.finance_refund_select_page.heading).to have_text("Which payment do you want to refund?")
+  @bo.finance_refund_select_page.refund_links.first.click
+
+  expect(@bo.finance_refund_select_page).to have_text("Balance that will be refunded £154.00")
+  @journey.standard_page.submit_button.click
 end
