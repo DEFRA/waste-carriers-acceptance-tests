@@ -254,6 +254,19 @@ Given("I have an active registration") do
   puts "Registration #{@reg_number} seeded"
 end
 
+Given("I have a registration ready for a bank transfer refund") do
+  load_all_apps
+  @tier = :upper
+
+  seed_data = SeedData.new("refund_bacs_payment.json")
+  @tier = :upper
+  @reg_number = seed_data.reg_number
+  @seeded_data = seed_data.seeded_data
+  @reg_balance = 0
+
+  puts "Registration #{@reg_number} seeded"
+end
+
 Given("I have an active registration with a company number of {string}") do |company_no|
   load_all_apps
   @tier = :upper
