@@ -4,6 +4,6 @@ class FinanceRefundSelectPage < BasePage
 
   section(:govuk_banner, GovukBanner, GovukBanner::SELECTOR)
 
-  elements(:refund_links, "a[href*='/refunds/']")
+  elements(:refund_links, "a[href*='refund/']")
 
 end
