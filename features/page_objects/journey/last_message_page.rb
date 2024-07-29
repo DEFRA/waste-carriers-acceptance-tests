@@ -47,7 +47,7 @@ class LastMessagePage < BasePage
     parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 14-24 characters, then /fo/renew/, then any 24 characters
-    parsed_data["last_notify_message"]["body"].match %r/https?:\/\/.{14,35}\/fo\/renew\/.{24}/
+    parsed_data["last_notify_message"]["body"].match %r/https?:\/\/.{14,39}\/fo\/renew\/.{24}/
   end
 
   def get_certificate_url(reg_number)
@@ -73,7 +73,7 @@ class LastMessagePage < BasePage
     parsed_data = JSON.parse(message_content.text)
     # Find the string that matches:
     # https://, then any 14-24 characters, then /fo/renew/, then any 24 characters
-    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,24}\/fo\/unsubscribe\/.{24}/
+    parsed_data["last_notify_message"]["body"].match %r/http(s?):\/\/.{14,28}\/fo\/unsubscribe\/.{24}/
   end
 
 end
