@@ -33,7 +33,7 @@ Then("the new user accepts their invitation and sets up a password") do
 
   # Find the string that matches:
   # https://, then any 14-38 characters, then /renew/, then any 44 characters
-  @confirm_waste_carriers_email_link = invitation_email_text.match %r/http(s?):\/\/.{14,38}\/invitation\/.{44}/
+  @confirm_waste_carriers_email_link = invitation_email_text.match %r/http(s?):\/\/.{14,42}\/invitation\/.{44}/
   puts @confirm_waste_carriers_email_link
 
   Capybara.reset_session!
