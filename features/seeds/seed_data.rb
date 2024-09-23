@@ -46,7 +46,8 @@ class SeedData
       proxy_uri = URI.parse(ENV["WCRS_PROXY"])
       http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     end
-    http.use_ssl = true
+    http.use_ssl = true unless uri.to_s.include?("http://")
+    puts http.use_ssl
     http.request(request)
   end
 
