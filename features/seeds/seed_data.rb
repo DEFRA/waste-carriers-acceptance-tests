@@ -47,7 +47,11 @@ class SeedData
       http = Net::HTTP.new(uri.hostname, uri.port, proxy_uri.host, proxy_uri.port)
     end
     http.use_ssl = true unless uri.to_s.include?("http://")
-    puts http.use_ssl
+    if http.use_ssl = true 
+      puts "using ssl"
+    else
+      puts "not using ssl"
+    end
     http.request(request)
   end
 
