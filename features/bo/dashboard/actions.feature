@@ -12,7 +12,7 @@ Feature: Back office registration actions
         And I will receive a registration renewal reminder email
         And I can see the communication logs on the communication history page
 
-      @email
+      @email @certificate
       Scenario: Registration confirmation email can be resent from the back office
         Given I have a new registration for a "limitedCompany" business
         And I sign into the back office as "agency-user"
