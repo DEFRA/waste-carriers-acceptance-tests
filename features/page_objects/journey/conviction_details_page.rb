@@ -12,6 +12,7 @@ class ConvictionDetailsPage < BasePage
   element(:position, "#conviction-details-form-position-field")
   element(:add_person, "input[value='Add another person']")
   elements(:remove_person, "input[value='Remove']")
+  element(:submit_button, "button[type='submit']")
 
   def add_conviction(args = {})
     person = args[:person]
