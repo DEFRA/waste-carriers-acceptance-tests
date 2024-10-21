@@ -8,8 +8,7 @@ class CompanyPeoplePage < BasePage
   element(:dob_month, "#main-people-form-dob-month-field")
   element(:dob_year, "#main-people-form-dob-year-field")
   element(:add_person, "input[value='Add another person']")
-  elements(:remove_person, "input[value='Delete']")
-  element(:submit_button, "button[type='submit']")
+  elements(:remove_person, "input[value='Remove']")
 
   def add_main_person(args = {})
     person = args[:person]
