@@ -10,11 +10,10 @@ class ConvictionDetailsPage < BasePage
   element(:dob_month, "#conviction-details-form-dob-month-field")
   element(:dob_year, "#conviction-details-form-dob-year-field")
   element(:position, "#conviction-details-form-position-field")
-
   element(:add_person, "input[value='Add another person']")
-
-  elements(:remove_person, "a[href*='delete']")
+  elements(:remove_person, "input[value='Remove']")
   element(:submit_button, "button[type='submit']")
+
   def add_conviction(args = {})
     person = args[:person]
 
