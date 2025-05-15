@@ -273,7 +273,7 @@ When("I start renewing my last registration from the email") do
   @journey = JourneyApp.new
   @reg_type = :renewal
   visit(@renew_from_email_link)
-  expect(page).to have_text("You are about to renew registration #{@reg_number}")
+  expect(@journey.standard_page.heading).to have_text("You are about to renew registration #{@reg_number}")
 end
 
 When("I start the renew from the email") do

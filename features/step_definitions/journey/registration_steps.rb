@@ -78,11 +78,24 @@ Then("I am notified that my registration has been successful") do
   puts "Registration #{@reg_number} created successfully"
 end
 
+Then("I am notified that my registration is processing payment") do
+  expect(page).to have_content("We're processing your payment")
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration #{@reg_number} pending payment"
+end
+
 Then(/^(?:I will receive a registration confirmation email|a registraton confirmation email will be sent)$/) do
   expected_text = [@reg_number, "Download your certificate"]
   expected_text << "You are now registered as a lower tier" if @tier == :lower
   expected_text << "You are now registered as an upper tier" if @tier == :upper
   expect(message_exists?(expected_text)).to be true
+end
+
+Then("a registration received pending payment email will be sent") do
+  expected_text = [@reg_number, "We’re processing your payment"]
+  expect(message_exists?(expected_text)).to be true
+  # resets the default payment status to success
+  visit_govPay_mock_payment_status_page("success")
 end
 
 Then(/^(?:I will receive a registration confirmation letter|a registraton confirmation letter will be sent)$/) do
