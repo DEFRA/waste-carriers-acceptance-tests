@@ -23,7 +23,8 @@ Feature: Back office registration actions
         And the registration certificate can be viewed from the email
       
       Scenario: Companies house registred name can be updated for companies from the back office
-        Given I have a new registration for a "limitedCompany" business
+        Given mocking is "disabled"
+        And I have a new registration for a "limitedCompany" business
         And I sign into the back office as "agency-user"
         And I view the registration details
         When I refresh the company name from companies house
