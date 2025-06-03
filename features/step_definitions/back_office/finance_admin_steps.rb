@@ -16,6 +16,9 @@ Given("an agency-refund-payment-user refunds the card payment") do
 
   expect(@journey.standard_page.content).to have_text("Balance that will be refunded £#{@refund}.00")
   @journey.standard_page.submit_button.click
+end
+
+When("I check the refund status") do
   # Takes user back to payment details page with flash message.
   # Aligns with GOVPAY_REFUND_SUBMITTED_SUCCESS_LAG
   sleep(5)

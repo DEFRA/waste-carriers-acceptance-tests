@@ -1,0 +1,155 @@
+{
+    "communications_opted_in": true,
+    "tier": "UPPER",
+    "businessType": "partnership",
+    "companyName": "BO upper tier partnership",
+    "contactEmail": "78169736@example.com",
+    "declaration": 1,
+    "declaredConvictions": "no",
+    "firstName": "Alison",
+    "lastName": "Kub",
+    "location": "england",
+    "phoneNumber": "0117 4960000",
+    "registrationType": "carrier_broker_dealer",
+    "addresses": [
+        {
+            "_id": "682605e82923af742999cf2b",
+            "uprn": 340116,
+            "addressType": "REGISTERED",
+            "addressMode": "address-results",
+            "houseNumber": "NATURAL ENGLAND",
+            "addressLine1": "HORIZON HOUSE",
+            "addressLine2": "DEANERY ROAD",
+            "townCity": "BRISTOL",
+            "postcode": "BS1 5AH",
+            "country": "",
+            "dependentLocality": "",
+            "administrativeArea": "BRISTOL",
+            "localAuthorityUpdateDate": "",
+            "easting": 358205,
+            "northing": 172708
+        },
+        {
+            "_id": "682605e82923af742999cf2c",
+            "uprn": 340116,
+            "addressType": "POSTAL",
+            "addressMode": "address-results",
+            "houseNumber": "NATURAL ENGLAND",
+            "addressLine1": "HORIZON HOUSE",
+            "addressLine2": "DEANERY ROAD",
+            "townCity": "BRISTOL",
+            "postcode": "BS1 5AH",
+            "country": "",
+            "dependentLocality": "",
+            "administrativeArea": "BRISTOL",
+            "localAuthorityUpdateDate": "",
+            "easting": 358205,
+            "northing": 172708
+        }
+    ],
+    "financeDetails": {
+        "_id": "682605e82923af742999cf2e",
+        "balance": 15400,
+        "orders": [
+            {
+                "_id": "682605e82923af742999cf2f",
+                "orderId": "1747322342",
+                "orderCode": "1747322342",
+                "paymentMethod": "ONLINE",
+                "payment_uuid": "855cd212-fe74-4ffe-8b16-c196a6af2733",
+                "totalAmount": 15400,
+                "currency": "GBP",
+                "dateCreated": "2025-05-15T15:19:02.744Z",
+                "govpayId": "eltrn8o4AmLHChUv9rAahRpmrM",
+                "dateLastUpdated": "2025-05-15T15:19:04.550Z",
+                "updatedByUser": "78169736@example.com",
+                "description": "Initial registration",
+                "orderItems": [
+                    {
+                        "_id": "682605e82923af742999cf30",
+                        "currency": "GBP",
+                        "amount": 15400,
+                        "quantity": 1,
+                        "description": "initial registration",
+                        "type": "NEW"
+                    }
+                ]
+            }
+        ],
+        "payments": [
+            {
+                "_id": "682605e82923af742999cf31",
+                "currency": "GBP",
+                "paymentType": "GOVPAY",
+                "orderKey": "1747322342",
+                "amount": 15400,
+                "uuid": "855cd212-fe74-4ffe-8b16-c196a6af2733",
+                "moto": true,
+                "dateReceived": "2025-05-15T00:00:00.000Z",
+                "dateEntered": "2025-05-15T00:00:00.000Z",
+                "dateReceived_year": 2025,
+                "dateReceived_month": 5,
+                "dateReceived_day": 15,
+                "registrationReference": "Govpay",
+                "govpayPaymentStatus": "submitted",
+                "updatedByUser": "78169736@example.com",
+                "comment": "Paid via Govpay",
+                "govpay_id": "eltrn8o4AmLHChUv9rAahRpmrM"
+            }
+        ]
+    },
+    "metaData": {
+        "_id": "682605e82923af742999cf32",
+        "certificateVersion": 1,
+        "certificateVersionHistory": [
+            {
+                "version": 1,
+                "generated_at": "2025-05-15T15:19:04.908Z",
+                "generated_by": null
+            }
+        ],
+        "status": "PENDING",
+        "route": "ASSISTED_DIGITAL",
+        "lastModified": "2025-05-15T15:19:04.920Z",
+        "dateRegistered": "2025-05-15T15:19:04.908Z"
+    },
+    "key_people": [
+        {
+            "_id": "682605dc2923af742999cf0f",
+            "first_name": "Chas",
+            "last_name": "Vandervort",
+            "dob_day": 1,
+            "dob_month": 5,
+            "dob_year": 1984,
+            "person_type": "KEY",
+            "dob": "1984-05-01T00:00:00.000Z",
+            "conviction_search_result": {
+                "_id": "682605e42923af742999cf20",
+                "match_result": "NO",
+                "searched_at": "2025-05-15T15:19:00.822Z",
+                "confirmed": "no"
+            }
+        },
+        {
+            "_id": "682605dc2923af742999cf10",
+            "first_name": "Janeth",
+            "last_name": "Barrows",
+            "dob_day": 1,
+            "dob_month": 5,
+            "dob_year": 1984,
+            "person_type": "KEY",
+            "dob": "1984-05-01T00:00:00.000Z",
+            "conviction_search_result": {
+                "_id": "682605e42923af742999cf21",
+                "match_result": "NO",
+                "searched_at": "2025-05-15T15:19:00.837Z",
+                "confirmed": "no"
+            }
+        }
+    ],
+    "conviction_search_result": {
+        "match_result": "NO",
+        "searched_at": "2025-05-15T15:19:00.809Z",
+        "confirmed": "no"
+    }
+}

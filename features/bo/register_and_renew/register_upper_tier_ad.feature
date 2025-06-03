@@ -4,7 +4,7 @@ Feature: Assisted digital upper tier registrations
   I want assistance with my waste carrier registration from the Environment Agency
   So I can complete my regisration and I am compliant with the law
 
-  @smoke @email 
+  @smoke @email @card
   Scenario: Successful partnership registration from back office via GovPay
     Given I sign into the back office as "agency-user"
     When I register an upper tier "partnership" from the back office

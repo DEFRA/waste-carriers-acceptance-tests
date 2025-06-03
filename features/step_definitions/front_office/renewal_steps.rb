@@ -220,7 +220,7 @@ Then("I am notified that my renewal payment is being processed") do
   @reg_number = @journey.confirmation_page.registration_number.text
   expected_text = [@reg_number]
 
-  expected_text << ("Your application to renew waste carriers registration #{@reg_number} has been received")
+  expected_text << "Your application to renew waste carriers registration #{@reg_number} has been received"
   expected_text << "We are currently processing your payment"
 
   expect(message_exists?(expected_text)).to be true
@@ -273,7 +273,7 @@ When("I start renewing my last registration from the email") do
   @journey = JourneyApp.new
   @reg_type = :renewal
   visit(@renew_from_email_link)
-  expect(page).to have_text("You are about to renew registration #{@reg_number}")
+  expect(@journey.standard_page.heading).to have_text("You are about to renew registration #{@reg_number}")
 end
 
 When("I start the renew from the email") do

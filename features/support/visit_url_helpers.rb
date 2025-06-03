@@ -43,3 +43,11 @@ end
 def visit_renewal_magic_link(reg_identifier)
   visit(renewal_magic_link_for(reg_identifier))
 end
+
+def visit_govpay_mock_payment_status_page(status)
+  visit("#{Quke::Quke.config.custom['urls']['back_office']}/mocks/govpay/v1/payments/set_test_payment_response_status/#{status}")
+end
+
+def visit_govpay_mock_refund_status_page(status)
+  visit("#{Quke::Quke.config.custom['urls']['back_office']}/mocks/govpay/v1/payments/set_test_refund_response_status/#{status}")
+end

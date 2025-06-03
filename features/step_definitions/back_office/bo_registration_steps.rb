@@ -1,5 +1,5 @@
 Given("I register an upper tier {string} from the back office") do |organisation_type|
-  @organisation_type = organisation_type.to_sym.to_sym
+  @organisation_type = organisation_type.to_sym
 
   @app = :bo
   @reg_type = :new_registration
@@ -13,7 +13,7 @@ Given("I register an upper tier {string} from the back office") do |organisation
 end
 
 Given("I register a {string} from the back office with no contact email") do |organisation_type|
-  @organisation_type = organisation_type.to_sym.to_sym
+  @organisation_type = organisation_type.to_sym
   @app = :bo
   @reg_type = :new_registration
   @tier = :upper
