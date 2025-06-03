@@ -220,7 +220,7 @@ Then("I am notified that my renewal payment is being processed") do
   @reg_number = @journey.confirmation_page.registration_number.text
   expected_text = [@reg_number]
 
-  expected_text << ("Your application to renew waste carriers registration #{@reg_number} has been received")
+  expected_text << "Your application to renew waste carriers registration #{@reg_number} has been received"
   expected_text << "We are currently processing your payment"
 
   expect(message_exists?(expected_text)).to be true

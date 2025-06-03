@@ -1,5 +1,5 @@
 class StartPage < BasePage
-  set_url((Quke::Quke.config.custom["urls"]["front_office"]).to_s)
+  set_url(Quke::Quke.config.custom["urls"]["front_office"].to_s)
 
   element(:heading, ".govuk-fieldset__legend--l")
 

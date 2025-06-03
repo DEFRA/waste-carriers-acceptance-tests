@@ -95,7 +95,7 @@ Then("a registration received pending payment email will be sent") do
   expected_text = [@reg_number, "We’re processing your payment"]
   expect(message_exists?(expected_text)).to be true
   # resets the default payment status to success
-  visit_govPay_mock_payment_status_page("success")
+  visit_govpay_mock_payment_status_page("success")
 end
 
 Then(/^(?:I will receive a registration confirmation letter|a registraton confirmation letter will be sent)$/) do
@@ -291,6 +291,16 @@ Given("I have an active registration with a company number of {string}") do |com
   @organisation_type = :limitedCompany
 
   puts "Registration #{@reg_number} seeded with company number of #{company_no}"
+end
+
+Given("I have a new upper tier registration with a pending card payment") do
+  load_all_apps
+  @tier = :upper
+  seed_data = SeedData.new("upper_tier_pending_card_payment_registration.json")
+  @seeded_data = seed_data.seeded_data
+  @reg_number = seed_data.reg_number
+  @contact_email = @seeded_data["contactEmail"]
+  puts "Upper tier registration with pending card payment #{@reg_number} seeded"
 end
 
 Given("I have an active registration with a company name of {string}") do |company_name|
