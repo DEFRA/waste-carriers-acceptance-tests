@@ -321,7 +321,7 @@ Given(/a registration with outstanding balance and (\d+) copy cards? has been su
   load_all_apps
   # Store variables for later steps:
   @copy_cards = copy_cards
-  @reg_balance = 154 + (5 * copy_cards)
+  @reg_balance = 184 + (5 * copy_cards)
   @business_name = "Outstanding Balance Limited"
 
   seed_data = SeedData.new("outstanding_balance_pending_registration.json", copy_cards: copy_cards)
@@ -409,7 +409,7 @@ Given("a registration with declared convictions is submitted with outstanding pa
   # Store variables for later steps:
   @business_name = "AD Upper Tier Need Payment"
   @convictions = "convictions"
-  @reg_balance = 154
+  @reg_balance = 184
   load_all_apps
 
   step("I want to register as an upper tier carrier")

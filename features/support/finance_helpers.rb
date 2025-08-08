@@ -14,6 +14,7 @@ def sign_in_as_appropriate_finance_user(method)
 end
 
 def pay_by_cash(amount_in_pounds)
+  sleep(1)
   @bo.finance_payment_method_page.submit(choice: :cash)
   @bo.finance_payment_input_page.submit(
     amount: amount_in_pounds.to_s,

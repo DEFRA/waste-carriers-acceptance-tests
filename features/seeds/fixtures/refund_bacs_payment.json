@@ -105,11 +105,11 @@
                 ]
             }
         ],
-        "balance" : -15400,
+        "balance" : -18400,
         "payments" : [ 
             {
                 "currency" : "GBP",
-                "amount" : 15400,
+                "amount" : 18400,
                 "comment" : "BACS payment for registration",
                 "dateReceived" : "2024-07-01T00:00:00.000Z",
                 "dateReceived_day" : 1,

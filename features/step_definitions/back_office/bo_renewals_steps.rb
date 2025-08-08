@@ -109,7 +109,7 @@ end
 
 When("I mark the renewal payment as received") do
   @bo.registration_details_page.process_payment_button.click
-  pay_by_cash(105)
+  pay_by_cash(125)
   @reg_type = :registration
 end
 

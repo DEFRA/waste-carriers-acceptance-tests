@@ -11,7 +11,7 @@ class LastMessagePage < BasePage
 
   element(:message_content, "body")
 
-  def check_message_for_text(expected_text)
+  def check_message_for_text?(expected_text)
     # Look for an email containing all the strings in the given array
     # and returns true if all the expected text is present.
 
@@ -39,7 +39,7 @@ class LastMessagePage < BasePage
 
   def get_renewal_url(reg_number)
     # This email is generated through Notify.
-    if check_message_for_text([reg_number, "Renew waste carrier registration"]) == false
+    if check_message_for_text?([reg_number, "Renew waste carrier registration"]) == false
       puts("Couldn't find renewal email")
       return "Email not found"
     end
@@ -52,7 +52,7 @@ class LastMessagePage < BasePage
 
   def get_certificate_url(reg_number)
     # This email is generated through Notify.
-    if check_message_for_text([reg_number, "Download your certificate at"]) == false
+    if check_message_for_text?([reg_number, "Download your certificate at"]) == false
       puts("Couldn't find regisration email")
       return "Email not found"
     end
@@ -65,7 +65,7 @@ class LastMessagePage < BasePage
 
   def get_unsubscription_url(reg_number)
     # This email is generated through Notify.
-    if check_message_for_text([reg_number, "unsubscribe"]) == false
+    if check_message_for_text?([reg_number, "unsubscribe"]) == false
       puts("Couldn't find renewal email")
       return "Email not found"
     end

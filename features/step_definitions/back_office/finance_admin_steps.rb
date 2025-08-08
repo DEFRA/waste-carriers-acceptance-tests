@@ -75,6 +75,6 @@ Given("a finance user refunds the bank transfer payment") do
   expect(@bo.finance_refund_select_page.heading).to have_text("Which payment do you want to refund?")
   @bo.finance_refund_select_page.refund_links.first.click
 
-  expect(@bo.finance_refund_select_page).to have_text("Balance that will be refunded £154.00")
+  expect(@bo.finance_refund_select_page).to have_text("Balance that will be refunded £184.00")
   @journey.standard_page.submit_button.click
 end
