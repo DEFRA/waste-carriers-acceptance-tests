@@ -3,7 +3,7 @@ Feature: Recording of a non card renewal payment and negative conviction check m
   As an administrator of the Waste Carriers service
   I need to be able to record payments and conviction check results
   So that renewals can be processed
-@fixi1
+
   Scenario: Renewal paid for by bank transfer is marked as complete
     Given I have an active registration
     And the registration has an unsubmitted renewal
