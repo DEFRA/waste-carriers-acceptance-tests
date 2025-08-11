@@ -15,7 +15,7 @@ Feature: NCCC agent edits registration from back office
     And the registration's balance is 0
     And the certificate shows the correct details
 
-  Scenario: Editing the registration's carrier type incurs a £40 charge
+  Scenario: Editing the registration's carrier type incurs a £48 charge
     When I sign into the back office as "agency-user"
     And I edit the most recent registration type to "carrier_broker_dealer"
     And I confirm the changes

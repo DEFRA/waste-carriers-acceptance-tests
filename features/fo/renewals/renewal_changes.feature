@@ -25,12 +25,12 @@ Feature: Registered waste carrier chooses to renew their registration from start
     But I change my place of business location to "Scotland"
     Then I will be notified "You can register in Scotland"
 
-  Scenario: On renewal a partnership changes its registration type causing a £40 charge for the change
+  Scenario: On renewal a partnership changes its registration type causing a £48 charge for the change
     Given I create an upper tier registration for my "partnership" business
     And I start renewing this registration
     
     When I change my carrier broker dealer type to "carrier_broker_dealer"
-    Then I will be notified "Because your carrier type has changed, there will also be a £40 charge"
+    Then I will be notified "Because your carrier type has changed, there will also be a £48 charge"
 
   Scenario: Partnership changes business type to Limited Liability Partnership
     Given I create an upper tier registration for my "partnership" business
