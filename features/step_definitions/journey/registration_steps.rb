@@ -78,11 +78,24 @@ Then("I am notified that my registration has been successful") do
   puts "Registration #{@reg_number} created successfully"
 end
 
+Then("I am notified that my registration is processing payment") do
+  expect(page).to have_content("We're processing your payment")
+  @reg_number = @journey.confirmation_page.registration_number.text
+  puts "Registration #{@reg_number} pending payment"
+end
+
 Then(/^(?:I will receive a registration confirmation email|a registraton confirmation email will be sent)$/) do
   expected_text = [@reg_number, "Download your certificate"]
   expected_text << "You are now registered as a lower tier" if @tier == :lower
   expected_text << "You are now registered as an upper tier" if @tier == :upper
   expect(message_exists?(expected_text)).to be true
+end
+
+Then("a registration received pending payment email will be sent") do
+  expected_text = [@reg_number, "We’re processing your payment"]
+  expect(message_exists?(expected_text)).to be true
+  # resets the default payment status to success
+  visit_govpay_mock_payment_status_page("success")
 end
 
 Then(/^(?:I will receive a registration confirmation letter|a registraton confirmation letter will be sent)$/) do
@@ -280,6 +293,16 @@ Given("I have an active registration with a company number of {string}") do |com
   puts "Registration #{@reg_number} seeded with company number of #{company_no}"
 end
 
+Given("I have a new upper tier registration with a pending card payment") do
+  load_all_apps
+  @tier = :upper
+  seed_data = SeedData.new("upper_tier_pending_card_payment_registration.json")
+  @seeded_data = seed_data.seeded_data
+  @reg_number = seed_data.reg_number
+  @contact_email = @seeded_data["contactEmail"]
+  puts "Upper tier registration with pending card payment #{@reg_number} seeded"
+end
+
 Given("I have an active registration with a company name of {string}") do |company_name|
   load_all_apps
   @tier = :upper
@@ -298,7 +321,7 @@ Given(/a registration with outstanding balance and (\d+) copy cards? has been su
   load_all_apps
   # Store variables for later steps:
   @copy_cards = copy_cards
-  @reg_balance = 154 + (5 * copy_cards)
+  @reg_balance = 184 + (5 * copy_cards)
   @business_name = "Outstanding Balance Limited"
 
   seed_data = SeedData.new("outstanding_balance_pending_registration.json", copy_cards: copy_cards)
@@ -386,7 +409,7 @@ Given("a registration with declared convictions is submitted with outstanding pa
   # Store variables for later steps:
   @business_name = "AD Upper Tier Need Payment"
   @convictions = "convictions"
-  @reg_balance = 154
+  @reg_balance = 184
   load_all_apps
 
   step("I want to register as an upper tier carrier")

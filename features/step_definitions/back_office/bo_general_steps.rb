@@ -106,7 +106,7 @@ Then("the certificate shows the correct details") do
   @certificate_number = 0 if @certificate_number.nil?
   @certificate_number += 1
   expect(page_content).to have_text("This is copy number #{@certificate_number} of the certificate.")
-  expect(@bo.registration_certificate_page.certificate_dates_are_correct(@tier, @reg_type)).to be true
+  expect(@bo.registration_certificate_page.certificate_dates_are_correct?(@tier, @reg_type)).to be true
   if @tier == :upper
     expect(page_content).to have_text("Your registration will last 3 years")
   else

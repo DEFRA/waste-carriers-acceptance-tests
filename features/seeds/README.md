@@ -5,12 +5,14 @@ This folder contains the required code that allows the acceptance tests suite to
 The API endpoint accepts a JSON request format that contains a document object to load in the `registrations` collection inside mongoDB.
 
 The API endpoint will cover:
+
 - Generating and assigning a new `reg_identifier` number. The number will start with `CBDU` if the value of the `tier` is `upper`, or `CBDL` otherwise.
 - Generating and assigning an `expires_on` date to the registration based on the back office ENV variable used in the normal flow, equal to the value of the `WCRS_REGISTRATION_EXPIRES_AFTER`. This is unless [custom_expire](custom_expire) is set.
 
 The API will respond with a JSON format which contains the `reg_identifier` of the seeded entity so that it can be used in the test suite to perform operations on the seeded registration.
 
 ## Usage
+
 A helper class called `SeedData` is part of the suite. It can be used in any step or helper method definition.
 
 ```ruby
@@ -25,9 +27,9 @@ To create a new entity to seed, for example an entity without payments, and henc
 
 When creating a new file, the data will be the same format as in the local database, except you need to do the following:
 
-* remove any `_id` fields
-* remove the `regIdentifier`
-* remove `ISODate(` and `)` from any dates
+- remove any `_id` fields
+- remove the `regIdentifier`
+- remove `ISODate(` and `)` from any dates
 
 ## Options
 
@@ -72,7 +74,7 @@ seed_data = SeedData.new("limitedCompany_complete_active_registration.json", "co
 This will work for any attribute at the top level of the json document *as long as* the keys value matches
 (in the example above, "companyName" matches the key value from the json content). It is case-sensitive.
 
-** Warning **
+Warning
 
 This currently might give unwanted results if used with keys that have nested informations. For example, if you want to change
 something in the "metaData" of a document, which has a nested piece of json, you can't use this option. Tweaks are possible
@@ -103,7 +105,7 @@ That's it! If you wish to use a dynamic date for your `expires_on` (which is adv
 
 This option will allow the generation of a registration containing an order with a dynamic number of copy cards.
 
-#### Usage:
+#### Example usage
 
 ```ruby
   SeedData.new("outstanding_balance_pending_registration.json", copy_cards: 2)
@@ -119,7 +121,6 @@ and then the registration will be seeded as normal.
 NOTE: This will always create a registration with a balance different from 0, as the option *will not* generate a payment
 for the extra copy cards item added to the order. There is the possibility to change this behaviour so that we can create
 a payment for the copy cards order too, in case this become necessary / useful, contact a developer to implement it.
-
 
 ## Limitations
 

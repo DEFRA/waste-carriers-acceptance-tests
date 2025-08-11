@@ -109,7 +109,7 @@ end
 
 When("I mark the renewal payment as received") do
   @bo.registration_details_page.process_payment_button.click
-  pay_by_cash(105)
+  pay_by_cash(125)
   @reg_type = :registration
 end
 
@@ -140,7 +140,7 @@ end
 
 When("I approve the conviction check for the renewal") do
   @bo.dashboard_page.govuk_banner.conviction_checks_link.click
-  visit((Quke::Quke.config.custom["urls"]["back_office"]) + "/transient-registrations/#{@reg_number}/convictions")
+  visit(Quke::Quke.config.custom["urls"]["back_office"] + "/transient-registrations/#{@reg_number}/convictions")
 
   @bo.convictions_bo_details_page.approve_button.click
   @bo.convictions_decision_page.submit(conviction_reason: "ok")

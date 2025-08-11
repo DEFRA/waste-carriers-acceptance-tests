@@ -223,7 +223,7 @@ Some tests in this suite (such as tests which require you to get a URL from an e
 extracts the first renewal link from this email text, as it appears on the 'last email' screen:
 
 ```HTML
-<h1>\r\n              Renew your waste carrier registration by 18 August 2023.\r\n            </h1>\r\n\r\n            <p style=\"font-size: 19px; line-height: 1.315789474; margin: 15px 0 15px 0;\">\r\n              It costs £105 and lasts for 3 years.\r\n            </p>\r\n\r\n            <p style=\"font-size: 19px; line-height: 1.315789474; margin: 15px 0 15px 0; font-weight: bold\">\r\n              You can renew online in a few minutes at: <a href=https://waste-carriers-tst.aws.defra.cloud/fo/renew/token0123456789abcdef>https://waste-carriers-tst.aws.defra.cloud/fo/renew/token0123456789abcdef</a>\r\n
+<h1>\r\n              Renew your waste carrier registration by 18 August 2023.\r\n            </h1>\r\n\r\n            <p style=\"font-size: 19px; line-height: 1.315789474; margin: 15px 0 15px 0;\">\r\n              It costs £125 and lasts for 3 years.\r\n            </p>\r\n\r\n            <p style=\"font-size: 19px; line-height: 1.315789474; margin: 15px 0 15px 0; font-weight: bold\">\r\n              You can renew online in a few minutes at: <a href=https://waste-carriers-tst.aws.defra.cloud/fo/renew/token0123456789abcdef>https://waste-carriers-tst.aws.defra.cloud/fo/renew/token0123456789abcdef</a>\r\n
 ```
 
 Breaking this down:

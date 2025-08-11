@@ -121,7 +121,7 @@ end
 def retrieve_email_containing(search_terms)
   # Search for and return email text containing all the items from the search_terms array.
   # Assumes that the user has already navigated to the correct front or back office email page.
-  email_was_found = @journey.last_message_page.check_message_for_text(search_terms)
+  email_was_found = @journey.last_message_page.check_message_for_text?(search_terms)
   return @journey.last_message_page.text if email_was_found
 
   "Email not found"

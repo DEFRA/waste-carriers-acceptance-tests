@@ -21,7 +21,7 @@ class PartnersPage < BasePage
     dob_day.set(person[:dob_day])
     dob_month.set(person[:dob_month])
     dob_year.set(person[:dob_year])
-
+    sleep(1)
     add_person.click
   end
 
