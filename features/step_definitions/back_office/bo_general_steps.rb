@@ -31,6 +31,7 @@ Then(/^the registration has a status of "([^"]*)"$/) do |status|
   sign_in_to_back_office("agency-refund-payment-user")
 
   @bo.dashboard_page.load
+  @bo.dashboard_page.search_reg_number.click
   @bo.dashboard_page.submit(search_term: @reg_number)
 
   expect(@bo.dashboard_page.status.first.text.downcase).to have_text(status.downcase)
@@ -40,6 +41,7 @@ Then(/^the renewal has a status of "([^"]*)"$/) do |status|
   sign_in_to_back_office("agency-refund-payment-user")
 
   @bo.dashboard_page.load
+  @bo.dashboard_page.search_reg_number.click
   @bo.dashboard_page.submit(search_term: @reg_number)
 
   expect(@bo.dashboard_page.status.last.text.downcase).to have_text(status.downcase)
@@ -49,6 +51,7 @@ Then(/^the registration does not have a status of "([^"]*)"$/) do |status|
   sign_in_to_back_office("agency-refund-payment-user")
 
   @bo.dashboard_page.load
+  @bo.dashboard_page.search_reg_number.click
   @bo.dashboard_page.submit(search_term: @reg_number)
   expect(@bo.dashboard_page.status).not_to have_text(status.downcase)
 end
