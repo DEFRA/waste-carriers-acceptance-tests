@@ -6,6 +6,8 @@ Feature: Finance admin
 
   This feature covers all main finance admin operations: refunds and charge adjustments (frequent)
   plus reversals and writeoffs (less frequent).
+
+  Note testing refunds webhook events can only take place in the pre-prod environment.
   
   @refund
   Scenario: [RUBY-811] Successful refund of card payment for back office registration
@@ -16,9 +18,7 @@ Feature: Finance admin
     And the registration's balance is 0
     And NCCC makes a payment of 42 by "cheque"
     When an agency-refund-payment-user refunds the card payment
-    And I check the refund status
-    Then the card payment is shown as refunded
-    And the registration's balance is 0
+    Then the refund has been completed
 
   @refund
   Scenario: Successful refund of card payment for front office registration
@@ -26,9 +26,7 @@ Feature: Finance admin
     And the registration's balance is 0
     When a finance admin user adjusts the charge by -5
     When an agency-refund-payment-user refunds the card payment
-    And I check the refund status
-    Then the card payment is shown as refunded
-    And the registration's balance is 0
+    Then the refund has been completed
 
   @refund
   Scenario: Registration refund of bank transfer can be completed by finance user
