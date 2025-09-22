@@ -12,6 +12,17 @@ When(/^the registration's balance is (-?\d+)$/) do |balance|
   visit_registration_details_page(@reg_number)
 end
 
+Then("the refund has been completed") do
+  # give the system time to receive and process the webhook event
+  sleep 10
+  # This step assumes that any back office user is already logged in
+  # and the payment status is viewable for that registration (which has been submitted)
+  visit_finance_details_page(@reg_number)
+  check_balance(0)
+
+  @reg_balance = 0
+end
+
 When("the renewal has been completed") do
   @reg_type = :registration
 end
