@@ -16,6 +16,15 @@ Feature: A new user registers as an upper tier waste carrier
     And I will receive a registration confirmation email
     And the registration certificate can be viewed from the email
     
+  @fix
+  Scenario: Error while payment by card is retried successfully
+    Given mocking is "disabled"
+    And I start a new registration journey in "England" as a "soleTrader"
+    And I complete my registration for my business "Happy Path UT Registration"
+    When there is an error while paying by card
+    And I retry and pay by card successfully
+    Then I am notified that my registration has been successful
+    
   @email
   Scenario: An LLP registers as an upper tier waste carrier and pays via bank transfer
     When I start a new registration journey in "England" as a "limitedLiabilityPartnership"
