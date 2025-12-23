@@ -28,6 +28,14 @@ When("I have my credit card payment rejected") do
   @journey.confirm_payment_method_page.submit(choice: :no)
 end
 
+When("there is an error while paying by card") do
+  @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
+  submit_card_payment_with_error unless mocking_enabled?
+  expect(@journey.payment_summary_page).to have_text("We’re experiencing technical problems")
+  @journey.payment_confirmation_page.return.click
+end
+
 When("I cancel my credit card payment") do
   @journey.payment_summary_page.submit(choice: :card_payment)
   @journey.confirm_payment_method_page.submit(choice: :yes)
@@ -41,6 +49,14 @@ end
 When("I pay by card") do
   @journey.payment_summary_page.submit(choice: :card_payment)
   @journey.confirm_payment_method_page.submit(choice: :yes) unless @edited_info
+  submit_card_payment
+end
+
+When("I retry and pay by card successfully") do
+  puts current_url
+  # @journey.payment_summary_page.submit(choice: :card_payment)
+  @journey.confirm_payment_method_page.submit(choice: :yes)
+
   submit_card_payment
 end
 
