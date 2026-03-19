@@ -38,7 +38,7 @@ When("the transient renewal's balance is {float}") do |balance|
   @reg_balance = balance
 end
 
-When(/^NCCC makes a payment of (\d+) by "([^"]*)"$/) do |amount, method|
+When("NCCC makes a payment of {float} by {string}") do |amount, method|
   sign_in_as_appropriate_finance_user(method)
   enter_payment(amount, method)
   check_payment_confirmation_message(amount)
