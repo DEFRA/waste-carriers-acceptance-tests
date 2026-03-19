@@ -10,7 +10,7 @@ Feature: [RUBY-826] Pay for registrations
     And the registration's balance is 196.02
 
   Scenario: Pay for registration, partly by cash, complete by cheque
-    When NCCC makes a payment of 100 by "cash"
+    When NCCC makes a payment of 100.00 by "cash"
     Then the registration has a status of "IN PROGRESS"
     And the registration has a status of "PAYMENT NEEDED"
     And the registration's balance is 96.02
@@ -22,7 +22,7 @@ Feature: [RUBY-826] Pay for registrations
     And the registration's balance is 0.00
   
   Scenario: Pay for registration, partly by bank transfer, complete by card payment
-    When NCCC makes a payment of 100 by "transfer"
+    When NCCC makes a payment of 100.00 by "transfer"
     Then the registration has a status of "IN PROGRESS"
     And the registration has a status of "PAYMENT NEEDED"
     And the registration's balance is 96.02
