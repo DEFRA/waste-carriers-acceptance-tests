@@ -16,7 +16,6 @@ Feature: A new user registers as an upper tier waste carrier
     And I will receive a registration confirmation email
     And the registration certificate can be viewed from the email
     
-  @fix
   Scenario: Error while payment by card is retried successfully
     Given mocking is "disabled"
     And I start a new registration journey in "England" as a "soleTrader"
