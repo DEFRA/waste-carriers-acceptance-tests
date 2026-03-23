@@ -1,4 +1,4 @@
-When(/^the registration's balance is (-?\d+)$/) do |balance|
+When("the registration's balance is {float}") do |balance|
   sign_in_to_back_office("agency-refund-payment-user")
 
   # Firstly, check the balance for that registration:
@@ -27,7 +27,7 @@ When("the renewal has been completed") do
   @reg_type = :registration
 end
 
-When(/^the transient renewal's balance is (-?\d+)$/) do |balance|
+When("the transient renewal's balance is {float}") do |balance|
   # This step assumes that any back office user is already logged in
   # and the payment status is viewable for that renewal (which has been submitted)
 
@@ -38,7 +38,7 @@ When(/^the transient renewal's balance is (-?\d+)$/) do |balance|
   @reg_balance = balance
 end
 
-When(/^NCCC makes a payment of (\d+) by "([^"]*)"$/) do |amount, method|
+When("NCCC makes a payment of {float} by {string}") do |amount, method|
   sign_in_as_appropriate_finance_user(method)
   enter_payment(amount, method)
   check_payment_confirmation_message(amount)

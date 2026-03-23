@@ -11,5 +11,5 @@ Feature: [RUBY-767] NCCC agent orders registration cards from back office
     When an agency user orders "1" registration card
     And the agency user pays for the card by bank card
     Then the card order is confirmed with cleared payment
-    And the registration's balance is 0
+    And the registration's balance is 0.00
     And the carrier receives an email saying their card order is being printed

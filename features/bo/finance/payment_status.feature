@@ -24,7 +24,7 @@ Scenario: Submitted refund status
   Given mocking is "enabled"
     And the govPay refund status is "submitted"
     And an upper tier "soleTrader" registration is completed in the front office
-    And the registration's balance is 0
+    And the registration's balance is 0.00
    When a finance admin user adjusts the charge by -5
     And an agency-refund-payment-user refunds the card payment
     And the govPay refund status is "success"

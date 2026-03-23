@@ -14,7 +14,7 @@ Given("an agency-refund-payment-user refunds the card payment") do
   # Store amount to be refunded as text, for later steps:
   @refund = (-@reg_balance).to_s
 
-  expect(@journey.standard_page.content).to have_text("Balance that will be refunded £#{@refund}.00")
+  expect(@journey.standard_page.content).to have_text("Balance that will be refunded £#{@refund}")
   @journey.standard_page.submit_button.click
 end
 
