@@ -13,11 +13,13 @@ When("the registration's balance is {float}") do |balance|
 end
 
 Then("the refund has been completed") do
-  # give the system time to receive and process the webhook event
+  # Wait for mock Govpay to transition refund from "submitted" to "success"
+  # (controlled by GOVPAY_REFUND_SUBMITTED_SUCCESS_LAG env var, default 10s)
   sleep 10
-  # This step assumes that any back office user is already logged in
-  # and the payment status is viewable for that registration (which has been submitted)
+  # Navigate to finance details and trigger the refund status check so the
+  # database is updated from "submitted" to "success" before checking balance.
   visit_finance_details_page(@reg_number)
+  @bo.finance_payment_details_page.check_refund_status.click
   check_balance(0)
 
   @reg_balance = 0
