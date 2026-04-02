@@ -58,7 +58,7 @@ def enter_payment(amount, method)
   @bo.finance_payment_method_page.submit(choice: method.to_sym)
   expect(@bo.finance_payment_input_page).to have_amount
   expect(@bo.finance_payment_input_page.heading).to have_text("payment for #{@reg_number}")
-  time = Time.new
+  time = Time.now.utc
   @bo.finance_payment_input_page.submit(
     amount: amount.to_s,
     day: time.strftime("%d"),
