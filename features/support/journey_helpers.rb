@@ -231,7 +231,7 @@ def submit_contact_details_for_renewal
       confirm_email: @renewal_contact_email
     )
   end
-  @journey.contact_email_page.submit(no_email_option: true) if @no_contact_email
+  @journey.contact_email_page.submit(skip_email_option: true) if @no_contact_email
   complete_contact_address_with_random_method
 end
 
@@ -242,9 +242,9 @@ def submit_contact_details_for_registration(email_address)
   }
   @journey.contact_name_page.submit(names)
   @journey.contact_phone_page.submit(phone_number: "0117 4960000")
-  expect(@journey.contact_email_page).to have_no_email_option if @app == :bo
+  expect(@journey.contact_email_page).to have_skip_email_option if @app == :bo
   @journey.contact_email_page.submit(email: email_address, confirm_email: email_address) unless @no_contact_email
-  @journey.contact_email_page.submit(no_email_option: true) if @no_contact_email
+  @journey.contact_email_page.submit(skip_email_option: true) if @no_contact_email
   complete_contact_address_with_random_method
 end
 

@@ -1,8 +1,6 @@
 # Scroll to any element/section
 # @param element [Capybara::Node::Element, SitePrism::Section]
 
-require "facets"
-
 def load_all_apps
   @bo = BackOfficeApp.new
   @fo = FrontOfficeApp.new
