@@ -62,7 +62,6 @@ GEM
     cucumber-tag-expressions (8.1.0)
     defra_ruby_style (0.4.1)
     diff-lcs (1.6.2)
-    facets (3.2.0)
     faker (3.8.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.4)
@@ -163,7 +162,6 @@ PLATFORMS
 
 DEPENDENCIES
   defra_ruby_style
-  facets
   faker
   pry
   quke!
