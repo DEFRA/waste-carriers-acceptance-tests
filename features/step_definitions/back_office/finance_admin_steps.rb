@@ -1,6 +1,5 @@
 Given("an agency-refund-payment-user refunds the card payment") do
   sign_in_to_back_office("agency-refund-payment-user")
-
   visit_refund_page(@reg_number)
   expect(@bo.finance_refund_select_page.heading).to have_text("Which payment do you want to refund?")
 
