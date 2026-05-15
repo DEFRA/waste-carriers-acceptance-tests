@@ -92,7 +92,7 @@ Given(/^I change my place of business location to "([^"]*)"$/) do |location|
 end
 
 Then("I will be able to continue my renewal") do
-  @journey.carrier_type_page.wait_until_carrier_dealer_visible
+  @journey.carrier_type_page.wait_until_carrier_dealer_visible(wait: 5)
   expect(@journey.tier_check_page.current_url).to include "/cbd-type"
   Capybara.reset_session!
 end
@@ -200,7 +200,7 @@ And("I have the option to start a new registration") do
 end
 
 Then(/^I will be notified my renewal is complete$/) do
-  @journey.confirmation_page.wait_until_registration_number_visible
+  @journey.confirmation_page.wait_until_registration_number_visible(wait: 5)
   expect(@journey.confirmation_page.heading.text).to eq("Renewal complete")
   expect(@journey.confirmation_page).to have_text(@reg_number)
 
@@ -237,14 +237,14 @@ Given("I do not confirm my company details are correct") do
 end
 
 Then("I will be notified my renewal is pending checks") do
-  @journey.confirmation_page.wait_until_registration_number_visible
+  @journey.confirmation_page.wait_until_registration_number_visible(wait: 5)
   expect(@journey.confirmation_page.heading.text).to eq("Application received")
   expect(@journey.confirmation_page).to have_text(@reg_number)
   Capybara.reset_session!
 end
 
 Then("I will be notified my renewal is pending payment") do
-  @journey.confirmation_page.wait_until_registration_number_visible
+  @journey.confirmation_page.wait_until_registration_number_visible(wait: 5)
   expect(@journey.confirmation_page.heading.text).to eq("Application received")
   expect(@journey.confirmation_page).to have_text("pay the renewal charge")
   expect(@journey.confirmation_page).to have_text(@reg_number)

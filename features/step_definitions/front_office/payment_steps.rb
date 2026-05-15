@@ -22,7 +22,7 @@ When("I have my credit card payment rejected") do
   @journey.payment_summary_page.submit(choice: :card_payment)
   @journey.confirm_payment_method_page.submit(choice: :yes)
   submit_invalid_card_payment unless mocking_enabled?
-  @journey.payment_confirmation_page.wait_until_return_visible
+  @journey.payment_confirmation_page.wait_until_return_visible(wait: 5)
   expect(@journey.payment_summary_page).to have_text("Your payment has been declined")
   @journey.payment_confirmation_page.return.click
   @journey.confirm_payment_method_page.submit(choice: :no)
@@ -40,7 +40,7 @@ When("I cancel my credit card payment") do
   @journey.payment_summary_page.submit(choice: :card_payment)
   @journey.confirm_payment_method_page.submit(choice: :yes)
   @journey.payment_page.cancel_payment unless mocking_enabled?
-  @journey.payment_confirmation_page.wait_until_return_visible
+  @journey.payment_confirmation_page.wait_until_return_visible(wait: 5)
   expect(@journey.payment_summary_page).to have_text("Your payment has been cancelled")
   @journey.payment_confirmation_page.return.click
   @journey.confirm_payment_method_page.submit(choice: :no)
