@@ -28,7 +28,7 @@ end
 
 def check_balance(expected_balance)
   # Get the balance from the payment details page
-  @bo.finance_payment_details_page.wait_until_balance_visible(wait: 5)
+  @bo.finance_payment_details_page.wait_until_balance_visible
   balance_on_page = @bo.finance_payment_details_page.balance.text.to_f
   expect(balance_on_page).to eq(expected_balance.to_f)
 end
@@ -56,9 +56,9 @@ def enter_payment(amount, method)
   # List of method options is in finance_payment_method_page.rb
   visit_registration_details_page(@reg_number)
   @bo.registration_details_page.payment_details_link.click
-  @bo.finance_payment_details_page.wait_until_enter_payment_button_visible(wait: 5)
+  @bo.finance_payment_details_page.wait_until_enter_payment_button_visible
   @bo.finance_payment_details_page.enter_payment_button.click
-  @bo.finance_payment_method_page.wait_until_cash_visible(wait: 5)
+  @bo.finance_payment_method_page.wait_until_cash_visible
   @bo.finance_payment_method_page.submit(choice: method.to_sym)
   expect(@bo.finance_payment_input_page).to have_amount
   expect(@bo.finance_payment_input_page.heading).to have_text("payment for #{@reg_number}")
@@ -81,10 +81,10 @@ end
 def adjust_charge(amount, random_number)
   # Start from any logged in screen with the appropriate user, and add a positive or negative charge
   visit_registration_details_page(@reg_number)
-  @bo.registration_details_page.wait_until_payment_details_link_visible(wait: 5)
+  @bo.registration_details_page.wait_until_payment_details_link_visible
   @bo.registration_details_page.payment_details_link.click
   @bo.finance_payment_details_page.charge_adjust_button.click
-  @bo.finance_charge_adjust_select_page.wait_until_positive_radio_visible(wait: 5)
+  @bo.finance_charge_adjust_select_page.wait_until_positive_radio_visible
   expect(@bo.finance_charge_adjust_select_page.heading).to have_text("Make a charge adjustment for #{@reg_number}")
   submit_option = amount >= 0 ? :positive : :negative
   @bo.finance_charge_adjust_select_page.submit(choice: submit_option)

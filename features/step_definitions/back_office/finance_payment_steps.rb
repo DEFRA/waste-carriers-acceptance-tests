@@ -3,7 +3,7 @@ When("the registration's balance is {float}") do |balance|
 
   # Firstly, check the balance for that registration:
   visit_registration_details_page(@reg_number)
-  @bo.registration_details_page.wait_until_payment_details_link_visible(wait: 5)
+  @bo.registration_details_page.wait_until_payment_details_link_visible
   @bo.registration_details_page.payment_details_link.click
   check_balance(balance)
 
@@ -16,7 +16,7 @@ end
 
 Then("the refund has been completed") do
   visit_registration_details_page(@reg_number)
-  @bo.registration_details_page.wait_until_payment_details_link_visible(wait: 5)
+  @bo.registration_details_page.wait_until_payment_details_link_visible
   @bo.registration_details_page.payment_details_link.click
   if mocking_enabled?
     # Wait for mock Govpay to transition refund from "submitted" to "success"
