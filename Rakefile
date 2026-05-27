@@ -24,7 +24,7 @@ end
 
 desc "Run all tests on pre-production"
 task :pre do
-  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke")
+  sh %( QUKE_CONFIG=config/pre.config.yml bundle exec quke)
 end
 
 desc "Run all tests on local excluding todo, broken, and email"
