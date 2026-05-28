@@ -1,8 +1,6 @@
 # Scroll to any element/section
 # @param element [Capybara::Node::Element, SitePrism::Section]
 
-require "facets"
-
 def load_all_apps
   @bo = BackOfficeApp.new
   @fo = FrontOfficeApp.new
@@ -53,6 +51,7 @@ def sign_in_to_back_office(user, force: true)
     email: Quke::Quke.config.custom["accounts"][user]["username"],
     password: ENV.fetch("WCRS_DEFAULT_PASSWORD", nil)
   )
+  @bo.dashboard_page.wait_until_sign_out_link_visible
 end
 
 def sign_out_of_back_office

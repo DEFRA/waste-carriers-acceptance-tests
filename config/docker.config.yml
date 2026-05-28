@@ -7,7 +7,7 @@ app_host: 'http://localhost:3000'
 
 # Tells Quke which browser to use for testing. Choices are firefox, chrome, and
 # browserstack, with the default being chrome
-driver: firefox
+driver: chrome
 
 # Let Quke know you want to run the browser in headless mode. Headless mode
 # means the browser still runs but you won't see it displayed. The benefit is
