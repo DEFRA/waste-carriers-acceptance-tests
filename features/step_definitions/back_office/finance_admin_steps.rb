@@ -1,6 +1,5 @@
 Given("an agency-refund-payment-user refunds the card payment") do
   sign_in_to_back_office("agency-refund-payment-user")
-
   visit_refund_page(@reg_number)
   expect(@bo.finance_refund_select_page.heading).to have_text("Which payment do you want to refund?")
 
@@ -21,7 +20,7 @@ end
 When("I check the refund status") do
   # Takes user back to payment details page with flash message.
   # Aligns with GOVPAY_REFUND_SUBMITTED_SUCCESS_LAG
-  sleep(5)
+  sleep(2)
   @bo.finance_payment_details_page.check_refund_status.click
 end
 

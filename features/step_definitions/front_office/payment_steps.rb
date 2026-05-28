@@ -53,8 +53,6 @@ When("I pay by card") do
 end
 
 When("I retry and pay by card successfully") do
-  puts current_url
-  # @journey.payment_summary_page.submit(choice: :card_payment)
   @journey.confirm_payment_method_page.submit(choice: :yes)
 
   submit_card_payment

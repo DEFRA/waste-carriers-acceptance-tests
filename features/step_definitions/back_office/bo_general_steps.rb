@@ -80,7 +80,7 @@ Then("I check the registration details are correct on the back office") do
     expect(page_content).to have_text("Lower tier registration - convictions are not applicable")
   end
 
-  @carrier = @seeded_data["registrationType"] if @carrier.blank? && @seeded_data.present?
+  @carrier = @seeded_data["registrationType"] if @carrier.nil? && @seeded_data
 
   case @carrier
   when "carrier_broker_dealer"
