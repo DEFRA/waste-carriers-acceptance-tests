@@ -12,6 +12,10 @@ class FrontOfficeApp
     @last_page = CertificateConfirmEmailPage.new
   end
 
+  def certificate_page
+    @last_page = CertificatePage.new
+  end
+
   def reset_password_page
     @last_page = ResetPasswordPage.new
   end

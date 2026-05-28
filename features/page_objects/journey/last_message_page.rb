@@ -9,7 +9,7 @@ class LastMessagePage < BasePage
   # The page will be loaded up to 10 times until the email shows
   # (a 1 in 1024 chance of the email not showing).
 
-  element(:message_content, "body")
+  element(:message_content, "body pre")
 
   def check_message_for_text?(expected_text)
     # Look for an email containing all the strings in the given array

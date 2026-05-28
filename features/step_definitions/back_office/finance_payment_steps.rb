@@ -20,8 +20,8 @@ Then("the refund has been completed") do
   @bo.registration_details_page.payment_details_link.click
   if mocking_enabled?
     # Wait for mock Govpay to transition refund from "submitted" to "success"
-    # (controlled by GOVPAY_REFUND_SUBMITTED_SUCCESS_LAG env var, default 10s)
-    sleep 10
+    # (controlled by GOVPAY_REFUND_SUBMITTED_SUCCESS_LAG env var)
+    sleep 2
     # With mocks enabled we have to trigger the refund status check so the
     # database is updated from "submitted" to "success" before checking balance.
     @bo.finance_payment_details_page.check_refund_status.click
