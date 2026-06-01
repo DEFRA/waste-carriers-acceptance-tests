@@ -20,6 +20,7 @@ class FinancePaymentDetailsPage < BasePage
   def check_balance?(value)
     10.times do
       return true if balance.text == value
+
       sleep 1
       page.evaluate_script "window.location.reload()"
     end
