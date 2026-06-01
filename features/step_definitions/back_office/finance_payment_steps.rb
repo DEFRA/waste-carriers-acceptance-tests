@@ -26,7 +26,7 @@ Then("the refund has been completed") do
     # database is updated from "submitted" to "success" before checking balance.
     @bo.finance_payment_details_page.check_refund_status.click
   end
-  check_balance(0)
+  expect(@bo.finance_payment_details_page.check_balance?("0.00")).to(be true)
 
   @reg_balance = 0
 end

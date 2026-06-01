@@ -17,24 +17,14 @@ class FinancePaymentDetailsPage < BasePage
   element(:check_refund_status, "a[href*='/refunds/']")
   element(:balance, ".govuk-table__cell--numeric:nth-child(2)")
 
-  # Sample text on this page:
-  # Payment details for CBDU6
-  # AD UT Company limited
-  # Upper tier - Carrier, broker and dealer
-  #
-  # ENVIRONMENT AGENCY, DEANERY ROAD, BRISTOL, BS1 5AH
-  #
-  # Payment required
-  # GBP159 to pay
-  #
-  # Charges and amendments
-  # Date Charge Amount in GBP
-  # 21/02/2020 09:08 Initial Registration 154.00
-  # 21/02/2020 09:08 1x Copy cards 5.00
-  # Payment history
-  # Date Method Reference Comment Amount in GBP
-  # Balance
-  # Status Amount in GBP
-  # Payment required 159.00
+  def check_balance?(value)
+    10.times do
+      return true if balance.text == value
+      sleep 1
+      page.evaluate_script "window.location.reload()"
+    end
+    puts "Balance is #{balance.text}, expected #{value}"
+    false
+  end
 
 end
