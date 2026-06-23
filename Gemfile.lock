@@ -82,7 +82,7 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     multi_test (1.1.0)
-    nokogiri (1.19.3)
+    nokogiri (1.19.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     parallel (2.1.0)
