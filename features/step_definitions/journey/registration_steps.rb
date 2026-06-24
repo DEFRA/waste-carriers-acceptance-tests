@@ -126,8 +126,9 @@ Then("the registration certificate can be viewed from the email") do
   @fo.certificate_confirm_email_page.submit(
     email: @contact_email
   )
-  expect(page).to have_content("Certificate of Registration under the Waste (England and Wales) Regulations 2011")
-  expect(page).to have_content(@reg_number)
+  @fo.certificate_page.wait_until_heading_visible
+  expect(@fo.certificate_page.heading).to have_content("Certificate of Registration under the Waste (England and Wales) Regulations 2011")
+  expect(@fo.certificate_page).to have_content(@reg_number)
 end
 
 Then("I am notified that I need to pay by bank transfer") do

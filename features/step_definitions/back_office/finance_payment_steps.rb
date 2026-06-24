@@ -2,7 +2,9 @@ When("the registration's balance is {float}") do |balance|
   sign_in_to_back_office("agency-refund-payment-user")
 
   # Firstly, check the balance for that registration:
-  visit_finance_details_page(@reg_number)
+  visit_registration_details_page(@reg_number)
+  @bo.registration_details_page.wait_until_payment_details_link_visible
+  @bo.registration_details_page.payment_details_link.click
   check_balance(balance)
 
   # Once confirmed, set the balance variable to that value for future steps
@@ -13,12 +15,18 @@ When("the registration's balance is {float}") do |balance|
 end
 
 Then("the refund has been completed") do
-  # give the system time to receive and process the webhook event
-  sleep 10
-  # This step assumes that any back office user is already logged in
-  # and the payment status is viewable for that registration (which has been submitted)
-  visit_finance_details_page(@reg_number)
-  check_balance(0)
+  visit_registration_details_page(@reg_number)
+  @bo.registration_details_page.wait_until_payment_details_link_visible
+  @bo.registration_details_page.payment_details_link.click
+  if mocking_enabled?
+    # Wait for mock Govpay to transition refund from "submitted" to "success"
+    # (controlled by GOVPAY_REFUND_SUBMITTED_SUCCESS_LAG env var)
+    sleep 2
+    # With mocks enabled we have to trigger the refund status check so the
+    # database is updated from "submitted" to "success" before checking balance.
+    @bo.finance_payment_details_page.check_refund_status.click
+  end
+  expect(@bo.finance_payment_details_page.check_balance?("0.00")).to(be true)
 
   @reg_balance = 0
 end
