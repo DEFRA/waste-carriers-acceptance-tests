@@ -70,7 +70,5 @@
         "revokedReason" : "Ceased lower tier test"
     },
     "locked_at" : null,
-    "locking_name" : null,
-    "deregistration_token" : "NjSRmDp3s3T1rR1iucirLn79",
-    "deregistration_token_created_at" : "2023-02-10 11:05:23.205Z"
+    "locking_name" : null
 }
