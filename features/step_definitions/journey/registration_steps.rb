@@ -189,19 +189,6 @@ Given("I create an upper tier registration for my {string} business") do |busine
   puts "#{business_type} upper tier registration #{@reg_number} seeded"
 end
 
-Given("I create a lower tier registration for my {string} business") do |business_type|
-  load_all_apps
-  @tier = :lower
-  @deregistration_token = SecureRandom.alphanumeric(24)
-  @deregistration_token_created_date = DateTime.now.strftime("%Y-%m-%d")
-  seed_data = SeedData.new("lower_#{business_type}_complete_active_registration.json",
-                           "deregistration_token" => @deregistration_token,
-                           "deregistration_token_created_at" => @deregistration_token_created_date)
-  @reg_number = seed_data.reg_number
-  @seeded_data = seed_data.seeded_data
-  puts "#{business_type} lower tier registration #{@reg_number} seeded"
-end
-
 Given("I have a new registration for a {string} business") do |business_type|
   load_all_apps
   @tier = :upper

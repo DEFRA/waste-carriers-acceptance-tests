@@ -28,6 +28,7 @@ def mocking_enabled?
   end
   return false if @_mocking_enabled_response.to_s.include?("HTTPNotFound")
 
+  puts "Mocking is enabled"
   true
 end
 
