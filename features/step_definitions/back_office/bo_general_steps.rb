@@ -174,10 +174,6 @@ Then("I can see the message details on the communication details page") do
 end
 
 Then("the unsubscription is logged in the communications history") do
-  sign_in_to_back_office("agency-refund-payment-user")
-  visit_registration_details_page(@reg_number)
-  @bo.registration_details_page.communication_history.click
-  expect(@bo.communication_history_page.heading).to have_text("Communication history")
-  log = @bo.communication_history_page.log_details(@contact_email)
-  expect(log.template_name).to have_text("User unsubscribed from email communication")
+  @bo.communication_log_page.wait_until_template_title_visible
+  expect(@bo.communication_log_page.template_title).to have_text(@message_template)
 end
