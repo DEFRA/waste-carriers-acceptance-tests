@@ -123,6 +123,7 @@ end
 
 When("I resend the renewal reminder email") do
   @bo.registration_details_page.resend_renewal_email_link.click
+  @message_template = "Upper tier renewal reminder"
 end
 
 When("I resend the confirmation email") do
@@ -157,19 +158,22 @@ Then("I will see the registration confirmation email has been sent") do
   expect(@bo.registration_details_page.flash_message).to have_text("Confirmation email sent to #{@contact_email}")
 end
 
-Then("I can see the communication logs on the communication history page") do
+Then("I open communication message from the communication history") do
   visit_registration_details_page(@reg_number)
   @bo.registration_details_page.communication_history.click
   expect(@bo.communication_history_page.heading).to have_text("Communication history")
-  log = @bo.communication_history_page.log_details(@contact_email)
-  expect(log.template_name).to have_text("Upper tier renewal reminder")
+  log = @bo.communication_history_page.log_details(@message_template)
+  @bo.communication_history_page.wait_until_communication_logs_visible
+  log.template_title.click
+end
+
+Then("I can see the message details on the communication details page") do
+  @bo.communication_log_page.wait_until_template_title_visible
+  expect(@bo.communication_log_page.template_title).to have_text(@message_template)
+  expect(@bo.communication_log_page).to have_text(@reg_number)
 end
 
 Then("the unsubscription is logged in the communications history") do
-  sign_in_to_back_office("agency-refund-payment-user")
-  visit_registration_details_page(@reg_number)
-  @bo.registration_details_page.communication_history.click
-  expect(@bo.communication_history_page.heading).to have_text("Communication history")
-  log = @bo.communication_history_page.log_details(@contact_email)
-  expect(log.template_name).to have_text("User unsubscribed from email communication")
+  @bo.communication_log_page.wait_until_template_title_visible
+  expect(@bo.communication_log_page.template_title).to have_text(@message_template)
 end

@@ -37,6 +37,10 @@ class BackOfficeApp
     @last_page = CommunicationHistoryPage.new
   end
 
+  def communication_log_page
+    @last_page = CommunicationLogPage.new
+  end
+
   def dashboard_page
     @last_page = DashboardPage.new
   end
