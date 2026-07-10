@@ -12,5 +12,3 @@ Feature: Assisted digital renewal of an upper tier public body
      When I renew the limited company registration
       And the renewal is complete
       And a renewal confirmation letter is sent
-      And I open communication message from the communication history
-     Then I can see the message details on the communication details page

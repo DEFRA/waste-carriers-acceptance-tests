@@ -163,11 +163,12 @@ Then("I open communication message from the communication history") do
   @bo.registration_details_page.communication_history.click
   expect(@bo.communication_history_page.heading).to have_text("Communication history")
   log = @bo.communication_history_page.log_details(@message_template)
+  @bo.communication_history_page.wait_until_communication_logs_visible
   log.template_title.click
 end
 
 Then("I can see the message details on the communication details page") do
-  puts current_url
+  @bo.communication_log_page.wait_until_template_title_visible
   expect(@bo.communication_log_page.template_title).to have_text(@message_template)
   expect(@bo.communication_log_page).to have_text(@reg_number)
 end
