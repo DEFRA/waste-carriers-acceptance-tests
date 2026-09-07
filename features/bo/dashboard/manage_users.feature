@@ -1,4 +1,4 @@
-@bo @bo_dashboard
+@bo @bo_dashboard @user
 Feature: [RUBY-759] Manage users
   As a super user
   I want to amend EA user privileges
