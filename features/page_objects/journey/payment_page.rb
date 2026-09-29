@@ -16,7 +16,7 @@ class PaymentPage < BasePage
 
   element(:payment_description, "#payment-description")
   element(:payment_amount, "#amount")
-  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop:disable-next Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def submit(args = {})
     card_number.set(args[:card_number]) if args.key?(:card_number)
     cardholder_name.set(args[:cardholder_name]) if args.key?(:cardholder_name)
@@ -29,7 +29,6 @@ class PaymentPage < BasePage
     postcode.set(args[:postcode]) if args.key?(:postcode)
     email.set(args[:email]) if args.key?(:email)
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   def cancel_payment
     cancel.click

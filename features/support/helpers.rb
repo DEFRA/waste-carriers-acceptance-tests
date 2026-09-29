@@ -113,7 +113,7 @@ def look_into_paginated_content_for(text)
 end
 
 def next_year
-  time = Time.new
+  time = Time.now
   year = time.strftime "%y"
   year.to_i + 1
 end
@@ -143,9 +143,8 @@ def password_reset_link(account_email)
   expect(reset_email_text).to have_text("Someone has requested a link to change your password")
 
   # Get the password reset link from the email text:
-  # rubocop:disable Style/RedundantRegexpEscape
+  # rubocop:disable-next Style/RedundantRegexpEscape
   reset_password_link = reset_email_text.match(/.*href\=\\"(.*)\\">Change.*/)[1].to_s
-  # rubocop:enable Style/RedundantRegexpEscape
   puts "Link to reset password is: #{reset_password_link}"
 
   reset_password_link

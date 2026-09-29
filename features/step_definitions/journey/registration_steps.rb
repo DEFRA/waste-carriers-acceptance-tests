@@ -48,7 +48,7 @@ When("I complete my registration for my business {string}") do |business_name|
   @carrier ||= :carrier_broker_dealer
   submit_carrier_details(@organisation_type, @tier, @carrier)
 
-  if @tier == :upper && @organisation_type != :partnership && (@journey.company_number_page.heading.has_text? "What's the registration number")
+  if @tier == :upper && @organisation_type != :partnership && (@journey.company_number_page.heading.has_text? "What is your Companies House number?")
     # then it's a limited company or LLP:
     @companies_house_number = "00445790" if @companies_house_number.nil?
     @journey.company_number_page.submit(companies_house_number: @companies_house_number)

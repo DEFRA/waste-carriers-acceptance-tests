@@ -1,7 +1,7 @@
 # Represents all shared pages across front and back office, or registrations and renewals.
 # Aim to move as many pages as poss to journey, to avoid repetition and increase maintainability.
 
-# rubocop:disable Metrics/ClassLength
+# rubocop:disable-next Metrics/ClassLength
 class JourneyApp
   # Using an attr_reader automatically gives us a my_app.last_page method
   attr_reader :last_page, :base_page
@@ -175,4 +175,3 @@ class JourneyApp
   end
 
 end
-# rubocop:enable Metrics/ClassLength
