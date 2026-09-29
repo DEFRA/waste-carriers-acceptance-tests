@@ -64,7 +64,7 @@ task safari_browserstack: %i[
 ]
 
 desc "Run Chrome 63 OS X test"
-task :chrome63_osx  do
+task :chrome63_osx do
   reset_dbs
   sh %( QUKE_CONFIG=config/browserstack/Chrome63_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
@@ -94,7 +94,7 @@ task :edge16_w10  do
 end
 
 desc "Run Firefox 58 OS X test"
-task :firefox58_osx  do
+task :firefox58_osx do
   reset_dbs
   sh %( QUKE_CONFIG=config/browserstack/Firefox58_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
@@ -106,13 +106,13 @@ task :firefox58_w81 do
 end
 
 desc "Run Firefox 59 OS X test"
-task :firefox59_osx  do
+task :firefox59_osx do
   reset_dbs
   sh %( QUKE_CONFIG=config/browserstack/Firefox59_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Firefox 59 W10 test"
-task :firefox59_w10  do
+task :firefox59_w10 do
   reset_dbs
   sh %( QUKE_CONFIG=config/browserstack/Firefox59_W10.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
@@ -148,13 +148,13 @@ task :iphone_x do
 end
 
 desc "Run Safari 9.1 OS X test"
-task :safari9_1_osx  do
+task :safari9_1_osx do
   reset_dbs
   sh %( QUKE_CONFIG=config/browserstack/Safari9_1_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
 
 desc "Run Safari 10.1 OS X test"
-task :safari10_1_osx  do
+task :safari10_1_osx do
   reset_dbs
   sh %( QUKE_CONFIG=config/browserstack/Safari10_1_OSX.config.yml bundle exec quke --tags @dashboard --tags ~@broken)
 end
@@ -175,7 +175,7 @@ task :reset_dbs do
   reset_dbs
 end
 
-# rubocop:disable Layout/LineLength
+# rubocop:disable-next Layout/LineLength
 def reset_dbs
   vagrant_loc = ENV.fetch("VAGRANT_KEY_LOCATION", nil)
   raise ArgumentError, "Environment variable VAGRANT_KEY_LOCATION not set" if vagrant_loc.nil? || vagrant_loc.empty?
@@ -191,4 +191,3 @@ def reset_dbs
   end
   puts "Databases reset"
 end
-# rubocop:enable Layout/LineLength

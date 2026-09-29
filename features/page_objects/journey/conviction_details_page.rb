@@ -40,7 +40,7 @@ class ConvictionDetailsPage < BasePage
     submit_button.click
   end
 
-  # rubocop:disable Layout/LineLength
+  # rubocop:disable-next Layout/LineLength
   def main_people
     [
       { first_name: "Jane", last_name: "Blogs", dob_day: 1, dob_month: 5, dob_year: 1984, position: "Head honcho" },
@@ -48,5 +48,4 @@ class ConvictionDetailsPage < BasePage
       { first_name: "Alex", last_name: "Smith-Brown", dob_day: 1, dob_month: 5, dob_year: 1984, position: "Head honcho" }
     ]
   end
-  # rubocop:enable Layout/LineLength
 end
