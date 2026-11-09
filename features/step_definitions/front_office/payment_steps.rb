@@ -15,7 +15,7 @@ Given("I complete my renewal up to the payment page") do
   submit_contact_details_for_renewal
   check_your_answers
   order_cards_during_journey(0)
-  expect(@journey.payment_summary_page.current_url).to include "/payment-summary"
+  @journey.payment_summary_page.wait_until_card_payment_visible
 end
 
 When("I have my credit card payment rejected") do

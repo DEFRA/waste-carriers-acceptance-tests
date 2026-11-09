@@ -22,7 +22,6 @@ When("I start a new registration journey in {string} as a {string}") do |locatio
   @journey.start_page.submit(choice: @reg_type)
   @journey.location_page.submit(choice: location)
   @journey.standard_page.submit if location == "Northern Ireland"
-
 end
 
 When("I am on the business name page") do
@@ -337,13 +336,13 @@ Given("a limited company with companies house number {string} is registered as a
   @business_name = "AD UT Company convictions check ltd"
   @organisation_type = :limitedCompany
   @companies_house_number = ch_no
+  @reg_type = :new_registration
+  @tier = :upper
+  start_reg_from_back_office
 
-  step("I want to register as an upper tier carrier")
-  @journey.start_page.load
-  @journey.standard_page.accept_cookies
-
-  @journey.start_page.submit(choice: @reg_type)
-  @journey.location_page.submit(choice: :England)
+  # @journey.confirm_business_type_page.submit(org_type: @organisation_type)
+  # @journey.check_your_tier_page.submit(option: :upper)
+  # @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
   step("I complete my registration for my business '#{@business_name}'")
   step("I pay by card")
 
@@ -435,16 +434,13 @@ Given("a partnership {string} registers as an upper tier waste carrier") do |bus
 end
 
 Given("I get part way through a front office registration") do
-  step("I start a new registration journey in 'England' as a 'limitedLiabilityPartnership'")
+  step("I start a new registration journey in 'England' as a 'soleTrader'")
 
   @business_name = "Resume registration #{rand(1..999_999)}"
-  @journey.confirm_business_type_page.submit(org_type: "limitedLiabilityPartnership")
+  @journey.confirm_business_type_page.submit(org_type: "soleTrader")
   select_random_upper_tier_route
   @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
   @carrier = "carrier_broker_dealer"
-  @companies_house_number ||= "00445790"
-  @journey.company_number_page.submit(companies_house_number: @companies_house_number)
-  @journey.check_registered_company_name_page.submit(choice: :confirm)
   @people = @journey.company_people_page.main_people
   @journey.company_people_page.submit_main_person(person: @people[0])
   @journey.trading_name_question_page.submit(option: :yes)

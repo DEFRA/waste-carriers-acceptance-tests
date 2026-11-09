@@ -25,8 +25,8 @@ Feature: A new user registers as an upper tier waste carrier
     Then I am notified that my registration has been successful
     
   @email
-  Scenario: An LLP registers as an upper tier waste carrier and pays via bank transfer
-    When I start a new registration journey in "England" as a "limitedLiabilityPartnership"
+  Scenario: An sole trader registers as an upper tier waste carrier and pays via bank transfer
+    When I start a new registration journey in "England" as a "soleTrader"
     And I complete my registration for my business "UT registration by bank transfer"
     And I pay by bank transfer
     Then I am notified that I need to pay by bank transfer

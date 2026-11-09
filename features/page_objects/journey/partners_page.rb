@@ -31,7 +31,6 @@ class PartnersPage < BasePage
     dob_day.set(args[:dob_day]) if args.key?(:dob_day)
     dob_month.set(args[:dob_month]) if args.key?(:dob_month)
     dob_year.set(args[:dob_year]) if args.key?(:dob_year)
-    puts current_url
     submit_button.click
   end
 
