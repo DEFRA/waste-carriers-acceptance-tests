@@ -536,3 +536,16 @@ end
 Then("I will be informed {string}") do |message|
   expect(@journey.standard_page).to have_text(message)
 end
+
+Given("I enter a companies house number that is already registered") do
+  @journey.start_page.submit(choice: :new_registration)
+  @journey.location_page.submit(choice: :England)
+  @journey.confirm_business_type_page.submit(org_type: :limitedCompany)
+  @journey.check_your_tier_page.submit(option: :upper)
+  @journey.carrier_type_page.submit(choice: :carrier_broker_dealer)
+  @journey.company_number_page.submit(companies_house_number: "00445790")
+end
+
+Then("I will be told that a registration already exists for this company") do
+  expect(@journey.company_number_page.error_summary).to have_text("This company is already registered")
+end
