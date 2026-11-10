@@ -7,6 +7,7 @@ Feature: Conviction checks during upper tier waste carrier registrations
   (Registrations are completed on the front office for this feature.)
   @email
   Scenario: Limited company with an undeclared conviction match by company number is marked for a conviction check
+    Given I sign into the back office as "agency-user"
     Given a limited company with companies house number "01649776" is registered as an upper tier waste carrier
     And the registration has a status of "CONVICTIONS"
     And an application confirmation email will be sent
